@@ -49,6 +49,7 @@ export const Header = () => (
       </li>
     </ul>
     <div className="u-display-none">
+      <h1>React Redux Starter Kit</h1>
       <IndexLink to='/' activeClassName='route--active'>
         Home
       </IndexLink>
