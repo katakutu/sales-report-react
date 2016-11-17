@@ -16,10 +16,11 @@
 
 .search-input__icon {
     position: absolute;
-    top: 14px;
+    top: 12px;
     left: 10px;
     display: block;
     width: 15px;
     height: 15px;
-    background: url('http://placehold.it/15x15') transparent no-repeat;
+    background: url('./assets/search-input-icon@2x.png') transparent no-repeat;
+    background-size: 16px 16px;
 }

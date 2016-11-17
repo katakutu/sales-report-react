@@ -2,18 +2,19 @@ import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import './Header.scss'
 import SearchInput from '../../components/SearchInput'
+import HeaderSearchBtnCart from './assets/header-search-btn-cart@2x.png'
 
 export const Header = () => (
   <div className="header u-clearfix">
     <div className="header__search u-clearfix">
       <div className="header__search-container u-col u-col-12">
-        <SearchInput classN="u-col-12" placeH="Cari produk atau toko"/>
+        <SearchInput injectClassName="u-col-12" injectPlaceholder="Cari produk atau toko"/>
         <Link to='/' className="header__search-btn" activeClassName='route--active'>
-          <img src="http://placehold.it/30x30" alt=""/>
+          <img src={HeaderSearchBtnCart} alt="" width="26" height="24"/>
         </Link>
       </div>
     </div>
-    <ul className="u-clearfix u-list-reset u-m0 u-hide">
+    <ul className="u-clearfix u-list-reset u-m0">
       <li className="u-col u-col-6 u-center">
         <Link to='/' className="header__link" activeClassName='route--active'>
           Jelajah
@@ -25,7 +26,7 @@ export const Header = () => (
         </Link>
       </li>
     </ul>
-    <ul className="u-clearfix u-list-reset u-m0">
+    <ul className="u-clearfix u-list-reset u-m0 u-hide">
       <li className="u-col u-col-3 u-center">
         <Link to='/' className="header__link" activeClassName='route--active'>
           Jelajah
