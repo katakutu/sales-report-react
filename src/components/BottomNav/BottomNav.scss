@@ -21,10 +21,10 @@
         display: block;
         color: $color-brownish-grey;
         font-size: 12px;
+    }
 
-        &.route--active {
-            color: $color-green;
-        }
+    &.route--active span {
+        color: $color-green;
     }
 }
 
