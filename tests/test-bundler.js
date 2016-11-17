@@ -30,8 +30,9 @@ const testsContext = require.context('./', true, /\.spec\.js$/)
 const testsToRun = testsContext.keys().filter(inManifest)
 ;(testsToRun.length ? testsToRun : testsContext.keys()).forEach(testsContext)
 
-// require all `src/**/*.js` except for `main.js` (for isparta coverage reporting)
+// require all `src/**/*.js` except for `main.js` (for isparta coverage reporting),
+// sw-toolbox.js, and sw.js (because it's only needed for frontend ServiceWorker initiation')
 if (__COVERAGE__) {
-  const componentsContext = require.context('../src/', true, /^((?!main|reducers).)*\.js$/)
+  const componentsContext = require.context('../src/', true, /^((?!main|reducers|sw-toolbox|sw).)*\.js$/)
   componentsContext.keys().forEach(componentsContext)
 }
