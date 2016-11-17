@@ -1,0 +1,25 @@
+@import 'base';
+
+.search-input {
+    position: relative;
+}
+
+.search-input__input {
+    padding: 13px 13px 13px 31px;
+    height: 42px;
+    border: 0;
+    border-radius: 2px;
+    background-color: #FFF;
+    color: #000;
+    font-size: 12px;
+}
+
+.search-input__icon {
+    position: absolute;
+    top: 14px;
+    left: 10px;
+    display: block;
+    width: 15px;
+    height: 15px;
+    background: url('http://placehold.it/15x15') transparent no-repeat;
+}

@@ -1,21 +1,45 @@
 @import 'base';
 @import '~normalize.css/normalize';
+@import 'utilities';
 
-// Some best-practice CSS that's useful for most apps
-// Just remove them if they're not what you want
+*:focus {
+    outline: none;
+}
+
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 12px;
 }
 
 html,
 body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 *,
-*:before,
-*:after {
-  box-sizing: inherit;
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+::-webkit-input-placeholder {
+    color: $color-black;
+    opacity: 0.38;
+}
+
+::-moz-placeholder {
+    color: $color-black;
+    opacity: 0.38;
+}
+
+:-ms-input-placeholder {
+    color: $color-black;
+    opacity: 0.38;
+}
+
+:-moz-placeholder {
+    color: $color-black;
+    opacity: 0.38;
 }

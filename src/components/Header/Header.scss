@@ -1,4 +1,35 @@
-.route--active {
-  font-weight: bold;
-  text-decoration: underline;
+@import 'base';
+
+.header {
+    background: $color-green;
+}
+
+.header__search-container {
+    position: relative;
+    padding: 10px 50px 0 10px;
+}
+
+.header__search-btn {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+
+.header__link {
+    display: block;
+    width: 100%;
+    border-bottom: 2px solid transparent;
+    color: $color-white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 44px;
+
+    &.route--active {
+        border-bottom: 2px solid $color-white;
+    }
 }
