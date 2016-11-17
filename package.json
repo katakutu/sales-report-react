@@ -11,6 +11,7 @@
     "clean": "rimraf dist",
     "compile": "better-npm-run compile",
     "lint": "eslint bin build config server src tests",
+    "lint:css": "stylelint \"./src/**/*.scss\" --syntax \"scss\"",
     "lint:fix": "npm run lint -- --fix",
     "start": "better-npm-run start",
     "dev": "better-npm-run dev",
@@ -113,6 +114,8 @@
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "sw-toolbox": "^3.4.0",
+    "stylelint": "^7.5.0",
+    "stylelint-config-standard": "^14.0.0",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.14",
     "yargs": "^6.3.0"
