@@ -53,7 +53,7 @@
   },
   "scripts": {
     "start": "node ./scripts/start.js",
-    "build": "node ./scripts/build.js && cp manifest.json build/ && sw-precache --root='build/' --static-file-globs='build/**/!(*map*)'",
+    "build": "node ./scripts/build.js && cp manifest.json build/ && cp -r static/* build/static/media/ && sw-precache --root='build/' --static-file-globs='build/**/!(*map*)'",
     "gh-pages": "node ./scripts/gh-pages.js"
   },
   "eslintConfig": {
