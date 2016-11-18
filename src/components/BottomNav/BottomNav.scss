@@ -36,23 +36,39 @@
     background-position: center center;
 
     &--home {
-        background: url('./assets/bottom-nav-icon-home-active@2x.png') transparent no-repeat;
+        background: url('./assets/bottom-nav-icon-home@2x.png') transparent no-repeat;
         background-size: 22px 22px;
+
+        .route--active & {
+            background-image: url('./assets/bottom-nav-icon-home-active@2x.png');
+        }
     }
 
     &--hotlist {
         background: url('./assets/bottom-nav-icon-hotlist@2x.png') transparent no-repeat;
         background-size: 20px 22px;
+
+        .route--active & {
+            background-image: url('./assets/bottom-nav-icon-hotlist-active@2x.png');
+        }
     }
 
     &--wishlist {
         background: url('./assets/bottom-nav-icon-wishlist@2x.png') transparent no-repeat;
         background-size: 22px 20px;
+
+        .route--active & {
+            background-image: url('./assets/bottom-nav-icon-wishlist-active@2x.png');
+        }
     }
 
     &--notifikasi {
         background: url('./assets/bottom-nav-icon-notifikasi@2x.png') transparent no-repeat;
         background-size: 20px 22px;
+
+        .route--active & {
+            background-image: url('./assets/bottom-nav-icon-notifikasi-active@2x.png');
+        }
     }
 
     &--masuk {
