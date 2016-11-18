@@ -1,0 +1,15 @@
+{
+  "short_name": "react-pwa",
+  "name": "Create React PWApp",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#42B549",
+  "theme_color": "#42B549",
+  "start_url": "./",
+  "display": "standalone"
+}
