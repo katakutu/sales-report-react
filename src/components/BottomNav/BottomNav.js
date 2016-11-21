@@ -24,12 +24,6 @@ export const BottomNav = () => (
         </Link>
       </li>
       <li className="bottom-nav__grid u-col u-center">
-        <Link to='/notifikasi' className="bottom-nav__link" activeClassName='route--active'>
-          <span className="bottom-nav__icon bottom-nav__icon--notifikasi"></span>
-          <span>Notifikasi</span>
-        </Link>
-      </li>
-      <li className="bottom-nav__grid u-col u-center">
         <Link to='/masuk' className="bottom-nav__link" activeClassName='route--active'>
           <span className="bottom-nav__icon bottom-nav__icon--masuk"></span>
           <span>Masuk</span>

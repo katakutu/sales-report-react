@@ -10,11 +10,37 @@ var settings = {
   infinite: true,
   speed: 500,
   slidesToShow: 1,
+  slidesToScroll: 1,
   draggable: true,
   swipeToSlide: true,
   centerMode: true,
-  centerPadding: '10px',
-  variableWidth: false
+  variableWidth: false,
+  responsive: [
+    {
+      breakpoint: 430,
+      settings: {
+        centerPadding: '10px'
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        centerPadding: '30px'
+      }
+    },
+    {
+      breakpoint: 530,
+      settings: {
+        centerPadding: '60px'
+      }
+    },
+    {
+      breakpoint: 728,
+      settings: {
+        centerPadding: '100px'
+      }
+    }
+  ]
 };
 
 class Carousel extends Component {
