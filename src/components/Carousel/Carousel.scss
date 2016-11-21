@@ -1,0 +1,19 @@
+@import 'base';
+
+.carousel {
+    margin: 10px auto;
+}
+
+.carousel__item {
+    padding-bottom: 5px;
+
+    img {
+        display: block;
+        border-radius: 2px;
+        box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.2);
+    }
+}
+
+.carousel__item-container {
+    padding: 0 2.5px;
+}
