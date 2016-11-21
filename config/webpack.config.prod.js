@@ -1,16 +1,16 @@
-var path = require('path');
-var autoprefixer = require('autoprefixer');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var url = require('url');
-var paths = require('./paths');
+var path = require('path')
+var autoprefixer = require('autoprefixer')
+var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var url = require('url')
+var paths = require('./paths')
 
-var homepagePath = require(paths.appPackageJson).homepage;
-var publicPath = homepagePath ? url.parse(homepagePath).pathname : '/';
+var homepagePath = require(paths.appPackageJson).homepage
+var publicPath = homepagePath ? url.parse(homepagePath).pathname : '/'
 if (!publicPath.endsWith('/')) {
   // Prevents incorrect paths in file-loader
-  publicPath += '/';
+  publicPath += '/'
 }
 
 module.exports = {
@@ -97,8 +97,8 @@ module.exports = {
     configFile: path.join(__dirname, 'eslint.js'),
     useEslintrc: false
   },
-  postcss: function() {
-    return [autoprefixer];
+  postcss: function () {
+    return [autoprefixer]
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -136,4 +136,4 @@ module.exports = {
     }),
     new ExtractTextPlugin('static/css/[name].[contenthash:8].css')
   ]
-};
+}

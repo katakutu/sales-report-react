@@ -22,10 +22,13 @@
     "css-loader": "0.26.0",
     "eslint": "3.10.2",
     "eslint-loader": "1.6.1",
+    "eslint-plugin-babel": "^4.0.0",
     "eslint-plugin-flowtype": "2.25.0",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "3.0.1",
+    "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-react": "6.7.1",
+    "eslint-plugin-standard": "^2.0.1",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.9.0",
     "filesize": "3.3.0",
@@ -63,7 +66,9 @@
     "react-slick": "^0.14.5",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
-    "sass-loader": "^4.0.2"
+    "sass-loader": "^4.0.2",
+    "stylelint": "^7.6.0",
+    "stylelint-config-standard": "^15.0.0"
   },
   "engines": {
     "node": ">=4.5.0",
