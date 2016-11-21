@@ -14,7 +14,6 @@ var settings = {
   draggable: true,
   swipeToSlide: true,
   centerMode: true,
-<<<<<<< HEAD
   variableWidth: false,
   responsive: [
     {
@@ -43,11 +42,6 @@ var settings = {
     }
   ]
 };
-=======
-  centerPadding: '10px',
-  variableWidth: false
-}
->>>>>>> upstream/master
 
 const IMG_PATH = 'https://ecs7.tokopedia.net/img/banner/2016/11/8/11708207/'
 const SLIDER_IMG = IMG_PATH + '11708207_73008c2e-8f73-4610-b345-b8aeea28ff5e.jpg'
