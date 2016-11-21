@@ -23,7 +23,7 @@ export const Footer = () => (
       <p className="u-line-height-4">Butuh Bantuan? <a href="#">Lihat di Sini</a> | Lihat Versi <a href="#">Desktop</a></p>
       <p className="u-line-height-4 footer__lower-text--bigger">
         Pilih Bahasa
-        <select name="language" className="u-ml1 footer__select-language">
+        <select name="language" className="footer__select-language">
           <option value="" selected>Indonesia</option>
           <option value="">English</option>
         </select>
