@@ -2,10 +2,12 @@ import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import './HomeView.scss'
 import Carousel from '../../../components/Carousel'
+import CategoryList from '../../../components/CategoryList'
 
 export const HomeView = () => (
   <div>
     <Carousel />
+    <CategoryList />
     <div className="u-display-none">
       <h4>Welcome!</h4>
       <img
