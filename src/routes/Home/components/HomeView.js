@@ -6,7 +6,7 @@ import Carousel from '../../../components/Carousel'
 export const HomeView = () => (
   <div>
     <Carousel />
-    <div className="u-display-none">
+    <div className='u-display-none'>
       <h4>Welcome!</h4>
       <img
         alt='This is a duck, because Redux!'
