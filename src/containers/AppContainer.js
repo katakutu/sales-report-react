@@ -26,7 +26,6 @@ class AppContainer extends Component {
 
   render () {
     const { routes, store } = this.props
-    console.log('render')
 
     let gs = this.state.isOnline ? 'grayscale(0%)' : 'grayscale(100%)'
     let ds = { height: '100%', filter: gs }
