@@ -37,7 +37,7 @@ class Carousel extends Component {
           <div className="carousel__item">
             <div className="carousel__item-container u-mx-auto u-block">
               <picture className="carousel__img u-fit u-mx-auto">
-                <source srcset="https://ecs7.tokopedia.net/img/banner/2016/11/8/11708207/11708207_73008c2e-8f73-4610-b345-b8aeea28ff5e.jpg.webp"/>
+                <source srcSet="https://ecs7.tokopedia.net/img/banner/2016/11/8/11708207/11708207_73008c2e-8f73-4610-b345-b8aeea28ff5e.jpg.webp"/>
                 <img className="carousel__img u-fit u-mx-auto" src="https://ecs7.tokopedia.net/img/banner/2016/11/8/11708207/11708207_73008c2e-8f73-4610-b345-b8aeea28ff5e.jpg"/>
               </picture>
             </div>

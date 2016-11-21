@@ -39,6 +39,9 @@ if (config.env === 'development') {
   // of development since this directory will be copied into ~/dist
   // when the application is compiled.
   app.use(express.static(paths.client('static')))
+  app.get('/service-worker.js', (req, res) => {
+    res.sendFile(paths.dist() + "/service-worker.js");
+  });
 } else {
   debug(
     'Server is being run outside of live development mode, meaning it will ' +
