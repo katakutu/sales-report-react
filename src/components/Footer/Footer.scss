@@ -1,0 +1,57 @@
+@import 'base';
+
+.footer {
+    margin-top: 10px;
+    padding-bottom: 53px;
+    background-color: $color-green;
+    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.footer__apps {
+    padding: 10px;
+    background-color: $color-white;
+}
+
+.footer__apps-text {
+    color: rgba($color-black, 0.54);
+}
+
+.footer__apps-img {
+    width: 112px;
+    height: 35px;
+}
+
+.footer__lower {
+    padding: 10px;
+    color: $color-white;
+
+    a {
+        color: $color-white;
+        text-decoration: underline;
+        font-weight: 600;
+    }
+}
+
+.footer__select-language {
+    display: inline-block;
+    padding-right: 10px;
+    max-width: 80px;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    background: url('./assets/footer-chevron@2x.png') transparent center right no-repeat;
+    background-size: 9px 6px;
+    color: $color-white;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 14px;
+    appearance: none;
+}
+
+.footer__lower-text--bigger {
+    font-size: 14px;
+}
+
+.footer__lower-text--smaller {
+    font-size: 11px;
+}
