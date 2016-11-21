@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const cssnano = require('cssnano')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const config = require('../config')
 const debug = require('debug')('app:webpack:config')
 
@@ -68,14 +68,14 @@ webpackConfig.plugins = [
     }
   }),
   new SWPrecacheWebpackPlugin({
-      cacheId: 'toped-lite-v1',
-      filename: 'service-worker.js',
-      maximumFileSizeToCacheInBytes: 4194304,
-      runtimeCaching: [{
-          handler: 'cacheFirst',
-          urlPattern: /[.]js$/,
-      }],
-  }),
+    cacheId: 'toped-lite-v1',
+    filename: 'service-worker.js',
+    maximumFileSizeToCacheInBytes: 4194304,
+    runtimeCaching: [{
+      handler: 'cacheFirst',
+      urlPattern: /[.]js$/
+    }]
+  })
 ]
 
 // Ensure that the compiler exits on errors during testing so that
