@@ -41,11 +41,11 @@ class OnOffWrapper extends Component {
   }
 
   componentWillUnmount () {
-    if (this.props.onOffline) {
+    if (this.props.onOffline && window.removeEventListener) {
       window.removeEventListener('offline', this.handleOffline)
     }
 
-    if (this.props.onOnline) {
+    if (this.props.onOnline && window.removeEventListener) {
       window.removeEventListener('online', this.handleOnline)
     }
   }
