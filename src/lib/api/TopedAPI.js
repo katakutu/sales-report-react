@@ -1,4 +1,4 @@
-import fetch from 'whatwg-fetch'
+import fetch from 'isomorphic-fetch'
 import HMACToped from 'lib/hmac/HMACToped'
 
 /**
@@ -81,7 +81,7 @@ class TopedAPI {
         credentials: 'same-origin'
       }
 
-      return fetch(url, options)
+      return fetch(url.toString(), options)
     } catch (exception) {
       if (exception instanceof TypeError) {
         return Promise.reject(`Invalid type exception: ${exception.message}`)
@@ -123,7 +123,7 @@ class TopedAPI {
         credentials: 'same-origin'
       }
 
-      return fetch(url, options)
+      return fetch(url.toString(), options)
     } catch (exception) {
       if (exception instanceof TypeError) {
         return Promise.reject(`Invalid type exception: ${exception.message}`)

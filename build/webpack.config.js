@@ -26,7 +26,7 @@ const webpackConfig = {
 // ------------------------------------
 // Entry Points
 // ------------------------------------
-const APP_ENTRY = ['whatwg-fetch', paths.client('index.js')]
+const APP_ENTRY = [paths.client('index.js')]
 
 webpackConfig.entry = {
   app : __DEV__
