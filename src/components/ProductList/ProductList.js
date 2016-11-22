@@ -27,7 +27,9 @@ export const ProductList = () => (
             <div className='product-list__name'>Jaket Vans Women Pink Blue Sweater Ansjsksk HAJJsjs ajdajssjS</div>
             <div className='product-list__price'>Rp. 50.000</div>
             <div className='u-clearfix'>
-              <div className='u-col u-col-7'><span className='product-list__rating'><img src='http://placehold.it/71x16' /></span></div>
+              <div className='u-col u-col-7'>
+                <span className='product-list__rating'><img src='http://placehold.it/71x16' /></span>
+              </div>
               <div className='u-col u-col-5'><span className='product-list__count-rating'>(1422412)</span></div>
             </div>
           </div>
@@ -36,7 +38,10 @@ export const ProductList = () => (
             <div className='product-list__shop-name'>Central Jacket Bandung</div>
             <div className='u-clearfix'>
               <div className='u-col u-col-6'>
-                <div className='product-list__location'><img className='product-list__icon-location' src='http://placehold.it/15x15' />Bandung</div>
+                <div className='product-list__location'>
+                  <img className='product-list__icon-location' src='http://placehold.it/15x15' />
+                  Bandung
+                </div>
               </div>
               <div className='u-col u-col-6 u-pull-right'>
                 <img className='product-list__icon-badge' src='http://placehold.it/15x15' />
@@ -48,7 +53,7 @@ export const ProductList = () => (
         </a>
       </div>
 
-      <div className='u-clearfix'></div>
+      <div className='u-clearfix' />
       <a className='product-list__see-all' href='#'>Lihat semua > </a>
 
     </div>
