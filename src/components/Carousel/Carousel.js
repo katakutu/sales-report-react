@@ -10,12 +10,38 @@ var settings = {
   infinite: true,
   speed: 500,
   slidesToShow: 1,
+  slidesToScroll: 1,
   draggable: true,
   swipeToSlide: true,
   centerMode: true,
-  centerPadding: '10px',
-  variableWidth: false
-}
+  variableWidth: false,
+  responsive: [
+    {
+      breakpoint: 430,
+      settings: {
+        centerPadding: '10px'
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        centerPadding: '30px'
+      }
+    },
+    {
+      breakpoint: 530,
+      settings: {
+        centerPadding: '60px'
+      }
+    },
+    {
+      breakpoint: 728,
+      settings: {
+        centerPadding: '100px'
+      }
+    }
+  ]
+};
 
 const IMG_PATH = 'https://ecs7.tokopedia.net/img/banner/2016/11/8/11708207/'
 const SLIDER_IMG = IMG_PATH + '11708207_73008c2e-8f73-4610-b345-b8aeea28ff5e.jpg'

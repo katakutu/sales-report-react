@@ -23,15 +23,9 @@ export const BottomNav = () => (
           <span>Wishlist</span>
         </Link>
       </li>
-      <li className='bottom-nav__grid u-col u-center'>
-        <Link to='/notifikasi' className='bottom-nav__link' activeClassName='route--active'>
-          <span className='bottom-nav__icon bottom-nav__icon--notifikasi' />
-          <span>Notifikasi</span>
-        </Link>
-      </li>
-      <li className='bottom-nav__grid u-col u-center'>
-        <Link to='/masuk' className='bottom-nav__link' activeClassName='route--active'>
-          <span className='bottom-nav__icon bottom-nav__icon--masuk' />
+      <li className="bottom-nav__grid u-col u-center">
+        <Link to='/masuk' className="bottom-nav__link" activeClassName='route--active'>
+          <span className="bottom-nav__icon bottom-nav__icon--masuk"></span>
           <span>Masuk</span>
         </Link>
       </li>
