@@ -4,6 +4,7 @@ import './HomeView.scss'
 import Carousel from '../../../components/Carousel'
 import SectionSpacer from '../../../components/SectionSpacer'
 import CategoryList from '../../../components/CategoryList'
+import ProductList from '../../../components/ProductList'
 
 export const HomeView = () => (
   <div>
@@ -14,6 +15,7 @@ export const HomeView = () => (
       <i className='section-spacer__icon section-spacer__icon--chevron' />
     </SectionSpacer>
     <CategoryList />
+    <ProductList />
     <div className='u-display-none'>
       <h4>Welcome!</h4>
       <img
