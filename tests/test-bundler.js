@@ -6,10 +6,12 @@ import chai from 'chai'
 import sinonChai from 'sinon-chai'
 import chaiAsPromised from 'chai-as-promised'
 import chaiEnzyme from 'chai-enzyme'
+import chaiString from 'chai-string'
 
 chai.use(sinonChai)
 chai.use(chaiAsPromised)
 chai.use(chaiEnzyme())
+chai.use(chaiString)
 
 global.chai = chai
 global.sinon = sinon
