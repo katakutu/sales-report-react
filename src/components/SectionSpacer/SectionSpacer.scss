@@ -1,0 +1,55 @@
+@import 'base';
+
+.section-spacer {
+    position: relative;
+    z-index: 1;
+    margin-top: 15px;
+    margin-bottom: 18px;
+    color: rgba($color-black, 0.54);
+    text-align: center;
+    font-weight: 600;
+
+    &::before {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        margin: 0 auto;
+        width: 95%;
+        border-top: 1px solid rgba($color-black, 0.12);
+        content: "";
+    }
+}
+
+.section-spacer__link {
+    display: block;
+    color: rgba($color-black, 0.54);
+    text-decoration: none;
+}
+
+.section-spacer__label {
+    padding: 0;
+    background-color: $color-white-darker;
+}
+
+.section-spacer__icon {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: middle;
+
+    &--percent {
+        width: 22px;
+        height: 22px;
+        background: url('./assets/section-spacer-percent@2x.png') transparent no-repeat;
+        background-size: 22px 22px;
+    }
+
+    &--chevron {
+        width: 6px;
+        height: 9px;
+        background: url('./assets/section-spacer-chevron@2x.png') transparent no-repeat;
+        background-size: 6px 9px;
+    }
+}
