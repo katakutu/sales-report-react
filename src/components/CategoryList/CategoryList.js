@@ -30,240 +30,240 @@ import iconTokenListrik from './assets/icon-tokenlistrik.png'
 import iconTiket from './assets/icon-tiket.png'
 
 export const CategoryList = () => (
-  <div className="u-clearfix">
-    <div className="category-list__holder u-clearfix">
-      <div className="category-list__title">
+  <div className='u-clearfix'>
+    <div className='category-list__holder u-clearfix'>
+      <div className='category-list__title'>
         Gaya Hidup
-        <div className="category-list__title-line"></div>
+        <div className='category-list__title-line' />
       </div>
 
-      <div className="u-col u-col-12 category-list__box">
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+      <div className='u-col u-col-12 category-list__box'>
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconFashion} />
-            <span className="category-list__name">Fashion Aksesoris</span>
+            <span className='category-list__name'>Fashion Aksesoris</span>
           </a>
         </div>
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconOtomotif} />
-            <span className="category-list__name">Otomotif</span>
+            <span className='category-list__name'>Otomotif</span>
           </a>
         </div>
       </div>
 
-      <div className="u-col u-col-12 category-list__box">
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+      <div className='u-col u-col-12 category-list__box'>
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconKecantikan} />
-            <span className="category-list__name">Kecantikan</span>
+            <span className='category-list__name'>Kecantikan</span>
           </a>
         </div>
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconPakaian} />
-            <span className="category-list__name">Pakaian</span>
+            <span className='category-list__name'>Pakaian</span>
           </a>
         </div>
       </div>
 
-      <div className="u-col u-col-12 category-list__box">
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+      <div className='u-col u-col-12 category-list__box'>
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconRumahTangga} />
-            <span className="category-list__name">Rumah Tangga</span>
+            <span className='category-list__name'>Rumah Tangga</span>
           </a>
         </div>
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconKesehatan} />
-            <span className="category-list__name">Kesehatan</span>
+            <span className='category-list__name'>Kesehatan</span>
           </a>
         </div>
       </div>
 
-      <div className="u-col u-col-12 category-list__box">
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+      <div className='u-col u-col-12 category-list__box'>
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconOlahraga} />
-            <span className="category-list__name">Olahraga</span>
+            <span className='category-list__name'>Olahraga</span>
           </a>
         </div>
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconDapur} />
-            <span className="category-list__name">Dapur</span>
+            <span className='category-list__name'>Dapur</span>
           </a>
         </div>
       </div>
     </div>
 
-    <div className="category-list__holder u-clearfix">
-      <div className="category-list__title">
+    <div className='category-list__holder u-clearfix'>
+      <div className='category-list__title'>
         Teknologi
-        <div className="category-list__title-line"></div>
+        <div className='category-list__title-line' />
       </div>
 
-      <div className="u-col u-col-12 category-list__box">
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+      <div className='u-col u-col-12 category-list__box'>
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconHanphone} />
-            <span className="category-list__name">Handphone & Tablet</span>
+            <span className='category-list__name'>Handphone & Tablet</span>
           </a>
         </div>
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconElektronik} />
-            <span className="category-list__name">Elektronik</span>
+            <span className='category-list__name'>Elektronik</span>
           </a>
         </div>
       </div>
 
-      <div className="u-col u-col-12 category-list__box">
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+      <div className='u-col u-col-12 category-list__box'>
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconKomputer} />
-            <span className="category-list__name">Komputer & Aksesoris</span>
+            <span className='category-list__name'>Komputer & Aksesoris</span>
           </a>
         </div>
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconKamera} />
-            <span className="category-list__name">Kamera, Foto, & Video</span>
+            <span className='category-list__name'>Kamera, Foto, & Video</span>
           </a>
         </div>
       </div>
 
-      <div className="u-col u-col-12 category-list__box">
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+      <div className='u-col u-col-12 category-list__box'>
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconLaptop} />
-            <span className="category-list__name">Laptop & Aksesoris</span>
+            <span className='category-list__name'>Laptop & Aksesoris</span>
           </a>
         </div>
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconSoftware} />
-            <span className="category-list__name">Software</span>
+            <span className='category-list__name'>Software</span>
           </a>
         </div>
       </div>
     </div>
 
-    <div className="category-list__holder u-clearfix">
-      <div className="category-list__title">
+    <div className='category-list__holder u-clearfix'>
+      <div className='category-list__title'>
         Kategori lain
-        <div className="category-list__title-line"></div>
+        <div className='category-list__title-line' />
       </div>
 
-      <div className="u-col u-col-12 category-list__box">
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+      <div className='u-col u-col-12 category-list__box'>
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconMainan} />
-            <span className="category-list__name">Mainan & Hobi</span>
+            <span className='category-list__name'>Mainan & Hobi</span>
           </a>
         </div>
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconMakanan} />
-            <span className="category-list__name">Makanan & Minuman</span>
+            <span className='category-list__name'>Makanan & Minuman</span>
           </a>
         </div>
       </div>
 
-      <div className="u-col u-col-12 category-list__box">
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+      <div className='u-col u-col-12 category-list__box'>
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconPerawatanBayi} />
-            <span className="category-list__name">Perawatan Bayi</span>
+            <span className='category-list__name'>Perawatan Bayi</span>
           </a>
         </div>
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconSouvenir} />
-            <span className="category-list__name">Souvenir</span>
+            <span className='category-list__name'>Souvenir</span>
           </a>
         </div>
       </div>
 
-      <div className="u-col u-col-12 category-list__box">
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+      <div className='u-col u-col-12 category-list__box'>
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconOffice} />
-            <span className="category-list__name">Office & Stationery</span>
+            <span className='category-list__name'>Office & Stationery</span>
           </a>
         </div>
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconBuku} />
-            <span className="category-list__name">Buku</span>
+            <span className='category-list__name'>Buku</span>
           </a>
         </div>
       </div>
 
-      <div className="u-col u-col-12 category-list__box">
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+      <div className='u-col u-col-12 category-list__box'>
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconFilm} />
-            <span className="category-list__name">Film, Musik, & Game</span>
+            <span className='category-list__name'>Film, Musik, & Game</span>
           </a>
         </div>
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconProdukLain} />
-            <span className="category-list__name">Produk lainnya</span>
+            <span className='category-list__name'>Produk lainnya</span>
           </a>
         </div>
       </div>
     </div>
 
-    <div className="category-list__holder u-clearfix">
-      <div className="category-list__title">
+    <div className='category-list__holder u-clearfix'>
+      <div className='category-list__title'>
         Pembayaran & Top up
-        <div className="category-list__title-line"></div>
+        <div className='category-list__title-line' />
       </div>
 
-      <div className="u-col u-col-12 category-list__box">
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+      <div className='u-col u-col-12 category-list__box'>
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconPulsa} />
-            <span className="category-list__name">Pulsa</span>
+            <span className='category-list__name'>Pulsa</span>
           </a>
         </div>
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconSaldo} />
-            <span className="category-list__name">Saldo</span>
+            <span className='category-list__name'>Saldo</span>
           </a>
         </div>
       </div>
 
-      <div className="u-col u-col-12 category-list__box">
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+      <div className='u-col u-col-12 category-list__box'>
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconPaketData} />
-            <span className="category-list__name">Paket Data</span>
+            <span className='category-list__name'>Paket Data</span>
           </a>
         </div>
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconBpjs} />
-            <span className="category-list__name">BPJS</span>
+            <span className='category-list__name'>BPJS</span>
           </a>
         </div>
       </div>
 
-      <div className="u-col u-col-12 category-list__box">
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+      <div className='u-col u-col-12 category-list__box'>
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconTokenListrik} />
-            <span className="category-list__name">Token Listrik</span>
+            <span className='category-list__name'>Token Listrik</span>
           </a>
         </div>
-        <div className="u-col u-col-6 category-list__content">
-          <a href="#">
+        <div className='u-col u-col-6 category-list__content'>
+          <a href='#'>
             <img src={iconTiket} />
-            <span className="category-list__name">Tiket</span>
+            <span className='category-list__name'>Tiket</span>
           </a>
         </div>
       </div>

@@ -9,12 +9,12 @@ export const HomeView = () => (
   <div>
     <Carousel />
     <SectionSpacer>
-      <i className="section-spacer__icon section-spacer__icon--percent"></i>
+      <i className='section-spacer__icon section-spacer__icon--percent' />
       Lihat Semua Promo
-      <i className="section-spacer__icon section-spacer__icon--chevron"></i>
+      <i className='section-spacer__icon section-spacer__icon--chevron' />
     </SectionSpacer>
     <CategoryList />
-    <div className="u-display-none">
+    <div className='u-display-none'>
       <h4>Welcome!</h4>
       <img
         alt='This is a duck, because Redux!'
