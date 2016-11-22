@@ -43,4 +43,28 @@ describe('HMACToped', () => {
       expect(hmacPOST).to.startsWith('TKPD Tokopedia:')
     })
   })
+
+  describe('#generateContentHash', () => {
+    it('throws TypeError when date is invalid', () => {
+      let md5 = HMACToped.generateContentHash.bind(
+                new Date('something'), 'hashParam'
+            )
+      expect(md5).to.throw(TypeError)
+    })
+
+    it('throws TypeError when date is not a date', () => {
+      let md5 = HMACToped.generateContentHash.bind(
+                'string', 'hashParam'
+            )
+      expect(md5).to.throw(TypeError)
+    })
+
+    it('valid call should return string', () => {
+      let validMD5 = HMACToped.generateContentHash(
+                new Date(), 'hashParam'
+            )
+
+      expect(validMD5).to.be.a('string')
+    })
+  })
 })

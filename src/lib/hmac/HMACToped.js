@@ -3,8 +3,7 @@ import CryptoJS from 'crypto-js'
 
 /**
  * A static class to get HMAC Signature for API calls.
- * This class only have one static method that generates
- * the signature. Created mostly for the API module.
+ * Created mostly for the API module.
  *
  * @class HMACToped
  */
@@ -37,11 +36,7 @@ class HMACToped {
       throw new TypeError(`Expected date to be a Date Object. Got ${t} instead.`)
     }
 
-    let deviceTime = Math.floor(date.getTime() / 1000)
-    let hash = CryptoJS.MD5(hashParam)
-    let finalHashParam = `${hashParam}&hash=${hash}&device_time=${deviceTime}`
-
-    let contentMD5 = CryptoJS.MD5(finalHashParam)
+    let contentMD5 = HMACToped.generateContentHash(date, hashParam)
     let time = dateFormat(date, 'ddd, DD MMM YYYY HH:mm:ss ZZ')
     let formType = (method === 'POST') ? 'application/x-www-form-urlencoded' : ''
 
@@ -50,6 +45,31 @@ class HMACToped {
     let hmac = CryptoJS.HmacSHA1(data, key).toString(CryptoJS.enc.Base64)
 
     return `TKPD Tokopedia: ${hmac}`
+  }
+
+  /**
+   * Generates the MD5 hash of parameters.
+   *
+   * @static
+   * @param {Date} date - The current time for the function call.
+   * @param {string} hashParam - Hash parameter for the API. Usually user_id~device_id.
+   * @returns {string} the MD5 hash of content
+   *
+   * @throws {TypeError} When date is not a Date object.
+   *
+   * @memberOf HMACToped
+   */
+  static generateContentHash (date, hashParam) {
+    if (Object.prototype.toString.call(date) !== '[object Date]' || isNaN(date.getTime())) {
+      let t = Object.prototype.toString.call(date)
+      throw new TypeError(`Expected date to be a Date Object. Got ${t} instead.`)
+    }
+
+    let deviceTime = Math.floor(date.getTime() / 1000)
+    let hash = CryptoJS.MD5(hashParam)
+    let finalHashParam = `${hashParam}&hash=${hash}&device_time=${deviceTime}`
+
+    return CryptoJS.MD5(finalHashParam).toString()
   }
 }
 
