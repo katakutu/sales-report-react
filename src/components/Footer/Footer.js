@@ -25,9 +25,9 @@ export const Footer = () => (
       </p>
       <p className='u-line-height-4 footer__lower-text--bigger'>
         Pilih Bahasa
-        <select name='language' className='footer__select-language'>
-          <option value='' selected>Indonesia</option>
-          <option value=''>English</option>
+        <select name='language' className='footer__select-language' defaultValue='id'>
+          <option value='id'>Indonesia</option>
+          <option value='en'>English</option>
         </select>
       </p>
       <p className='u-line-height-4 footer__lower-text--smaller'>&copy; PT. Tokopedia</p>
