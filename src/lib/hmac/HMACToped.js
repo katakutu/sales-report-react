@@ -36,7 +36,7 @@ class HMACToped {
       throw new TypeError(`Expected date to be a Date Object. Got ${t} instead.`)
     }
 
-    let contentMD5 = HMACToped.generateContentHash(date, hashParam)
+    let contentMD5 = HMACToped.generateContentHash(date, hashParam, hashHeader)
     let time = dateFormat(date, 'ddd, DD MMM YYYY HH:mm:ss ZZ')
     let formType = (method === 'POST') ? 'application/x-www-form-urlencoded' : ''
 
@@ -53,13 +53,14 @@ class HMACToped {
    * @static
    * @param {Date} date - The current time for the function call.
    * @param {string} hashParam - Hash parameter for the API. Usually user_id~device_id.
+   * @param {string} hashHeader - The HTTP Header for the API. Exclude hash and device_time here.
    * @returns {string} the MD5 hash of content
    *
    * @throws {TypeError} When date is not a Date object.
    *
    * @memberOf HMACToped
    */
-  static generateContentHash (date, hashParam) {
+  static generateContentHash (date, hashParam, hashHeader) {
     if (Object.prototype.toString.call(date) !== '[object Date]' || isNaN(date.getTime())) {
       let t = Object.prototype.toString.call(date)
       throw new TypeError(`Expected date to be a Date Object. Got ${t} instead.`)
@@ -67,7 +68,7 @@ class HMACToped {
 
     let deviceTime = Math.floor(date.getTime() / 1000)
     let hash = CryptoJS.MD5(hashParam)
-    let finalHashParam = `${hashParam}&hash=${hash}&device_time=${deviceTime}`
+    let finalHashParam = `${hashHeader}&hash=${hash}&device_time=${deviceTime}`
 
     return CryptoJS.MD5(finalHashParam).toString()
   }

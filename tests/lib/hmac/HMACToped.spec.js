@@ -47,21 +47,21 @@ describe('HMACToped', () => {
   describe('#generateContentHash', () => {
     it('throws TypeError when date is invalid', () => {
       let md5 = HMACToped.generateContentHash.bind(
-                new Date('something'), 'hashParam'
+                new Date('something'), 'hashParam', 'hashHeader'
             )
       expect(md5).to.throw(TypeError)
     })
 
     it('throws TypeError when date is not a date', () => {
       let md5 = HMACToped.generateContentHash.bind(
-                'string', 'hashParam'
+                'string', 'hashParam', 'hashHeader'
             )
       expect(md5).to.throw(TypeError)
     })
 
     it('valid call should return string', () => {
       let validMD5 = HMACToped.generateContentHash(
-                new Date(), 'hashParam'
+                new Date(), 'hashParam', 'hashHeader'
             )
 
       expect(validMD5).to.be.a('string')
