@@ -7,8 +7,6 @@ import TopedHMACAPI from 'lib/api/TopedHMACAPI'
  */
 class TopedHotListAPI {
     /**
-     *
-     *
      * @static List of URLs available for this API
      *
      * TODO: Configure webpack to supply the hostname directly

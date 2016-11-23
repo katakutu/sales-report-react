@@ -2,8 +2,8 @@ import fetch from 'isomorphic-fetch'
 import HMACToped from 'lib/hmac/HMACToped'
 
 /**
- * A base class to consume http API.
- * Supposed to be extended by other class that will do the real hard work.
+ * A base class to consume http API with HMAC.
+ * Supposed to be composed with other class that will do the real hard work.
  *
  * @class TopedHMACAPI
  */
@@ -25,7 +25,7 @@ class TopedHMACAPI {
    * @param {string} type Type of the call. Can be either FORM or JSON. Defaults to JSON.
    * @param {URL} url The URL we want to consume
    * @param {string} method The HTTP Method we want to use on the API call. The FORM type assumes POST.
-   * @param {object} content The content we want to sent in body. This will be converted to FormData.
+   * @param {object} content The content we want to sent in body.
    * @param {string} [hashHeader='~b'] The header in user_id~device_id format.
    * @returns {Promise<Response>} The resulting response promise.
    *
@@ -54,7 +54,7 @@ class TopedHMACAPI {
    *
    * @param {URL} url The URL we want to consume
    * @param {string} method The HTTP Method we want to use on the API call.
-   * @param {object} content The content we want to sent in body. This will be converted to FormData.
+   * @param {object} content The content we want to sent in body.
    * @param {string} [hashHeader='~b'] The header in user_id~device_id format.
    * @returns {Promise<Response>} The resulting response promise.
    *
