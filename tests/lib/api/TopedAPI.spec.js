@@ -1,10 +1,10 @@
-import TopedAPI from 'lib/api/TopedAPI'
+import TopedHMACAPI from 'lib/api/TopedHMACAPI'
 
-describe('TopedAPI', () => {
+describe('TopedHMACAPI', () => {
   let _api
 
   beforeEach(() => {
-    _api = new TopedAPI('no_secret_in_ba_sing_se')
+    _api = new TopedHMACAPI('no_secret_in_ba_sing_se')
   })
 
   describe('#generateHashParamFromObject', () => {

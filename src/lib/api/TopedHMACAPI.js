@@ -5,15 +5,15 @@ import HMACToped from 'lib/hmac/HMACToped'
  * A base class to consume http API.
  * Supposed to be extended by other class that will do the real hard work.
  *
- * @class TopedAPI
+ * @class TopedHMACAPI
  */
-class TopedAPI {
+class TopedHMACAPI {
   /**
-   * Creates an instance of TopedAPI.
+   * Creates an instance of TopedHMACAPI.
    *
    * @param {string} apiKey the API secret key for HMAC
    *
-   * @memberOf TopedAPI
+   * @memberOf TopedHMACAPI
    */
   constructor (apiKey) {
     this.apiKey = apiKey
@@ -29,7 +29,7 @@ class TopedAPI {
    * @param {string} [hashHeader='~b'] The header in user_id~device_id format.
    * @returns {Promise<Response>} The resulting response promise.
    *
-   * @memberOf TopedAPI
+   * @memberOf TopedHMACAPI
    */
   consume (type, url, method, content, hashHeader = '~b') {
     let result
@@ -58,7 +58,7 @@ class TopedAPI {
    * @param {string} [hashHeader='~b'] The header in user_id~device_id format.
    * @returns {Promise<Response>} The resulting response promise.
    *
-   * @memberOf TopedAPI
+   * @memberOf TopedHMACAPI
    */
   consumeJSON (url, method, content, hashHeader = '~b') {
     try {
@@ -100,7 +100,7 @@ class TopedAPI {
    * @param {string} [hashHeader='~b'] The header in user_id~device_id format.
    * @returns {Promise<Response>} The resulting response promise.
    *
-   * @memberOf TopedAPI
+   * @memberOf TopedHMACAPI
    */
   consumeForm (url, content, hashHeader = '~b') {
     try {
@@ -142,7 +142,7 @@ class TopedAPI {
    * @param {object} content The content object you want to convert to Hash Param
    * @returns {string} The resulting Hash Param
    *
-   * @memberOf TopedAPI
+   * @memberOf TopedHMACAPI
    */
   generateHashParamFromObject (content) {
     let result = ''
@@ -161,7 +161,7 @@ class TopedAPI {
    * @param {object} content The object you want to convert to FormData.
    * @returns {FormData} The FormData based on content.
    *
-   * @memberOf TopedAPI
+   * @memberOf TopedHMACAPI
    */
   generateFormDataFromObject (content) {
     let form = new FormData()
@@ -173,4 +173,4 @@ class TopedAPI {
   }
 }
 
-export default TopedAPI
+export default TopedHMACAPI
