@@ -26,12 +26,12 @@ const webpackConfig = {
 // ------------------------------------
 // Entry Points
 // ------------------------------------
-const APP_ENTRY = paths.client('index.js')
+const APP_ENTRY = [paths.client('index.js')]
 
 webpackConfig.entry = {
   app : __DEV__
-    ? [APP_ENTRY].concat(`webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`)
-    : [APP_ENTRY],
+    ? APP_ENTRY.concat(`webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`)
+    : APP_ENTRY,
   vendor : config.compiler_vendors
 }
 
