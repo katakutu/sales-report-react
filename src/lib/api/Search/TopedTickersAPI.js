@@ -1,4 +1,5 @@
 import TopedAPI from 'lib/api/TopedAPI'
+import config from 'lib/api/config'
 
 /**
  * A class that give us the ticker information in homepage.
@@ -12,7 +13,7 @@ class TopedTickersAPI {
    * @memberOf TopedTickersAPI
    */
   static URL = {
-    Ticker: 'https://mojito.tokopedia.com/api/v1/tickers'
+    Ticker: `https://${config.Mojito.Hostname}/api/v1/tickers`
   }
 
   /**

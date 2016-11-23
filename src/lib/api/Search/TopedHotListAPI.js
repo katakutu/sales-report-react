@@ -1,4 +1,5 @@
 import TopedHMACAPI from 'lib/api/TopedHMACAPI'
+import config from 'lib/api/config'
 
 /**
  * Class that consumes APIs related to HotList.
@@ -13,7 +14,7 @@ class TopedHotListAPI {
      * @memberOf TopedHotListAPI
      */
   static URL = {
-    HotList: 'https://ws-staging.tokopedia.com/v4/hotlist/get_hotlist.pl'
+    HotList: `https://${config.WS.Hostname}/v4/hotlist/get_hotlist.pl`
   }
 
     /**
