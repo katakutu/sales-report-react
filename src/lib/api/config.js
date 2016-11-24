@@ -20,7 +20,7 @@ const TEST = {
 
 const DEVELOPMENT = {
   Mojito: {
-    Hostname: 'mojito-staging.tokopedia.com',
+    Hostname: 'mojito.tokopedia.com',
     SecretKey: 'mojito_api_v1'
   },
   WS: {
