@@ -1,5 +1,5 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
+import { Link } from 'react-router'
 import './HeaderHome.scss'
 import SearchInput from '../../components/SearchInput'
 import HeaderSearchBtnCart from './assets/header-search-btn-cart@2x.png'
@@ -14,40 +14,6 @@ export const HeaderHome = () => (
         </Link>
       </div>
     </div>
-    <ul className='u-clearfix u-list-reset u-m0'>
-      <li className='u-col u-col-6 u-center'>
-        <Link to='/' className='header__link' activeClassName='route--active'>
-          Jelajah
-        </Link>
-      </li>
-      <li className='u-col u-col-6 u-center'>
-        <Link to='/promo' className='header__link' activeClassName='route--active'>
-          Promo
-        </Link>
-      </li>
-    </ul>
-    <ul className='u-clearfix u-list-reset u-m0 u-hide'>
-      <li className='u-col u-col-3 u-center'>
-        <Link to='/' className='header__link' activeClassName='route--active'>
-          Jelajah
-        </Link>
-      </li>
-      <li className='u-col u-col-3 u-center'>
-        <Link to='/feed' className='header__link' activeClassName='route--active'>
-          Feed
-        </Link>
-      </li>
-      <li className='u-col u-col-3 u-center'>
-        <Link to='/promo' className='header__link' activeClassName='route--active'>
-          Promo
-        </Link>
-      </li>
-      <li className='u-col u-col-3 u-center'>
-        <Link to='/favorit' className='header__link' activeClassName='route--active'>
-          Favorit
-        </Link>
-      </li>
-    </ul>
   </div>
 )
 
