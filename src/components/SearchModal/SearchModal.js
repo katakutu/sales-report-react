@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import CryptoJS from 'crypto-js'
+import TopedAceAPI from '../../lib/api/Search/TopedAceAPI'
 import './SearchModal.scss'
+import SearchModalResult from './SearchModalResult'
+
+const api = new TopedAceAPI()
 
 class SearchModal extends Component {
   static propTypes = {
@@ -9,6 +14,8 @@ class SearchModal extends Component {
 
   state = {
     hasContent: false,
+    selection: [],
+    hotlist: [],
     query: ''
   }
 
@@ -17,6 +24,7 @@ class SearchModal extends Component {
 
     this.clearText = this.clearText.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.universeSearch = this.universeSearch.bind(this)
   }
 
   componentDidMount () {
@@ -34,10 +42,54 @@ class SearchModal extends Component {
 
   handleChange (event) {
     let query = event.target.value
+
+    if (query === '') {
+      this.universeSearch()
+    } else {
+      api.autocomplete(query).then(result => {
+        let acResult = this._autocompleteToUniverseSearchResult(result)
+
+        this.setState({
+          selection: acResult.filter(s => s['name'] !== 'hotlist'),
+          hotlist: acResult.filter(s => s['name'] === 'hotlist')
+        })
+      })
+    }
+
     this.setState({
       hasContent: query !== '',
       query: query
     })
+  }
+
+  universeSearch () {
+    api.universeSearch('', CryptoJS.MD5(document.cookie)).then(result => {
+      let selection = result['data'].filter(r => { return r['items'].length > 0 && r['id'] !== 'hotlist' })
+      let hotlist = result['data'].filter(r => { return r['items'].length > 0 && r['id'] === 'hotlist' })
+
+      this.setState({
+        selection: selection,
+        hotlist: hotlist
+      })
+    })
+  }
+
+  _autocompleteToUniverseSearchResult (result) {
+    let selection = {}
+    result['data'].forEach(data => {
+      let name = data['domain']
+      if (selection[name]) {
+        selection[name].concat({ 'url': data['url'], 'keyword': data['keyword'] })
+      } else {
+        selection[name] = [{ 'url': data['url'], 'keyword': data['keyword'] }]
+      }
+    })
+
+    let finalResult = Object.keys(selection).map(key => {
+      return { name: key, items: selection[key] }
+    })
+
+    return finalResult.filter(r => { return r['items'].length > 0 })
   }
 
   render () {
@@ -50,6 +102,7 @@ class SearchModal extends Component {
               ref='modalSearchInput'
               className='search-input__input u-col-10'
               placeholder='Cari produk atau toko'
+              onFocus={this.universeSearch}
               onChange={this.handleChange}
               value={this.state.query} />
 
@@ -58,6 +111,8 @@ class SearchModal extends Component {
             <span className='search-input__close' onClick={this.props.onClose}>Close</span>
           </form>
         </div>
+
+        <SearchModalResult items={this.state.selection} hotlist={this.state.hotlist} />
       </div>
     )
   }
