@@ -1,6 +1,7 @@
 import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import './HomeView.scss'
+import HeaderHome from '../../../components/HeaderHome'
 import Carousel from '../../../components/Carousel'
 import SectionSpacer from '../../../components/SectionSpacer'
 import CategoryList from '../../../components/CategoryList'
@@ -8,6 +9,7 @@ import Ticker from '../../../components/Ticker'
 
 export const HomeView = () => (
   <div>
+    <HeaderHome />
     <Ticker perTickDuration={2} />
     <Carousel />
     <SectionSpacer>

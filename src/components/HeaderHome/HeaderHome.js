@@ -1,10 +1,10 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import './Header.scss'
+import './HeaderHome.scss'
 import SearchInput from '../../components/SearchInput'
 import HeaderSearchBtnCart from './assets/header-search-btn-cart@2x.png'
 
-export const Header = () => (
+export const HeaderHome = () => (
   <div className='header u-clearfix'>
     <div className='header__search u-clearfix'>
       <div className='header__search-container u-col u-col-12'>
@@ -48,17 +48,7 @@ export const Header = () => (
         </Link>
       </li>
     </ul>
-    <div className='u-display-none'>
-      <h1>React Redux Starter Kit</h1>
-      <IndexLink to='/' activeClassName='route--active'>
-        Home
-      </IndexLink>
-      {' · '}
-      <Link to='/counter' activeClassName='route--active'>
-        Counter
-      </Link>
-    </div>
   </div>
 )
 
-export default Header
+export default HeaderHome
