@@ -4,7 +4,8 @@ describe('(Route) Home', () => {
   let _component
 
   beforeEach(() => {
-    _component = HomeRoute.component()
+    let HomeView = HomeRoute.component
+    _component = new HomeView()
   })
 
   it('Should return a route configuration object', () => {
@@ -12,6 +13,6 @@ describe('(Route) Home', () => {
   })
 
   it('Should define a route component', () => {
-    expect(_component.type).to.equal('div')
+    expect(_component.render().type).to.equal('div')
   })
 })
