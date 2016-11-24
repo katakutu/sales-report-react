@@ -1,5 +1,24 @@
 @import "base";
 
+.tab__inverted {
+    .tab {
+        background: $color-white;
+    }
+
+    .tab__link {
+        color: rgba(0, 0, 0, 0.54);
+
+        &.tab__active {
+            color: $color-green;
+            font-weight: bold;
+        }
+    } 
+
+    .tab__pointer {
+        background-color: $color-green;
+    }
+}
+
 .tab {
     background: $color-green;
     box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.2);
@@ -21,6 +40,10 @@
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
+
+    &.tab__active {
+        font-weight: bold;
+    }
 }
 
 .tab__pointer {

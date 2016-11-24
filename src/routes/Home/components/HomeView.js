@@ -39,7 +39,7 @@ class HomeView extends Component {
             <CategoryList />
           </Tab>
           <Tab label='Promo'>
-            <h2>PROMO!</h2>
+            <h2 style={{ 'text-align': 'center' }}>PROMO!</h2>
           </Tab>
         </Tabs>
       </div>

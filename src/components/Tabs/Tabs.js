@@ -54,7 +54,6 @@ class Tabs extends Component {
   handleHeaderClick (event) {
     const index = parseInt(event.currentTarget.id)
     if (this.props.onChange) {
-      console.log(this.props.onChange)
       this.props.onChange(index)
     }
   }
@@ -138,7 +137,9 @@ class Tabs extends Component {
 
   render () {
     const { headers, contents } = this.parseChildren()
-    const _className = classnames(this.props.className)
+    const _className = classnames(this.props.className, {
+      'tab__inverted': this.props.inverse
+    })
 
     return (
       <div className={_className}>
