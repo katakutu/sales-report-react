@@ -27,19 +27,24 @@ class HomeView extends Component {
     return (
       <div>
         <HeaderHome />
+
         <Tabs index={this.state.activeTabIndex} onChange={this.handleTabChange}>
           <Tab label='Home'>
             <Ticker perTickDuration={2} />
+
             <Carousel />
+
             <SectionSpacer>
               <i className='section-spacer__icon section-spacer__icon--percent' />
               Lihat Semua Promo
               <i className='section-spacer__icon section-spacer__icon--chevron' />
             </SectionSpacer>
+
             <CategoryList />
           </Tab>
+
           <Tab label='Promo'>
-            <h2 style={{ 'text-align': 'center' }}>PROMO!</h2>
+            <h2 style={{ textAlign: 'center' }}>PROMO!</h2>
           </Tab>
         </Tabs>
       </div>
