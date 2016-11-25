@@ -4,7 +4,6 @@ import HeaderHome from '../../../components/HeaderHome'
 import Carousel from '../../../components/Carousel'
 import SectionSpacer from '../../../components/SectionSpacer'
 import CategoryList from '../../../components/CategoryList'
-import MenuMore from '../../../components/MenuMore'
 import Ticker from '../../../components/Ticker'
 import Tabs from '../../../components/Tabs/Tabs'
 import Tab from '../../../components/Tabs/Tab'
@@ -29,7 +28,7 @@ class HomeView extends Component {
       <div>
         <HeaderHome />
         <Tabs index={this.state.activeTabIndex} onChange={this.handleTabChange}>
-          <Tab label='Home'>
+          <Tab label='Jelajah'>
             <Ticker perTickDuration={2} />
             <Carousel />
             <SectionSpacer>
@@ -38,7 +37,6 @@ class HomeView extends Component {
               <i className='section-spacer__icon section-spacer__icon--chevron' />
             </SectionSpacer>
             <CategoryList />
-            <MenuMore />
           </Tab>
           <Tab label='Promo'>
             <h2 style={{ 'text-align': 'center' }}>PROMO!</h2>
