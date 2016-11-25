@@ -36,7 +36,6 @@ class AppContainer extends Component {
 
   dismissNotif (event) {
     this.setState({ showNotif: false })
-    console.log('A')
   }
 
   render () {
