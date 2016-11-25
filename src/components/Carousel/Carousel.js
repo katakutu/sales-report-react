@@ -63,7 +63,7 @@ class Carousel extends Component {
             <div className='carousel__item-container u-mx-auto u-block'>
               <picture className='carousel__img u-fit u-mx-auto'>
                 <source srcSet={SLIDER_WEBP} />
-                <img className='carousel__img u-fit u-mx-auto' src={SLIDER_WEBP} />
+                <img alt='Promo Tokopedia' className='carousel__img u-fit u-mx-auto' src={SLIDER_WEBP} />
               </picture>
             </div>
           </div>
