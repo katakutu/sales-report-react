@@ -1,0 +1,39 @@
+@import 'base';
+
+.catalog-category__header {
+    margin-bottom: 20px;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    text-align: center;
+}
+
+.catalog-category__header::after {
+    content: '';
+    display: block;
+    background: $color-green;
+    margin: 8px auto;
+    width: 7%;
+    height: 3px;
+}
+
+.catalog-category__arrowdown {
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+.catalog-category__holder {
+    background: $color-white;
+
+    .catalog-category__content-holder {
+        border-bottom: 1px solid $color-grey;
+        margin-bottom: 5px;
+    }
+
+    .catalog-category__content {
+        padding: 8px 10px;
+        color: $color-grey-3;
+        border-right: 1px solid $color-grey;
+        margin: 5px 0;
+        position: relative;
+    }
+}

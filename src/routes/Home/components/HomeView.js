@@ -4,6 +4,7 @@ import HeaderHome from '../../../components/HeaderHome'
 import Carousel from '../../../components/Carousel'
 import SectionSpacer from '../../../components/SectionSpacer'
 import CategoryList from '../../../components/CategoryList'
+import CatalogCategory from '../../../components/CatalogCategory'
 import Ticker from '../../../components/Ticker'
 import Tabs from '../../../components/Tabs/Tabs'
 import Tab from '../../../components/Tabs/Tab'
@@ -29,7 +30,7 @@ class HomeView extends Component {
         <HeaderHome />
 
         <Tabs index={this.state.activeTabIndex} onChange={this.handleTabChange}>
-          <Tab label='Home'>
+          <Tab label='Jelajah'>
             <Ticker perTickDuration={2} />
 
             <Carousel />
@@ -41,6 +42,7 @@ class HomeView extends Component {
             </SectionSpacer>
 
             <CategoryList />
+            <CatalogCategory />
           </Tab>
 
           <Tab label='Promo'>

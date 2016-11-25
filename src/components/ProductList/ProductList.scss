@@ -1,0 +1,151 @@
+@import 'base';
+
+.product-list__holder-horizontal {
+    background: $color-white;
+    // border-bottom: 1px solid $color-grey;
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px $color-grey;
+
+    .product-list__box:first-child {
+        border-right: 1px solid rgba(0, 0, 0, 0.12);
+    }
+}
+
+.product-list__box {
+    padding: 8px 8px 20px;
+    font-size: 12px;
+    border-bottom: 1px solid $color-grey;
+    height: auto;
+
+    .product-list__img {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .product-list__name-price {
+        height: 97px;
+        position: relative;
+    }
+
+    .product-list__name {
+        line-height: 15px;
+        padding: 5px 0;
+        color: $color-grey-2;
+        position: relative;
+        display: block;
+        height: calc(2em + 10px);
+        overflow: hidden;
+        white-space: normal;
+    }
+
+    .product-list__text-content {
+        word-break: break-all;
+        position: relative;
+        display: block;
+        max-height: 3em;
+    }
+
+    .product-list__multi-ellipsis {
+        position: absolute;
+        right: 0;
+        top: calc(4em + 2px - 100%);
+        text-align: left;
+        background: white;
+    }
+
+    .product-list__price {
+        color: $color-orange;
+        font-weight: bold;
+        margin: 7px 0 20px;
+    }
+
+    .product-list__rating {
+        vertical-align: middle;
+    }
+
+    .product-list__count-rat {
+        font-size: 10px;
+        color: $color-brownish-grey;
+    }
+
+    .product-list__shop-location {
+        height: 35px;
+        position: relative;
+    }
+
+    .product-list__shop-name {
+        font-size: 11px;
+        color: $color-brownish-grey;
+        margin: 5px 0;
+    }
+
+    .product-list__location {
+        color: $color-grey-3;
+        font-size: 11px;
+    }
+
+    .product-list__location-name {
+        width: 43%;
+        max-width: 100%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .product-list__icon-location {
+        vertical-align: middle;
+        margin-right: 3px;
+    }
+
+    .product-list__icon-box {
+        position: absolute;
+        right: 0;
+        top: 16px;
+    }
+
+    .product-list__icon-badge:first-child {
+        margin-left: -10px;
+    }
+
+    .product-list__icon-badge {
+        padding-left: 5px;
+    }
+
+    .product-list__cashback {
+        background: $color-green;
+        color: $color-white;
+        border-radius: 2px;
+        font-size: 11px;
+        padding: 3px 7px;
+        margin-left: 10px;
+    }
+}
+
+.product-list__see-all {
+    color: $color-green;
+    padding: 15px 10px 15px 0;
+    display: block;
+    float: right;
+    font-weight: bold;
+}
+
+.product-list__holder-vertical {
+    background: $color-white;
+
+    .product-list__box {
+        padding: 10px 0 20px;
+
+        .product-list__name {
+            width: 81%;
+        }
+
+        .product-list__icon-wishlist {
+            position: absolute;
+            top: 9px;
+            right: 0;
+        }
+
+        .product-list__count-rat {
+            padding-left: 5px;
+        }
+    }
+}
