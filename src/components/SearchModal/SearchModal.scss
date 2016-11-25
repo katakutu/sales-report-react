@@ -1,0 +1,70 @@
+@import "base";
+@import "material";
+
+.modal__container {
+    background-color: $color-white-darker;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.modal__search-box {
+    background-color: $color-white;
+    padding: 10px 0;
+
+    .modal__search-form {
+        text-align: left;
+        padding-right: 25px;
+    }
+
+    .search-input__icon {
+        left: 25px;
+        top: 22px;
+        width: 32px;
+        height: 32px;
+        background-size: 32px 32px;
+    }
+
+    .search-input__input {
+        height: 56px;
+        padding-left: 64px;
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.56);
+    }
+
+    .search-input__close {
+        font-size: 16px;
+    }
+
+    .search-input__clear,
+    .search-input__close,
+    .search-input__input {
+        margin-right: 2vw;
+    }
+}
+
+.modal__search-result-empty {
+    font-size: 18px;
+    text-align: center;
+    padding-top: 85px;
+}
+
+.modal__search-result {
+    h1 {
+        padding-left: 16px;
+    }
+
+    .modal__search-result-item {
+        display: block;
+        font-size: 18px;
+        padding: 18px 0;
+
+        a {
+            color: rgba(0, 0, 0, 0.56);
+            padding-left: 48px;
+        }
+    }
+}
