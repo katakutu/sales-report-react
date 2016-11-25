@@ -1,33 +1,28 @@
 import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import { bindActionCreators } from 'redux'
+import { shallow } from 'enzyme'
 import CoreLayout from 'layouts/CoreLayout/CoreLayout'
-
-function shallowRender (component) {
-  const renderer = TestUtils.createRenderer()
-
-  renderer.render(component)
-  return renderer.getRenderOutput()
-}
-
-function shallowRenderWithProps (props = {}) {
-  return shallowRender(<CoreLayout {...props} />)
-}
+import createStore from 'store/createStore'
 
 describe('(Layout) Core', function () {
-  let _component
-  let _props
-  let _child
+  let _props, _spies, _wrapper
 
-  beforeEach(function () {
-    _child = <h1 className='child'>Child</h1>
+  beforeEach(() => {
+    _spies = {}
     _props = {
-      children : _child
+      store: createStore({}),
+      isOnline: false,
+      notifications: [],
+      ...bindActionCreators({
+        notificationDismiss : (_spies.notificationDismiss = sinon.spy()),
+        notificationDispatch : (_spies.notificationDispatch = sinon.spy()),
+        updateConnectionStatus: (_spies.updateConnectionStatus = sinon.spy())
+      }, _spies.dispatch = sinon.spy())
     }
-
-    _component = shallowRenderWithProps(_props)
+    _wrapper = shallow(<CoreLayout {..._props}><div /></CoreLayout>)
   })
 
-  it('Should render as a <div>.', function () {
-    expect(_component.type).to.equal('div')
+  it('Should render as a <CoreLayout>.', () => {
+    expect(_wrapper.is('CoreLayout')).to.equal(true)
   })
 })
