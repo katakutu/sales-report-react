@@ -22,7 +22,8 @@ class CoreLayout extends Component {
   constructor (props) {
     super(props)
 
-    this.updateIsOnline = this.updateIsOnline.bind(this)
+    this.handleOnOnline = this.handleOnOnline.bind(this)
+    this.handleOnOffline = this.handleOnOffline.bind(this)
     this.renderNotifications = this.renderNotifications.bind(this)
   }
 
@@ -30,17 +31,19 @@ class CoreLayout extends Component {
     this.props.updateConnectionStatus(navigator.onLine)
   }
 
-  updateIsOnline (event) {
-    let isOnline = navigator.onLine
-
-    this.props.updateConnectionStatus(isOnline)
+  handleOnOffline (event) {
+    this.props.updateConnectionStatus(navigator.onLine)
     this.props.notificationDispatch({
       id: (new Date().getTime()).toString(),
       active: true,
-      label: isOnline ? 'Anda telah online' : 'Anda sedang offline',
-      text: isOnline ? 'Selamat datang kembali!' : 'Mohon cek koneksi anda.',
+      label: 'Anda sedang offline',
+      text: 'Mohon cek koneksi anda.',
       timeout: 3000
     })
+  }
+
+  handleOnOnline (event) {
+    this.props.updateConnectionStatus(navigator.onLine)
   }
 
   renderNotifications () {
@@ -70,7 +73,7 @@ class CoreLayout extends Component {
     let ds = { height: '100%', filter: gs }
 
     return (
-      <OnOffWrapper onOnline={this.updateIsOnline} onOffline={this.updateIsOnline}>
+      <OnOffWrapper onOnline={this.handleOnOnline} onOffline={this.handleOnOffline}>
         <div style={ds}>
           <div className='content'>
             {this.props.children}
