@@ -49,24 +49,4 @@ class HomeView extends Component {
   }
 }
 
-export const HomeView = () => (
-  <div>
-    <Carousel />
-    <SectionSpacer>
-      <i className='section-spacer__icon section-spacer__icon--percent' />
-      Lihat Semua Promo
-      <i className='section-spacer__icon section-spacer__icon--chevron' />
-    </SectionSpacer>
-    <CategoryList />
-    <CatalogCategory />
-    <div className='u-display-none'>
-      <h4>Welcome!</h4>
-      <img
-        alt='This is a duck, because Redux!'
-        className='duck'
-        src={DuckImage} />
-    </div>
-  </div>
-)
-
 export default HomeView
