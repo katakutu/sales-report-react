@@ -30,15 +30,16 @@ class SearchInput extends Component {
 
   render () {
     return (
-      <div className={'search-input' + ' ' + this.props.injectClassName}>
-        <form>
-          <input type='text'
-            className='search-input__input u-col-12'
-            placeholder={this.props.injectPlaceholder}
-            onFocus={this.handleFocus} />
-          <span className='search-input__icon' />
-        </form>
-
+      <div className='u-clearfix'>
+        <div className={'search-input' + ' ' + this.props.injectClassName}>
+          <form>
+            <input type='text'
+              className='search-input__input u-col-12'
+              placeholder={this.props.injectPlaceholder}
+              onFocus={this.handleFocus} />
+            <span className='search-input__icon' />
+          </form>
+        </div>
         { this.state.searchModalOpened && <SearchModal onClose={this.handleModalClosed} /> }
       </div>
     )
