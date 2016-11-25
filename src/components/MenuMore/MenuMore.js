@@ -28,7 +28,7 @@ export const MenuMore = () => (
     </div>
     <Panel injectClassName='u-clearfix menu-more__content'>
       <div className='menu-more__content-header'>
-        <Icon iconName='pesan'></Icon>
+        <Icon iconName='pesan' />
         <h1 className='u-inline-block'>Kotak Masuk</h1>
       </div>
       <ul className='menu-more__content-list u-list-reset'>
@@ -51,7 +51,7 @@ export const MenuMore = () => (
     </Panel>
     <Panel injectClassName='u-clearfix menu-more__content'>
       <div className='menu-more__content-header'>
-        <Icon iconName='pembelian'></Icon>
+        <Icon iconName='pembelian' />
         <h1 className='u-inline-block'>Pembelian</h1>
       </div>
       <ul className='menu-more__content-list u-list-reset'>
@@ -74,7 +74,7 @@ export const MenuMore = () => (
     </Panel>
     <Panel injectClassName='u-clearfix menu-more__content'>
       <div className='menu-more__content-header'>
-        <Icon iconName='lainnya'></Icon>
+        <Icon iconName='lainnya' />
         <h1 className='u-inline-block'>Lainnya</h1>
       </div>
       <ul className='menu-more__content-list u-list-reset'>
@@ -97,7 +97,7 @@ export const MenuMore = () => (
     </Panel>
     <Panel injectClassName='u-clearfix menu-more__content'>
       <div className='menu-more__content-header'>
-        <Icon iconName='penjualan'></Icon>
+        <Icon iconName='penjualan' />
         <h1 className='u-inline-block'>Penjualan</h1>
       </div>
       <ul className='menu-more__content-list u-list-reset'>
@@ -123,7 +123,7 @@ export const MenuMore = () => (
     </Panel>
     <Panel injectClassName='u-clearfix menu-more__content'>
       <div className='menu-more__content-header'>
-        <Icon iconName='lainnya'></Icon>
+        <Icon iconName='lainnya' />
         <h1 className='u-inline-block'>Lainnya</h1>
       </div>
       <ul className='menu-more__content-list u-list-reset'>

@@ -66,26 +66,26 @@ class SearchModalResult extends Component {
             <a href='#' className='search-modal__result-action'>Hapus Semua</a>
             <ul className='u-list-reset u-p0 u-m0'>
               <li className='search-modal__result-item'>
-                <a href='#' className="search-modal__item-action">
-                  <span></span>
+                <a href='#' className='search-modal__item-action'>
+                  <span />
                 </a>
                 <Link className='search-modal__item-value' to='#'>iPhone 7 64GB</Link>
               </li>
               <li className='search-modal__result-item'>
-                <a href='#' className="search-modal__item-action">
-                  <span></span>
+                <a href='#' className='search-modal__item-action'>
+                  <span />
                 </a>
                 <Link className='search-modal__item-value' to='#'>Mini drone quadcore</Link>
               </li>
               <li className='search-modal__result-item'>
-                <a href='#' className="search-modal__item-action">
-                  <span></span>
+                <a href='#' className='search-modal__item-action'>
+                  <span />
                 </a>
                 <Link className='search-modal__item-value' to='#'>Food pets untuk kucing</Link>
               </li>
               <li className='search-modal__result-item'>
-                <a href='#' className="search-modal__item-action">
-                  <span></span>
+                <a href='#' className='search-modal__item-action'>
+                  <span />
                 </a>
                 <Link className='search-modal__item-value' to='#'>Sarung shalat bagus</Link>
               </li>

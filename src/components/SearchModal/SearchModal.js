@@ -104,7 +104,7 @@ class SearchModal extends Component {
             <span className='search-input__icon' />
 
             { this.state.hasContent && <span className='search-input__clear'
-              onClick={this.clearText}></span> }
+              onClick={this.clearText} /> }
             <span className='search-input__close' onClick={this.props.onClose}>Cancel</span>
           </form>
         </div>

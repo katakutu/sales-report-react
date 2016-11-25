@@ -60,7 +60,7 @@ class Carousel extends Component {
       <div className='carousel u-clearfix'>
         <Slider {...settings}>
           <div className='carousel__item'>
-            <a href="#" className='u-text-decoration-none'>
+            <a href='#' className='u-text-decoration-none'>
               <div className='carousel__item-container u-mx-auto u-block'>
                 <picture className='carousel__img u-fit u-mx-auto'>
                   <source srcSet={SLIDER_WEBP} />
