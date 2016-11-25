@@ -75,7 +75,6 @@ export const ProductList = () => (
     <div className='product-list__holder-vertical u-clearfix'>
       <div className='general__header pd-lr-10'>
         Produk dari Toko Favorit
-        <div className='general__header-line' />
       </div>
 
       <div className='product-list__box u-clearfix'>
