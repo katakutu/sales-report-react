@@ -1,21 +1,96 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import BottomNav from '../../components/BottomNav'
 import Footer from '../../components/Footer'
 import './CoreLayout.scss'
 import '../../styles/core.scss'
+import { actions } from '../../store/app'
 
-export const CoreLayout = ({ children }) => (
-  <div>
-    <div className='content'>
-      {children}
-    </div>
-    <BottomNav />
-    <Footer />
-  </div>
-)
+import OnOffWrapper from '../../components/Events/OnOffWrapper'
+import ToastNotification from '../../components/ToastNotification'
 
-CoreLayout.propTypes = {
-  children : React.PropTypes.element.isRequired
+class CoreLayout extends Component {
+  static propTypes = {
+    children: React.PropTypes.element.isRequired,
+    isOnline: React.PropTypes.bool,
+    notificationDismiss: React.PropTypes.func,
+    notificationDispatch: React.PropTypes.func,
+    notifications: React.PropTypes.arrayOf(React.PropTypes.object),
+    updateConnectionStatus: React.PropTypes.func
+  }
+
+  constructor (props) {
+    super(props)
+
+    this.updateIsOnline = this.updateIsOnline.bind(this)
+    this.renderNotifications = this.renderNotifications.bind(this)
+  }
+
+  componentWillMount () {
+    this.props.updateConnectionStatus(navigator.onLine)
+  }
+
+  updateIsOnline (event) {
+    let isOnline = navigator.onLine
+
+    this.props.updateConnectionStatus(isOnline)
+    this.props.notificationDispatch({
+      id: (new Date().getTime()).toString(),
+      active: true,
+      label: isOnline ? 'Anda telah online' : 'Anda sedang offline',
+      text: isOnline ? 'Selamat datang kembali!' : 'Mohon cek koneksi anda.',
+      timeout: 3000
+    })
+  }
+
+  renderNotifications () {
+    return this.props.notifications.map((notification, index) => {
+      let removeNotif = (id) => {
+        return (event) => {
+          this.props.notificationDismiss(id)
+        }
+      }
+
+      return (
+        <ToastNotification key={notification.id}
+          label={notification.label}
+          isActive={notification.active}
+          timeout={notification.timeout}
+          onClick={removeNotif(notification.id)}
+          onTimeout={removeNotif(notification.id)}
+          seqNo={index + 1}>
+          {notification.text}
+        </ToastNotification>
+      )
+    })
+  }
+
+  render () {
+    let gs = this.props.isOnline ? 'grayscale(0%)' : 'grayscale(100%)'
+    let ds = { height: '100%', filter: gs }
+
+    return (
+      <OnOffWrapper onOnline={this.updateIsOnline} onOffline={this.updateIsOnline}>
+        <div style={ds}>
+          <div className='content'>
+            {this.props.children}
+          </div>
+          <BottomNav />
+          <Footer />
+
+          {this.props.notifications.length > 0 ? this.renderNotifications() : null}
+        </div>
+      </OnOffWrapper>
+    )
+  }
 }
 
-export default CoreLayout
+const mapDispatchToProps = actions
+const mapStateToProps = (state) => {
+  return {
+    isOnline: state['app'] ? state['app'].isOnline : state.isOnline,
+    notifications: state['app'] ? state['app'].notifications : state.notifications
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoreLayout)

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 import './ToastNotification.scss'
 
+const BOT_HEIGHT = 60 // bottom navigation height
+
 class ToastNotification extends Component {
   static propTypes = {
     children: React.PropTypes.node,
@@ -10,7 +12,13 @@ class ToastNotification extends Component {
     label: React.PropTypes.string,
     onClick: React.PropTypes.func,
     onTimeout: React.PropTypes.func,
+    seqNo: React.PropTypes.number,
     timeout: React.PropTypes.number
+  }
+
+  static defaultProps = {
+    seqNo: 1,
+    timeout: 2000
   }
 
   constructor (props) {
@@ -36,21 +44,24 @@ class ToastNotification extends Component {
   }
 
   scheduleTimeout (props) {
-    if (this.currentTimeout) {
-      clearTimeout(this.currentTimeout)
-    }
+    if (this.currentTimeout) { clearTimeout(this.currentTimeout) }
 
     this.currentTimeout = setTimeout(() => {
       if (props.onTimeout) { props.onTimeout() }
       this.currentTimeout = null
-    }, props.timeout)
+    }, props.timeout * 2)
   }
 
   render () {
     const className = classnames('toast__container', this.props.className)
+    const finalStyle = {
+      animation: `notif ${this.props.timeout}ms`,
+      bottom: `${this.props.seqNo * BOT_HEIGHT + 5}px`,
+      transition: `bottom ${this.props.timeout / 2}ms ease-in-out`
+    }
 
     return (
-      <div className={className} style={{ animation: `notif ${this.props.timeout}ms` }}>
+      <div className={className} style={finalStyle}>
         <div className='toast__text'>
           {this.props.label}
 
