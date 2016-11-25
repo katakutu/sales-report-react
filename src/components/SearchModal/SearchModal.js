@@ -92,9 +92,8 @@ class SearchModal extends Component {
   render () {
     return (
       <div className='modal__container'>
-        <div className='modal__search-box'>
-          <form className='modal__search-form'>
-            <span className='search-input__icon' />
+        <div className='search-modal__box'>
+          <form className='search-modal__form'>
             <input type='text'
               ref='modalSearchInput'
               className='search-input__input u-col-10'
@@ -102,10 +101,11 @@ class SearchModal extends Component {
               onFocus={this.universeSearch}
               onChange={this.handleChange}
               value={this.state.query} />
+            <span className='search-input__icon' />
 
             { this.state.hasContent && <span className='search-input__clear'
-              onClick={this.clearText}>x</span> }
-            <span className='search-input__close' onClick={this.props.onClose}>Close</span>
+              onClick={this.clearText}></span> }
+            <span className='search-input__close' onClick={this.props.onClose}>Cancel</span>
           </form>
         </div>
 
