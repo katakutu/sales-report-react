@@ -5,8 +5,7 @@ import { Link } from 'react-router'
 
 class SearchModalResult extends Component {
   static propTypes = {
-    items: React.PropTypes.arrayOf(React.PropTypes.object),
-    hotlist: React.PropTypes.arrayOf(React.PropTypes.object)
+    items: React.PropTypes.arrayOf(React.PropTypes.object)
   }
 
   state = {
@@ -29,45 +28,42 @@ class SearchModalResult extends Component {
     })
   }
 
+  renderResultList (items, filter = '', withHeader = true) {
+    let result = filter === '' ? items : items.filter(i => i['name'] === filter)
+    let emptyResult = (
+      <div className='material__card modal__search-result-empty'>
+        Belum ada hasil.
+      </div>
+    )
+
+    return result.length <= 0 ? emptyResult
+         : result.map((selection, sIndex) => {
+           return (
+             <div className='material__card modal__search-result' key={`sr-${sIndex}`}>
+               { withHeader && <h1>{ this._sentenceCase(selection['name']) }</h1> }
+               { selection['items'].map((item, iIndex) => {
+                 return (
+                   <span className='modal__search-result-item' key={`srl-${iIndex}`}>
+                     <Link to={item.url}>{item.keyword}</Link>
+                   </span>
+                 )
+               }) }
+             </div>
+           )
+         })
+  }
+
   render () {
-    let result = this.props.items.length <= 0 ? <p>Belum ada hasil</p> : (
+    return (
       <Tabs inverse index={this.state.activeTabIndex} onChange={this.handleTabChange}>
         <Tab label='Semua'>
-          { this.props.items.map((selection, sIndex) => {
-            return (
-              <div className='' key={`sr-${sIndex}`}>
-                <h6>{ this._sentenceCase(selection['name']) }</h6>
-
-                { selection['items'].map((item, iIndex) => {
-                  return (
-                    <p>
-                      <Link to={item.url}>{ item.keyword }</Link>
-                    </p>
-                  )
-                }) }
-              </div>
-            )
-          }) }
+          { this.renderResultList(this.props.items) }
         </Tab>
         <Tab label='Hot List'>
-          { this.props.hotlist.map((selection, sIndex) => {
-            return (
-              <div className='' key={`sr-${sIndex}`}>
-                { selection['items'].map((item, iIndex) => {
-                  return (
-                    <p>
-                      <Link to={item.url}>{ item.keyword }</Link>
-                    </p>
-                  )
-                }) }
-              </div>
-            )
-          }) }
+          { this.renderResultList(this.props.items, 'hotlist', false) }
         </Tab>
       </Tabs>
-        )
-
-    return result
+    )
   }
 }
 

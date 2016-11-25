@@ -15,7 +15,6 @@ class SearchModal extends Component {
   state = {
     hasContent: false,
     selection: [],
-    hotlist: [],
     query: ''
   }
 
@@ -50,8 +49,7 @@ class SearchModal extends Component {
         let acResult = this._autocompleteToUniverseSearchResult(result)
 
         this.setState({
-          selection: acResult.filter(s => s['name'] !== 'hotlist'),
-          hotlist: acResult.filter(s => s['name'] === 'hotlist')
+          selection: acResult
         })
       })
     }
@@ -64,12 +62,11 @@ class SearchModal extends Component {
 
   universeSearch () {
     api.universeSearch('', CryptoJS.MD5(document.cookie)).then(result => {
-      let selection = result['data'].filter(r => { return r['items'].length > 0 && r['id'] !== 'hotlist' })
-      let hotlist = result['data'].filter(r => { return r['items'].length > 0 && r['id'] === 'hotlist' })
+      let selectionFilter = r => { return r['items'].length > 0 }
+      let selection = result['data'].filter(selectionFilter)
 
       this.setState({
-        selection: selection,
-        hotlist: hotlist
+        selection: selection
       })
     })
   }
@@ -112,7 +109,7 @@ class SearchModal extends Component {
           </form>
         </div>
 
-        <SearchModalResult items={this.state.selection} hotlist={this.state.hotlist} />
+        <SearchModalResult items={this.state.selection} />
       </div>
     )
   }
