@@ -24,8 +24,8 @@ export const Footer = () => (
         <a href='#' className='u-ml1'>Lihat di Sini</a> | Lihat Versi <a href='#'>Desktop</a>
       </p>
       <p className='u-line-height-4 footer__lower-text--bigger'>
-        Pilih Bahasa
-        <select name='language' className='footer__select-language' defaultValue='id'>
+        <label htmlFor='language'>Pilih Bahasa</label>
+        <select id='language' name='language' className='footer__select-language' defaultValue='id'>
           <option value='id'>Indonesia</option>
           <option value='en'>English</option>
         </select>

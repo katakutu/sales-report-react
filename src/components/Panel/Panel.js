@@ -3,7 +3,7 @@ import './Panel.scss'
 
 class Panel extends Component {
   static propTypes = {
-    injectClassName: React.PropTypes.String,
+    injectClassName: React.PropTypes.string,
     children: React.PropTypes.node
   }
 
