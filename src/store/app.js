@@ -32,7 +32,6 @@ export const actions = {
 
 const ACTION_HANDLERS = {
   [NOTIFICATION_DISPATCH] : (state, action) => {
-    console.log(state.notifications)
     return Object.assign({}, state, {
       notifications: state.notifications.concat(action.payload)
     })
