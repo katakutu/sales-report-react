@@ -7,6 +7,7 @@
     z-index: $z-index-3;
     width: 100%;
     background-color: $color-green;
+    box-shadow: 1px 0 7px 1px $color-grey-3;
 }
 
 .header__logo {
@@ -73,7 +74,7 @@
     border: 0;
     background: url('./assets/header-magnifier-white.png') transparent no-repeat;
     background-position: center center;
-    background-size: 20.5px 20px;
+    background-size: 18px 16.5px;
     text-indent: -99999px;
     font-size: 0;
 }
@@ -124,4 +125,31 @@
     &.focus {
         background-image: url('./assets/header-magnifier-green.png');
     }
+}
+
+.tab-link {
+    display: block;
+    padding: 0 20px;
+    border-bottom: 6px solid transparent;
+    color: $color-white-primary;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    line-height: 40px;
+
+    .active & {
+        border-color: $color-white-primary;
+    }
+}
+
+.tab.logged-out .tab-item {
+    display: inline-block;
+}
+
+.tab.logged-out .tab-item {
+    width: 50%;
+}
+
+.tab.logged-in .tab-link {
+    width: 100%;
 }

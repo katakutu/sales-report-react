@@ -2,12 +2,34 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import './HeaderHomeOld.scss'
 
+var Tabs = require('react-slick')
+var settings = {
+  dots: false,
+  arrows: false,
+  infinite: false,
+  speed: 500,
+  draggable: true,
+  swipeToSlide: true,
+  centerMode: false,
+  variableWidth: false,
+  slidesToShow: 4,
+  slidesToScroll: 1
+}
+
+
 class HeaderHome extends Component {
+  componentDidMount () {
+    var self = this
+    setTimeout(function () {
+      self.forceUpdate()
+    }, 100)
+  }
+
   render () {
     return (
       <div className='u-clearfix'>
         <header className='header u-clearfix' role='banner'>
-          <div className='u-relative'>
+          <div className='u-relative u-clearfix'>
             <button className='header__nav'>
               <div className='header__nav-burger'>
                 <span></span>
@@ -21,11 +43,12 @@ class HeaderHome extends Component {
                 <span className='header__logo'>Tokopedia</span>
               </Link>
             </div>
-            <div className='u-relative u-col-12'>
-              <div className='u-px2 u-pt0 u-pb2'>
-                <form action='#' method='get' autocomplete='off' className='u-relative'>
+            {/* Hide search input when scrolltop */}
+            <div className='search-input u-relative u-col-12'>
+              <div className='u-px2 u-pt0 u-pb1'>
+                <form action='#' method='get' className='u-relative'>
                   <input type='hidden' name='st' defaultValue='product' />
-                  <input name='q' type='search' className='search-input__input' placeholder='Cari Produk atau Toko' autocomplete='off' />
+                  <input name='q' type='search' className='search-input__input' placeholder='Cari Produk atau Toko' />
                   <button className="search-input__btn">
                     Search
                   </button>
@@ -42,6 +65,33 @@ class HeaderHome extends Component {
               <a href='https://m.tokopedia.com/tx.pl' rel='nofollow' className='header__cart-link'>
                 Cart
               </a>
+            </div>
+          </div>
+          {/* Show this when logged in */}
+          <Tabs {...settings} className='tab logged-in'>
+            <div className='tab-item active'>
+              <label className='tab-link'>Home</label>
+            </div>
+            <div className='tab-item'>
+              <label className='tab-link'>Feed</label>
+            </div>
+            <div className='tab-item'>
+              <label className='tab-link'>Favorit</label>
+            </div>
+            <div className='tab-item'>
+              <label className='tab-link'>Hot List</label>
+            </div>
+            <div className='tab-item'>
+              <label className='tab-link'>Wishlist</label>
+            </div>
+          </Tabs>
+          {/* Show this when logged out */}
+          <div className='tab logged-out u-display-none'>
+            <div className='tab-item active'>
+              <label className='tab-link'>Home</label>
+            </div>
+            <div className='tab-item'>
+              <label className='tab-link'>Hot List</label>
             </div>
           </div>
         </header>
