@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
-import CryptoJS from 'crypto-js'
+import { connect } from 'react-redux'
 import './SearchInputOld.scss'
 import TopedAceAPI from '../../lib/api/Search/TopedAceAPI'
+
+import UserSearchID from '../../lib/utils/UserSearchID'
+import { storeUserSearchID } from '../../store/app'
 
 const api = new TopedAceAPI()
 
 class SearchInputOld extends Component {
   static propTypes = {
     injectClassName: React.PropTypes.string,
-    injectPlaceholder: React.PropTypes.string
+    injectPlaceholder: React.PropTypes.string,
+    userSearchID: React.PropTypes.string,
+    storeUserSearchID: React.PropTypes.func
   }
 
   constructor (props) {
@@ -29,9 +34,14 @@ class SearchInputOld extends Component {
   }
 
   autocomplete (event) {
-    let value = event.target.value
+    UserSearchID.initUniqueID()
 
-    api.universeSearch(value, CryptoJS.MD5(document.cookie)).then(result => {
+    let value = event.target.value
+    let uid = UserSearchID.getUniqueID(this.props.userSearchID)
+
+    this.props.storeUserSearchID(uid)
+
+    api.universeSearch(value, uid).then(result => {
       let selection = result['data'].filter(r => { return r['items'].length > 0 })
 
       this.setState({
@@ -94,4 +104,11 @@ class SearchInputOld extends Component {
   }
 }
 
-export default SearchInputOld
+const mapDispatchToProps = { storeUserSearchID }
+const mapStateToProps = (state) => {
+  return {
+    userSearchID: state['app'] ? state['app'].user.searchID : state.user.searchID
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchInputOld)

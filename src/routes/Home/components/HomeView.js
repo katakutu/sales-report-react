@@ -29,7 +29,7 @@ class HomeView extends Component {
         <HeaderHome />
 
         <Tabs index={this.state.activeTabIndex} onChange={this.handleTabChange}>
-          <Tab label='Jelajah'>
+          <Tab label='Home'>
             <Ticker perTickDuration={2} />
 
             <Carousel />
@@ -43,8 +43,8 @@ class HomeView extends Component {
             <CategoryList />
           </Tab>
 
-          <Tab label='Promo'>
-            <h2 style={{ textAlign: 'center' }}>PROMO!</h2>
+          <Tab label='Hot List'>
+            <h2 style={{ textAlign: 'center' }}>Hot List!</h2>
           </Tab>
         </Tabs>
       </div>

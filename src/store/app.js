@@ -2,6 +2,7 @@ export const NOTIFICATION_DISPATCH = 'NOTIFICATION_DISPATCH'
 export const NOTIFICATION_DISMISS = 'NOTIFICATION_DISMISS'
 export const CONNECTION_ONLINE = 'CONNECTION_ONLINE'
 export const CONNECTION_OFFLINE = 'CONNECTION_OFFLINE'
+export const USER_SEARCH_ID_STORE = 'USER_SEARCH_ID_STORE'
 
 export function notificationDispatch (props) {
   return {
@@ -24,10 +25,18 @@ export function updateConnectionStatus (isOnline) {
   }
 }
 
+export function storeUserSearchID (userIDHash) {
+  return {
+    type: USER_SEARCH_ID_STORE,
+    payload: userIDHash
+  }
+}
+
 export const actions = {
   notificationDispatch,
   notificationDismiss,
-  updateConnectionStatus
+  updateConnectionStatus,
+  storeUserSearchID
 }
 
 const ACTION_HANDLERS = {
@@ -46,10 +55,13 @@ const ACTION_HANDLERS = {
   },
   [CONNECTION_OFFLINE]: (state, action) => {
     return Object.assign({}, state, { isOnline: action.payload })
+  },
+  [USER_SEARCH_ID_STORE]: (state, action) => {
+    return Object.assign({}, state, { user: { searchID: action.payload } })
   }
 }
 
-const initialState = { isOnline: true, notifications: [] }
+const initialState = { isOnline: true, notifications: [], user: { searchID: '-' } }
 export default function appReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
