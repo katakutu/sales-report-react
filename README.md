@@ -18,8 +18,13 @@ you can start the site by running these commands:
 
 ```bash
 $ npm install                   # Install project dependencies
+$ export TOPED_LITE_CLIENT_ID=<YOUR_CLIENT_ID>
+$ export TOPED_LITE_SECRET_KEY=<YOUR_SECRET_KEY>
 $ npm start                     # Compile and launch
 ```
+
+Don't forget to get your `TOPED_LITE_CLIENT_ID` and `TOPED_LITE_SECRET_KEY` right. If you want to,
+you could also setup this on your `bashrc`.
 
 While developing, you will probably rely mostly on `npm start`; however, there are additional scripts at your disposal:
 
@@ -44,6 +49,7 @@ Before you commit, make sure to always run:
 ```bash
 $ npm run test
 $ npm run lint:fix
+$ npm run lint:css
 $ npm run flow:check
 ```
 
