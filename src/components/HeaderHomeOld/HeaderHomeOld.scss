@@ -12,10 +12,11 @@
 .header__logo {
     display: block;
     padding: 15px 0;
-    width: 120px;
+    width: 112.5px;
     height: 55px;
-    background: url('http://placehold.it/120x25') transparent no-repeat;
+    background: url('./assets/tokopedia-logo.png') transparent no-repeat;
     background-position: center center;
+    background-size: 112.5px 24px;
     vertical-align: middle;
     text-indent: -99999px;
     font-size: 0;
@@ -27,14 +28,52 @@
     right: 57px;
 }
 
+.header__nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    padding: 0;
+    width: 40px;
+    height: 55px;
+    border: 0;
+    background: transparent;
+
+    span:nth-child(1) {
+        top: 17px;
+    }
+
+    span:nth-child(2) {
+        top: 26px;
+    }
+
+    span:nth-child(3) {
+        top: 35px;
+    }
+
+    span {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        display: block;
+        width: 25px;
+        height: 2px;
+        background: $color-white-primary;
+        opacity: 1;
+        transition: 0.25s ease-in-out;
+        transform: translate(0) rotate(0);
+    }
+}
+
 .header__search-btn {
     display: block;
     padding: 0;
     width: 25px;
     height: 55px;
     border: 0;
-    background: url('http://placehold.it/25x23') transparent no-repeat;
+    background: url('./assets/header-magnifier-white.png') transparent no-repeat;
     background-position: center center;
+    background-size: 20.5px 20px;
     text-indent: -99999px;
     font-size: 0;
 }
@@ -50,8 +89,9 @@
     padding: 0;
     width: 40px;
     height: 55px;
-    background: url('http://placehold.it/25x23') transparent no-repeat;
+    background: url('./assets/header-cart-icon.png') transparent no-repeat;
     background-position: center left;
+    background-size: 22px 22px;
     text-indent: -99999px;
     font-size: 0;
 }
@@ -70,13 +110,18 @@
 
 .search-input__btn {
     position: absolute;
-    top: 10px;
+    top: 9px;
     right: 10px;
-    width: 19px;
+    width: 20.5px;
     height: 20px;
     border: 0;
-    background: url('http://placehold.it/19x20') transparent no-repeat;
+    background: url('./assets/header-magnifier-orange.png') transparent no-repeat;
     background-position: center center;
+    background-size: 20.5px 20px;
     text-indent: -99999px;
     font-size: 0;
+
+    &.focus {
+        background-image: url('./assets/header-magnifier-green.png');
+    }
 }
