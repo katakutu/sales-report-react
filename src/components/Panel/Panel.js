@@ -3,13 +3,13 @@ import './Panel.scss'
 
 class Panel extends Component {
   static propTypes = {
-    injectClassName: React.PropTypes.string,
+    className: React.PropTypes.string,
     children: React.PropTypes.node
   }
 
   render () {
     return (
-      <div className={'panel' + ' ' + this.props.injectClassName}>
+      <div className={'panel ' + this.props.className}>
         {this.props.children}
       </div>
     )
