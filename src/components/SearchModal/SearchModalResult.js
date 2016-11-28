@@ -30,7 +30,8 @@ class SearchModalResult extends Component {
   }
 
   renderResultList (items, filter = '', withHeader = true) {
-    let result = filter === '' ? items : items.filter(i => i['name'] === filter)
+    let filterFunc  = i => i['name'].toLowerCase() === filter.toLowerCase()
+    let result      = filter === '' ? items : items.filter(filterFunc)
     let emptyResult = (
       <Panel className='u-clearfix search-modal__result-empty'>
         { withHeader && <h1>{ this._sentenceCase(filter.split('_').join(' ')) }</h1> }

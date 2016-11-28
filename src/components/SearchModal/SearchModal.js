@@ -22,7 +22,6 @@ class SearchModal extends Component {
     super(props)
 
     this.clearText = this.clearText.bind(this)
-    this.handleChange = this.handleChange.bind(this)
     this.universeSearch = this.universeSearch.bind(this)
   }
 
@@ -39,55 +38,24 @@ class SearchModal extends Component {
     ReactDOM.findDOMNode(this.refs.modalSearchInput).focus()
   }
 
-  handleChange (event) {
+  universeSearch (event) {
     let query = event.target.value
 
-    if (query === '') {
-      this.universeSearch()
-    } else {
-      api.autocomplete(query).then(result => {
-        let acResult = this._autocompleteToUniverseSearchResult(result)
+    api.universeSearch(query, CryptoJS.MD5(document.cookie)).then(result => {
+      let selectionFilter = r => { return r['items'].length > 0 }
+      let selection = result['data'].filter(selectionFilter)
 
-        this.setState({
-          selection: acResult
-        })
+      this.setState({
+        selection: selection.filter(s => s['name'].toLowerCase() !== 'autocomplete')
       })
-    }
+    }).catch(function (reason) {
+      this.setState({ selection: [] })
+    })
 
     this.setState({
       hasContent: query !== '',
       query: query
     })
-  }
-
-  universeSearch () {
-    api.universeSearch('', CryptoJS.MD5(document.cookie)).then(result => {
-      console.log(result);
-      let selectionFilter = r => { return r['items'].length > 0 }
-      let selection = result['data'].filter(selectionFilter)
-
-      this.setState({
-        selection: selection
-      })
-    })
-  }
-
-  _autocompleteToUniverseSearchResult (result) {
-    let selection = {}
-    result['data'].forEach(data => {
-      let name = data['domain']
-      if (selection[name]) {
-        selection[name].concat({ 'url': data['url'], 'keyword': data['keyword'] })
-      } else {
-        selection[name] = [{ 'url': data['url'], 'keyword': data['keyword'] }]
-      }
-    })
-
-    let finalResult = Object.keys(selection).map(key => {
-      return { name: key, items: selection[key] }
-    })
-
-    return finalResult.filter(r => { return r['items'].length > 0 })
   }
 
   render () {
@@ -100,7 +68,7 @@ class SearchModal extends Component {
               className='search-input__input u-col-10'
               placeholder='Cari produk atau toko'
               onFocus={this.universeSearch}
-              onChange={this.handleChange}
+              onChange={this.universeSearch}
               value={this.state.query} />
             <span className='search-input__icon' />
 
