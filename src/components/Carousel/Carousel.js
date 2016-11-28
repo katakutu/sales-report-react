@@ -62,9 +62,9 @@ class Carousel extends Component {
           <div className='carousel__item'>
             <a href='#' className='u-text-decoration-none'>
               <div className='carousel__item-container u-mx-auto u-block'>
-                <picture className='carousel__img u-fit u-mx-auto'>
+                <picture className='carousel__img u-fit u-mx-auto' alt='Lorem ipsum'>
                   <source srcSet={SLIDER_WEBP} />
-                  <img className='carousel__img u-fit u-mx-auto' src={SLIDER_IMG} />
+                  <img className='carousel__img u-fit u-mx-auto' src={SLIDER_IMG} alt='Lorem ipsum'/>
                 </picture>
               </div>
             </a>

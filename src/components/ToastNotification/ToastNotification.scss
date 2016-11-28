@@ -1,26 +1,26 @@
 @import "base";
 
 .toast__container {
-    bottom: -60px;
-    margin: auto;
     position: fixed;
+    bottom: -60px;
+    z-index: 1;
+    margin: auto;
+    width: 100%;
     text-align: center;
     transition: bottom 1000ms ease-in-out;
-    width: 100%;
-    z-index: 1;
 
     .toast__text {
-        background: rgba(0, 0, 0, 0.8);
-        color: $color-white;
-        font-weight: 600;
         margin: auto;
         padding: 10px 0;
+        background: rgba(0, 0, 0, 0.8);
+        color: $color-white-primary;
         text-transform: uppercase;
+        font-weight: 600;
 
         .toast__content {
-            font-size: 12px;
-            font-weight: normal;
             text-transform: capitalize;
+            font-weight: normal;
+            font-size: 12px;
         }
     }
 }

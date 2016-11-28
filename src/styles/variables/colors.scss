@@ -1,14 +1,17 @@
 // Base color
 $color-green: #42B549;
 $color-orange: #FF5722;
-$color-black: #000;
-$color-white-darker: #F1F1F1;
-$color-white-darker-f9: #F9F9F9;
-$color-white: #FFF;
 $color-yellow: #FFB200;
 
-// Gray color
-$color-brownish-grey: #666;
-$color-grey: #EBEBEB;
-$color-grey-2: #4D4D4D;
-$color-grey-3: #9E9E9E;
+// Material color
+$color-black-primary: rgba(0, 0, 0, 0.87);
+$color-black-secondary: rgba(0, 0, 0, 0.7);
+$color-black-disabled: rgba(0, 0, 0, 0.54);
+
+$color-grey-1: rgba(0, 0, 0, 0.05);
+$color-grey-2: rgba(0, 0, 0, 0.1);
+$color-grey-3: rgba(0, 0, 0, 0.2);
+
+$color-white-primary: rgba(255, 255, 255, 1);
+$color-white-secondary: rgba(255, 255, 255, 0.7);
+$color-white-disabled: rgba(255, 255, 255, 0.5);
