@@ -68,3 +68,18 @@
     font-size: 11px;
     line-height: 27px;
 }
+
+.general__header {
+    margin-bottom: 20px;
+    color: $color-black-primary;
+    font-size: 14px;
+}
+
+.general__header::after {
+    display: block;
+    margin-top: 10px;
+    width: 6%;
+    height: 2px;
+    background: $color-orange;
+    content: '';
+}

@@ -27,22 +27,28 @@ body {
 }
 
 ::-webkit-input-placeholder {
-    color: $color-black-secondary;
+    color: $color-black-disabled;
 }
 
 ::-moz-placeholder {
-    color: $color-black-secondary;
+    color: $color-black-disabled;
 }
 
 :-ms-input-placeholder {
-    color: $color-black-secondary;
+    color: $color-black-disabled;
 }
 
 :-moz-placeholder {
-    color: $color-black-secondary;
+    color: $color-black-disabled;
 }
 
 a {
     color: $color-black-primary;
     text-decoration: none;
+}
+
+input[type=search],
+textarea,
+select {
+    appearance: none;
 }

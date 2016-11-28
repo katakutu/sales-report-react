@@ -1,1 +1,82 @@
 @import 'base';
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: $z-index-3;
+    width: 100%;
+    background-color: $color-green;
+}
+
+.header__logo {
+    display: block;
+    padding: 15px 0;
+    width: 120px;
+    height: 55px;
+    background: url('http://placehold.it/120x25') transparent no-repeat;
+    background-position: center center;
+    vertical-align: middle;
+    text-indent: -99999px;
+    font-size: 0;
+}
+
+.header__search {
+    position: absolute;
+    top: 0;
+    right: 57px;
+}
+
+.header__search-btn {
+    display: block;
+    padding: 0;
+    width: 25px;
+    height: 55px;
+    border: 0;
+    background: url('http://placehold.it/25x23') transparent no-repeat;
+    background-position: center center;
+    text-indent: -99999px;
+    font-size: 0;
+}
+
+.header__cart {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.header__cart-link {
+    display: block;
+    padding: 0;
+    width: 40px;
+    height: 55px;
+    background: url('http://placehold.it/25x23') transparent no-repeat;
+    background-position: center left;
+    text-indent: -99999px;
+    font-size: 0;
+}
+
+.search-input__input {
+    padding: 0 55px 0 6px;
+    width: 100%;
+    height: 38px;
+    border: 0;
+    border-radius: 3px;
+    box-shadow: none;
+    color: $color-black-primary;
+    text-align: left;
+    font-size: 14px;
+}
+
+.search-input__btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 19px;
+    height: 20px;
+    border: 0;
+    background: url('http://placehold.it/19x20') transparent no-repeat;
+    background-position: center center;
+    text-indent: -99999px;
+    font-size: 0;
+}
