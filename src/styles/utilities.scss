@@ -1,3 +1,5 @@
+/* stylelint-disable */
+
 .u-h1 {
     font-size: 2rem;
 }
@@ -15,11 +17,11 @@
 }
 
 .u-h5 {
-    font-size: .875rem;
+    font-size: 0.875rem;
 }
 
 .u-h6 {
-    font-size: .75rem;
+    font-size: 0.75rem;
 }
 
 .u-font-family-inherit {
@@ -36,7 +38,6 @@
 
 .u-bold {
     font-weight: bold;
-    font-weight: bold;
 }
 
 .u-regular {
@@ -49,7 +50,7 @@
 
 .u-caps {
     text-transform: uppercase;
-    letter-spacing: .2em;
+    letter-spacing: 0.2em;
 }
 
 .u-left-align {
@@ -144,13 +145,13 @@
     overflow: auto;
 }
 
-.u-clearfix:before,
-.u-clearfix:after {
+.u-clearfix::before,
+.u-clearfix::after {
     content: " ";
     display: table;
 }
 
-.u-clearfix:after {
+.u-clearfix::after {
     clear: both;
 }
 
@@ -233,33 +234,33 @@
 }
 
 .u-m1 {
-    margin: .5rem;
+    margin: 0.5rem;
 }
 
 .u-mt1 {
-    margin-top: .5rem;
+    margin-top: 0.5rem;
 }
 
 .u-mr1 {
-    margin-right: .5rem;
+    margin-right: 0.5rem;
 }
 
 .u-mb1 {
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
 }
 
 .u-ml1 {
-    margin-left: .5rem;
+    margin-left: 0.5rem;
 }
 
 .u-mx1 {
-    margin-left: .5rem;
-    margin-right: .5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .u-my1 {
-    margin-top: .5rem;
-    margin-bottom: .5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .u-m2 {
@@ -353,8 +354,8 @@
 }
 
 .u-mxn1 {
-    margin-left: -.5rem;
-    margin-right: -.5rem;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
 }
 
 .u-mxn2 {
@@ -416,33 +417,33 @@
 }
 
 .u-p1 {
-    padding: .5rem;
+    padding: 0.5rem;
 }
 
 .u-pt1 {
-    padding-top: .5rem;
+    padding-top: 0.5rem;
 }
 
 .u-pr1 {
-    padding-right: .5rem;
+    padding-right: 0.5rem;
 }
 
 .u-pb1 {
-    padding-bottom: .5rem;
+    padding-bottom: 0.5rem;
 }
 
 .u-pl1 {
-    padding-left: .5rem;
+    padding-left: 0.5rem;
 }
 
 .u-py1 {
-    padding-top: .5rem;
-    padding-bottom: .5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .u-px1 {
-    padding-left: .5rem;
-    padding-right: .5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 .u-p2 {

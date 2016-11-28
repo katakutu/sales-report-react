@@ -32,21 +32,20 @@ import iconTiket from './assets/icon-tiket.png'
 export const CategoryList = () => (
   <div className='u-clearfix'>
     <div className='category-list__holder u-clearfix'>
-      <div className='category-list__title'>
+      <div className='general__header'>
         Gaya Hidup
-        <div className='category-list__title-line' />
       </div>
 
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconFashion} />
+            <img src={iconFashion} alt='Logo kategori Fashion Aksesoris' />
             <span className='category-list__name'>Fashion Aksesoris</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconOtomotif} />
+            <img src={iconOtomotif} alt='Logo kategori Otomotif' />
             <span className='category-list__name'>Otomotif</span>
           </a>
         </div>
@@ -55,13 +54,13 @@ export const CategoryList = () => (
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconKecantikan} />
+            <img src={iconKecantikan} alt='Logo kategori Kecantikan' />
             <span className='category-list__name'>Kecantikan</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconPakaian} />
+            <img src={iconPakaian} alt='Logo kategori Pakaian' />
             <span className='category-list__name'>Pakaian</span>
           </a>
         </div>
@@ -70,13 +69,13 @@ export const CategoryList = () => (
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconRumahTangga} />
+            <img src={iconRumahTangga} alt='Logo kategori Rumah Tangga' />
             <span className='category-list__name'>Rumah Tangga</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconKesehatan} />
+            <img src={iconKesehatan} alt='Logo kategori Kesehatan' />
             <span className='category-list__name'>Kesehatan</span>
           </a>
         </div>
@@ -85,13 +84,13 @@ export const CategoryList = () => (
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconOlahraga} />
+            <img src={iconOlahraga} alt='Logo kategori Olahraga' />
             <span className='category-list__name'>Olahraga</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconDapur} />
+            <img src={iconDapur} alt='Logo kategori Dapur' />
             <span className='category-list__name'>Dapur</span>
           </a>
         </div>
@@ -99,21 +98,20 @@ export const CategoryList = () => (
     </div>
 
     <div className='category-list__holder u-clearfix'>
-      <div className='category-list__title'>
+      <div className='general__header'>
         Teknologi
-        <div className='category-list__title-line' />
       </div>
 
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconHanphone} />
-            <span className='category-list__name'>Handphone & Tablet</span>
+            <img src={iconHanphone} alt='Logo kategori Handphone dan Tablet' />
+            <span className='category-list__name'>Handphone &amp; Tablet</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconElektronik} />
+            <img src={iconElektronik} alt='Logo kategori Elektronik' />
             <span className='category-list__name'>Elektronik</span>
           </a>
         </div>
@@ -122,14 +120,14 @@ export const CategoryList = () => (
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconKomputer} />
-            <span className='category-list__name'>Komputer & Aksesoris</span>
+            <img src={iconKomputer} alt='Logo kategori Komputer dan Aksesoris' />
+            <span className='category-list__name'>Komputer &amp; Aksesoris</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconKamera} />
-            <span className='category-list__name'>Kamera, Foto, & Video</span>
+            <img src={iconKamera} alt='Logo kategori Kamera, Foto, dan Video' />
+            <span className='category-list__name'>Kamera, Foto, &amp; Video</span>
           </a>
         </div>
       </div>
@@ -137,13 +135,13 @@ export const CategoryList = () => (
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconLaptop} />
-            <span className='category-list__name'>Laptop & Aksesoris</span>
+            <img src={iconLaptop} alt='Logo kategori Laptop dan Aksesoris' />
+            <span className='category-list__name'>Laptop &amp; Aksesoris</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconSoftware} />
+            <img src={iconSoftware} alt='Logo kategori Software' />
             <span className='category-list__name'>Software</span>
           </a>
         </div>
@@ -151,22 +149,21 @@ export const CategoryList = () => (
     </div>
 
     <div className='category-list__holder u-clearfix'>
-      <div className='category-list__title'>
+      <div className='general__header'>
         Kategori lain
-        <div className='category-list__title-line' />
       </div>
 
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconMainan} />
-            <span className='category-list__name'>Mainan & Hobi</span>
+            <img src={iconMainan} alt='Logo kategori Mainan dan Hobi' />
+            <span className='category-list__name'>Mainan &amp; Hobi</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconMakanan} />
-            <span className='category-list__name'>Makanan & Minuman</span>
+            <img src={iconMakanan} alt='Logo kategori Makanan dan Minuman' />
+            <span className='category-list__name'>Makanan &amp; Minuman</span>
           </a>
         </div>
       </div>
@@ -174,13 +171,13 @@ export const CategoryList = () => (
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconPerawatanBayi} />
+            <img src={iconPerawatanBayi} alt='Logo kategori Perawatan Bayi' />
             <span className='category-list__name'>Perawatan Bayi</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconSouvenir} />
+            <img src={iconSouvenir} alt='Logo kategori Souvenir' />
             <span className='category-list__name'>Souvenir</span>
           </a>
         </div>
@@ -189,13 +186,13 @@ export const CategoryList = () => (
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconOffice} />
-            <span className='category-list__name'>Office & Stationery</span>
+            <img src={iconOffice} alt='Logo kategori Office dan Stationary' />
+            <span className='category-list__name'>Office &amp; Stationary</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconBuku} />
+            <img src={iconBuku} alt='Logo kategori Buku' />
             <span className='category-list__name'>Buku</span>
           </a>
         </div>
@@ -204,14 +201,14 @@ export const CategoryList = () => (
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconFilm} />
-            <span className='category-list__name'>Film, Musik, & Game</span>
+            <img src={iconFilm} alt='Logo kategori Film, Musik, dan Game' />
+            <span className='category-list__name'>Film, Musik, &amp; Game</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconProdukLain} />
-            <span className='category-list__name'>Produk lainnya</span>
+            <img src={iconProdukLain} alt='Logo kategori Produk Lainnya' />
+            <span className='category-list__name'>Produk Lainnya</span>
           </a>
         </div>
       </div>
@@ -219,20 +216,20 @@ export const CategoryList = () => (
 
     <div className='category-list__holder u-clearfix'>
       <div className='category-list__title'>
-        Pembayaran & Top up
+        Pembayaran &amp; Top up
         <div className='category-list__title-line' />
       </div>
 
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconPulsa} />
+            <img src={iconPulsa} alt='Logo kategori Pulsa' />
             <span className='category-list__name'>Pulsa</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconSaldo} />
+            <img src={iconSaldo} alt='Logo kategori Saldo' />
             <span className='category-list__name'>Saldo</span>
           </a>
         </div>
@@ -241,13 +238,13 @@ export const CategoryList = () => (
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconPaketData} />
+            <img src={iconPaketData} alt='Logo kategori Paket Data' />
             <span className='category-list__name'>Paket Data</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconBpjs} />
+            <img src={iconBpjs} alt='Logo kategori BPJS' />
             <span className='category-list__name'>BPJS</span>
           </a>
         </div>
@@ -256,13 +253,13 @@ export const CategoryList = () => (
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconTokenListrik} />
+            <img src={iconTokenListrik} alt='Logo kategori Token Listrik' />
             <span className='category-list__name'>Token Listrik</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
           <a href='#'>
-            <img src={iconTiket} />
+            <img src={iconTiket} alt='Logo kategori Tiket' />
             <span className='category-list__name'>Tiket</span>
           </a>
         </div>

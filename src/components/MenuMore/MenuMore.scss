@@ -1,0 +1,56 @@
+@import 'base';
+
+.menu-more__header {
+    background-color: $color-green;
+}
+
+.menu-more__header-lower {
+    background-color: $color-white-darker;
+}
+
+.menu-more__header-upper {
+    padding: 30px 10px 45px;
+    color: $color-white;
+}
+
+.menu-more__avatar {
+    margin-bottom: 9px;
+}
+
+.menu-more__username {
+    margin-top: 0;
+    margin-bottom: 6px;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.menu-more__toppoints {
+    margin: 0;
+    font-size: normal;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.menu-more__shop-btn {
+    position: relative;
+    top: -30px;
+    display: block;
+    margin: 0 auto;
+    padding: 8px;
+    max-width: 244px;
+    width: 100%;
+    border-radius: 3px;
+    background-color: $color-white;
+    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.menu-more__shop-name {
+    font-size: 14px;
+    opacity: 0.54;
+}
+
+.menu-more__shop-type {
+    font-size: 12px;
+    opacity: 0.38;
+}
