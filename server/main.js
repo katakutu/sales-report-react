@@ -4,9 +4,54 @@ const webpack = require('webpack')
 const webpackConfig = require('../build/webpack.config')
 const config = require('../config')
 const compress = require('compression')
+const GlobalConfig = require('../GlobalConfig')
 
 const app = express()
 const paths = config.utils_paths
+
+const oauthCredentials = {
+  client: {
+    id: GlobalConfig['Accounts']['ClientID'],
+    secret: GlobalConfig['Accounts']['SecretKey']
+  },
+  auth : {
+    tokenHost: GlobalConfig['Accounts']['Hostname'],
+    tokenPath: GlobalConfig['Accounts']['TokenPath'],
+    authorizePath: GlobalConfig['Accounts']['AuthorizePath']
+  }
+}
+
+const oauth2 = require('simple-oauth2').create(oauthCredentials)
+const oauthAuthorizationURI = oauth2.authorizationCode.authorizeURL({
+  redirect_uri: GlobalConfig['Accounts']['Callback'],
+  scope: '', state: '123asdf'
+})
+
+app.get('/login', (req, res) => {
+  res.redirect(oauthAuthorizationURI)
+})
+
+app.get('/auth/callback', (req, res) => {
+  const code = req.query.code
+  const options = {code}
+
+  oauth2.authorizationCode.getToken(options, (error, result) => {
+    if (error) {
+      console.error('Access Token Error', error.message)
+      return res.json('Authentication failed.')
+    }
+
+    console.log('Resulting token:', result)
+    const token = oauth2.accessToken.create(result)
+
+    return res.status(200).json(token)
+  })
+})
+
+app.get('/login/success', (req, res) => {
+  res.send('success!')
+})
+
 
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement universal
