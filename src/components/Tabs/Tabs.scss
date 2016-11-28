@@ -1,16 +1,24 @@
 @import "base";
 
+.tab {
+    position: relative;
+    display: flex;
+    background: $color-green;
+    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
 .tab__inverted {
     .tab {
+        border-bottom: 1px solid rgba($color-black, 0.12);
         background: $color-white;
+        box-shadow: none;
     }
 
     .tab__link {
-        color: rgba(0, 0, 0, 0.54);
+        color: rgba($color-black, 0.38);
 
         &.tab__active {
             color: $color-green;
-            font-weight: bold;
         }
     }
 
@@ -19,38 +27,32 @@
     }
 }
 
-.tab {
-    background: $color-green;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    display: flex;
-    position: relative;
-}
-
 .tab__link {
-    border-bottom: 2px solid transparent;
-    color: $color-white;
     display: inline-flex;
     flex-grow: 1;
-    font-size: 12px;
-    font-weight: normal;
     justify-content: center;
-    line-height: 44px;
-    opacity: 0.54;
+    border-bottom: 2px solid transparent;
+    color: $color-white;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 44px;
+    opacity: 0.54;
+    cursor: pointer;
 
     &.tab__active {
-        font-weight: bold;
+        opacity: 1;
     }
 }
 
 .tab__pointer {
-    background-color: $color-white;
-    display: block;
-    height: 0.2em;
-    margin-top: -0.2em;
     position: relative;
+    display: block;
+    margin-top: -0.2em;
+    height: 0.2em;
+    background-color: $color-white;
     transition: left 0.45s ease;
 }
 

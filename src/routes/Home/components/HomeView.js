@@ -29,7 +29,7 @@ class HomeView extends Component {
         <HeaderHome />
 
         <Tabs index={this.state.activeTabIndex} onChange={this.handleTabChange}>
-          <Tab label='Home'>
+          <Tab label='Jelajah'>
             <Ticker perTickDuration={2} />
 
             <Carousel />

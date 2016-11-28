@@ -32,9 +32,8 @@ import iconTiket from './assets/icon-tiket.png'
 export const CategoryList = () => (
   <div className='u-clearfix'>
     <div className='category-list__holder u-clearfix'>
-      <div className='category-list__title'>
+      <div className='general__header'>
         Gaya Hidup
-        <div className='category-list__title-line' />
       </div>
 
       <div className='u-col u-col-12 category-list__box'>
@@ -99,9 +98,8 @@ export const CategoryList = () => (
     </div>
 
     <div className='category-list__holder u-clearfix'>
-      <div className='category-list__title'>
+      <div className='general__header'>
         Teknologi
-        <div className='category-list__title-line' />
       </div>
 
       <div className='u-col u-col-12 category-list__box'>
@@ -151,9 +149,8 @@ export const CategoryList = () => (
     </div>
 
     <div className='category-list__holder u-clearfix'>
-      <div className='category-list__title'>
+      <div className='general__header'>
         Kategori lain
-        <div className='category-list__title-line' />
       </div>
 
       <div className='u-col u-col-12 category-list__box'>

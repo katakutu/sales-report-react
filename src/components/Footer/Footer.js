@@ -21,7 +21,7 @@ export const Footer = () => (
     <div className='footer__lower u-clearfix u-center'>
       <p className='u-line-height-4'>
         Butuh Bantuan?
-        <a href='#'>Lihat di Sini</a> | Lihat Versi <a href='#'>Desktop</a>
+        <a href='#' className='u-ml1'>Lihat di Sini</a> | Lihat Versi <a href='#'>Desktop</a>
       </p>
       <p className='u-line-height-4 footer__lower-text--bigger'>
         <label htmlFor='language'>Pilih Bahasa</label>
