@@ -33,9 +33,9 @@ class SearchModal extends Component {
     this.setState({
       hasContent: false,
       query: ''
+    }, function () {
+      ReactDOM.findDOMNode(this.refs.modalSearchInput).focus()
     })
-
-    ReactDOM.findDOMNode(this.refs.modalSearchInput).focus()
   }
 
   universeSearch (event) {

@@ -30,8 +30,8 @@ class SearchModalResult extends Component {
   }
 
   renderResultList (items, filter = '', withHeader = true) {
-    let filterFunc  = i => i['name'].toLowerCase() === filter.toLowerCase()
-    let result      = filter === '' ? items : items.filter(filterFunc)
+    let filterFunc = i => i['name'].toLowerCase() === filter.toLowerCase()
+    let result = filter === '' ? items : items.filter(filterFunc)
     let emptyResult = (
       <Panel className='u-clearfix search-modal__result-empty'>
         { withHeader && <h1>{ this._sentenceCase(filter.split('_').join(' ')) }</h1> }
@@ -45,13 +45,43 @@ class SearchModalResult extends Component {
              <Panel className='u-clearfix search-modal__result-container' key={`sr-${sIndex}`}>
                { withHeader && <h1>{ this._sentenceCase(selection['name']) }</h1> }
                <ul className='u-list-reset u-p0 u-m0'>
-               { selection['items'].map((item, iIndex) => {
-                 return (
-                   <li className='search-modal__result-item' key={`srl-${iIndex}`}>
-                     <Link className='search-modal__item-value' to={item.url}>{item.keyword}</Link>
-                   </li>
-                 )
-               }) }
+                 { selection['items'].map((item, iIndex) => {
+                   return (
+                     <li className='search-modal__result-item' key={`srl-${iIndex}`}>
+                       <Link className='search-modal__item-value' to={item.url}>{item.keyword}</Link>
+                     </li>
+                   )
+                 }) }
+               </ul>
+             </Panel>
+           )
+         })
+  }
+
+  renderRecentSearchList (items) {
+    let result = items.filter(i => i['name'].toLowerCase() === 'recent_search')
+    let emptyResult = (
+      <Panel className='u-clearfix search-modal__result-empty'>
+        <h1>Recent Search</h1>
+        Belum ada hasil.
+      </Panel>
+    )
+
+    return result.length <= 0 ? emptyResult
+         : result.map((selection, sIndex) => {
+           return (
+             <Panel className='u-clearfix search-modal__result-container search-modal__result--recent'
+               key={`sr-${sIndex}`}>
+               <h1>{ this._sentenceCase(selection['name']) }</h1>
+               <ul className='u-list-reset u-p0 u-m0'>
+                 { selection['items'].map((item, iIndex) => {
+                   return (
+                     <li className='search-modal__result-item' key={`srsl-${iIndex}`}>
+                       <a href='#' className='search-modal__item-action'><span /></a>
+                       <Link className='search-modal__item-value' to={item.url}>{item.keyword}</Link>
+                     </li>
+                   )
+                 }) }
                </ul>
              </Panel>
            )
@@ -62,7 +92,7 @@ class SearchModalResult extends Component {
     return (
       <Tabs inverse index={this.state.activeTabIndex} onChange={this.handleTabChange}>
         <Tab label='Semua'>
-          { this.renderResultList(this.props.items, 'recent_search') }
+          { this.renderRecentSearchList(this.props.items) }
           { this.renderResultList(this.props.items) }
         </Tab>
 
