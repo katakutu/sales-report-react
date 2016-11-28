@@ -26,7 +26,7 @@ export const ProductList = () => (
             <div className='product-list__shop-name'>Central Jacket Bandung</div>
             <div className='product-list__location'>
               <img className='product-list__icon-location' src='http://placehold.it/15x15' />
-              <span className='product-list__location-name ellipsis'>Bandung Bjsjsjsjssjsjhdjdjkdjdjddj djdjdjdj</span>
+              <span className='product-list__location-name u-truncate'>Bandung Bjsjsjsjssjsjhdjdjkdjdjddj djdjdjdj</span>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@ export const ProductList = () => (
             <div className='product-list__shop-name'>Central Jacket Bandung</div>
             <div className='product-list__location'>
               <img className='product-list__icon-location' src='http://placehold.it/15x15' />
-              <span className='product-list__location-name ellipsis'>Bandung Bjsjsjsjssjsjhdjdjkdjdjddj djdjdjdj</span>
+              <span className='product-list__location-name u-truncate'>Bandung Bjsjsjsjssjsjhdjdjkdjdjddj djdjdjdj</span>
             </div>
             <div className='product-list__icon-box'>
               <img className='product-list__icon-badge' src='http://placehold.it/15x15' />
@@ -110,7 +110,7 @@ export const ProductList = () => (
               <div className='product-list__shop-name'>Central Jacket Bandung</div>
               <div className='product-list__location'>
                 <img className='product-list__icon-location' src='http://placehold.it/15x15' />
-                <span className='product-list__location-name ellipsis'>
+                <span className='product-list__location-name u-truncate'>
                   Bandung Bjsjsjsjssjsjhdjdjkdjdjddj djdjdjdj
                 </span>
               </div>
@@ -151,7 +151,7 @@ export const ProductList = () => (
               <div className='product-list__shop-name'>Central Jacket Bandung</div>
               <div className='product-list__location'>
                 <img className='product-list__icon-location' src='http://placehold.it/15x15' />
-                <span className='product-list__location-name ellipsis'>
+                <span className='product-list__location-name u-truncate'>
                   Bandung Bjsjsjsjssjsjhdjdjkdjdjddj djdjdjdj
                 </span>
               </div>
@@ -198,7 +198,7 @@ export const ProductList = () => (
               <div className='product-list__shop-name'>Central Jacket Bandung</div>
               <div className='product-list__location'>
                 <img className='product-list__icon-location' src='http://placehold.it/15x15' />
-                <span className='product-list__location-name ellipsis'>
+                <span className='product-list__location-name u-truncate'>
                   Bandung Bjsjsjsjssjsjhdjdjkdjdjddj djdjdjdj
                 </span>
               </div>
