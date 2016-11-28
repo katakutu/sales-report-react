@@ -62,6 +62,7 @@ class SearchModal extends Component {
 
   universeSearch () {
     api.universeSearch('', CryptoJS.MD5(document.cookie)).then(result => {
+      console.log(result);
       let selectionFilter = r => { return r['items'].length > 0 }
       let selection = result['data'].filter(selectionFilter)
 
