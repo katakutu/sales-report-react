@@ -32,7 +32,16 @@ module.exports = {
     res.redirect(oauthAuthorizationURI(state))
   },
   logout: function (req, res, next) {
-    res.redirect('/')
+    req.session.destroy((err) => {
+      if (err) {
+        console.error('Logout failed', err)
+
+        // TODO: Handle this case
+        return res.redirect('/')
+      }
+
+      return res.redirect('/')
+    })
   },
   redirect: function (req, res, next) {
       // already logged in
