@@ -121,7 +121,6 @@ class HeaderHome extends Component {
             </div>
           </div>
         </header>
-
         {/* SIDEBAR MENU BEFORE LOGIN - if you need show this side bar, add class active on class drawer */}
         <div className='drawer'>
           <div className='drawer-active__overlay' />
@@ -161,7 +160,6 @@ class HeaderHome extends Component {
             </div>
           </div>
         </div>
-
         {/* SIDEBAR MENU AFTER LOGIN - if you need show this sidebar, add class active on class drawer */}
         <div className='drawer active'>
           <div className='drawer-active__overlay' />
@@ -203,7 +201,6 @@ class HeaderHome extends Component {
                 <div>Toko Saya</div>
                 <div className='drawer__menu-myshop-name'>iPhoneShop</div>
               </div>
-
             </div>
             <div className='drawer__menu'>
               <a href='#'>
@@ -224,7 +221,6 @@ class HeaderHome extends Component {
                 <span className='drawer__menu-notif' />
                 <img src='http://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
               </a>
-
               <ul className='drawer__menu-child'>
                 <li><a href='#'>Pesan<span className='u-right drawer__menu-child-notif'>1</span></a></li>
                 <li><a href='#'>Diskusi Produk</a></li>
@@ -240,7 +236,6 @@ class HeaderHome extends Component {
                 <span className='drawer__menu-notif' />
                 <img src='http://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
               </a>
-
               <ul className='drawer__menu-child'>
                 <li><a href='#'>Pesan Dibatalkan</a></li>
                 <li><a href='#'>Konfirmasi Pembayaran</a></li>
@@ -255,7 +250,6 @@ class HeaderHome extends Component {
                 <span className='drawer__menu-title u-inline-block'>Penjualan</span>
                 <img src='http://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
               </a>
-
               <ul className='drawer__menu-child'>
                 <li><a href='#'>Pesanan Baru</a></li>
                 <li><a href='#'>Konfirmasi Pengiriman</a></li>

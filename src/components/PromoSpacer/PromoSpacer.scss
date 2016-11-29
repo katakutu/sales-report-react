@@ -1,2 +1,37 @@
 @import 'base';
 
+.promo-spacer {
+    position: relative;
+    z-index: 0;
+    margin: 10px auto;
+    height: 24px;
+    color: $color-green;
+    text-align: right;
+}
+
+.promo-spacer__link {
+    display: block;
+    color: $color-green;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.promo-spacer__icon {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: middle;
+
+    &--percent {
+        width: 22px;
+        height: 22px;
+        background: url('./assets/promo-spacer-icon-percent@2x.png') transparent no-repeat;
+        background-size: 22px 22px;
+    }
+
+    &--arrow {
+        width: 6px;
+        height: 9px;
+        background: url('./assets/promo-spacer-icon-arrow@2x.png') transparent no-repeat;
+        background-size: 6px 9px;
+    }
+}

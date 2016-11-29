@@ -2,8 +2,12 @@ import React from 'react'
 import './PromoSpacer.scss'
 
 export const PromoSpacer = ({ children }) => (
-  <div className='section-spacer'>
-    Promo
+  <div className='promo-spacer'>
+    <a href='#' className='promo-spacer__link'>
+      <i className='promo-spacer__icon promo-spacer__icon--percent'></i>
+      Lihat Semua Promo
+      <i className='promo-spacer__icon promo-spacer__icon--arrow'></i>
+    </a>
   </div>
 )
 
