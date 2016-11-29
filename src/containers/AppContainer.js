@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import ReactGA from 'react-ga'
 import { GA_PROPERTY_ID } from '../constants'
 
-ReactGA.initialize('UA-9801603-1');
+ReactGA.initialize(GA_PROPERTY_ID);
 
 class AppContainer extends Component {
   static propTypes = {
