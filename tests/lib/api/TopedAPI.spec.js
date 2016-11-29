@@ -1,42 +1,42 @@
-import TopedHMACAPI from 'lib/api/TopedHMACAPI'
+import TopedAPI from 'lib/api/TopedAPI'
 
-describe('TopedHMACAPI', () => {
-  let _api
-
-  beforeEach(() => {
-    _api = new TopedHMACAPI('no_secret_in_ba_sing_se')
-  })
-
-  describe('#generateHashParamFromObject', () => {
-    let testContent = [
-            { data: { 'key1': 'value1' }, result: 'key1=value1' },
-            { data: { 'key1': 'value1', 'key2': 'value2' }, result: 'key1=value1&key2=value2' },
-            { data: { 'k1': 1, 'k2': 2 }, result: 'k1=1&k2=2' }
-    ]
-
-    it('returns the correct result', () => {
-      testContent.forEach(content => {
-        let result = _api.generateHashParamFromObject(content.data)
-
-        expect(result).to.equal(result)
-      })
+describe('TopedAPI', () => {
+    let _api
+    beforeEach(() => {
+        _api = new TopedAPI()
     })
 
-    it('should return string', () => {
-      testContent.forEach(content => {
-        let result = _api.generateHashParamFromObject(content.data)
+    describe('#contentToURIParams', function () {
+        let testContent = [
+                { data: { 'key1': 'value1' }, result: 'key1=value1' },
+                { data: { 'key1': 'value1', 'key2': 'value2' }, result: 'key1=value1&key2=value2' },
+                { data: { 'k1': 1, 'k2': 2 }, result: 'k1=1&k2=2' }
+        ]
 
-        expect(result).to.be.a('string')
-      })
+        it('Should returns the correct result', () => {
+            testContent.forEach(content => {
+                let result = _api.contentToURIParams(content.data)
+
+                expect(result).to.equal(result)
+            })
+        })
+
+        it('Should return empty string if the parameter is not an object', () => {
+            let strParam = ''
+            let numParam = 0
+            let arrParam = []
+            let funParam = a => a + 1
+            let boolParam = false
+            let nullParam = null
+            let udefParam = undefined
+
+            expect(_api.contentToURIParams(strParam)).to.equal('')
+            expect(_api.contentToURIParams(numParam)).to.equal('')
+            expect(_api.contentToURIParams(arrParam)).to.equal('')
+            expect(_api.contentToURIParams(funParam)).to.equal('')
+            expect(_api.contentToURIParams(boolParam)).to.equal('')
+            expect(_api.contentToURIParams(nullParam)).to.equal('')
+            expect(_api.contentToURIParams(udefParam)).to.equal('')
+        })
     })
-  })
-
-  describe('#generateFormDataFromObject', () => {
-    it('should return FormData', () => {
-      let testData = { 'key': 'value', 'integer': 1 }
-      let result = _api.generateFormDataFromObject(testData)
-
-      expect(result).to.be.a('FormData')
-    })
-  })
 })
