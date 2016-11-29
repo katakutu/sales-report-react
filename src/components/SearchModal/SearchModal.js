@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import ReactDOM from 'react-dom'
-import CryptoJS from 'crypto-js'
 import TopedAceAPI from '../../lib/api/Search/TopedAceAPI'
 import './SearchModal.scss'
 import SearchModalResult from './SearchModalResult'
+
+import UserSearchID from '../../lib/utils/UserSearchID'
+import { storeUserSearchID } from '../../store/app'
 
 const api = new TopedAceAPI()
 
 class SearchModal extends Component {
   static propTypes = {
-    onClose: React.PropTypes.func
+    onClose: React.PropTypes.func,
+    injectPlaceholder: React.PropTypes.string,
+    userSearchID: React.PropTypes.string,
+    storeUserSearchID: React.PropTypes.func
   }
 
   state = {
@@ -22,7 +28,6 @@ class SearchModal extends Component {
     super(props)
 
     this.clearText = this.clearText.bind(this)
-    this.handleChange = this.handleChange.bind(this)
     this.universeSearch = this.universeSearch.bind(this)
   }
 
@@ -34,60 +39,34 @@ class SearchModal extends Component {
     this.setState({
       hasContent: false,
       query: ''
+    }, function () {
+      ReactDOM.findDOMNode(this.refs.modalSearchInput).focus()
     })
-
-    ReactDOM.findDOMNode(this.refs.modalSearchInput).focus()
   }
 
-  handleChange (event) {
+  universeSearch (event) {
+    UserSearchID.initUniqueID()
+
     let query = event.target.value
+    let uid = UserSearchID.getUniqueID(this.props.userSearchID)
 
-    if (query === '') {
-      this.universeSearch()
-    } else {
-      api.autocomplete(query).then(result => {
-        let acResult = this._autocompleteToUniverseSearchResult(result)
+    this.props.storeUserSearchID(uid)
 
-        this.setState({
-          selection: acResult
-        })
+    api.universeSearch(query, uid).then(result => {
+      let selectionFilter = r => { return r['items'].length > 0 }
+      let selection = result['data'].filter(selectionFilter)
+
+      this.setState({
+        selection: selection.filter(s => s['name'].toLowerCase() !== 'autocomplete')
       })
-    }
+    }).catch(function (reason) {
+      this.setState({ selection: [] })
+    })
 
     this.setState({
       hasContent: query !== '',
       query: query
     })
-  }
-
-  universeSearch () {
-    api.universeSearch('', CryptoJS.MD5(document.cookie)).then(result => {
-      console.log(result);
-      let selectionFilter = r => { return r['items'].length > 0 }
-      let selection = result['data'].filter(selectionFilter)
-
-      this.setState({
-        selection: selection
-      })
-    })
-  }
-
-  _autocompleteToUniverseSearchResult (result) {
-    let selection = {}
-    result['data'].forEach(data => {
-      let name = data['domain']
-      if (selection[name]) {
-        selection[name].concat({ 'url': data['url'], 'keyword': data['keyword'] })
-      } else {
-        selection[name] = [{ 'url': data['url'], 'keyword': data['keyword'] }]
-      }
-    })
-
-    let finalResult = Object.keys(selection).map(key => {
-      return { name: key, items: selection[key] }
-    })
-
-    return finalResult.filter(r => { return r['items'].length > 0 })
   }
 
   render () {
@@ -100,7 +79,7 @@ class SearchModal extends Component {
               className='search-input__input u-col-10'
               placeholder='Cari produk atau toko'
               onFocus={this.universeSearch}
-              onChange={this.handleChange}
+              onChange={this.universeSearch}
               value={this.state.query} />
             <span className='search-input__icon' />
 
@@ -116,4 +95,11 @@ class SearchModal extends Component {
   }
 }
 
-export default SearchModal
+const mapDispatchToProps = { storeUserSearchID }
+const mapStateToProps = (state) => {
+  return {
+    userSearchID: state['app'] ? state['app'].user.searchID : state.user.searchID
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchModal)

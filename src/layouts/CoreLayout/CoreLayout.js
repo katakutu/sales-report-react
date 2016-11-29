@@ -4,7 +4,7 @@ import BottomNav from '../../components/BottomNav'
 import Footer from '../../components/Footer'
 import './CoreLayout.scss'
 import '../../styles/core.scss'
-import { actions } from '../../store/app'
+import { notificationDismiss, notificationDispatch, updateConnectionStatus } from '../../store/app'
 
 import OnOffWrapper from '../../components/Events/OnOffWrapper'
 import ToastNotification from '../../components/ToastNotification'
@@ -88,7 +88,9 @@ class CoreLayout extends Component {
   }
 }
 
-const mapDispatchToProps = actions
+const mapDispatchToProps = {
+  notificationDismiss, notificationDispatch, updateConnectionStatus
+}
 const mapStateToProps = (state) => {
   return {
     isOnline: state['app'] ? state['app'].isOnline : state.isOnline,

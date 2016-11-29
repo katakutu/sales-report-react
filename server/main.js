@@ -4,6 +4,7 @@ const webpack = require('webpack')
 const webpackConfig = require('../build/webpack.config')
 const config = require('../config')
 const compress = require('compression')
+const oauth = require('./oauth')
 
 const app = express()
 const paths = config.utils_paths
@@ -15,6 +16,12 @@ app.use(require('connect-history-api-fallback')())
 
 // Apply gzip compression
 app.use(compress())
+
+app.get("/login", oauth.login);
+app.get("/logout", oauth.logout);
+app.get("/redirect", oauth.redirect);
+
+app.get("/userinfo", oauth.userInfo);
 
 // ------------------------------------
 // Apply Webpack HMR Middleware
