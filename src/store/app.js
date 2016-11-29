@@ -3,6 +3,8 @@ export const NOTIFICATION_DISMISS = 'NOTIFICATION_DISMISS'
 export const CONNECTION_ONLINE = 'CONNECTION_ONLINE'
 export const CONNECTION_OFFLINE = 'CONNECTION_OFFLINE'
 export const USER_SEARCH_ID_STORE = 'USER_SEARCH_ID_STORE'
+export const USER_LOGGED_IN = 'USER_LOGGED_IN'
+export const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
 
 export function notificationDispatch (props) {
   return {
@@ -32,11 +34,19 @@ export function storeUserSearchID (userIDHash) {
   }
 }
 
+export function updateUserLoginStatus (isLoggedIn) {
+  return {
+    type: isLoggedIn ? USER_LOGGED_IN : USER_LOGGED_OUT,
+    payload: isLoggedIn
+  }
+}
+
 export const actions = {
   notificationDispatch,
   notificationDismiss,
   updateConnectionStatus,
-  storeUserSearchID
+  storeUserSearchID,
+  updateUserLoginStatus
 }
 
 const ACTION_HANDLERS = {
@@ -58,10 +68,23 @@ const ACTION_HANDLERS = {
   },
   [USER_SEARCH_ID_STORE]: (state, action) => {
     return Object.assign({}, state, { user: { searchID: action.payload } })
+  },
+  [USER_LOGGED_IN]: (state, action) => {
+    return Object.assign({}, state, { user: { loggedIn: action.payload } })
+  },
+  [USER_LOGGED_OUT]: (state, action) => {
+    return Object.assign({}, state, { user: { loggedIn: action.payload } })
   }
 }
 
-const initialState = { isOnline: true, notifications: [], user: { searchID: '-' } }
+const initialState = {
+  isOnline: true,
+  notifications: [],
+  user: {
+    loggedIn: false,
+    searchID: '-'
+  }
+}
 export default function appReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
