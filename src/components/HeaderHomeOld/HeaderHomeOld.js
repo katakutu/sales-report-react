@@ -26,7 +26,6 @@ var settings = {
   slidesToScroll: 1
 }
 
-
 class HeaderHome extends Component {
   componentDidMount () {
     var self = this
@@ -46,7 +45,7 @@ class HeaderHome extends Component {
                 <span />
                 <span />
               </div>
-              <i className='header__nav-notification'></i>
+              <i className='header__nav-notification' />
             </button>
             <div className='u-center u-block'>
               <Link to='/' className='u-inline-block header__logo-container'>
@@ -59,7 +58,12 @@ class HeaderHome extends Component {
                 <form action='#' method='get' className='u-relative'>
                   <input type='hidden' name='st' defaultValue='product' />
                   <label htmlFor='search_input' className='u-hide'>Search</label>
-                  <input name='q' type='search' id='search_input' className='search-input__input' placeholder='Cari Produk atau Toko' />
+                  <input
+                    name='q'
+                    type='search'
+                    id='search_input'
+                    className='search-input__input'
+                    placeholder='Cari Produk atau Toko' />
                   <button className='search-input__btn'>
                     Search
                   </button>

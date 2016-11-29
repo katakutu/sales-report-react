@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import ReactGA from 'react-ga'
 import { GA_PROPERTY_ID } from '../constants'
 
-ReactGA.initialize(GA_PROPERTY_ID);
+ReactGA.initialize(GA_PROPERTY_ID)
 
 class AppContainer extends Component {
   static propTypes = {
@@ -12,9 +12,9 @@ class AppContainer extends Component {
     store  : PropTypes.object.isRequired
   }
 
-  logPageView() {
-    ReactGA.set({ page: window.location.pathname });
-    ReactGA.pageview(window.location.pathname);
+  logPageView () {
+    ReactGA.set({ page: window.location.pathname })
+    ReactGA.pageview(window.location.pathname)
   }
 
   render () {

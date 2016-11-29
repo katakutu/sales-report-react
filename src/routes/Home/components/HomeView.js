@@ -41,11 +41,11 @@ class HomeView extends Component {
   }
 
   render () {
-    let loggedInTabs = this.props.userIsLoggedIn ? [
-      (<Tab label='Feed'><h1>Feed</h1></Tab>),
-      (<Tab label='Favorite'><h1>Favorite</h1></Tab>),
-      (<Tab label='Wishlist'><h1>Wishlist</h1></Tab>)
-    ] : []
+    // let loggedInTabs = this.props.userIsLoggedIn ? [
+    //   (<Tab label='Feed'><h1>Feed</h1></Tab>),
+    //   (<Tab label='Favorite'><h1>Favorite</h1></Tab>),
+    //   (<Tab label='Wishlist'><h1>Wishlist</h1></Tab>)
+    // ] : []
 
     return (
       <div>
