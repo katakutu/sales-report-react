@@ -44,7 +44,7 @@ class TopedAPI {
    * @memberOf TopedAPI
    */
   contentToURIParams (content) {
-    if(content === undefined || content === null) return ''
+    if (content === undefined || content === null) return ''
 
     return Object.keys(content).map(key => {
       return key + '=' + encodeURIComponent(content[key])
