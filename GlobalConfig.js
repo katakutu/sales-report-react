@@ -30,6 +30,7 @@ if (config.globals.__DEV__) {
   globalConfig = PRODUCTION
 }
 
+globalConfig['AppSecret'] = process.env.TOPED_LITE_APP_SECRET || 'no-secret'
 globalConfig['Accounts']['ClientID'] = process.env.TOPED_LITE_CLIENT_ID || '0001'
 globalConfig['Accounts']['SecretKey'] = process.env.TOPED_LITE_SECRET_KEY || 'no-secret'
 globalConfig['Accounts']['AuthorizePath'] = '/authorize'
