@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './HomeView.scss'
 import Carousel from '../../../components/Carousel'
 import CategoryList from '../../../components/CategoryList'
+import PromoSpacer from '../../../components/PromoSpacer'
 import Ticker from '../../../components/Ticker'
 
 class HomeView extends Component {
@@ -24,6 +25,7 @@ class HomeView extends Component {
       <div>
         <Ticker />
         <Carousel />
+        <PromoSpacer />
         <CategoryList />
       </div>
     )
