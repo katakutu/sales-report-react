@@ -1,3 +1,6 @@
+// ------------------------------------
+// Constants
+// ------------------------------------
 export const NOTIFICATION_DISPATCH = 'NOTIFICATION_DISPATCH'
 export const NOTIFICATION_DISMISS = 'NOTIFICATION_DISMISS'
 export const CONNECTION_ONLINE = 'CONNECTION_ONLINE'
@@ -6,6 +9,9 @@ export const USER_SEARCH_ID_STORE = 'USER_SEARCH_ID_STORE'
 export const USER_LOGGED_IN = 'USER_LOGGED_IN'
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
 
+// ------------------------------------
+// Actions
+// ------------------------------------
 export function notificationDispatch (props) {
   return {
     type: NOTIFICATION_DISPATCH,
@@ -77,6 +83,9 @@ const ACTION_HANDLERS = {
   }
 }
 
+// ------------------------------------
+// Reducer
+// ------------------------------------
 const initialState = {
   isOnline: true,
   notifications: [],
