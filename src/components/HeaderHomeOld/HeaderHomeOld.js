@@ -161,7 +161,7 @@ class HeaderHome extends Component {
           </div>
         </div>
         {/* SIDEBAR MENU AFTER LOGIN - if you need show this sidebar, add class active on class drawer */}
-        <div className='drawer active'>
+        <div className='drawer'>
           <div className='drawer-active__overlay' />
           <div className='drawer__container u-clearfix'>
             <div className='drawer__title u-clearfix'>

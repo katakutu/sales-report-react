@@ -4,9 +4,29 @@ const webpack = require('webpack')
 const webpackConfig = require('../build/webpack.config')
 const config = require('../config')
 const compress = require('compression')
+const oauth = require('./oauth')
+const GlobalConfig = require('../GlobalConfig')
+const session = require('express-session')
 
 const app = express()
 const paths = config.utils_paths
+
+const sessionConfig = {
+  secret: GlobalConfig['AppSecret'],
+  name: 'tLiteSession',
+  cookie: {}
+}
+if (config.globals.__PROD__) {
+  app.set('trust proxy', 1)
+  sessionConfig.cookie.secure = true
+}
+app.use(session(sessionConfig))
+
+app.get('/login', oauth.login)
+app.get('/logout', oauth.logout)
+app.get('/auth/callback', oauth.redirect)
+
+app.get('/userinfo', oauth.userInfo)
 
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement universal

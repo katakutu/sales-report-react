@@ -8,6 +8,9 @@ const PRODUCTION = {
   },
   WS: {
     Hostname: 'ws.tokopedia.com'
+  },
+  Lite: {
+    Hostname: 'm.tokopedia.com'
   }
 }
 
@@ -21,6 +24,9 @@ const TEST = {
   },
   WS: {
     Hostname: 'ws-staging.tokopedia.com'
+  },
+  Lite: {
+    Hostname: 'm-staging.tokopedia.com'
   }
 }
 
@@ -34,6 +40,9 @@ const DEVELOPMENT = {
   },
   WS: {
     Hostname: 'ws-staging.tokopedia.com'
+  },
+  Lite: {
+    Hostname: 'lite-devel:3000'
   }
 }
 

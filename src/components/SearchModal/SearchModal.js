@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import ReactDOM from 'react-dom'
-import CryptoJS from 'crypto-js'
 import TopedAceAPI from '../../lib/api/Search/TopedAceAPI'
 import './SearchModal.scss'
 import SearchModalResult from './SearchModalResult'
+
+import UserSearchID from '../../lib/utils/UserSearchID'
+import { storeUserSearchID } from '../../store/app'
 
 const api = new TopedAceAPI()
 
 class SearchModal extends Component {
   static propTypes = {
-    onClose: React.PropTypes.func
+    onClose: React.PropTypes.func,
+    injectPlaceholder: React.PropTypes.string,
+    userSearchID: React.PropTypes.string,
+    storeUserSearchID: React.PropTypes.func
   }
 
   state = {
@@ -39,9 +45,14 @@ class SearchModal extends Component {
   }
 
   universeSearch (event) {
-    let query = event.target.value
+    UserSearchID.initUniqueID()
 
-    api.universeSearch(query, CryptoJS.MD5(document.cookie)).then(result => {
+    let query = event.target.value
+    let uid = UserSearchID.getUniqueID(this.props.userSearchID)
+
+    this.props.storeUserSearchID(uid)
+
+    api.universeSearch(query, uid).then(result => {
       let selectionFilter = r => { return r['items'].length > 0 }
       let selection = result['data'].filter(selectionFilter)
 
@@ -84,4 +95,11 @@ class SearchModal extends Component {
   }
 }
 
-export default SearchModal
+const mapDispatchToProps = { storeUserSearchID }
+const mapStateToProps = (state) => {
+  return {
+    userSearchID: state['app'] ? state['app'].user.searchID : state.user.searchID
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchModal)

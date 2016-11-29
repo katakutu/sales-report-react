@@ -14,20 +14,23 @@ class TopedAPI {
    * @param {URL} url The URL we want to consume
    * @param {string} method The HTTP Method we want to use on the API call.
    * @param {object} content The content we want to sent in body.
+   * @param {bool} sameOrigin Is the request comes from same origin?
    * @returns {Promise<Object>} The resulting response promise, in JSON.
    *
    * @memberOf TopedAPI
    */
-  consume (url, method, content) {
+  consume (url, method, content, sameOrigin = false) {
     let options = (method === 'GET') ? {} : {
       method: method,
       body: JSON.stringify(content)
     }
 
+    let finalOptions = sameOrigin ? Object.assign({}, options, { credentials: 'same-origin' }) : options
+
     let finalURL = (method === 'POST') ? url.toString()
             : url.toString() + '?' + this.contentToURIParams(content)
 
-    return fetch(finalURL, options).then(response => {
+    return fetch(finalURL, finalOptions).then(response => {
       return response.json()
     })
   }
@@ -41,6 +44,8 @@ class TopedAPI {
    * @memberOf TopedAPI
    */
   contentToURIParams (content) {
+    if (content === undefined || content === null) return ''
+
     return Object.keys(content).map(key => {
       return key + '=' + encodeURIComponent(content[key])
     }).join('&')

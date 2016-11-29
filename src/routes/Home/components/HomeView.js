@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import './HomeView.scss'
 import Carousel from '../../../components/Carousel'
 import CategoryList from '../../../components/CategoryList'
 import PromoSpacer from '../../../components/PromoSpacer'
 import Ticker from '../../../components/Ticker'
+import { updateUserLoginStatus } from '../../../store/app'
+import TopedLiteAuthAPI from '../../../lib/api/Auth/TopedLiteAuthAPI'
 
 class HomeView extends Component {
+  static propTypes = {
+    updateUserLoginStatus: React.PropTypes.func,
+    userIsLoggedIn: React.PropTypes.bool
+  }
+
   state = {
     activeTabIndex: 0
   }
@@ -13,7 +21,19 @@ class HomeView extends Component {
   constructor (props) {
     super(props)
 
+    this.authAPI = new TopedLiteAuthAPI()
+
     this.handleTabChange = this.handleTabChange.bind(this)
+  }
+
+  componentDidMount () {
+    this.authAPI.getUserInfo().then(userinfo => {
+      if (userinfo && userinfo['name'] && userinfo['id']) {
+        this.props.updateUserLoginStatus(true)
+      } else {
+        this.props.updateUserLoginStatus(false)
+      }
+    })
   }
 
   handleTabChange (index) {
@@ -21,6 +41,12 @@ class HomeView extends Component {
   }
 
   render () {
+    let loggedInTabs = this.props.userIsLoggedIn ? [
+      (<Tab label='Feed'><h1>Feed</h1></Tab>),
+      (<Tab label='Favorite'><h1>Favorite</h1></Tab>),
+      (<Tab label='Wishlist'><h1>Wishlist</h1></Tab>)
+    ] : []
+
     return (
       <div>
         <Ticker />
@@ -32,4 +58,10 @@ class HomeView extends Component {
   }
 }
 
-export default HomeView
+const mapDispatchToProps = { updateUserLoginStatus }
+const mapStateToProps = (state) => {
+  return {
+    userIsLoggedIn: state['app'] ? state['app'].user.loggedIn : state.user.loggedIn
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView)
