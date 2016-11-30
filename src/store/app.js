@@ -9,6 +9,10 @@ export const USER_SEARCH_ID_STORE = 'USER_SEARCH_ID_STORE'
 export const USER_LOGGED_IN = 'USER_LOGGED_IN'
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
 
+// temporary state until we moved to new design and remove sidebar
+export const SIDEBAR_STATUS_OPEN = 'SIDEBAR_STATUS_OPEN'
+export const SIDEBAR_STATUS_CLOSED = 'SIDEBAR_STATUS_CLOSED'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -47,12 +51,20 @@ export function updateUserLoginStatus (isLoggedIn) {
   }
 }
 
+export function updateSidebarStatus (isOpen) {
+  return {
+    type: isOpen ? SIDEBAR_STATUS_OPEN : SIDEBAR_STATUS_CLOSED,
+    payload: isOpen
+  }
+}
+
 export const actions = {
   notificationDispatch,
   notificationDismiss,
   updateConnectionStatus,
   storeUserSearchID,
-  updateUserLoginStatus
+  updateUserLoginStatus,
+  updateSidebarStatus
 }
 
 const ACTION_HANDLERS = {
@@ -80,6 +92,12 @@ const ACTION_HANDLERS = {
   },
   [USER_LOGGED_OUT]: (state, action) => {
     return Object.assign({}, state, { user: { loggedIn: action.payload } })
+  },
+  [SIDEBAR_STATUS_OPEN]: (state, action) => {
+    return Object.assign({}, state, { sidebarIsOpen: action.payload })
+  },
+  [SIDEBAR_STATUS_CLOSED]: (state, action) => {
+    return Object.assign({}, state, { sidebarIsOpen: action.payload })
   }
 }
 
@@ -87,6 +105,7 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
+  sidebarIsOpen: false,
   isOnline: true,
   notifications: [],
   user: {
