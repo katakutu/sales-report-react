@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import { connect } from 'react-redux'
 
 import bannerDrawer from './assets/banner-drawer.png'
@@ -44,19 +45,19 @@ class LoggedOutMenu extends Component {
             <img className='drawer__banner-img' src={bannerDrawer} alt='tokopedia' />
           </div>
           <div className='drawer__menu'>
-            <a href='#'>
+            <Link to='/'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Beranda</span>
-            </a>
+            </Link>
           </div>
           <div className='drawer__menu'>
-            <a href='#'>
+            <a href='/login'>
               <img className='drawer__menu-icon' src={loginIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Masuk</span>
             </a>
           </div>
           <div className='drawer__menu'>
-            <a href='#'>
+            <a href='https://accounts.tokopedia.com/register?theme=mobile'>
               <img className='drawer__menu-icon' src={registerIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Daftar</span>
             </a>
