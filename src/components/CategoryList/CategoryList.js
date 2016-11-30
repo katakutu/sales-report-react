@@ -1,5 +1,6 @@
 import React from 'react'
 import './CategoryList.scss'
+import TextHeader from '../../components/TextHeader'
 import iconFashion from './assets/icon-fashion.png'
 import iconOtomotif from './assets/icon-otomotif.png'
 import iconKecantikan from './assets/icon-kecantikan.png'
@@ -32,9 +33,9 @@ import iconTiket from './assets/icon-tiket.png'
 export const CategoryList = () => (
   <div className='u-clearfix'>
     <div className='category-list__holder u-clearfix'>
-      <div className='general__header'>
+      <TextHeader>
         Gaya Hidup
-      </div>
+      </TextHeader>
 
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
@@ -98,9 +99,9 @@ export const CategoryList = () => (
     </div>
 
     <div className='category-list__holder u-clearfix'>
-      <div className='general__header'>
+      <TextHeader>
         Teknologi
-      </div>
+      </TextHeader>
 
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
@@ -149,9 +150,9 @@ export const CategoryList = () => (
     </div>
 
     <div className='category-list__holder u-clearfix'>
-      <div className='general__header'>
+      <TextHeader>
         Kategori lain
-      </div>
+      </TextHeader>
 
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
@@ -215,10 +216,9 @@ export const CategoryList = () => (
     </div>
 
     <div className='category-list__holder u-clearfix'>
-      <div className='category-list__title'>
+      <TextHeader>
         Pembayaran &amp; Top up
-        <div className='category-list__title-line' />
-      </div>
+      </TextHeader>
 
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
