@@ -10,6 +10,7 @@ const api = new TopedAceAPI()
 
 class SearchInputOld extends Component {
   static propTypes = {
+    inputRef: React.PropTypes.func,
     injectClassName: React.PropTypes.string,
     injectPlaceholder: React.PropTypes.string,
     userSearchID: React.PropTypes.string,
@@ -21,12 +22,17 @@ class SearchInputOld extends Component {
 
     this.autocomplete = this.autocomplete.bind(this)
     this.closeSearchModal = this.closeSearchModal.bind(this)
+    this.focus = this.focus.bind(this)
 
     this.state = {
       showSelection: false,
       selection: [],
       value: ''
     }
+  }
+
+  focus () {
+    this.textInput.focus()
   }
 
   closeSearchModal (event) {
@@ -88,6 +94,7 @@ class SearchInputOld extends Component {
             <input name='q'
               type='search'
               id='search_input'
+              ref={this.props.inputRef}
               className='search-input__input'
               placeholder={this.props.injectPlaceholder.toUpperCase()}
               onFocus={this.autocomplete}

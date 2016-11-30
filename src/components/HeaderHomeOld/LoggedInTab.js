@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 import TabSlider from 'react-slick'
 
 var settings = {
@@ -15,37 +14,37 @@ var settings = {
 }
 
 class LoggedInTab extends Component {
-    render() {
-        return (
-          <TabSlider {...settings} className='tab logged-in'>
-            <div className='tab-item active'>
-              <label className='tab-link'>
-                <a href='#'>Home</a>
-              </label>
-            </div>
-            <div className='tab-item'>
-              <label className='tab-link'>
-                <a href='#'>Feed</a>
-              </label>
-            </div>
-            <div className='tab-item'>
-              <label className='tab-link'>
-                <a href='#'>Favorit</a>
-              </label>
-            </div>
-            <div className='tab-item'>
-              <label className='tab-link'>
-                <a href='#'>Hot List</a>
-              </label>
-            </div>
-            <div className='tab-item'>
-              <label className='tab-link'>
-                <a href='#'>Wishlist</a>
-              </label>
-            </div>
-          </TabSlider>
-        )
-    }
+  render () {
+    return (
+      <TabSlider {...settings} className='tab logged-in'>
+        <div className='tab-item active'>
+          <label className='tab-link'>
+            <a href='#'>Home</a>
+          </label>
+        </div>
+        <div className='tab-item'>
+          <label className='tab-link'>
+            <a href='#'>Feed</a>
+          </label>
+        </div>
+        <div className='tab-item'>
+          <label className='tab-link'>
+            <a href='#'>Favorit</a>
+          </label>
+        </div>
+        <div className='tab-item'>
+          <label className='tab-link'>
+            <a href='#'>Hot List</a>
+          </label>
+        </div>
+        <div className='tab-item'>
+          <label className='tab-link'>
+            <a href='#'>Wishlist</a>
+          </label>
+        </div>
+      </TabSlider>
+    )
+  }
 }
 
 export default LoggedInTab

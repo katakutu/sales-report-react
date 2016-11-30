@@ -19,19 +19,37 @@ class HeaderHome extends Component {
     sidebarIsOpened: React.PropTypes.bool
   }
 
+  state = {
+    showSearch: true
+  }
+
   constructor (props) {
     super(props)
 
+    this.handleScroll = this.handleScroll.bind(this)
     this.openSidebarMenu = this.openSidebarMenu.bind(this)
     this.renderTabs = this.renderTabs.bind(this)
     this.renderSidebar = this.renderSidebar.bind(this)
+    this.showSearch = this.showSearch.bind(this)
+  }
+
+  componentDidMount () {
+    window.addEventListener('scroll', this.handleScroll)
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener && window.removeEventListener('scroll', this.handleScroll)
+  }
+
+  handleScroll (event) {
+    this.setState({ showSearch: event.srcElement.body.scrollTop < 40 })
   }
 
   openSidebarMenu () {
     this.props.updateSidebarStatus(true)
   }
 
-  renderTabs() {
+  renderTabs () {
     return this.props.userIsLoggedIn ? <LoggedInTab /> : <LoggedOutTab />
   }
 
@@ -46,7 +64,16 @@ class HeaderHome extends Component {
     return result
   }
 
+  showSearch () {
+    this.setState({
+      showSearch: true
+    }, () => this.textInput.focus())
+  }
+
   render () {
+    let hideSearchCN = (this.state.showSearch) ? '' : 'u-display-none'
+    let finalSICN = `search-input u-relative u-col-12 ${hideSearchCN}`
+
     return (
       <div className='u-clearfix'>
         <header className='header u-clearfix' role='banner'>
@@ -65,14 +92,18 @@ class HeaderHome extends Component {
               </Link>
             </div>
 
-            <SearchInputOld injectClassName='search-input u-relative u-col-12'
-              injectPlaceholder='Cari Produk atau Toko' />
+            <SearchInputOld injectClassName={finalSICN}
+              injectPlaceholder='Cari Produk atau Toko'
+              inputRef={(input) => { this.textInput = input }} />
 
-            <div className='header__search'>
-              <button className='header__search-btn'>
-                <span>Search</span>
-              </button>
-            </div>
+            { !this.state.showSearch &&
+              <div className='header__search'>
+                <button className='header__search-btn' onClick={this.showSearch}>
+                  <span>Search</span>
+                </button>
+              </div>
+            }
+
             <div className='header__cart'>
               <a href='https://m.tokopedia.com/tx.pl' rel='nofollow' className='header__cart-link'>
                 <span>Cart</span>
@@ -80,7 +111,7 @@ class HeaderHome extends Component {
               <span className='header__cart-notification'>1</span>
             </div>
           </div>
-          
+
           { this.renderTabs() }
         </header>
 
