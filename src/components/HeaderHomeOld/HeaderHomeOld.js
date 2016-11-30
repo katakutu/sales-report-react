@@ -13,6 +13,8 @@ import sellingIcon from './assets/nav-selling-icon.png'
 import logoutIcon from './assets/nav-logout-icon.png'
 import shopPhoto from './assets/mobile-shopnophoto.png'
 
+import SearchInputOld from '../SearchInputOld'
+
 var Tabs = require('react-slick')
 var settings = {
   dots: false,
@@ -53,29 +55,15 @@ class HeaderHome extends Component {
               </Link>
             </div>
             {/* Hide search input when scrolltop */}
-            <div className='search-input u-relative u-col-12'>
-              <div className='u-px2 u-pt0 u-pb1'>
-                <form action='#' method='get' className='u-relative'>
-                  <input type='hidden' name='st' defaultValue='product' />
-                  <label htmlFor='search_input' className='u-hide'>Search</label>
-                  <input
-                    name='q'
-                    type='search'
-                    id='search_input'
-                    className='search-input__input'
-                    placeholder='Cari Produk atau Toko' />
-                  <button className='search-input__btn'>
-                    Search
-                  </button>
-                  <span className='search-input__cancel' />
-                </form>
-              </div>
-            </div>
+            <SearchInputOld injectClassName='search-input u-relative u-col-12'
+              injectPlaceholder='Cari Produk atau Toko' />
             <div className='header__search'>
               <button className='header__search-btn'>
                 <span>Search</span>
               </button>
             </div>
+            { /* */ }
+
             <div className='header__cart'>
               <a href='https://m.tokopedia.com/tx.pl' rel='nofollow' className='header__cart-link'>
                 <span>Cart</span>
