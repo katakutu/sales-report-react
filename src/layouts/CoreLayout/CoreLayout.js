@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import BottomNav from '../../components/BottomNav'
+import HeaderHomeOld from '../../components/HeaderHomeOld'
 import Footer from '../../components/Footer'
 import './CoreLayout.scss'
 import '../../styles/core.scss'
@@ -75,10 +75,11 @@ class CoreLayout extends Component {
     return (
       <OnOffWrapper onOnline={this.handleOnOnline} onOffline={this.handleOnOffline}>
         <div style={ds}>
+
+          <HeaderHomeOld />
           <div className='content'>
             {this.props.children}
           </div>
-          <BottomNav />
           <Footer />
 
           {this.props.notifications.length > 0 ? this.renderNotifications() : null}
