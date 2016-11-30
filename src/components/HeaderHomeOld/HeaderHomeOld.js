@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
+import Scroll from 'react-scroll'
 import { updateUserLoginStatus, updateSidebarStatus } from '../../store/app'
 import BodyClassName from 'react-body-classname'
 
@@ -49,6 +50,7 @@ class HeaderHome extends Component {
 
   openSidebarMenu () {
     this.props.updateSidebarStatus(true)
+    Scroll.animateScroll.scrollToTop({ smooth: false, duration: 0 })
   }
 
   renderTabs () {
@@ -69,7 +71,10 @@ class HeaderHome extends Component {
   showSearch () {
     this.setState({
       showSearch: true
-    }, () => this.textInput.focus())
+    }, () => {
+      Scroll.animateScroll.scrollToTop({ smooth: false, duration: 0 })
+      this.textInput.focus()
+    })
   }
 
   render () {
