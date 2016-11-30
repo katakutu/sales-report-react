@@ -2,24 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { updateUserLoginStatus, updateSidebarStatus } from '../../store/app'
+import BodyClassName from 'react-body-classname'
 
 import './HeaderHomeOld.scss'
-import TabSlider from 'react-slick'
 import SearchInputOld from '../SearchInputOld'
-import LoggedOutMenu from './LoggedOutMenu'
 import LoggedInMenu from './LoggedInMenu'
-
-var settings = {
-  dots: false,
-  arrows: true,
-  infinite: false,
-  speed: 500,
-  draggable: true,
-  centerMode: false,
-  variableWidth: true,
-  slidesToShow: 4,
-  slidesToScroll: 1
-}
+import LoggedOutMenu from './LoggedOutMenu'
+import LoggedInTab from './LoggedInTab'
+import LoggedOutTab from './LoggedOutTab'
 
 class HeaderHome extends Component {
   static propTypes = {
@@ -33,11 +23,16 @@ class HeaderHome extends Component {
     super(props)
 
     this.openSidebarMenu = this.openSidebarMenu.bind(this)
+    this.renderTabs = this.renderTabs.bind(this)
     this.renderSidebar = this.renderSidebar.bind(this)
   }
 
   openSidebarMenu () {
     this.props.updateSidebarStatus(true)
+  }
+
+  renderTabs() {
+    return this.props.userIsLoggedIn ? <LoggedInTab /> : <LoggedOutTab />
   }
 
   renderSidebar () {
@@ -70,10 +65,8 @@ class HeaderHome extends Component {
               </Link>
             </div>
 
-            {/* Hide search input when scrolltop */}
             <SearchInputOld injectClassName='search-input u-relative u-col-12'
               injectPlaceholder='Cari Produk atau Toko' />
-            { /* Search input ends */ }
 
             <div className='header__search'>
               <button className='header__search-btn'>
@@ -87,50 +80,13 @@ class HeaderHome extends Component {
               <span className='header__cart-notification'>1</span>
             </div>
           </div>
-          {/* Show this when logged in */}
-          <TabSlider {...settings} className='tab logged-in'>
-            <div className='tab-item active'>
-              <label className='tab-link'>
-                <a href='#'>Home</a>
-              </label>
-            </div>
-            <div className='tab-item'>
-              <label className='tab-link'>
-                <a href='#'>Feed</a>
-              </label>
-            </div>
-            <div className='tab-item'>
-              <label className='tab-link'>
-                <a href='#'>Favorit</a>
-              </label>
-            </div>
-            <div className='tab-item'>
-              <label className='tab-link'>
-                <a href='#'>Hot List</a>
-              </label>
-            </div>
-            <div className='tab-item'>
-              <label className='tab-link'>
-                <a href='#'>Wishlist</a>
-              </label>
-            </div>
-          </TabSlider>
-          {/* Show this when logged out */}
-          <div className='tab logged-out u-display-none'>
-            <div className='tab-item active'>
-              <label className='tab-link'>
-                <a href='#'>Home</a>
-              </label>
-            </div>
-            <div className='tab-item'>
-              <label className='tab-link'>
-                <a href='#'>Hot List</a>
-              </label>
-            </div>
-          </div>
+          
+          { this.renderTabs() }
         </header>
 
         { this.renderSidebar() }
+
+        { this.props.sidebarIsOpened && <BodyClassName className='u-body-overflow-no-scroll' /> }
       </div>
     )
   }
