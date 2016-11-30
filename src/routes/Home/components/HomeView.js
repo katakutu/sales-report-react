@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import './HomeView.scss'
 import Carousel from '../../../components/Carousel'
 import CategoryList from '../../../components/CategoryList'
+import OfficialStoreSection from '../../../components/OfficialStoreSection'
 import PromoSpacer from '../../../components/PromoSpacer'
 import Ticker from '../../../components/Ticker'
 import { updateUserLoginStatus } from '../../../store/app'
@@ -53,6 +54,7 @@ class HomeView extends Component {
         <Carousel />
         <PromoSpacer />
         <CategoryList />
+        <OfficialStoreSection />
       </div>
     )
   }
