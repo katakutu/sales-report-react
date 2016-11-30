@@ -110,7 +110,7 @@ class SearchInputOld extends Component {
           </form>
           {autocomplete}
 
-        { this.state.showSelection && <BodyClassName className='u-body-overflow-no-scroll' /> }
+          { this.state.showSelection && <BodyClassName className='u-body-overflow-no-scroll' /> }
         </div>
       </div>
     )
