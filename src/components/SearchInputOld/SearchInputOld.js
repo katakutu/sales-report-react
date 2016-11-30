@@ -84,6 +84,8 @@ class SearchInputOld extends Component {
 
     let backgroundBlur = (this.state.showSelection) ? 'search-input__modal-active' : ''
     let finalClassName = `search-input ${this.props.injectClassName} ${backgroundBlur}`
+    let searchBtnCN = (this.state.showSelection) ? 'focus' : ''
+    let finalSearchBtnCN = `search-input__btn ${searchBtnCN}`
 
     let resultAutoComplete = (
       <div className={finalClassName}>
@@ -100,7 +102,7 @@ class SearchInputOld extends Component {
               onFocus={this.autocomplete}
               onChange={this.autocomplete}
               value={this.state.value} />
-            <button className='search-input__btn'>
+            <button className={finalSearchBtnCN}>
               Search
             </button>
             <span className='search-input__cancel' />
