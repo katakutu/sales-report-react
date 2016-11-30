@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import fetchJsonp from 'fetch-jsonp'
 
 /**
  * A base class to consume http API without HMAC.
@@ -14,7 +15,7 @@ class TopedAPI {
    * @param {URL} url The URL we want to consume
    * @param {string} method The HTTP Method we want to use on the API call.
    * @param {object} content The content we want to sent in body.
-   * @param {bool} sameOrigin Is the request comes from same origin?
+   * @param {boolean} [sameOrigin=false] Is the request comes from same origin?
    * @returns {Promise<Object>} The resulting response promise, in JSON.
    *
    * @memberOf TopedAPI
@@ -31,6 +32,36 @@ class TopedAPI {
             : url.toString() + '?' + this.contentToURIParams(content)
 
     return fetch(finalURL, finalOptions).then(response => {
+      return response.json()
+    })
+  }
+
+  /**
+   * Consume an API with JSONP, on specific URL and method.
+   * If the method is GET, content will be sent via serialized URL
+   *
+   * @param {URL} url The URL we want to consume
+   * @param {string} method The HTTP Method we want to use on the API call.
+   * @param {object} content The content we want to sent in body.
+   * @param {object} jsonpOptions The JSONP options. Available fields: {callback: '', timeout: 4000}
+   * @param {boolean} [sameOrigin=false] Is the request comes from same origin?
+   * @returns {Promise<Object>} The resulting response promise, in JSON.
+   *
+   * @memberOf TopedAPI
+   */
+  consumeJSONP (url, method, content, jsonpOptions, sameOrigin = false) {
+    let options = (method === 'GET') ? {} : {
+      method: method,
+      body: JSON.stringify(content)
+    }
+
+    let originOpt = sameOrigin ? Object.assign({}, options, { credentials: 'same-origin' }) : options
+    let finalOpt = Object.assign({}, originOpt, jsonpOptions)
+
+    let finalURL = (method === 'POST') ? url.toString()
+            : url.toString() + '?' + this.contentToURIParams(content)
+
+    return fetchJsonp(finalURL, finalOpt).then(response => {
       return response.json()
     })
   }
