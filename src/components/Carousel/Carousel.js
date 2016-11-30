@@ -58,8 +58,8 @@ class Carousel extends Component {
   }
 
   render () {
-    let sliders = (this.state.images.length === 0) ? <div /> : this.state.images.map(image =>
-      <div className='carousel__item'>
+    let sliders = (this.state.images.length === 0) ? <div /> : this.state.images.map((image, index) =>
+      <div className='carousel__item' key={`car-${index}`}>
         <a href={image.redirect_url} className='u-text-decoration-none'>
           <div className='carousel__item-container u-mx-auto u-block'>
             <picture className='carousel__img u-fit u-mx-auto' alt={image.title}>
@@ -76,7 +76,7 @@ class Carousel extends Component {
     return (
       <div className='carousel u-clearfix'>
         <Slider {...settings}>
-            { sliders }
+          { sliders }
         </Slider>
       </div>
     )
