@@ -5,12 +5,12 @@
 }
 
 .menu-more__header-lower {
-    background-color: $color-white-darker;
+    background-color: $color-white-secondary;
 }
 
 .menu-more__header-upper {
     padding: 30px 10px 45px;
-    color: $color-white;
+    color: $color-white-primary;
 }
 
 .menu-more__avatar {
@@ -41,7 +41,7 @@
     max-width: 244px;
     width: 100%;
     border-radius: 3px;
-    background-color: $color-white;
+    background-color: $color-white-primary;
     box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 

@@ -6,8 +6,8 @@
     left: 0;
     z-index: 2;
     width: 100%;
-    border-top: 1px solid $color-grey;
-    background-color: $color-white-darker-f9;
+    border-top: 1px solid $color-grey-3;
+    background-color: $color-grey-1;
 }
 
 .bottom-nav__grid {
@@ -20,7 +20,7 @@
 
     span {
         display: block;
-        color: $color-brownish-grey;
+        color: $color-grey-3;
         font-size: 11px;
     }
 

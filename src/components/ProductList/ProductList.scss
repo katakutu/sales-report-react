@@ -1,10 +1,9 @@
 @import 'base';
 
 .product-list__holder-horizontal {
-    background: $color-white;
-    // border-bottom: 1px solid $color-grey;
     border-radius: 3px;
-    box-shadow: 2px 2px 5px $color-grey;
+    background: $color-white-primary;
+    box-shadow: 2px 2px 5px $color-grey-0;
 
     .product-list__box:first-child {
         border-right: 1px solid rgba(0, 0, 0, 0.12);
@@ -13,9 +12,9 @@
 
 .product-list__box {
     padding: 8px 8px 20px;
-    font-size: 12px;
-    border-bottom: 1px solid $color-grey;
     height: auto;
+    border-bottom: 1px solid $color-grey-0;
+    font-size: 12px;
 
     .product-list__img {
         max-width: 100%;
@@ -23,40 +22,40 @@
     }
 
     .product-list__name-price {
-        height: 97px;
         position: relative;
+        height: 97px;
     }
 
     .product-list__name {
-        line-height: 15px;
-        padding: 5px 0;
-        color: $color-grey-2;
         position: relative;
         display: block;
-        height: calc(2em + 10px);
         overflow: hidden;
+        padding: 5px 0;
+        height: 3em;
+        color: $color-grey-2;
         white-space: normal;
+        line-height: 15px;
     }
 
     .product-list__text-content {
-        word-break: break-all;
         position: relative;
         display: block;
         max-height: 3em;
+        word-break: break-all;
     }
 
     .product-list__multi-ellipsis {
         position: absolute;
-        right: 0;
         top: calc(4em + 2px - 100%);
-        text-align: left;
+        right: 0;
         background: white;
+        text-align: left;
     }
 
     .product-list__price {
+        margin: 7px 0 20px;
         color: $color-orange;
         font-weight: bold;
-        margin: 7px 0 20px;
     }
 
     .product-list__rating {
@@ -64,19 +63,19 @@
     }
 
     .product-list__count-rat {
+        color: $color-grey-0;
         font-size: 10px;
-        color: $color-brownish-grey;
     }
 
     .product-list__shop-location {
-        height: 35px;
         position: relative;
+        height: 35px;
     }
 
     .product-list__shop-name {
-        font-size: 11px;
-        color: $color-brownish-grey;
         margin: 5px 0;
+        color: $color-grey-0;
+        font-size: 11px;
     }
 
     .product-list__location {
@@ -85,21 +84,21 @@
     }
 
     .product-list__location-name {
-        width: 43%;
-        max-width: 100%;
         display: inline-block;
+        max-width: 100%;
+        width: 43%;
         vertical-align: middle;
     }
 
     .product-list__icon-location {
-        vertical-align: middle;
         margin-right: 3px;
+        vertical-align: middle;
     }
 
     .product-list__icon-box {
         position: absolute;
-        right: 0;
         top: 16px;
+        right: 0;
     }
 
     .product-list__icon-badge:first-child {
@@ -111,25 +110,25 @@
     }
 
     .product-list__cashback {
-        background: $color-green;
-        color: $color-white;
-        border-radius: 2px;
-        font-size: 11px;
-        padding: 3px 7px;
         margin-left: 10px;
+        padding: 3px 7px;
+        border-radius: 2px;
+        background: $color-green;
+        color: $color-white-primary;
+        font-size: 11px;
     }
 }
 
 .product-list__see-all {
-    color: $color-green;
-    padding: 15px 10px 15px 0;
     display: block;
     float: right;
+    padding: 15px 10px 15px 0;
+    color: $color-green;
     font-weight: bold;
 }
 
 .product-list__holder-vertical {
-    background: $color-white;
+    background: $color-white-primary;
 
     .product-list__box {
         padding: 10px 0 20px;
