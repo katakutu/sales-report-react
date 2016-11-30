@@ -16,7 +16,7 @@ export const OfficialStoreSection = () => (
               <img
                 src='http://placehold.it/45x45'
                 alt='Lorem ipsum'
-                className='u-mx-auto u-fit u-block'/>
+                className='u-mx-auto u-fit u-block' />
             </div>
           </div>
         </a>
@@ -29,7 +29,7 @@ export const OfficialStoreSection = () => (
               <img
                 src='http://placehold.it/50x30'
                 alt='Lorem ipsum'
-                className='u-mx-auto u-fit u-block'/>
+                className='u-mx-auto u-fit u-block' />
             </div>
           </div>
         </a>
@@ -42,7 +42,7 @@ export const OfficialStoreSection = () => (
               <img
                 src='http://placehold.it/45x45'
                 alt='Lorem ipsum'
-                className='u-mx-auto u-fit u-block'/>
+                className='u-mx-auto u-fit u-block' />
             </div>
           </div>
         </a>
@@ -55,7 +55,7 @@ export const OfficialStoreSection = () => (
               <img
                 src='http://placehold.it/45x40'
                 alt='Lorem ipsum'
-                className='u-mx-auto u-fit u-block'/>
+                className='u-mx-auto u-fit u-block' />
             </div>
           </div>
         </a>
