@@ -47,6 +47,7 @@ class HeaderHome extends Component {
 
   openSidebarMenu () {
     this.props.updateSidebarStatus(true)
+    window.scrollTo(0, 0);
   }
 
   renderTabs () {
@@ -68,6 +69,7 @@ class HeaderHome extends Component {
     this.setState({
       showSearch: true
     }, () => this.textInput.focus())
+    window.scrollTo(0, 0);
   }
 
   render () {
