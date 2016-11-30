@@ -9,13 +9,13 @@
 
 .tab__inverted {
     .tab {
-        border-bottom: 1px solid rgba($color-black, 0.12);
-        background: $color-white;
+        border-bottom: 1px solid rgba($color-black-primary, 0.12);
+        background: $color-white-primary;
         box-shadow: none;
     }
 
     .tab__link {
-        color: rgba($color-black, 0.38);
+        color: rgba($color-black-primary, 0.38);
 
         &.tab__active {
             color: $color-green;
@@ -32,7 +32,7 @@
     flex-grow: 1;
     justify-content: center;
     border-bottom: 2px solid transparent;
-    color: $color-white;
+    color: $color-white-primary;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -52,7 +52,7 @@
     display: block;
     margin-top: -0.2em;
     height: 0.2em;
-    background-color: $color-white;
+    background-color: $color-white-primary;
     transition: left 0.45s ease;
 }
 

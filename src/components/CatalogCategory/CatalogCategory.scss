@@ -3,44 +3,44 @@
 .catalog-category__header {
     margin-bottom: 20px;
     color: rgba(0, 0, 0, 0.7);
-    font-size: 14px;
     text-align: center;
+    font-size: 14px;
 }
 
 .catalog-category__header::after {
-    content: '';
     display: block;
-    background: $color-green;
     margin: 8px auto;
     width: 7%;
     height: 3px;
+    background: $color-green;
+    content: '';
 }
 
 .catalog-category__arrowdown {
-    vertical-align: middle;
     margin-left: 4px;
+    vertical-align: middle;
 }
 
 .catalog-category__holder {
     margin-bottom: 10px;
     padding: 0 10px;
-    background: $color-white;
+    background: $color-white-primary;
     box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
 
     .catalog-category__content-holder {
-        border-bottom: 1px solid $color-grey;
         margin-bottom: 5px;
+        border-bottom: 1px solid $color-grey-0;
 
         .catalog-category__content {
+            position: relative;
+            margin: 5px 0;
             padding: 8px 10px;
             color: $color-grey-3;
-            margin: 5px 0;
-            position: relative;
         }
 
         .catalog-category__content:first-child {
             padding-left: 0;
-            border-right: 1px solid $color-grey;
+            border-right: 1px solid $color-grey-1;
         }
 
         .catalog-category__arrowright {
@@ -51,7 +51,7 @@
     }
 
     .catalog-category__content-holder:last-child {
-        border-bottom: none;
         margin-bottom: 0;
+        border-bottom: none;
     }
 }
