@@ -17,17 +17,42 @@ class LoggedInMenu extends Component {
     updateSidebarStatus: React.PropTypes.func
   }
 
+  state = {
+    inboxIsOpen: false,
+    shoppingIsOpen: false,
+    sellerIsOpen: false
+  }
+
   constructor (props) {
     super(props)
 
     this.closeSidebar = this.closeSidebar.bind(this)
+    this.handleInboxClicked = this.handleInboxClicked.bind(this)
+    this.handleSellerClicked = this.handleSellerClicked.bind(this)
+    this.handleShoppingClicked = this.handleShoppingClicked.bind(this)
   }
 
   closeSidebar () {
     this.props.updateSidebarStatus(false)
   }
 
+  handleInboxClicked () {
+    this.setState({ inboxIsOpen: !this.state.inboxIsOpen })
+  }
+
+  handleSellerClicked () {
+    this.setState({ sellerIsOpen: !this.state.sellerIsOpen })
+  }
+
+  handleShoppingClicked () {
+    this.setState({ shoppingIsOpen: !this.state.shoppingIsOpen })
+  }
+
   render () {
+    let inboxClass = (!this.state.inboxIsOpen) ? 'u-display-none' : ''
+    let shoppingClass = (!this.state.shoppingIsOpen) ? 'u-display-none' : ''
+    let sellerClass = (!this.state.sellerIsOpen) ? 'u-display-none' : ''
+
     return (
       <div className='drawer active'>
         <div className='drawer-active__overlay'onClick={this.closeSidebar} />
@@ -82,14 +107,14 @@ class LoggedInMenu extends Component {
               <span className='drawer__menu-title u-inline-block'>Wishlist</span>
             </a>
           </div>
-          <div className='drawer__menu'>
+          <div className='drawer__menu' onClick={this.handleInboxClicked}>
             <a>
               <img className='drawer__menu-icon' src={inboxIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Kotak Masuk</span>
               <span className='drawer__menu-notif' />
               <img src='http://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
             </a>
-            <ul className='drawer__menu-child'>
+            <ul className={`drawer__menu-child ${inboxClass}`}>
               <li><a href='#'>Pesan<span className='u-right drawer__menu-child-notif'>1</span></a></li>
               <li><a href='#'>Diskusi Produk</a></li>
               <li><a href='#'>Ulasan</a></li>
@@ -97,14 +122,14 @@ class LoggedInMenu extends Component {
               <li><a href='#'>Pusat Resolusi</a></li>
             </ul>
           </div>
-          <div className='drawer__menu'>
+          <div className='drawer__menu' onClick={this.handleShoppingClicked}>
             <a>
               <img className='drawer__menu-icon' src={buyingIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Pembelian</span>
               <span className='drawer__menu-notif' />
               <img src='http://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
             </a>
-            <ul className='drawer__menu-child'>
+            <ul className={`drawer__menu-child ${shoppingClass}`}>
               <li><a href='#'>Pesan Dibatalkan</a></li>
               <li><a href='#'>Konfirmasi Pembayaran</a></li>
               <li><a href='#'>Status Pemesanan<span className='u-right drawer__menu-child-notif'>1</span></a></li>
@@ -112,13 +137,13 @@ class LoggedInMenu extends Component {
               <li><a href='#'>Daftar Transaksi</a></li>
             </ul>
           </div>
-          <div className='drawer__menu'>
+          <div className='drawer__menu' onClick={this.handleSellerClicked}>
             <a>
               <img className='drawer__menu-icon' src={sellingIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Penjualan</span>
               <img src='http://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
             </a>
-            <ul className='drawer__menu-child'>
+            <ul className={`drawer__menu-child ${sellerClass}`}>
               <li><a href='#'>Pesanan Baru</a></li>
               <li><a href='#'>Konfirmasi Pengiriman</a></li>
               <li><a href='#'>Status Pengiriman</a></li>
