@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import TopedTickersAPI from '../../lib/api/Search/TopedTickersAPI'
+import TopedMojitoAPI from '../../lib/api/Search/TopedMojitoAPI'
 import './Ticker.scss'
 
-const api = new TopedTickersAPI()
+const api = new TopedMojitoAPI()
 
 class Ticker extends Component {
   static propTypes = {
