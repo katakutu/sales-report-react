@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import BodyClassName from 'react-body-classname'
 import './SearchInputOld.scss'
 import TopedAceAPI from '../../lib/api/Search/TopedAceAPI'
 
@@ -108,6 +109,8 @@ class SearchInputOld extends Component {
             <span className='search-input__cancel' />
           </form>
           {autocomplete}
+
+        { this.state.showSelection && <BodyClassName className='u-body-overflow-no-scroll' /> }
         </div>
       </div>
     )
