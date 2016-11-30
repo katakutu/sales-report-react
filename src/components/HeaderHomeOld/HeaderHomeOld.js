@@ -13,6 +13,8 @@ import LoggedOutTab from './LoggedOutTab'
 
 class HeaderHome extends Component {
   static propTypes = {
+    cartNotifCount: React.PropTypes.number,
+    inboxNotifs: React.PropTypes.object,
     updateUserLoginStatus: React.PropTypes.func,
     updateSidebarStatus: React.PropTypes.func,
     userIsLoggedIn: React.PropTypes.bool,
@@ -56,7 +58,7 @@ class HeaderHome extends Component {
   renderSidebar () {
     let result = null
     if (this.props.sidebarIsOpened && this.props.userIsLoggedIn) {
-      result = <LoggedInMenu />
+      result = <LoggedInMenu notifs={this.props.inboxNotifs} />
     } else if (this.props.sidebarIsOpened && !this.props.userIsLoggedIn) {
       result = <LoggedOutMenu />
     }
@@ -74,6 +76,14 @@ class HeaderHome extends Component {
     let hideSearchCN = (this.state.showSearch) ? '' : 'u-display-none'
     let finalSICN = `search-input u-relative u-col-12 ${hideSearchCN}`
 
+    let cartNotif = this.props.cartNotif > 0 ? (
+      <span className='header__cart-notification'>{ this.props.cartNotif }</span> 
+    ) : null
+
+    let headerNotif = this.props.inboxNotifs.total > 0 ? (
+      <i className='header__nav-notification' />
+    ) : null
+
     return (
       <div className='u-clearfix'>
         <header className='header u-clearfix' role='banner'>
@@ -84,7 +94,7 @@ class HeaderHome extends Component {
                 <span />
                 <span />
               </div>
-              <i className='header__nav-notification' />
+              { headerNotif }
             </button>
             <div className='u-center u-block'>
               <Link to='/' className='u-inline-block header__logo-container'>
@@ -108,7 +118,7 @@ class HeaderHome extends Component {
               <a href='https://m.tokopedia.com/tx.pl' rel='nofollow' className='header__cart-link'>
                 <span>Cart</span>
               </a>
-              <span className='header__cart-notification'>1</span>
+              { cartNotif }
             </div>
           </div>
 
