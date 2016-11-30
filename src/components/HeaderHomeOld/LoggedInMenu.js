@@ -23,18 +23,18 @@ class LoggedInMenu extends Component {
     this.closeSidebar = this.closeSidebar.bind(this)
   }
 
-  openSidebar () {
+  closeSidebar () {
     this.props.updateSidebarStatus(false)
   }
 
   render () {
     return (
       <div className='drawer active'>
-        <div className='drawer-active__overlay' />
+        <div className='drawer-active__overlay'onClick={this.closeSidebar} />
         <div className='drawer__container u-clearfix'>
           <div className='drawer__title u-clearfix'>
             <div className='u-left'>MENU</div>
-            <div className='u-right u-relative' onClick={this.openSidebar}>
+            <div className='u-right u-relative' onClick={this.closeSidebar}>
               <div className='nav-close'>
                 <div className='nav-close__child'>
                   <span />

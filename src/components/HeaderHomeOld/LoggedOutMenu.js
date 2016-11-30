@@ -26,7 +26,7 @@ class LoggedOutMenu extends Component {
   render () {
     return (
       <div className='drawer active'>
-        <div className='drawer-active__overlay' />
+        <div className='drawer-active__overlay' onClick={this.closeSidebar} />
         <div className='drawer__container u-clearfix'>
           <div className='drawer__title u-clearfix'>
             <div className='u-left'>MENU</div>
