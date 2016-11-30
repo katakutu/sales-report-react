@@ -13,9 +13,10 @@ import sellingIcon from './assets/nav-selling-icon.png'
 import logoutIcon from './assets/nav-logout-icon.png'
 import shopPhoto from './assets/mobile-shopnophoto.png'
 
+import TabSlider from 'react-slick'
 import SearchInputOld from '../SearchInputOld'
 
-var Tabs = require('react-slick')
+
 var settings = {
   dots: false,
   arrows: true,
@@ -29,13 +30,6 @@ var settings = {
 }
 
 class HeaderHome extends Component {
-  componentDidMount () {
-    var self = this
-    setTimeout(function () {
-      self.forceUpdate()
-    }, 100)
-  }
-
   render () {
     return (
       <div className='u-clearfix'>
@@ -54,16 +48,17 @@ class HeaderHome extends Component {
                 <span className='header__logo'>Tokopedia</span>
               </Link>
             </div>
+
             {/* Hide search input when scrolltop */}
             <SearchInputOld injectClassName='search-input u-relative u-col-12'
               injectPlaceholder='Cari Produk atau Toko' />
+            { /* Search input ends */ }
+
             <div className='header__search'>
               <button className='header__search-btn'>
                 <span>Search</span>
               </button>
             </div>
-            { /* */ }
-
             <div className='header__cart'>
               <a href='https://m.tokopedia.com/tx.pl' rel='nofollow' className='header__cart-link'>
                 <span>Cart</span>
@@ -72,7 +67,7 @@ class HeaderHome extends Component {
             </div>
           </div>
           {/* Show this when logged in */}
-          <Tabs {...settings} className='tab logged-in'>
+          <TabSlider {...settings} className='tab logged-in'>
             <div className='tab-item active'>
               <label className='tab-link'>
                 <a href='#'>Home</a>
@@ -98,7 +93,7 @@ class HeaderHome extends Component {
                 <a href='#'>Wishlist</a>
               </label>
             </div>
-          </Tabs>
+          </TabSlider>
           {/* Show this when logged out */}
           <div className='tab logged-out u-display-none'>
             <div className='tab-item active'>
