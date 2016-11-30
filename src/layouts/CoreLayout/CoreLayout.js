@@ -101,7 +101,7 @@ class CoreLayout extends Component {
     return (
       <OnOffWrapper onOnline={this.handleOnOnline} onOffline={this.handleOnOffline}>
         <div style={ds}>
-          <HeaderHomeOld cartNotif={0} inboxNotifs={dummyInboxNotifs} />
+          <HeaderHomeOld cartNotifCount={0} inboxNotifs={dummyInboxNotifs} />
 
           <div className='content'>
             {this.props.children}

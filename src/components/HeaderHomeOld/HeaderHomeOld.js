@@ -76,8 +76,8 @@ class HeaderHome extends Component {
     let hideSearchCN = (this.state.showSearch) ? '' : 'u-display-none'
     let finalSICN = `search-input u-relative u-col-12 ${hideSearchCN}`
 
-    let cartNotif = this.props.cartNotif > 0 ? (
-      <span className='header__cart-notification'>{ this.props.cartNotif }</span> 
+    let cartNotif = this.props.cartNotifCount > 0 ? (
+      <span className='header__cart-notification'>{ this.props.cartNotifCount }</span>
     ) : null
 
     let headerNotif = this.props.inboxNotifs.total > 0 ? (

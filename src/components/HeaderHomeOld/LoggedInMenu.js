@@ -34,7 +34,7 @@ class LoggedInMenu extends Component {
     this.handleShoppingClicked = this.handleShoppingClicked.bind(this)
   }
 
-  _totalObjectValues(object) {
+  _totalObjectValues (object) {
     let result = 0
     if (object) {
       result = Object.keys(object).map(k => object[k]).reduce((t, n) => t + n, 0)
@@ -100,7 +100,9 @@ class LoggedInMenu extends Component {
       <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['shopping']['order_status'] }</span>
     ) : null
     let shoppingDCNotif = this.props.notifs['shopping']['delivery_confirmation'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['shopping']['delivery_confirmation'] }</span>
+      <span className='u-right drawer__menu-child-notif'>
+        { this.props.notifs['shopping']['delivery_confirmation'] }
+      </span>
     ) : null
     let shoppingTLNotif = this.props.notifs['shopping']['transaction_list'] > 0 ? (
       <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['shopping']['transaction_list'] }</span>
