@@ -23,7 +23,8 @@ class HeaderHome extends Component {
   }
 
   state = {
-    showSearch: true
+    showSearch: true,
+    showSearchModal: false
   }
 
   constructor (props) {
@@ -70,17 +71,16 @@ class HeaderHome extends Component {
 
   showSearch () {
     this.setState({
-      showSearch: true
+      showSearch: true,
+      showSearchModal: true
     }, () => {
       Scroll.animateScroll.scrollToTop({ smooth: false, duration: 0 })
-      this.textInput.focus()
     })
   }
 
   render () {
     let fixedHeaderCN = (this.state.showSearch) ? '' : 'transform'
-    let hideSearchCN = (this.state.showSearch) ? '' : 'u-display-none'
-    let finalSICN = `search-input u-relative u-col-12 ${hideSearchCN}`
+    let finalSICN = `search-input u-relative u-col-12`
 
     let cartNotif = this.props.cartNotifCount > 0 ? (
       <span className='header__cart-notification'>{ this.props.cartNotifCount }</span>
@@ -108,9 +108,11 @@ class HeaderHome extends Component {
               </Link>
             </div>
 
-            <SearchInputOld injectClassName={finalSICN}
-              injectPlaceholder='Cari Produk atau Toko'
-              inputRef={(input) => { this.textInput = input }} />
+            { this.state.showSearch &&
+              <SearchInputOld injectClassName={finalSICN}
+                injectPlaceholder='Cari Produk atau Toko'
+                showModal={this.state.showSearchModal} />
+            }
 
             { !this.state.showSearch &&
               <div className='header__search'>

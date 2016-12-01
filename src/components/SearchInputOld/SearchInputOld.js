@@ -11,10 +11,10 @@ const api = new TopedAceAPI()
 
 class SearchInputOld extends Component {
   static propTypes = {
-    inputRef: React.PropTypes.func,
     injectClassName: React.PropTypes.string,
     injectPlaceholder: React.PropTypes.string,
     userSearchID: React.PropTypes.string,
+    showModal: React.PropTypes.bool,
     storeUserSearchID: React.PropTypes.func
   }
 
@@ -22,18 +22,19 @@ class SearchInputOld extends Component {
     super(props)
 
     this.autocomplete = this.autocomplete.bind(this)
+    this.clearText = this.clearText.bind(this)
     this.closeSearchModal = this.closeSearchModal.bind(this)
-    this.focus = this.focus.bind(this)
-
     this.state = {
-      showSelection: false,
+      showSelection: this.props.showModal,
       selection: [],
       value: ''
     }
   }
 
-  focus () {
-    this.textInput.focus()
+  clearText (event) {
+    this.setState({ value: '' }, () => {
+      this.refs.searchInput.focus()
+    })
   }
 
   closeSearchModal (event) {
@@ -95,9 +96,10 @@ class SearchInputOld extends Component {
             <input type='hidden' name='st' defaultValue='product' />
             <label htmlFor='search_input' className='u-hide'>Search</label>
             <input name='q'
+              autoFocus={this.state.showSelection}
               type='search'
               id='search_input'
-              ref={this.props.inputRef}
+              ref='searchInput'
               className='search-input__input'
               placeholder={this.props.injectPlaceholder.toUpperCase()}
               onFocus={this.autocomplete}
@@ -106,7 +108,7 @@ class SearchInputOld extends Component {
             <button className={finalSearchBtnCN}>
               Search
             </button>
-            <span className='search-input__cancel' />
+            { this.state.value !== '' && <span className='search-input__cancel' onClick={this.clearText} /> }
           </form>
           {autocomplete}
 
