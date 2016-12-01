@@ -1,6 +1,10 @@
 import React from 'react'
 import './OfficialStoreSection.scss'
 import TextHeader from '../../components/TextHeader'
+import ramayanaLogo from './assets/ramayana.jpg'
+import centuryLogo from './assets/century.jpg'
+import lunaLogo from './assets/luna.jpg'
+import oppoLogo from './assets/oppo.jpg'
 
 export const OfficialStoreSection = () => (
   <div className='u-clearfix official-store'>
@@ -14,8 +18,8 @@ export const OfficialStoreSection = () => (
           <div className='u-table'>
             <div className='u-table-cell official-store__cell'>
               <img
-                src='http://placehold.it/45x45'
-                alt='Lorem ipsum'
+                src={ramayanaLogo}
+                alt='Ramayana'
                 className='u-mx-auto u-fit u-block' />
             </div>
           </div>
@@ -27,8 +31,8 @@ export const OfficialStoreSection = () => (
           <div className='u-table'>
             <div className='u-table-cell official-store__cell'>
               <img
-                src='http://placehold.it/50x30'
-                alt='Lorem ipsum'
+                src={centuryLogo}
+                alt='Century'
                 className='u-mx-auto u-fit u-block' />
             </div>
           </div>
@@ -40,8 +44,8 @@ export const OfficialStoreSection = () => (
           <div className='u-table'>
             <div className='u-table-cell official-store__cell'>
               <img
-                src='http://placehold.it/45x45'
-                alt='Lorem ipsum'
+                src={lunaLogo}
+                alt='Luna'
                 className='u-mx-auto u-fit u-block' />
             </div>
           </div>
@@ -53,8 +57,8 @@ export const OfficialStoreSection = () => (
           <div className='u-table'>
             <div className='u-table-cell official-store__cell'>
               <img
-                src='http://placehold.it/45x40'
-                alt='Lorem ipsum'
+                src={oppoLogo}
+                alt='Oppo'
                 className='u-mx-auto u-fit u-block' />
             </div>
           </div>
