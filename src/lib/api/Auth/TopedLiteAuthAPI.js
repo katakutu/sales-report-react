@@ -3,7 +3,7 @@ import config from 'lib/api/config'
 
 class TopedLiteAuthAPI {
   static URL = {
-    GetUserInfo: `http://${config.Lite.Hostname}/userinfo`
+    GetUserInfo: `https://${config.Lite.Hostname}/userinfo`
   }
 
   constructor () {
