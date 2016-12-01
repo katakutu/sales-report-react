@@ -9,8 +9,8 @@ const PRODUCTION = {
 
 const TEST = {
     Accounts: {
-        Hostname: 'https://accounts-alpha.tokopedia.com',
-        Callback: 'http://lite-alpha.tokopedia.com/auth/callback'
+        Hostname: 'https://accounts-staging.tokopedia.com',
+        Callback: 'http://lite-staging.tokopedia.com/auth/callback'
     }
 }
 
