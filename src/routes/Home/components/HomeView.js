@@ -8,6 +8,7 @@ import PromoSpacer from '../../../components/PromoSpacer'
 import Ticker from '../../../components/Ticker'
 import { updateUserLoginStatus } from '../../../store/app'
 import TopedLiteAuthAPI from '../../../lib/api/Auth/TopedLiteAuthAPI'
+import PulsaWidget from '../../../components/PulsaWidget'
 
 class HomeView extends Component {
   static propTypes = {
@@ -53,6 +54,7 @@ class HomeView extends Component {
         <Ticker />
         <Carousel />
         <PromoSpacer />
+        <PulsaWidget gtmId='GTM-T8MQ8Z' />
         <CategoryList />
         <OfficialStoreSection />
       </div>

@@ -107,6 +107,7 @@
     "react-body-classname": "^1.1.0",
     "react-dom": "^15.4.1",
     "react-ga": "^2.1.2",
+    "react-google-tag-manager": "^1.1.2",
     "react-redux": "^4.4.6",
     "react-router": "^3.0.0",
     "react-scroll": "^1.4.4",
