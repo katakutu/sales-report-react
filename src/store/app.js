@@ -8,6 +8,7 @@ export const CONNECTION_OFFLINE = 'CONNECTION_OFFLINE'
 export const USER_SEARCH_ID_STORE = 'USER_SEARCH_ID_STORE'
 export const USER_LOGGED_IN = 'USER_LOGGED_IN'
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
+export const STORE_USER_DATA = 'STORE_USER_DATA'
 
 // temporary state until we moved to new design and remove sidebar
 export const SIDEBAR_STATUS_OPEN = 'SIDEBAR_STATUS_OPEN'
@@ -58,13 +59,21 @@ export function updateSidebarStatus (isOpen) {
   }
 }
 
+export function storeUserData (data) {
+  return {
+    type: STORE_USER_DATA,
+    payload: data
+  }
+}
+
 export const actions = {
   notificationDispatch,
   notificationDismiss,
   updateConnectionStatus,
   storeUserSearchID,
   updateUserLoginStatus,
-  updateSidebarStatus
+  updateSidebarStatus,
+  storeUserData
 }
 
 const ACTION_HANDLERS = {
@@ -98,6 +107,9 @@ const ACTION_HANDLERS = {
   },
   [SIDEBAR_STATUS_CLOSED]: (state, action) => {
     return Object.assign({}, state, { sidebarIsOpen: action.payload })
+  },
+  [STORE_USER_DATA]: (state, action) => {
+    return Object.assign({}, state, { user: { data: action.payload } })
   }
 }
 
@@ -110,7 +122,15 @@ const initialState = {
   notifications: [],
   user: {
     loggedIn: false,
-    searchID: '-'
+    searchID: '-',
+    data: {
+      id: '',
+      name: '-',
+      profilePicutre: '',
+      deposit: 'Rp 0',
+      topPoints: '0',
+      notifications: {}
+    }
   }
 }
 export default function appReducer (state = initialState, action) {

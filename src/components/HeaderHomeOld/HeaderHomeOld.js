@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import Scroll from 'react-scroll'
-import { updateUserLoginStatus, updateSidebarStatus } from '../../store/app'
+import { updateUserLoginStatus, updateSidebarStatus, storeUserData } from '../../store/app'
 import BodyClassName from 'react-body-classname'
 import TopedLiteAuthAPI from '../../lib/api/Auth/TopedLiteAuthAPI'
 
@@ -15,10 +15,10 @@ import LoggedOutTab from './LoggedOutTab'
 
 class HeaderHome extends Component {
   static propTypes = {
-    cartNotifCount: React.PropTypes.number,
-    inboxNotifs: React.PropTypes.object,
     updateUserLoginStatus: React.PropTypes.func,
     updateSidebarStatus: React.PropTypes.func,
+    storeUserData: React.PropTypes.func,
+    userData: React.PropTypes.object,
     userIsLoggedIn: React.PropTypes.bool,
     sidebarIsOpened: React.PropTypes.bool
   }
@@ -46,8 +46,23 @@ class HeaderHome extends Component {
     this.authAPI.getUserInfo().then(userinfo => {
       if (userinfo && userinfo['name'] && userinfo['id']) {
         this.props.updateUserLoginStatus(true)
+        this.props.storeUserData({
+          'id': userinfo['id'],
+          'name': userinfo['name'],
+          'profilePicture': userinfo['profilePicture'],
+          'deposit': userinfo['deposit'],
+          'notifications': userinfo['notifications']
+        })
       } else {
         this.props.updateUserLoginStatus(false)
+        this.props.storeUserData({
+          id: '',
+          name: '-',
+          profilePicutre: '',
+          deposit: 'Rp 0',
+          topPoints: '0',
+          notifications: {}
+        })
       }
     })
   }
@@ -76,7 +91,7 @@ class HeaderHome extends Component {
   renderSidebar () {
     let result = null
     if (this.props.sidebarIsOpened && this.props.userIsLoggedIn) {
-      result = <LoggedInMenu notifs={this.props.inboxNotifs} />
+      result = <LoggedInMenu notifs={this.props.userData.notifications} />
     } else if (this.props.sidebarIsOpened && !this.props.userIsLoggedIn) {
       result = <LoggedOutMenu />
     }
@@ -97,11 +112,13 @@ class HeaderHome extends Component {
     let fixedHeaderCN = (this.state.showSearch) ? '' : 'transform'
     let finalSICN = `search-input u-relative`
 
-    let cartNotif = this.props.cartNotifCount > 0 ? (
-      <span className='header__cart-notification'>{ this.props.cartNotifCount }</span>
+    let cartNotif = this.props.userData.notifications['total_cart'] > 0 && this.props.userIsLoggedIn ? (
+      <span className='header__cart-notification'>
+        { this.props.userData.notifications['total_cart'] }
+      </span>
     ) : null
 
-    let headerNotif = this.props.inboxNotifs.total > 0 ? (
+    let headerNotif = this.props.userData.notifications['total_notif'] > 0 && this.props.userIsLoggedIn ? (
       <i className='header__nav-notification' />
     ) : null
 
@@ -156,10 +173,11 @@ class HeaderHome extends Component {
   }
 }
 
-const mapDispatchToProps = { updateUserLoginStatus, updateSidebarStatus }
+const mapDispatchToProps = { updateUserLoginStatus, updateSidebarStatus, storeUserData }
 const mapStateToProps = (state) => {
   return {
     sidebarIsOpened: state['app'] ? state['app'].sidebarIsOpen : state.sidebarIsOpen,
+    userData: state['app'] ? state['app'].user.data : state.user.data,
     userIsLoggedIn: state['app'] ? state['app'].user.loggedIn : state.user.loggedIn
   }
 }
