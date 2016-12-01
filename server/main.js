@@ -24,7 +24,7 @@ if (config.globals.__PROD__) {
 app.use(morgan('combined'))
 app.use(session(sessionConfig))
 
-app.get('/status', (req, res)=>res.end("ok"));
+app.get('/status', (req, res) => res.end('ok'))
 app.get('/login', oauth.login)
 app.get('/logout', oauth.logout)
 app.get('/auth/callback', oauth.redirect)
