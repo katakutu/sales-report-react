@@ -80,7 +80,7 @@ module.exports = {
     const tType = req.session.oauth.token['token_type']
     const token = req.session.oauth.token['access_token']
     const opt = { method: 'GET', headers: { 'Authorization': `${tType} ${token}` } }
-    fetch('https://accounts-alpha.tokopedia.com/info', opt).then(response => {
+    fetch(GlobalConfig['Accounts']['Hostname'] + '/info', opt).then(response => {
       response.json().then(user => {
         return res.json({
           'name': user['name'],

@@ -6,11 +6,11 @@ server {
     access_log /var/log/nginx/tokopedia-lite.access.log;
     error_log  /var/log/nginx/tokopedia-lite.error.log;
 
-    location / {
-        try_files @proxy $uri $uri/ /index.html;
-    }
+#    location / {
+#        try_files @proxy $uri $uri/ /index.html;
+#    }
 
-    location @proxy {
+    location / {
         set $url http://127.0.0.1:7899;
         proxy_pass $url;
     }

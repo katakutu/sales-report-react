@@ -97,6 +97,7 @@
     "ip": "^1.1.4",
     "isomorphic-fetch": "^2.2.1",
     "json-loader": "^0.5.4",
+    "morgan": "^1.7.0",
     "node-sass": "^3.13.0",
     "normalize.css": "^5.0.0",
     "postcss-loader": "^1.1.0",
@@ -142,6 +143,7 @@
     "test:dev": "npm run test -- --watch",
     "deploy": "better-npm-run deploy",
     "deploy:dev": "better-npm-run deploy:dev",
+    "deploy:staging": "better-npm-run deploy:staging",
     "deploy:prod": "better-npm-run deploy:prod",
     "codecov": "cat coverage/*/lcov.info | codecov",
     "flow:init": "flow init",
@@ -171,6 +173,13 @@
       "command": "npm run deploy",
       "env": {
         "NODE_ENV": "development",
+        "DEBUG": "app:*"
+      }
+    },
+    "deploy:staging": {
+      "command": "npm run deploy",
+      "env": {
+        "NODE_ENV": "test",
         "DEBUG": "app:*"
       }
     },
