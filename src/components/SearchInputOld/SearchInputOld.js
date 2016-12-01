@@ -85,13 +85,13 @@ class SearchInputOld extends Component {
     ) : null
 
     let backgroundBlur = (this.state.showSelection) ? 'search-input__modal-active' : ''
-    let finalClassName = `search-input ${this.props.injectClassName} ${backgroundBlur}`
+    let finalClassName = `search-input u-px2 ${this.props.injectClassName} ${backgroundBlur}`
     let searchBtnCN = (this.state.showSelection) ? 'focus' : ''
     let finalSearchBtnCN = `search-input__btn ${searchBtnCN}`
 
     let resultAutoComplete = (
       <div className={finalClassName}>
-        <div className='u-px2 u-pt0 u-pb1'>
+        <div className='u-pt0 u-pb1'>
           <form action='#' method='get' className='u-relative'>
             <input type='hidden' name='st' defaultValue='product' />
             <label htmlFor='search_input' className='u-hide'>Search</label>
@@ -109,8 +109,9 @@ class SearchInputOld extends Component {
               Search
             </button>
             { this.state.value !== '' && <span className='search-input__cancel' onClick={this.clearText} /> }
+
+            {autocomplete}
           </form>
-          {autocomplete}
 
           { this.state.showSelection && <BodyClassName className='u-body-overflow-no-scroll' /> }
         </div>

@@ -57,7 +57,11 @@ class HeaderHome extends Component {
   }
 
   handleScroll (event) {
-    this.setState({ showSearch: event.srcElement.body.scrollTop < 145 })
+    const ss = event.srcElement.body.scrollTop < 145
+    this.setState({
+      showSearch: ss,
+      showSearchModal: false
+    })
   }
 
   openSidebarMenu () {
@@ -91,7 +95,7 @@ class HeaderHome extends Component {
 
   render () {
     let fixedHeaderCN = (this.state.showSearch) ? '' : 'transform'
-    let finalSICN = `search-input u-relative u-col-12`
+    let finalSICN = `search-input u-relative`
 
     let cartNotif = this.props.cartNotifCount > 0 ? (
       <span className='header__cart-notification'>{ this.props.cartNotifCount }</span>
