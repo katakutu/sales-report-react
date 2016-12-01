@@ -82,10 +82,16 @@ module.exports = {
     const opt = { method: 'GET', headers: { 'Authorization': `${tType} ${token}` } }
     fetch(GlobalConfig['Accounts']['Hostname'] + '/info', opt).then(response => {
       response.json().then(user => {
-        return res.json({
-          'name': user['name'],
-          'id': user['user_id'],
-          'profilePicture': user['profile_picture']
+        const saldoURL = GlobalConfig['Saldo']['Hostname'] + '/deposit/get/' + user['user_id'] + '?type=usable'
+        let saldo = fetch(saldoURL, opt).then(r => r.json())
+
+        Promise.all([saldo]).then(s => {
+          return res.json({
+            'name': user['name'],
+            'id': user['user_id'],
+            'profilePicture': user['profile_picture'],
+            'deposit': s[0]['deposit_fmt']
+          })
         })
       })
     })

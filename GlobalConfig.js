@@ -4,6 +4,9 @@ const PRODUCTION = {
     Accounts: {
         Hostname: 'https://accounts.tokopedia.com',
         Callback: 'http://m.tokopedia.com/auth/callback'
+    },
+    Saldo: {
+        Hostname: 'http://192.168.16.110'
     }
 }
 
@@ -11,6 +14,9 @@ const TEST = {
     Accounts: {
         Hostname: 'https://accounts-staging.tokopedia.com',
         Callback: 'http://lite-staging.tokopedia.com/auth/callback'
+    },
+    Saldo: {
+        Hostname: 'https://saldoapp-staging.tokopedia.com'
     }
 }
 
@@ -18,6 +24,9 @@ const DEVELOPMENT = {
     Accounts: {
         Hostname: 'https://accounts-alpha.tokopedia.com',
         Callback: 'http://lite-devel:3000/auth/callback'
+    },
+    Saldo: {
+        Hostname: 'https://saldoapp-staging.tokopedia.com'
     }
 }
 
