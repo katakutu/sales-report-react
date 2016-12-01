@@ -9,19 +9,18 @@ export const Footer = () => (
       <p className='u-line-height-4 footer__apps-text'>Dapatkan Aplikasi Mobile Tokopedia</p>
       <div className='u-inline-block u-px1 u-mb1'>
         <a href='#'>
-          <img src={footerAppsApple} alt='' className='u-fit footer__apps-img' />
+          <img src={footerAppsAndroid} alt='' className='u-fit footer__apps-img' />
         </a>
       </div>
       <div className='u-inline-block u-px1 u-mb1'>
         <a href='#'>
-          <img src={footerAppsAndroid} alt='' className='u-fit footer__apps-img' />
+          <img src={footerAppsApple} alt='' className='u-fit footer__apps-img' />
         </a>
       </div>
     </div>
     <div className='footer__lower u-clearfix u-center'>
       <p className='u-line-height-4'>
-        Butuh Bantuan?
-        <a href='#' className='u-ml1'>Lihat di Sini</a> | Lihat Versi <a href='#'>Desktop</a>
+        <a href='#' className='u-ml1'>Butuh Bantuan?</a> | <a href='#'>Lihat Versi Desktop</a>
       </p>
       <p className='u-line-height-4 footer__lower-text--bigger'>
         <label htmlFor='language'>Pilih Bahasa</label>
@@ -30,7 +29,7 @@ export const Footer = () => (
           <option value='en'>English</option>
         </select>
       </p>
-      <p className='u-line-height-4 footer__lower-text--smaller'>&copy; PT. Tokopedia</p>
+      <p className='u-line-height-4 footer__lower-text--smaller'>&copy; 2009-2016, PT Tokopedia</p>
     </div>
   </div>
 )

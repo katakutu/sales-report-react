@@ -84,7 +84,8 @@ module.exports = {
       response.json().then(user => {
         return res.json({
           'name': user['name'],
-          'id': user['user_id']
+          'id': user['user_id'],
+          'profilePicture': user['profile_picture']
         })
       })
     })

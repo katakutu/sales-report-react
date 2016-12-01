@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import Scroll from 'react-scroll'
 import { updateUserLoginStatus, updateSidebarStatus } from '../../store/app'
 import BodyClassName from 'react-body-classname'
+import TopedLiteAuthAPI from '../../lib/api/Auth/TopedLiteAuthAPI'
 
 import './HeaderHomeOld.scss'
 import SearchInputOld from '../SearchInputOld'
@@ -30,6 +31,8 @@ class HeaderHome extends Component {
   constructor (props) {
     super(props)
 
+    this.authAPI = new TopedLiteAuthAPI()
+
     this.handleScroll = this.handleScroll.bind(this)
     this.openSidebarMenu = this.openSidebarMenu.bind(this)
     this.renderTabs = this.renderTabs.bind(this)
@@ -39,6 +42,14 @@ class HeaderHome extends Component {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll)
+
+    this.authAPI.getUserInfo().then(userinfo => {
+      if (userinfo && userinfo['name'] && userinfo['id']) {
+        this.props.updateUserLoginStatus(true)
+      } else {
+        this.props.updateUserLoginStatus(false)
+      }
+    })
   }
 
   componentWillUnmount () {
@@ -46,7 +57,7 @@ class HeaderHome extends Component {
   }
 
   handleScroll (event) {
-    this.setState({ showSearch: event.srcElement.body.scrollTop < 40 })
+    this.setState({ showSearch: event.srcElement.body.scrollTop < 145 })
   }
 
   openSidebarMenu () {
@@ -79,6 +90,7 @@ class HeaderHome extends Component {
   }
 
   render () {
+    let fixedHeaderCN = (this.state.showSearch) ? '' : 'transform'
     let finalSICN = `search-input u-relative u-col-12`
 
     let cartNotif = this.props.cartNotifCount > 0 ? (
@@ -91,7 +103,7 @@ class HeaderHome extends Component {
 
     return (
       <div className='u-clearfix'>
-        <header className='header u-clearfix' role='banner'>
+        <header className={'header u-clearfix' + ' ' + fixedHeaderCN} role='banner'>
           <div className='u-relative u-clearfix'>
             <button className='header__nav' onClick={this.openSidebarMenu}>
               <div className='header__nav-burger'>
