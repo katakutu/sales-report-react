@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import BottomNav from '../../components/BottomNav'
+import HeaderHomeOld from '../../components/HeaderHomeOld'
 import Footer from '../../components/Footer'
 import './CoreLayout.scss'
 import '../../styles/core.scss'
@@ -72,13 +72,41 @@ class CoreLayout extends Component {
     let gs = this.props.isOnline ? 'grayscale(0%)' : 'grayscale(100%)'
     let ds = { height: '100%', filter: gs }
 
+    let dummyInboxNotifs = {
+      total: 9,
+      inbox: {
+        message: 0,
+        product_discussion: 1,
+        review: 1,
+        customer_service: 2,
+        resolution_center: 0
+      },
+      shopping: {
+        cancelled: 0,
+        confirmed: 1,
+        order_status: 0,
+        delivery_confirmation: 0,
+        transaction_list: 1
+      },
+      seller: {
+        new_order: 2,
+        sent_confirmation: 1,
+        delivery_status: 1,
+        transaction_list: 0,
+        product_list: 0,
+        etalase: 0
+      }
+    }
+
     return (
       <OnOffWrapper onOnline={this.handleOnOnline} onOffline={this.handleOnOffline}>
         <div style={ds}>
+          <HeaderHomeOld cartNotifCount={0} inboxNotifs={dummyInboxNotifs} />
+
           <div className='content'>
             {this.props.children}
           </div>
-          <BottomNav />
+
           <Footer />
 
           {this.props.notifications.length > 0 ? this.renderNotifications() : null}

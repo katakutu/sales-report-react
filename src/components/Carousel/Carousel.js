@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Carousel.scss'
 import './slick.scss'
 import './slick-theme.scss'
+import TopedMojitoAPI from '../../lib/api/Search/TopedMojitoAPI'
 
 var Slider = require('react-slick')
 var settings = {
@@ -43,32 +44,39 @@ var settings = {
   ]
 }
 
-const IMG_PATH = 'https://ecs7.tokopedia.net/img/banner/2016/11/8/11708207/'
-const SLIDER_IMG = IMG_PATH + '11708207_73008c2e-8f73-4610-b345-b8aeea28ff5e.jpg'
-const SLIDER_WEBP = SLIDER_IMG + '.webp'
+const api = new TopedMojitoAPI()
 
 class Carousel extends Component {
+  state = {
+    images: []
+  }
+
   componentDidMount () {
-    var self = this
-    setTimeout(function () {
-      self.forceUpdate()
-    }, 100)
+    api.getSlides(25, 2, 65535, 1, 0).then(result => {
+      this.setState({ images: result['data']['slides'] })
+    })
   }
 
   render () {
+    let sliders = (this.state.images.length === 0) ? <div /> : this.state.images.map((image, index) =>
+      <div className='carousel__item' key={`car-${index}`}>
+        <a href={image.redirect_url} className='u-text-decoration-none'>
+          <div className='carousel__item-container u-mx-auto u-block'>
+            <picture className='carousel__img u-fit u-mx-auto' alt={image.title}>
+              <source srcSet={image.image_url} />
+              <img className='carousel__img u-fit u-mx-auto'
+                src={image.image_url}
+                alt={image.title} />
+            </picture>
+          </div>
+        </a>
+      </div>
+    )
+
     return (
       <div className='carousel u-clearfix'>
         <Slider {...settings}>
-          <div className='carousel__item'>
-            <a href='#' className='u-text-decoration-none'>
-              <div className='carousel__item-container u-mx-auto u-block'>
-                <picture className='carousel__img u-fit u-mx-auto'>
-                  <source srcSet={SLIDER_WEBP} />
-                  <img className='carousel__img u-fit u-mx-auto' src={SLIDER_IMG} />
-                </picture>
-              </div>
-            </a>
-          </div>
+          { sliders }
         </Slider>
       </div>
     )

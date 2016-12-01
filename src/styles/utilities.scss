@@ -1,5 +1,10 @@
 /* stylelint-disable */
 
+.u-body-overflow-no-scroll {
+    height: 100%;
+    overflow: hidden;
+}
+
 .u-h1 {
     font-size: 2rem;
 }

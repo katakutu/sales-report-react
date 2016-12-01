@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import BodyClassName from 'react-body-classname'
 import './SearchInputOld.scss'
 import TopedAceAPI from '../../lib/api/Search/TopedAceAPI'
 
@@ -10,6 +11,7 @@ const api = new TopedAceAPI()
 
 class SearchInputOld extends Component {
   static propTypes = {
+    inputRef: React.PropTypes.func,
     injectClassName: React.PropTypes.string,
     injectPlaceholder: React.PropTypes.string,
     userSearchID: React.PropTypes.string,
@@ -21,12 +23,17 @@ class SearchInputOld extends Component {
 
     this.autocomplete = this.autocomplete.bind(this)
     this.closeSearchModal = this.closeSearchModal.bind(this)
+    this.focus = this.focus.bind(this)
 
     this.state = {
       showSelection: false,
       selection: [],
       value: ''
     }
+  }
+
+  focus () {
+    this.textInput.focus()
   }
 
   closeSearchModal (event) {
@@ -78,19 +85,33 @@ class SearchInputOld extends Component {
 
     let backgroundBlur = (this.state.showSelection) ? 'search-input__modal-active' : ''
     let finalClassName = `search-input ${this.props.injectClassName} ${backgroundBlur}`
+    let searchBtnCN = (this.state.showSelection) ? 'focus' : ''
+    let finalSearchBtnCN = `search-input__btn ${searchBtnCN}`
 
     let resultAutoComplete = (
       <div className={finalClassName}>
-        <form>
-          <input type='text'
-            className='search-input__input u-col-12'
-            placeholder={this.props.injectPlaceholder.toUpperCase()}
-            onFocus={this.autocomplete}
-            onChange={this.autocomplete}
-            value={this.state.value} />
-          <span className='search-input__icon' />
-        </form>
-        {autocomplete}
+        <div className='u-px2 u-pt0 u-pb1'>
+          <form action='#' method='get' className='u-relative'>
+            <input type='hidden' name='st' defaultValue='product' />
+            <label htmlFor='search_input' className='u-hide'>Search</label>
+            <input name='q'
+              type='search'
+              id='search_input'
+              ref={this.props.inputRef}
+              className='search-input__input'
+              placeholder={this.props.injectPlaceholder.toUpperCase()}
+              onFocus={this.autocomplete}
+              onChange={this.autocomplete}
+              value={this.state.value} />
+            <button className={finalSearchBtnCN}>
+              Search
+            </button>
+            <span className='search-input__cancel' />
+          </form>
+          {autocomplete}
+
+          { this.state.showSelection && <BodyClassName className='u-body-overflow-no-scroll' /> }
+        </div>
       </div>
     )
     let finalResult = (this.state.showSelection) ? (

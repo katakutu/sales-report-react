@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './HomeView.scss'
-import HeaderHome from '../../../components/HeaderHome'
 import Carousel from '../../../components/Carousel'
-import SectionSpacer from '../../../components/SectionSpacer'
 import CategoryList from '../../../components/CategoryList'
+import OfficialStoreSection from '../../../components/OfficialStoreSection'
+import PromoSpacer from '../../../components/PromoSpacer'
 import Ticker from '../../../components/Ticker'
-import Tabs from '../../../components/Tabs/Tabs'
-import Tab from '../../../components/Tabs/Tab'
 import { updateUserLoginStatus } from '../../../store/app'
 import TopedLiteAuthAPI from '../../../lib/api/Auth/TopedLiteAuthAPI'
 
@@ -44,37 +42,19 @@ class HomeView extends Component {
   }
 
   render () {
-    let loggedInTabs = this.props.userIsLoggedIn ? [
-      (<Tab label='Feed'><h1>Feed</h1></Tab>),
-      (<Tab label='Favorite'><h1>Favorite</h1></Tab>),
-      (<Tab label='Wishlist'><h1>Wishlist</h1></Tab>)
-    ] : []
+    // let loggedInTabs = this.props.userIsLoggedIn ? [
+    //   (<Tab label='Feed'><h1>Feed</h1></Tab>),
+    //   (<Tab label='Favorite'><h1>Favorite</h1></Tab>),
+    //   (<Tab label='Wishlist'><h1>Wishlist</h1></Tab>)
+    // ] : []
 
     return (
       <div>
-        <HeaderHome />
-
-        <Tabs index={this.state.activeTabIndex} onChange={this.handleTabChange}>
-          <Tab label='Home'>
-            <Ticker perTickDuration={2} />
-
-            <Carousel />
-
-            <SectionSpacer>
-              <i className='section-spacer__icon section-spacer__icon--percent' />
-              Lihat Semua Promo
-              <i className='section-spacer__icon section-spacer__icon--chevron' />
-            </SectionSpacer>
-
-            <CategoryList />
-          </Tab>
-
-          <Tab label='Hot List'>
-            <h2 style={{ textAlign: 'center' }}>Hot List!</h2>
-          </Tab>
-
-          { loggedInTabs.map(t => t) }
-        </Tabs>
+        <Ticker />
+        <Carousel />
+        <PromoSpacer />
+        <CategoryList />
+        <OfficialStoreSection />
       </div>
     )
   }

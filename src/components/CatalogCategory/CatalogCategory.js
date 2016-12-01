@@ -10,44 +10,53 @@ export const CatalogCategory = () => (
 
     <div className='catalog-category__holder u-clearfix'>
       <div className='u-col u-col-12 catalog-category__content-holder'>
-        <div className='u-col u-col-6'>
-          <div className='catalog-category__content ellipsis'>Pakaian Wanita</div>
+        <div className='u-col u-col-6 catalog-category__content u-truncate'>
+          Pakaian Wanita
+          <img className='catalog-category__arrowright' src='http://placehold.it/10x10' />
         </div>
-        <div className='u-col u-col-6'>
-          <div className='catalog-category__content ellipsis'>Pakaian Pria</div>
-        </div>
-      </div>
-
-      <div className='u-col u-col-12 catalog-category__content-holder'>
-        <div className='u-col u-col-6'>
-          <div className='catalog-category__content ellipsis'>Pakaian Anak Perempuan</div>
-        </div>
-        <div className='u-col u-col-6'>
-          <div className='catalog-category__content ellipsis'>Pakaian Anak Laki-laki</div>
+        <div className='u-col u-col-6 catalog-category__content u-truncate'>
+          Pakaian Pria
+          <img className='catalog-category__arrowright' src='http://placehold.it/10x10' />
         </div>
       </div>
 
       <div className='u-col u-col-12 catalog-category__content-holder'>
-        <div className='u-col u-col-6'>
-          <div className='catalog-category__content ellipsis'>Kaos</div>
+        <div className='u-col u-col-6 catalog-category__content u-truncate'>
+          Pakaian Anak Perempuan
+          <img className='catalog-category__arrowright' src='http://placehold.it/10x10' />
         </div>
-        <div className='u-col u-col-6'>
-          <div className='catalog-category__content ellipsis'>Baju Korea</div>
-        </div>
-      </div>
-
-      <div className='u-col u-col-12 catalog-category__content-holder'>
-        <div className='u-col u-col-6'>
-          <div className='catalog-category__content ellipsis'>Batik</div>
-        </div>
-        <div className='u-col u-col-6'>
-          <div className='catalog-category__content ellipsis'>Baju Muslim</div>
+        <div className='u-col u-col-6 catalog-category__content u-truncate'>
+          Pakaian Anak Laki-laki
+          <img className='catalog-category__arrowright' src='http://placehold.it/10x10' />
         </div>
       </div>
 
       <div className='u-col u-col-12 catalog-category__content-holder'>
-        <div className='u-col u-col-6'>
-          <div className='catalog-category__content ellipsis'>Baju Couple</div>
+        <div className='u-col u-col-6 catalog-category__content u-truncate'>
+          Kaos
+          <img className='catalog-category__arrowright' src='http://placehold.it/10x10' />
+        </div>
+        <div className='u-col u-col-6 catalog-category__content u-truncate'>
+          Baju Korea
+          <img className='catalog-category__arrowright' src='http://placehold.it/10x10' />
+        </div>
+      </div>
+
+      <div className='u-col u-col-12 catalog-category__content-holder'>
+        <div className='u-col u-col-6 catalog-category__content u-truncate'>
+          Batik
+          <img className='catalog-category__arrowright' src='http://placehold.it/10x10' />
+        </div>
+        <div className='u-col u-col-6 catalog-category__content u-truncate'>
+          Baju Muslim
+          <img className='catalog-category__arrowright' src='http://placehold.it/10x10' />
+        </div>
+      </div>
+
+      <div className='u-col u-col-12 catalog-category__content-holder'>
+        <div className='u-col u-col-6 catalog-category__content u-truncate'>
+          Baju Couple
+          <img className='catalog-category__arrowright' src='http://placehold.it/10x10' />
         </div>
       </div>
     </div>
