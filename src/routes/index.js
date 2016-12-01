@@ -14,7 +14,7 @@ export const createRoutes = (store) => ({
   childRoutes : [
     CounterRoute(store),
     {
-      path: "*",
+      path: '*',
       component: NotFound
     }
   ]
