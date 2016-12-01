@@ -14,7 +14,7 @@ export const OfficialStoreSection = () => (
     <div className='official-store__content u-clearfix u-mxn1'>
 
       <div className='u-col u-col-3 u-px1'>
-        <a href='#' className='official-store__link u-center'>
+        <a href='https://m.tokopedia.com/ramayana' data-value='Ramayana Dept Store' className='official-store__link u-center'>
           <div className='u-table'>
             <div className='u-table-cell official-store__cell'>
               <img
@@ -27,7 +27,7 @@ export const OfficialStoreSection = () => (
       </div>
 
       <div className='u-col u-col-3 u-px1'>
-        <a href='#' className='official-store__link u-center'>
+        <a href='https://m.tokopedia.com/century-online' data-value='CENTURY HEALTHCARE' className='official-store__link u-center'>
           <div className='u-table'>
             <div className='u-table-cell official-store__cell'>
               <img
@@ -40,7 +40,7 @@ export const OfficialStoreSection = () => (
       </div>
 
       <div className='u-col u-col-3 u-px1'>
-        <a href='#' className='official-store__link u-center'>
+        <a href='https://m.tokopedia.com/luna' data-value='LUNA OFFICIAL STORE' className='official-store__link u-center'>
           <div className='u-table'>
             <div className='u-table-cell official-store__cell'>
               <img
@@ -53,7 +53,7 @@ export const OfficialStoreSection = () => (
       </div>
 
       <div className='u-col u-col-3 u-px1'>
-        <a href='#' className='official-store__link u-center'>
+        <a href='https://m.tokopedia.com/oppo' data-value='OPPO OFFICIAL STORE' className='official-store__link u-center'>
           <div className='u-table'>
             <div className='u-table-cell official-store__cell'>
               <img
