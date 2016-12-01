@@ -7,6 +7,9 @@ const PRODUCTION = {
     },
     Saldo: {
         Hostname: 'http://192.168.16.110'
+    },
+    Notification: {
+        Hostname: 'http://orderapp.tokopedia.local/'
     }
 }
 
@@ -17,6 +20,9 @@ const TEST = {
     },
     Saldo: {
         Hostname: 'https://saldoapp-staging.tokopedia.com'
+    },
+    Notification: {
+        Hostname: 'http://10.0.11.60'
     }
 }
 
@@ -27,6 +33,9 @@ const DEVELOPMENT = {
     },
     Saldo: {
         Hostname: 'https://saldoapp-staging.tokopedia.com'
+    },
+    Notification: {
+        Hostname: 'http://172.16.20.88:9001' // contact vicky.sukarma @mattermost if it's down
     }
 }
 
