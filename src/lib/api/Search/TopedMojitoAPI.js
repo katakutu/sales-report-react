@@ -70,7 +70,7 @@ class TopedMojitoAPI {
       'filter[expired]': expiredFilter
     }
     let url = new URL(TopedMojitoAPI.URL.Slides)
-    let jsonpOptions = { 'callback': callback, 'timeout': 15000 }
+    let jsonpOptions = { 'callback': callback, 'timeout': 5000 }
 
     return this.api.consumeJSONP(url, 'GET', content, jsonpOptions)
   }
