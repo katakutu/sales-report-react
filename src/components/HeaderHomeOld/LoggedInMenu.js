@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import homeIcon from './assets/nav-home-icon.png'
-import userPhoto from './assets/mobile-usrnophoto1.png'
 import wishlistIcon from './assets/nav-wishlist-icon.png'
 import inboxIcon from './assets/nav-inbox-icon.png'
 import buyingIcon from './assets/nav-buying-icon.png'
@@ -15,6 +14,7 @@ import { updateSidebarStatus } from '../../store/app'
 class LoggedInMenu extends Component {
   static propTypes = {
     notifs: React.PropTypes.object,
+    userData: React.PropTypes.object,
     updateSidebarStatus: React.PropTypes.func
   }
 
@@ -142,8 +142,8 @@ class LoggedInMenu extends Component {
             </div>
           </div>
           <div className='drawer__user-box'>
-            <img className='drawer__user-photo' src={userPhoto} alt='tokopedia' />
-            <div className='drawer__username u-mt1'>Donal Trump</div>
+            <img className='drawer__user-photo' src={this.props.userData.profilePicutre} alt='tokopedia' />
+            <div className='drawer__username u-mt1'>{ this.props.userData.name }</div>
           </div>
           <div className='drawer__user-summary u-clearfix'>
             <div className='drawer__user-summary-box u-left'>
