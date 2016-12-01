@@ -1,13 +1,16 @@
 @import 'base';
 
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: $z-index-3;
     width: 100%;
     background-color: $color-green;
     box-shadow: 1px 0 7px 1px $color-grey-3;
+
+    &.transform {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: $z-index-3;
+    }
 }
 
 .header__logo {
