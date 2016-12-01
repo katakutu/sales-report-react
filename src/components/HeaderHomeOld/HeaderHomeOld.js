@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import Scroll from 'react-scroll'
 import { updateUserLoginStatus, updateSidebarStatus } from '../../store/app'
 import BodyClassName from 'react-body-classname'
+import TopedLiteAuthAPI from '../../lib/api/Auth/TopedLiteAuthAPI'
 
 import './HeaderHomeOld.scss'
 import SearchInputOld from '../SearchInputOld'
@@ -30,6 +31,8 @@ class HeaderHome extends Component {
   constructor (props) {
     super(props)
 
+    this.authAPI = new TopedLiteAuthAPI()
+
     this.handleScroll = this.handleScroll.bind(this)
     this.openSidebarMenu = this.openSidebarMenu.bind(this)
     this.renderTabs = this.renderTabs.bind(this)
@@ -39,6 +42,14 @@ class HeaderHome extends Component {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll)
+
+    this.authAPI.getUserInfo().then(userinfo => {
+      if (userinfo && userinfo['name'] && userinfo['id']) {
+        this.props.updateUserLoginStatus(true)
+      } else {
+        this.props.updateUserLoginStatus(false)
+      }
+    })
   }
 
   componentWillUnmount () {
