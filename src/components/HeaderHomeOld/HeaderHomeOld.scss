@@ -237,7 +237,10 @@
 }
 
 .drawer {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: $z-index-4;
     display: none;
 }
 
@@ -263,9 +266,12 @@
 }
 
 .drawer__title {
-    padding: 17px 20px;
     background: $color-green;
     color: $color-white-primary;
+
+    .u-left {
+        padding: 17px 20px;
+    }
 }
 
 .drawer__banner {
@@ -448,19 +454,23 @@
 }
 
 .nav-close {
-    position: absolute;
-    top: 12px;
-    right: 0;
+    position: relative;
+    display: block;
+    float: right;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
 }
 
 .nav-close__child {
-    transform: rotate(-180deg);
+    position: absolute;
+    top: 22px;
+    right: 11px;
 }
 
 .nav-close__child span {
     position: absolute;
-    left: 0;
+    right: 0;
     display: block;
     width: 25px;
     height: 2px;
@@ -468,14 +478,13 @@
 }
 
 .nav-close__child span:nth-child(1) {
-    transform: translate(4px, 3px) rotate(-135deg) scale(0.91);
+    transform: rotate(-135deg);
 }
 
 .nav-close__child span:nth-child(2) {
     display: none;
-    transform: translateX(-0.5);
 }
 
 .nav-close__child span:nth-child(3) {
-    transform: translate(4px, 3px) rotate(132deg) scale(0.91);
+    transform: rotate(132deg);
 }

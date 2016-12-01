@@ -29,15 +29,13 @@ class LoggedOutMenu extends Component {
       <div className='drawer active'>
         <div className='drawer-active__overlay' onClick={this.closeSidebar} />
         <div className='drawer__container u-clearfix'>
-          <div className='drawer__title u-clearfix'>
+          <div className='drawer__title u-clearfix u-relative'>
             <div className='u-left'>MENU</div>
-            <div className='u-right u-relative' onClick={this.closeSidebar}>
-              <div className='nav-close'>
-                <div className='nav-close__child'>
-                  <span />
-                  <span />
-                  <span />
-                </div>
+            <div className='nav-close' onClick={this.closeSidebar}>
+              <div className='nav-close__child'>
+                <span />
+                <span />
+                <span />
               </div>
             </div>
           </div>
