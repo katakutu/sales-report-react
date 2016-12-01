@@ -54,7 +54,7 @@ class HomeView extends Component {
         <Ticker />
         <Carousel />
         <PromoSpacer />
-        <PulsaWidget gtmId='GTM-T8MQ8Z' />
+        <PulsaWidget gtmId='GTM-WD6SLP' />
         <CategoryList />
         <OfficialStoreSection />
       </div>
