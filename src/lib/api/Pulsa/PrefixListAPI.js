@@ -42,10 +42,10 @@ class PrefixListAPI {
       'filter[device]': deviceFilter,
       'action': action
     }
-    let url = new URL(TopedTickersAPI.URL.Ticker)
+    let url = new URL(PrefixListAPI.URL.Ticker)
 
     return this.api.consume(url, 'GET', content)
   }
 }
 
-export default TopedTickersAPI
+export default PrefixListAPI

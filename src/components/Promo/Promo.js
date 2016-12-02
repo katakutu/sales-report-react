@@ -1,46 +1,25 @@
 import React, { Component } from 'react'
 import TopHotListAPI from '../../lib/api/Search/TopedHotListAPI'
-import './Ticker.scss'
 
 const api = new TopHotListAPI()
 
 class Promo extends Component {
-//   static propTypes = {
-//     perTickDuration: React.PropTypes.number
-//   }
+  static propTypes = {
+    perTickDuration: React.PropTypes.number
+  }
 
   constructor (props) {
     super(props)
 
-//     this.refreshTickers = this.refreshTickers.bind(this)
-//     this.poolTickerRefresh = this.poolTickerRefresh.bind(this)
-
     this.state = {
       nextContentIndex: 0,
       content: ''
-      // initial value that will get refreshed right away
-    //   refreshInterval: this.props.perTickDuration * 1000
     }
   }
-
-//     this._intervalID = null
-//   }
 
   componentDidMount () {
     this.intialHotList()
   }
-
-//   componentWillUnmount () {
-//     if (this._intervalID) {
-//       clearInterval(this._intervalID)
-//       this._intervalID = null
-//     }
-//   }
-
-  // poolTickerRefresh () {
-  //   this.refreshHotList() // initial startup
-  //   this._intervalID = setInterval(this.refreshHotList, this.state.refreshInterval)
-  // }
 
   intialHotList () {
     api.getHotList('').then(response => {
