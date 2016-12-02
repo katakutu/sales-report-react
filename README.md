@@ -1,4 +1,4 @@
-# Tokopedia Lite
+# Tokopedia Lite [![CircleCI](https://circleci.com/gh/tokopedia/tokopedia-lite.svg?style=svg&circle-token=05c5abc0c27359d9fe7818232eed45d8dcc1fefa)](https://circleci.com/gh/tokopedia/tokopedia-lite)
 
 Tokopedia progressive mobile web app
 
