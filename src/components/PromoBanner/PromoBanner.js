@@ -2,11 +2,11 @@ import React from 'react'
 import './PromoBanner.scss'
 
 export const PromoBanner = ({ targetUrl, imageUrl, imageAlt }) => (
-  <a href={ targetUrl }
+  <a href={targetUrl}
     className='promo-banner u-clearfix'>
-    <img src={ imageUrl }
-        alt={ imageAlt }
-        className='u-fit u-block u-mx-auto' />
+    <img src={imageUrl}
+      alt={imageAlt}
+      className='u-fit u-block u-mx-auto' />
   </a>
 )
 
