@@ -94,13 +94,19 @@ const ACTION_HANDLERS = {
     return Object.assign({}, state, { isOnline: action.payload })
   },
   [USER_SEARCH_ID_STORE]: (state, action) => {
-    return Object.assign({}, state, { user: { searchID: action.payload } })
+    return Object.assign({}, state, {
+      user: Object.assign({}, state.user, { searchID: action.payload })
+    })
   },
   [USER_LOGGED_IN]: (state, action) => {
-    return Object.assign({}, state, { user: { loggedIn: action.payload } })
+    return Object.assign({}, state, {
+      user: Object.assign({}, state.user, { loggedIn: action.payload })
+    })
   },
   [USER_LOGGED_OUT]: (state, action) => {
-    return Object.assign({}, state, { user: { loggedIn: action.payload } })
+    return Object.assign({}, state, {
+      user: Object.assign({}, state.user, { loggedIn: action.payload })
+    })
   },
   [SIDEBAR_STATUS_OPEN]: (state, action) => {
     return Object.assign({}, state, { sidebarIsOpen: action.payload })
@@ -109,7 +115,9 @@ const ACTION_HANDLERS = {
     return Object.assign({}, state, { sidebarIsOpen: action.payload })
   },
   [STORE_USER_DATA]: (state, action) => {
-    return Object.assign({}, state, { user: { data: action.payload } })
+    return Object.assign({}, state, {
+      user: Object.assign({}, state.user, { data: action.payload })
+    })
   }
 }
 
