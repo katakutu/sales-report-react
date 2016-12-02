@@ -21,6 +21,7 @@ class Promo extends Component {
       // initial value that will get refreshed right away
     //   refreshInterval: this.props.perTickDuration * 1000
     }
+  }
 
 //     this._intervalID = null
 //   }
