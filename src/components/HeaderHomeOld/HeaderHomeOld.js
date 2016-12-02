@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import Scroll from 'react-scroll'
-import { updateUserLoginStatus, updateSidebarStatus, storeUserData } from '../../store/app'
+import { updateUserLoginStatus, updateSidebarStatus, storeUserData, initialState } from '../../store/app'
 import BodyClassName from 'react-body-classname'
 import TopedLiteAuthAPI from '../../lib/api/Auth/TopedLiteAuthAPI'
 
@@ -55,14 +55,7 @@ class HeaderHome extends Component {
         })
       } else {
         this.props.updateUserLoginStatus(false)
-        this.props.storeUserData({
-          id: '',
-          name: '-',
-          profilePicutre: '',
-          deposit: 'Rp 0',
-          topPoints: '0',
-          notifications: {}
-        })
+        this.props.storeUserData(initialState)
       }
     })
   }
@@ -91,7 +84,7 @@ class HeaderHome extends Component {
   renderSidebar () {
     let result = null
     if (this.props.sidebarIsOpened && this.props.userIsLoggedIn) {
-      result = <LoggedInMenu notifs={this.props.userData.notifications} />
+      result = <LoggedInMenu notifs={this.props.userData.notifications} userData={this.props.userData} />
     } else if (this.props.sidebarIsOpened && !this.props.userIsLoggedIn) {
       result = <LoggedOutMenu />
     }
