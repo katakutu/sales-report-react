@@ -27,11 +27,13 @@
 
 #autocomplete__container {
     position: absolute;
-    z-index: $z-index-3;
+    top: 36px;
+    z-index: $z-index-before-max-1;
     overflow-y: auto;
     max-height: 330px;
     width: 100%;
-    border-top: 1px solid rgba(66, 181, 73, 0.75);
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
     background-color: $color-white-primary;
     font-size: 1.25em;
 }
@@ -42,7 +44,7 @@
         padding: 7px 5px;
         background: #F7F7F7;
         color: #AAA;
-        font-weight: bold;
+        font-weight: 600;
         font-style: italic;
         font-size: 12px;
     }
@@ -61,7 +63,7 @@
                 display: block;
                 padding: 12px 5px;
                 color: rgba(0, 0, 0, 0.54);
-                font-weight: bold;
+                font-weight: 600;
             }
         }
     }
@@ -71,14 +73,14 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: $z-index-2;
+    z-index: $z-index-before-max-2;
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.65);
 }
 
 .search-input__modal-active {
-    z-index: $z-index-3;
+    z-index: $z-index-before-max-1;
 
     .search-input,
     .search-input__input,

@@ -3,14 +3,18 @@
 .promo-spacer {
     position: relative;
     z-index: 0;
-    margin: 10px auto;
+    margin-bottom: 7px;
+    width: 100%;
     height: 24px;
     color: $color-green;
+    vertical-align: middle;
     text-align: right;
+    line-height: 1;
 }
 
 .promo-spacer__link {
-    display: block;
+    z-index: $z-index-4;
+    display: inline-block;
     color: $color-green;
     text-decoration: none;
     font-size: 12px;

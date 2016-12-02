@@ -8,7 +8,7 @@ export const ProductList = () => (
       <div className='u-col u-col-6'>
         <div className='product-list__box'>
           <a className='dp-block' href='#'>
-            <img className='product-list__img' src='http://placehold.it/250x250' />
+            <img className='product-list__img' src='https://placehold.it/250x250' />
           </a>
           <div className='product-list__name-price u-clearfix'>
             <a href='#'>
@@ -25,7 +25,7 @@ export const ProductList = () => (
           <div className='product-list__shop-location'>
             <div className='product-list__shop-name'>Central Jacket Bandung</div>
             <div className='product-list__location'>
-              <img className='product-list__icon-location' src='http://placehold.it/15x15' />
+              <img className='product-list__icon-location' src='https://placehold.it/15x15' />
               <span className='product-list__location-name u-truncate'>Bandung</span>
             </div>
           </div>
@@ -35,7 +35,7 @@ export const ProductList = () => (
       <div className='u-col u-col-6'>
         <div className='product-list__box'>
           <a className='dp-block' href='#'>
-            <img className='product-list__img' src='http://placehold.it/250x250' />
+            <img className='product-list__img' src='https://placehold.it/250x250' />
           </a>
           <div className='product-list__name-price u-clearfix'>
             <a href='#'>
@@ -48,7 +48,7 @@ export const ProductList = () => (
             </a>
             <div className='product-list__price'>Rp. 50.000</div>
             <div className='product-list__rating-count'>
-              <img className='product-list__rating' src='http://placehold.it/71x16' />
+              <img className='product-list__rating' src='https://placehold.it/71x16' />
               <span className='product-list__count-rat'>(1422412)</span>
             </div>
           </div>
@@ -56,13 +56,13 @@ export const ProductList = () => (
           <div className='product-list__shop-location'>
             <div className='product-list__shop-name'>Central Jacket Bandung</div>
             <div className='product-list__location'>
-              <img className='product-list__icon-location' src='http://placehold.it/15x15' />
+              <img className='product-list__icon-location' src='https://placehold.it/15x15' />
               <span className='product-list__location-name u-truncate'>Bandung</span>
             </div>
             <div className='product-list__icon-box'>
-              <img className='product-list__icon-badge' src='http://placehold.it/15x15' />
-              <img className='product-list__icon-badge' src='http://placehold.it/15x15' />
-              <img className='product-list__icon-badge' src='http://placehold.it/15x15' />
+              <img className='product-list__icon-badge' src='https://placehold.it/15x15' />
+              <img className='product-list__icon-badge' src='https://placehold.it/15x15' />
+              <img className='product-list__icon-badge' src='https://placehold.it/15x15' />
             </div>
           </div>
         </div>
@@ -81,7 +81,7 @@ export const ProductList = () => (
         <div className='u-col u-col-12'>
           <div className='u-col u-col-4 pd-l-10'>
             <a className='dp-block' href='#'>
-              <img className='product-list__img' src='http://placehold.it/50x50' />
+              <img className='product-list__img' src='https://placehold.it/50x50' />
             </a>
           </div>
           <div className='u-col u-col-8 pd-lr-10'>
@@ -95,13 +95,13 @@ export const ProductList = () => (
                 </a>
               </div>
 
-              <img className='product-list__icon-wishlist' src='http://placehold.it/20x20' />
+              <img className='product-list__icon-wishlist' src='https://placehold.it/20x20' />
 
               <div className='product-list__price'>Rp. 50.000
                 <span className='product-list__cashback'>Cashback 5%</span>
               </div>
               <div className='product-list__rating-count'>
-                <img className='product-list__rating' src='http://placehold.it/71x16' />
+                <img className='product-list__rating' src='https://placehold.it/71x16' />
                 <span className='product-list__count-rat'>(1422412)</span>
               </div>
             </div>
@@ -109,15 +109,15 @@ export const ProductList = () => (
             <div className='product-list__shop-location'>
               <div className='product-list__shop-name'>Central Jacket Bandung</div>
               <div className='product-list__location'>
-                <img className='product-list__icon-location' src='http://placehold.it/15x15' />
+                <img className='product-list__icon-location' src='https://placehold.it/15x15' />
                 <span className='product-list__location-name u-truncate'>
                   Bandung Bjsjsjsjssjsjhdjdjkdjdjddj djdjdjdj
                 </span>
               </div>
               <div className='product-list__icon-box'>
-                <img className='product-list__icon-badge' src='http://placehold.it/15x15' />
-                <img className='product-list__icon-badge' src='http://placehold.it/15x15' />
-                <img className='product-list__icon-badge' src='http://placehold.it/15x15' />
+                <img className='product-list__icon-badge' src='https://placehold.it/15x15' />
+                <img className='product-list__icon-badge' src='https://placehold.it/15x15' />
+                <img className='product-list__icon-badge' src='https://placehold.it/15x15' />
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@ export const ProductList = () => (
         <div className='u-col u-col-12'>
           <div className='u-col u-col-4 pd-l-10'>
             <a className='dp-block' href='#'>
-              <img className='product-list__img' src='http://placehold.it/50x50' />
+              <img className='product-list__img' src='https://placehold.it/50x50' />
             </a>
           </div>
           <div className='u-col u-col-8 pd-lr-10'>
@@ -142,7 +142,7 @@ export const ProductList = () => (
                 </a>
               </div>
 
-              <img className='product-list__icon-wishlist' src='http://placehold.it/20x20' />
+              <img className='product-list__icon-wishlist' src='https://placehold.it/20x20' />
 
               <div className='product-list__price'>Rp. 50.000</div>
             </div>
@@ -150,15 +150,15 @@ export const ProductList = () => (
             <div className='product-list__shop-location'>
               <div className='product-list__shop-name'>Central Jacket Bandung</div>
               <div className='product-list__location'>
-                <img className='product-list__icon-location' src='http://placehold.it/15x15' />
+                <img className='product-list__icon-location' src='https://placehold.it/15x15' />
                 <span className='product-list__location-name u-truncate'>
                   Bandung Bjsjsjsjssjsjhdjdjkdjdjddj djdjdjdj
                 </span>
               </div>
               <div className='product-list__icon-box'>
-                <img className='product-list__icon-badge' src='http://placehold.it/15x15' />
-                <img className='product-list__icon-badge' src='http://placehold.it/15x15' />
-                <img className='product-list__icon-badge' src='http://placehold.it/15x15' />
+                <img className='product-list__icon-badge' src='https://placehold.it/15x15' />
+                <img className='product-list__icon-badge' src='https://placehold.it/15x15' />
+                <img className='product-list__icon-badge' src='https://placehold.it/15x15' />
               </div>
             </div>
           </div>
@@ -169,7 +169,7 @@ export const ProductList = () => (
         <div className='u-col u-col-12'>
           <div className='u-col u-col-4 pd-l-10'>
             <a className='dp-block' href='#'>
-              <img className='product-list__img' src='http://placehold.it/50x50' />
+              <img className='product-list__img' src='https://placehold.it/50x50' />
             </a>
           </div>
           <div className='u-col u-col-8 pd-lr-10'>
@@ -183,13 +183,13 @@ export const ProductList = () => (
                 </a>
               </div>
 
-              <img className='product-list__icon-wishlist' src='http://placehold.it/20x20' />
+              <img className='product-list__icon-wishlist' src='https://placehold.it/20x20' />
 
               <div className='product-list__price'>Rp. 50.000
                 <span className='product-list__cashback'>Cashback 5%</span>
               </div>
               <div className='product-list__rating-count'>
-                <img className='product-list__rating' src='http://placehold.it/71x16' />
+                <img className='product-list__rating' src='https://placehold.it/71x16' />
                 <span className='product-list__count-rat'>(1422412)</span>
               </div>
             </div>
@@ -197,15 +197,15 @@ export const ProductList = () => (
             <div className='product-list__shop-location'>
               <div className='product-list__shop-name'>Central Jacket Bandung</div>
               <div className='product-list__location'>
-                <img className='product-list__icon-location' src='http://placehold.it/15x15' />
+                <img className='product-list__icon-location' src='https://placehold.it/15x15' />
                 <span className='product-list__location-name u-truncate'>
                   Bandung Bjsjsjsjssjsjhdjdjkdjdjddj djdjdjdj
                 </span>
               </div>
               <div className='product-list__icon-box'>
-                <img className='product-list__icon-badge' src='http://placehold.it/15x15' />
-                <img className='product-list__icon-badge' src='http://placehold.it/15x15' />
-                <img className='product-list__icon-badge' src='http://placehold.it/15x15' />
+                <img className='product-list__icon-badge' src='https://placehold.it/15x15' />
+                <img className='product-list__icon-badge' src='https://placehold.it/15x15' />
+                <img className='product-list__icon-badge' src='https://placehold.it/15x15' />
               </div>
             </div>
           </div>

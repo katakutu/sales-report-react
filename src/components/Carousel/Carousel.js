@@ -6,7 +6,7 @@ import TopedMojitoAPI from '../../lib/api/Search/TopedMojitoAPI'
 
 var Slider = require('react-slick')
 var settings = {
-  dots: false,
+  dots: true,
   arrows: false,
   infinite: true,
   speed: 500,
