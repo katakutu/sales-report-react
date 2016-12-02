@@ -109,7 +109,7 @@ const initialState = {
   isOnline: true,
   notifications: [],
   user: {
-    loggedIn: false,
+    loggedIn: true,
     searchID: '-'
   }
 }
