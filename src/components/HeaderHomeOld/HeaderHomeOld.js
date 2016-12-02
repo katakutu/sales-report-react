@@ -5,6 +5,7 @@ import Scroll from 'react-scroll'
 import { updateUserLoginStatus, updateSidebarStatus, storeUserData } from '../../store/app'
 import BodyClassName from 'react-body-classname'
 import TopedLiteAuthAPI from '../../lib/api/Auth/TopedLiteAuthAPI'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import './HeaderHomeOld.scss'
 import SearchInputOld from '../SearchInputOld'
@@ -12,6 +13,7 @@ import LoggedInMenu from './LoggedInMenu'
 import LoggedOutMenu from './LoggedOutMenu'
 import LoggedInTab from './LoggedInTab'
 import LoggedOutTab from './LoggedOutTab'
+import OverlaySplash from './OverlaySplash'
 
 class HeaderHome extends Component {
   static propTypes = {
@@ -99,6 +101,15 @@ class HeaderHome extends Component {
     return result
   }
 
+  renderOverlay () {
+    let result = null 
+    if (this.props.sidebarIsOpened) {
+      result = <OverlaySplash />
+    }
+
+    return result
+  }
+
   showSearch () {
     this.setState({
       showSearch: true,
@@ -121,6 +132,18 @@ class HeaderHome extends Component {
     let headerNotif = this.props.userData.notifications['total_notif'] > 0 && this.props.userIsLoggedIn ? (
       <i className='header__nav-notification' />
     ) : null
+
+    const transitionSideBarOptions = {
+      transitionName: "sidebarEffect",
+      transitionEnterTimeout: 500,
+      transitionLeaveTimeout: 500
+    }
+
+    const transitionOverlaySplashOptions = {
+      transitionName: "splashEffect",
+      transitionEnterTimeout: 500,
+      transitionLeaveTimeout: 500
+    }
 
     return (
       <div className='u-clearfix'>
@@ -164,8 +187,13 @@ class HeaderHome extends Component {
 
           { this.renderTabs() }
         </header>
-
-        { this.renderSidebar() }
+        <ReactCSSTransitionGroup {...transitionSideBarOptions}>
+          { this.renderSidebar() }
+        </ReactCSSTransitionGroup>
+        
+        <ReactCSSTransitionGroup {...transitionOverlaySplashOptions}>
+          { this.renderOverlay() }
+        </ReactCSSTransitionGroup>
 
         { this.props.sidebarIsOpened && <BodyClassName className='u-body-overflow-no-scroll' /> }
       </div>
