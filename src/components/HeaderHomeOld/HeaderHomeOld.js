@@ -65,11 +65,13 @@ class HeaderHome extends Component {
   }
 
   handleScroll (event) {
-    const ss = event.srcElement.body.scrollTop < 145
-    this.setState({
-      showSearch: ss,
-      showSearchModal: false
-    })
+    if (!this.props.sidebarIsOpened) {
+      const ss = event.srcElement.body.scrollTop < 145
+      this.setState({
+        showSearch: ss,
+        showSearchModal: false
+      })
+    }
   }
 
   openSidebarMenu () {
