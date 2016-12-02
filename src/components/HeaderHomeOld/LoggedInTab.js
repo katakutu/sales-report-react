@@ -24,22 +24,22 @@ class LoggedInTab extends Component {
         </div>
         <div className='tab-item'>
           <label className='tab-link'>
-            <a href='#'>Feed</a>
+            <a href='https://m.tokopedia.com/?view=feed_preview'>Feed</a>
           </label>
         </div>
         <div className='tab-item'>
           <label className='tab-link'>
-            <a href='#'>Favorit</a>
+            <a href='https://m.tokopedia.com/fav-shop.pl?view=1'>Favorit</a>
           </label>
         </div>
         <div className='tab-item'>
           <label className='tab-link'>
-            <a href='#'>Hot List</a>
+            <a href='https://m.tokopedia.com/hot?page=1'>Hot List</a>
           </label>
         </div>
         <div className='tab-item'>
           <label className='tab-link'>
-            <a href='#'>Wishlist</a>
+            <a href='https://m.tokopedia.com/?view=wishlist_preview'>Wishlist</a>
           </label>
         </div>
       </TabSlider>
