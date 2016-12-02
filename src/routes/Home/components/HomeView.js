@@ -4,6 +4,7 @@ import Carousel from '../../../components/Carousel'
 import CategoryList from '../../../components/CategoryList'
 import OfficialStoreSection from '../../../components/OfficialStoreSection'
 import PromoSpacer from '../../../components/PromoSpacer'
+import PromoBanner from '../../../components/PromoBanner'
 import Ticker from '../../../components/Ticker'
 
 class HomeView extends Component {
@@ -27,6 +28,10 @@ class HomeView extends Component {
         <Ticker />
         <Carousel />
         <PromoSpacer />
+        <PromoBanner
+          imageUrl='http://placehold.it/414x90'
+          targetUrl='http://tokopedia.com'
+          imageAlt='Lorem ipsum' />
         <CategoryList />
         <OfficialStoreSection />
       </div>
