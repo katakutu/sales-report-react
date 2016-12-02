@@ -54,11 +54,14 @@ class Carousel extends Component {
   componentDidMount () {
     api.getSlides(25, 2, 65535, 1, 0).then(result => {
       this.setState({ images: result['data']['slides'] })
+    }).catch(error => {
+      error // TODO: Logs this to server?
+      this.setState({ images: [] })
     })
   }
 
-  render () {
-    let sliders = (this.state.images.length === 0) ? <div /> : this.state.images.map((image, index) =>
+  _createCarouselItems (image, index) {
+    return (
       <div className='carousel__item' key={`car-${index}`}>
         <a href={image.redirect_url} className='u-text-decoration-none'>
           <div className='carousel__item-container u-mx-auto u-block'>
@@ -72,6 +75,17 @@ class Carousel extends Component {
         </a>
       </div>
     )
+  }
+
+  render () {
+    let placeholder = {
+      'image_url': 'https://placehold.it/414x185',
+      'redirect_url': '#',
+      'title': 'Placeholder Image'
+    }
+    let sliders = (this.state.images.length === 0)
+      ? this._createCarouselItems(placeholder, 0)
+      : this.state.images.map(this._createCarouselItems)
 
     return (
       <div className='carousel u-clearfix'>
