@@ -4,7 +4,7 @@ import './TextHeader.scss'
 class TextHeader extends Component {
   static propTypes = {
     children: React.PropTypes.node,
-    textType: React.PropTypes.integer
+    textType: React.PropTypes.number
   }
 
   render () {
