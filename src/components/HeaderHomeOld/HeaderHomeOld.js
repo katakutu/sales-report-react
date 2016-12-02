@@ -105,13 +105,13 @@ class HeaderHome extends Component {
     let fixedHeaderCN = (this.state.showSearch) ? '' : 'transform'
     let finalSICN = `search-input u-relative`
 
-    let cartNotif = this.props.userData.notifications['total_cart'] > 0 && this.props.userIsLoggedIn ? (
+    let cartNotif = this.props.userIsLoggedIn && this.props.userData.notifications['total_cart'] > 0 ? (
       <span className='header__cart-notification'>
         { this.props.userData.notifications['total_cart'] }
       </span>
     ) : null
 
-    let headerNotif = this.props.userData.notifications['total_notif'] > 0 && this.props.userIsLoggedIn ? (
+    let headerNotif = this.props.userIsLoggedIn && this.props.userData.notifications['total_notif'] > 0 ? (
       <i className='header__nav-notification' />
     ) : null
 
