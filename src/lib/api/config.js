@@ -48,7 +48,7 @@ const DEVELOPMENT = {
     Hostname: 'ws-alpha.tokopedia.com'
   },
   Lite: {
-    Hostname: 'lite-staging.tokopedia.com'
+    Hostname: 'localhost:3000'
   },
   Saldo: {
     Hostname: 'https://saldoapp-staging.tokopedia.com'

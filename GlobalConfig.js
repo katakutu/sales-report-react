@@ -10,6 +10,10 @@ const PRODUCTION = {
     },
     Notification: {
         Hostname: 'http://orderapp.tokopedia.local/'
+    },
+    Points: {
+        Hostname: 'https://points.tokopedia.com',
+        Secret: '4lclover'
     }
 }
 
@@ -23,7 +27,12 @@ const TEST = {
     },
     Notification: {
         Hostname: 'http://10.0.11.60'
+    },
+    Points: {
+        Hostname: 'https://points-staging.tokopedia.com',
+        Secret: '4lclover'
     }
+
 }
 
 const DEVELOPMENT = {
@@ -36,7 +45,12 @@ const DEVELOPMENT = {
     },
     Notification: {
         Hostname: 'http://172.16.20.88:9001' // contact vicky.sukarma @mattermost if it's down
+    },
+    Points: {
+        Hostname: 'https://points-staging.tokopedia.com',
+        Secret: '4lclover'
     }
+
 }
 
 let globalConfig = DEVELOPMENT

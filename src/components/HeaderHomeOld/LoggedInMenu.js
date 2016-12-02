@@ -20,8 +20,8 @@ class LoggedInMenu extends Component {
 
   state = {
     inboxIsOpen: false,
-    shoppingIsOpen: false,
-    sellerIsOpen: false
+    purchaseIsOpen: false,
+    salesIsOpen: false
   }
 
   constructor (props) {
@@ -30,8 +30,8 @@ class LoggedInMenu extends Component {
     this._totalObjectValues = this._totalObjectValues.bind(this)
     this.closeSidebar = this.closeSidebar.bind(this)
     this.handleInboxClicked = this.handleInboxClicked.bind(this)
-    this.handleSellerClicked = this.handleSellerClicked.bind(this)
-    this.handleShoppingClicked = this.handleShoppingClicked.bind(this)
+    this.handleSalesClicked = this.handleSalesClicked.bind(this)
+    this.handlePurhcaseClicked = this.handlePurhcaseClicked.bind(this)
   }
 
   _totalObjectValues (object) {
@@ -51,37 +51,37 @@ class LoggedInMenu extends Component {
     this.setState({ inboxIsOpen: !this.state.inboxIsOpen })
   }
 
-  handleSellerClicked () {
-    this.setState({ sellerIsOpen: !this.state.sellerIsOpen })
+  handleSalesClicked () {
+    this.setState({ salesIsOpen: !this.state.salesIsOpen })
   }
 
-  handleShoppingClicked () {
-    this.setState({ shoppingIsOpen: !this.state.shoppingIsOpen })
+  handlePurhcaseClicked () {
+    this.setState({ purchaseIsOpen: !this.state.purchaseIsOpen })
   }
 
   render () {
     let inboxClass = (!this.state.inboxIsOpen) ? 'u-display-none' : ''
-    let shoppingClass = (!this.state.shoppingIsOpen) ? 'u-display-none' : ''
-    let sellerClass = (!this.state.sellerIsOpen) ? 'u-display-none' : ''
+    let purchaseClass = (!this.state.purchaseIsOpen) ? 'u-display-none' : ''
+    let salesClass = (!this.state.salesIsOpen) ? 'u-display-none' : ''
 
     let inboxNotif = this._totalObjectValues(this.props.notifs['inbox']) > 0 ? (
       <span className='drawer__menu-notif' />
     ) : null
-    let shoppingNotif = this._totalObjectValues(this.props.notifs['shopping']) > 0 ? (
+    let purchaseNotif = this._totalObjectValues(this.props.notifs['sales']) > 0 ? (
       <span className='drawer__menu-notif' />
     ) : null
-    let sellerNotif = this._totalObjectValues(this.props.notifs['seller']) > 0 ? (
+    let salesNotif = this._totalObjectValues(this.props.notifs['sales']) > 0 ? (
       <span className='drawer__menu-notif' />
     ) : null
 
-    let inboxMessageNotif = this.props.notifs['inbox']['message'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['message'] }</span>
+    let inboxMessageNotif = this.props.notifs['inbox']['inbox_message'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_message'] }</span>
     ) : null
     let inboxPDNotif = this.props.notifs['inbox']['product_discussion'] > 0 ? (
       <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['product_discussion'] }</span>
     ) : null
-    let inboxReviewNotif = this.props.notifs['inbox']['review'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['review'] }</span>
+    let inboxReviewNotif = this.props.notifs['inbox']['inbox_review'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_review'] }</span>
     ) : null
     let inboxCSNotif = this.props.notifs['inbox']['customer_service'] > 0 ? (
       <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['customer_service'] }</span>
@@ -90,41 +90,45 @@ class LoggedInMenu extends Component {
       <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['resolution_center'] }</span>
     ) : null
 
-    let shoppingCancelNotif = this.props.notifs['shopping']['cancelled'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['shopping']['cancelled'] }</span>
+    let purchaseCancelNotif = this.props.notifs['purchase']['purchase_reorder'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['purchase']['purchase_reorder'] }</span>
     ) : null
-    let shoppingConfirmNotif = this.props.notifs['shopping']['confirmed'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['shopping']['confirmed'] }</span>
-    ) : null
-    let shoppingOSNotif = this.props.notifs['shopping']['order_status'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['shopping']['order_status'] }</span>
-    ) : null
-    let shoppingDCNotif = this.props.notifs['shopping']['delivery_confirmation'] > 0 ? (
+    let purchaseConfirmNotif = this.props.notifs['purchase']['purchase_payment_confirm'] > 0 ? (
       <span className='u-right drawer__menu-child-notif'>
-        { this.props.notifs['shopping']['delivery_confirmation'] }
+        { this.props.notifs['purchase']['purchase_payment_confirm'] }
       </span>
     ) : null
-    let shoppingTLNotif = this.props.notifs['shopping']['transaction_list'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['shopping']['transaction_list'] }</span>
+    let purchaseOSNotif = this.props.notifs['purchase']['purchase_order_status'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>
+        { this.props.notifs['purchase']['purchase_order_status'] }
+      </span>
+    ) : null
+    let purchaseDCNotif = this.props.notifs['purchase']['purchase_delivery_confirm'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>
+        { this.props.notifs['purchase']['purchase_delivery_confirm'] }
+      </span>
+    ) : null
+    let purchaseTLNotif = this.props.notifs['purchase']['transaction_list'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['purchase']['transaction_list'] }</span>
     ) : null
 
-    let sellerNONotif = this.props.notifs['seller']['new_order'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['seller']['new_order'] }</span>
+    let salesNONotif = this.props.notifs['sales']['sales_new_order'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['sales']['sales_new_order'] }</span>
     ) : null
-    let sellerSCNotif = this.props.notifs['seller']['sent_confirmation'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['seller']['sent_confirmation'] }</span>
+    let salesSCNotif = this.props.notifs['sales']['sales_shipping_confirm'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['sales']['sales_shipping_confirm'] }</span>
     ) : null
-    let sellerDSNotif = this.props.notifs['seller']['delivery_status'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['seller']['delivery_status'] }</span>
+    let salesDSNotif = this.props.notifs['sales']['sales_shipping_status'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['sales']['sales_shipping_status'] }</span>
     ) : null
-    let sellerTLNotif = this.props.notifs['seller']['transaction_list'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['seller']['transaction_list'] }</span>
+    let salesTLNotif = this.props.notifs['sales']['transaction_list'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['sales']['transaction_list'] }</span>
     ) : null
-    let sellerPLNotif = this.props.notifs['seller']['product_list'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['seller']['product_list'] }</span>
+    let salesPLNotif = this.props.notifs['sales']['product_list'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['sales']['product_list'] }</span>
     ) : null
-    let sellerEtalaseNotif = this.props.notifs['seller']['etalase'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['seller']['etalase'] }</span>
+    let salesEtalaseNotif = this.props.notifs['sales']['etalase'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['sales']['etalase'] }</span>
     ) : null
 
     return (
@@ -147,11 +151,11 @@ class LoggedInMenu extends Component {
           </div>
           <div className='drawer__user-summary u-clearfix'>
             <div className='drawer__user-summary-box u-left'>
-              <span>Rp 2.000.000.000</span>
+              <span>{ this.props.userData.deposit }</span>
               <div className='drawer__user-infosum-title'>Saldo</div>
             </div>
             <div className='drawer__user-summary-box u-right'>
-              <span>Rp 1.000.000</span>
+              <span>{ this.props.userData.points }</span>
               <div className='drawer__user-infosum-title'>TopPoints</div>
             </div>
           </div>
@@ -194,35 +198,35 @@ class LoggedInMenu extends Component {
               <li><a href='#'>Pusat Resolusi{inboxRCNotif}</a></li>
             </ul>
           </div>
-          <div className='drawer__menu' onClick={this.handleShoppingClicked}>
+          <div className='drawer__menu' onClick={this.handlePurhcaseClicked}>
             <a>
               <img className='drawer__menu-icon' src={buyingIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Pembelian</span>
-              { shoppingNotif }
+              { purchaseNotif }
               <img src='http://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
             </a>
-            <ul className={`drawer__menu-child ${shoppingClass}`}>
-              <li><a href='#'>Pesan Dibatalkan{shoppingCancelNotif}</a></li>
-              <li><a href='#'>Konfirmasi Pembayaran{shoppingConfirmNotif}</a></li>
-              <li><a href='#'>Status Pemesanan{shoppingOSNotif}</a></li>
-              <li><a href='#'>Konfirmasi Penerimaan{shoppingDCNotif}</a></li>
-              <li><a href='#'>Daftar Transaksi{shoppingTLNotif}</a></li>
+            <ul className={`drawer__menu-child ${purchaseClass}`}>
+              <li><a href='#'>Pesan Dibatalkan{purchaseCancelNotif}</a></li>
+              <li><a href='#'>Konfirmasi Pembayaran{purchaseConfirmNotif}</a></li>
+              <li><a href='#'>Status Pemesanan{purchaseOSNotif}</a></li>
+              <li><a href='#'>Konfirmasi Penerimaan{purchaseDCNotif}</a></li>
+              <li><a href='#'>Daftar Transaksi{purchaseTLNotif}</a></li>
             </ul>
           </div>
-          <div className='drawer__menu' onClick={this.handleSellerClicked}>
+          <div className='drawer__menu' onClick={this.handleSalesClicked}>
             <a>
               <img className='drawer__menu-icon' src={sellingIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Penjualan</span>
-              { sellerNotif }
+              { salesNotif }
               <img src='http://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
             </a>
-            <ul className={`drawer__menu-child ${sellerClass}`}>
-              <li><a href='#'>Pesanan Baru{sellerNONotif}</a></li>
-              <li><a href='#'>Konfirmasi Pengiriman{sellerSCNotif}</a></li>
-              <li><a href='#'>Status Pengiriman{sellerDSNotif}</a></li>
-              <li><a href='#'>Daftar Transaksi{sellerTLNotif}</a></li>
-              <li><a href='#'>Daftar Produk{sellerPLNotif}</a></li>
-              <li><a href='#'>Etalase Toko{sellerEtalaseNotif}</a></li>
+            <ul className={`drawer__menu-child ${salesClass}`}>
+              <li><a href='#'>Pesanan Baru{salesNONotif}</a></li>
+              <li><a href='#'>Konfirmasi Pengiriman{salesSCNotif}</a></li>
+              <li><a href='#'>Status Pengiriman{salesDSNotif}</a></li>
+              <li><a href='#'>Daftar Transaksi{salesTLNotif}</a></li>
+              <li><a href='#'>Daftar Produk{salesPLNotif}</a></li>
+              <li><a href='#'>Etalase Toko{salesEtalaseNotif}</a></li>
             </ul>
           </div>
           <div className='drawer__menu'>
