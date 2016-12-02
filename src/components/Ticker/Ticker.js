@@ -55,6 +55,8 @@ class Ticker extends Component {
           refreshInterval: nextRefresh
         })
       }
+    }).catch(error => {
+      error // TODO: Logs this to server?
     })
   }
 
