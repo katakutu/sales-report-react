@@ -11,6 +11,9 @@ const PRODUCTION = {
   },
   Lite: {
     Hostname: 'lite-staging.tokopedia.com'
+  },
+  Saldo: {
+    Hostname: 'http://192.168.16.110'
   }
 }
 
@@ -27,6 +30,9 @@ const TEST = {
   },
   Lite: {
     Hostname: 'lite-staging.tokopedia.com'
+  },
+  Saldo: {
+    Hostname: 'https://saldoapp-staging.tokopedia.com'
   }
 }
 
@@ -42,7 +48,10 @@ const DEVELOPMENT = {
     Hostname: 'ws-alpha.tokopedia.com'
   },
   Lite: {
-    Hostname: 'lite-staging.tokopedia.com'
+    Hostname: 'localhost:3000'
+  },
+  Saldo: {
+    Hostname: 'https://saldoapp-staging.tokopedia.com'
   }
 }
 

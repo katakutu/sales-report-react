@@ -8,6 +8,7 @@ export const CONNECTION_OFFLINE = 'CONNECTION_OFFLINE'
 export const USER_SEARCH_ID_STORE = 'USER_SEARCH_ID_STORE'
 export const USER_LOGGED_IN = 'USER_LOGGED_IN'
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
+export const STORE_USER_DATA = 'STORE_USER_DATA'
 
 // temporary state until we moved to new design and remove sidebar
 export const SIDEBAR_STATUS_OPEN = 'SIDEBAR_STATUS_OPEN'
@@ -58,13 +59,21 @@ export function updateSidebarStatus (isOpen) {
   }
 }
 
+export function storeUserData (data) {
+  return {
+    type: STORE_USER_DATA,
+    payload: data
+  }
+}
+
 export const actions = {
   notificationDispatch,
   notificationDismiss,
   updateConnectionStatus,
   storeUserSearchID,
   updateUserLoginStatus,
-  updateSidebarStatus
+  updateSidebarStatus,
+  storeUserData
 }
 
 const ACTION_HANDLERS = {
@@ -85,19 +94,30 @@ const ACTION_HANDLERS = {
     return Object.assign({}, state, { isOnline: action.payload })
   },
   [USER_SEARCH_ID_STORE]: (state, action) => {
-    return Object.assign({}, state, { user: { searchID: action.payload } })
+    return Object.assign({}, state, {
+      user: Object.assign({}, state.user, { searchID: action.payload })
+    })
   },
   [USER_LOGGED_IN]: (state, action) => {
-    return Object.assign({}, state, { user: { loggedIn: action.payload } })
+    return Object.assign({}, state, {
+      user: Object.assign({}, state.user, { loggedIn: action.payload })
+    })
   },
   [USER_LOGGED_OUT]: (state, action) => {
-    return Object.assign({}, state, { user: { loggedIn: action.payload } })
+    return Object.assign({}, state, {
+      user: Object.assign({}, state.user, { loggedIn: action.payload })
+    })
   },
   [SIDEBAR_STATUS_OPEN]: (state, action) => {
     return Object.assign({}, state, { sidebarIsOpen: action.payload })
   },
   [SIDEBAR_STATUS_CLOSED]: (state, action) => {
     return Object.assign({}, state, { sidebarIsOpen: action.payload })
+  },
+  [STORE_USER_DATA]: (state, action) => {
+    return Object.assign({}, state, {
+      user: Object.assign({}, state.user, { data: action.payload })
+    })
   }
 }
 
@@ -109,8 +129,43 @@ const initialState = {
   isOnline: true,
   notifications: [],
   user: {
-    loggedIn: true,
-    searchID: '-'
+    loggedIn: false,
+    searchID: '-',
+    data: {
+      id: '',
+      name: '-',
+      profilePicutre: '',
+      deposit: 'Rp 0',
+      points: 'Rp 0',
+      notifications: {
+        'sales': {
+          'sales_new_order': 0,
+          'sales_shipping_status': 0,
+          'sales_shipping_confirm': 0
+        },
+        'inbox': {
+          'inbox_talk': 0,
+          'inbox_ticket': 0,
+          'inbox_review': 0,
+          'inbox_friend': 0,
+          'inbox_wishlist': 0,
+          'inbox_message': 0,
+          'inbox_reputation': 0
+        },
+        'purchase': {
+          'purchase_reorder': 0,
+          'purchase_payment_conf': 0,
+          'purchase_payment_confirm': 0,
+          'purchase_order_status': 0,
+          'purchase_delivery_confirm': 0
+        },
+        'total_notif': 0,
+        'total_cart': 0,
+        'incr_notif': null,
+        'resolution': 0
+      }
+
+    }
   }
 }
 export default function appReducer (state = initialState, action) {
