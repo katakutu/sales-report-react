@@ -102,7 +102,7 @@ class HeaderHome extends Component {
   }
 
   renderOverlay () {
-    let result = null 
+    let result = null
     if (this.props.sidebarIsOpened) {
       result = <OverlaySplash />
     }
@@ -134,13 +134,13 @@ class HeaderHome extends Component {
     ) : null
 
     const transitionSideBarOptions = {
-      transitionName: "sidebarEffect",
+      transitionName: 'sidebarEffect',
       transitionEnterTimeout: 500,
       transitionLeaveTimeout: 500
     }
 
     const transitionOverlaySplashOptions = {
-      transitionName: "splashEffect",
+      transitionName: 'splashEffect',
       transitionEnterTimeout: 500,
       transitionLeaveTimeout: 500
     }
@@ -190,7 +190,7 @@ class HeaderHome extends Component {
         <ReactCSSTransitionGroup {...transitionSideBarOptions}>
           { this.renderSidebar() }
         </ReactCSSTransitionGroup>
-        
+
         <ReactCSSTransitionGroup {...transitionOverlaySplashOptions}>
           { this.renderOverlay() }
         </ReactCSSTransitionGroup>

@@ -3,14 +3,14 @@
 .header {
     width: 100%;
     background-color: $color-green;
-    /*box-shadow: 1px 0 7px 1px $color-grey-3;
+    box-shadow: 1px 0 7px 1px $color-grey-3;
 
     &.transform {
         position: fixed;
         top: 0;
         left: 0;
         z-index: $z-index-3;
-    }*/
+    }
 }
 
 .header__logo {
@@ -264,7 +264,6 @@
     width: 284px;
     height: 100vh;
     background: $color-white-primary;
-    /*left: -284px;*/
 }
 
 .drawer__title {
@@ -491,44 +490,37 @@
     transform: rotate(132deg);
 }
 
-
-/*React animation for SideBar Nav */
 .sidebarEffect-enter {
-  left: -284px;
+    left: -284px;
 }
 
-
 .sidebarEffect-enter-active {
-  left: 0;
-  -webkit-transition: ease-in .3s all;
-  -moz-transition: ease-in .3s all;
-  transition: ease-in .3s all;
+    left: 0;
+    -webkit-transition: ease-in 0.3s all;
+    -moz-transition: ease-in 0.3s all;
+    transition: ease-in 0.3s all;
 }
 
 .sidebarEffect-leave {
-  left: 0px;
+    left: 0;
 }
 
 .sidebarEffect-leave-active {
-  left: -284px;
-  -webkit-transition: ease-out .2s all;
-  -moz-transition: ease-out .2s all;
-  transition: ease-out .2s all;
+    left: -284px;
+    -webkit-transition: ease-out 0.2s all;
+    -moz-transition: ease-out 0.2s all;
+    transition: ease-out 0.2s all;
 }
 
-/*end state of animation */
-
-
-/*React animation for Black Splash Behind Sidenav */
 .splashEffect-enter {
     opacity: 0.1;
 }
 
 .splashEffect-enter-active {
     opacity: 1;
-    -webkit-transition: ease-in .2s all;
-    -moz-transition: ease-in .2s all;
-    transition: ease-in .2s all;
+    -webkit-transition: ease-in 0.2s all;
+    -moz-transition: ease-in 0.2s all;
+    transition: ease-in 0.2s all;
 }
 
 .splashEffect-leave {
@@ -537,9 +529,7 @@
 
 .splashEffect-leave-active {
     opacity: 0.1;
-    -webkit-transition: ease-out .3s all;
-    -moz-transition: ease-out .3s all;
-    transition: ease-out .3s all;
+    -webkit-transition: ease-out 0.3s all;
+    -moz-transition: ease-out 0.3s all;
+    transition: ease-out 0.3s all;
 }
-
-/*end state of animation */
