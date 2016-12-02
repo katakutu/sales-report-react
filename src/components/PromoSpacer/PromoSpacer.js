@@ -3,7 +3,7 @@ import './PromoSpacer.scss'
 
 export const PromoSpacer = ({ children }) => (
   <div className='promo-spacer'>
-    <a href='#' className='promo-spacer__link'>
+    <a href='https://m.tokopedia.com/promo' className='promo-spacer__link'>
       {/* <i className='promo-spacer__icon promo-spacer__icon--percent' /> */}
       Lihat Semua Promo
       <i className='promo-spacer__icon promo-spacer__icon--arrow' />

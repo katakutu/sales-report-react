@@ -12,7 +12,7 @@ class LoggedOutTab extends Component {
         </div>
         <div className='tab-item'>
           <label className='tab-link'>
-            <a href='/hot?page=1'>Hot List</a>
+            <a href='https://m.tokopedia.com/hot?page=1'>Hot List</a>
           </label>
         </div>
       </div>

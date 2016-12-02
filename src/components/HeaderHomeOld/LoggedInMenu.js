@@ -77,14 +77,14 @@ class LoggedInMenu extends Component {
     let inboxMessageNotif = this.props.notifs['inbox']['inbox_message'] > 0 ? (
       <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_message'] }</span>
     ) : null
-    let inboxPDNotif = this.props.notifs['inbox']['product_discussion'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['product_discussion'] }</span>
+    let inboxPDNotif = this.props.notifs['inbox']['inbox_talk'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_talk'] }</span>
     ) : null
-    let inboxReviewNotif = this.props.notifs['inbox']['inbox_review'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_review'] }</span>
+    let inboxReviewNotif = this.props.notifs['inbox']['inbox_reputation'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_reputation'] }</span>
     ) : null
-    let inboxCSNotif = this.props.notifs['inbox']['customer_service'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['customer_service'] }</span>
+    let inboxCSNotif = this.props.notifs['inbox']['inbox_ticket'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_ticket'] }</span>
     ) : null
     let inboxRCNotif = this.props.notifs['inbox']['resolution_center'] > 0 ? (
       <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['resolution_center'] }</span>
@@ -177,7 +177,7 @@ class LoggedInMenu extends Component {
             </a>
           </div>
           <div className='drawer__menu'>
-            <a href='#'>
+            <a href='https://m.tokopedia.com/?view=wishlist_preview'>
               <img className='drawer__menu-icon' src={wishlistIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Wishlist</span>
             </a>
@@ -190,11 +190,11 @@ class LoggedInMenu extends Component {
               <img src='https://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
             </a>
             <ul className={`drawer__menu-child ${inboxClass}`}>
-              <li><a href='#'>Pesan{inboxMessageNotif}</a></li>
-              <li><a href='#'>Diskusi Produk{inboxPDNotif}</a></li>
-              <li><a href='#'>Ulasan{inboxReviewNotif}</a></li>
-              <li><a href='#'>Layanan Pengguna{inboxCSNotif}</a></li>
-              <li><a href='#'>Pusat Resolusi{inboxRCNotif}</a></li>
+              <li><a href='https://m.tokopedia.com/inbox-message.pl'>Pesan{inboxMessageNotif}</a></li>
+              <li><a href='https://m.tokopedia.com/inbox-talk.pl'>Diskusi Produk{inboxPDNotif}</a></li>
+              <li><a href='https://m.tokopedia.com/inbox-reputation.pl'>Ulasan{inboxReviewNotif}</a></li>
+              <li><a href='https://m.tokopedia.com/inbox-ticket.pl'>Layanan Pengguna{inboxCSNotif}</a></li>
+              <li><a href='https://m.tokopedia.com/resolution-center.pl'>Pusat Resolusi{inboxRCNotif}</a></li>
             </ul>
           </div>
           <div className='drawer__menu' onClick={this.handlePurhcaseClicked}>
@@ -205,11 +205,31 @@ class LoggedInMenu extends Component {
               <img src='https://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
             </a>
             <ul className={`drawer__menu-child ${purchaseClass}`}>
-              <li><a href='#'>Pesan Dibatalkan{purchaseCancelNotif}</a></li>
-              <li><a href='#'>Konfirmasi Pembayaran{purchaseConfirmNotif}</a></li>
-              <li><a href='#'>Status Pemesanan{purchaseOSNotif}</a></li>
-              <li><a href='#'>Konfirmasi Penerimaan{purchaseDCNotif}</a></li>
-              <li><a href='#'>Daftar Transaksi{purchaseTLNotif}</a></li>
+              <li>
+                <a href='https://m.tokopedia.com/tx_order_list.pl?status=5'>
+                  Pesan Dibatalkan{purchaseCancelNotif}
+                </a>
+              </li>
+              <li>
+                <a href='https://m.tokopedia.com/tx_payment_confirm.pl'>
+                  Konfirmasi Pembayaran{purchaseConfirmNotif}
+                </a>
+              </li>
+              <li>
+                <a href='https://m.tokopedia.com/tx_order_status.pl'>
+                  Status Pemesanan{purchaseOSNotif}
+                </a>
+              </li>
+              <li>
+                <a href='https://m.tokopedia.com/tx_order_list.pl?status=9'>
+                  Konfirmasi Penerimaan{purchaseDCNotif}
+                </a>
+              </li>
+              <li>
+                <a href='https://m.tokopedia.com/tx_order_list.pl'>
+                  Daftar Transaksi{purchaseTLNotif}
+                </a>
+              </li>
             </ul>
           </div>
           <div className='drawer__menu' onClick={this.handleSalesClicked}>
@@ -229,7 +249,7 @@ class LoggedInMenu extends Component {
             </ul>
           </div>
           <div className='drawer__menu'>
-            <a href='#'>
+            <a href='/logout'>
               <img className='drawer__menu-icon' src={logoutIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Keluar</span>
             </a>
