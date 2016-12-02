@@ -33,7 +33,7 @@ import iconTiket from './assets/icon-tiket.png'
 export const CategoryList = () => (
   <div className='u-clearfix'>
     <div className='category-list__holder u-clearfix'>
-      <TextHeader>
+      <TextHeader textType={1}>
         Gaya Hidup
       </TextHeader>
 
@@ -99,7 +99,7 @@ export const CategoryList = () => (
     </div>
 
     <div className='category-list__holder u-clearfix'>
-      <TextHeader>
+      <TextHeader textType={1}>
         Teknologi
       </TextHeader>
 
@@ -150,7 +150,7 @@ export const CategoryList = () => (
     </div>
 
     <div className='category-list__holder u-clearfix'>
-      <TextHeader>
+      <TextHeader textType={1}>
         Kategori lain
       </TextHeader>
 
@@ -216,7 +216,7 @@ export const CategoryList = () => (
     </div>
 
     <div className='category-list__holder u-clearfix'>
-      <TextHeader>
+      <TextHeader textType={1}>
         Pembayaran &amp; Top up
       </TextHeader>
 
