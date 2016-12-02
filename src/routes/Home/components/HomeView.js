@@ -29,8 +29,8 @@ class HomeView extends Component {
         <Carousel />
         <PromoSpacer />
         <PromoBanner
-          imageUrl='http://placehold.it/414x90'
-          targetUrl='http://tokopedia.com'
+          imageUrl='https://placehold.it/414x90'
+          targetUrl='https://tokopedia.com'
           imageAlt='Lorem ipsum' />
         <CategoryList />
         <OfficialStoreSection />

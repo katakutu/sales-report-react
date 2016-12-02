@@ -188,7 +188,7 @@ class LoggedInMenu extends Component {
               <img className='drawer__menu-icon' src={inboxIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Kotak Masuk</span>
               { inboxNotif }
-              <img src='http://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
+              <img src='https://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
             </a>
             <ul className={`drawer__menu-child ${inboxClass}`}>
               <li><a href='#'>Pesan{inboxMessageNotif}</a></li>
@@ -203,7 +203,7 @@ class LoggedInMenu extends Component {
               <img className='drawer__menu-icon' src={buyingIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Pembelian</span>
               { purchaseNotif }
-              <img src='http://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
+              <img src='https://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
             </a>
             <ul className={`drawer__menu-child ${purchaseClass}`}>
               <li><a href='#'>Pesan Dibatalkan{purchaseCancelNotif}</a></li>
@@ -218,7 +218,7 @@ class LoggedInMenu extends Component {
               <img className='drawer__menu-icon' src={sellingIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Penjualan</span>
               { salesNotif }
-              <img src='http://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
+              <img src='https://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
             </a>
             <ul className={`drawer__menu-child ${salesClass}`}>
               <li><a href='#'>Pesanan Baru{salesNONotif}</a></li>

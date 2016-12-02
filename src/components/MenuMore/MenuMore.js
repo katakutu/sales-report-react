@@ -7,7 +7,7 @@ export const MenuMore = () => (
   <div className='menu-more u-clearfix'>
     <div className='menu-more__header u-center'>
       <div className='menu-more__header-upper'>
-        <img src='http://placehold.it/50x50' alt='' className='menu-more__avatar' />
+        <img src='https://placehold.it/50x50' alt='' className='menu-more__avatar' />
         <p className='menu-more__username'>Fauzan Arief Rachman</p>
         <p className='menu-more__toppoints'>TopPoints Rp 500.000</p>
       </div>
