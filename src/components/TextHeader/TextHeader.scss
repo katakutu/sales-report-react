@@ -1,17 +1,19 @@
 @import 'base';
 
 .text-header {
-    margin-bottom: 14px;
+    margin: 0 0 14px;
     color: $color-black-primary;
+    font-weight: normal;
     font-size: 14px;
+    line-height: 1;
 }
 
 .text-header::after {
     display: block;
     margin-top: 10px;
-    width: 6%;
+    width: 20px;
     height: 2px;
-    background: $color-orange;
+    background-color: $color-orange;
     content: '';
 }
 

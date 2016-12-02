@@ -8,7 +8,7 @@ import oppoLogo from './assets/oppo.jpg'
 
 export const OfficialStoreSection = () => (
   <div className='u-clearfix official-store'>
-    <TextHeader>
+    <TextHeader textType='h1'>
       Official Store
     </TextHeader>
     <div className='official-store__content u-clearfix u-mxn1'>
