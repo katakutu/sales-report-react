@@ -27,7 +27,7 @@
 
 #autocomplete__container {
     position: absolute;
-    z-index: $z-index-3;
+    z-index: $z-index-before-max-1;
     overflow-y: auto;
     max-height: 330px;
     width: 100%;
@@ -71,14 +71,14 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: $z-index-2;
+    z-index: $z-index-before-max-2;
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.65);
 }
 
 .search-input__modal-active {
-    z-index: $z-index-3;
+    z-index: $z-index-before-max-1;
 
     .search-input,
     .search-input__input,
