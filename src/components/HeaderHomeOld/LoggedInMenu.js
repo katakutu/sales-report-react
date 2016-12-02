@@ -133,7 +133,6 @@ class LoggedInMenu extends Component {
 
     return (
       <div className='drawer active'>
-        <div className='drawer-active__overlay'onClick={this.closeSidebar} />
         <div className='drawer__container u-clearfix'>
           <div className='drawer__title u-clearfix u-relative'>
             <div className='u-left'>MENU</div>
