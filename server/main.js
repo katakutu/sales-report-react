@@ -27,7 +27,7 @@ app.use(session(sessionConfig))
 app.get('/status', (req, res) => res.end('ok'))
 app.get('/login', oauth.login)
 app.get('/logout', oauth.logout)
-app.get('/auth/callback', oauth.redirect)
+app.get('/appauth/code', oauth.redirect)
 
 app.get('/userinfo', oauth.userInfo)
 
