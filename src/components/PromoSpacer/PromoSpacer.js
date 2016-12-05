@@ -1,7 +1,7 @@
 import React from 'react'
 import './PromoSpacer.scss'
 
-import {HOSTNAME} from '../../constants'
+import { HOSTNAME } from '../../constants'
 
 export const PromoSpacer = ({ children }) => (
   <div className='promo-spacer'>

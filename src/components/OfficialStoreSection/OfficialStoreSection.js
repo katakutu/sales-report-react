@@ -6,7 +6,7 @@ import centuryLogo from './assets/century.jpg'
 import lunaLogo from './assets/luna.jpg'
 import oppoLogo from './assets/oppo.jpg'
 
-import {HOSTNAME} from '../../constants'
+import { HOSTNAME } from '../../constants'
 
 export const OfficialStoreSection = () => (
   <div className='u-clearfix official-store'>

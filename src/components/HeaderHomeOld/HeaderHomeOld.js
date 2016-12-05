@@ -15,7 +15,7 @@ import LoggedInTab from './LoggedInTab'
 import LoggedOutTab from './LoggedOutTab'
 import OverlaySplash from './OverlaySplash'
 
-import {HOSTNAME} from '../../constants'
+import { HOSTNAME } from '../../constants'
 
 class HeaderHome extends Component {
   static propTypes = {

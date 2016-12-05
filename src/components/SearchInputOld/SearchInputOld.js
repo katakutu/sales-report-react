@@ -7,7 +7,7 @@ import TopedAceAPI from '../../lib/api/Search/TopedAceAPI'
 import UserSearchID from '../../lib/utils/UserSearchID'
 import { storeUserSearchID } from '../../store/app'
 
-import {HOSTNAME} from '../../constants'
+import { HOSTNAME } from '../../constants'
 
 const api = new TopedAceAPI()
 

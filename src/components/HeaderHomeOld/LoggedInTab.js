@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import TabSlider from 'react-slick'
 
-import {HOSTNAME} from '../../constants'
+import { HOSTNAME } from '../../constants'
 
 var settings = {
   dots: false,

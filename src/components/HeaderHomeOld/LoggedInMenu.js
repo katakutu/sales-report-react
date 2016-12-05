@@ -11,7 +11,7 @@ import shopPhoto from './assets/mobile-shopnophoto.png'
 
 import { updateSidebarStatus } from '../../store/app'
 
-import {HOSTNAME} from '../../constants'
+import { HOSTNAME } from '../../constants'
 
 class LoggedInMenu extends Component {
   static propTypes = {
