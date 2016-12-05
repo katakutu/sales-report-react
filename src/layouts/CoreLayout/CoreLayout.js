@@ -61,7 +61,7 @@ class CoreLayout extends Component {
           timeout={notification.timeout}
           onClick={removeNotif(notification.id)}
           onTimeout={removeNotif(notification.id)}
-          seqNo={index + 1}>
+          seqNo={index}>
           {notification.text}
         </ToastNotification>
       )

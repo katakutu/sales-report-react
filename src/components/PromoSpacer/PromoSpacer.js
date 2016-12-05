@@ -1,9 +1,11 @@
 import React from 'react'
 import './PromoSpacer.scss'
 
+import { HOSTNAME } from '../../constants'
+
 export const PromoSpacer = ({ children }) => (
   <div className='promo-spacer'>
-    <a href='https://m.tokopedia.com/promo' className='promo-spacer__link'>
+    <a href={`${HOSTNAME}/promo`} className='promo-spacer__link'>
       {/* <i className='promo-spacer__icon promo-spacer__icon--percent' /> */}
       Lihat Semua Promo
       <i className='promo-spacer__icon promo-spacer__icon--arrow' />

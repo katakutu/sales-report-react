@@ -11,6 +11,8 @@ import shopPhoto from './assets/mobile-shopnophoto.png'
 
 import { updateSidebarStatus } from '../../store/app'
 
+import { HOSTNAME } from '../../constants'
+
 class LoggedInMenu extends Component {
   static propTypes = {
     notifs: React.PropTypes.object,
@@ -177,7 +179,7 @@ class LoggedInMenu extends Component {
             </a>
           </div>
           <div className='drawer__menu'>
-            <a href='https://m.tokopedia.com/?view=wishlist_preview'>
+            <a href={`${HOSTNAME}/?view=wishlist_preview`}>
               <img className='drawer__menu-icon' src={wishlistIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Wishlist</span>
             </a>
@@ -190,11 +192,11 @@ class LoggedInMenu extends Component {
               <img src='https://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
             </a>
             <ul className={`drawer__menu-child ${inboxClass}`}>
-              <li><a href='https://m.tokopedia.com/inbox-message.pl'>Pesan{inboxMessageNotif}</a></li>
-              <li><a href='https://m.tokopedia.com/inbox-talk.pl'>Diskusi Produk{inboxPDNotif}</a></li>
-              <li><a href='https://m.tokopedia.com/inbox-reputation.pl'>Ulasan{inboxReviewNotif}</a></li>
-              <li><a href='https://m.tokopedia.com/inbox-ticket.pl'>Layanan Pengguna{inboxCSNotif}</a></li>
-              <li><a href='https://m.tokopedia.com/resolution-center.pl'>Pusat Resolusi{inboxRCNotif}</a></li>
+              <li><a href={`${HOSTNAME}/inbox-message.pl`}>Pesan{inboxMessageNotif}</a></li>
+              <li><a href={`${HOSTNAME}/inbox-talk.pl`}>Diskusi Produk{inboxPDNotif}</a></li>
+              <li><a href={`${HOSTNAME}/inbox-reputation.pl`}>Ulasan{inboxReviewNotif}</a></li>
+              <li><a href={`${HOSTNAME}/inbox-ticket.pl`}>Layanan Pengguna{inboxCSNotif}</a></li>
+              <li><a href={`${HOSTNAME}/resolution-center.pl`}>Pusat Resolusi{inboxRCNotif}</a></li>
             </ul>
           </div>
           <div className='drawer__menu' onClick={this.handlePurhcaseClicked}>
@@ -206,27 +208,27 @@ class LoggedInMenu extends Component {
             </a>
             <ul className={`drawer__menu-child ${purchaseClass}`}>
               <li>
-                <a href='https://m.tokopedia.com/tx_order_list.pl?status=5'>
+                <a href={`${HOSTNAME}/tx_order_list.pl?status=5`}>
                   Pesan Dibatalkan{purchaseCancelNotif}
                 </a>
               </li>
               <li>
-                <a href='https://m.tokopedia.com/tx_payment_confirm.pl'>
+                <a href={`${HOSTNAME}/tx_payment_confirm.pl`}>
                   Konfirmasi Pembayaran{purchaseConfirmNotif}
                 </a>
               </li>
               <li>
-                <a href='https://m.tokopedia.com/tx_order_status.pl'>
+                <a href={`${HOSTNAME}/tx_order_status.pl`}>
                   Status Pemesanan{purchaseOSNotif}
                 </a>
               </li>
               <li>
-                <a href='https://m.tokopedia.com/tx_order_list.pl?status=9'>
+                <a href={`${HOSTNAME}/tx_order_list.pl?status=9`}>
                   Konfirmasi Penerimaan{purchaseDCNotif}
                 </a>
               </li>
               <li>
-                <a href='https://m.tokopedia.com/tx_order_list.pl'>
+                <a href={`${HOSTNAME}/tx_order_list.pl`}>
                   Daftar Transaksi{purchaseTLNotif}
                 </a>
               </li>
