@@ -6,6 +6,8 @@ import centuryLogo from './assets/century.jpg'
 import lunaLogo from './assets/luna.jpg'
 import oppoLogo from './assets/oppo.jpg'
 
+import {HOSTNAME} from '../../constants'
+
 export const OfficialStoreSection = () => (
   <div className='u-clearfix official-store'>
     <TextHeader textType={1}>
@@ -14,7 +16,7 @@ export const OfficialStoreSection = () => (
     <div className='official-store__content u-clearfix u-mxn1'>
 
       <div className='u-col u-col-3 u-px1'>
-        <a href='https://m.tokopedia.com/ramayana'
+        <a href={`${HOSTNAME}/ramayana`}
           data-value='Ramayana Dept Store'
           className='official-store__link u-center'>
           <div className='u-table'>
@@ -29,7 +31,7 @@ export const OfficialStoreSection = () => (
       </div>
 
       <div className='u-col u-col-3 u-px1'>
-        <a href='https://m.tokopedia.com/century-online'
+        <a href={`${HOSTNAME}/century-online`}
           data-value='CENTURY HEALTHCARE'
           className='official-store__link u-center'>
           <div className='u-table'>
@@ -44,7 +46,7 @@ export const OfficialStoreSection = () => (
       </div>
 
       <div className='u-col u-col-3 u-px1'>
-        <a href='https://m.tokopedia.com/luna'
+        <a href={`${HOSTNAME}/luna`}
           data-value='LUNA OFFICIAL STORE'
           className='official-store__link u-center'>
           <div className='u-table'>
@@ -59,7 +61,7 @@ export const OfficialStoreSection = () => (
       </div>
 
       <div className='u-col u-col-3 u-px1'>
-        <a href='https://m.tokopedia.com/oppo'
+        <a href={`${HOSTNAME}/oppo`}
           data-value='OPPO OFFICIAL STORE'
           className='official-store__link u-center'>
           <div className='u-table'>

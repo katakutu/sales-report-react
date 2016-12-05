@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import TabSlider from 'react-slick'
 
+import {HOSTNAME} from '../../constants'
+
 var settings = {
   dots: false,
   arrows: true,
@@ -24,22 +26,22 @@ class LoggedInTab extends Component {
         </div>
         <div className='tab-item'>
           <label className='tab-link'>
-            <a href='https://m.tokopedia.com/?view=feed_preview'>Feed</a>
+            <a href={`${HOSTNAME}/?view=feed_preview`}>Feed</a>
           </label>
         </div>
         <div className='tab-item'>
           <label className='tab-link'>
-            <a href='https://m.tokopedia.com/fav-shop.pl?view=1'>Favorit</a>
+            <a href={`${HOSTNAME}/fav-shop.pl?view=1`}>Favorit</a>
           </label>
         </div>
         <div className='tab-item'>
           <label className='tab-link'>
-            <a href='https://m.tokopedia.com/hot?page=1'>Hot List</a>
+            <a href={`${HOSTNAME}/hot?page=1`}>Hot List</a>
           </label>
         </div>
         <div className='tab-item'>
           <label className='tab-link'>
-            <a href='https://m.tokopedia.com/?view=wishlist_preview'>Wishlist</a>
+            <a href={`${HOSTNAME}/?view=wishlist_preview`}>Wishlist</a>
           </label>
         </div>
       </TabSlider>

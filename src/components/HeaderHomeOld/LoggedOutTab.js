@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
+import {HOSTNAME} from '../../constants'
+
 class LoggedOutTab extends Component {
   render () {
     return (
@@ -12,7 +14,7 @@ class LoggedOutTab extends Component {
         </div>
         <div className='tab-item'>
           <label className='tab-link'>
-            <a href='https://m.tokopedia.com/hot?page=1'>Hot List</a>
+            <a href={`${HOSTNAME}/hot?page=1`}>Hot List</a>
           </label>
         </div>
       </div>

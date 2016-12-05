@@ -15,6 +15,8 @@ import LoggedInTab from './LoggedInTab'
 import LoggedOutTab from './LoggedOutTab'
 import OverlaySplash from './OverlaySplash'
 
+import {HOSTNAME} from '../../constants'
+
 class HeaderHome extends Component {
   static propTypes = {
     updateUserLoginStatus: React.PropTypes.func,
@@ -173,7 +175,7 @@ class HeaderHome extends Component {
             }
 
             <div className='header__cart'>
-              <a href='https://m.tokopedia.com/tx.pl' rel='nofollow' className='header__cart-link'>
+              <a href={`${HOSTNAME}/tx.pl`} rel='nofollow' className='header__cart-link'>
                 <span>Cart</span>
               </a>
               { cartNotif }

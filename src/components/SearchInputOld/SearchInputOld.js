@@ -7,6 +7,8 @@ import TopedAceAPI from '../../lib/api/Search/TopedAceAPI'
 import UserSearchID from '../../lib/utils/UserSearchID'
 import { storeUserSearchID } from '../../store/app'
 
+import {HOSTNAME} from '../../constants'
+
 const api = new TopedAceAPI()
 
 class SearchInputOld extends Component {
@@ -75,7 +77,7 @@ class SearchInputOld extends Component {
               <h6>{ this._sentenceCase(selection['name']) }</h6>
               <ul>
                 { selection['items'].map((item, iIndex) => {
-                  return (<li key={`it-${iIndex}`}><a href={item.url}>{ item.keyword }</a></li>)
+                  return (<li key={`it-${iIndex}`}><a href={`${HOSTNAME}${item.url}`}>{ item.keyword }</a></li>)
                 }) }
               </ul>
             </div>
