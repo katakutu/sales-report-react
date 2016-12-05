@@ -27,6 +27,7 @@ class HomeView extends Component {
       <div>
         <Ticker />
         <Carousel />
+        <div id="widget-dmw" />
         <PromoSpacer />
         <PromoBanner
           imageUrl='https://placehold.it/414x90'
