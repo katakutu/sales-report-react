@@ -14,7 +14,7 @@ Tokopedia progressive mobile web app
 ## Requirements (dev machine)
 
 * Hostname set to `lite-devel`. 
-  This is for the authentication system, for which the callback is in `lite-devel:3000/auth/callback`.
+  This is for the authentication system, for which the callback is in `lite-devel:3000/appauth/code`.
   For development, make sure you can access your app via http://lite-devel:3000/ in browser.
 
 ## Getting Started
