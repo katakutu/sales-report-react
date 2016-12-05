@@ -1,10 +1,10 @@
 @import 'base';
 
 .ticker {
-    background-color: #FAFDCD;
-    color: rgba(0, 0, 0, 0.54);
-    line-height: 1.8em;
-    padding: 2vh 3vw;
+    padding: 10px;
+    width: 100%;
+    background-color: $color-tint;
+    color: $color-black-disabled;
     text-align: center;
-    width: 100vw;
+    line-height: 1.4;
 }
