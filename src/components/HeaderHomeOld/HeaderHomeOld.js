@@ -81,6 +81,7 @@ class HeaderHome extends Component {
   openSidebarMenu () {
     this.props.updateSidebarStatus(true)
     Scroll.animateScroll.scrollToTop({ smooth: false, duration: 0 })
+    this.setState({ showSearch: true })
   }
 
   renderTabs () {
