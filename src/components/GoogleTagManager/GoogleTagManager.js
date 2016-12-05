@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import gtmParts from 'react-google-tag-manager'
 
-class PulsaWidget extends Component {
+class GoogleTagManager extends Component {
   static propTypes = {
-    gtmId: React.PropTypes.string.isRequired,
+    gtmID: React.PropTypes.string.isRequired,
     dataLayerName: React.PropTypes.string,
     additionalEvents: React.PropTypes.object,
     scriptId: React.PropTypes.string
@@ -16,13 +16,15 @@ class PulsaWidget extends Component {
     if (!window[dataLayerName]) {
       const gtmScriptNode = document.getElementById(scriptId)
 
-      console.log(gtmScriptNode.textContent)
+      /* eslint-disable no-eval */
+      eval(gtmScriptNode.textContent)
+      /* eslint-enable no-eval */
     }
   }
 
   render () {
     const gtm = gtmParts({
-      id: this.props.gtmId,
+      id: this.props.gtmID,
       dataLayerName: this.props.dataLayerName || 'dataLayer',
       additionalEvents: this.props.additionalEvents || {}
     })
@@ -38,4 +40,4 @@ class PulsaWidget extends Component {
   }
 }
 
-export default PulsaWidget
+export default GoogleTagManager
