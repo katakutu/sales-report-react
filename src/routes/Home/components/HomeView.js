@@ -28,7 +28,7 @@ class HomeView extends Component {
         <Ticker />
         <Carousel />
         <PromoSpacer />
-        <div id='widget-dmw' /> { /* Pulsa widget container */ }
+        <div id='widget-dmw' className='u-clearfix u-mb2 u-mt0' /> { /* Pulsa widget container */ }
         <PromoBanner
           imageUrl='https://placehold.it/414x90'
           targetUrl='https://tokopedia.com'
