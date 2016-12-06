@@ -36,8 +36,7 @@ import iconTiket from './assets/icon-tiket.png'
 const utm = '?utm_source=mobile&utm_medium=categories%20after%20log%20in'
 
 export const CategoryList = () => (
-  // #home-category is for editor's pick GTM
-  <div id='home-category' className='u-clearfix'>
+  <div className='u-clearfix'>
     <div className='category-list__holder u-clearfix'>
       <TextHeader textType={1}>
         Gaya Hidup
@@ -221,7 +220,8 @@ export const CategoryList = () => (
       </div>
     </div>
 
-    <div className='category-list__holder u-clearfix'>
+    { /* #home-category is for editor's pick GTM */ }
+    <div id='home-category' className='category-list__holder u-clearfix'>
       <TextHeader textType={1}>
         Pembayaran &amp; Top up
       </TextHeader>

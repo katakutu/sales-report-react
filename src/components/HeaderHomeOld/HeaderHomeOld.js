@@ -55,12 +55,18 @@ class HeaderHome extends Component {
           'name': userinfo['name'],
           'profilePicture': userinfo['profilePicture'],
           'deposit': userinfo['deposit'],
+          'points': userinfo['points'],
           'notifications': userinfo['notifications']
         })
       } else {
         this.props.updateUserLoginStatus(false)
         this.props.storeUserData(initialState)
       }
+    }).catch(error => {
+      error
+
+      this.props.updateUserLoginStatus(false)
+      this.props.storeUserData(initialState)
     })
   }
 
