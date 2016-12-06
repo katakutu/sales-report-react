@@ -67,7 +67,7 @@ module.exports = {
         const token = oauth2.accessToken.create(result)
         req.session.oauth = token
 
-        return res.redirect('/')
+        return res.redirect(`${GlobalConfig['Hostname']}/?view=feed_preview`)
       })
     }
   },
