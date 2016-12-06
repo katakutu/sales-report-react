@@ -8,6 +8,7 @@ const oauth = require('./oauth')
 const GlobalConfig = require('../GlobalConfig')
 const session = require('express-session')
 const morgan = require('morgan')
+const graphql = require('./graphql')
 
 const app = express()
 const paths = config.utils_paths
@@ -23,6 +24,7 @@ if (config.globals.__PROD__) {
 }
 app.use(morgan('combined'))
 app.use(session(sessionConfig))
+app.use('/graphql', graphql)
 
 app.get('/status', (req, res) => res.end('ok'))
 app.get('/login', oauth.login)
@@ -30,6 +32,7 @@ app.get('/logout', oauth.logout)
 app.get('/appauth/code', oauth.redirect)
 
 app.get('/userinfo', oauth.userInfo)
+
 
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement universal
