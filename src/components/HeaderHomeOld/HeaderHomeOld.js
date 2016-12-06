@@ -62,7 +62,7 @@ class HeaderHome extends Component {
         this.props.storeUserData(initialState)
       }
     }).catch(error => {
-      error; 
+      error
 
       this.props.updateUserLoginStatus(false)
       this.props.storeUserData(initialState)
