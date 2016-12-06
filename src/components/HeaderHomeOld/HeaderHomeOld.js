@@ -55,6 +55,7 @@ class HeaderHome extends Component {
           'name': userinfo['name'],
           'profilePicture': userinfo['profilePicture'],
           'deposit': userinfo['deposit'],
+          'points': userinfo['points'],
           'notifications': userinfo['notifications']
         })
       } else {

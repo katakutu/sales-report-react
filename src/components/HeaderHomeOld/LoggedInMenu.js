@@ -147,7 +147,7 @@ class LoggedInMenu extends Component {
             </div>
           </div>
           <div className='drawer__user-box'>
-            <img className='drawer__user-photo' src={this.props.userData.profilePicutre} alt='tokopedia' />
+            <img className='drawer__user-photo' src={this.props.userData.profilePicture} alt='tokopedia' />
             <div className='drawer__username u-mt1'>{ this.props.userData.name }</div>
           </div>
           <div className='drawer__user-summary u-clearfix'>
