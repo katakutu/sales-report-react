@@ -19,7 +19,8 @@ class AppContainer extends Component {
   }
 
   componentDidMount () {
-    document.querySelector('#splash-screen').remove()
+    let splashScreen = document.querySelector('#splash-screen')
+    if (splashScreen) splashScreen.remove()
   }
 
   render () {
