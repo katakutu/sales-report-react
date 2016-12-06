@@ -63,7 +63,7 @@ class Carousel extends Component {
   _createCarouselItems (image, index) {
     return (
       <div className='carousel__item' key={`car-${index}`}>
-        <a href={image.redirect_url} className='u-text-decoration-none'>
+        <a href={image.redirect_url} className='u-text-decoration-none' target='_blank'>
           <div className='carousel__item-container u-mx-auto u-block'>
             <picture className='carousel__img u-fit u-mx-auto' alt={image.title}>
               <source srcSet={image.image_url} />
