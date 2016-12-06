@@ -42,10 +42,10 @@ class LoggedOutMenu extends Component {
             <img className='drawer__banner-img' src={bannerDrawer} alt='tokopedia' />
           </div>
           <div className='drawer__menu'>
-            <Link to='/'>
+            <a href='/'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Beranda</span>
-            </Link>
+            </a>
           </div>
           <div className='drawer__menu'>
             <a href='/login'>
