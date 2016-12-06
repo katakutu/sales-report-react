@@ -15,6 +15,10 @@ const PRODUCTION = {
     Points: {
         Hostname: 'https://points.tokopedia.com',
         Secret: '4lclover'
+    },
+    Redis: {
+        host: '',
+        port: ''
     }
 }
 
@@ -33,8 +37,11 @@ const TEST = {
     Points: {
         Hostname: 'https://points-staging.tokopedia.com',
         Secret: '4lclover'
+    },
+    Redis: {
+        host: '10.0.11.50',
+        port: 6381
     }
-
 }
 
 const DEVELOPMENT = {
@@ -52,8 +59,11 @@ const DEVELOPMENT = {
     Points: {
         Hostname: 'https://points-staging.tokopedia.com',
         Secret: '4lclover'
+    },
+    Redis: {
+        host: '127.0.0.1',
+        port: 6379
     }
-
 }
 
 let globalConfig = DEVELOPMENT
