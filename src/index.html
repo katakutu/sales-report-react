@@ -35,9 +35,22 @@
     <link rel="apple-touch-icon" href="https://ecs7.tokopedia.net/img/notification/toped-icon.png"/>
     <link rel="apple-touch-startup-image" href="https://ecs7.tokopedia.net/img/notification/toped-icon.png">
     <link rel="shortcut icon" href="https://ecs7.tokopedia.net/img/favicon.ico?v=20140313">
+    <style type="text/css">
+      #splash-screen {
+        align-items: center;
+        background-color: #42b549;
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        width: 100vw;
+      }
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   </head>
   <body>
+    <div id="splash-screen">
+      <img src="/media/images/toped.gif" alt="Tokopedia">
+    </div>
     <div id="root"></div>
 
     <noscript>

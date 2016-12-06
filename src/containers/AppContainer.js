@@ -18,6 +18,10 @@ class AppContainer extends Component {
     ReactGA.pageview(window.location.pathname)
   }
 
+  componentDidMount() {
+    document.querySelector('#splash-screen').remove()
+  }
+
   render () {
     const { routes, store } = this.props
 
