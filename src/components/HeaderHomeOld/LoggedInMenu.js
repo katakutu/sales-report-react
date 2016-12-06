@@ -173,7 +173,7 @@ class LoggedInMenu extends Component {
             </div>
           </div>
           <div className='drawer__menu'>
-            <a href='#'>
+            <a href='/'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Beranda</span>
             </a>
