@@ -73,7 +73,7 @@ module.exports = {
   },
   userInfo: function (req, res, next) {
     if (!req.session.oauth) {
-      return res.status(403).json({ error: 'User is not logged in!' })
+      return res.status(200).json({ error: 'User is not logged in!' })
     }
 
     const fetch = require('isomorphic-fetch')
