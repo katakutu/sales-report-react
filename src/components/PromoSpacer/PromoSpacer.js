@@ -4,13 +4,12 @@ import './PromoSpacer.scss'
 import { HOSTNAME } from '../../constants'
 
 export const PromoSpacer = ({ children }) => (
-  <div className='promo-spacer'>
-    <a href={`${HOSTNAME}/promo`} className='promo-spacer__link' target='_blank'>
-      {/* <i className='promo-spacer__icon promo-spacer__icon--percent' /> */}
-      Lihat Semua Promo
-      <i className='promo-spacer__icon promo-spacer__icon--arrow' />
-    </a>
-  </div>
+  <a href={`${HOSTNAME}/promo`} className='promo-spacer__link' target='_blank'>
+    {/* <i className='promo-spacer__icon promo-spacer__icon--percent' /> */}
+    Lihat Semua Promo
+    <i className='promo-spacer__icon promo-spacer__icon--arrow' />
+    <div className='u-clearfix'></div>
+  </a>
 )
 
 PromoSpacer.propTypes = {
