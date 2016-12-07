@@ -68,6 +68,16 @@ class SearchInputOld extends Component {
     })
   }
 
+  componentDidMount () {
+    // Testing purpose only, will be removed on last push
+    api.searchCatalog('sample', '', '').then(
+      (res) => {
+        console.log('catalog search');
+        console.log(res);
+      });
+      
+  }
+
   render () {
     let autocomplete = this.state.showSelection ? (
       <div id='autocomplete__container'>
