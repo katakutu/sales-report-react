@@ -2,6 +2,7 @@ const config = require('./config')
 
 const PRODUCTION = {
     Hostname: 'https://m.tokopedia.com',
+    SessionCookieID: '_SID_Tokopedia_',
     Accounts: {
         Hostname: 'https://accounts.tokopedia.com',
         Callback: 'https://m.tokopedia.com/appauth/code'
@@ -24,6 +25,7 @@ const PRODUCTION = {
 
 const TEST = {
     Hostname: 'https://m-staging.tokopedia.com',
+    SessionCookieID: '_SID_Tokopedia_Coba_',
     Accounts: {
         Hostname: 'https://accounts-staging.tokopedia.com',
         Callback: 'https://lite-staging.tokopedia.com/appauth/code'
@@ -46,6 +48,7 @@ const TEST = {
 
 const DEVELOPMENT = {
     Hostname: 'https://m-staging.tokopedia.com',
+    SessionCookieID: '_SID_Tokopedia_Coba_',
     Accounts: {
         Hostname: 'https://accounts-alpha.tokopedia.com',
         Callback: 'http://lite-devel:3000/appauth/code'
