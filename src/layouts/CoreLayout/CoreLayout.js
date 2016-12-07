@@ -8,10 +8,12 @@ import { notificationDismiss, notificationDispatch, updateConnectionStatus } fro
 
 import OnOffWrapper from '../../components/Events/OnOffWrapper'
 import ToastNotification from '../../components/ToastNotification'
+import Spinner from '../../components/Loading/Spinner'
 
 class CoreLayout extends Component {
   static propTypes = {
     children: React.PropTypes.element.isRequired,
+    isLoading: React.PropTypes.bool,
     isOnline: React.PropTypes.bool,
     notificationDismiss: React.PropTypes.func,
     notificationDispatch: React.PropTypes.func,
@@ -77,13 +79,15 @@ class CoreLayout extends Component {
         <div style={ds}>
           <HeaderHomeOld />
 
+          { this.props.isLoading && <Spinner /> }
+
           <div className='content'>
             {this.props.children}
           </div>
 
           <Footer />
 
-          {this.props.notifications.length > 0 ? this.renderNotifications() : null}
+          { this.props.notifications.length > 0 ? this.renderNotifications() : null }
         </div>
       </OnOffWrapper>
     )
@@ -95,6 +99,7 @@ const mapDispatchToProps = {
 }
 const mapStateToProps = (state) => {
   return {
+    isLoading: state['app'] ? state['app'].isLoading : state.isLoading,
     isOnline: state['app'] ? state['app'].isOnline : state.isOnline,
     notifications: state['app'] ? state['app'].notifications : state.notifications
   }

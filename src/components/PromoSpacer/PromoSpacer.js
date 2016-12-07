@@ -8,7 +8,7 @@ export const PromoSpacer = ({ children }) => (
     {/* <i className='promo-spacer__icon promo-spacer__icon--percent' /> */}
     Lihat Semua Promo
     <i className='promo-spacer__icon promo-spacer__icon--arrow' />
-    <div className='u-clearfix'></div>
+    <div className='u-clearfix' />
   </a>
 )
 
