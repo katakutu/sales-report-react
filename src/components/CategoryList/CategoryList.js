@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { HOSTNAME } from '../../constants'
+import { HOSTNAME, SITES } from '../../constants'
 
 import './CategoryList.scss'
 import TextHeader from '../../components/TextHeader'
@@ -36,8 +36,7 @@ import iconTiket from './assets/icon-tiket.png'
 const utm = '?utm_source=mobile&utm_medium=categories%20after%20log%20in'
 
 export const CategoryList = () => (
-  // #home-category is for editor's pick GTM
-  <div id='home-category' className='u-clearfix'>
+  <div className='u-clearfix'>
     <div className='category-list__holder u-clearfix'>
       <TextHeader textType={1}>
         Gaya Hidup
@@ -221,20 +220,21 @@ export const CategoryList = () => (
       </div>
     </div>
 
-    <div className='category-list__holder u-clearfix'>
+    { /* #home-category is for editor's pick GTM */ }
+    <div id='home-category' className='category-list__holder u-clearfix'>
       <TextHeader textType={1}>
         Pembayaran &amp; Top up
       </TextHeader>
 
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
-          <a href={`https://pulsa.tokopedia.com/${utm}&utm_campaign=pulsa%20icon`}>
+          <a href={`${SITES['Pulsa']}${utm}&utm_campaign=pulsa%20icon`} target='_blank'>
             <img src={iconPulsa} alt='Logo kategori Pulsa' />
             <span className='category-list__name'>Pulsa</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
-          <a href={`https://pulsa.tokopedia.com/saldo/${utm}&utm_campaign=token%20listrik%20icon`}>
+          <a href={`${SITES['Pulsa']}/saldo/${utm}&utm_campaign=token%20listrik%20icon`} target='_blank'>
             <img src={iconSaldo} alt='Logo kategori Saldo' />
             <span className='category-list__name'>Saldo</span>
           </a>
@@ -243,13 +243,13 @@ export const CategoryList = () => (
 
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
-          <a href={`https://pulsa.tokopedia.com/paket-data/${utm}&utm_campaign=paket%20data%20icon`}>
+          <a href={`${SITES['Pulsa']}/paket-data/${utm}&utm_campaign=paket%20data%20icon`} target='_blank'>
             <img src={iconPaketData} alt='Logo kategori Paket Data' />
             <span className='category-list__name'>Paket Data</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
-          <a href={`https://pulsa.tokopedia.com/bpjs-kesehatan/${utm}&utm_campaign=bpjs%20kesehatan%20icon`}>
+          <a href={`${SITES['Pulsa']}/bpjs-kesehatan/${utm}&utm_campaign=bpjs%20kesehatan%20icon`} target='_blank'>
             <img src={iconBpjs} alt='Logo kategori BPJS' />
             <span className='category-list__name'>BPJS</span>
           </a>
@@ -258,13 +258,13 @@ export const CategoryList = () => (
 
       <div className='u-col u-col-12 category-list__box'>
         <div className='u-col u-col-6 category-list__content'>
-          <a href={`https://pulsa.tokopedia.com/token-listrik/${utm}&utm_campaign=token%20listrik%20icon`}>
+          <a href={`${SITES['Pulsa']}/token-listrik/${utm}&utm_campaign=token%20listrik%20icon`} target='_blank'>
             <img src={iconTokenListrik} alt='Logo kategori Token Listrik' />
             <span className='category-list__name'>Token Listrik</span>
           </a>
         </div>
         <div className='u-col u-col-6 category-list__content'>
-          <a href={`https://tiket.tokopedia.com/kereta-api/${utm}&utm_campaign=tiket%20kereta%20icon`}>
+          <a href={`${SITES['Tiket']}/kereta-api/${utm}&utm_campaign=tiket%20kereta%20icon`} target='_blank'>
             <img src={iconTiket} alt='Logo kategori Tiket' />
             <span className='category-list__name'>Tiket</span>
           </a>

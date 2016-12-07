@@ -2,7 +2,6 @@
 
 .promo-spacer {
     position: relative;
-    z-index: 0;
     margin-bottom: 7px;
     width: 100%;
     height: 24px;
@@ -14,7 +13,7 @@
 
 .promo-spacer__link {
     z-index: $z-index-4;
-    display: inline-block;
+    float: right;
     color: $color-green;
     text-decoration: none;
     font-size: 12px;

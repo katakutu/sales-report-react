@@ -11,7 +11,7 @@ import shopPhoto from './assets/mobile-shopnophoto.png'
 
 import { updateSidebarStatus } from '../../store/app'
 
-import { HOSTNAME } from '../../constants'
+import { HOSTNAME, SITES } from '../../constants'
 
 class LoggedInMenu extends Component {
   static propTypes = {
@@ -65,6 +65,8 @@ class LoggedInMenu extends Component {
     let inboxClass = (!this.state.inboxIsOpen) ? 'u-display-none' : ''
     let purchaseClass = (!this.state.purchaseIsOpen) ? 'u-display-none' : ''
     let salesClass = (!this.state.salesIsOpen) ? 'u-display-none' : ''
+
+    let topupLink = `${SITES['Pulsa']}/saldo/?utm_source=mobile&utm_medium=link&utm_campaign=top%20up%20saldo`
 
     let inboxNotif = this._totalObjectValues(this.props.notifs['inbox']) > 0 ? (
       <span className='drawer__menu-notif' />
@@ -147,7 +149,7 @@ class LoggedInMenu extends Component {
             </div>
           </div>
           <div className='drawer__user-box'>
-            <img className='drawer__user-photo' src={this.props.userData.profilePicutre} alt='tokopedia' />
+            <img className='drawer__user-photo' src={this.props.userData.profilePicture} alt='tokopedia' />
             <div className='drawer__username u-mt1'>{ this.props.userData.name }</div>
           </div>
           <div className='drawer__user-summary u-clearfix'>
@@ -161,7 +163,7 @@ class LoggedInMenu extends Component {
             </div>
           </div>
           <div className='drawer__user-topup'>
-            <a href='#' className='drawer__btn-topup'>Top Up Saldo</a>
+            <a href={topupLink} className='drawer__btn-topup'>Top Up Saldo</a>
           </div>
           <div className='drawer__menu-shop u-clearfix'>
             <div className='u-left'>
@@ -173,7 +175,7 @@ class LoggedInMenu extends Component {
             </div>
           </div>
           <div className='drawer__menu'>
-            <a href='#'>
+            <a href='/'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Beranda</span>
             </a>

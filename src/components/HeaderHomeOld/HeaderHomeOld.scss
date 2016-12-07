@@ -180,7 +180,7 @@
 
     .slick-prev {
         left: 0;
-        background: linear-gradient(90deg, $color-green, rgba(66, 189, 65, 0.05)) !important;
+        background: linear-gradient(90deg, $color-green, rgba(66, 181, 73, 0.05)) !important;
 
         &::before {
             left: 5px;
@@ -192,7 +192,7 @@
 
     .slick-next {
         right: 0;
-        background: linear-gradient(-90deg, $color-green, rgba(66, 189, 65, 0.05)) !important;
+        background: linear-gradient(-90deg, $color-green, rgba(66, 181, 73, 0.05)) !important;
 
         &::before {
             right: 5px;
@@ -255,11 +255,11 @@
 
 .drawer-active__overlay {
     position: fixed;
+    top: 0;
     z-index: $z-index-before-max-1;
     width: 100%;
     height: 100%;
     background: $color-black-secondary;
-    top: 0;
 }
 
 .drawer__container {

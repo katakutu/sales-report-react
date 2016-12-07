@@ -1,18 +1,15 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#42B549" />
-    <link rel="manifest" href="manifest.json">
     <title>Jual Beli Online Aman dan Nyaman - Tokopedia</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
     <!--Add to homescreen And color theme-->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Tokopedia">
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <!-- Theme color for chrome, firefox and opera-->
+    <meta name="theme-color" content="#42B549" />
     <!-- Windows Phone -->
     <meta name="msapplication-navbutton-color" content="#42b549">
     <!-- iOS Safari -->
@@ -21,6 +18,7 @@
     <meta name="HandheldFriendly" content="true" />
     <meta name="title" content="Jual Beli Online Aman dan Nyaman - Tokopedia" />
     <meta name="description" content="Mal online terbesar Indonesia, tempat berkumpulnya toko / online shop terpercaya se Indonesia. Jual beli online semakin aman dan nyaman di Tokopedia." />
+    <meta name="robots" content="index,follow">
     <meta name="format-detection" content="telephone=no">
     <link rel="canonical" href="https://www.tokopedia.com/" />
     <link rel="alternate" href="android-app://com.tokopedia.tkpd/https/www.tokopedia.com/" />
@@ -32,12 +30,47 @@
     <meta property="og:image" content="https://ecs7.tokopedia.net/img/og_image_default.jpg"/>
     <meta name="msvalidate.01" content="3104E882307BB6900F56D266DC8320F6" />
     <link href="https://www.tokopedia.com/opensearch.xml" title="Tokopedia Search" type="application/opensearchdescription+xml" rel="search">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="manifest" href="manifest.json">
+
     <link rel="apple-touch-icon" href="https://ecs7.tokopedia.net/img/notification/toped-icon.png"/>
     <link rel="apple-touch-startup-image" href="https://ecs7.tokopedia.net/img/notification/toped-icon.png">
     <link rel="shortcut icon" href="https://ecs7.tokopedia.net/img/favicon.ico?v=20140313">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+    <style type="text/css">
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #splash-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: #42B549;
+      }
+
+      #splash-screen img {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        display: block;
+        margin-top: -93px;
+        margin-left: -82.5px;
+      }
+    </style>
+    <script async src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   </head>
   <body>
+    <div id="splash-screen">
+      <img src="/media/images/toped.gif" alt="Tokopedia">
+    </div>
     <div id="root"></div>
 
     <noscript>
