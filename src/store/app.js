@@ -10,6 +10,9 @@ export const USER_LOGGED_IN = 'USER_LOGGED_IN'
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
 export const STORE_USER_DATA = 'STORE_USER_DATA'
 
+export const APP_IS_LOADING = 'IS_LOADING'
+export const APP_IS_NOT_LOADING = 'IS_NOT_LOADING'
+
 // temporary state until we moved to new design and remove sidebar
 export const SIDEBAR_STATUS_OPEN = 'SIDEBAR_STATUS_OPEN'
 export const SIDEBAR_STATUS_CLOSED = 'SIDEBAR_STATUS_CLOSED'
@@ -66,6 +69,13 @@ export function storeUserData (data) {
   }
 }
 
+export function appIsLoading (isLoading) {
+  return {
+    type: isLoading ? APP_IS_LOADING : APP_IS_NOT_LOADING,
+    payload: isLoading
+  }
+}
+
 export const actions = {
   notificationDispatch,
   notificationDismiss,
@@ -73,7 +83,8 @@ export const actions = {
   storeUserSearchID,
   updateUserLoginStatus,
   updateSidebarStatus,
-  storeUserData
+  storeUserData,
+  appIsLoading
 }
 
 const ACTION_HANDLERS = {
@@ -118,6 +129,12 @@ const ACTION_HANDLERS = {
     return Object.assign({}, state, {
       user: Object.assign({}, state.user, { data: action.payload })
     })
+  },
+  [APP_IS_LOADING]: (state, action) => {
+    return Object.assign({}, state, { isLoading: action.payload })
+  },
+  [APP_IS_NOT_LOADING]: (state, action) => {
+    return Object.assign({}, state, { isLoading: action.payload })
   }
 }
 
@@ -127,6 +144,7 @@ const ACTION_HANDLERS = {
 const initialState = {
   sidebarIsOpen: false,
   isOnline: true,
+  isLoading: false,
   notifications: [],
   user: {
     loggedIn: false,
