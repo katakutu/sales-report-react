@@ -46,7 +46,7 @@ module.exports = {
     })
   },
   redirect: function (req, res, next) {
-      // already logged in
+    // already logged in
     if (req.session.oauth) {
       return res.redirect('/')
     }
@@ -54,7 +54,7 @@ module.exports = {
     const code = req.query.code
     const options = { code }
 
-      // make sure returned state is the same, to prevent CSRF
+    // make sure returned state is the same, to prevent CSRF
     if (req.session.oauthState !== req.query.state) {
       // TODO: error message / redirect to special page?
       return res.redirect('/')
@@ -73,7 +73,14 @@ module.exports = {
 
         apiConsumer.getUserInfo(token['token_type'], token['access_token']).then(user => {
           session.createUserSession(user, token)
-          res.cookie(GlobalConfig['SessionCookieID'], sid)
+
+          const cookieOpt = {
+            domain: GlobalConfig['Cookie']['Domain'],
+            expires: GlobalConfig['Cookie']['MaxAge'],
+            httpOnly: true,
+            maxAge: GlobalConfig['Cookie']['MaxAge']
+          }
+          res.cookie(GlobalConfig['Cookie']['SessionID'], sid, cookieOpt)
 
           return res.redirect(`${GlobalConfig['Hostname']}/?view=feed_preview`)
         })
