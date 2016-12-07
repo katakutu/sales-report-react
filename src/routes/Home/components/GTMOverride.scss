@@ -1,7 +1,10 @@
+// Editor Pick
+
 .home-module-section {
     margin-bottom: 20px;
     padding: 20px 0;
     height: 100%;
+    font-size: 0;
 
     .section-title {
         font-weight: 600;
@@ -109,7 +112,11 @@
         text-align: center;
         text-transform: uppercase;
         font-weight: 700;
-        font-size: 1.1em;
+        font-size: 12px;
+
+        @media (min-width: 420px) {
+            font-size: 14px;
+        }
     }
 
     .home-module-section__linkTitle::after {
@@ -122,7 +129,11 @@
 
     .home-module-section__links a {
         color: #999;
-        font-size: 1em;
+        font-size: 12px;
+
+        @media (min-width: 420px) {
+            font-size: 13px;
+        }
     }
 
     .home-module-section__links ul {
@@ -130,7 +141,11 @@
     }
 
     .home-module-section__links ul li {
-        margin-bottom: 15px;
+        margin-bottom: 10px;
+
+        @media (min-width: 420px) {
+            margin-bottom: 20px;
+        }
     }
 
     .home-module-section__bannerTitle {
@@ -191,5 +206,9 @@
 
     .ta-center {
         text-align: center;
+    }
+
+    .home-text-orange {
+        font-size: 13px;
     }
 }
