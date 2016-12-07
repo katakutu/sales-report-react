@@ -74,8 +74,20 @@ class SearchInputOld extends Component {
       (res) => {
         console.log('catalog search');
         console.log(res);
+      },
+      (err) => {
+        console.error(err);
       });
-      
+
+    api.searchShop('sample', '', '').then(
+      (res) => {
+        console.log('shop search');
+        console.log(res);
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 
   render () {

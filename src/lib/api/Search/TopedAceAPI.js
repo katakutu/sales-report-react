@@ -45,20 +45,24 @@ class TopedAceAPI {
   /**
    * To search for catalogss in Tokopedia you can use Ace with GET request through /search/v1/catalog endpoint.
    */
-  searchCatalog (query, categoryIds, catalogIds) {
+  searchCatalog (query, categoryIds = '', catalogIds = '') {
     let content = {
       q: query,
       sc: categoryIds,
-      id: catalogIds
+      id: catalogIds,
+      device: 'mobile'
     }
 
-    let url = ACE_SERVICES.searchCatalog;
-
-    return this.api.consume(url, 'GET', content);
+    return this.api.consume(ACE_SERVICES.searchShop, 'GET', content);
   }
 
-  searchShop () {
+  searchShop (query, isAllMerchant = true) {
+    let content = {
+      q: query,
+      fshop: isAllMerchant ? 1 : 2
+    };
 
+    return this.api.consume(ACE_SERVICES.searchShop, 'GET', content);
   }
 
   spellCheck () {
