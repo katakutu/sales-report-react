@@ -2,6 +2,7 @@ const config = require('./config')
 
 const PRODUCTION = {
     Hostname: 'https://m.tokopedia.com',
+    SessionCookieID: '_SID_Tokopedia_',
     Accounts: {
         Hostname: 'https://accounts.tokopedia.com',
         Callback: 'https://m.tokopedia.com/appauth/code'
@@ -15,11 +16,16 @@ const PRODUCTION = {
     Points: {
         Hostname: 'https://points.tokopedia.com',
         Secret: '4lclover'
+    },
+    Redis: {
+        host: '',
+        port: ''
     }
 }
 
 const TEST = {
     Hostname: 'https://m-staging.tokopedia.com',
+    SessionCookieID: '_SID_Tokopedia_Coba_',
     Accounts: {
         Hostname: 'https://accounts-staging.tokopedia.com',
         Callback: 'https://lite-staging.tokopedia.com/appauth/code'
@@ -33,12 +39,16 @@ const TEST = {
     Points: {
         Hostname: 'https://points-staging.tokopedia.com',
         Secret: '4lclover'
+    },
+    Redis: {
+        host: '10.0.11.50',
+        port: 6381
     }
-
 }
 
 const DEVELOPMENT = {
     Hostname: 'https://m-staging.tokopedia.com',
+    SessionCookieID: '_SID_Tokopedia_Coba_',
     Accounts: {
         Hostname: 'https://accounts-alpha.tokopedia.com',
         Callback: 'http://lite-devel:3000/appauth/code'
@@ -52,8 +62,11 @@ const DEVELOPMENT = {
     Points: {
         Hostname: 'https://points-staging.tokopedia.com',
         Secret: '4lclover'
+    },
+    Redis: {
+        host: '127.0.0.1',
+        port: 6379
     }
-
 }
 
 let globalConfig = DEVELOPMENT

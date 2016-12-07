@@ -7,6 +7,7 @@ const compress = require('compression')
 const oauth = require('./oauth')
 const GlobalConfig = require('../GlobalConfig')
 const session = require('express-session')
+const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const graphql = require('./graphql')
 
@@ -24,6 +25,7 @@ if (config.globals.__PROD__) {
 }
 app.use(morgan('combined'))
 app.use(session(sessionConfig))
+app.use(cookieParser())
 app.use('/graphql', graphql)
 
 app.get('/status', (req, res) => res.end('ok'))
