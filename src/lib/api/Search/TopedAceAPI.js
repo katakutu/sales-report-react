@@ -89,7 +89,10 @@ class TopedAceAPI {
 
   priceRange (catalogId) {
     // NOTE: Need available params docs
-    return this.api.consumeGet(`${ACE_SERVICES.priceRange}/${catalogId}`, { maximum_price: 10000000, minimum_price: 10000 })
+    return this.api.consumeGet(`${ACE_SERVICES.priceRange}/${catalogId}`, {
+      maximum_price: 10000000,
+      minimum_price: 10000
+    })
   }
 
   /**
