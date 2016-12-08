@@ -1,5 +1,6 @@
 const TopedHMACAPI = require('../TopedHMACAPI')
 const GlobalConfig = require('../../../GlobalConfig')
+const URL = require('url')
 
 const HOTLIST_SERVICE = {
   HotList: `${GlobalConfig.WS.Hostname}/v4/hotlist/get_hotlist.pl`
@@ -43,7 +44,7 @@ class TopedHotListAPI {
       'device_id': 'b'
     }
 
-    return this.api.consume('FORM', new URL(url), 'POST', content).then(response => {
+    return this.api.consume('FORM', URL.parse(url), 'POST', content).then(response => {
       return response.json()
     })
   }

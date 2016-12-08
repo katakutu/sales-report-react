@@ -1,5 +1,6 @@
 const TopedAPI = require('../TopedAPI')
 const GlobalConfig = require('../../../GlobalConfig')
+const URL = require('url')
 
 const MOJITO_SERVICES = {
   Ticker: `${GlobalConfig.Mojito.Hostname}/api/v1/tickers`,
@@ -38,7 +39,7 @@ class TopedMojitoAPI {
       'filter[device]': deviceFilter,
       'action': action
     }
-    let url = new URL(MOJITO_SERVICES.Ticker)
+    let url = URL.parse(MOJITO_SERVICES.Ticker)
 
     return this.api.consume(url, 'GET', content)
   }
@@ -64,7 +65,7 @@ class TopedMojitoAPI {
       'filter[state]': stateFilter,
       'filter[expired]': expiredFilter
     }
-    let url = new URL(MOJITO_SERVICES.Slides)
+    let url = URL.parse(MOJITO_SERVICES.Slides)
     let jsonpOptions = { 'callback': callback, 'timeout': 5000 }
 
     return this.api.consumeJSONP(url, 'GET', content, jsonpOptions)

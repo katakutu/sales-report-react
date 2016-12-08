@@ -1,5 +1,6 @@
 const TopedAPI = require('../TopedAPI')
 const GlobalConfig = require('../../../GlobalConfig')
+const URL = require('url')
 
 const AUTH_SERVICE = {
   GetUserInfo: `${GlobalConfig.Lite.Hostname}/userinfo`
@@ -11,7 +12,7 @@ class TopedLiteAuthAPI {
   }
 
   getUserInfo () {
-    let url = new URL(AUTH_SERVICE.GetUserInfo)
+    let url = URL.parse(AUTH_SERVICE.GetUserInfo)
 
     return this.api.consume(url, 'GET', {}, true)
   }

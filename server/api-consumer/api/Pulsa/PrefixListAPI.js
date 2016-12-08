@@ -1,5 +1,6 @@
 const TopedAPI = require('../TopedAPI')
 const GlobalConfig = require('../../../GlobalConfig')
+const URL = require('url')
 
 const PULSA_SERVICES = {
   Ticker: `https://${GlobalConfig.Mojito.Hostname}/api/v1/tickers`
@@ -37,7 +38,7 @@ class PrefixListAPI {
       'filter[device]': deviceFilter,
       'action': action
     }
-    let url = new URL(PULSA_SERVICES.Ticker)
+    let url = URL.parse(PULSA_SERVICES.Ticker)
 
     return this.api.consume(url, 'GET', content)
   }

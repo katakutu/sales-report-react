@@ -28,8 +28,8 @@ class TopedAPI {
 
     let finalOptions = sameOrigin ? Object.assign({}, options, { credentials: 'same-origin' }) : options
 
-    let finalURL = (method === 'POST') ? url.toString()
-            : url.toString() + '?' + this.contentToURIParams(content)
+    let finalURL = (method === 'POST') ? url.format()
+            : url.format() + '?' + this.contentToURIParams(content)
 
     return fetch(finalURL, finalOptions).then(response => {
       return response.json()
@@ -58,8 +58,8 @@ class TopedAPI {
     let originOpt = sameOrigin ? Object.assign({}, options, { credentials: 'same-origin' }) : options
     let finalOpt = Object.assign({}, originOpt, jsonpOptions)
 
-    let finalURL = (method === 'POST') ? url.toString()
-            : url.toString() + '?' + this.contentToURIParams(content)
+    let finalURL = (method === 'POST') ? url.format()
+            : url.format() + '?' + this.contentToURIParams(content)
 
     return fetchJsonp(finalURL, finalOpt).then(response => {
       return response.json()

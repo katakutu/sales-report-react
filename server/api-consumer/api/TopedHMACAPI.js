@@ -81,7 +81,7 @@ class TopedHMACAPI {
         credentials: 'same-origin'
       }
 
-      return fetch(url.toString(), options)
+      return fetch(url.format(), options)
     } catch (exception) {
       if (exception instanceof TypeError) {
         return Promise.reject(`Invalid type exception: ${exception.message}`)
@@ -123,7 +123,7 @@ class TopedHMACAPI {
         credentials: 'same-origin'
       }
 
-      return fetch(url.toString(), options)
+      return fetch(url.format(), options)
     } catch (exception) {
       if (exception instanceof TypeError) {
         return Promise.reject(`Invalid type exception: ${exception.message}`)

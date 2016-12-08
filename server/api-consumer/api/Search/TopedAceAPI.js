@@ -1,5 +1,6 @@
 const TopedAPI = require('../TopedAPI')
 const GlobalConfig = require('../../../GlobalConfig')
+const URL = require('url')
 
 const ACE_SERVICES = {
   Autocomplete: `${GlobalConfig.Ace.Hostname}/v1/products/autocomplete`,
@@ -27,7 +28,7 @@ class TopedAceAPI {
       'q': query,
       'unique_id': uniqueID
     }
-    let url = new URL(ACE_SERVICES.Universe)
+    let url = URL.parse(ACE_SERVICES.Universe)
 
     return this.api.consume(url, 'GET', content)
   }
@@ -40,7 +41,7 @@ class TopedAceAPI {
       'q': query,
       'count': numOfResult
     }
-    let url = new URL(ACE_SERVICES.Autocomplete)
+    let url = URL.parse(ACE_SERVICES.Autocomplete)
 
     return this.api.consume(url, 'GET', content)
   }
