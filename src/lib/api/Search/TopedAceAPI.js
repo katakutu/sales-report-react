@@ -75,8 +75,9 @@ class TopedAceAPI {
     return this.api.consumeGet(ACE_SERVICES.spellCheck, content);
   }
 
-  priceRange () {
-
+  priceRange (catalogId) {
+    // NOTE: Need available params docs
+    return this.api.consumeGet(`${ACE_SERVICES.priceRange}/${catalogId}`, { maximum_price: 10000000, minimum_price: 10000 });
   }
 
   catalogShopList () {

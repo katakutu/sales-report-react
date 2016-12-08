@@ -97,7 +97,17 @@ class SearchInputOld extends Component {
       (err) => {
         console.error(err);
       }
-    );;
+    );
+
+    api.priceRange(51).then(
+      (res) => {
+        console.log('price range');
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   render () {
