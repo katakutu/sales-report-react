@@ -118,6 +118,16 @@ class SearchInputOld extends Component {
         console.error(err);
       }
     );
+
+    api.popularSearch().then(
+      (res) => {
+        console.log('popular search');
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   render () {

@@ -92,12 +92,15 @@ class TopedAceAPI {
     return this.api.consumeGet(ACE_SERVICES.catalogShopList, content);
   }
 
-  PopularSearch () {
-
+  popularSearch (count = 10) {
+    let content = {
+      count: count
+    }
+    return this.api.consumeGet(ACE_SERVICES.popularSearch, content);
   }
 
   recentSearch () {
-
+    // TODO: implement recent search here
   }
 }
 
