@@ -1,6 +1,6 @@
-import fetch from 'isomorphic-fetch'
-import hmac from './hmac'
-import GlobalConfig from '../GlobalConfig'
+const fetch = require('isomorphic-fetch')
+const hmac = require('./hmac')
+const GlobalConfig = require('../GlobalConfig')
 
 const DEFAULT_NOTIFICATION_DATA = {
   data: {
@@ -117,7 +117,7 @@ function _getUserSaldo (userID, oauthTokenType, oauthToken) {
         })
 }
 
-export default {
+module.exports = {
   getUserInfo: _getUserInfo,
   getUserNotification: _getUserNotification,
   getUserPoints: _getUserPoints,

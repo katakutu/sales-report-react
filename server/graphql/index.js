@@ -1,5 +1,5 @@
-import graphqlHTTP from 'express-graphql'
-import { buildSchema } from 'graphql'
+var graphqlHTTP = require('express-graphql')
+var { buildSchema } = require('graphql')
 
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
@@ -15,7 +15,7 @@ var root = {
   }
 }
 
-export default graphqlHTTP({
+module.exports = graphqlHTTP({
   schema: schema,
   rootValue: root,
   graphiql: true

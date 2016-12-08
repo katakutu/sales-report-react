@@ -1,10 +1,7 @@
-import yargs from 'yargs'
-import config from '../config'
-import webpackConfig from './webpack.config'
-import dbg from 'debug'
-
-const argv = yargs.argv
-const debug = dbg('app:karma')
+const argv = require('yargs').argv
+const config = require('../config')
+const webpackConfig = require('./webpack.config')
+const debug = require('debug')('app:karma')
 
 debug('Creating configuration.')
 const karmaConfig = {
@@ -73,4 +70,4 @@ if (config.globals.__COVERAGE__) {
   }]
 }
 
-export default (cfg) => cfg.set(karmaConfig)
+module.exports = (cfg) => cfg.set(karmaConfig)

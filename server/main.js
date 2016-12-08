@@ -1,17 +1,15 @@
-import express from 'express'
-import dbg from 'debug'
-import webpack from 'webpack'
-import compress from 'compression'
-import cookieParser from 'cookie-parser'
-import session from 'express-session'
-import morgan from 'morgan'
-import config from '../config'
-import webpackConfig from '../build/webpack.config'
-import oauth from './oauth'
-import GlobalConfig from '../GlobalConfig'
-import graphql from './graphql'
-
-const debug = dbg('app:server')
+const express = require('express')
+const debug = require('debug')('app:server')
+const webpack = require('webpack')
+const webpackConfig = require('../build/webpack.config')
+const config = require('../config')
+const compress = require('compression')
+const oauth = require('./oauth')
+const GlobalConfig = require('../GlobalConfig')
+const session = require('express-session')
+const cookieParser = require('cookie-parser')
+const morgan = require('morgan')
+const graphql = require('./graphql')
 
 const app = express()
 const paths = config.utils_paths
@@ -88,4 +86,4 @@ if (config.env === 'development') {
   app.use(express.static(paths.dist()))
 }
 
-export default app
+module.exports = app
