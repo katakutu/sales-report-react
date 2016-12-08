@@ -1,9 +1,9 @@
 'use strict'
 
-const GlobalConfig = require('../GlobalConfig')
-const apiConsumer = require('./api-consumer')
-const randomstring = require('randomstring')
-const session = require('./session')
+import GlobalConfig from '../GlobalConfig'
+import apiConsumer from './api-consumer'
+import randomString from 'randomstring'
+import session from './session'
 
 const oauthCredentials = {
   client: {
@@ -26,7 +26,7 @@ const oauthAuthorizationURI = (state) => {
   })
 }
 
-module.exports = {
+const oauth = {
   login: function (req, res, next) {
     const state = randomstring.generate()
 
@@ -114,3 +114,5 @@ module.exports = {
     })
   }
 }
+
+export default oauth

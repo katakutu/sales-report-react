@@ -1,11 +1,14 @@
-const argv = require('yargs').argv
-const webpack = require('webpack')
-const cssnano = require('cssnano')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
-const config = require('../config')
-const debug = require('debug')('app:webpack:config')
+import yargs from 'yargs'
+import webpack from 'webpack'
+import cssnano from 'cssnano'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import SWPrecacheWebpackPlugin from 'sw-precache-webpack-plugin'
+import config from '../config'
+import dbg from 'debug'
+
+const argv = yargs.argv
+const debug = dbg('app:webpack:config')
 
 const paths = config.utils_paths
 const __DEV__ = config.globals.__DEV__
@@ -228,4 +231,4 @@ if (!__DEV__) {
   )
 }
 
-module.exports = webpackConfig
+export default webpackConfig

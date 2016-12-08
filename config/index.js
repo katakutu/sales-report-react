@@ -1,8 +1,11 @@
 /* eslint key-spacing:0 spaced-comment:0 */
-const path = require('path')
-const debug = require('debug')('app:config')
-const argv = require('yargs').argv
-const ip = require('ip')
+import path from 'path'
+import dbg from 'debug'
+import yargs from 'yargs'
+import ip from 'ip'
+
+const argv = yargs.argv
+const debug = dbg('app:config')
 
 debug('Creating default configuration.')
 // ========================================================
@@ -128,4 +131,4 @@ if (overrides) {
   debug('No environment overrides found, defaults will be used.')
 }
 
-module.exports = config
+export default config
