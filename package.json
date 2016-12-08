@@ -71,6 +71,7 @@
     "whatwg-fetch": "2.0.1"
   },
   "dependencies": {
+    "apollo-client": "^0.5.12",
     "babel-core": "6.18.2",
     "babel-loader": "6.2.7",
     "babel-plugin-transform-runtime": "6.15.0",
@@ -94,7 +95,7 @@
     "file-loader": "^0.9.0",
     "fs-extra": "^1.0.0",
     "graphql": "^0.8.2",
-    "graphql-tag": "^0.1.16",
+    "graphql-tag": "^0.1.17",
     "html-webpack-plugin": "^2.22.0",
     "imports-loader": "^0.6.5",
     "ip": "^1.1.4",
@@ -108,6 +109,7 @@
     "randomstring": "^1.1.5",
     "react": "^15.4.1",
     "react-addons-css-transition-group": "^15.4.1",
+    "react-apollo": "^0.6.0",
     "react-body-classname": "^1.1.0",
     "react-dom": "^15.4.1",
     "react-ga": "^2.1.2",

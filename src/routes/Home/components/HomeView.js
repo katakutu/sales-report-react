@@ -6,6 +6,9 @@ import OfficialStoreSection from '../../../components/OfficialStoreSection'
 import PromoSpacer from '../../../components/PromoSpacer'
 import PromoBanner from '../../../components/PromoBanner'
 import Ticker from '../../../components/Ticker'
+import { graphql, compose } from 'react-apollo'
+import { connect } from 'react-redux'
+import gql from 'graphql-tag'
 
 class HomeView extends Component {
   state = {
@@ -40,4 +43,12 @@ class HomeView extends Component {
   }
 }
 
-export default HomeView
+const query = gql`query Query { hello }`
+
+const mapStateToProps = state => ({})
+
+export default compose(
+  graphql(query),
+  connect(mapStateToProps)
+)(HomeView)
+
