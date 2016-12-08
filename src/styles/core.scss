@@ -46,8 +46,13 @@ a {
     text-decoration: none;
 }
 
+button {
+    font-family: "Open Sans", sans-serif;
+}
+
 input[type=search],
 textarea,
 select {
+    font-family: "Open Sans", sans-serif;
     appearance: none;
 }
