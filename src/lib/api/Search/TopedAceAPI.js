@@ -108,6 +108,10 @@ class TopedAceAPI {
 
     return this.api.consumeGet(ACE_SERVICES.recentSearch, content);
   }
+
+  dynamicAttributes () {
+    // TODO: Implement this
+  }
 }
 
 export default TopedAceAPI
