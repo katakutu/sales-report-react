@@ -1,99 +1,63 @@
 @import 'base';
 
-@-webkit-keyframes rotateload {
-    0% {
-        -webkit-transform: rotate(0);
-    }
-
-    100% {
-        -webkit-transform: rotate(360deg);
-    }
-}
-
-@-moz-keyframes rotateload {
-    0% {
-        -moz-transform: rotate(0);
-    }
-
-    100% {
-        -moz-transform: rotate(360deg);
-    }
-}
-
-@-o-keyframes rotateload {
-    0% {
-        -o-transform: rotate(0);
-    }
-
-    100% {
-        -o-transform: rotate(360deg);
-    }
-}
-
 @keyframes rotateload {
     0% {
-        -webkit-transform: rotate(0);
-        -moz-transform: rotate(0);
-        -ms-transform: rotate(0);
         transform: rotate(0);
     }
 
     100% {
-        -webkit-transform: rotate(360deg);
-        -moz-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
         transform: rotate(360deg);
     }
 }
 
 .loading__container {
-    background-color: rgba(255, 255, 255, 0.95);
-    height: 100vh;
-    left: 0;
     position: fixed;
     top: 0;
-    width: 100vw;
+    left: 0;
     z-index: 900;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
 .loading__wrap {
+    position: fixed;
+    top: 35%;
     left: 40%;
+    z-index: 300;
     margin-top: 30px;
     min-height: 82px;
-    position: fixed;
     text-align: center;
-    z-index: 300;
-    top: 35%;
 }
 
 .loading__line-mask {
-    -webkit-mask-image: -webkit-linear-gradient(top, #000, rgba(0, 0, 0, 0));
-    animation: rotateload 1s infinite linear;
-    display: inline-block;
-    height: 120px;
-    left: -30px;
-    margin-right: -60px;
-    overflow: hidden;
     position: relative;
     top: 25px;
-    transform-origin: 60px 60px;
-    width: 60px;
+    left: -30px;
     z-index: 300;
+    display: inline-block;
+    overflow: hidden;
+    margin-right: -60px;
+    width: 60px;
+    height: 120px;
+    transform-origin: 60px 60px;
+    animation: rotateload 1s infinite linear;
+    -webkit-mask-image: -webkit-linear-gradient(top, #000, rgba(0, 0, 0, 0));
 
     .loading__line {
         width: 120px;
+        height: 120px;
         border-radius: 50%;
         box-shadow: inset 0 0 0 5px #42B549;
-        height: 120px;
     }
 }
 
 .loading__image {
+    z-index: 1;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    border: 0;
     background: url(https://ecs7.tokopedia.net/tiket-production/kereta-api/img/buble-owl-color-tokopedia.png) no-repeat;
     background-size: 60px;
-    border: 0;
-    display: inline-block;
-    height: 60px;
-    width: 60px;
-    z-index: 1;
 }
