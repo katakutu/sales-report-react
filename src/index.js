@@ -2,12 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
+import ApolloClient from 'apollo-client'
+import { ApolloProvider } from 'react-apollo'
 
 // ========================================================
 // Store Instantiation
 // ========================================================
 const initialState = window.___INITIAL_STATE__
 const store = createStore(initialState)
+const client = new ApolloClient()
 
 // ========================================================
 // Render Setup
@@ -18,7 +21,9 @@ let render = () => {
   const routes = require('./routes/index').default(store)
 
   ReactDOM.render(
-    <AppContainer store={store} routes={routes} />,
+    <ApolloProvider client={client}>
+      <AppContainer store={store} routes={routes} />
+    </ApolloProvider>,
     MOUNT_NODE
   )
 }
