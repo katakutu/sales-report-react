@@ -68,6 +68,10 @@ class SearchInputOld extends Component {
     })
   }
 
+  componentDidMount () {
+
+  }
+
   render () {
     let autocomplete = this.state.showSelection ? (
       <div id='autocomplete__container'>
