@@ -65,8 +65,14 @@ class TopedAceAPI {
     return this.api.consume(ACE_SERVICES.searchShop, 'GET', content);
   }
 
-  spellCheck () {
+  spellCheck (query, count = 1, correction = false) {
+    let content = {
+      q: query,
+      count: 1,
+      correction: ''
+    }
 
+    return this.api.consumeGet(ACE_SERVICES.spellCheck, content);
   }
 
   priceRange () {

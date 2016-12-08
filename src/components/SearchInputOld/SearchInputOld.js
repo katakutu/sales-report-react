@@ -88,6 +88,16 @@ class SearchInputOld extends Component {
         console.error(err);
       }
     );
+
+    api.spellCheck('sampel', 1).then(
+      (res) => {
+        console.log('spell check');
+        console.log(res);
+      },
+      (err) => {
+        console.error(err);
+      }
+    );;
   }
 
   render () {
