@@ -81,6 +81,36 @@ class TopedAPI {
       return key + '=' + encodeURIComponent(content[key])
     }).join('&')
   }
+
+  /**
+   * Consume an API with specific URL and method.
+   * If the method is GET, content will be sent via serialized URL
+   *
+   * @param {URL} url The URL we want to consume
+   * @param {object} content The content we want to sent in body.
+   * @param {boolean} [sameOrigin=false] Is the request comes from same origin?
+   * @returns {Promise<Object>} The resulting response promise, in JSON.
+   *
+   * @memberOf
+   */
+  consumeGet (url, content, sameOrigin = false) {
+    return this.consume(url, 'GET', content, sameOrigin)
+  }
+
+  /**
+   * Consume an API with specific URL and method.
+   * If the method is GET, content will be sent via serialized URL
+   *
+   * @param {URL} url The URL we want to consume
+   * @param {object} content The content we want to sent in body.
+   * @param {boolean} [sameOrigin=false] Is the request comes from same origin?
+   * @returns {Promise<Object>} The resulting response promise, in JSON.
+   *
+   * @memberOf
+   */
+  consumePost (url, content, sameOrigin = false) {
+    return this.consume(url, 'POST', content, sameOrigin)
+  }
 }
 
 export default TopedAPI
