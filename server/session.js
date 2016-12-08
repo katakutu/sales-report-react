@@ -1,7 +1,7 @@
 const redis = require('redis')
 const uuidV4 = require('uuid/v4')
 const CryptoJS = require('crypto-js')
-const GlobalConfig = require('../GlobalConfig')
+const GlobalConfig = require('./GlobalConfig')
 
 const redisClient = redis.createClient(GlobalConfig['Redis'])
 

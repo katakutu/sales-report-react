@@ -1,6 +1,6 @@
 'use strict'
 
-const GlobalConfig = require('../GlobalConfig')
+const GlobalConfig = require('./GlobalConfig')
 const apiConsumer = require('./api-consumer')
 const randomstring = require('randomstring')
 const session = require('./session')
