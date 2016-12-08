@@ -1,9 +1,13 @@
 'use strict'
 
 const GlobalConfig = require('./GlobalConfig')
-const apiConsumer = require('./api-consumer')
 const randomstring = require('randomstring')
 const session = require('./session')
+
+const TopedAuthAPI = require('./api-consumer/api/Auth/TopedAuthAPI')
+const TopedSaldoAPI = require('./api-consumer/api/Saldo/TopedSaldoAPI')
+const TopedNotificationAPI = require('./api-consumer/api/Notification/TopedNotificationAPI')
+const TopedPointsAPI = require('./api-consumer/api/Points/TopedPointsAPI')
 
 const oauthCredentials = {
   client: {
@@ -71,7 +75,8 @@ module.exports = {
 
         const sid = session.newSessionID()
 
-        apiConsumer.getUserInfo(token['token_type'], token['access_token']).then(user => {
+        const authConsumer = new TopedAuthAPI(token['token_type'], token['access_token'])
+        authConsumer.getUserInfo().then(user => {
           session.createUserSession(user, token)
 
           const cookieOpt = {
@@ -95,11 +100,15 @@ module.exports = {
     const tType = req.session.oauth.token['token_type']
     const token = req.session.oauth.token['access_token']
 
-    apiConsumer.getUserInfo(tType, token).then(user => {
+    const authConsumer = new TopedAuthAPI(token, tType)
+    const saldoConsumer = new TopedSaldoAPI()
+    const notifConsumer = new TopedNotificationAPI(token, tType)
+    const pointConsumer = new TopedPointsAPI(token, tType)
+    authConsumer.getUserInfo().then(user => {
       const userID = user['user_id']
-      let saldo = apiConsumer.getUserSaldo(userID, tType, token)
-      let notif = apiConsumer.getUserNotification(userID, tType, token)
-      let point = apiConsumer.getUserPoints(userID)
+      let saldo = saldoConsumer.getDeposit(userID)
+      let notif = notifConsumer.getNotification(userID)
+      let point = pointConsumer.getPoints(userID)
 
       Promise.all([saldo, notif, point]).then(s => {
         return res.json({

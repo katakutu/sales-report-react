@@ -37,6 +37,39 @@ class TopedAPI {
   }
 
   /**
+   * Consume an OAuth API with specific URL and method.
+   * If the method is GET, content will be sent via serialized URL
+   *
+   * @param {URL} url The URL we want to consume
+   * @param {string} method The HTTP Method we want to use on the API call.
+   * @param {string} token The OAuth Token.
+   * @param {string} tokenType The OAuth Token Type.
+   * @param {object} content The content we want to sent in body.
+   * @param {boolean} [sameOrigin=false] Is the request comes from same origin?
+   * @returns {Promise<Object>} The resulting response promise, in JSON.
+   *
+   * @memberOf TopedAPI
+   */
+  consumeOAuth (url, method, token, tokenType, content, sameOrigin = false) {
+    let options = (method === 'GET') ? {} : {
+      method: method,
+      headers: {
+        'Authorization': `${this.oauthToken} ${this.oauthTokenType}`
+      },
+      body: JSON.stringify(content)
+    }
+
+    let finalOptions = sameOrigin ? Object.assign({}, options, { credentials: 'same-origin' }) : options
+
+    let finalURL = (method === 'POST') ? url.format()
+            : url.format() + '?' + this.contentToURIParams(content)
+
+    return fetch(finalURL, finalOptions).then(response => {
+      return response.json()
+    })
+  }
+
+  /**
    * Consume an API with JSONP, on specific URL and method.
    * If the method is GET, content will be sent via serialized URL
    *
