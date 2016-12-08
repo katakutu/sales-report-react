@@ -1,4 +1,4 @@
-const config = require('./config')
+import config from './config'
 
 const PRODUCTION = {
     Hostname: 'https://m.tokopedia.com',
@@ -92,4 +92,4 @@ globalConfig['Accounts']['TokenPath'] = '/token'
 globalConfig['Cookie']['Domain'] = '.tokopedia.com'
 globalConfig['Cookie']['MaxAge'] = 259200
 
-module.exports = globalConfig
+export default globalConfig

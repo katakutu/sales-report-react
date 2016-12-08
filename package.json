@@ -71,6 +71,7 @@
     "whatwg-fetch": "2.0.1"
   },
   "dependencies": {
+    "babel-cli": "^6.18.0",
     "apollo-client": "^0.5.12",
     "babel-core": "6.18.2",
     "babel-loader": "6.2.7",
@@ -164,7 +165,7 @@
       }
     },
     "dev": {
-      "command": "nodemon bin/server --ignore dist --ignore coverage --ignore tests --ignore src",
+      "command": "nodemon bin/server --exec babel-node --presets es2015,stage-0 --ignore dist --ignore coverage --ignore tests --ignore src",
       "env": {
         "NODE_ENV": "development",
         "DEBUG": "app:*"
@@ -198,7 +199,7 @@
       }
     },
     "start": {
-      "command": "node bin/server",
+      "command": "babel-node bin/server --presets es2015,stage-0",
       "env": {
         "DEBUG": "app:*"
       }
