@@ -265,7 +265,7 @@
 .drawer__container {
     position: absolute;
     z-index: $z-index-3;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 284px;
     height: 100vh;
     background: $color-white-primary;
