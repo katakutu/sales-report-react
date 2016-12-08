@@ -53,13 +53,15 @@ class TopedAPI {
   consumeOAuth (url, method, token, tokenType, content, sameOrigin = false) {
     let options = (method === 'GET') ? {} : {
       method: method,
-      headers: {
-        'Authorization': `${this.oauthToken} ${this.oauthTokenType}`
-      },
       body: JSON.stringify(content)
     }
 
-    let finalOptions = sameOrigin ? Object.assign({}, options, { credentials: 'same-origin' }) : options
+    let optWithAuth = Object.assign({}, options, {
+      headers: {
+        'Authorization': `${this.oauthToken} ${this.oauthTokenType}`
+      }
+    })
+    let finalOptions = sameOrigin ? Object.assign({}, optWithAuth, { credentials: 'same-origin' }) : options
 
     let finalURL = (method === 'POST') ? url.format()
             : url.format() + '?' + this.contentToURIParams(content)
