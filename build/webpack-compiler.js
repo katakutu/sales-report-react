@@ -1,8 +1,6 @@
-import webpack from 'webpack'
-import dbg from 'debug'
-import config from '../config'
-
-const debug = dbg('app:build:webpack-compiler')
+const webpack = require('webpack')
+const debug = require('debug')('app:build:webpack-compiler')
+const config = require('../config')
 
 function webpackCompiler (webpackConfig, statsFormat) {
   statsFormat = statsFormat || config.compiler_stats
@@ -35,4 +33,4 @@ function webpackCompiler (webpackConfig, statsFormat) {
   })
 }
 
-export default webpackCompiler
+module.exports = webpackCompiler

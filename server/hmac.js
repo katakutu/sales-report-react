@@ -1,4 +1,4 @@
-import CryptoJS from 'crypto-js'
+const CryptoJS = require('crypto-js')
 
 function generateContentHash (date, hashParam, hashHeader) {
   if (Object.prototype.toString.call(date) !== '[object Date]' || isNaN(date.getTime())) {
@@ -46,7 +46,7 @@ function generateHashParamFromObject (content) {
   return result.substring(0, result.length - 1) // substract the last "&"
 }
 
-export default {
+module.exports = {
   'generate': generate,
   'generateHashParam': generateHashParamFromObject,
   'generateContentHash': generateContentHash

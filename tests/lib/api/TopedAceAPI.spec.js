@@ -1,4 +1,3 @@
-import TopedAPI from 'lib/api/TopedAPI'
 import TopedAceAPI from 'lib/api/Search/TopedAceAPI'
 
 describe('TopedAceAPI', () => {
