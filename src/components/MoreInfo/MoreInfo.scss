@@ -1,0 +1,63 @@
+@import 'base';
+
+.more-info__holder {
+    margin: 10px 0;
+    background: $color-white-primary;
+    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.more-info__link {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 13px 10px;
+    border-bottom: 1px solid $color-grey-2;
+    color: $color-black-primary;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.more-info__arrow {
+    position: absolute;
+    top: 10px;
+    right: 7px;
+    width: 15px;
+    height: 20px;
+    background: url('http://placehold.it/15x20') no-repeat transparent;
+}
+
+.more-info__header {
+    border: 0;
+    background-color: transparent;
+    color: $color-green;
+    text-align: left;
+    font-weight: 400;
+    font-size: 14px;
+
+    .more-info__arrow {
+        position: relative;
+        top: 0;
+        left: 0;
+        display: inline-block;
+        margin-left: 5px;
+        vertical-align: middle;
+    }
+}
+
+.more-info__content {
+    display: none;
+}
+
+.more-info {
+    &.active .more-info__header .more-info__arrow {
+        width: 20px;
+        height: 15px;
+    }
+
+    &.active {
+        .more-info__content {
+            display: block;
+        }
+    }
+}
+
