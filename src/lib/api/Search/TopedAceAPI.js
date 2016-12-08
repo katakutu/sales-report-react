@@ -99,8 +99,14 @@ class TopedAceAPI {
     return this.api.consumeGet(ACE_SERVICES.popularSearch, content);
   }
 
-  recentSearch () {
-    // TODO: implement recent search here
+  recentSearch (uniqueId, count = 10) {
+    // TODO: implement DELETE and PUT request
+    let content = {
+      unique_id: uniqueId,
+      count: count
+    };
+
+    return this.api.consumeGet(ACE_SERVICES.recentSearch, content);
   }
 }
 

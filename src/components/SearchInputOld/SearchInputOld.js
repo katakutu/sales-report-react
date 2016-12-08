@@ -128,6 +128,16 @@ class SearchInputOld extends Component {
         console.log(err);
       }
     );
+
+    api.recentSearch('adf13412d34lkjs').then(
+      (res) => {
+        console.log('GET /search/v1/product');
+        console.log(res);
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 
   render () {
