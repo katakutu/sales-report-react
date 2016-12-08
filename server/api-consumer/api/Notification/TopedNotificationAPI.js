@@ -8,6 +8,7 @@ const NOTIFICATION_SERVICE = {
 }
 
 const DEFAULT_NOTIFICATION_DATA = {
+  status: 'FAIL',
   data: {
     'sales': {
       'sales_new_order': 0,

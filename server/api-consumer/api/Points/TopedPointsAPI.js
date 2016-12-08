@@ -11,7 +11,7 @@ const POINTS_SERVICES = {
 const DEFAULT_POINTS_DATA = {
   data: {
     attributes: {
-      amount_formatted: 'Rp 0'
+      amount_formatted: 'ERROR FAIL'
     }
   }
 }

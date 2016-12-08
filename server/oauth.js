@@ -112,6 +112,10 @@ module.exports = {
 
       Promise.all([saldo, notif, point]).then(s => {
         return res.json({
+          'user': JSON.stringify(user),
+          'saldo': JSON.stringify(s[0]),
+          'notif': JSON.stringify(s[1]),
+          'point': JSON.stringify(s[2]),
           'name': user['name'],
           'id': userID,
           'profilePicture': user['profile_picture'],
