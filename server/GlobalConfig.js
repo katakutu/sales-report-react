@@ -85,7 +85,7 @@ const DEVELOPMENT = {
     Hostname: 'https://ace-alpha.tokopedia.com'
   },
   Accounts: {
-    Hostname: 'http://192.168.100.160:8009/',
+    Hostname: 'http://192.168.100.160:8009',
     Callback: 'http://localhost:3000/appauth/code'
   },
   Lite: {

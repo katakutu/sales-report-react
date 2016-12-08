@@ -4,7 +4,7 @@ const URL = require('url')
 
 const HOSTNAME = GlobalConfig['Notification']['Hostname']
 const NOTIFICATION_SERVICE = {
-  GetNotification: `${HOSTNAME}/v4/notification/get_notification.pl?user_id=:user_id&bypass=true_trueinfo`
+  GetNotification: `${HOSTNAME}/v4/notification/get_notification.pl`
 }
 
 const DEFAULT_NOTIFICATION_DATA = {
@@ -47,8 +47,11 @@ class TopedNotificationAPI {
 
   getNotification (userID) {
     let url = URL.parse(NOTIFICATION_SERVICE.GetNotification.replace(':user_id', userID))
-
-    return this.api.consumeOAuth(url, 'GET', this.token, this.tokenType, {}, true)
+    let content = {
+      'user_id': userID,
+      'bypass': 'true_true'
+    }
+    return this.api.consumeOAuth(url, 'GET', this.token, this.tokenType, content, true)
         .catch(err => {
           console.error(`Failed to fetch ${url.format()}. Returning default value. Error: `, err)
           return DEFAULT_NOTIFICATION_DATA

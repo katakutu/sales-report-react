@@ -104,6 +104,7 @@ module.exports = {
     const saldoConsumer = new TopedSaldoAPI()
     const notifConsumer = new TopedNotificationAPI(token, tType)
     const pointConsumer = new TopedPointsAPI(token, tType)
+
     authConsumer.getUserInfo().then(user => {
       const userID = user['user_id']
       let saldo = saldoConsumer.getDeposit(userID)
@@ -112,6 +113,8 @@ module.exports = {
 
       Promise.all([saldo, notif, point]).then(s => {
         return res.json({
+          't': token,
+          'tt': tType,
           'user': JSON.stringify(user),
           'saldo': JSON.stringify(s[0]),
           'notif': JSON.stringify(s[1]),
