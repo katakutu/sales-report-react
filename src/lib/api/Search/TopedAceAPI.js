@@ -80,8 +80,16 @@ class TopedAceAPI {
     return this.api.consumeGet(`${ACE_SERVICES.priceRange}/${catalogId}`, { maximum_price: 10000000, minimum_price: 10000 });
   }
 
-  catalogShopList () {
+  catalogShopList (categoryId, isNew = true, locations, isPreorder = false) {
+    let content = {
+      ctg_id: categoryId,
+      condition: isNew ? 1 : 2,
+      floc: locations,
+      preorder: isPreorder,
+      device: 'mobile'
+    };
 
+    return this.api.consumeGet(ACE_SERVICES.catalogShopList, content);
   }
 
   PopularSearch () {

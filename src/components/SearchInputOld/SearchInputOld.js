@@ -108,6 +108,16 @@ class SearchInputOld extends Component {
         console.log(err);
       }
     );
+
+    api.catalogShopList(0).then(
+      (res) => {
+        console.log('catalog shop list');
+        console.log(res);
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 
   render () {
