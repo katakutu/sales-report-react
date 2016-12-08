@@ -1,4 +1,4 @@
-const TopedHMACAPI = require('../TopedHMACAPI')
+const TopedAPI = require('../TopedAPI')
 const HMACToped = require('../../hmac/HMACToped')
 const GlobalConfig = require('../../../GlobalConfig')
 const URL = require('url')
@@ -18,7 +18,7 @@ const DEFAULT_POINTS_DATA = {
 
 class TopedPointsAPI {
   constructor (oauthToken, oauthTokenType) {
-    this.api = new TopedHMACAPI(GlobalConfig['Points']['Secret'])
+    this.api = new TopedAPI()
     this.token = oauthToken
     this.tokenType = oauthTokenType
   }
@@ -46,7 +46,7 @@ class TopedPointsAPI {
       'token': token
     }
 
-    return this.api.consume(url, 'GET', content, true)
+    return this.api.consume (url, 'GET', content, true)
         .catch(err => {
           console.error(`Failed to fetch ${url.format()}. Returning default value. Error: `, err)
 
