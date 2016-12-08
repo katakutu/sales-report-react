@@ -58,7 +58,7 @@ class TopedAPI {
     let optWithAuth = Object.assign({}, options, {
       method: method,
       headers: {
-        'Authorization': `${token} ${tokenType}`
+        'Authorization': `${tokenType} ${token}`
       }
     })
     let finalOptions = sameOrigin ? Object.assign({}, optWithAuth, { credentials: 'same-origin' }) : optWithAuth
