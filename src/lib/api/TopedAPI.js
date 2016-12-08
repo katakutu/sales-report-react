@@ -94,7 +94,7 @@ class TopedAPI {
    * @memberOf
    */
   consumeGet (url, content, sameOrigin = false) {
-    return this.consume(url, 'GET', content, sameOrigin);
+    return this.consume(url, 'GET', content, sameOrigin)
   }
 
   /**
@@ -109,7 +109,7 @@ class TopedAPI {
    * @memberOf
    */
   consumePost (url, content, sameOrigin = false) {
-    return this.consume(url, 'POST', content, sameOrigin);
+    return this.consume(url, 'POST', content, sameOrigin)
   }
 }
 

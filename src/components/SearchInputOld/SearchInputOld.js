@@ -69,75 +69,7 @@ class SearchInputOld extends Component {
   }
 
   componentDidMount () {
-    // Testing purpose only, will be removed on last push
-    api.searchCatalog('sample', '', '').then(
-      (res) => {
-        console.log('catalog search');
-        console.log(res);
-      },
-      (err) => {
-        console.error(err);
-      });
 
-    api.searchShop('sample', '', '').then(
-      (res) => {
-        console.log('shop search');
-        console.log(res);
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
-
-    api.spellCheck('sampel', 1).then(
-      (res) => {
-        console.log('spell check');
-        console.log(res);
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
-
-    api.priceRange(51).then(
-      (res) => {
-        console.log('price range');
-        console.log(res);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-
-    api.catalogShopList(0).then(
-      (res) => {
-        console.log('catalog shop list');
-        console.log(res);
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
-
-    api.popularSearch().then(
-      (res) => {
-        console.log('popular search');
-        console.log(res);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-
-    api.recentSearch('adf13412d34lkjs').then(
-      (res) => {
-        console.log('GET /search/v1/product');
-        console.log(res);
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
   }
 
   render () {

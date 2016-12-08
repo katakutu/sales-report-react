@@ -9,7 +9,7 @@ const ACE_SERVICES = {
   catalogShopList: `https://${config.Ace.Hostname}/search/v1/catalog/product`,
   popularSearch: `https://${config.Ace.Hostname}/v1/popular_search`,
   recentSearch: `https://${config.Ace.Hostname}/recent_search/v1`,
-  dynamicAttributes: `https://${config.Ace.Hostname}/v1/dynamic_attributes`,
+  dynamicAttributes: `https://${config.Ace.Hostname}/v1/dynamic_attributes`
 }
 
 class TopedAceAPI {
@@ -22,6 +22,9 @@ class TopedAceAPI {
     this.api = new TopedAPI()
   }
 
+  /**
+   * Gather all autocomplete information
+   */
   universeSearch (query = '', uniqueID) {
     let content = {
       'q': query,
@@ -32,18 +35,21 @@ class TopedAceAPI {
     return this.api.consume(url, 'GET', content)
   }
 
+  /**
+   * API client for autocomplete
+   */
   autocomplete (query, numOfResult = 10) {
     let content = {
       'q': query,
       'count': numOfResult
     }
-    let url = new URL(TopedAceAPI.URL.Autocomplete);
+    let url = new URL(TopedAceAPI.URL.Autocomplete)
 
     return this.api.consume(url, 'GET', content)
   }
 
   /**
-   * To search for catalogss in Tokopedia you can use Ace with GET request through /search/v1/catalog endpoint.
+   * Search Catalog API client
    */
   searchCatalog (query, categoryIds = '', catalogIds = '') {
     let content = {
@@ -53,18 +59,24 @@ class TopedAceAPI {
       device: 'mobile'
     }
 
-    return this.api.consume(ACE_SERVICES.searchShop, 'GET', content);
+    return this.api.consume(ACE_SERVICES.searchShop, 'GET', content)
   }
 
+  /**
+   * Search Shop API client
+   */
   searchShop (query, isAllMerchant = true) {
     let content = {
       q: query,
       fshop: isAllMerchant ? 1 : 2
-    };
+    }
 
-    return this.api.consume(ACE_SERVICES.searchShop, 'GET', content);
+    return this.api.consume(ACE_SERVICES.searchShop, 'GET', content)
   }
 
+  /**
+   * API client for spellcheck
+   */
   spellCheck (query, count = 1, correction = false) {
     let content = {
       q: query,
@@ -72,14 +84,17 @@ class TopedAceAPI {
       correction: ''
     }
 
-    return this.api.consumeGet(ACE_SERVICES.spellCheck, content);
+    return this.api.consumeGet(ACE_SERVICES.spellCheck, content)
   }
 
   priceRange (catalogId) {
     // NOTE: Need available params docs
-    return this.api.consumeGet(`${ACE_SERVICES.priceRange}/${catalogId}`, { maximum_price: 10000000, minimum_price: 10000 });
+    return this.api.consumeGet(`${ACE_SERVICES.priceRange}/${catalogId}`, { maximum_price: 10000000, minimum_price: 10000 })
   }
 
+  /**
+   * API client to get list of shops and products from catalog
+   */
   catalogShopList (categoryId, isNew = true, locations, isPreorder = false) {
     let content = {
       ctg_id: categoryId,
@@ -87,28 +102,37 @@ class TopedAceAPI {
       floc: locations,
       preorder: isPreorder,
       device: 'mobile'
-    };
+    }
 
-    return this.api.consumeGet(ACE_SERVICES.catalogShopList, content);
+    return this.api.consumeGet(ACE_SERVICES.catalogShopList, content)
   }
 
+  /**
+   * Popular keyword on search
+   */
   popularSearch (count = 10) {
     let content = {
       count: count
     }
-    return this.api.consumeGet(ACE_SERVICES.popularSearch, content);
+    return this.api.consumeGet(ACE_SERVICES.popularSearch, content)
   }
 
+  /**
+   * Recent keyword searched by user
+   */
   recentSearch (uniqueId, count = 10) {
     // TODO: implement DELETE and PUT request
     let content = {
       unique_id: uniqueId,
       count: count
-    };
+    }
 
-    return this.api.consumeGet(ACE_SERVICES.recentSearch, content);
+    return this.api.consumeGet(ACE_SERVICES.recentSearch, content)
   }
 
+  /**
+   * Dynamic attributes such as filter and sort
+   */
   dynamicAttributes () {
     // TODO: Implement this
   }
