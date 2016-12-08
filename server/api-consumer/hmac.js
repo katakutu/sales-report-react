@@ -23,8 +23,7 @@ function generate (key, method, path, date, hashParam, hashHeader, uid) {
     throw new TypeError(`Expected date to be a Date Object. Got ${t} instead.`)
   }
 
-  // let contentMD5 = generateContentHash(date, hashParam, hashHeader)
-  let contentMD5 = ''
+  let contentMD5 = generateContentHash(date, hashParam, hashHeader)
   let time = Math.floor(date.getTime() / 1000)
   let formType = (method === 'POST') ? 'application/x-www-form-urlencoded' : ''
 
@@ -32,18 +31,13 @@ function generate (key, method, path, date, hashParam, hashHeader, uid) {
 
   let hmac = CryptoJS.HmacSHA1(data, key).toString(CryptoJS.enc.Base64)
 
-  console.log(`hmac hash: ${hmac}`)
-
   return hmac
 }
 
 function generateHashParamFromObject (content) {
-  let result = ''
-  for (let k in content) {
-    result = result + `${k}=${content[k]}&`
-  }
-
-  return result.substring(0, result.length - 1) // substract the last "&"
+  return Object.keys(content).map(key => {
+    return `${key}=${encodeURIComponent(content[key])}`
+  }).join('&')
 }
 
 module.exports = {
