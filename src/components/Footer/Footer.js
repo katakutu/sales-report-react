@@ -3,24 +3,28 @@ import './Footer.scss'
 import footerAppsApple from './assets/footer-apps-apple@2x.png'
 import footerAppsAndroid from './assets/footer-apps-android@2x.png'
 
+import { DESKTOP_HOSTNAME, HOSTNAME } from '../../constants'
+
 export const Footer = () => (
   <div className='footer u-clearfix'>
     <div className='footer__apps u-clearfix u-center'>
       <p className='u-line-height-4 footer__apps-text'>Dapatkan Aplikasi Mobile Tokopedia</p>
       <div className='u-inline-block u-px1 u-mb1'>
-        <a href='#'>
+        <a href='https://play.google.com/store/apps/details?id=com.tokopedia.tkpd'>
           <img src={footerAppsAndroid} alt='' className='u-fit footer__apps-img' />
         </a>
       </div>
       <div className='u-inline-block u-px1 u-mb1'>
-        <a href='#'>
+        <a href='https://itunes.apple.com/us/app/tokopedia/id1001394201?ls=1&mt=8'>
           <img src={footerAppsApple} alt='' className='u-fit footer__apps-img' />
         </a>
       </div>
     </div>
     <div className='footer__lower u-clearfix u-center'>
       <p className='u-line-height-4'>
-        <a href='#' className='u-ml1'>Butuh Bantuan?</a> | <a href='#'>Lihat Versi Desktop</a>
+        <a href={`${HOSTNAME}/bantuan`} className='u-ml1'>Butuh Bantuan?</a>
+        &nbsp; | &nbsp;
+        <a href={DESKTOP_HOSTNAME}>Lihat Versi Desktop</a>
       </p>
       <p className='u-line-height-4 footer__lower-text--bigger'>
         <label htmlFor='language'>Pilih Bahasa</label>
