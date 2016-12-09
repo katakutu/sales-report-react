@@ -17,10 +17,8 @@ const DEFAULT_POINTS_DATA = {
 }
 
 class TopedPointsAPI {
-  constructor (oauthToken, oauthTokenType) {
+  constructor () {
     this.api = new TopedAPI()
-    this.token = oauthToken
-    this.tokenType = oauthTokenType
   }
 
   getPoints (userID) {
