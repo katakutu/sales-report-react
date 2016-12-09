@@ -98,7 +98,18 @@ module.exports = {
   },
   userInfo: function (req, res, next) {
     if (!req.session.oauth) {
-      return res.status(200).json({ error: 'User is not logged in!' })
+      // break to two condition to pass linter (and better readability)
+      if (res.cookies && res.cookies[GlobalConfig['Cookie']['SessionID']]) {
+        // to prevent infinite loop we only force redirect to /login
+        // if the callback URL is the same as hostname.
+        // e.g. if we host on lite-staging.tokopedia.com and redir to m-staging.tokopedia.com
+        //      this will be false so we won't get infinite redirection
+        const shouldRedir = GlobalConfig['Accounts']['Callback'].indexOf(GlobalConfig['Hostname']) === 0
+
+        return res.status(200).json({ login_redirect: shouldRedir })
+      } else {
+        return res.status(200).json({ error: 'User is not logged in!' })
+      }
     }
 
     const tType = req.session.oauth.token['token_type']

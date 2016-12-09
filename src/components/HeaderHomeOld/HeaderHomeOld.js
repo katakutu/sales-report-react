@@ -58,6 +58,10 @@ class HeaderHome extends Component {
           'points': userinfo['points'],
           'notifications': userinfo['notifications']
         })
+      } else if (userinfo && userinfo['login_redirect']) {
+        // if user is logged in via marketplace, redirect to login page
+        // to login here too
+        window.location = '/login'
       } else {
         this.props.updateUserLoginStatus(false)
         this.props.storeUserData(initialState)
