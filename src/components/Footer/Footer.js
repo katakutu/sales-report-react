@@ -22,7 +22,7 @@ class Footer extends Component {
     this.setState({ language: lang }, () => Cookies.setItem('lang', lang))
   }
 
-  render() {
+  render () {
     return (
       <div className='footer u-clearfix'>
         <div className='footer__apps u-clearfix u-center'>
