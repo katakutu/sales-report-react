@@ -3,4 +3,9 @@
 .promo-banner {
     display: block;
     margin-bottom: 10px;
+
+    img {
+        max-width: 414px;
+        width: 100%;
+    }
 }
