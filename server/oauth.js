@@ -5,9 +5,11 @@ const randomstring = require('randomstring')
 const session = require('./session')
 
 const TopedAuthAPI = require('./api-consumer/api/Auth/TopedAuthAPI')
+/*
 const TopedSaldoAPI = require('./api-consumer/api/Saldo/TopedSaldoAPI')
-// const TopedNotificationAPI = require('./api-consumer/api/Notification/TopedNotificationAPI')
+const TopedNotificationAPI = require('./api-consumer/api/Notification/TopedNotificationAPI')
 const TopedPointsAPI = require('./api-consumer/api/Points/TopedPointsAPI')
+*/
 
 const oauthCredentials = {
   client: {
@@ -101,32 +103,41 @@ module.exports = {
     const token = req.session.oauth.token['access_token']
 
     const authConsumer = new TopedAuthAPI(token, tType)
+    /*
     const saldoConsumer = new TopedSaldoAPI()
-    // const notifConsumer = new TopedNotificationAPI(token, tType)
+    const notifConsumer = new TopedNotificationAPI(token, tType)
     const pointConsumer = new TopedPointsAPI()
+    */
 
     authConsumer.getUserInfo().then(user => {
+      return res.json({
+        'user': user,
+        't': token,
+        'tt': tType
+      })
+      /*
       const userID = user['user_id']
       let saldo = saldoConsumer.getDeposit(userID)
-      // let notif = notifConsumer.getNotification(userID)
+      let notif = notifConsumer.getNotification(userID)
       let point = pointConsumer.getPoints(userID)
 
-      Promise.all([saldo, /* notif, */ point]).then(s => {
+      Promise.all([saldo, notif, point]).then(s => {
         return res.json({
           't': token,
           'tt': tType,
           'user': JSON.stringify(user),
           'saldo': JSON.stringify(s[0]),
-          // 'notif': JSON.stringify(s[1]),
+          'notif': JSON.stringify(s[1]),
           'point': JSON.stringify(s[2]),
           'name': user['name'],
           'id': userID,
           'profilePicture': user['profile_picture'],
           'deposit': s[0]['deposit_fmt'] || 'Rp 0',
-          'points': s[2]['data']['attributes']['amount_formatted'] || 'Rp 0' // ,
-          // 'notifications': s[1]['data']
+          'points': s[2]['data']['attributes']['amount_formatted'] || 'Rp 0',
+          'notifications': s[1]['data']
         })
       })
+      */
     })
   }
 }
