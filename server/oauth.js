@@ -46,6 +46,10 @@ module.exports = {
         return res.redirect('/')
       }
 
+      if (res.cookies && res.cookies[GlobalConfig['Cookie']['SessionID']]) {
+        session.removeUserSession(res.cookies[GlobalConfig['Cookie']['SessionID']])
+      }
+
       return res.redirect('/')
     })
   },
