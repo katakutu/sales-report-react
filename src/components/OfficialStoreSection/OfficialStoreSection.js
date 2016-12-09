@@ -12,12 +12,42 @@ import mustikaRatuLogo from './assets/mustika-ratu.jpg'
 import { HOSTNAME } from '../../constants'
 
 const stores = [
-  {href: `${HOSTNAME}/ramayana`, img: ramayanaLogo, name: 'Ramayana', fullName: 'Ramayana Dept Store'},
-  {href: `${HOSTNAME}/century-online`, img: centuryLogo, name: 'Century', fullName: 'Century Healthcare'},
-  {href: `${HOSTNAME}/luna`, img: lunaLogo, name: 'Luna', fullName: 'Luna Official Store'},
-  {href: `${HOSTNAME}/oppo`, img: oppoLogo, name: 'Oppo', fullName: 'Oppo Official Store'},
-  {href: `${HOSTNAME}/mustika-ratu`, img: mustikaRatuLogo, name: 'Mustika Ratu', fullName: 'Mustika Ratu Official Store'},
-  {href: `${HOSTNAME}/smartfren`, img: smartfrenLogo, name: 'Smartfren', fullName: 'Smartfren Official Stroe'}
+  {
+    href: `${HOSTNAME}/ramayana`,
+    img: ramayanaLogo,
+    name: 'Ramayana',
+    fullName: 'Ramayana Dept Store'
+  },
+  {
+    href: `${HOSTNAME}/century-online`,
+    img: centuryLogo,
+    name: 'Century',
+    fullName: 'Century Healthcare'
+  },
+  {
+    href: `${HOSTNAME}/luna`,
+    img: lunaLogo,
+    name: 'Luna',
+    fullName: 'Luna Official Store'
+  },
+  {
+    href: `${HOSTNAME}/oppo`,
+    img: oppoLogo,
+    name: 'Oppo',
+    fullName: 'Oppo Official Store'
+  },
+  {
+    href: `${HOSTNAME}/mustika-ratu`,
+    img: mustikaRatuLogo,
+    name: 'Mustika Ratu',
+    fullName: 'Mustika Ratu Official Store'
+  },
+  {
+    href: `${HOSTNAME}/smartfren`,
+    img: smartfrenLogo,
+    name: 'Smartfren',
+    fullName: 'Smartfren Official Stroe'
+  }
 ]
 
 const renderStore = (data, index) => (
@@ -44,7 +74,7 @@ export const OfficialStoreSection = () => (
     </TextHeader>
     <div className='official-store__content u-clearfix u-mxn1'>
       { /* slow, but we only have 6 items so doesn't matter */ }
-      { stores.sort(i => .5 - Math.random()).slice(0, 4).map(renderStore) }
+      { stores.sort(i => 0.5 - Math.random()).slice(0, 4).map(renderStore) }
     </div>
   </div>
 )
