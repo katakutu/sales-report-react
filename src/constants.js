@@ -4,7 +4,10 @@ let desktopHostname = 'https://staging.tokopedia.com/?m2w'
 let hostname = 'https://m-staging.tokopedia.com'
 let sites = {
   Pulsa: 'https://pulsa-staging.tokopedia.com',
-  Tiket: 'https://tiket-staging.tokopedia.com'
+  Tiket: 'https://tiket-staging.tokopedia.com',
+  Events: 'https://events.tokopedia.com/',
+  Seller: 'https://seller.tokopedia.com/',
+  Blog: 'https://blog.tokopedia.com/'
 }
 let gtmContainerID = 'GTM-T8MQ8Z'
 
@@ -13,7 +16,10 @@ if (__TEST__) {
   hostname = 'https://m-staging.tokopedia.com'
   sites = {
     Pulsa: 'https://pulsa-staging.tokopedia.com',
-    Tiket: 'https://tiket-staging.tokopedia.com'
+    Tiket: 'https://tiket-staging.tokopedia.com',
+    Events: 'https://events.tokopedia.com/',
+    Seller: 'https://seller.tokopedia.com/',
+    Blog: 'https://blog.tokopedia.com/'
   }
   gtmContainerID = 'GTM-T8MQ8Z'
 } else if (__PROD__) {
@@ -21,7 +27,10 @@ if (__TEST__) {
   hostname = 'https://m.tokopedia.com'
   sites = {
     Pulsa: 'https://pulsa.tokopedia.com',
-    Tiket: 'https://tiket.tokopedia.com'
+    Tiket: 'https://tiket.tokopedia.com',
+    Events: 'https://events.tokopedia.com/',
+    Seller: 'https://seller.tokopedia.com/',
+    Blog: 'https://blog.tokopedia.com/'
   }
   gtmContainerID = 'GTM-WD6SLP'
 }
