@@ -92,17 +92,17 @@ const DEVELOPMENT = {
     Hostname: 'http://localhost:3000'
   },
   Saldo: {
-    Hostname: 'https://saldoapp-staging.tokopedia.com'
+    Hostname: '192.168.100.160:9093'
   },
   Mojito: {
     Hostname: 'https://mojito-alpha.tokopedia.com',
     SecretKey: 'mojito_api_v1'
   },
   Notification: {
-    Hostname: 'http://172.16.20.88:9001' // contact vicky.sukarma @mattermost if it's down
+    Hostname: 'http://172.16.20.88:9000' // contact vicky.sukarma @mattermost if it's down
   },
   Points: {
-    Hostname: 'https://points-staging.tokopedia.com',
+    Hostname: 'http://192.168.100.160:8005',
     Secret: '4lclover'
   },
   Redis: {
