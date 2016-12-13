@@ -1,7 +1,7 @@
 @import 'base';
 
 .more-info__holder {
-    margin: 10px 0;
+    margin: 0 0 10px;
     background: $color-white-primary;
     box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
@@ -19,7 +19,7 @@
 
 .more-info__arrow {
     position: absolute;
-    top: 10px;
+    top: 15px;
     right: 9px;
     width: 15px;
     height: 20px;
