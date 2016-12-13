@@ -5,7 +5,7 @@ import { HOSTNAME, SITES } from '../../constants'
 
 class MoreInfo extends Component {
   state = {
-    show: false
+    show: true
   }
 
   constructor (props) {
