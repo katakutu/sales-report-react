@@ -23,8 +23,9 @@
     right: 9px;
     width: 15px;
     height: 20px;
-    background: url('./assets/arrow-green.png') no-repeat transparent;
+    background: url('./assets/arrow-black.png') no-repeat transparent;
     background-size: 7px;
+    opacity: 0.7;
 }
 
 .more-info__arrow-down {
@@ -48,7 +49,9 @@
         top: 4px;
         left: 0;
         display: inline-block;
+        background-image: url('./assets/arrow-green.png');
         vertical-align: middle;
+        opacity: 1;
 
         &.more-info__arrow-up {
             top: -4px;
