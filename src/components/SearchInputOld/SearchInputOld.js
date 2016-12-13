@@ -102,7 +102,7 @@ class SearchInputOld extends Component {
             <input type='hidden' name='st' defaultValue='product' />
             <label htmlFor='search_input' className='u-hide'>Search</label>
             <input name='q'
-              autoComplete="off"
+              autoComplete='off'
               autoFocus={this.state.showSelection}
               type='search'
               id='search_input'
