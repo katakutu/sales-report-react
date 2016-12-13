@@ -154,7 +154,7 @@ class HeaderHome extends Component {
     }
 
     return (
-      <div className='u-clearfix'>
+      <div className='u-clearfix header__wrapper'>
         <header className={'header u-clearfix' + ' ' + fixedHeaderCN} role='banner'>
           <div className='u-relative u-clearfix'>
             <button className='header__nav' onClick={this.openSidebarMenu}>

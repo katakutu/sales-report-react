@@ -19,7 +19,6 @@ class MoreInfo extends Component {
   }
 
   render () {
-    const mainArrow = this.state.show ? 'more-info__arrow-up' : 'more-info__arrow-down'
     const listStyle = this.state.show ? { height: 'auto' } : {
       display: 'none',
       height: 0
@@ -28,11 +27,6 @@ class MoreInfo extends Component {
     return (
       <div className='more-info u-clearfix'>
         <div className='u-col-12 more-info__holder'>
-          <button className='u-col-12 u-block more-info__header more-info__link'
-            onClick={this.toggleContent}>
-            Info Selengkapnya
-            <i className={`more-info__arrow ${mainArrow}`} />
-          </button>
           <ul className='u-list-reset more-info__content u-p0 u-m0' style={listStyle}>
             <li>
               <a className='more-info__link' href={`${HOSTNAME}/bebas-penipuan`}>

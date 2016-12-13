@@ -1,5 +1,9 @@
 @import 'base';
 
+.header__wrapper {
+    height: 146px;
+}
+
 .header {
     position: relative;
     z-index: $z-index-before-max-1;
