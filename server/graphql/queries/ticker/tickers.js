@@ -7,10 +7,7 @@ const {
 const tickerType = require('../../types/ticker');
 const getTicker = require('../../models/ticker');
 
-const tickerQuery = new GraphQLObjectType({
-  name: "query",
-  fields: {
-    ticker: {
+const tickerQuery = {
       type: tickerType,
       args: {
         id: {
@@ -20,8 +17,6 @@ const tickerQuery = new GraphQLObjectType({
       resolve: function(_, args){
         return getTicker(args.id)
       }
-    }
-  }
-});
+    };
 
 module.exports = tickerQuery

@@ -1,5 +1,7 @@
 const ticker = require('./ticker')
 
-module.exports = {
-    ...ticker,
-}
+let queries = {}
+
+queries = Object.assign({}, queries, ticker)
+
+module.exports = queries
