@@ -19,7 +19,6 @@ class MoreInfo extends Component {
   }
 
   render () {
-    const mainArrow = this.state.show ? 'more-info__arrow-up' : 'more-info__arrow-down'
     const listStyle = this.state.show ? { height: 'auto' } : {
       display: 'none',
       height: 0
