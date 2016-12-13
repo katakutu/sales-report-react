@@ -32,7 +32,7 @@ class HomeView extends Component {
         <Ticker />
         <Carousel />
         <PromoSpacer />
-        <div id='widget-dmw' className='u-clearfix u-mb2 u-mt0' /> { /* Pulsa widget container */ }
+        <div id='widget-dmw' className='u-clearfix u-my2' /> { /* Pulsa widget container */ }
         <PromoBanner
           imageUrl='/media/images/top-picks-natal.png'
           targetUrl='https://tokopedia.com'
