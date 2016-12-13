@@ -1,0 +1,45 @@
+@import 'base';
+
+.hotlist {
+    margin-bottom: 10px;
+}
+
+.hotlist__title {
+    padding: 0 10px;
+}
+
+.hotlist__wrapper {
+    position: relative;
+    margin: 0 0 0 10px;
+    padding: 10px;
+    max-width: 273px;
+    height: 100%;
+    border: 1px solid #EBEBEB;
+    border-bottom: 5px solid #EBEBEB;
+    border-radius: 2px;
+    background: $color-white-primary;
+    vertical-align: top;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.hotlist__price {
+    color: #E00000;
+}
+
+.hotlist__name {
+    color: $color-black-secondary;
+}
+
+.hotlist__start-from {
+    color: $color-black-disabled;
+    font-size: 12px;
+}
+
+.hotlist__click {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}

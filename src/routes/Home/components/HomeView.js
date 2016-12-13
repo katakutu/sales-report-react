@@ -6,6 +6,7 @@ import OfficialStoreSection from '../../../components/OfficialStoreSection'
 import PromoSpacer from '../../../components/PromoSpacer'
 import PromoBanner from '../../../components/PromoBanner'
 import Ticker from '../../../components/Ticker'
+import HotList from '../../../components/HotList'
 import MoreInfo from '../../../components/MoreInfo'
 import { graphql, compose } from 'react-apollo'
 import { connect } from 'react-redux'
@@ -37,6 +38,7 @@ class HomeView extends Component {
           imageUrl='/media/images/top-picks-natal.png'
           targetUrl='https://tokopedia.com'
           imageAlt='414 x 90' />
+        <HotList />
         <CategoryList />
         <OfficialStoreSection />
         <MoreInfo />
