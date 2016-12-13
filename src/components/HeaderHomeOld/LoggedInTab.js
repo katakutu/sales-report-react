@@ -12,9 +12,9 @@ var settings = {
   speed: 500,
   draggable: true,
   centerMode: false,
-  variableWidth: true,
+  variableWidth: false,
   slidesToShow: 4,
-  slidesToScroll: 1
+  slidesToScroll: 4
 }
 
 class LoggedInTab extends Component {
