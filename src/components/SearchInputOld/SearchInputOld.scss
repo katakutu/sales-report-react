@@ -102,14 +102,6 @@
     text-align: left;
     font-size: 14px;
 
-    &::-webkit-input-placeholder {
-        text-transform: uppercase;
-    }
-
-    &::-moz-placeholder {
-        text-transform: uppercase;
-    }
-
     &:focus {
         color: $color-green;
     }

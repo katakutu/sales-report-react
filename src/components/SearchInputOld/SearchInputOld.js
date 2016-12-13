@@ -108,7 +108,7 @@ class SearchInputOld extends Component {
               id='search_input'
               ref='searchInput'
               className='search-input__input'
-              placeholder={this.props.injectPlaceholder.toUpperCase()}
+              placeholder={this.props.injectPlaceholder}
               onFocus={this.autocomplete}
               onChange={this.autocomplete}
               value={this.state.value} />
