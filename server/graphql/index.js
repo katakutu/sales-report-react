@@ -1,22 +1,24 @@
-var graphqlHTTP = require('express-graphql')
-var { buildSchema } = require('graphql')
+const graphqlHTTP = require('express-graphql')
+const graphql = require('graphql')
+const GraphQLSchema = graphql.GraphQLSchema;
+const GraphQLObjectType = graphql.GraphQLObjectType;
+const queries = require('./queries')
+
+
+
+const tickerQueries = require('./queries/ticker');
+
+
 
 // Construct a schema, using GraphQL schema language
-var schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`)
-
-// The root provides a resolver function for each API endpoint
-var root = {
-  hello: () => {
-    return 'Hello world!'
-  }
-}
+const schema = new GraphQLSchema({
+  query: new GraphQLObjectType({
+    name: 'Query',
+    fields: () => (tickerQueries)
+  }),
+})
 
 module.exports = graphqlHTTP({
   schema: schema,
-  rootValue: root,
   graphiql: true
 })
