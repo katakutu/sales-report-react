@@ -66,9 +66,9 @@ function getUserInfo (context) {
         'name': user['name'],
         'id': userID,
         'profilePicture': user['profile_picture'],
-        'deposit': s[0]['deposit_fmt'] || 'Rp 0',
-        'points': s[2]['data']['attributes']['amount_formatted'] || 'Rp 0',
-        'notifications': s[1]['data']
+        'deposit': s[0] || { deposit_fmt: 'Rp 0' },
+        'points': s[2] || { data: { attributes: { amount_formatted: 'Rp 0' } } },
+        'notifications': s[1]['data'] || null
       }
     })
   })
