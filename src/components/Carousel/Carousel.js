@@ -1,3 +1,5 @@
+/* global window */
+
 import React, { Component } from 'react'
 import './Carousel.scss'
 import './slick.scss'
@@ -93,10 +95,10 @@ class Carousel extends Component {
     return (event) => {
       window.dataLayer = window.dataLayer || []
 
-      dataLayer.push({
+      window.dataLayer.push({
         'event': 'sliderBanner',
         'eventCategory': 'Slider',
-        'eventAction': "Click",
+        'eventAction': 'Click',
         'eventLabel': this.state.images[index]
       })
     }
@@ -105,20 +107,20 @@ class Carousel extends Component {
   _gtmNotifySlideChange (index) {
     window.dataLayer = window.dataLayer || []
 
-    dataLayer.push({
+    window.dataLayer.push({
       'event': 'sliderBanner',
       'eventCategory': 'Slider',
-      'eventAction': "Impression",
+      'eventAction': 'Impression',
       'eventLabel': this.state.images[index]
     })
 
     let link = this.state.images[index]['redirect_url']
-    let baseURL = link.split("?")[0]
-    let parts = baseURL.split("/")
+    let baseURL = link.split('?')[0]
+    let parts = baseURL.split('/')
     let title = parts[parts.length - 1] || parts[parts.length - 2]
 
     if (title.length) {
-      dataLayer.push({
+      window.dataLayer.push({
         'banner_impression_id': title,
         'ecommerce': {
           'promoView': {
@@ -130,7 +132,7 @@ class Carousel extends Component {
               }]
           }
         }
-      });
+      })
     }
   }
 
