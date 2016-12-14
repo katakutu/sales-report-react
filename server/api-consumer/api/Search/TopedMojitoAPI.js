@@ -57,7 +57,6 @@ class TopedMojitoAPI {
    * @memberOf TopedMojitoAPI
    */
   getSlides (pageSize, deviceFilter, targetFilter, stateFilter, expiredFilter) {
-    let callback = 'slidesMobile'
     let content = {
       'page[size]': pageSize,
       'filter[device]': deviceFilter,
@@ -66,9 +65,8 @@ class TopedMojitoAPI {
       'filter[expired]': expiredFilter
     }
     let url = URL.parse(MOJITO_SERVICES.Slides)
-    let jsonpOptions = { 'callback': callback, 'timeout': 5000 }
 
-    return this.api.consumeJSONP(url, 'GET', content, jsonpOptions)
+    return this.api.consume(url, 'GET', content)
   }
 }
 

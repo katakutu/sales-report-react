@@ -3,13 +3,13 @@ const graphql = require('graphql')
 const GraphQLSchema = graphql.GraphQLSchema
 const GraphQLObjectType = graphql.GraphQLObjectType
 
-const tickerQueries = require('./queries/ticker')
+const Queries = require('./queries')
 
 // Construct a schema, using GraphQL schema language
 const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'Query',
-    fields: () => (tickerQueries)
+    fields: () => (Queries)
   })
 })
 

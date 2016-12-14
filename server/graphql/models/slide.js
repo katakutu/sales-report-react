@@ -1,16 +1,16 @@
 const TopedMojitoAPI = require('./../../api-consumer/api/Search/TopedMojitoAPI')
 
-function getTicker () {
+function getSlides () {
   const api = new TopedMojitoAPI()
 
-  return api.getTickers(0, 50, 'desktop', 'data_source_filter').then(response => {
+  return api.getSlides(25, 2, 65535, 1, 0).then(response => {
     const responseMeta = response['meta']
     const resultMeta = (Object.keys(responseMeta).length > 0 && responseMeta.constructor === Object)
       ? responseMeta
-      : { total_data: response['data']['tickers'].length }
+      : { total_data: response['data']['slides'].length }
 
-    return { meta: resultMeta, tickers: response['data']['tickers'] }
+    return { meta: resultMeta, slides: response['data']['slides'] }
   })
 }
 
-module.exports = getTicker
+module.exports = getSlides
