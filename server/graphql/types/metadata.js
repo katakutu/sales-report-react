@@ -4,11 +4,11 @@ const {
   GraphQLObjectType
  } = require('graphql')
 
-const TickerMetaDataType = new GraphQLObjectType({
-  name: 'TickerMetaData',
+const MetaDataType = new GraphQLObjectType({
+  name: 'MetaData',
   fields: {
     total_data: { type: new GraphQLNonNull(GraphQLInt) }
   }
 })
 
-module.exports = TickerMetaDataType
+module.exports = MetaDataType

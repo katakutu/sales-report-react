@@ -1,5 +1,5 @@
 const fetch = require('isomorphic-fetch')
-const fetchJsonp = require('fetch-jsonp')
+const JSONP = require('node-jsonp')
 
 /**
  * A base class to consume http API without HMAC.
@@ -85,19 +85,19 @@ class TopedAPI {
    * @memberOf TopedAPI
    */
   consumeJSONP (url, method, content, jsonpOptions, sameOrigin = false) {
-    let options = (method === 'GET') ? {} : {
-      method: method,
-      body: JSON.stringify(content)
-    }
-
-    let originOpt = sameOrigin ? Object.assign({}, options, { credentials: 'same-origin' }) : options
-    let finalOpt = Object.assign({}, originOpt, jsonpOptions)
-
     let finalURL = (method === 'POST') ? url.format()
             : url.format() + '?' + this.contentToURIParams(content)
 
-    return fetchJsonp(finalURL, finalOpt).then(response => {
-      return response.json()
+    let callback = jsonpOptions.callback || 'callback'
+    let timeout = jsonpOptions.timeout || 5000
+    return new Promise((resolve, reject) => {
+      JSONP(finalURL, content, callback, (response) => {
+        resolve(response)
+      })
+
+      setTimeout(() => {
+        reject(new Error(`JSONP request to ${finalURL} timed out after ${timeout}.`))
+      }, timeout)
     })
   }
 

@@ -4,15 +4,15 @@ const {
   GraphQLObjectType
 } = require('graphql')
 
-const TickerType = require('./ticker')
+const SlideType = require('./slide')
 const MetaDataType = require('./metadata')
 
-const TickersType = new GraphQLObjectType({
-  name: 'Tickers',
+const SlidesType = new GraphQLObjectType({
+  name: 'Slides',
   fields: {
     meta: { type: new GraphQLNonNull(MetaDataType) },
-    tickers: { type: new GraphQLList(TickerType) }
+    slides: { type: new GraphQLList(SlideType) }
   }
 })
 
-module.exports = TickersType
+module.exports = SlidesType
