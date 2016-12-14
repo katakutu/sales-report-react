@@ -1,3 +1,3 @@
-const ticker = require('./tickers');
+const ticker = require('./tickers')
 
 module.exports = { ticker }

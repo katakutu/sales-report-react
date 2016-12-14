@@ -1,10 +1,7 @@
-import {
-    GraphQLObjectType,
-    GraphQlNonNull,
-    GraphQLString,
-    GraphQLID
-} from 'graphql';
+const { GraphQLObjectType } = require('graphql')
 
-const saldoType = new GraphQLObjectType( {
-    name: 'Saldo',
+const saldoType = new GraphQLObjectType({
+  name: 'Saldo'
 })
+
+export default saldoType
