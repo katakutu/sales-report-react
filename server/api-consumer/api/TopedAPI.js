@@ -29,7 +29,7 @@ class TopedAPI {
     let finalOptions = sameOrigin ? Object.assign({}, options, { credentials: 'same-origin' }) : options
 
     let finalURL = (method === 'POST') ? url.format()
-            : url.format() + '?' + this.contentToURIParams(content)
+            : this._formatGetURL(url, content)
 
     return fetch(finalURL, finalOptions).then(response => {
       return response.json()
@@ -64,7 +64,7 @@ class TopedAPI {
     let finalOptions = sameOrigin ? Object.assign({}, optWithAuth, { credentials: 'same-origin' }) : optWithAuth
 
     let finalURL = (method === 'POST') ? url.format()
-            : url.format() + '?' + this.contentToURIParams(content)
+            : this._formatGetURL(url, content)
 
     return fetch(finalURL, finalOptions).then(response => {
       return response.json()
@@ -86,7 +86,7 @@ class TopedAPI {
    */
   consumeJSONP (url, method, content, jsonpOptions, sameOrigin = false) {
     let finalURL = (method === 'POST') ? url.format()
-            : url.format() + '?' + this.contentToURIParams(content)
+            : this._formatGetURL(url, content)
 
     let callback = jsonpOptions.callback || 'callback'
     let timeout = jsonpOptions.timeout || 5000
@@ -115,6 +115,15 @@ class TopedAPI {
     return Object.keys(content).map(key => {
       return key + '=' + encodeURIComponent(content[key])
     }).join('&')
+  }
+
+  _formatGetURL (url, content) {
+    let result = url.format()
+    if (Object.keys(content).length > 0) {
+      result = result + '?' + this.contentToURIParams(content)
+    }
+
+    return result
   }
 
   /**

@@ -12,6 +12,9 @@ const PRODUCTION = {
     Hostname: 'https://accounts.tokopedia.com',
     Callback: 'https://m.tokopedia.com/appauth/code'
   },
+  Hotlist: {
+    Hostname: 'https://m.tokopedia.com/ajax/hotlist.pl'
+  },
   Lite: {
     Hostname: 'https://m.tokopedia.com'
   },
@@ -50,6 +53,9 @@ const TEST = {
     Hostname: 'https://accounts-staging.tokopedia.com',
     Callback: 'https://lite-staging.tokopedia.com/appauth/code'
   },
+  Hotlist: {
+    Hostname: 'https://m-staging.tokopedia.com/ajax/hotlist.pl'
+  },
   Lite: {
     Hostname: 'https://lite-staging.tokopedia.com'
   },
@@ -87,6 +93,9 @@ const DEVELOPMENT = {
   Accounts: {
     Hostname: 'http://192.168.100.160:8009',
     Callback: 'http://localhost:3000/appauth/code'
+  },
+  Hotlist: {
+    Hostname: 'https://m-staging.tokopedia.com/ajax/hotlist.pl'
   },
   Lite: {
     Hostname: 'http://localhost:3000'
