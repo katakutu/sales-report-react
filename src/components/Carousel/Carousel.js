@@ -61,10 +61,21 @@ class Carousel extends Component {
     })
   }
 
+  constructor (props) {
+    super(props)
+
+    this._createCarouselItems = this._createCarouselItems.bind(this)
+    this._gtmNotifySlideClick = this._gtmNotifySlideClick.bind(this)
+    this._gtmNotifySlideChange = this._gtmNotifySlideChange.bind(this)
+  }
+
   _createCarouselItems (image, index) {
     return (
       <div className='carousel__item' key={`car-${index}`}>
-        <a href={image.redirect_url} className='u-text-decoration-none' target='_blank'>
+        <a href={image.redirect_url}
+          className='u-text-decoration-none'
+          onClick={this._gtmNotifySlideClick(index)}
+          target='_blank'>
           <div className='carousel__item-container u-mx-auto u-block'>
             <picture className='carousel__img u-fit u-mx-auto' alt={image.title}>
               <source srcSet={image.image_url} />
@@ -76,6 +87,51 @@ class Carousel extends Component {
         </a>
       </div>
     )
+  }
+
+  _gtmNotifySlideClick (index) {
+    return (event) => {
+      window.dataLayer = window.dataLayer || []
+
+      dataLayer.push({
+        'event': 'sliderBanner',
+        'eventCategory': 'Slider',
+        'eventAction': "Click",
+        'eventLabel': this.state.images[index]
+      })
+    }
+  }
+
+  _gtmNotifySlideChange (index) {
+    window.dataLayer = window.dataLayer || []
+
+    dataLayer.push({
+      'event': 'sliderBanner',
+      'eventCategory': 'Slider',
+      'eventAction': "Impression",
+      'eventLabel': this.state.images[index]
+    })
+
+    let link = this.state.images[index]['redirect_url']
+    let baseURL = link.split("?")[0]
+    let parts = baseURL.split("/")
+    let title = parts[parts.length - 1] || parts[parts.length - 2]
+
+    if (title.length) {
+      dataLayer.push({
+        'banner_impression_id': title,
+        'ecommerce': {
+          'promoView': {
+            'promotions': [
+              {
+                'id': title,
+                'name': title,
+                'position': 'slider_banner'
+              }]
+          }
+        }
+      });
+    }
   }
 
   render () {
@@ -90,7 +146,7 @@ class Carousel extends Component {
 
     return (
       <div className='carousel u-clearfix'>
-        <Slider {...settings}>
+        <Slider {...settings} afterChange={this._gtmNotifySlideChange}>
           { sliders }
         </Slider>
       </div>
