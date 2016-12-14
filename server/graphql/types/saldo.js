@@ -1,7 +1,14 @@
-const { GraphQLObjectType } = require('graphql')
+const {
+  GraphQLNonNull,
+  GraphQLObjectType,
+  GraphQLString
+} = require('graphql')
 
-const saldoType = new GraphQLObjectType({
-  name: 'Saldo'
+const SaldoType = new GraphQLObjectType({
+  name: 'Saldo',
+  fields: {
+    deposit_fmt: { type: new GraphQLNonNull(GraphQLString) }
+  }
 })
 
-export default saldoType
+module.exports = SaldoType

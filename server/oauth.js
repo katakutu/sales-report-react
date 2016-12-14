@@ -99,7 +99,7 @@ module.exports = {
   userInfo: function (req, res, next) {
     if (!req.session.oauth) {
       // break to two condition to pass linter (and better readability)
-      if (res.cookies && res.cookies[GlobalConfig['Cookie']['SessionID']]) {
+      if (req.cookies && req.cookies[GlobalConfig['Cookie']['SessionID']]) {
         // to prevent infinite loop we only force redirect to /login
         // if the callback URL is the same as hostname.
         // e.g. if we host on lite-staging.tokopedia.com and redir to m-staging.tokopedia.com
