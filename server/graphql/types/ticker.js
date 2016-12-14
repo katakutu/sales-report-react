@@ -1,23 +1,17 @@
 const {
-  GraphQLObjectType,
+  GraphQLID,
   GraphQLNonNull,
-  GraphQLString,
-  GraphQLID
-} = require('graphql')
+  GraphQLObjectType,
+  GraphQLString
+ } = require('graphql')
 
-const tickerType = new GraphQLObjectType({
+const TickerType = new GraphQLObjectType({
   name: 'Ticker',
   fields: {
-    id: {
-      type: new GraphQLNonNull(GraphQLID)
-    },
-    title: {
-      type: GraphQLString
-    },
-    message: {
-      type: GraphQLString
-    }
+    id: { type: new GraphQLNonNull(GraphQLID) },
+    title: { type: new GraphQLNonNull(GraphQLString) },
+    message: { type: new GraphQLNonNull(GraphQLString) }
   }
 })
 
-module.exports = tickerType
+module.exports = TickerType

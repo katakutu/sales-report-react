@@ -1,10 +1,10 @@
 const { GraphQLInt } = require('graphql')
 
-const tickerType = require('../../types/ticker')
+const TickersType = require('../../types/tickers')
 const getTicker = require('../../models/ticker')
 
 const tickerQuery = {
-  type: tickerType,
+  type: TickersType,
   args: {
     id: {
       type: GraphQLInt

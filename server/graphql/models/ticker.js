@@ -1,28 +1,16 @@
-const tickers = {
-  1: {
-    title: 'ticker title 1',
-    message: 'Ticker message one',
-    id: 1
-  },
-  2: {
-    title: 'ticker title 2',
-    message: 'Ticker message two',
-    id: 2
-  },
-  3: {
-    title: 'ticker title 3',
-    message: 'Ticker message three',
-    id: 3
-  },
-  4: {
-    title: 'ticker title 4',
-    message: 'Ticker message four',
-    id: 4
-  }
-}
+const TopedMojitoAPI = require('./../../api-consumer/api/Search/TopedMojitoAPI')
 
-function getTicker (id) {
-  return tickers[id]
+function getTicker () {
+  const api = new TopedMojitoAPI()
+
+  return api.getTickers(0, 50, 'desktop', 'data_source_filter').then(response => {
+    const responseMeta = response['meta']
+    const resultMeta = (Object.keys(responseMeta).length > 0 && responseMeta.constructor === Object)
+      ? responseMeta
+      : { total_data: response['data']['tickers'].length }
+
+    return { meta: resultMeta, tickers: response['data']['tickers'] }
+  })
 }
 
 module.exports = getTicker
