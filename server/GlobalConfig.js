@@ -1,7 +1,7 @@
 const config = require('../config')
 
 const PRODUCTION = {
-  Hostname: 'https://m.tokopedia.com',
+  Hostname: 'https://m-beta.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_'
   },
@@ -10,13 +10,13 @@ const PRODUCTION = {
   },
   Accounts: {
     Hostname: 'https://accounts.tokopedia.com',
-    Callback: 'https://m.tokopedia.com/appauth/code'
+    Callback: 'https://m-beta.tokopedia.com/appauth/code'
   },
   Hotlist: {
     Hostname: 'https://m.tokopedia.com/ajax/hotlist.pl'
   },
   Lite: {
-    Hostname: 'https://m.tokopedia.com'
+    Hostname: 'https://m-beta.tokopedia.com'
   },
   Saldo: {
     Hostname: 'http://192.168.16.110'
