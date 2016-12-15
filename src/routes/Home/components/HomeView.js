@@ -47,12 +47,4 @@ class HomeView extends Component {
   }
 }
 
-const query = gql`query Query { hello }`
-
-const mapStateToProps = state => ({})
-
-export default compose(
-  graphql(query),
-  connect(mapStateToProps)
-)(HomeView)
-
+export default HomeView
