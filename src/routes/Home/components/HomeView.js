@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './HomeView.scss'
 import Carousel from '../../../components/Carousel'
 import CategoryList from '../../../components/CategoryList'
+import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import OfficialStoreSection from '../../../components/OfficialStoreSection'
 import PromoSpacer from '../../../components/PromoSpacer'
 import PromoBanner from '../../../components/PromoBanner'
@@ -41,6 +42,8 @@ class HomeView extends Component {
     
     return (
       <div>
+        <HeaderHomeOld />
+
         <Ticker tickers={tickers} perTickDuration={2} />
         <Carousel images={slides} />
         <PromoSpacer />
