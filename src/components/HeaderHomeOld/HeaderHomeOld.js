@@ -4,7 +4,6 @@ import { Link } from 'react-router'
 import Scroll from 'react-scroll'
 import { updateUserLoginStatus, updateSidebarStatus, storeUserData, initialState } from '../../store/app'
 import BodyClassName from 'react-body-classname'
-import TopedLiteAuthAPI from '../../lib/api/Auth/TopedLiteAuthAPI'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import './HeaderHomeOld.scss'
@@ -23,6 +22,7 @@ class HeaderHome extends Component {
     updateSidebarStatus: React.PropTypes.func,
     storeUserData: React.PropTypes.func,
     userData: React.PropTypes.object,
+    userInfo: React.PropTypes.object,
     userIsLoggedIn: React.PropTypes.bool,
     sidebarIsOpened: React.PropTypes.bool
   }
@@ -35,8 +35,6 @@ class HeaderHome extends Component {
   constructor (props) {
     super(props)
 
-    this.authAPI = new TopedLiteAuthAPI()
-
     this.handleScroll = this.handleScroll.bind(this)
     this.openSidebarMenu = this.openSidebarMenu.bind(this)
     this.renderTabs = this.renderTabs.bind(this)
@@ -47,31 +45,29 @@ class HeaderHome extends Component {
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll)
 
-    this.authAPI.getUserInfo().then(userinfo => {
-      if (userinfo && userinfo['name'] && userinfo['id']) {
-        this.props.updateUserLoginStatus(true)
-        this.props.storeUserData({
-          'id': userinfo['id'],
-          'name': userinfo['name'],
-          'profilePicture': userinfo['profilePicture'],
-          'deposit': userinfo['deposit'],
-          'points': userinfo['points'],
-          'notifications': userinfo['notifications']
-        })
-      } else if (userinfo && userinfo['login_redirect']) {
+    const userIsLoggedIn = this.props.userInfo ? this.props.userInfo.isLoggedIn : false
+    const userShouldRedirect = this.props.userInfo ? this.props.userInfo.shouldRedirect : false
+
+    if (userIsLoggedIn && userShouldRedirect) {
         // if user is logged in via marketplace, redirect to login page
         // to login here too
-        window.location = '/login'
-      } else {
-        this.props.updateUserLoginStatus(false)
-        this.props.storeUserData(initialState)
-      }
-    }).catch(error => {
-      error
+      window.location = '/login'
+    } else if (userIsLoggedIn && !userShouldRedirect) {
+      const userInfo = this.props.userInfo
 
+      this.props.updateUserLoginStatus(true)
+      this.props.storeUserData({
+        'id': userInfo['id'],
+        'name': userInfo['name'],
+        'profilePicture': userInfo['profilePicture'],
+        'deposit': userInfo['deposit'],
+        'points': userInfo['points'],
+        'notifications': userInfo['notifications']
+      })
+    } else {
       this.props.updateUserLoginStatus(false)
       this.props.storeUserData(initialState)
-    })
+    }
   }
 
   componentWillUnmount () {

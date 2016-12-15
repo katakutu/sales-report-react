@@ -1,8 +1,4 @@
-import React from 'react';
-import sinon from 'sinon';
-import { shallow } from 'enzyme';
-
-import ToastNotification from 'components/ToastNotification';
+import ToastNotification from 'components/ToastNotification'
 // import Foo from './Foo';
 
 describe('(Component) ToastNotification', () => {
@@ -15,12 +11,12 @@ describe('(Component) ToastNotification', () => {
     expect(ToastNotification).to.have.deep.property('propTypes.onTimeout')
     expect(ToastNotification).to.have.deep.property('propTypes.seqNo')
     expect(ToastNotification).to.have.deep.property('propTypes.timeout')
-  });
+  })
 
   it('should has two static defaultTypes', () => {
     expect(ToastNotification).to.have.deep.property('defaultProps.seqNo', 1)
     expect(ToastNotification).to.have.deep.property('defaultProps.timeout', 2000)
-  });
+  })
 
   // it('simulates click events', () => {
   //   const onButtonClick = sinon.spy();
@@ -37,4 +33,4 @@ describe('(Component) ToastNotification', () => {
   //   expect(Foo.prototype.componentDidMount).to.have.property('callCount', 1);
   //   Foo.prototype.componentDidMount.restore();
   // });
-});
+})

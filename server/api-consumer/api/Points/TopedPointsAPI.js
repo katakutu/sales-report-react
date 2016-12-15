@@ -53,4 +53,7 @@ class TopedPointsAPI {
   }
 }
 
-module.exports = TopedPointsAPI
+module.exports = {
+  DEFAULT_POINTS_DATA: DEFAULT_POINTS_DATA,
+  TopedPointsAPI: TopedPointsAPI
+}

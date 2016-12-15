@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import HeaderHomeOld from '../../components/HeaderHomeOld'
 import Footer from '../../components/Footer'
 import './CoreLayout.scss'
 import '../../styles/core.scss'
@@ -77,8 +76,6 @@ class CoreLayout extends Component {
     return (
       <OnOffWrapper onOnline={this.handleOnOnline} onOffline={this.handleOnOffline}>
         <div style={ds}>
-          <HeaderHomeOld />
-
           { this.props.isLoading && <Spinner /> }
 
           <div className='content'>

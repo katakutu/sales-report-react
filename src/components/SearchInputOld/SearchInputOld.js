@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BodyClassName from 'react-body-classname'
+import SearchInputResultOld from './SearchInputResultOld'
 import './SearchInputOld.scss'
-import TopedAceAPI from '../../lib/api/Search/TopedAceAPI'
 
 import UserSearchID from '../../lib/utils/UserSearchID'
 import { storeUserSearchID } from '../../store/app'
-
-import { HOSTNAME } from '../../constants'
-
-const api = new TopedAceAPI()
 
 class SearchInputOld extends Component {
   static propTypes = {
@@ -28,7 +24,6 @@ class SearchInputOld extends Component {
     this.closeSearchModal = this.closeSearchModal.bind(this)
     this.state = {
       showSelection: this.props.showModal,
-      selection: [],
       value: ''
     }
   }
@@ -51,20 +46,9 @@ class SearchInputOld extends Component {
 
     this.props.storeUserSearchID(uid)
 
-    api.universeSearch(value, uid).then(result => {
-      let selection = result['data'].filter(r => { return r['items'].length > 0 })
-
-      this.setState({
-        showSelection: true,
-        selection: selection.filter(s => s['name'].toLowerCase() !== 'autocomplete'),
-        value: value
-      })
-    })
-  }
-
-  _sentenceCase (string) {
-    return string.replace(/\w\S*/g, txt => {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+    this.setState({
+      showSelection: true,
+      value: value
     })
   }
 
@@ -74,20 +58,9 @@ class SearchInputOld extends Component {
 
   render () {
     let autocomplete = this.state.showSelection ? (
-      <div id='autocomplete__container'>
-        { this.state.selection.map((selection, sIndex) => {
-          return (
-            <div className='autocomplete__category' key={`ac-${sIndex}`}>
-              <h6>{ this._sentenceCase(selection['name']) }</h6>
-              <ul>
-                { selection['items'].map((item, iIndex) => {
-                  return (<li key={`it-${iIndex}`}><a href={`${HOSTNAME}${item.url}`}>{ item.keyword }</a></li>)
-                }) }
-              </ul>
-            </div>
-          )
-        }) }
-      </div>
+      <SearchInputResultOld
+        query={this.state.value}
+        userSearchID={this.props.userSearchID} />
     ) : null
 
     let backgroundBlur = (this.state.showSelection) ? 'search-input__modal-active' : ''

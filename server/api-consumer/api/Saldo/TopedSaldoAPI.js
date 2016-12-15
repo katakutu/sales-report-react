@@ -24,4 +24,7 @@ class TopedSaldoAPI {
   }
 }
 
-module.exports = TopedSaldoAPI
+module.exports = {
+  DEFAULT_SALDO_DATA: DEFAULT_SALDO_DATA,
+  TopedSaldoAPI: TopedSaldoAPI
+}
