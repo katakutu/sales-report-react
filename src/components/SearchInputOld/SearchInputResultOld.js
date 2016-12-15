@@ -5,9 +5,9 @@ import gql from 'graphql-tag'
 import { HOSTNAME } from '../../constants'
 
 class SearchInputResultOld extends Component {
-    static propTypes = {
-        data: React.PropTypes.object
-    }
+  static propTypes = {
+    data: React.PropTypes.object
+  }
 
   _sentenceCase (string) {
     return string.replace(/\w\S*/g, txt => {
@@ -15,24 +15,24 @@ class SearchInputResultOld extends Component {
     })
   }
 
-    render () {
-      return this.props.data.search ? (
-        <div id='autocomplete__container'>
-          { this.props.data.search.map((selection, sIndex) => {
-            return (
-              <div className='autocomplete__category' key={`ac-${sIndex}`}>
-                <h6>{ this._sentenceCase(selection['name']) }</h6>
-                <ul>
-                  { selection['items'].map((item, iIndex) => {
-                    return (<li key={`it-${iIndex}`}><a href={`${HOSTNAME}${item.url}`}>{ item.keyword }</a></li>)
-                  }) }
-                </ul>
-              </div>
-            )
-          }) }
-        </div>
+  render () {
+    return this.props.data.search ? (
+      <div id='autocomplete__container'>
+        { this.props.data.search.map((selection, sIndex) => {
+          return (
+            <div className='autocomplete__category' key={`ac-${sIndex}`}>
+              <h6>{ this._sentenceCase(selection['name']) }</h6>
+              <ul>
+                { selection['items'].map((item, iIndex) => {
+                  return (<li key={`it-${iIndex}`}><a href={`${HOSTNAME}${item.url}`}>{ item.keyword }</a></li>)
+                }) }
+              </ul>
+            </div>
+          )
+        }) }
+      </div>
       ) : null
-    }
+  }
 }
 
 const SearchQuery = gql`
@@ -49,5 +49,5 @@ query Query($query: String!, $userSearchID: String!) {
 `
 
 export default graphql(SearchQuery, {
-    options: ({ query, userSearchID }) => ({ variables: { query, userSearchID } })
+  options: ({ query, userSearchID }) => ({ variables: { query, userSearchID } })
 })(SearchInputResultOld)

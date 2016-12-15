@@ -51,18 +51,18 @@ class HeaderHome extends Component {
     if (userIsLoggedIn && userShouldRedirect) {
         // if user is logged in via marketplace, redirect to login page
         // to login here too
-        window.location = '/login'
+      window.location = '/login'
     } else if (userIsLoggedIn && !userShouldRedirect) {
       const userInfo = this.props.userInfo
 
       this.props.updateUserLoginStatus(true)
       this.props.storeUserData({
-        'id': userinfo['id'],
-        'name': userinfo['name'],
-        'profilePicture': userinfo['profilePicture'],
-        'deposit': userinfo['deposit'],
-        'points': userinfo['points'],
-        'notifications': userinfo['notifications']
+        'id': userInfo['id'],
+        'name': userInfo['name'],
+        'profilePicture': userInfo['profilePicture'],
+        'deposit': userInfo['deposit'],
+        'points': userInfo['points'],
+        'notifications': userInfo['notifications']
       })
     } else {
       this.props.updateUserLoginStatus(false)

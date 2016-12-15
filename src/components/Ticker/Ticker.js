@@ -38,7 +38,7 @@ class Ticker extends Component {
     this._intervalID = setInterval(this.refreshTickers, this.state.refreshInterval)
   }
 
-  refreshTickers() {
+  refreshTickers () {
     if (this.props.tickers.length > 0) {
       let dataCount = this.props.tickers.length
       let nextRefresh = this.props.perTickDuration * dataCount * 1000

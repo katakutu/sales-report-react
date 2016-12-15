@@ -46,10 +46,10 @@ class SearchInputOld extends Component {
 
     this.props.storeUserSearchID(uid)
 
-      this.setState({
-        showSelection: true,
-        value: value
-      })
+    this.setState({
+      showSelection: true,
+      value: value
+    })
   }
 
   componentDidMount () {
@@ -58,7 +58,7 @@ class SearchInputOld extends Component {
 
   render () {
     let autocomplete = this.state.showSelection ? (
-      <SearchInputResultOld 
+      <SearchInputResultOld
         query={this.state.value}
         userSearchID={this.props.userSearchID} />
     ) : null

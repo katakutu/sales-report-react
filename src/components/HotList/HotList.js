@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
 import './HotList.scss'
 import TextHeader from '../../components/TextHeader'
 import Slider from 'react-slick'
@@ -39,7 +37,7 @@ class HotList extends Component {
     return (
       <div className='hotlist__item' key={`hotlist-${index}`}>
         <div className='hotlist__wrapper'>
-          <img src={ item.image_url } className='u-fit u-block u-mx-auto' alt={`Gambar ${item.title_enc}`} />
+          <img src={item.image_url} className='u-fit u-block u-mx-auto' alt={`Gambar ${item.title_enc}`} />
           <div className='hotlist__footer u-clearfix u-mt1'>
             <div className='u-clearfix'>
               <div className='u-col u-col-5 u-truncate u-relative'>
@@ -67,11 +65,11 @@ class HotList extends Component {
     return result
   }
 
-  render() {
+  render () {
     const placeholder = [
       { image_url: 'http://placehold.it/277x144', title_enc: 'Hotlist', price_start_from: 'Rp 0' }
     ]
-  
+
     const hotlists = this._verifyHotlistData(placeholder)
 
     return (

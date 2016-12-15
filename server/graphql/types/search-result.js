@@ -8,12 +8,12 @@ const {
 const SearchResultItemType = require('./search-result-item')
 
 const SearchResultType = new GraphQLObjectType({
-    name: 'SearchResult',
-    fields: {
-        id: { type: new GraphQLNonNull(GraphQLString) },
-        items: { type: new GraphQLList(SearchResultItemType) },
-        name: { type: new GraphQLNonNull(GraphQLString) }
-    }
+  name: 'SearchResult',
+  fields: {
+    id: { type: new GraphQLNonNull(GraphQLString) },
+    items: { type: new GraphQLList(SearchResultItemType) },
+    name: { type: new GraphQLNonNull(GraphQLString) }
+  }
 })
 
 module.exports = SearchResultType

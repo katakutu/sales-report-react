@@ -1,9 +1,21 @@
 const GlobalConfig = require('./../../GlobalConfig')
 
 const TopedAuthAPI = require('./../../api-consumer/api/Auth/TopedAuthAPI')
-const { DEFAULT_SALDO_DATA, TopedSaldoAPI } = require('./../../api-consumer/api/Saldo/TopedSaldoAPI')
-const { DEFAULT_NOTIFICATION_DATA, TopedNotificationAPI } = require('./../../api-consumer/api/Notification/TopedNotificationAPI')
-const { DEFAULT_POINTS_DATA, TopedPointsAPI } = require('./../../api-consumer/api/Points/TopedPointsAPI')
+
+const {
+  DEFAULT_SALDO_DATA,
+  TopedSaldoAPI
+} = require('./../../api-consumer/api/Saldo/TopedSaldoAPI')
+
+const {
+  DEFAULT_NOTIFICATION_DATA,
+  TopedNotificationAPI
+} = require('./../../api-consumer/api/Notification/TopedNotificationAPI')
+
+const {
+  DEFAULT_POINTS_DATA,
+  TopedPointsAPI
+} = require('./../../api-consumer/api/Points/TopedPointsAPI')
 
 const DEFAULT_NOT_LOGGED_IN = {
   'isLoggedIn': false,

@@ -9,8 +9,7 @@ import PromoBanner from '../../../components/PromoBanner'
 import Ticker from '../../../components/Ticker'
 import HotList from '../../../components/HotList'
 import MoreInfo from '../../../components/MoreInfo'
-import { graphql, compose } from 'react-apollo'
-import { connect } from 'react-redux'
+import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 class HomeView extends Component {
@@ -38,7 +37,7 @@ class HomeView extends Component {
 
     const defaultHotlist = { success: 0, message_status: 1, data: [] }
     const hotlists = this.props.data.hotlists ? this.props.data.hotlists : defaultHotlist
-    
+
     return (
       <div>
         <HeaderHomeOld userInfo={this.props.data.user} />

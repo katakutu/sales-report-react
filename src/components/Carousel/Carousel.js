@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 import './Carousel.scss'
 import './slick.scss'
 import './slick-theme.scss'
-import TopedMojitoAPI from '../../lib/api/Search/TopedMojitoAPI'
 import Slider from 'react-slick'
 
 const settings = {
