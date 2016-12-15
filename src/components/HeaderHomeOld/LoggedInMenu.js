@@ -165,15 +165,17 @@ class LoggedInMenu extends Component {
           <div className='drawer__user-topup'>
             <a href={topupLink} className='drawer__btn-topup'>Top Up Saldo</a>
           </div>
-          <div className='drawer__menu-shop u-clearfix'>
-            <div className='u-left'>
-              <img src={shopPhoto} alt='tokopedia' className='drawer__menu-shop-icon' />
+          <a href={`${HOSTNAME} `}>
+            <div className='drawer__menu-shop u-clearfix'>
+              <div className='u-left'>
+                <img src={shopPhoto} alt='tokopedia' className='drawer__menu-shop-icon' />
+              </div>
+              <div className='u-left drawer__menu-myshop'>
+                <div>Toko Saya</div>
+                <div className='drawer__menu-myshop-name'>iPhoneShop</div>
+              </div>
             </div>
-            <div className='u-left drawer__menu-myshop'>
-              <div>Toko Saya</div>
-              <div className='drawer__menu-myshop-name'>iPhoneShop</div>
-            </div>
-          </div>
+          </a>
           <div className='drawer__menu'>
             <a href='/'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
