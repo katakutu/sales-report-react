@@ -1,9 +1,9 @@
 const GlobalConfig = require('./../../GlobalConfig')
 
 const TopedAuthAPI = require('./../../api-consumer/api/Auth/TopedAuthAPI')
-const TopedSaldoAPI = require('./../../api-consumer/api/Saldo/TopedSaldoAPI')
-const TopedNotificationAPI = require('./../../api-consumer/api/Notification/TopedNotificationAPI')
-const TopedPointsAPI = require('./../../api-consumer/api/Points/TopedPointsAPI')
+const { DEFAULT_SALDO_DATA, TopedSaldoAPI } = require('./../../api-consumer/api/Saldo/TopedSaldoAPI')
+const { DEFAULT_NOTIFICATION_DATA, TopedNotificationAPI } = require('./../../api-consumer/api/Notification/TopedNotificationAPI')
+const { DEFAULT_POINTS_DATA, TopedPointsAPI } = require('./../../api-consumer/api/Points/TopedPointsAPI')
 
 const DEFAULT_NOT_LOGGED_IN = {
   'isLoggedIn': false,
@@ -11,9 +11,9 @@ const DEFAULT_NOT_LOGGED_IN = {
   'name': null,
   'id': null,
   'profilePicture': null,
-  'deposit': null,
-  'points': null,
-  'notifications': null
+  'deposit': DEFAULT_SALDO_DATA,
+  'points': DEFAULT_POINTS_DATA,
+  'notifications': DEFAULT_NOTIFICATION_DATA
 }
 
 const getDefaultLoginRedirect = (shouldRedirect) => {
@@ -23,9 +23,9 @@ const getDefaultLoginRedirect = (shouldRedirect) => {
     'name': null,
     'id': null,
     'profilePicture': null,
-    'deposit': null,
-    'points': null,
-    'notifications': null
+    'deposit': DEFAULT_SALDO_DATA,
+    'points': DEFAULT_POINTS_DATA,
+    'notifications': DEFAULT_NOTIFICATION_DATA
   }
 }
 
@@ -66,9 +66,9 @@ function getUserInfo (context) {
         'name': user['name'],
         'id': userID,
         'profilePicture': user['profile_picture'],
-        'deposit': s[0] || { deposit_fmt: 'Rp 0' },
-        'points': s[2] || { data: { attributes: { amount_formatted: 'Rp 0' } } },
-        'notifications': s[1]['data'] || null
+        'deposit': s[0] || DEFAULT_SALDO_DATA,
+        'points': s[2] || DEFAULT_POINTS_DATA,
+        'notifications': s[1]['data'] || DEFAULT_NOTIFICATION_DATA
       }
     })
   })

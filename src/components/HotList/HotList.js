@@ -60,7 +60,6 @@ class HotList extends Component {
 
   _verifyHotlistData (defaultValue) {
     let result = defaultValue
-    console.log(this.props.data)
     if (this.props.data.data && this.props.data.success === 1) {
       result = this.props.data.data
     }

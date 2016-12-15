@@ -59,4 +59,7 @@ class TopedNotificationAPI {
   }
 }
 
-module.exports = TopedNotificationAPI
+module.exports = {
+  DEFAULT_NOTIFICATION_DATA: DEFAULT_NOTIFICATION_DATA,
+  TopedNotificationAPI: TopedNotificationAPI
+}
