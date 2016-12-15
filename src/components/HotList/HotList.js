@@ -35,9 +35,9 @@ class HotList extends Component {
     this._verifyHotlistData = this._verifyHotlistData.bind(this)
   }
 
-  _renderHotlistItem (item) {
+  _renderHotlistItem (item, index) {
     return (
-      <div className='hotlist__item'>
+      <div className='hotlist__item' key={`hotlist-${index}`}>
         <div className='hotlist__wrapper'>
           <img src={ item.image_url } className='u-fit u-block u-mx-auto' alt={`Gambar ${item.title_enc}`} />
           <div className='hotlist__footer u-clearfix u-mt1'>
