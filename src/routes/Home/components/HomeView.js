@@ -32,11 +32,13 @@ class HomeView extends Component {
   }
 
   render () {
+    console.log(this.props.data)
     const slides = this.props.data.slides ? this.props.data.slides.slides : []
+    const tickers = this.props.data.tickers ? this.props.data.tickers.tickers : []
     
     return (
       <div>
-        <Ticker />
+        <Ticker tickers={tickers} perTickDuration={2} />
         <Carousel images={slides} />
         <PromoSpacer />
         <div id='widget-dmw' className='u-clearfix u-my2' /> { /* Pulsa widget container */ }

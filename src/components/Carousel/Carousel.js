@@ -84,44 +84,48 @@ class Carousel extends Component {
     return (event) => {
       window.dataLayer = window.dataLayer || []
 
-      window.dataLayer.push({
-        'event': 'sliderBanner',
-        'eventCategory': 'Slider',
-        'eventAction': 'Click',
-        'eventLabel': this.props.images[index]
-      })
+      if (this.props.images.length > 0) {
+        window.dataLayer.push({
+          'event': 'sliderBanner',
+          'eventCategory': 'Slider',
+          'eventAction': 'Click',
+          'eventLabel': this.props.images[index]
+        })
+      }
     }
   }
 
   _gtmNotifySlideChange (index) {
     window.dataLayer = window.dataLayer || []
 
-    window.dataLayer.push({
-      'event': 'sliderBanner',
-      'eventCategory': 'Slider',
-      'eventAction': 'Impression',
-      'eventLabel': this.props.images[index]
-    })
-
-    let link = this.props.images[index]['redirect_url']
-    let baseURL = link.split('?')[0]
-    let parts = baseURL.split('/')
-    let title = parts[parts.length - 1] || parts[parts.length - 2]
-
-    if (title.length) {
+    if (this.props.images.length > 0) {
       window.dataLayer.push({
-        'banner_impression_id': title,
-        'ecommerce': {
-          'promoView': {
-            'promotions': [
-              {
-                'id': title,
-                'name': title,
-                'position': 'slider_banner'
-              }]
-          }
-        }
+        'event': 'sliderBanner',
+        'eventCategory': 'Slider',
+        'eventAction': 'Impression',
+        'eventLabel': this.props.images[index]
       })
+
+      let link = this.props.images[index]['redirect_url']
+      let baseURL = link.split('?')[0]
+      let parts = baseURL.split('/')
+      let title = parts[parts.length - 1] || parts[parts.length - 2]
+
+      if (title.length) {
+        window.dataLayer.push({
+          'banner_impression_id': title,
+          'ecommerce': {
+            'promoView': {
+              'promotions': [
+                {
+                  'id': title,
+                  'name': title,
+                  'position': 'slider_banner'
+                }]
+            }
+          }
+        })
+      }
     }
   }
 
