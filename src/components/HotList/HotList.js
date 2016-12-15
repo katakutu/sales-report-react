@@ -87,18 +87,4 @@ class HotList extends Component {
   }
 }
 
-const HotListQuery = gql`
-  query Query {
-    hotlists{
-      message_status
-      success
-      data{
-        title_enc
-        image_url
-        price_start_from
-      }
-    }
-  }
-`
-
-export default graphql(HotListQuery)(HotList)
+export default HotList

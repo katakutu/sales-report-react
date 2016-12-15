@@ -35,6 +35,9 @@ class HomeView extends Component {
     console.log(this.props.data)
     const slides = this.props.data.slides ? this.props.data.slides.slides : []
     const tickers = this.props.data.tickers ? this.props.data.tickers.tickers : []
+
+    const defaultHotlist = { success: 0, message_status: 1, data: [] }
+    const hotlists = this.props.data.hotlists ? this.props.data.hotlists : defaultHotlist
     
     return (
       <div>
@@ -46,7 +49,7 @@ class HomeView extends Component {
           imageUrl='/media/images/top-picks-natal.png'
           targetUrl='https://tokopedia.com'
           imageAlt='414 x 90' />
-        <HotList />
+        <HotList data={hotlists} />
         <CategoryList />
         <OfficialStoreSection />
         <MoreInfo />
