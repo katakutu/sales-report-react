@@ -35,7 +35,7 @@ class HomeView extends Component {
         <PromoSpacer />
         <div id='widget-dmw' className='u-clearfix u-my2' /> { /* Pulsa widget container */ }
         <PromoBanner
-          imageUrl='https://ecs7.tokopedia.net/assets-tokopedia-lite/staging/media/images/top-picks-natal.png'
+          imageUrl='https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/media/images/top-picks-natal.png'
           targetUrl='https://tokopedia.com'
           imageAlt='414 x 90' />
         <HotList />
