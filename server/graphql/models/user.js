@@ -42,7 +42,10 @@ const getDefaultLoginRedirect = (shouldRedirect) => {
 }
 
 function getUserInfo (context) {
+  console.log(context.session)
+  console.log(context.session.oauth)
   if (!context.session.oauth) {
+    console.log('no oauth')
         // break to two condition to pass linter (and better readability)
     if (context.cookies && context.cookies[GlobalConfig['Cookie']['SessionID']]) {
             // to prevent infinite loop we only force redirect to /login
@@ -50,9 +53,12 @@ function getUserInfo (context) {
             // e.g. if we host on lite-staging.tokopedia.com and redir to m-staging.tokopedia.com
             //      this will be false so we won't get infinite redirection
       const shouldRedir = GlobalConfig['Accounts']['Callback'].indexOf(GlobalConfig['Hostname']) === 0
+      console.log(GlobalConfig['Accounts']['Callback'])
+      console.log(GlobalConfig['Hostname'])
 
       return Promise.resolve(getDefaultLoginRedirect(shouldRedir))
     } else {
+      console.log('all no')
       return Promise.resolve(DEFAULT_NOT_LOGGED_IN)
     }
   }
