@@ -46,6 +46,12 @@ function _createUserSession (userInfo, token) {
   return sessionData
 }
 
+function _isSessionExists (sessionID, callback) {
+  const key = _redisKey(sessionID)
+
+  redisClient.get(key, (err, res) => callback(res !== null))
+}
+
 function _removeUserSession (sessionID) {
   return redisClient.del(_redisKey(sessionID), function (err, reply) {
     if (err) {
@@ -61,5 +67,6 @@ function _removeUserSession (sessionID) {
 module.exports = {
   newSessionID: _newSessionID,
   createUserSession: _createUserSession,
-  removeUserSession: _removeUserSession
+  removeUserSession: _removeUserSession,
+  isSessionExists: _isSessionExists
 }

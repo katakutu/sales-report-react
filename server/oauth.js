@@ -35,10 +35,7 @@ module.exports = {
     const state = randomstring.generate()
 
     req.session.oauthState = state
-    req.session.a = 'a'
 
-    console.log(`OAuth State: ${state}`)
-    console.log(`Session State before redirect: ${req.session}`)
     res.redirect(oauthAuthorizationURI(state))
   },
   logout: function (req, res, next) {
@@ -69,11 +66,7 @@ module.exports = {
 
     // make sure returned state is the same, to prevent CSRF
     if (req.session.oauthState !== req.query.state) {
-      console.log(`Session state after redirect: ${req.session}`)
-      console.log(`A state: ${req.session.a}`)
       // TODO: error message / redirect to special page?
-      console.log(`OAuth State not same. Expected: ${req.session.oauthState}, got: ${req.query.state}`)
-      console.log(req.session.oauth)
       return res.redirect('/')
     } else {
       oauth2.authorizationCode.getToken(options, (error, result) => {
