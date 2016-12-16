@@ -56,6 +56,7 @@ module.exports = {
   redirect: function (req, res, next) {
     // already logged in
     if (req.session.oauth) {
+      console.error(`User already logged in. Session: ${req.session.oauth}`)
       return res.redirect('/')
     }
 
@@ -65,6 +66,8 @@ module.exports = {
     // make sure returned state is the same, to prevent CSRF
     if (req.session.oauthState !== req.query.state) {
       // TODO: error message / redirect to special page?
+      console.error(`OAuth State not same. Expected: ${req.query.state}, got: ${req.session.oauthState}`)
+      console.error(req.session.oauth)
       return res.redirect('/')
     } else {
       oauth2.authorizationCode.getToken(options, (error, result) => {
