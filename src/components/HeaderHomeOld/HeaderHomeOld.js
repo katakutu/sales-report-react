@@ -42,31 +42,48 @@ class HeaderHome extends Component {
     this.showSearch = this.showSearch.bind(this)
   }
 
-  componentDidMount () {
-    window.addEventListener('scroll', this.handleScroll)
-
-    const userIsLoggedIn = this.props.userInfo ? this.props.userInfo.isLoggedIn : false
-    const userShouldRedirect = this.props.userInfo ? this.props.userInfo.shouldRedirect : false
-
+  _updateUserState (userIsLoggedIn, userShouldRedirect, userInfo) {
     if (userIsLoggedIn && userShouldRedirect) {
         // if user is logged in via marketplace, redirect to login page
         // to login here too
       window.location = '/login'
     } else if (userIsLoggedIn && !userShouldRedirect) {
-      const userInfo = this.props.userInfo
-
-      this.props.updateUserLoginStatus(true)
-      this.props.storeUserData({
-        'id': userInfo['id'],
-        'name': userInfo['name'],
-        'profilePicture': userInfo['profilePicture'],
-        'deposit': userInfo['deposit'],
-        'points': userInfo['points'],
-        'notifications': userInfo['notifications']
-      })
+      if (userInfo['id'] || userInfo['name'] || userInfo['profilePicture']) {
+        this.props.updateUserLoginStatus(true)
+        this.props.storeUserData({
+          'id': userInfo['id'],
+          'name': userInfo['name'],
+          'profilePicture': userInfo['profilePicture'],
+          'deposit': userInfo['deposit'],
+          'points': userInfo['points'],
+          'notifications': userInfo['notifications']['data']
+        })
+      } else {
+        this.props.updateUserLoginStatus(false)
+        this.props.storeUserData(initialState)
+      }
     } else {
       this.props.updateUserLoginStatus(false)
       this.props.storeUserData(initialState)
+    }
+  }
+
+  componentDidMount () {
+    window.addEventListener('scroll', this.handleScroll)
+
+    const userIsLoggedIn = this.props.userInfo ? this.props.userInfo.isLoggedIn : false
+    const userShouldRedirect = this.props.userInfo ? this.props.userInfo.shouldRedirect : false
+    this._updateUserState(userIsLoggedIn, userShouldRedirect, this.props.userInfo)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const nowUI = this.props.userInfo
+    const nextUI = nextProps.userInfo
+    if (JSON.stringify(nowUI) !== JSON.stringify(nextUI)) {
+      const userIsLoggedIn = nextUI ? nextUI.isLoggedIn : false
+      const userShouldRedirect = nextUI ? nextUI.shouldRedirect : false
+
+      this._updateUserState(userIsLoggedIn, userShouldRedirect, nextUI)
     }
   }
 

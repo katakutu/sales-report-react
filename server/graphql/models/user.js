@@ -43,12 +43,12 @@ const getDefaultLoginRedirect = (shouldRedirect) => {
 
 function getUserInfo (context) {
   if (!context.session.oauth) {
-        // break to two condition to pass linter (and better readability)
+    // break to two condition to pass linter (and better readability)
     if (context.cookies && context.cookies[GlobalConfig['Cookie']['SessionID']]) {
-            // to prevent infinite loop we only force redirect to /login
-            // if the callback URL is the same as hostname.
-            // e.g. if we host on lite-staging.tokopedia.com and redir to m-staging.tokopedia.com
-            //      this will be false so we won't get infinite redirection
+      // to prevent infinite loop we only force redirect to /login
+      // if the callback URL is the same as hostname.
+      // e.g. if we host on lite-staging.tokopedia.com and redir to m-staging.tokopedia.com
+      //      this will be false so we won't get infinite redirection
       const shouldRedir = GlobalConfig['Accounts']['Callback'].indexOf(GlobalConfig['Hostname']) === 0
 
       return Promise.resolve(getDefaultLoginRedirect(shouldRedir))
@@ -67,9 +67,9 @@ function getUserInfo (context) {
 
   return authConsumer.getUserInfo().then(user => {
     const userID = user['user_id']
-    let saldo = PromiseHelper.timeout(saldoConsumer.getDeposit(userID), 2500)
-    let notif = PromiseHelper.timeout(notifConsumer.getNotification(userID), 2500)
-    let point = PromiseHelper.timeout(pointConsumer.getPoints(userID), 2500)
+    let saldo = PromiseHelper.timeout(saldoConsumer.getDeposit(userID), 5000, 'Saldo API Call')
+    let notif = PromiseHelper.timeout(notifConsumer.getNotification(userID), 5000, 'Notif API Call')
+    let point = PromiseHelper.timeout(pointConsumer.getPoints(userID), 5000, 'Points API Call')
 
     return Promise.all([saldo, notif, point])
       .then(s => {
@@ -81,7 +81,7 @@ function getUserInfo (context) {
           'profilePicture': user['profile_picture'],
           'deposit': s[0] || DEFAULT_SALDO_DATA,
           'points': s[2] || DEFAULT_POINTS_DATA,
-          'notifications': s[1]['data'] || DEFAULT_NOTIFICATION_DATA
+          'notifications': s[1] || DEFAULT_NOTIFICATION_DATA
         }
       })
       .catch(e => {

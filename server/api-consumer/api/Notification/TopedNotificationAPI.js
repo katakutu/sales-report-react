@@ -52,6 +52,14 @@ class TopedNotificationAPI {
       'bypass': 'true_true'
     }
     return this.api.consumeOAuth(url, 'GET', this.token, this.tokenType, content, true)
+        .then(result => {
+          let finalResult = result
+          if (Object.keys(result).length === 0 && result.constructor === Object) {
+            finalResult = { status: 'EMPTY', data: DEFAULT_NOTIFICATION_DATA['data'] }
+          }
+
+          return finalResult
+        })
         .catch(err => {
           console.error(`Failed to fetch ${url.format()}. Returning default value. Error: `, err)
           return DEFAULT_NOTIFICATION_DATA

@@ -33,7 +33,7 @@ class HomeView extends Component {
 
   render () {
     const slides = this.props.data.slides ? this.props.data.slides.slides : []
-    const tickers = this.props.data.tickers ? this.props.data.tickers.tickers : []
+    const tickers = this.props.data.ticker ? this.props.data.ticker.tickers : []
 
     const defaultHotlist = { success: 0, message_status: 1, data: [] }
     const hotlists = this.props.data.hotlists ? this.props.data.hotlists : defaultHotlist
@@ -47,7 +47,7 @@ class HomeView extends Component {
         <PromoSpacer />
         <div id='widget-dmw' className='u-clearfix u-my2' /> { /* Pulsa widget container */ }
         <PromoBanner
-          imageUrl='https://ecs7.tokopedia.net/assets-tokopedia-lite/staging/media/images/top-picks-natal.png'
+          imageUrl='https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/media/images/top-picks-natal.png'
           targetUrl='https://tokopedia.com'
           imageAlt='414 x 90' />
         <HotList data={hotlists} />
@@ -62,8 +62,11 @@ class HomeView extends Component {
 const HomeQuery = gql`
 query Query {
   user{
+    id
     isLoggedIn
     shouldRedirect
+    profilePicture
+    name
     points{
       data{
         attributes{

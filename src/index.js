@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
-import ApolloClient from 'apollo-client'
+import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 
 // ========================================================
@@ -10,7 +10,13 @@ import { ApolloProvider } from 'react-apollo'
 // ========================================================
 const initialState = window.___INITIAL_STATE__
 const store = createStore(initialState)
-const client = new ApolloClient()
+const networkInterface = createNetworkInterface({
+  uri: '/graphql',
+  opts: {
+    credentials: 'same-origin'
+  }
+})
+const client = new ApolloClient({ networkInterface })
 
 // ========================================================
 // Render Setup
