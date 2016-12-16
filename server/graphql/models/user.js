@@ -73,8 +73,6 @@ function getUserInfo (context) {
 
     return Promise.all([saldo, notif, point])
       .then(s => {
-        console.log('Notif')
-        console.log(s[1])
         return {
           'isLoggedIn': true,
           'shouldRedirect': false,
@@ -87,7 +85,6 @@ function getUserInfo (context) {
         }
       })
       .catch(e => {
-        console.error(e)
         return {
           'isLoggedIn': true,
           'shouldRedirect': false,
