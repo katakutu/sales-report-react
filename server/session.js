@@ -49,7 +49,10 @@ function _createUserSession (userInfo, token) {
 function _isSessionExists (sessionID, callback) {
   const key = _redisKey(sessionID)
 
-  redisClient.get(key, (err, res) => callback(res !== null))
+  redisClient.get(key, (err, res) => {
+    if (err) console.log(err)
+    callback(res !== null)
+  })
 }
 
 function _removeUserSession (sessionID) {
