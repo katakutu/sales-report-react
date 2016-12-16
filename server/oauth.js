@@ -36,10 +36,10 @@ module.exports = {
 
     req.session.oauthState = state
     req.session.a = 'a'
-    req.session.save(() => {
-      console.log(`OAuth State: ${state}`)
-      res.redirect(oauthAuthorizationURI(state))
-    })
+
+    console.log(`OAuth State: ${state}`)
+    console.log(`Session State before redirect: ${req.session}`)
+    res.redirect(oauthAuthorizationURI(state))
   },
   logout: function (req, res, next) {
     req.session.destroy((err) => {
@@ -69,7 +69,8 @@ module.exports = {
 
     // make sure returned state is the same, to prevent CSRF
     if (req.session.oauthState !== req.query.state) {
-      console.log(req.session)
+      console.log(`Session state after redirect: ${req.session}`)
+      console.log(`A state: ${req.session.a}`)
       // TODO: error message / redirect to special page?
       console.log(`OAuth State not same. Expected: ${req.session.oauthState}, got: ${req.query.state}`)
       console.log(req.session.oauth)
