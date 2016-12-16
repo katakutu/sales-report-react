@@ -6,7 +6,7 @@ const SALDO_SERVICES = {
   GetDeposit: `${GlobalConfig.Saldo.Hostname}/deposit/get/:user_id?type=usable`
 }
 
-const DEFAULT_SALDO_DATA = { deposit_fmt: 'Rp 0' }
+const DEFAULT_SALDO_DATA = { deposit_fmt: 'ERROR FAIL' }
 
 class TopedSaldoAPI {
   constructor () {

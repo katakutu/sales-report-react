@@ -128,8 +128,6 @@ module.exports = {
 
       Promise.all([saldo, notif, point]).then(s => {
         return res.json({
-          'token': token,
-          'ttype': tType,
           'name': user['name'],
           'id': userID,
           'profilePicture': user['profile_picture'],

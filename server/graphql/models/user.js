@@ -1,5 +1,5 @@
 const GlobalConfig = require('./../../GlobalConfig')
-
+const PromiseHelper = require('../../helpers/promise-helper')
 const TopedAuthAPI = require('./../../api-consumer/api/Auth/TopedAuthAPI')
 
 const {
@@ -67,22 +67,35 @@ function getUserInfo (context) {
 
   return authConsumer.getUserInfo().then(user => {
     const userID = user['user_id']
-    let saldo = saldoConsumer.getDeposit(userID)
-    let notif = notifConsumer.getNotification(userID)
-    let point = pointConsumer.getPoints(userID)
+    let saldo = PromiseHelper.timeout(saldoConsumer.getDeposit(userID), 2500)
+    let notif = PromiseHelper.timeout(notifConsumer.getNotification(userID), 2500)
+    let point = PromiseHelper.timeout(pointConsumer.getPoints(userID), 2500)
 
-    return Promise.all([saldo, notif, point]).then(s => {
-      return {
-        'isLoggedIn': true,
-        'shouldRedirect': false,
-        'name': user['name'],
-        'id': userID,
-        'profilePicture': user['profile_picture'],
-        'deposit': s[0] || DEFAULT_SALDO_DATA,
-        'points': s[2] || DEFAULT_POINTS_DATA,
-        'notifications': s[1]['data'] || DEFAULT_NOTIFICATION_DATA
-      }
-    })
+    return Promise.all([saldo, notif, point])
+      .then(s => {
+        return {
+          'isLoggedIn': true,
+          'shouldRedirect': false,
+          'name': user['name'],
+          'id': userID,
+          'profilePicture': user['profile_picture'],
+          'deposit': s[0] || DEFAULT_SALDO_DATA,
+          'points': s[2] || DEFAULT_POINTS_DATA,
+          'notifications': s[1]['data'] || DEFAULT_NOTIFICATION_DATA
+        }
+      })
+      .catch(e => {
+        return {
+          'isLoggedIn': true,
+          'shouldRedirect': false,
+          'name': user['name'],
+          'id': userID,
+          'profilePicture': user['profile_picture'],
+          'deposit': DEFAULT_SALDO_DATA,
+          'points': DEFAULT_POINTS_DATA,
+          'notifications': DEFAULT_NOTIFICATION_DATA
+        }
+      })
   })
 }
 
