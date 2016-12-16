@@ -2,6 +2,7 @@
 import CoreLayout from '../layouts/CoreLayout/CoreLayout'
 import Home from './Home'
 import CounterRoute from './Counter'
+import HotListRoute from './HotList'
 import NotFound from './NotFound'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -13,6 +14,7 @@ export const createRoutes = (store) => ({
   indexRoute  : Home,
   childRoutes : [
     CounterRoute(store),
+    HotListRoute(store),
     {
       path: '*',
       component: NotFound
