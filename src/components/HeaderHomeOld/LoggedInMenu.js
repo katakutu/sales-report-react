@@ -154,11 +154,11 @@ class LoggedInMenu extends Component {
           </div>
           <div className='drawer__user-summary u-clearfix'>
             <div className='drawer__user-summary-box u-left'>
-              <span>{ this.props.userData.deposit }</span>
+              <span>{ this.props.userData.deposit.deposit_fmt }</span>
               <div className='drawer__user-infosum-title'>Saldo</div>
             </div>
             <div className='drawer__user-summary-box u-right'>
-              <span>{ this.props.userData.points }</span>
+              <span>{ this.props.userData.points.data.attributes.amount_formatted }</span>
               <div className='drawer__user-infosum-title'>TopPoints</div>
             </div>
           </div>
