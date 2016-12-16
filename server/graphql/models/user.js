@@ -73,6 +73,8 @@ function getUserInfo (context) {
 
     return Promise.all([saldo, notif, point])
       .then(s => {
+        console.log('Notif')
+        console.log(s[1])
         return {
           'isLoggedIn': true,
           'shouldRedirect': false,
@@ -81,10 +83,11 @@ function getUserInfo (context) {
           'profilePicture': user['profile_picture'],
           'deposit': s[0] || DEFAULT_SALDO_DATA,
           'points': s[2] || DEFAULT_POINTS_DATA,
-          'notifications': s[1]['data'] || DEFAULT_NOTIFICATION_DATA
+          'notifications': s[1] || DEFAULT_NOTIFICATION_DATA
         }
       })
       .catch(e => {
+        console.error(e)
         return {
           'isLoggedIn': true,
           'shouldRedirect': false,
