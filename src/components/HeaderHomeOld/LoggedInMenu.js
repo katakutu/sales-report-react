@@ -135,8 +135,6 @@ class LoggedInMenu extends Component {
       <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['sales']['etalase'] }</span>
     ) : null
 
-    console.log(this.props.userData)
-
     return (
       <div className='drawer active'>
         <div className='drawer__container u-clearfix'>
