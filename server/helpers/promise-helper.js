@@ -1,20 +1,20 @@
-function delay(time) {
-  return new Promise(function (fulfill) {
-    setTimeout(fulfill, time);
-  });
+function delay (time) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, time)
+  })
 }
 
-function timeout(promise, time) {
-  return new Promise(function (fulfill, reject) {
+function timeout (promise, time) {
+  return new Promise(function (resolve, reject) {
     // race promise against delay
-    promise.then(fulfill, reject);
+    promise.then(resolve, reject)
     delay(time).then(function () {
-      reject(new Error('Operation timed out'));
-    });
-  });
+      reject(new Error('Operation timed out'))
+    })
+  })
 }
 
 module.exports = {
-    delay: delay,
-    timeout: timeout
+  delay: delay,
+  timeout: timeout
 }
