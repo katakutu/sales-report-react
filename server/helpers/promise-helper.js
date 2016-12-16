@@ -4,12 +4,12 @@ function delay (time) {
   })
 }
 
-function timeout (promise, time) {
+function timeout (promise, time, name) {
   return new Promise(function (resolve, reject) {
     // race promise against delay
     promise.then(resolve, reject)
     delay(time).then(function () {
-      reject(new Error('Operation timed out'))
+      reject(new Error(`Operation ${name} timed out`))
     })
   })
 }

@@ -67,9 +67,9 @@ function getUserInfo (context) {
 
   return authConsumer.getUserInfo().then(user => {
     const userID = user['user_id']
-    let saldo = PromiseHelper.timeout(saldoConsumer.getDeposit(userID), 2500)
-    let notif = PromiseHelper.timeout(notifConsumer.getNotification(userID), 2500)
-    let point = PromiseHelper.timeout(pointConsumer.getPoints(userID), 2500)
+    let saldo = PromiseHelper.timeout(saldoConsumer.getDeposit(userID), 5000, 'Saldo API Call')
+    let notif = PromiseHelper.timeout(notifConsumer.getNotification(userID), 5000, 'Notif API Call')
+    let point = PromiseHelper.timeout(pointConsumer.getPoints(userID), 5000, 'Points API Call')
 
     return Promise.all([saldo, notif, point])
       .then(s => {

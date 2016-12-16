@@ -9,7 +9,7 @@ const NotifData = require('./notif-data')
 const NotificationType = new GraphQLObjectType({
   name: 'Notification',
   fields: {
-    status: { type: new GraphQLNonNull(GraphQLString) },
+    status: { type: GraphQLString },
     data: { type: new GraphQLNonNull(NotifData) }
   }
 })
