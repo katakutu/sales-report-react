@@ -67,7 +67,7 @@ class HotList extends Component {
 
   render () {
     const placeholder = [
-      { image_url: 'http://placehold.it/277x144', title_enc: 'Hotlist', price_start_from: 'Rp 0' }
+      { image_url: 'https://placehold.it/277x144', title_enc: 'Hotlist', price_start_from: 'Rp 0' }
     ]
 
     const hotlists = this._verifyHotlistData(placeholder)
