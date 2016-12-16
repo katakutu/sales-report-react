@@ -48,7 +48,7 @@ class HeaderHome extends Component {
         // to login here too
       window.location = '/login'
     } else if (userIsLoggedIn && !userShouldRedirect) {
-      if (!userInfo['id'] || !userInfo['name'] || !userInfo['profilePicture']) {
+      if (userInfo['id'] || userInfo['name'] || userInfo['profilePicture']) {
         this.props.updateUserLoginStatus(true)
         this.props.storeUserData({
           'id': userInfo['id'],
