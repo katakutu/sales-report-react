@@ -4,10 +4,9 @@ import React, { Component } from 'react'
 import './Carousel.scss'
 import './slick.scss'
 import './slick-theme.scss'
-import TopedMojitoAPI from '../../lib/api/Search/TopedMojitoAPI'
+import Slider from 'react-slick'
 
-var Slider = require('react-slick')
-var settings = {
+const settings = {
   autoplay: true,
   dots: true,
   arrows: false,
@@ -47,20 +46,9 @@ var settings = {
   ]
 }
 
-const api = new TopedMojitoAPI()
-
 class Carousel extends Component {
-  state = {
-    images: []
-  }
-
-  componentDidMount () {
-    api.getSlides(25, 2, 65535, 1, 0).then(result => {
-      this.setState({ images: result['data']['slides'] })
-    }).catch(error => {
-      error // TODO: Logs this to server?
-      this.setState({ images: [] })
-    })
+  static propTypes = {
+    images: React.PropTypes.arrayOf(React.PropTypes.object)
   }
 
   constructor (props) {
@@ -95,44 +83,48 @@ class Carousel extends Component {
     return (event) => {
       window.dataLayer = window.dataLayer || []
 
-      window.dataLayer.push({
-        'event': 'sliderBanner',
-        'eventCategory': 'Slider',
-        'eventAction': 'Click',
-        'eventLabel': this.state.images[index]
-      })
+      if (this.props.images.length > 0) {
+        window.dataLayer.push({
+          'event': 'sliderBanner',
+          'eventCategory': 'Slider',
+          'eventAction': 'Click',
+          'eventLabel': this.props.images[index]
+        })
+      }
     }
   }
 
   _gtmNotifySlideChange (index) {
     window.dataLayer = window.dataLayer || []
 
-    window.dataLayer.push({
-      'event': 'sliderBanner',
-      'eventCategory': 'Slider',
-      'eventAction': 'Impression',
-      'eventLabel': this.state.images[index]
-    })
-
-    let link = this.state.images[index]['redirect_url']
-    let baseURL = link.split('?')[0]
-    let parts = baseURL.split('/')
-    let title = parts[parts.length - 1] || parts[parts.length - 2]
-
-    if (title.length) {
+    if (this.props.images.length > 0) {
       window.dataLayer.push({
-        'banner_impression_id': title,
-        'ecommerce': {
-          'promoView': {
-            'promotions': [
-              {
-                'id': title,
-                'name': title,
-                'position': 'slider_banner'
-              }]
-          }
-        }
+        'event': 'sliderBanner',
+        'eventCategory': 'Slider',
+        'eventAction': 'Impression',
+        'eventLabel': this.props.images[index]
       })
+
+      let link = this.props.images[index]['redirect_url']
+      let baseURL = link.split('?')[0]
+      let parts = baseURL.split('/')
+      let title = parts[parts.length - 1] || parts[parts.length - 2]
+
+      if (title.length) {
+        window.dataLayer.push({
+          'banner_impression_id': title,
+          'ecommerce': {
+            'promoView': {
+              'promotions': [
+                {
+                  'id': title,
+                  'name': title,
+                  'position': 'slider_banner'
+                }]
+            }
+          }
+        })
+      }
     }
   }
 
@@ -142,9 +134,9 @@ class Carousel extends Component {
       'redirect_url': '#',
       'title': 'Placeholder Image'
     }
-    let sliders = (this.state.images.length === 0)
+    let sliders = (this.props.images.length === 0)
       ? this._createCarouselItems(placeholder, 0)
-      : this.state.images.map(this._createCarouselItems)
+      : this.props.images.map(this._createCarouselItems)
 
     return (
       <div className='carousel u-clearfix'>

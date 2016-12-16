@@ -1,9 +1,21 @@
 const GlobalConfig = require('./../../GlobalConfig')
-
+const PromiseHelper = require('../../helpers/promise-helper')
 const TopedAuthAPI = require('./../../api-consumer/api/Auth/TopedAuthAPI')
-const TopedSaldoAPI = require('./../../api-consumer/api/Saldo/TopedSaldoAPI')
-const TopedNotificationAPI = require('./../../api-consumer/api/Notification/TopedNotificationAPI')
-const TopedPointsAPI = require('./../../api-consumer/api/Points/TopedPointsAPI')
+
+const {
+  DEFAULT_SALDO_DATA,
+  TopedSaldoAPI
+} = require('./../../api-consumer/api/Saldo/TopedSaldoAPI')
+
+const {
+  DEFAULT_NOTIFICATION_DATA,
+  TopedNotificationAPI
+} = require('./../../api-consumer/api/Notification/TopedNotificationAPI')
+
+const {
+  DEFAULT_POINTS_DATA,
+  TopedPointsAPI
+} = require('./../../api-consumer/api/Points/TopedPointsAPI')
 
 const DEFAULT_NOT_LOGGED_IN = {
   'isLoggedIn': false,
@@ -11,9 +23,9 @@ const DEFAULT_NOT_LOGGED_IN = {
   'name': null,
   'id': null,
   'profilePicture': null,
-  'deposit': null,
-  'points': null,
-  'notifications': null
+  'deposit': DEFAULT_SALDO_DATA,
+  'points': DEFAULT_POINTS_DATA,
+  'notifications': DEFAULT_NOTIFICATION_DATA
 }
 
 const getDefaultLoginRedirect = (shouldRedirect) => {
@@ -23,9 +35,9 @@ const getDefaultLoginRedirect = (shouldRedirect) => {
     'name': null,
     'id': null,
     'profilePicture': null,
-    'deposit': null,
-    'points': null,
-    'notifications': null
+    'deposit': DEFAULT_SALDO_DATA,
+    'points': DEFAULT_POINTS_DATA,
+    'notifications': DEFAULT_NOTIFICATION_DATA
   }
 }
 
@@ -55,22 +67,35 @@ function getUserInfo (context) {
 
   return authConsumer.getUserInfo().then(user => {
     const userID = user['user_id']
-    let saldo = saldoConsumer.getDeposit(userID)
-    let notif = notifConsumer.getNotification(userID)
-    let point = pointConsumer.getPoints(userID)
+    let saldo = PromiseHelper.timeout(saldoConsumer.getDeposit(userID), 2500)
+    let notif = PromiseHelper.timeout(notifConsumer.getNotification(userID), 2500)
+    let point = PromiseHelper.timeout(pointConsumer.getPoints(userID), 2500)
 
-    return Promise.all([saldo, notif, point]).then(s => {
-      return {
-        'isLoggedIn': true,
-        'shouldRedirect': false,
-        'name': user['name'],
-        'id': userID,
-        'profilePicture': user['profile_picture'],
-        'deposit': s[0] || { deposit_fmt: 'Rp 0' },
-        'points': s[2] || { data: { attributes: { amount_formatted: 'Rp 0' } } },
-        'notifications': s[1]['data'] || null
-      }
-    })
+    return Promise.all([saldo, notif, point])
+      .then(s => {
+        return {
+          'isLoggedIn': true,
+          'shouldRedirect': false,
+          'name': user['name'],
+          'id': userID,
+          'profilePicture': user['profile_picture'],
+          'deposit': s[0] || DEFAULT_SALDO_DATA,
+          'points': s[2] || DEFAULT_POINTS_DATA,
+          'notifications': s[1]['data'] || DEFAULT_NOTIFICATION_DATA
+        }
+      })
+      .catch(e => {
+        return {
+          'isLoggedIn': true,
+          'shouldRedirect': false,
+          'name': user['name'],
+          'id': userID,
+          'profilePicture': user['profile_picture'],
+          'deposit': DEFAULT_SALDO_DATA,
+          'points': DEFAULT_POINTS_DATA,
+          'notifications': DEFAULT_NOTIFICATION_DATA
+        }
+      })
   })
 }
 

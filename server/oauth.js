@@ -5,9 +5,9 @@ const randomstring = require('randomstring')
 const session = require('./session')
 
 const TopedAuthAPI = require('./api-consumer/api/Auth/TopedAuthAPI')
-const TopedSaldoAPI = require('./api-consumer/api/Saldo/TopedSaldoAPI')
-const TopedNotificationAPI = require('./api-consumer/api/Notification/TopedNotificationAPI')
-const TopedPointsAPI = require('./api-consumer/api/Points/TopedPointsAPI')
+const { TopedSaldoAPI } = require('./api-consumer/api/Saldo/TopedSaldoAPI')
+const { TopedNotificationAPI } = require('./api-consumer/api/Notification/TopedNotificationAPI')
+const { TopedPointsAPI } = require('./api-consumer/api/Points/TopedPointsAPI')
 
 const oauthCredentials = {
   client: {
