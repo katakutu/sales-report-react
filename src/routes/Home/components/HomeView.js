@@ -62,8 +62,11 @@ class HomeView extends Component {
 const HomeQuery = gql`
 query Query {
   user{
+    id
     isLoggedIn
     shouldRedirect
+    profilePicture
+    name
     points{
       data{
         attributes{
