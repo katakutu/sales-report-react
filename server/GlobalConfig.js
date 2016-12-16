@@ -46,7 +46,7 @@ const PRODUCTION = {
 }
 
 const TEST = {
-  Hostname: 'https://m-staging.tokopedia.com',
+  Hostname: 'https://lite-staging.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_Coba_'
   },
