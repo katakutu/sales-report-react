@@ -10,18 +10,20 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const graphql = require('./graphql')
+const RedisStore = require('connect-redis')(session);
 
 const app = express()
 const paths = config.utils_paths
 
 const sessionConfig = {
+  store: new RedisStore(GlobalConfig.SessionRedis),
   secret: GlobalConfig['AppSecret'],
   name: 'tLiteSession',
   cookie: {}
 }
 if (config.globals.__PROD__) {
   app.set('trust proxy', 1)
-  sessionConfig.cookie.secure = true
+  //sessionConfig.cookie.secure = true
 }
 app.use(morgan('combined'))
 app.use(session(sessionConfig))
