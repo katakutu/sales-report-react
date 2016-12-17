@@ -47,8 +47,9 @@ module.exports = {
         return res.redirect('/')
       }
 
-      if (res.cookies && res.cookies[GlobalConfig['Cookie']['SessionID']]) {
-        return session.removeUserSession(res.cookies[GlobalConfig['Cookie']['SessionID']], succes => {
+      if (req.cookies && req.cookies[GlobalConfig['Cookie']['SessionID']]) {
+        const sessID = req.cookies[GlobalConfig['Cookie']['SessionID']]
+        return session.removeUserSession(sessID, succes => {
           // Todo: flash to message user that logout is successful?
           return res.redirect('/')
         })
