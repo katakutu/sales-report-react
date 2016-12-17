@@ -52,8 +52,10 @@ function getUserInfo (context) {
       //      this will be false so we won't get infinite redirection
       const shouldRedir = GlobalConfig['Accounts']['Callback'].indexOf(GlobalConfig['Hostname']) === 0
       return new Promise((resolve, reject) => {
-        session.isSessionExists(context.cookies[GlobalConfig['Cookie']['SessionID']], sessionExists => {
-          resolve(getDefaultLoginRedirect(shouldRedir && sessionExists))
+        session.getSession(context.cookies[GlobalConfig['Cookie']['SessionID']], sessData => {
+          const sessionExists = sessData !== null
+          const loggedInSess = sessData && !isNaN(sessData['admin_id'])
+          resolve(getDefaultLoginRedirect(shouldRedir && sessionExists && loggedInSess))
         })
 
         setTimeout(reject, 5000)
