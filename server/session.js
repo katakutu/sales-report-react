@@ -3,7 +3,11 @@ const uuidV4 = require('uuid/v4')
 const CryptoJS = require('crypto-js')
 const GlobalConfig = require('./GlobalConfig')
 
-const redisClient = redis.createClient(GlobalConfig['LoginDataRedis'])
+const redisClient = redis.createClient(
+  GlobalConfig['LoginDataRedis']['port'],
+  GlobalConfig['LoginDataRedis']['host'],
+  { no_ready_check: true }
+)
 
 redisClient.on('error', function (err) {
   console.error('[Redis] Redis Client Error: ', err)
