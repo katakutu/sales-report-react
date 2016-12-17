@@ -90,7 +90,7 @@ module.exports = {
           console.log(`Cookies data: ${req.cookies}`)
           console.log(`user data: ${JSON.stringify(user)}`)
           console.log(`Creating login session for user sid ${sid}`)
-          return session.createUserSessionBySID(user, token, sid, (_, reply, sessionData) => {
+          return session.createUserSessionBySID(user, token['token']['access_token'], sid, (_, reply, sessionData) => {
             console.log(`Redis reply: ${reply}`)
             const cookieOpt = {
               domain: GlobalConfig['Cookie']['Domain'],
