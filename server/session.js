@@ -76,6 +76,8 @@ function _getSession (sessionID, callback) {
 
   redisClient.get(key, (err, res) => {
     if (err) console.log(`Session Extraction error: ${err}`)
+
+    console.log(`[Redis] Session ID ${key} found`)
     callback(res)
   })
 }
