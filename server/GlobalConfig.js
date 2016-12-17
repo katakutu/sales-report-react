@@ -122,9 +122,9 @@ const DEVELOPMENT = {
     Hostname: 'http://192.168.100.160:8005',
     Secret: '4lclover'
   },
-  Redis: {
-    host: '127.0.0.1',
-    port: 6379
+  LoginDataRedis: {
+    host: 'twemproxy.redis.db.tokopedia.local',
+    port: 6380
   },
   SessionRedis: {
     host: '127.0.0.1',
