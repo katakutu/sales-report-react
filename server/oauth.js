@@ -79,11 +79,13 @@ module.exports = {
         const token = oauth2.accessToken.create(result)
         req.session.oauth = token
 
-        const sid = session.newSessionID()
+        // const sid = session.newSessionID()
 
         const authConsumer = new TopedAuthAPI(token['token_type'], token['access_token'])
         authConsumer.getUserInfo().then(user => {
-          session.createUserSession(user, token)
+          const sid = req.cookies[GlobalConfig['Cookie']['SessionID']]
+          console.log(`Creating login session for user sid ${sid}`)
+          session.createUserSessionBySID(user, token, sid)
 
           const cookieOpt = {
             domain: GlobalConfig['Cookie']['Domain'],
@@ -108,7 +110,12 @@ module.exports = {
         //      this will be false so we won't get infinite redirection
         const shouldRedir = GlobalConfig['Accounts']['Callback'].indexOf(GlobalConfig['Hostname']) === 0
 
-        return res.status(200).json({ login_redirect: shouldRedir })
+        // temp for testing
+        session.getSession(req.cookies[GlobalConfig['Cookie']['SessionID']], sessData => {
+          const sessExists = sessData !== null
+          console.log(`Session data: ${sessData}`)
+          return res.status(200).json({ login_redirect: shouldRedir && sessExists })
+        })
       } else {
         return res.status(200).json({ error: 'User is not logged in!' })
       }

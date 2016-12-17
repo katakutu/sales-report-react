@@ -46,13 +46,42 @@ function _createUserSession (userInfo, token) {
   return sessionData
 }
 
-function _isSessionExists (sessionID, callback) {
+function _createUserSessionBySID (userInfo, token, sessionID) {
+  const uid = userInfo['user_id']
+  const sessionData = {
+    'user_email': userInfo['email'],
+    'sex': userInfo['gender'],
+    'login_type': 1,
+    'status': 1,
+    'full_name': userInfo['name'],
+    'access_token': token,
+    'admin_id': uid,
+    'id': sessionID
+  }
+
+  redisClient.set(_redisKey(sessionID), JSON.stringify(sessionData), function (err, reply) {
+    if (err) {
+      console.error('[Redis] Reply error when saving user session: ', err)
+      return
+    }
+
+    console.log(`[Redis] Successfully saved session for user ${uid}. Message: ${reply}`)
+  })
+
+  return sessionData
+}
+
+function _getSession (sessionID, callback) {
   const key = _redisKey(sessionID)
 
   redisClient.get(key, (err, res) => {
-    if (err) console.log(err)
-    callback(res !== null)
+    if (err) console.log(`Session Extraction error: ${err}`)
+    callback(res)
   })
+}
+
+function _isSessionExists (sessionID, callback) {
+  _getSession(sessionID, (res) => callback(res !== null))
 }
 
 function _removeUserSession (sessionID) {
@@ -68,8 +97,10 @@ function _removeUserSession (sessionID) {
 }
 
 module.exports = {
-  newSessionID: _newSessionID,
   createUserSession: _createUserSession,
-  removeUserSession: _removeUserSession,
-  isSessionExists: _isSessionExists
+  createUserSessionBySID: _createUserSessionBySID,
+  getSession: _getSession,
+  isSessionExists: _isSessionExists,
+  newSessionID: _newSessionID,
+  removeUserSession: _removeUserSession
 }
