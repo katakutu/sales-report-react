@@ -3,6 +3,9 @@ const uuidV4 = require('uuid/v4')
 const CryptoJS = require('crypto-js')
 const GlobalConfig = require('./GlobalConfig')
 
+console.log(GlobalConfig['LoginDataRedis']['port'])
+console.log(GlobalConfig['LoginDataRedis']['host'])
+
 const redisClient = redis.createClient(
   GlobalConfig['LoginDataRedis']['port'],
   GlobalConfig['LoginDataRedis']['host'],
