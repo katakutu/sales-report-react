@@ -3,9 +3,6 @@ const uuidV4 = require('uuid/v4')
 const CryptoJS = require('crypto-js')
 const GlobalConfig = require('./GlobalConfig')
 
-console.log(GlobalConfig['LoginDataRedis']['port'])
-console.log(GlobalConfig['LoginDataRedis']['host'])
-
 const redisClient = redis.createClient(
   GlobalConfig['LoginDataRedis']['port'],
   GlobalConfig['LoginDataRedis']['host'],
@@ -71,15 +68,17 @@ function _isSessionExists (sessionID, callback) {
   _getSession(sessionID, (res) => callback(res !== null))
 }
 
-function _removeUserSession (sessionID) {
+function _removeUserSession (sessionID, callback) {
   return redisClient.del(_redisKey(sessionID), function (err, reply) {
+    let success = true
     if (err) {
       console.error('[Redis] Reply error when deleting user session.', err)
-      return false
+      success = false
     }
 
     console.log('[Redis] Successfully deleted user session.')
-    return true
+
+    return callback(success)
   })
 }
 

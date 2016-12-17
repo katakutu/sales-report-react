@@ -48,7 +48,10 @@ module.exports = {
       }
 
       if (res.cookies && res.cookies[GlobalConfig['Cookie']['SessionID']]) {
-        session.removeUserSession(res.cookies[GlobalConfig['Cookie']['SessionID']])
+        return session.removeUserSession(res.cookies[GlobalConfig['Cookie']['SessionID']], succes => {
+          // Todo: flash to message user that logout is successful?
+          return res.redirect('/')
+        })
       }
 
       return res.redirect('/')
@@ -79,19 +82,11 @@ module.exports = {
         const token = oauth2.accessToken.create(result)
         req.session.oauth = token
 
-        // const sid = session.newSessionID()
-
-        console.log(`user token: ${JSON.stringify(token)}`)
-
         const authConsumer = new TopedAuthAPI(token['token']['access_token'], token['token']['token_type'])
         authConsumer.getUserInfo().then(user => {
           const sid = req.cookies[GlobalConfig['Cookie']['SessionID']] || session.newSessionID()
 
-          console.log(`Cookies data: ${req.cookies}`)
-          console.log(`user data: ${JSON.stringify(user)}`)
-          console.log(`Creating login session for user sid ${sid}`)
           return session.createUserSessionBySID(user, token['token']['access_token'], sid, (_, reply, sessionData) => {
-            console.log(`Redis reply: ${reply}`)
             const cookieOpt = {
               domain: GlobalConfig['Cookie']['Domain'],
               expires: GlobalConfig['Cookie']['MaxAge'],

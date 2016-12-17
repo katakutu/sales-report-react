@@ -51,14 +51,9 @@ function getUserInfo (context) {
       // e.g. if we host on lite-staging.tokopedia.com and redir to m-staging.tokopedia.com
       //      this will be false so we won't get infinite redirection
       const shouldRedir = GlobalConfig['Accounts']['Callback'].indexOf(GlobalConfig['Hostname']) === 0
-      session.getSession(context.cookies[GlobalConfig['Cookie']['SessionID']], sessData => {
-        const sessExists = sessData !== null
-        console.log(`Session data: ${sessData}`)
-
-        return Promise.resolve(getDefaultLoginRedirect(shouldRedir && sessExists))
+      session.isSessionExists(context.cookies[GlobalConfig['Cookie']['SessionID']], sessionExists => {
+        return Promise.resolve(getDefaultLoginRedirect(shouldRedir && sessionExists))
       })
-
-      // return Promise.resolve(getDefaultLoginRedirect(shouldRedir))
     } else {
       return Promise.resolve(DEFAULT_NOT_LOGGED_IN)
     }
