@@ -81,6 +81,8 @@ module.exports = {
 
         // const sid = session.newSessionID()
 
+        console.log(`user token: ${JSON.stringify(token)}`)
+
         const authConsumer = new TopedAuthAPI(token['access_token'], token['token_type'])
         authConsumer.getUserInfo().then(user => {
           const sid = req.cookies[GlobalConfig['Cookie']['SessionID']] || session.newSessionID()
