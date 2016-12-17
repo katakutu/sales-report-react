@@ -33,7 +33,7 @@ const PRODUCTION = {
     Secret: '4lclover'
   },
   LoginDataRedis: {
-    host: 'tcp://twemproxy.redis.db.tokopedia.local',
+    host: 'twemproxy.redis.db.tokopedia.local',
     port: 6380
   },
   SessionRedis: {

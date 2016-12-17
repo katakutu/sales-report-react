@@ -90,7 +90,7 @@ module.exports = {
           console.log(`Cookies data: ${req.cookies}`)
           console.log(`user data: ${JSON.stringify(user)}`)
           console.log(`Creating login session for user sid ${sid}`)
-          session.createUserSessionBySID(user, token, sid, (_, reply, sessionData) => {
+          return session.createUserSessionBySID(user, token, sid, (_, reply, sessionData) => {
             const cookieOpt = {
               domain: GlobalConfig['Cookie']['Domain'],
               expires: GlobalConfig['Cookie']['MaxAge'],
@@ -116,7 +116,7 @@ module.exports = {
         const shouldRedir = GlobalConfig['Accounts']['Callback'].indexOf(GlobalConfig['Hostname']) === 0
 
         // temp for testing
-        session.getSession(req.cookies[GlobalConfig['Cookie']['SessionID']], sessData => {
+        return session.getSession(req.cookies[GlobalConfig['Cookie']['SessionID']], sessData => {
           const sessExists = sessData !== null
           console.log(`Session data: ${sessData}`)
           return res.status(200).json({ login_redirect: shouldRedir && sessExists })
