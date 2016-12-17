@@ -86,7 +86,7 @@ module.exports = {
           const sid = req.cookies[GlobalConfig['Cookie']['SessionID']] || session.newSessionID()
 
           console.log(`Cookies data: ${req.cookies}`)
-          console.log(`user data: ${user}`)
+          console.log(`user data: ${JSON.stringify(user)}`)
           console.log(`Creating login session for user sid ${sid}`)
           session.createUserSessionBySID(user, token, sid)
 
