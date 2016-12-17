@@ -32,9 +32,9 @@ const PRODUCTION = {
     Hostname: 'https://points.tokopedia.com',
     Secret: '4lclover'
   },
-  Redis: {
+  LoginDataRedis: {
     host: 'tcp://twemproxy.redis.db.tokopedia.local',
-    port: '6380'
+    port: 6380
   },
   SessionRedis: {
     host: '127.0.0.1',
@@ -77,7 +77,7 @@ const TEST = {
     Hostname: 'https://points-staging.tokopedia.com',
     Secret: '4lclover'
   },
-  Redis: {
+  LoginDataRedis: {
     host: '10.0.11.50',
     port: 6381
   },
@@ -123,8 +123,8 @@ const DEVELOPMENT = {
     Secret: '4lclover'
   },
   LoginDataRedis: {
-    host: 'twemproxy.redis.db.tokopedia.local',
-    port: 6380
+    host: '127.0.0.1',
+    port: 6379
   },
   SessionRedis: {
     host: '127.0.0.1',
