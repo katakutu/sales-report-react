@@ -1,6 +1,7 @@
 const GlobalConfig = require('./../../GlobalConfig')
 const PromiseHelper = require('../../helpers/promise-helper')
 const TopedAuthAPI = require('./../../api-consumer/api/Auth/TopedAuthAPI')
+const session = require('../../session')
 
 const {
   DEFAULT_SALDO_DATA,
@@ -50,8 +51,14 @@ function getUserInfo (context) {
       // e.g. if we host on lite-staging.tokopedia.com and redir to m-staging.tokopedia.com
       //      this will be false so we won't get infinite redirection
       const shouldRedir = GlobalConfig['Accounts']['Callback'].indexOf(GlobalConfig['Hostname']) === 0
+      session.getSession(context.cookies[GlobalConfig['Cookie']['SessionID']], sessData => {
+        const sessExists = sessData !== null
+        console.log(`Session data: ${sessData}`)
 
-      return Promise.resolve(getDefaultLoginRedirect(shouldRedir))
+        return Promise.resolve(getDefaultLoginRedirect(shouldRedir && sessExists))
+      })
+
+      // return Promise.resolve(getDefaultLoginRedirect(shouldRedir))
     } else {
       return Promise.resolve(DEFAULT_NOT_LOGGED_IN)
     }
