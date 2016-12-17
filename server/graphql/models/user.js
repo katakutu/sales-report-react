@@ -52,6 +52,8 @@ function getUserInfo (context) {
       //      this will be false so we won't get infinite redirection
       const shouldRedir = GlobalConfig['Accounts']['Callback'].indexOf(GlobalConfig['Hostname']) === 0
       session.isSessionExists(context.cookies[GlobalConfig['Cookie']['SessionID']], sessionExists => {
+        console.log(`shouldRedir: ${shouldRedir}`)
+        console.log(`session exists: ${sessionExists}`)
         return Promise.resolve(getDefaultLoginRedirect(shouldRedir && sessionExists))
       })
     } else {
