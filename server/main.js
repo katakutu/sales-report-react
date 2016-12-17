@@ -17,6 +17,8 @@ const paths = config.utils_paths
 const sessionConfig = {
   store: new RedisStore(GlobalConfig.SessionRedis),
   secret: GlobalConfig['AppSecret'],
+  resave: false,
+  saveUninitialized: true,
   name: 'tLiteSession',
   cookie: {}
 }
