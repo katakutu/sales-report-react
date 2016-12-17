@@ -20,33 +20,11 @@ function _redisKey (sessionID) {
   return `tkpd:${sessionID}:session_json`
 }
 
-function _createUserSession (userInfo, token) {
-  const uid = userInfo['user_id']
-  const sessionID = _newSessionID()
-  const sessionData = {
-    'user_email': userInfo['email'],
-    'sex': userInfo['gender'],
-    'login_type': 1,
-    'status': 1,
-    'full_name': userInfo['name'],
-    'access_token': token,
-    'admin_id': uid,
-    'id': sessionID
-  }
-
-  redisClient.set(_redisKey(sessionID), JSON.stringify(sessionData), function (err, reply) {
-    if (err) {
-      console.error('[Redis] Reply error when saving user session: ', err)
-      return
-    }
-
-    console.log(`[Redis] Successfully saved session for user ${uid}. Message: ${reply}`)
-  })
-
-  return sessionData
+function _createUserSession (userInfo, token, callback) {
+  _createUserSessionBySID(userInfo, token, _newSessionID(), callback)
 }
 
-function _createUserSessionBySID (userInfo, token, sessionID) {
+function _createUserSessionBySID (userInfo, token, sessionID, callback) {
   const uid = userInfo['user_id']
   const sessionData = {
     'user_email': userInfo['email'],
@@ -63,13 +41,12 @@ function _createUserSessionBySID (userInfo, token, sessionID) {
   redisClient.set(key, JSON.stringify(sessionData), function (err, reply) {
     if (err) {
       console.error('[Redis] Reply error when saving user session: ', err)
-      return
+    } else {
+      console.log(`[Redis] Successfully saved session for user ${uid} on ${key}. Message: ${reply}`)
     }
 
-    console.log(`[Redis] Successfully saved session for user ${uid} on ${key}. Message: ${reply}`)
+    callback(err, reply, sessionData)
   })
-
-  return sessionData
 }
 
 function _getSession (sessionID, callback) {

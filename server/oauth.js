@@ -90,17 +90,17 @@ module.exports = {
           console.log(`Cookies data: ${req.cookies}`)
           console.log(`user data: ${JSON.stringify(user)}`)
           console.log(`Creating login session for user sid ${sid}`)
-          session.createUserSessionBySID(user, token, sid)
+          session.createUserSessionBySID(user, token, sid, (_, reply, sessionData) => {
+            const cookieOpt = {
+              domain: GlobalConfig['Cookie']['Domain'],
+              expires: GlobalConfig['Cookie']['MaxAge'],
+              httpOnly: true,
+              maxAge: GlobalConfig['Cookie']['MaxAge']
+            }
+            res.cookie(GlobalConfig['Cookie']['SessionID'], sid, cookieOpt)
 
-          const cookieOpt = {
-            domain: GlobalConfig['Cookie']['Domain'],
-            expires: GlobalConfig['Cookie']['MaxAge'],
-            httpOnly: true,
-            maxAge: GlobalConfig['Cookie']['MaxAge']
-          }
-          res.cookie(GlobalConfig['Cookie']['SessionID'], sid, cookieOpt)
-
-          return res.redirect(`${GlobalConfig['Hostname']}/?view=feed_preview`)
+            return res.redirect(`${GlobalConfig['Hostname']}/?view=feed_preview`)
+          })
         })
       })
     }
