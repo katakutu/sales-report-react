@@ -38,14 +38,14 @@ function _createUserSessionBySID (userInfo, token, sessionID, callback) {
   }
   const key = _redisKey(sessionID)
 
-  redisClient.set(key, JSON.stringify(sessionData), function (err, reply) {
+  return redisClient.set(key, JSON.stringify(sessionData), function (err, reply) {
     if (err) {
       console.error('[Redis] Reply error when saving user session: ', err)
     } else {
       console.log(`[Redis] Successfully saved session for user ${uid} on ${key}. Message: ${reply}`)
     }
 
-    callback(err, reply, sessionData)
+    return callback(err, reply, sessionData)
   })
 }
 
