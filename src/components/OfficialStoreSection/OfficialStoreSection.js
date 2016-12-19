@@ -72,7 +72,7 @@ const stores = [
 ]
 
 const renderStore = (data, index) => (
-  <div className='u-col u-col-3 u-px1' key={`os-${index}`}>
+  <div className='u-col u-col-3 official-store__item' key={`os-${index}`}>
     <a href={data.href}
       data-value={data.fullName}
       className='official-store__link u-center'>

@@ -75,10 +75,10 @@ class CoreLayout extends Component {
 
     return (
       <OnOffWrapper onOnline={this.handleOnOnline} onOffline={this.handleOnOffline}>
-        <div style={ds}>
+        <div style={ds} className='layout u-flex u-flex-column'>
           { this.props.isLoading && <Spinner /> }
 
-          <div className='content'>
+          <div className='content u-flex-auto'>
             {this.props.children}
           </div>
 
