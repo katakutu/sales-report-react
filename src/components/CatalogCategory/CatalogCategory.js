@@ -3,10 +3,9 @@ import './CatalogCategory.scss'
 
 export const CatalogCategory = () => (
   <div className='u-clearfix u-mt3'>
-    <div className='catalog-category__header'>
-      Pakaian
+    <h1 className='text-header text-header-green u-center'>Pakaian
       <i className='catalog-category__arrowdown' />
-    </div>
+    </h1>
 
     <div className='catalog-category__holder u-clearfix'>
       <div className='u-col u-col-12 catalog-category__content-holder'>

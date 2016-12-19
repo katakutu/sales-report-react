@@ -7,7 +7,7 @@ class HotListView extends Component {
     return (
       <div>
         <HeaderHomeOld />
-        <div className='u-clearfix hotlist-holder'>
+        <div className='u-clearfix hotlist-holder u-mt3'>
           {/* Remove class u-display-none, If you want to see the breadcrumb.
             The Breadcrumb appears after you clicked a link "lihat semua".
             For example you can check to https://m.tokopedia.com/hot?view=1

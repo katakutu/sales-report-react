@@ -2,17 +2,17 @@
 
 .hotlist-holder {
     padding: 0 10px;
-    margin: 10px 0;
 }
 
 .hotlist__item {
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-left: auto;
     padding: 10px;
+    max-width: 273px;
     border: 1px solid #EBEBEB;
     border-bottom: 5px solid #EBEBEB;
-    margin-bottom: 20px;
     border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
 }
 
 .hotlist__item-img {
@@ -26,9 +26,9 @@
 }
 
 .hotlist__price {
+    margin-right: 15px;
     color: $color-red;
     font-weight: bold;
-    margin-right: 15px;
 }
 
 .more-info__arrow {
@@ -48,11 +48,11 @@
 
 .hotlist-showall {
     position: relative;
-    text-align: center;
     color: $color-green;
+    text-align: center;
 
     .more-info__arrow {
-        top: 4px;
+        top: 6px;
         right: 88px;
     }
 }
@@ -67,10 +67,10 @@
 
 .pagination {
     ul {
-        list-style: none;
-        box-shadow: 0 1px 2px $color-grey-1;
-        padding: 0;
         display: inline-block;
+        padding: 0;
+        box-shadow: 0 1px 2px $color-grey-1;
+        list-style: none;
     }
 
     li {
@@ -78,14 +78,14 @@
     }
 
     a {
-        padding: 0 14px;
         float: left;
-        line-height: 34px;
-        text-decoration: none;
-        background-color: $color-white-primary;
+        padding: 0 14px;
         border: 1px solid #DDD;
         border-left-width: 0;
+        background-color: $color-white-primary;
         color: $color-grey-3;
+        text-decoration: none;
+        line-height: 34px;
     }
 
     li:first-child a {
@@ -98,11 +98,11 @@
     }
 
     .active a {
-        background-color: $color-white-primary;
-        border-bottom: 4px solid $color-green;
         box-sizing: border-box;
-        color: $color-black-disabled;
         height: 36px;
+        border-bottom: 4px solid $color-green;
+        background-color: $color-white-primary;
+        color: $color-black-disabled;
     }
 }
 

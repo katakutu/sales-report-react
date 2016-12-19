@@ -1,5 +1,5 @@
 export default (store) => ({
-  path : 'hot-list',
+  path : 'hot',
   /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {
     /*  Webpack - use 'require.ensure' to create a split point
@@ -13,6 +13,6 @@ export default (store) => ({
       cb(null, HotList)
 
     /* Webpack named bundle   */
-    }, 'hot-list')
+    }, 'hot')
   }
 })
