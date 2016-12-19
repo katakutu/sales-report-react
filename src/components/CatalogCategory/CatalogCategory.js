@@ -2,7 +2,7 @@ import React from 'react'
 import './CatalogCategory.scss'
 
 export const CatalogCategory = () => (
-  <div className='u-clearfix'>
+  <div className='u-clearfix u-mt3'>
     <div className='catalog-category__header'>
       Pakaian
       <img className='catalog-category__arrowdown' src='https://placehold.it/10x10' />
