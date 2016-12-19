@@ -10,7 +10,7 @@ function getHotlists (action) {
   const api = new TopedHotlistAPI()
 
   return api.getHotlists(action).then(response => {
-    if (response['message_error']) {
+    if (response['message_error'] || !response['data']) {
       return HOTLIST_ERROR
     }
 

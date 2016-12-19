@@ -14,8 +14,6 @@ class TopedHotlistAPI {
   getHotlists (action = 'hot_product_home') {
     let url = URL.parse(HOTLIST_SERVICES.Get.replace(':action', action))
 
-    console.log(url.format())
-
     return this.api.consume(url, 'GET', {}, true)
       .catch(err => {
         console.error(`Failed to fetch ${url.format()}. Returning default value. Error: `, err)
