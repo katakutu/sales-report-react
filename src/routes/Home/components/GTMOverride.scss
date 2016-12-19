@@ -32,14 +32,14 @@
     h2 {
         margin: 0;
         color: #666;
-        text-transform: uppercase;
+        text-transform: capitalize;
         font-weight: 700;
-        font-size: 18px;
+        font-size: 14px;
     }
 
     h2::after {
         display: block;
-        margin: 5px auto;
+        margin: 8px auto;
         width: 20px;
         border-top: 3px solid #42B54A;
         content: "";
@@ -108,7 +108,7 @@
 
     .home-module-section__linkTitle {
         margin-top: 20px;
-        color: #666;
+        color: rgba(0, 0, 0, 0.87);
         text-align: center;
         text-transform: uppercase;
         font-weight: 700;
@@ -217,4 +217,8 @@
 
 #widget-dmw {
     padding: 0 10px !important;
+}
+
+label.dmw-mobile-radio-choice {
+    display: block;
 }
