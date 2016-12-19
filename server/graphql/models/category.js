@@ -29,7 +29,11 @@ function getMainPageCategories () {
   const api = new TopedHadesAPI()
 
   return api.allCategories().then(response => {
-    const categories = response['data']['categories']
+    if (!response['data']) {
+      return []
+    }
+
+    const categories = response['data']['categories'] || []
     let result = {
       'Gaya Hidup': [],
       'Teknologi': [],
