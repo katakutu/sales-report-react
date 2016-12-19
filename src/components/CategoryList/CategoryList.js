@@ -104,11 +104,11 @@ class CategoryList extends Component {
           {
             this._chunkArray(category.items, 2).map((items, index) => {
               const cn = category['name'].toLowerCase().replace(' ', '-')
-              const key = `${cn}-${2*index}`
+              const key = `${cn}-${2 * index}`
 
               return (
                 <div className='u-col u-col-12 category-list__box'
-                     key={key}>
+                  key={key}>
                   {this.renderCategoryItem(items, index)}
                 </div>
               )
