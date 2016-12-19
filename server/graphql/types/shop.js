@@ -1,12 +1,11 @@
 const {
-  GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString
 } = require('graphql')
 
 const Shop = new GraphQLObjectType({
   name: 'Shop',
-  fields: {    
+  fields: {
     shop_id: { type: GraphQLString },
     shop_url: { type: GraphQLString },
     domain: { type: GraphQLString },

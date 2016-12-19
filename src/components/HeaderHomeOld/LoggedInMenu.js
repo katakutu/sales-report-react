@@ -7,7 +7,6 @@ import inboxIcon from './assets/nav-inbox-icon.png'
 import buyingIcon from './assets/nav-buying-icon.png'
 import sellingIcon from './assets/nav-selling-icon.png'
 import logoutIcon from './assets/nav-logout-icon.png'
-import shopPhoto from './assets/mobile-shopnophoto.png'
 import addShop from './assets/nav-add-shop-icon.png'
 
 import { updateSidebarStatus } from '../../store/app'
@@ -73,8 +72,8 @@ class LoggedInMenu extends Component {
 
     let topupLink = `${SITES['Pulsa']}/saldo/?utm_source=mobile&utm_medium=link&utm_campaign=top%20up%20saldo`
 
-    let shopSection = (this.props.shop['shop_id'] == 'ERROR FAIL' || this.props.shop['shop_id'] == null) ? 
-    (<a href={`${HOSTNAME}/myshop.pl`}>
+    let shopSection = (this.props.shop['shop_id'] === 'ERROR FAIL' || this.props.shop['shop_id'] === null) ? (
+      <a href={`${HOSTNAME}/myshop.pl`}>
         <div className='drawer__menu-shop u-clearfix'>
           <div className='u-left'>
             <img className='drawer__menu-icon' src={addShop} alt='tokopedia' />
@@ -84,17 +83,17 @@ class LoggedInMenu extends Component {
           </div>
         </div>
       </a>) : (
-      <a href={`${HOSTNAME}/${this.props.shop['domain']}`}>
-        <div className='drawer__menu-shop u-clearfix'>
-          <div className='u-left'>
-            <img src={`${this.props.shop['logo']}`} alt='tokopedia' className='drawer__menu-shop-icon' />
+        <a href={`${HOSTNAME}/${this.props.shop['domain']}`}>
+          <div className='drawer__menu-shop u-clearfix'>
+            <div className='u-left'>
+              <img src={`${this.props.shop['logo']}`} alt='tokopedia' className='drawer__menu-shop-icon' />
+            </div>
+            <div className='u-left drawer__menu-myshop'>
+              <div>Toko Saya</div>
+              <div className='drawer__menu-myshop-name'>{`${this.props.shop['shop_name']}`}</div>
+            </div>
           </div>
-          <div className='u-left drawer__menu-myshop'>
-            <div>Toko Saya</div>
-            <div className='drawer__menu-myshop-name'>{`${this.props.shop['shop_name']}`}</div>
-          </div>
-        </div>
-      </a>
+        </a>
     )
 
     let inboxNotif = this._totalObjectValues(this.props.notifs['inbox']) > 0 ? (

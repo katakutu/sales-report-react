@@ -115,7 +115,10 @@ class HeaderHome extends Component {
   renderSidebar () {
     let result = null
     if (this.props.sidebarIsOpened && this.props.userIsLoggedIn) {
-      result = <LoggedInMenu notifs={this.props.userData.notifications} userData={this.props.userData} shop={this.props.userData.shop}/>
+      result = <LoggedInMenu
+        notifs={this.props.userData.notifications}
+        userData={this.props.userData}
+        shop={this.props.userData.shop} />
     } else if (this.props.sidebarIsOpened && !this.props.userIsLoggedIn) {
       result = <LoggedOutMenu />
     }
