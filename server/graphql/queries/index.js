@@ -1,3 +1,4 @@
+const category = require('./category')
 const hotlists = require('./hotlist')
 const search = require('./search')
 const slide = require('./slide')
@@ -6,6 +7,7 @@ const user = require('./user')
 
 let queries = {}
 
+queries = Object.assign({}, queries, category)
 queries = Object.assign({}, queries, hotlists)
 queries = Object.assign({}, queries, search)
 queries = Object.assign({}, queries, slide)

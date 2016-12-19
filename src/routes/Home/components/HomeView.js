@@ -38,6 +38,8 @@ class HomeView extends Component {
     const defaultHotlist = { success: 0, message_status: 1, data: [] }
     const hotlists = this.props.data.hotlists ? this.props.data.hotlists : defaultHotlist
 
+    const categories = this.props.data.category ? this.props.data.category : []
+
     return (
       <div>
         <HeaderHomeOld userInfo={this.props.data.user} />
@@ -51,7 +53,7 @@ class HomeView extends Component {
           targetUrl='https://tokopedia.com'
           imageAlt='414 x 90' />
         <HotList data={hotlists} />
-        <CategoryList />
+        <CategoryList categories={categories} />
         <OfficialStoreSection />
         <MoreInfo />
       </div>
@@ -106,6 +108,13 @@ query Query {
           purchase_delivery_confirm
         }
       }
+    }
+  }
+  category{
+    name
+    items{
+      identifier
+      name
     }
   }
   ticker{
