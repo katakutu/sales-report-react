@@ -1,19 +1,38 @@
 const PRODUCTION = {
   Ace: {
-    Hostname: 'ace-staging.tokopedia.com'
+    Hostname: 'ace.tokopedia.com'
   },
   Mojito: {
-    Hostname: 'mojito-staging.tokopedia.com',
+    Hostname: 'mojito.tokopedia.com',
     SecretKey: 'mojito_api_v1'
   },
   WS: {
-    Hostname: 'ws-staging.tokopedia.com'
+    Hostname: 'ws.tokopedia.com'
   },
   Lite: {
-    Hostname: 'lite-staging.tokopedia.com'
+    Hostname: 'lite.tokopedia.com'
   },
   Saldo: {
-    Hostname: 'http://192.168.16.110'
+    Hostname: 'saldo.tokopedia.com'
+  }
+}
+
+const BETA = {
+  Ace: {
+    Hostname: 'ace.tokopedia.com'
+  },
+  Mojito: {
+    Hostname: 'mojito.tokopedia.com',
+    SecretKey: 'mojito_api_v1'
+  },
+  WS: {
+    Hostname: 'ws.tokopedia.com'
+  },
+  Lite: {
+    Hostname: 'lite.tokopedia.com'
+  },
+  Saldo: {
+    Hostname: 'saldo.tokopedia.com'
   }
 }
 
@@ -62,6 +81,8 @@ if (__DEV__) {
   config = TEST
 } else if (__PROD__) {
   config = PRODUCTION
+} else if (__BETA__) {
+  config = BETA
 }
 
 export default config
