@@ -5,6 +5,8 @@ const GraphQLObjectType = graphql.GraphQLObjectType
 
 const Queries = require('./queries')
 
+const config = require('../../config')
+
 // Construct a schema, using GraphQL schema language
 const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
@@ -15,5 +17,5 @@ const schema = new GraphQLSchema({
 
 module.exports = graphqlHTTP({
   schema: schema,
-  graphiql: true
+  graphiql: !config.globals.__PROD__
 })

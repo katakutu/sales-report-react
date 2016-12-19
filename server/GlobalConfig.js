@@ -1,6 +1,54 @@
 const config = require('../config')
 
 const PRODUCTION = {
+  Hostname: 'https://m.tokopedia.com',
+  Cookie: {
+    SessionID: '_SID_Tokopedia_'
+  },
+  Ace: {
+    Hostname: 'https://ace.tokopedia.com'
+  },
+  Accounts: {
+    Hostname: 'https://accounts.tokopedia.com',
+    Callback: 'https://m.tokopedia.com/appauth/code'
+  },
+  Hades: {
+    'Hostname': 'https://hades.tokopedia.com'
+  },
+  Hotlist: {
+    Hostname: 'https://m.tokopedia.com/ajax/hotlist.pl'
+  },
+  Lite: {
+    Hostname: 'https://m.tokopedia.com'
+  },
+  Saldo: {
+    Hostname: 'http://192.168.16.110'
+  },
+  Mojito: {
+    Hostname: 'https://mojito.tokopedia.com',
+    SecretKey: 'mojito_api_v1'
+  },
+  Notification: {
+    Hostname: 'http://orderapp.tokopedia.local/'
+  },
+  Points: {
+    Hostname: 'https://points.tokopedia.com',
+    Secret: '4lclover'
+  },
+  LoginDataRedis: {
+    host: 'twemproxy.redis.db.tokopedia.local',
+    port: '6380'
+  },
+  SessionRedis: {
+    host: '127.0.0.1',
+    port: 6379
+  },
+  WS: {
+    Hostname: 'https://ws.tokopedia.com'
+  }
+}
+
+const BETA = {
   Hostname: 'https://m-beta.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_'
@@ -151,6 +199,8 @@ if (config.globals.__DEV__) {
   globalConfig = TEST
 } else if (config.globals.__PROD__) {
   globalConfig = PRODUCTION
+} else if (config.globals.__BETA__) {
+  globalConfig = BETA
 }
 
 globalConfig['AppSecret'] = process.env.TOPED_LITE_APP_SECRET || 'no-secret'
