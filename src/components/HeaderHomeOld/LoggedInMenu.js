@@ -17,7 +17,8 @@ class LoggedInMenu extends Component {
   static propTypes = {
     notifs: React.PropTypes.object,
     userData: React.PropTypes.object,
-    updateSidebarStatus: React.PropTypes.func
+    updateSidebarStatus: React.PropTypes.func,
+    shop: React.PropTypes.object
   }
 
   state = {
@@ -172,7 +173,7 @@ class LoggedInMenu extends Component {
           <div className='drawer__user-topup'>
             <a href={topupLink} className='drawer__btn-topup'>Top Up Saldo</a>
           </div>
-          <a href={`${HOSTNAME} `}>
+          <a href={`${HOSTNAME}`}>
             <div className='drawer__menu-shop u-clearfix'>
               <div className='u-left'>
                 <img src={shopPhoto} alt='tokopedia' className='drawer__menu-shop-icon' />

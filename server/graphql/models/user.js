@@ -18,6 +18,11 @@ const {
   TopedPointsAPI
 } = require('./../../api-consumer/api/Points/TopedPointsAPI')
 
+const {
+  DEFAULT_SHOP_DATA,
+  TopedShopAPI
+} = require('./../../api-consumer/api/Shop/TopedShopAPI')
+
 const DEFAULT_NOT_LOGGED_IN = {
   'isLoggedIn': false,
   'shouldRedirect': false,
@@ -26,7 +31,8 @@ const DEFAULT_NOT_LOGGED_IN = {
   'profilePicture': null,
   'deposit': DEFAULT_SALDO_DATA,
   'points': DEFAULT_POINTS_DATA,
-  'notifications': DEFAULT_NOTIFICATION_DATA
+  'notifications': DEFAULT_NOTIFICATION_DATA,
+  'shop': DEFAULT_SHOP_DATA
 }
 
 const getDefaultLoginRedirect = (shouldRedirect) => {
@@ -38,7 +44,8 @@ const getDefaultLoginRedirect = (shouldRedirect) => {
     'profilePicture': null,
     'deposit': DEFAULT_SALDO_DATA,
     'points': DEFAULT_POINTS_DATA,
-    'notifications': DEFAULT_NOTIFICATION_DATA
+    'notifications': DEFAULT_NOTIFICATION_DATA,
+    'shop': DEFAULT_SHOP_DATA
   }
 }
 
@@ -72,14 +79,16 @@ function getUserInfo (context) {
   const saldoConsumer = new TopedSaldoAPI()
   const notifConsumer = new TopedNotificationAPI(token, tType)
   const pointConsumer = new TopedPointsAPI()
+  const shopConsumer = new TopedShopAPI()
 
   return authConsumer.getUserInfo().then(user => {
     const userID = user['user_id']
     let saldo = PromiseHelper.timeout(saldoConsumer.getDeposit(userID), 5000, 'Saldo API Call')
     let notif = PromiseHelper.timeout(notifConsumer.getNotification(userID), 5000, 'Notif API Call')
     let point = PromiseHelper.timeout(pointConsumer.getPoints(userID), 5000, 'Points API Call')
+    let shop = PromiseHelper.timeout(shopConsumer.getShop(userID), 5000, 'Shop API Call')
 
-    return Promise.all([saldo, notif, point])
+    return Promise.all([saldo, notif, point, shop])
       .then(s => {
         return {
           'isLoggedIn': true,
@@ -89,7 +98,8 @@ function getUserInfo (context) {
           'profilePicture': user['profile_picture'],
           'deposit': s[0] || DEFAULT_SALDO_DATA,
           'points': s[2] || DEFAULT_POINTS_DATA,
-          'notifications': s[1] || DEFAULT_NOTIFICATION_DATA
+          'notifications': s[1] || DEFAULT_NOTIFICATION_DATA,
+          'shop': s[3] || DEFAULT_SHOP_DATA
         }
       })
       .catch(e => {
@@ -101,7 +111,8 @@ function getUserInfo (context) {
           'profilePicture': user['profile_picture'],
           'deposit': DEFAULT_SALDO_DATA,
           'points': DEFAULT_POINTS_DATA,
-          'notifications': DEFAULT_NOTIFICATION_DATA
+          'notifications': DEFAULT_NOTIFICATION_DATA,
+          'shop': DEFAULT_SHOP_DATA
         }
       })
   })

@@ -69,6 +69,16 @@ query Query {
     shouldRedirect
     profilePicture
     name
+    shop{
+      domain
+      gold_shop
+      id
+      is_owner
+      location
+      lucky_shop
+      nameowner_id
+      uri
+    }
     points{
       data{
         attributes{
