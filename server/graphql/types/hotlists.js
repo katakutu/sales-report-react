@@ -1,5 +1,5 @@
 const {
-    GraphQLInt,
+  GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType
