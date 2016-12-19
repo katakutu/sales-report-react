@@ -33,6 +33,17 @@ if (__TEST__) {
     Blog: 'https://blog.tokopedia.com/'
   }
   gtmContainerID = 'GTM-WD6SLP'
+} else if (__BETA__) {
+  desktopHostname = 'https://beta.tokopedia.com/?m2w'
+  hostname = 'https://m-beta.tokopedia.com'
+  sites = {
+    Pulsa: 'https://pulsa.tokopedia.com',
+    Tiket: 'https://tiket.tokopedia.com',
+    Events: 'https://events.tokopedia.com/',
+    Seller: 'https://seller.tokopedia.com/',
+    Blog: 'https://blog.tokopedia.com/'
+  }
+  gtmContainerID = 'GTM-WD6SLP'
 }
 
 export const DESKTOP_HOSTNAME = desktopHostname

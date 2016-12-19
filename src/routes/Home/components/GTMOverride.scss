@@ -1,6 +1,6 @@
 // Editor Pick
 
-.home-module-section {
+section.home-module-section {
     margin-bottom: 20px;
     padding: 20px 0;
     height: 100%;
@@ -14,9 +14,9 @@
 
     .section-title::after {
         display: block;
-        margin: 5px auto;
+        margin: 8px 0;
         width: 20px;
-        border-top: 3px solid #42B54A;
+        border-top: 2px solid #FF5722;
         content: "";
     }
 
@@ -30,19 +30,10 @@
     }
 
     h2 {
-        margin: 0;
-        color: #666;
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: 18px;
-    }
-
-    h2::after {
-        display: block;
-        margin: 5px auto;
-        width: 20px;
-        border-top: 3px solid #42B54A;
-        content: "";
+        color: rgba(0, 0, 0, 0.87);
+        text-transform: capitalize;
+        font-weight: normal;
+        font-size: 14px;
     }
 
     .home-tableWrap {
@@ -108,7 +99,7 @@
 
     .home-module-section__linkTitle {
         margin-top: 20px;
-        color: #666;
+        color: rgba(0, 0, 0, 0.87);
         text-align: center;
         text-transform: uppercase;
         font-weight: 700;
@@ -208,7 +199,21 @@
         text-align: center;
     }
 
+    section > header > h2.ta-center {
+        text-align: left;
+    }
+
     .home-text-orange {
         font-size: 13px;
     }
+}
+
+// Digital Goods Widget
+
+#widget-dmw {
+    padding: 0 10px !important;
+}
+
+label.dmw-mobile-radio-choice {
+    display: block;
 }

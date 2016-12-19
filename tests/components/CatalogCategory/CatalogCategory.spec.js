@@ -11,7 +11,4 @@ describe('(Component) CatalogCategory', () => {
   it('should has nine catalog-category__content elements', () => {
     expect(wrapper.find('.catalog-category__content').length).to.be.least(9)
   })
-  it('should has ten <img /> elements', () => {
-    expect(wrapper.find('img').length).to.be.equal(10)
-  })
 })

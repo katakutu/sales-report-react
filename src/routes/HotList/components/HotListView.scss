@@ -1,0 +1,108 @@
+@import 'base';
+
+.hotlist-holder {
+    padding: 0 10px;
+}
+
+.hotlist__item {
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-left: auto;
+    padding: 10px;
+    max-width: 273px;
+    border: 1px solid #EBEBEB;
+    border-bottom: 5px solid #EBEBEB;
+    border-radius: 2px;
+}
+
+.hotlist__item-img {
+    max-width: 100%;
+    height: auto;
+}
+
+.hotlist__captions {
+    position: relative;
+    padding: 7px 0 0;
+}
+
+.hotlist__price {
+    margin-right: 15px;
+    color: $color-red;
+    font-weight: bold;
+}
+
+.more-info__arrow {
+    top: 13px;
+    right: -5px;
+    background-size: 5px;
+}
+
+.hotlist__captions-name {
+    color: $color-black-disabled;
+}
+
+.hotlist__start-from {
+    color: #999;
+    font-size: 80%;
+}
+
+.hotlist-showall {
+    position: relative;
+    color: $color-green;
+    text-align: center;
+
+    .more-info__arrow {
+        top: 6px;
+        right: 88px;
+    }
+}
+
+.link-green {
+    color: $color-green;
+}
+
+.breadcrumb {
+    margin-bottom: 15px;
+}
+
+.pagination {
+    ul {
+        display: inline-block;
+        padding: 0;
+        box-shadow: 0 1px 2px $color-grey-1;
+        list-style: none;
+    }
+
+    li {
+        display: inline;
+    }
+
+    a {
+        float: left;
+        padding: 0 14px;
+        border: 1px solid #DDD;
+        border-left-width: 0;
+        background-color: $color-white-primary;
+        color: $color-grey-3;
+        text-decoration: none;
+        line-height: 34px;
+    }
+
+    li:first-child a {
+        border-left-width: 1px;
+        border-radius: 3px 0 0 3px;
+    }
+
+    li:last-child a {
+        border-radius: 0 3px 3px 0;
+    }
+
+    .active a {
+        box-sizing: border-box;
+        height: 36px;
+        border-bottom: 4px solid $color-green;
+        background-color: $color-white-primary;
+        color: $color-black-disabled;
+    }
+}
+
