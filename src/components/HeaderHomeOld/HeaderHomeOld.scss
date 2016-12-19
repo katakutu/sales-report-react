@@ -430,6 +430,10 @@
     opacity: 1;
     cursor: pointer;
     transition: 0.25s ease-in-out;
+    transform: rotate(0deg);
+}
+
+.opened{
     transform: rotate(180deg);
 }
 

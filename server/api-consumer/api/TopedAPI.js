@@ -1,5 +1,24 @@
 const fetch = require('isomorphic-fetch')
 const JSONP = require('node-jsonp')
+const obcache = require('obcache')
+const redis = require('../../GlobalConfig').SessionRedis
+
+const topedAPICache = obcache.debug.register(new obcache.Create({
+  max: 10000,
+  maxAge: 30 * 60 * 1000,
+  redis: redis,
+  id: 2
+}), 'topedapi')
+
+const wrappedTopedFetch = topedAPICache.wrap((url, options, cb) => {
+  fetch(url, options)
+  .then(response => {
+    cb(null, response.json())
+  })
+  .catch(err => {
+    cb(err)
+  })
+})
 
 /**
  * A base class to consume http API without HMAC.
@@ -31,8 +50,11 @@ class TopedAPI {
     let finalURL = (method === 'POST') ? url.format()
             : this._formatGetURL(url, content)
 
-    return fetch(finalURL, finalOptions).then(response => {
-      return response.json()
+    return new Promise((resolve, reject) => {
+      wrappedTopedFetch(finalURL, finalOptions, (err, response) => {
+        if (err) return reject(err)
+        resolve(response)
+      })
     })
   }
 
