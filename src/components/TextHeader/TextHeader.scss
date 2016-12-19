@@ -17,3 +17,17 @@
     content: '';
 }
 
+.text-header-green {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: $color-black-secondary;
+}
+
+.text-header-green::after {
+    display: block;
+    margin: 8px auto auto;
+    width: 20px;
+    height: 3px;
+    background-color: $color-green;
+    content: '';
+}

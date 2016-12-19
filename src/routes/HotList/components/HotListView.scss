@@ -1,1 +1,108 @@
-// Goes here
+@import 'base';
+
+.hotlist-holder {
+    padding: 0 10px;
+    margin: 10px 0;
+}
+
+.hotlist__item {
+    padding: 10px;
+    border: 1px solid #EBEBEB;
+    border-bottom: 5px solid #EBEBEB;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+}
+
+.hotlist__item-img {
+    max-width: 100%;
+    height: auto;
+}
+
+.hotlist__captions {
+    position: relative;
+    padding: 7px 0 0;
+}
+
+.hotlist__price {
+    color: $color-red;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.more-info__arrow {
+    top: 13px;
+    right: -5px;
+    background-size: 5px;
+}
+
+.hotlist__captions-name {
+    color: $color-black-disabled;
+}
+
+.hotlist__start-from {
+    color: #999;
+    font-size: 80%;
+}
+
+.hotlist-showall {
+    position: relative;
+    text-align: center;
+    color: $color-green;
+
+    .more-info__arrow {
+        top: 4px;
+        right: 88px;
+    }
+}
+
+.link-green {
+    color: $color-green;
+}
+
+.breadcrumb {
+    margin-bottom: 15px;
+}
+
+.pagination {
+    ul {
+        list-style: none;
+        box-shadow: 0 1px 2px $color-grey-1;
+        padding: 0;
+        display: inline-block;
+    }
+
+    li {
+        display: inline;
+    }
+
+    a {
+        padding: 0 14px;
+        float: left;
+        line-height: 34px;
+        text-decoration: none;
+        background-color: $color-white-primary;
+        border: 1px solid #DDD;
+        border-left-width: 0;
+        color: $color-grey-3;
+    }
+
+    li:first-child a {
+        border-left-width: 1px;
+        border-radius: 3px 0 0 3px;
+    }
+
+    li:last-child a {
+        border-radius: 0 3px 3px 0;
+    }
+
+    .active a {
+        background-color: $color-white-primary;
+        border-bottom: 4px solid $color-green;
+        box-sizing: border-box;
+        color: $color-black-disabled;
+        height: 36px;
+    }
+}
+
