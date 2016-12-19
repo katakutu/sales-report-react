@@ -32,9 +32,13 @@ const PRODUCTION = {
     Hostname: 'https://points.tokopedia.com',
     Secret: '4lclover'
   },
-  Redis: {
-    host: '',
-    port: ''
+  LoginDataRedis: {
+    host: 'twemproxy.redis.db.tokopedia.local',
+    port: '6380'
+  },
+  SessionRedis: {
+    host: '127.0.0.1',
+    port: 6379
   },
   WS: {
     Hostname: 'https://ws.tokopedia.com'
@@ -42,7 +46,7 @@ const PRODUCTION = {
 }
 
 const TEST = {
-  Hostname: 'https://m-staging.tokopedia.com',
+  Hostname: 'https://lite-staging.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_Coba_'
   },
@@ -73,9 +77,13 @@ const TEST = {
     Hostname: 'https://points-staging.tokopedia.com',
     Secret: '4lclover'
   },
-  Redis: {
+  LoginDataRedis: {
     host: '10.0.11.50',
     port: 6381
+  },
+  SessionRedis: {
+    host: '127.0.0.1',
+    port: 6379
   },
   WS: {
     Hostname: 'https://ws-staging.tokopedia.com'
@@ -114,7 +122,11 @@ const DEVELOPMENT = {
     Hostname: 'http://192.168.100.160:8005',
     Secret: '4lclover'
   },
-  Redis: {
+  LoginDataRedis: {
+    host: '127.0.0.1',
+    port: 6379
+  },
+  SessionRedis: {
     host: '127.0.0.1',
     port: 6379
   },

@@ -154,12 +154,16 @@ class LoggedInMenu extends Component {
           </div>
           <div className='drawer__user-summary u-clearfix'>
             <div className='drawer__user-summary-box u-left'>
-              <span>{ this.props.userData.deposit }</span>
-              <div className='drawer__user-infosum-title'>Saldo</div>
+              <a href={`${HOSTNAME}/deposit.pl`}>
+                <span>{this.props.userData.deposit.deposit_fmt}</span>
+                <div className='drawer__user-infosum-title'>Saldo</div>
+              </a>
             </div>
             <div className='drawer__user-summary-box u-right'>
-              <span>{ this.props.userData.points }</span>
-              <div className='drawer__user-infosum-title'>TopPoints</div>
+              <a href={`${HOSTNAME}/lp.pl`}>
+                <span>{this.props.userData.points.data.attributes.amount_formatted}</span>
+                <div className='drawer__user-infosum-title'>TopPoints</div>
+              </a>
             </div>
           </div>
           <div className='drawer__user-topup'>
