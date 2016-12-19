@@ -215,7 +215,9 @@ class LoggedInMenu extends Component {
               <img className='drawer__menu-icon' src={buyingIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Pembelian</span>
               { purchaseNotif }
-              <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${purchaseParent}`} />
+              <img src='https://placehold.it/15x15'
+                alt='tokopedia'
+                className={`drawer__menu-arrow ${purchaseParent}`} />
             </a>
             <ul className={`drawer__menu-child ${purchaseClass}`}>
               <li>
