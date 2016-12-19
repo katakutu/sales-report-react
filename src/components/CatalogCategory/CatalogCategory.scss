@@ -2,7 +2,7 @@
 
 .catalog-category__header {
     margin-bottom: 20px;
-    color: rgba(0, 0, 0, 0.7);
+    color: $color-black-primary;
     text-align: center;
     font-size: 14px;
 }
@@ -17,8 +17,26 @@
 }
 
 .catalog-category__arrowdown {
-    margin-left: 4px;
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    width: 11.5px;
+    height: 7px;
+    background: url('./assets/arrow-triangle-down.png') transparent no-repeat;
+    background-size: 11.5px 7px;
     vertical-align: middle;
+    animation: bounce 800ms infinite;
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-2px);
+    }
 }
 
 .catalog-category__holder {
@@ -26,32 +44,39 @@
     padding: 0 10px;
     background: $color-white-primary;
     box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
 
-    .catalog-category__content-holder {
-        margin-bottom: 5px;
-        border-bottom: 1px solid $color-grey-0;
+.catalog-category__content-holder {
+    margin-bottom: 5px;
+    border-bottom: 1px solid $color-grey-0;
+}
 
-        .catalog-category__content {
-            position: relative;
-            margin: 5px 0;
-            padding: 8px 10px;
-            color: $color-grey-3;
-        }
+.catalog-category__content {
+    position: relative;
+    margin: 5px 0;
+    padding: 8px 10px;
+    color: $color-black-secondary;
+}
 
-        .catalog-category__content:first-child {
-            padding-left: 0;
-            border-right: 1px solid $color-grey-1;
-        }
+.catalog-category__content:first-child {
+    padding-left: 0;
+    border-right: 1px solid $color-grey-1;
+}
 
-        .catalog-category__arrowright {
-            position: absolute;
-            top: 10px;
-            right: 4px;
-        }
-    }
+.catalog-category__arrowright {
+    position: absolute;
+    top: 13px;
+    right: 6px;
+    display: block;
+    width: 4px;
+    height: 7px;
+    background: url('./assets/arrow-black.png') transparent no-repeat;
+    background-size: 4px 7px;
+    vertical-align: middle;
+    opacity: 0.7;
+}
 
-    .catalog-category__content-holder:last-child {
-        margin-bottom: 0;
-        border-bottom: none;
-    }
+.catalog-category__content-holder:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
 }
