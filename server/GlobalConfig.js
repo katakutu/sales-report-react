@@ -149,7 +149,7 @@ const DEVELOPMENT = {
     Hostname: 'https://ws-alpha.tokopedia.com'
   },
   Tome: {
-    Hostname: 'https://ajax-alpha.tokopedia.com/tome'
+    Hostname: 'https://tome-staging.tokopedia.com'
   }
 }
 

@@ -8,6 +8,7 @@ import buyingIcon from './assets/nav-buying-icon.png'
 import sellingIcon from './assets/nav-selling-icon.png'
 import logoutIcon from './assets/nav-logout-icon.png'
 import shopPhoto from './assets/mobile-shopnophoto.png'
+import addShop from './assets/nav-add-shop-icon.png'
 
 import { updateSidebarStatus } from '../../store/app'
 
@@ -71,6 +72,30 @@ class LoggedInMenu extends Component {
     let salesParent = (!this.state.salesIsOpen) ? '' : 'opened'
 
     let topupLink = `${SITES['Pulsa']}/saldo/?utm_source=mobile&utm_medium=link&utm_campaign=top%20up%20saldo`
+
+    let shopSection = (this.props.shop['shop_id'] == 'ERROR FAIL' || this.props.shop['shop_id'] == null) ? 
+    (<a href={`${HOSTNAME}/myshop.pl`}>
+        <div className='drawer__menu-shop u-clearfix'>
+          <div className='u-left'>
+            <img className='drawer__menu-icon' src={addShop} alt='tokopedia' />
+          </div>
+          <div className='u-left drawer__menu-myshop'>
+            <div className='drawer__menu-myshop-name'>Buka Toko</div>
+          </div>
+        </div>
+      </a>) : (
+      <a href={`${HOSTNAME}/${this.props.shop['domain']}`}>
+        <div className='drawer__menu-shop u-clearfix'>
+          <div className='u-left'>
+            <img src={`${this.props.shop['logo']}`} alt='tokopedia' className='drawer__menu-shop-icon' />
+          </div>
+          <div className='u-left drawer__menu-myshop'>
+            <div>Toko Saya</div>
+            <div className='drawer__menu-myshop-name'>{`${this.props.shop['shop_name']}`}</div>
+          </div>
+        </div>
+      </a>
+    )
 
     let inboxNotif = this._totalObjectValues(this.props.notifs['inbox']) > 0 ? (
       <span className='drawer__menu-notif' />
@@ -173,17 +198,7 @@ class LoggedInMenu extends Component {
           <div className='drawer__user-topup'>
             <a href={topupLink} className='drawer__btn-topup'>Top Up Saldo</a>
           </div>
-          <a href={`${HOSTNAME}`}>
-            <div className='drawer__menu-shop u-clearfix'>
-              <div className='u-left'>
-                <img src={shopPhoto} alt='tokopedia' className='drawer__menu-shop-icon' />
-              </div>
-              <div className='u-left drawer__menu-myshop'>
-                <div>Toko Saya</div>
-                <div className='drawer__menu-myshop-name'>iPhoneShop</div>
-              </div>
-            </div>
-          </a>
+          {shopSection}
           <div className='drawer__menu'>
             <a href='/'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
@@ -266,7 +281,7 @@ class LoggedInMenu extends Component {
             </ul>
           </div>
           <div className='drawer__menu'>
-            <a href='/logout'>
+            <a href={`${HOSTNAME}/logout.pl`}>
               <img className='drawer__menu-icon' src={logoutIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Keluar</span>
             </a>

@@ -7,17 +7,17 @@ const SHOP_SERVICES = {
 }
 
 const DEFAULT_SHOP_DATA = {
-  status: 'FAIL',
-  data: {
-    domain: 'ERROR FAIL',
-    gold_shop: 'ERROR FAIL',
-    id: 'ERROR FAIL',
-    is_owner: 'ERROR FAIL',
-    location: 'ERROR FAIL',
-    lucky_shop: 'ERROR FAIL',
-    nameowner_id: 'ERROR FAIL',
-    uri: 'ERROR FAIL'
-  }
+  shop_id: 'ERROR FAIL',
+  shop_url: 'ERROR FAIL',
+  domain: 'ERROR FAIL',
+  shop_name: 'ERROR FAIL',
+  shop_name_unfmt: 'ERROR FAIL',
+  shop_name_clean: 'ERROR FAIL',
+  is_gold: '0',
+  is_official: '0',
+  location: 'ERROR FAIL',
+  logo: 'ERROR FAIL',
+  shop_badge: 'ERROR FAIl'
 }
 
 class TopedShopAPI {
@@ -38,5 +38,5 @@ class TopedShopAPI {
 
 module.exports = {
   DEFAULT_SHOP_DATA: DEFAULT_SHOP_DATA,
-  TopedSaldoAPI: TopedShopAPI
+  TopedShopAPI: TopedShopAPI
 }

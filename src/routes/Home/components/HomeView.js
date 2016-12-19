@@ -70,14 +70,17 @@ query Query {
     profilePicture
     name
     shop{
+      shop_id
+      shop_url
       domain
-      gold_shop
-      id
-      is_owner
+      shop_name
+      shop_name_unfmt
+      shop_name_clean
+      is_gold
+      is_official
       location
-      lucky_shop
-      nameowner_id
-      uri
+      logo
+      shop_badge
     }
     points{
       data{
