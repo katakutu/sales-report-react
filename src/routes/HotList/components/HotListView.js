@@ -18,7 +18,7 @@ class HotListView extends Component {
           <h1 className='text-header text-header-green u-center'>Hot list</h1>
           <div className='hotlist__item'>
             <a href='#'>
-              <img className='hotlist__item-img' src='http://placehold.it/375x196' />
+              <img className='hotlist__item-img' src='http://placehold.it/375x196?text=+' />
               <div className='hotlist__captions u-clearfix'>
                 <div className='u-col u-col-6'>
                   <div className='hotlist__captions-name u-bold'>
@@ -35,7 +35,7 @@ class HotListView extends Component {
           </div>
           <div className='hotlist__item'>
             <a href='#'>
-              <img className='hotlist__item-img' src='http://placehold.it/375x196' />
+              <img className='hotlist__item-img' src='http://placehold.it/375x196?text=+' />
               <div className='hotlist__captions u-clearfix'>
                 <div className='u-col u-col-6'>
                   <div className='hotlist__captions-name u-bold'>
@@ -52,7 +52,7 @@ class HotListView extends Component {
           </div>
           <div className='hotlist__item'>
             <a href='#'>
-              <img className='hotlist__item-img' src='http://placehold.it/375x196' />
+              <img className='hotlist__item-img' src='http://placehold.it/375x196?text=+' />
               <div className='hotlist__captions u-clearfix'>
                 <div className='u-col u-col-6'>
                   <div className='hotlist__captions-name u-bold'>
@@ -69,7 +69,7 @@ class HotListView extends Component {
           </div>
           <div className='hotlist__item'>
             <a href='#'>
-              <img className='hotlist__item-img' src='http://placehold.it/375x196' />
+              <img className='hotlist__item-img' src='http://placehold.it/375x196?text=+' />
               <div className='hotlist__captions u-clearfix'>
                 <div className='u-col u-col-6'>
                   <div className='hotlist__captions-name u-bold'>
@@ -86,7 +86,7 @@ class HotListView extends Component {
           </div>
           <div className='hotlist__item'>
             <a href='#'>
-              <img className='hotlist__item-img' src='http://placehold.it/375x196' />
+              <img className='hotlist__item-img' src='http://placehold.it/375x196?text=+' />
               <div className='hotlist__captions u-clearfix'>
                 <div className='u-col u-col-6'>
                   <div className='hotlist__captions-name u-bold'>
@@ -103,7 +103,7 @@ class HotListView extends Component {
           </div>
           <div className='hotlist__item'>
             <a href='#'>
-              <img className='hotlist__item-img' src='http://placehold.it/375x196' />
+              <img className='hotlist__item-img' src='http://placehold.it/375x196?text=+' />
               <div className='hotlist__captions u-clearfix'>
                 <div className='u-col u-col-6'>
                   <div className='hotlist__captions-name u-bold'>
