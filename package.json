@@ -107,6 +107,7 @@
     "node-jsonp": "^1.0.2",
     "node-sass": "^3.13.0",
     "normalize.css": "^5.0.0",
+    "obcache": "git://github.com/qzaidi/obcache.git",
     "optimist": "^0.6.1",
     "postcss-loader": "^1.1.0",
     "promise-polyfill": "^6.0.2",
