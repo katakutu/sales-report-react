@@ -130,7 +130,7 @@ class Carousel extends Component {
 
   render () {
     let placeholder = {
-      'image_url': 'https://placehold.it/414x185',
+      'image_url': 'https://placehold.it/414x185?text=+',
       'redirect_url': '#',
       'title': 'Placeholder Image'
     }
