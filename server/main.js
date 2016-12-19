@@ -22,7 +22,7 @@ const sessionConfig = {
   name: 'tLiteSession',
   cookie: {}
 }
-if (config.globals.__PROD__) {
+if (config.globals.__PROD__ || config.globals.__BETA__) {
   app.set('trust proxy', 1)
   // sessionConfig.cookie.secure = true
 }

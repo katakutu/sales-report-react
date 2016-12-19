@@ -9,6 +9,7 @@ const debug = require('debug')('app:webpack:config')
 
 const paths = config.utils_paths
 const __DEV__ = config.globals.__DEV__
+const __BETA__ = config.globals.__BETA__
 const __PROD__ = config.globals.__PROD__
 const __TEST__ = config.globals.__TEST__
 
@@ -104,7 +105,7 @@ if (__DEV__) {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   )
-} else if (__PROD__) {
+} else if (__PROD__ || __BETA__) {
   debug('Enable plugins for production (OccurenceOrder, Dedupe & UglifyJS).')
   webpackConfig.plugins.push(
     new webpack.optimize.OccurrenceOrderPlugin(),
