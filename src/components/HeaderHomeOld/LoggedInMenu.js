@@ -255,12 +255,13 @@ class LoggedInMenu extends Component {
               <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${salesParent}`} />
             </a>
             <ul className={`drawer__menu-child ${salesClass}`}>
-              <li><a href='#'>Pesanan Baru{salesNONotif}</a></li>
-              <li><a href='#'>Konfirmasi Pengiriman{salesSCNotif}</a></li>
-              <li><a href='#'>Status Pengiriman{salesDSNotif}</a></li>
-              <li><a href='#'>Daftar Transaksi{salesTLNotif}</a></li>
-              <li><a href='#'>Daftar Produk{salesPLNotif}</a></li>
-              <li><a href='#'>Etalase Toko{salesEtalaseNotif}</a></li>
+              <li><a href={`${HOSTNAME}/myshop_order.pl`}>Pesanan Baru{salesNONotif}</a></li>
+              <li><a href={`${HOSTNAME}/myshop_order_process.pl`}>Konfirmasi Pengiriman{salesSCNotif}</a></li>
+              <li><a href={`${HOSTNAME}/myshop_order_status.pl`}>Status Pengiriman{salesDSNotif}</a></li>
+              <li><a href={`${HOSTNAME}/myshop_order_list.pl`}>Daftar Transaksi{salesTLNotif}</a></li>
+              <li><a href={`${HOSTNAME}/manage-product.pl`}>Daftar Produk{salesPLNotif}</a></li>
+              <li><a href={`${HOSTNAME}/manage-freereturns.pl`}>Free Returns</a></li>
+              <li><a href={`${HOSTNAME}/myshop-etalase.pl`}>Etalase Toko{salesEtalaseNotif}</a></li>
             </ul>
           </div>
           <div className='drawer__menu'>
