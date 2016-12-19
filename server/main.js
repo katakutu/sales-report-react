@@ -10,13 +10,15 @@ const session = require('express-session')
 const morgan = require('morgan')
 const graphql = require('./graphql')
 const RedisStore = require('connect-redis')(session)
-
+const cookieParser = require('cookie-parser')
 const app = express()
 const paths = config.utils_paths
 
 const sessionConfig = {
   store: new RedisStore(GlobalConfig.SessionRedis),
   secret: GlobalConfig['AppSecret'],
+  resave: false,
+  saveUninitialized: true,
   name: 'tLiteSession',
   cookie: {}
 }
@@ -26,7 +28,8 @@ if (config.globals.__PROD__) {
 }
 app.use(morgan('combined'))
 app.use(session(sessionConfig))
-
+// cookie-parser's and express-session's secret must be the same
+app.use(cookieParser(GlobalConfig['AppSecret']))
 app.use('/graphql', graphql)
 
 app.get('/status', (req, res) => res.end('ok'))

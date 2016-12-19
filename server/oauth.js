@@ -47,8 +47,12 @@ module.exports = {
         return res.redirect('/')
       }
 
-      if (res.cookies && res.cookies[GlobalConfig['Cookie']['SessionID']]) {
-        session.removeUserSession(res.cookies[GlobalConfig['Cookie']['SessionID']])
+      if (req.cookies && req.cookies[GlobalConfig['Cookie']['SessionID']]) {
+        const sessID = req.cookies[GlobalConfig['Cookie']['SessionID']]
+        return session.removeUserSession(sessID, succes => {
+          // Todo: flash to message user that logout is successful?
+          return res.redirect('/')
+        })
       }
 
       return res.redirect('/')
@@ -79,21 +83,21 @@ module.exports = {
         const token = oauth2.accessToken.create(result)
         req.session.oauth = token
 
-        const sid = session.newSessionID()
-
-        const authConsumer = new TopedAuthAPI(token['token_type'], token['access_token'])
+        const authConsumer = new TopedAuthAPI(token['token']['access_token'], token['token']['token_type'])
         authConsumer.getUserInfo().then(user => {
-          session.createUserSession(user, token)
+          const sid = req.cookies[GlobalConfig['Cookie']['SessionID']] || session.newSessionID()
 
-          const cookieOpt = {
-            domain: GlobalConfig['Cookie']['Domain'],
-            expires: GlobalConfig['Cookie']['MaxAge'],
-            httpOnly: true,
-            maxAge: GlobalConfig['Cookie']['MaxAge']
-          }
-          res.cookie(GlobalConfig['Cookie']['SessionID'], sid, cookieOpt)
+          return session.createUserSessionBySID(user, token['token']['access_token'], sid, (_, reply, sessionData) => {
+            const cookieOpt = {
+              domain: GlobalConfig['Cookie']['Domain'],
+              expires: GlobalConfig['Cookie']['MaxAge'],
+              httpOnly: true,
+              maxAge: GlobalConfig['Cookie']['MaxAge']
+            }
+            res.cookie(GlobalConfig['Cookie']['SessionID'], sid, cookieOpt)
 
-          return res.redirect(`${GlobalConfig['Hostname']}/?view=feed_preview`)
+            return res.redirect(`${GlobalConfig['Hostname']}/?view=feed_preview`)
+          })
         })
       })
     }
@@ -108,7 +112,12 @@ module.exports = {
         //      this will be false so we won't get infinite redirection
         const shouldRedir = GlobalConfig['Accounts']['Callback'].indexOf(GlobalConfig['Hostname']) === 0
 
-        return res.status(200).json({ login_redirect: shouldRedir })
+        // temp for testing
+        return session.getSession(req.cookies[GlobalConfig['Cookie']['SessionID']], sessData => {
+          const sessExists = sessData !== null
+          console.log(`Session data: ${sessData}`)
+          return res.status(200).json({ login_redirect: shouldRedir && sessExists })
+        })
       } else {
         return res.status(200).json({ error: 'User is not logged in!' })
       }

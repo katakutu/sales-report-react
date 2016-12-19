@@ -8,6 +8,9 @@ import lunaLogo from './assets/luna.jpg'
 import oppoLogo from './assets/oppo.jpg'
 import smartfrenLogo from './assets/smartfren.jpg'
 import mustikaRatuLogo from './assets/mustika-ratu.jpg'
+import yupiLogo from './assets/yupi.jpg'
+import rbStoreLogo from './assets/rb-store.jpg'
+import evercossLogo from './assets/evercoss.jpg'
 
 import { HOSTNAME } from '../../constants'
 
@@ -47,6 +50,24 @@ const stores = [
     img: smartfrenLogo,
     name: 'Smartfren',
     fullName: 'Smartfren Official Stroe'
+  },
+  {
+    href: `${HOSTNAME}/yupi-store`,
+    img: yupiLogo,
+    name: 'Yupi',
+    fullName: 'Yupi Official Store'
+  },
+  {
+    href: `${HOSTNAME}/rbstore-id`,
+    img: rbStoreLogo,
+    name: 'Reckitt Benkiser',
+    fullName: 'Reckitt Benkiser Official Store'
+  },
+  {
+    href: `${HOSTNAME}/evercoss`,
+    img: evercossLogo,
+    name: 'Evercoss',
+    fullName: 'Evercoss Official Store'
   }
 ]
 
