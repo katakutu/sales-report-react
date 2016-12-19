@@ -65,6 +65,9 @@ class LoggedInMenu extends Component {
     let inboxClass = (!this.state.inboxIsOpen) ? 'u-display-none' : ''
     let purchaseClass = (!this.state.purchaseIsOpen) ? 'u-display-none' : ''
     let salesClass = (!this.state.salesIsOpen) ? 'u-display-none' : ''
+    let inboxParent = (!this.state.inboxIsOpen) ? '' : 'opened'
+    let purchaseParent = (!this.state.purchaseIsOpen) ? '' : 'opened'
+    let salesParent = (!this.state.salesIsOpen) ? '' : 'opened'
 
     let topupLink = `${SITES['Pulsa']}/saldo/?utm_source=mobile&utm_medium=link&utm_campaign=top%20up%20saldo`
 
@@ -197,7 +200,7 @@ class LoggedInMenu extends Component {
               <img className='drawer__menu-icon' src={inboxIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Kotak Masuk</span>
               { inboxNotif }
-              <img src='https://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
+              <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${inboxParent}`} />
             </a>
             <ul className={`drawer__menu-child ${inboxClass}`}>
               <li><a href={`${HOSTNAME}/inbox-message.pl`}>Pesan{inboxMessageNotif}</a></li>
@@ -212,7 +215,7 @@ class LoggedInMenu extends Component {
               <img className='drawer__menu-icon' src={buyingIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Pembelian</span>
               { purchaseNotif }
-              <img src='https://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
+              <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${purchaseParent}`} />
             </a>
             <ul className={`drawer__menu-child ${purchaseClass}`}>
               <li>
@@ -247,7 +250,7 @@ class LoggedInMenu extends Component {
               <img className='drawer__menu-icon' src={sellingIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Penjualan</span>
               { salesNotif }
-              <img src='https://placehold.it/15x15' alt='tokopedia' className='drawer__menu-arrow' />
+              <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${salesParent}`} />
             </a>
             <ul className={`drawer__menu-child ${salesClass}`}>
               <li><a href='#'>Pesanan Baru{salesNONotif}</a></li>
