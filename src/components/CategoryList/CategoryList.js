@@ -13,7 +13,7 @@ class CategoryList extends Component {
     categories: React.PropTypes.arrayOf(React.PropTypes.object)
   }
 
-  _chunkArray(arr, length) {
+  _chunkArray (arr, length) {
     let result = []
     while (arr.length) {
       result.push(arr.splice(0, length))
@@ -22,11 +22,12 @@ class CategoryList extends Component {
     return result
   }
 
-  renderCategoryItem (catItems) {
+  renderCategoryItem (catItems, parentIndex) {
     return catItems.map((item, index) => {
+      const key = `${item['identifier']}-${parentIndex}-${index}`
       return (
         <div className='u-col u-col-6 category-list__content'
-             key={`$item['identifier']-$index`}>
+          key={key}>
           <a href={`${HOSTNAME}/p/${item['identifier']}`}>
             <img src={icons[item['identifier']]} alt={`Logo kategori ${item['name']}`} />
             <span className='category-list__name'>{item['name']}</span>
@@ -101,10 +102,14 @@ class CategoryList extends Component {
           </TextHeader>
 
           {
-            this._chunkArray(category.items, 2).map(items => {
+            this._chunkArray(category.items, 2).map((items, index) => {
+              const cn = category['name'].toLowerCase().replace(' ', '-')
+              const key = `${cn}-${2*index}`
+
               return (
-                <div className='u-col u-col-12 category-list__box'>
-                  {this.renderCategoryItem(items)}
+                <div className='u-col u-col-12 category-list__box'
+                     key={key}>
+                  {this.renderCategoryItem(items, index)}
                 </div>
               )
             })
@@ -117,7 +122,7 @@ class CategoryList extends Component {
   render () {
     return (
       <div className='u-clearfix'>
-        { this.renderCategoryList() }  
+        { this.renderCategoryList() }
 
         {this.renderHomeCategory() }
       </div>
