@@ -1,5 +1,6 @@
 const fetch = require('isomorphic-fetch')
 const JSONP = require('node-jsonp')
+/*
 const obcache = require('obcache')
 const redis = require('../../GlobalConfig').SessionRedis
 
@@ -19,6 +20,7 @@ const wrappedTopedFetch = topedAPICache.wrap((url, options, cb) => {
     cb(err)
   })
 })
+*/
 
 /**
  * A base class to consume http API without HMAC.
