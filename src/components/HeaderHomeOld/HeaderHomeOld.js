@@ -24,7 +24,8 @@ class HeaderHome extends Component {
     userData: React.PropTypes.object,
     userInfo: React.PropTypes.object,
     userIsLoggedIn: React.PropTypes.bool,
-    sidebarIsOpened: React.PropTypes.bool
+    sidebarIsOpened: React.PropTypes.bool,
+    tabIsAvailable: React.PropTypes.bool
   }
 
   state = {
@@ -93,8 +94,13 @@ class HeaderHome extends Component {
   }
 
   handleScroll (event) {
+    let heightOffset = 107
+    if (this.props.tabIsAvailable) {
+      heightOffset = 145
+    }
+
     if (!this.props.sidebarIsOpened) {
-      const ss = event.srcElement.body.scrollTop < 145
+      const ss = event.srcElement.body.scrollTop < heightOffset
       this.setState({
         showSearch: ss,
         showSearchModal: false
@@ -109,7 +115,9 @@ class HeaderHome extends Component {
   }
 
   renderTabs () {
-    return this.props.userIsLoggedIn ? <LoggedInTab /> : <LoggedOutTab />
+    if (this.props.tabIsAvailable) {
+      return this.props.userIsLoggedIn ? <LoggedInTab /> : <LoggedOutTab />
+    }
   }
 
   renderSidebar () {
@@ -221,6 +229,7 @@ class HeaderHome extends Component {
         </ReactCSSTransitionGroup>
 
         { this.props.sidebarIsOpened && <BodyClassName className='u-body-overflow-no-scroll' /> }
+        { this.props.tabIsAvailable && <BodyClassName className='is-tab-available' /> }
       </div>
     )
   }
