@@ -10,14 +10,13 @@ import { DESKTOP_HOSTNAME, HOSTNAME } from '../../constants'
 
 class Footer extends Component {
   state = {
-    language: 'id'
+    language: (Cookies.getItem('lang')) ? Cookies.getItem('lang') : 'id'
   }
 
   constructor (props) {
     super(props)
 
     this.languageChange = this.languageChange.bind(this)
-    this.state.language = (Cookies.getItem('lang')) ? Cookies.getItem('lang') : 'id'
   }
 
   languageChange (event) {
@@ -26,7 +25,7 @@ class Footer extends Component {
   }
 
   render () {
-    let lang = Cookies.getItem('lang')
+    let lang = this.state.language
     return (
       <div className='footer u-clearfix'>
         <div className='footer__apps u-clearfix u-center'>
