@@ -1,7 +1,11 @@
 @import 'base';
 
 .header__wrapper {
-    height: 146px;
+    height: 107px;
+
+    .is-tab-available & {
+        height: 146px;
+    }
 }
 
 .header {
@@ -220,11 +224,11 @@
 
     a {
         display: block;
-        padding: 0 20px;
+        padding: 3px 20px 11px;
         width: 100%;
         border-bottom: 6px solid transparent;
         color: inherit;
-        line-height: 40px;
+        line-height: 20px;
     }
 
     .active & a {
