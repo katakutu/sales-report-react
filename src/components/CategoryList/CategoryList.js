@@ -26,8 +26,7 @@ class CategoryList extends Component {
     return catItems.map((item, index) => {
       const key = `${item['identifier']}-${parentIndex}-${index}`
       return (
-        <div className='u-col u-col-6 category-list__content'
-          key={key}>
+        <div className='u-col u-col-6 category-list__content' key={key}>
           <a href={`${HOSTNAME}/p/${item['identifier']}`}>
             <img src={icons[item['identifier']]} alt={`Logo kategori ${item['name']}`} />
             <span className='category-list__name'>{item['name']}</span>
@@ -94,9 +93,9 @@ class CategoryList extends Component {
   }
 
   renderCategoryList () {
-    return this.props.categories.map(category => {
+    return this.props.categories.map((category, index) => {
       return (
-        <div className='category-list__holder u-clearfix'>
+        <div className='category-list__holder u-clearfix' key={`cat-holder-${index}`}>
           <TextHeader textType={1}>
             {category['name']}
           </TextHeader>
@@ -107,9 +106,8 @@ class CategoryList extends Component {
               const key = `${cn}-${2 * index}`
 
               return (
-                <div className='u-col u-col-12 category-list__box'
-                  key={key}>
-                  {this.renderCategoryItem(items, index)}
+                <div className='u-col u-col-12 category-list__box' key={key}>
+                  { this.renderCategoryItem(items, index) }
                 </div>
               )
             })
