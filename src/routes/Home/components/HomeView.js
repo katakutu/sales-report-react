@@ -69,6 +69,19 @@ query Query {
     shouldRedirect
     profilePicture
     name
+    shop{
+      shop_id
+      shop_url
+      domain
+      shop_name
+      shop_name_unfmt
+      shop_name_clean
+      is_gold
+      is_official
+      location
+      logo
+      shop_badge
+    }
     points{
       data{
         attributes{

@@ -45,6 +45,9 @@ const PRODUCTION = {
   },
   WS: {
     Hostname: 'https://ws.tokopedia.com'
+  },
+  Tome: {
+    Hostname: 'https://tome.tokopedia.com'
   }
 }
 
@@ -93,6 +96,9 @@ const BETA = {
   },
   WS: {
     Hostname: 'https://ws.tokopedia.com'
+  },
+  Tome: {
+    Hostname: 'https://tome.tokopedia.com'
   }
 }
 
@@ -141,6 +147,9 @@ const TEST = {
   },
   WS: {
     Hostname: 'https://ws-staging.tokopedia.com'
+  },
+  Tome: {
+    Hostname: 'https://tome-staging.tokopedia.com'
   }
 }
 
@@ -189,6 +198,9 @@ const DEVELOPMENT = {
   },
   WS: {
     Hostname: 'https://ws-alpha.tokopedia.com'
+  },
+  Tome: {
+    Hostname: 'https://tome-staging.tokopedia.com'
   }
 }
 
