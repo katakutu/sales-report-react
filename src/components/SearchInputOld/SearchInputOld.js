@@ -70,7 +70,7 @@ class SearchInputOld extends Component {
 
     let resultAutoComplete = (
       <div className={finalClassName}>
-        <div className='u-pt0 u-pb1'>
+        <div className='u-pt0 u-pb2'>
           <form action='/search' method='get' className='u-relative'>
             <input type='hidden' name='st' defaultValue='product' />
             <label htmlFor='search_input' className='u-hide'>Search</label>
