@@ -87,7 +87,9 @@ class LoggedInMenu extends Component {
             <img className='drawer__menu-icon' src={addShop} alt='tokopedia' />
           </div>
           <div className='u-left drawer__menu-myshop'>
-            <div className='drawer__menu-myshop-name'>Buka Toko</div>
+            <div className='drawer__menu-myshop-name'>{
+              (lang === 'en') ? langEn['Open Shop'] : langId['Open Shop']
+            }</div>
           </div>
         </div>
       </a>) : (
@@ -209,7 +211,9 @@ class LoggedInMenu extends Component {
           <div className='drawer__menu'>
             <a href='/'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>Beranda</span>
+              <span className='drawer__menu-title u-inline-block'>{
+                (lang === 'en') ? langEn['Home'] : langId['Home']
+              }</span>
             </a>
           </div>
           <div className='drawer__menu'>
@@ -221,7 +225,9 @@ class LoggedInMenu extends Component {
           <div className='drawer__menu' onClick={this.handleInboxClicked}>
             <a>
               <img className='drawer__menu-icon' src={inboxIcon} alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>Kotak Masuk</span>
+              <span className='drawer__menu-title u-inline-block'>{
+                (lang === 'en') ? langEn['Inbox'] : langId['Inbox']
+              }</span>
               { inboxNotif }
               <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${inboxParent}`} />
             </a>
@@ -235,14 +241,20 @@ class LoggedInMenu extends Component {
               <li><a href={`${HOSTNAME}/inbox-reputation.pl`}>{
                 (lang === 'en') ? langEn['Reviews'] : langId['Reviews']
               }{inboxReviewNotif}</a></li>
-              <li><a href={`${HOSTNAME}/inbox-ticket.pl`}>Layanan Pengguna{inboxCSNotif}</a></li>
-              <li><a href={`${HOSTNAME}/resolution-center.pl`}>Pusat Resolusi{inboxRCNotif}</a></li>
+              <li><a href={`${HOSTNAME}/inbox-ticket.pl`}>{
+                (lang === 'en') ? langEn['Customer Care'] : langId['Customer Care']
+              }{inboxCSNotif}</a></li>
+              <li><a href={`${HOSTNAME}/resolution-center.pl`}>{
+                (lang === 'en') ? langEn['Resolution Center'] : langId['Resolution Center']
+              }{inboxRCNotif}</a></li>
             </ul>
           </div>
           <div className='drawer__menu' onClick={this.handlePurhcaseClicked}>
             <a>
               <img className='drawer__menu-icon' src={buyingIcon} alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>Pembelian</span>
+              <span className='drawer__menu-title u-inline-block'>{
+                (lang === 'en') ? langEn['Purchase'] : langId['Purchase']
+              }</span>
               { purchaseNotif }
               <img src='https://placehold.it/15x15'
                 alt='tokopedia'
@@ -251,27 +263,27 @@ class LoggedInMenu extends Component {
             <ul className={`drawer__menu-child ${purchaseClass}`}>
               <li>
                 <a href={`${HOSTNAME}/tx_order_list.pl?status=5`}>
-                  Pesan Dibatalkan{purchaseCancelNotif}
+                  {(lang === 'en') ? langEn['Cancelled Order'] : langId['Cancelled Order']}{purchaseCancelNotif}
                 </a>
               </li>
               <li>
                 <a href={`${HOSTNAME}/tx_payment_confirm.pl`}>
-                  Konfirmasi Pembayaran{purchaseConfirmNotif}
+                  {(lang === 'en') ? langEn['Confirm Payment'] : langId['Confirm Payment']}{purchaseConfirmNotif}
                 </a>
               </li>
               <li>
                 <a href={`${HOSTNAME}/tx_order_status.pl`}>
-                  Status Pemesanan{purchaseOSNotif}
+                  {(lang === 'en') ? langEn['Order Status'] : langId['Order Status']}{purchaseOSNotif}
                 </a>
               </li>
               <li>
                 <a href={`${HOSTNAME}/tx_order_list.pl?status=9`}>
-                  Konfirmasi Penerimaan{purchaseDCNotif}
+                  {(lang === 'en') ? langEn['Confirm Payment'] : langId['Confirm Payment']}{purchaseDCNotif}
                 </a>
               </li>
               <li>
                 <a href={`${HOSTNAME}/tx_order_list.pl`}>
-                  Daftar Transaksi{purchaseTLNotif}
+                  {(lang === 'en') ? langEn['Dispute List'] : langId['Dispute List']}{purchaseTLNotif}
                 </a>
               </li>
             </ul>
@@ -279,24 +291,40 @@ class LoggedInMenu extends Component {
           <div className='drawer__menu' onClick={this.handleSalesClicked}>
             <a>
               <img className='drawer__menu-icon' src={sellingIcon} alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>Penjualan</span>
+              <span className='drawer__menu-title u-inline-block'>{
+                (lang === 'en') ? langEn['Sales'] : langId['Sales']
+              }</span>
               { salesNotif }
               <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${salesParent}`} />
             </a>
             <ul className={`drawer__menu-child ${salesClass}`}>
-              <li><a href={`${HOSTNAME}/myshop_order.pl`}>Pesanan Baru{salesNONotif}</a></li>
-              <li><a href={`${HOSTNAME}/myshop_order_process.pl`}>Konfirmasi Pengiriman{salesSCNotif}</a></li>
-              <li><a href={`${HOSTNAME}/myshop_order_status.pl`}>Status Pengiriman{salesDSNotif}</a></li>
-              <li><a href={`${HOSTNAME}/myshop_order_list.pl`}>Daftar Transaksi{salesTLNotif}</a></li>
-              <li><a href={`${HOSTNAME}/manage-product.pl`}>Daftar Produk{salesPLNotif}</a></li>
+              <li><a href={`${HOSTNAME}/myshop_order.pl`}>{
+                (lang === 'en') ? langEn['New Order'] : langId['New Order']
+              }{salesNONotif}</a></li>
+              <li><a href={`${HOSTNAME}/myshop_order_process.pl`}>{
+                (lang === 'en') ? langEn['Confirm Shipment'] : langId['Confirm Shipment']
+              }{salesSCNotif}</a></li>
+              <li><a href={`${HOSTNAME}/myshop_order_status.pl`}>{
+                (lang === 'en') ? langEn['Product Shipping Status'] : langId['Product Shipping Status']
+              }{salesDSNotif}</a></li>
+              <li><a href={`${HOSTNAME}/myshop_order_list.pl`}>{
+                (lang === 'en') ? langEn['Transaction Status'] : langId['Transaction Status']
+              }{salesTLNotif}</a></li>
+              <li><a href={`${HOSTNAME}/manage-product.pl`}>{
+                (lang === 'en') ? langEn['Product List'] : langId['Product List']
+              }{salesPLNotif}</a></li>
               <li><a href={`${HOSTNAME}/manage-freereturns.pl`}>Free Returns</a></li>
-              <li><a href={`${HOSTNAME}/myshop-etalase.pl`}>Etalase Toko{salesEtalaseNotif}</a></li>
+              <li><a href={`${HOSTNAME}/myshop-etalase.pl`}>{
+                (lang === 'en') ? langEn['QUICK_GUIDE_SHOP_GOLD_TITLE_9'] : langId['QUICK_GUIDE_SHOP_GOLD_TITLE_9']
+              }{salesEtalaseNotif}</a></li>
             </ul>
           </div>
           <div className='drawer__menu'>
             <a href={`${HOSTNAME}/logout.pl`}>
               <img className='drawer__menu-icon' src={logoutIcon} alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>Keluar</span>
+              <span className='drawer__menu-title u-inline-block'>{
+                (lang === 'en') ? langEn['Sign Out'] : langId['Sign Out']
+              }</span>
             </a>
           </div>
         </div>

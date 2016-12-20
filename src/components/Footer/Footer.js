@@ -4,6 +4,8 @@ import footerAppsApple from './assets/footer-apps-apple@2x.png'
 import footerAppsAndroid from './assets/footer-apps-android@2x.png'
 
 import Cookies from '../../lib/utils/Cookies'
+import langEn from '../../lib/utils/lang_en-min.js'
+import langId from '../../lib/utils/lang_id-min.js'
 import { DESKTOP_HOSTNAME, HOSTNAME } from '../../constants'
 
 class Footer extends Component {
@@ -24,6 +26,7 @@ class Footer extends Component {
   }
 
   render () {
+    let lang = Cookies.getItem('lang')
     return (
       <div className='footer u-clearfix'>
         <div className='footer__apps u-clearfix u-center'>
@@ -41,12 +44,18 @@ class Footer extends Component {
         </div>
         <div className='footer__lower u-clearfix u-center'>
           <p className='u-line-height-4'>
-            <a href={`${HOSTNAME}/bantuan`} className='u-ml1'>Butuh Bantuan?</a>
+            <a href={`${HOSTNAME}/bantuan`} className='u-ml1'>{
+              (lang === 'en') ? langEn['Need Help'] : langId['Need Help']
+            }?</a>
             &nbsp; | &nbsp;
-        <a href={DESKTOP_HOSTNAME}>Lihat Versi Desktop</a>
+        <a href={DESKTOP_HOSTNAME}>{
+          (lang === 'en') ? langEn['Desktop Site'] : langId['Desktop Site']
+        }</a>
           </p>
           <p className='u-line-height-4 footer__lower-text--bigger'>
-            <label htmlFor='language'>Pilih Bahasa</label>
+            <label htmlFor='language'>{
+              (lang === 'en') ? langEn['Choose Language'] : langId['Choose Language']
+            }</label>
             <select id='language'
               name='language'
               className='footer__select-language'
