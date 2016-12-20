@@ -1,11 +1,19 @@
 const TopedAceAPI = require('./../../api-consumer/api/Search/TopedAceAPI')
 
+const EMPTY_SEARCH_RESULT = [
+  {
+    id: 'autocomplete',
+    name: 'AUTOCOMPLETE',
+    items: [{ keyword: 'No Result Available', url: '/' }]
+  }
+]
+
 function universalSearch (userSearchID, query) {
   let api = new TopedAceAPI()
 
   return api.universeSearch(query, userSearchID).then(result => {
-    return result['data'].filter(r => { return r['items'].length > 0 })
-                             .filter(s => s['name'].toLowerCase() !== 'autocomplete')
+    const data = result['data'] || EMPTY_SEARCH_RESULT
+    return data.filter(r => { return r['items'].length > 0 })
   })
 }
 

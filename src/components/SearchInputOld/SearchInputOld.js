@@ -34,7 +34,7 @@ class SearchInputOld extends Component {
     })
   }
 
-  closeSearchModal (event) {
+  closeSearchModal () {
     this.setState({ showSelection: false })
   }
 
@@ -50,10 +50,6 @@ class SearchInputOld extends Component {
       showSelection: true,
       value: value
     })
-  }
-
-  componentDidMount () {
-
   }
 
   render () {
@@ -90,7 +86,7 @@ class SearchInputOld extends Component {
             </button>
             { this.state.value !== '' && <span className='search-input__cancel' onClick={this.clearText} /> }
 
-            {autocomplete}
+            { autocomplete }
           </form>
 
           { this.state.showSelection && <BodyClassName className='u-body-overflow-no-scroll' /> }
