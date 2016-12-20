@@ -53,7 +53,7 @@ class LoggedInMenu extends Component {
     this.props.updateSidebarStatus(false)
   }
 
-  handleLangOnChanges(){
+  handleLangOnChanges () {
     this.setState({ lang: Cookies.getItem('lang') })
   }
 
@@ -226,9 +226,15 @@ class LoggedInMenu extends Component {
               <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${inboxParent}`} />
             </a>
             <ul className={`drawer__menu-child ${inboxClass}`}>
-              <li><a href={`${HOSTNAME}/inbox-message.pl`}>{(lang=="en") ? langEn['MESSAGE'] : langId['MESSAGE']}{inboxMessageNotif}</a></li>
-              <li><a href={`${HOSTNAME}/inbox-talk.pl`}>{(lang=="en") ? langEn['Talk About It'] : langId['Talk About It']}{inboxPDNotif}</a></li>
-              <li><a href={`${HOSTNAME}/inbox-reputation.pl`}>{(lang=="en") ? langEn['Reviews'] : langId['Reviews']}{inboxReviewNotif}</a></li>
+              <li><a href={`${HOSTNAME}/inbox-message.pl`}>{
+                (lang === 'en') ? langEn['MESSAGE'] : langId['MESSAGE']
+              }{inboxMessageNotif}</a></li>
+              <li><a href={`${HOSTNAME}/inbox-talk.pl`}>{
+                (lang === 'en') ? langEn['Talk About It'] : langId['Talk About It']
+              }{inboxPDNotif}</a></li>
+              <li><a href={`${HOSTNAME}/inbox-reputation.pl`}>{
+                (lang === 'en') ? langEn['Reviews'] : langId['Reviews']
+              }{inboxReviewNotif}</a></li>
               <li><a href={`${HOSTNAME}/inbox-ticket.pl`}>Layanan Pengguna{inboxCSNotif}</a></li>
               <li><a href={`${HOSTNAME}/resolution-center.pl`}>Pusat Resolusi{inboxRCNotif}</a></li>
             </ul>

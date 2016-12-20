@@ -15,7 +15,7 @@ class Footer extends Component {
     super(props)
 
     this.languageChange = this.languageChange.bind(this)
-    this.state.language = (Cookies.getItem('lang')) ? Cookies.getItem('lang') : 'id';
+    this.state.language = (Cookies.getItem('lang')) ? Cookies.getItem('lang') : 'id'
   }
 
   languageChange (event) {
