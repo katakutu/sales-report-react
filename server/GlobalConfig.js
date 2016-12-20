@@ -45,6 +45,9 @@ const PRODUCTION = {
   },
   WS: {
     Hostname: 'https://ws.tokopedia.com'
+  },
+  Tome: {
+    Hostname: 'https://tome.tokopedia.com'
   }
 }
 
