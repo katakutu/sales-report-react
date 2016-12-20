@@ -45,10 +45,10 @@ class UserSearchID {
     } else if (window.location.href.indexOf('localhost') > -1) {
       domain = /(localhost)/.exec(location.hostname)[1]
     } else if (window.location.href.indexOf('ndvl') < 0) {
-      domain = /(\..*\.com)/.exec(location.hostname) && 
-               /(\..*\.com)/.exec(location.hostname)[1] || 
+      domain = /(\..*\.com)/.exec(location.hostname) &&
+               /(\..*\.com)/.exec(location.hostname)[1] ||
                location.hostname
-    } 
+    }
 
     document.cookie = cookieName + '=' + value + ';max-age=604800;domain=' + domain + ';path=/;'
   }
