@@ -50,12 +50,15 @@ class TopedAPI {
     let finalURL = (method === 'POST') ? url.format()
             : this._formatGetURL(url, content)
 
+    return fetch(finalURL, finalOptions).then(response => response.json())
+    /*
     return new Promise((resolve, reject) => {
       wrappedTopedFetch(finalURL, finalOptions, (err, response) => {
         if (err) return reject(err)
         resolve(response)
       })
     })
+    */
   }
 
   /**
