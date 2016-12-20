@@ -430,11 +430,11 @@
     opacity: 1;
     cursor: pointer;
     transition: 0.25s ease-in-out;
-    transform: rotate(0deg);
+    transform: rotate(180deg);
 }
 
 .opened {
-    transform: rotate(180deg);
+    transform: rotate(0deg);
 }
 
 .drawer__menu-child {
