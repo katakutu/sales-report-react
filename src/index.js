@@ -4,6 +4,14 @@ import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
+import Promise from 'promise-polyfill'
+
+// ========================================================
+// Promise Polyfill
+// ========================================================
+if (!window.Promise) {
+  window.Promise = Promise
+}
 
 // ========================================================
 // Store Instantiation
