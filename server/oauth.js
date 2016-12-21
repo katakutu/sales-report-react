@@ -36,7 +36,7 @@ module.exports = {
 
     req.session.oauthState = state
 
-    res.redirect(oauthAuthorizationURI(state))
+    res.redirect(oauthAuthorizationURI(state) + '&theme=mobile')
   },
   logout: function (req, res, next) {
     req.session.destroy((err) => {
