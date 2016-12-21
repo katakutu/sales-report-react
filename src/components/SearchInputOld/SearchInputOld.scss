@@ -69,6 +69,33 @@
     }
 }
 
+.autocomplete__item-popular {
+    border: 0;
+    height: 15px;
+    left: 10px;
+    margin-right: 20px;
+    max-width: 100%;
+    position: relative;
+    top: 12.5px;
+    vertical-align: middle;
+    width: 15px;
+    float: left;
+}
+
+.autocomplete__item-image {
+    border-radius: 50%;
+    border: 0;
+    height: 35px;
+    left: 10px;
+    margin-right: 25px;
+    max-width: 100%;
+    position: relative;
+    top: 5px;
+    vertical-align: middle;
+    width: 35px;
+    float: left;
+}
+
 #search-input__modal-background {
     position: fixed;
     top: 0;

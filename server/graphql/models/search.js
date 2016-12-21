@@ -13,7 +13,21 @@ function universalSearch (userSearchID, query) {
 
   return api.universeSearch(query, userSearchID).then(result => {
     const data = result['data'] || EMPTY_SEARCH_RESULT
-    return data.filter(r => { return r['items'].length > 0 })
+    const finalResult = data.filter(r => { return r['items'].length > 0 }).map(r => {
+      return {
+        id: r['id'],
+        name: r['name'],
+        items: r['items'].map(i => {
+          return {
+            keyword: i['keyword'],
+            url: i['url'],
+            imageURI: i['imageURI'] || ''
+          }
+        })
+      }
+    })
+
+    return finalResult
   })
 }
 
