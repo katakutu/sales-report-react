@@ -1,4 +1,3 @@
-import Cookies from './Cookies'
 import langEn from './lang_en-min.js'
 import langId from './lang_id-min.js'
 

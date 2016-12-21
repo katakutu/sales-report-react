@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import './SearchInput.scss'
 import SearchModal from '../SearchModal'
+
+import lang from '../../lib/utils/Lang'
 
 class SearchInput extends Component {
   static propTypes = {
     injectClassName: React.PropTypes.string,
-    injectPlaceholder: React.PropTypes.string
+    injectPlaceholder: React.PropTypes.string,
+    updateLang: React.PropTypes.func,
+    lang: React.PropTypes.string
   }
 
   state = {
@@ -40,7 +45,7 @@ class SearchInput extends Component {
             onFocus={this.handleFocus} />
           <span className='search-input__icon' />
           <label htmlFor='search-input__input'
-            style={{ 'color': '#42b549' }}>Cari produk atau toko</label>
+            style={{ 'color': '#42b549' }}>{ lang[this.props.lang]['Search Products or Stores'] }</label>
         </form>
 
         { this.state.searchModalOpened && <SearchModal onClose={this.handleModalClosed} /> }
@@ -48,5 +53,9 @@ class SearchInput extends Component {
     )
   }
 }
-
-export default SearchInput
+const mapStateToProps = (state) => {
+  return {
+    lang: state['app'] ? state['app'].lang : state.lang
+  }
+}
+export default connect(mapStateToProps, undefined)(SearchInput)

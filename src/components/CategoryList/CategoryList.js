@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
-
+import { connect } from 'react-redux'
 import { HOSTNAME, SITES } from '../../constants'
 
 import './CategoryList.scss'
 import TextHeader from '../../components/TextHeader'
 import icons from './icons'
+import lang from '../../lib/utils/Lang'
 
 const utm = '?utm_source=mobile&utm_medium=categories%20after%20log%20in'
 
 class CategoryList extends Component {
   static propTypes = {
-    categories: React.PropTypes.arrayOf(React.PropTypes.object)
+    categories: React.PropTypes.arrayOf(React.PropTypes.object),
+    lang: React.PropTypes.string
   }
 
   _chunkArray (arr, length) {
@@ -47,7 +49,7 @@ class CategoryList extends Component {
           <div className='u-col u-col-6 category-list__content'>
             <a href={`${SITES['Pulsa']}${utm}&utm_campaign=pulsa%20icon`} target='_blank'>
               <img src={icons['pulsa']} alt='Logo kategori Pulsa' />
-              <span className='category-list__name'>Pulsa</span>
+              <span className='category-list__name'>{ lang[this.props.lang]['Recharge'] }</span>
             </a>
           </div>
           <div className='u-col u-col-6 category-list__content'>
@@ -126,5 +128,9 @@ class CategoryList extends Component {
     )
   }
 }
-
-module.exports = CategoryList
+const mapStateToProps = (state) => {
+  return {
+    lang: state['app'] ? state['app'].lang : state.lang
+  }
+}
+module.exports = connect(mapStateToProps, undefined)(CategoryList)

@@ -7,19 +7,14 @@ import loginIcon from './assets/nav-user-icon.png'
 import registerIcon from './assets/nav-register-icon.png'
 
 import { updateSidebarStatus } from '../../store/app'
-import Cookies from '../../lib/utils/Cookies'
-import langEn from '../../lib/utils/lang_en-min.js'
-import langId from '../../lib/utils/lang_id-min.js'
+import lang from '../../lib/utils/Lang'
 import { SITES } from '../../constants'
-
-const lang = {
-  'id':langId,
-  'en':langEn
-}
 
 class LoggedOutMenu extends Component {
   static propTypes = {
-    updateSidebarStatus: React.PropTypes.func
+    updateSidebarStatus: React.PropTypes.func,
+    updateLang: React.PropTypes.func,
+    lang: React.PropTypes.lang
   }
 
   constructor (props) {
@@ -33,8 +28,6 @@ class LoggedOutMenu extends Component {
   }
 
   render () {
-    let l = Cookies.getItem('lang') || 'id'
-
     return (
       <div className='drawer active'>
         <div className='drawer__container u-clearfix'>
@@ -55,7 +48,7 @@ class LoggedOutMenu extends Component {
             <a href='/'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>
-                { lang[l]['Home'] }
+                { lang[this.props.lang]['Home'] }
               </span>
             </a>
           </div>
@@ -63,7 +56,7 @@ class LoggedOutMenu extends Component {
             <a href='/login'>
               <img className='drawer__menu-icon' src={loginIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>
-                { lang[l]['Login'] }
+                { lang[this.props.lang]['Login'] }
               </span>
             </a>
           </div>
@@ -71,7 +64,7 @@ class LoggedOutMenu extends Component {
             <a href={SITES['Register']}>
               <img className='drawer__menu-icon' src={registerIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>
-                { lang[l]['NOTE_REGISTER_TITLE'] }
+                { lang[this.props.lang]['NOTE_REGISTER_TITLE'] }
               </span>
             </a>
           </div>
@@ -82,4 +75,9 @@ class LoggedOutMenu extends Component {
 }
 
 const mapDispatchToProps = { updateSidebarStatus }
-export default connect(undefined, mapDispatchToProps)(LoggedOutMenu)
+const mapStateToProps = (state) => {
+  return {
+    lang: state['app'] ? state['app'].lang : state.lang
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(LoggedOutMenu)

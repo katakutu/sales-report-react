@@ -6,16 +6,13 @@ import footerAppsAndroid from './assets/footer-apps-android@2x.png'
 
 import Cookies from '../../lib/utils/Cookies'
 import lang from '../../lib/utils/Lang'
-import { DESKTOP_HOSTNAME, HOSTNAME } from '../../constants'
 import { updateLang } from '../../store/app'
+import { DESKTOP_HOSTNAME, HOSTNAME } from '../../constants'
 
 class Footer extends Component {
   static propTypes = {
-    updateLang: React.PropTypes.func
-  }
-
-  state = {
-    language: (Cookies.getItem('lang')) ? Cookies.getItem('lang') : 'id'
+    updateLang: React.PropTypes.func,
+    lang: React.PropTypes.string
   }
 
   constructor (props) {
@@ -31,11 +28,12 @@ class Footer extends Component {
   }
 
   render () {
-    let l = this.state.language
     return (
       <div className='footer u-clearfix'>
         <div className='footer__apps u-clearfix u-center'>
-          <p className='u-line-height-4 footer__apps-text'>Dapatkan Aplikasi Mobile Tokopedia</p>
+          <p className='u-line-height-4 footer__apps-text'>
+            { lang[this.props.lang]['Download Tokopedia Mobile Apps'] }
+          </p>
           <div className='u-inline-block u-px1 u-mb1'>
             <a href='https://play.google.com/store/apps/details?id=com.tokopedia.tkpd'>
               <img src={footerAppsAndroid} alt='' className='u-fit footer__apps-img' />
@@ -49,22 +47,23 @@ class Footer extends Component {
         </div>
         <div className='footer__lower u-clearfix u-center'>
           <p className='u-line-height-4'>
-            <a href={`${HOSTNAME}/bantuan`} className='u-ml1'>{
-              lang[l]['Need Help']
+            <a href={`${HOSTNAME}/bantuan`} className='u-ml1'>
+              {
+              lang[this.props.lang]['Need Help']
             }?</a>
             &nbsp; | &nbsp;
         <a href={DESKTOP_HOSTNAME}>{
-          lang[l]['Desktop Site']
+          lang[this.props.lang]['Desktop Site']
         }</a>
           </p>
           <p className='u-line-height-4 footer__lower-text--bigger'>
             <label htmlFor='language'>{
-              lang[l]['Choose Language']
+              lang[this.props.lang]['Choose Language']
             }</label>
             <select id='language'
               name='language'
               className='footer__select-language'
-              value={this.state.language}
+              value={this.props.lang}
               onChange={this.languageChange}>
               <option value='id'>Indonesia</option>
               <option value='en'>English</option>
@@ -82,7 +81,7 @@ const mapDispatchToProps = {
 }
 const mapStateToProps = (state) => {
   return {
-    LANG: state['app'] ? state['app'].updateLang : state.updateLang
+    lang: state['app'] ? state['app'].lang : state.lang
   }
 }
 

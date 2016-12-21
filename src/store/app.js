@@ -146,10 +146,8 @@ const ACTION_HANDLERS = {
     return Object.assign({}, state, { isLoading: action.payload })
   },
   [LANG] : (state, action) => {
-    return Object.assign({}, state, {
-      lang: state.lang.concat(action.payload)
-    })
-  },
+    return Object.assign({}, state, { lang: action.payload })
+  }
 }
 
 // ------------------------------------
