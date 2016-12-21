@@ -16,6 +16,11 @@ import Cookies from '../../lib/utils/Cookies'
 import langEn from '../../lib/utils/lang_en-min.js'
 import langId from '../../lib/utils/lang_id-min.js'
 
+var lang = {
+  'id':langId,
+  'en':langEn
+}
+
 class LoggedInMenu extends Component {
   static propTypes = {
     notifs: React.PropTypes.object,
@@ -70,7 +75,7 @@ class LoggedInMenu extends Component {
   }
 
   render () {
-    let lang = Cookies.getItem('lang')
+    let l = Cookies.getItem('lang')
     let inboxClass = (!this.state.inboxIsOpen) ? 'u-display-none' : ''
     let purchaseClass = (!this.state.purchaseIsOpen) ? 'u-display-none' : ''
     let salesClass = (!this.state.salesIsOpen) ? 'u-display-none' : ''
@@ -87,7 +92,9 @@ class LoggedInMenu extends Component {
             <img className='drawer__menu-icon' src={addShop} alt='tokopedia' />
           </div>
           <div className='u-left drawer__menu-myshop'>
-            <div className='drawer__menu-myshop-name'>Buka Toko</div>
+            <div className='drawer__menu-myshop-name'>{
+              lang[l]['Open Shop']
+            }</div>
           </div>
         </div>
       </a>) : (
@@ -209,7 +216,9 @@ class LoggedInMenu extends Component {
           <div className='drawer__menu'>
             <a href='/'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>Beranda</span>
+              <span className='drawer__menu-title u-inline-block'>{
+                lang[l]['Home']
+              }</span>
             </a>
           </div>
           <div className='drawer__menu'>
@@ -221,28 +230,36 @@ class LoggedInMenu extends Component {
           <div className='drawer__menu' onClick={this.handleInboxClicked}>
             <a>
               <img className='drawer__menu-icon' src={inboxIcon} alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>Kotak Masuk</span>
+              <span className='drawer__menu-title u-inline-block'>{
+                lang[l]['Inbox']
+              }</span>
               { inboxNotif }
               <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${inboxParent}`} />
             </a>
             <ul className={`drawer__menu-child ${inboxClass}`}>
               <li><a href={`${HOSTNAME}/inbox-message.pl`}>{
-                (lang === 'en') ? langEn['MESSAGE'] : langId['MESSAGE']
+                lang[l]['MESSAGE']
               }{inboxMessageNotif}</a></li>
               <li><a href={`${HOSTNAME}/inbox-talk.pl`}>{
-                (lang === 'en') ? langEn['Talk About It'] : langId['Talk About It']
+                lang[l]['Talk About It']
               }{inboxPDNotif}</a></li>
               <li><a href={`${HOSTNAME}/inbox-reputation.pl`}>{
-                (lang === 'en') ? langEn['Reviews'] : langId['Reviews']
+                lang[l]['Reviews']
               }{inboxReviewNotif}</a></li>
-              <li><a href={`${HOSTNAME}/inbox-ticket.pl`}>Layanan Pengguna{inboxCSNotif}</a></li>
-              <li><a href={`${HOSTNAME}/resolution-center.pl`}>Pusat Resolusi{inboxRCNotif}</a></li>
+              <li><a href={`${HOSTNAME}/inbox-ticket.pl`}>{
+                lang[l]['Customer Care']
+              }{inboxCSNotif}</a></li>
+              <li><a href={`${HOSTNAME}/resolution-center.pl`}>{
+                lang[l]['Resolution Center']
+              }{inboxRCNotif}</a></li>
             </ul>
           </div>
           <div className='drawer__menu' onClick={this.handlePurhcaseClicked}>
             <a>
               <img className='drawer__menu-icon' src={buyingIcon} alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>Pembelian</span>
+              <span className='drawer__menu-title u-inline-block'>{
+                lang[l]['Purchase']
+              }</span>
               { purchaseNotif }
               <img src='https://placehold.it/15x15'
                 alt='tokopedia'
@@ -251,27 +268,27 @@ class LoggedInMenu extends Component {
             <ul className={`drawer__menu-child ${purchaseClass}`}>
               <li>
                 <a href={`${HOSTNAME}/tx_order_list.pl?status=5`}>
-                  Pesan Dibatalkan{purchaseCancelNotif}
+                  {lang[l]['Cancelled Order']}{purchaseCancelNotif}
                 </a>
               </li>
               <li>
                 <a href={`${HOSTNAME}/tx_payment_confirm.pl`}>
-                  Konfirmasi Pembayaran{purchaseConfirmNotif}
+                  {lang[l]['Confirm Payment']}{purchaseConfirmNotif}
                 </a>
               </li>
               <li>
                 <a href={`${HOSTNAME}/tx_order_status.pl`}>
-                  Status Pemesanan{purchaseOSNotif}
+                  {lang[l]['Order Status']}{purchaseOSNotif}
                 </a>
               </li>
               <li>
                 <a href={`${HOSTNAME}/tx_order_list.pl?status=9`}>
-                  Konfirmasi Penerimaan{purchaseDCNotif}
+                  {lang[l]['Confirm Payment']}{purchaseDCNotif}
                 </a>
               </li>
               <li>
                 <a href={`${HOSTNAME}/tx_order_list.pl`}>
-                  Daftar Transaksi{purchaseTLNotif}
+                  {lang[l]['Dispute List']}{purchaseTLNotif}
                 </a>
               </li>
             </ul>
@@ -279,24 +296,40 @@ class LoggedInMenu extends Component {
           <div className='drawer__menu' onClick={this.handleSalesClicked}>
             <a>
               <img className='drawer__menu-icon' src={sellingIcon} alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>Penjualan</span>
+              <span className='drawer__menu-title u-inline-block'>{
+                lang[l]['Sales']
+              }</span>
               { salesNotif }
               <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${salesParent}`} />
             </a>
             <ul className={`drawer__menu-child ${salesClass}`}>
-              <li><a href={`${HOSTNAME}/myshop_order.pl`}>Pesanan Baru{salesNONotif}</a></li>
-              <li><a href={`${HOSTNAME}/myshop_order_process.pl`}>Konfirmasi Pengiriman{salesSCNotif}</a></li>
-              <li><a href={`${HOSTNAME}/myshop_order_status.pl`}>Status Pengiriman{salesDSNotif}</a></li>
-              <li><a href={`${HOSTNAME}/myshop_order_list.pl`}>Daftar Transaksi{salesTLNotif}</a></li>
-              <li><a href={`${HOSTNAME}/manage-product.pl`}>Daftar Produk{salesPLNotif}</a></li>
+              <li><a href={`${HOSTNAME}/myshop_order.pl`}>{
+                lang[l]['New Order']
+              }{salesNONotif}</a></li>
+              <li><a href={`${HOSTNAME}/myshop_order_process.pl`}>{
+                lang[l]['Confirm Shipment']
+              }{salesSCNotif}</a></li>
+              <li><a href={`${HOSTNAME}/myshop_order_status.pl`}>{
+                lang[l]['Product Shipping Status']
+              }{salesDSNotif}</a></li>
+              <li><a href={`${HOSTNAME}/myshop_order_list.pl`}>{
+                lang[l]['Transaction Status']
+              }{salesTLNotif}</a></li>
+              <li><a href={`${HOSTNAME}/manage-product.pl`}>{
+                lang[l]['Product List']
+              }{salesPLNotif}</a></li>
               <li><a href={`${HOSTNAME}/manage-freereturns.pl`}>Free Returns</a></li>
-              <li><a href={`${HOSTNAME}/myshop-etalase.pl`}>Etalase Toko{salesEtalaseNotif}</a></li>
+              <li><a href={`${HOSTNAME}/myshop-etalase.pl`}>{
+                lang[l]['QUICK_GUIDE_SHOP_GOLD_TITLE_9']
+              }{salesEtalaseNotif}</a></li>
             </ul>
           </div>
           <div className='drawer__menu'>
             <a href={`${HOSTNAME}/logout.pl`}>
               <img className='drawer__menu-icon' src={logoutIcon} alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>Keluar</span>
+              <span className='drawer__menu-title u-inline-block'>{
+                lang[l]['Sign Out']
+              }</span>
             </a>
           </div>
         </div>
