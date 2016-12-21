@@ -7,7 +7,8 @@ let sites = {
   Tiket: 'https://tiket-staging.tokopedia.com',
   Events: 'https://events.tokopedia.com/',
   Seller: 'https://seller.tokopedia.com/',
-  Blog: 'https://blog.tokopedia.com/'
+  Blog: 'https://blog.tokopedia.com/',
+  Register: 'https://accounts-staging.tokopedia.com/register?theme=mobile'
 }
 let gtmContainerID = 'GTM-T8MQ8Z'
 
@@ -19,7 +20,8 @@ if (__TEST__) {
     Tiket: 'https://tiket-staging.tokopedia.com',
     Events: 'https://events.tokopedia.com/',
     Seller: 'https://seller.tokopedia.com/',
-    Blog: 'https://blog.tokopedia.com/'
+    Blog: 'https://blog.tokopedia.com/',
+    Register: 'https://accounts-staging.tokopedia.com/register?theme=mobile'
   }
   gtmContainerID = 'GTM-T8MQ8Z'
 } else if (__PROD__) {
@@ -30,7 +32,8 @@ if (__TEST__) {
     Tiket: 'https://tiket.tokopedia.com',
     Events: 'https://events.tokopedia.com/',
     Seller: 'https://seller.tokopedia.com/',
-    Blog: 'https://blog.tokopedia.com/'
+    Blog: 'https://blog.tokopedia.com/',
+    Register: 'https://accounts.tokopedia.com/register?theme=mobile'
   }
   gtmContainerID = 'GTM-WD6SLP'
 } else if (__BETA__) {
@@ -41,7 +44,8 @@ if (__TEST__) {
     Tiket: 'https://tiket.tokopedia.com',
     Events: 'https://events.tokopedia.com/',
     Seller: 'https://seller.tokopedia.com/',
-    Blog: 'https://blog.tokopedia.com/'
+    Blog: 'https://blog.tokopedia.com/',
+    Register: 'https://accounts-beta.tokopedia.com/register?theme=mobile'
   }
   gtmContainerID = 'GTM-WD6SLP'
 }
