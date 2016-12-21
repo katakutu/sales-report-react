@@ -9,8 +9,8 @@ import langId from '../../lib/utils/lang_id-min.js'
 import { DESKTOP_HOSTNAME, HOSTNAME } from '../../constants'
 
 var lang = {
-  "id":langId,
-  "en":langEn
+  'id':langId,
+  'en':langEn
 }
 
 class Footer extends Component {
@@ -49,16 +49,16 @@ class Footer extends Component {
         <div className='footer__lower u-clearfix u-center'>
           <p className='u-line-height-4'>
             <a href={`${HOSTNAME}/bantuan`} className='u-ml1'>{
-              lang[l]["Need Help"]
+              lang[l]['Need Help']
             }?</a>
             &nbsp; | &nbsp;
         <a href={DESKTOP_HOSTNAME}>{
-          lang[l]["Desktop Site"]
+          lang[l]['Desktop Site']
         }</a>
           </p>
           <p className='u-line-height-4 footer__lower-text--bigger'>
             <label htmlFor='language'>{
-              lang[l]["Choose Language"]
+              lang[l]['Choose Language']
             }</label>
             <select id='language'
               name='language'
