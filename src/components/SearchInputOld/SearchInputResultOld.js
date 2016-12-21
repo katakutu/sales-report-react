@@ -15,6 +15,26 @@ class SearchInputResultOld extends Component {
     })
   }
 
+  _renderItem (name, item, index) {
+    return (item, index) => {
+      const className = (name.toLowerCase() === 'popular search')
+        ? 'autocomplete__item-popular'
+        : 'autocomplete__item-image'
+      const image = (name.toLowerCase() === 'autocomplete') ? null : (
+        <img className={className} src={item.imageURI} />
+      )
+
+      return (
+        <li key={`it-${index}`}>
+          { image }
+          <a href={`${HOSTNAME}${item.url}`}>
+            { item.keyword }
+          </a>
+        </li>
+      )
+    }
+  }
+
   render () {
     return this.props.data.search ? (
       <div id='autocomplete__container'>
@@ -23,9 +43,7 @@ class SearchInputResultOld extends Component {
             <div className='autocomplete__category' key={`ac-${sIndex}`}>
               <h6>{ this._sentenceCase(selection['name']) }</h6>
               <ul>
-                { selection['items'].map((item, iIndex) => {
-                  return (<li key={`it-${iIndex}`}><a href={`${HOSTNAME}${item.url}`}>{ item.keyword }</a></li>)
-                }) }
+                { selection['items'].map(this._renderItem(selection['name'])) }
               </ul>
             </div>
           )
@@ -43,6 +61,7 @@ query Query($query: String!, $userSearchID: String!) {
     items{
       keyword
       url
+      imageURI
     }
   }
 }

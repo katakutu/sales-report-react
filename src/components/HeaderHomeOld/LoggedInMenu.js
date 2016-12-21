@@ -74,10 +74,9 @@ class LoggedInMenu extends Component {
     let shopId = this.props.shop['shop_id']
 
     let topupLink = `${SITES['Pulsa']}/saldo/?utm_source=mobile&utm_medium=link&utm_campaign=top%20up%20saldo`
-
-    let shopSection = (shopId === 'ERROR FAIL' || shopId === null || shopId === '0') ? (
-      <a href={`${HOSTNAME}/myshop.pl`}>
-        <div className='drawer__menu-shop u-clearfix'>
+    let shopSection = (this.props.shop['shop_id'] === 'ERROR FAIL' || this.props.shop['shop_id'] === null) ? (
+      <div className='drawer__menu-shop u-clearfix'>
+        <a href={`${HOSTNAME}/myshop.pl`}>
           <div className='u-left'>
             <img className='drawer__menu-icon' src={addShop} alt='tokopedia' />
           </div>
@@ -86,8 +85,9 @@ class LoggedInMenu extends Component {
               { lang[this.props.lang]['Open Shop'] }
             </div>
           </div>
-        </div>
-      </a>) : (
+        </a>
+      </div>
+      ) : (
         <a href={`${HOSTNAME}/${this.props.shop['domain']}`}>
           <div className='drawer__menu-shop u-clearfix'>
             <div className='u-left'>
@@ -202,7 +202,7 @@ class LoggedInMenu extends Component {
           <div className='drawer__user-topup'>
             <a href={topupLink} className='drawer__btn-topup'>Top Up Saldo</a>
           </div>
-          {shopSection}
+
           <div className='drawer__menu'>
             <a href='/'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
@@ -322,6 +322,8 @@ class LoggedInMenu extends Component {
               }</span>
             </a>
           </div>
+
+          { shopSection }
         </div>
       </div>
     )
