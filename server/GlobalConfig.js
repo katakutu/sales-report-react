@@ -103,7 +103,7 @@ const BETA = {
 }
 
 const TEST = {
-  Hostname: 'https://lite-staging.tokopedia.com',
+  Hostname: 'https://m-staging.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_Coba_'
   },
@@ -112,7 +112,7 @@ const TEST = {
   },
   Accounts: {
     Hostname: 'https://accounts-staging.tokopedia.com',
-    Callback: 'https://lite-staging.tokopedia.com/appauth/code'
+    Callback: 'https://m-staging.tokopedia.com/appauth/code'
   },
   Hades: {
     'Hostname': 'https://hades-staging.tokopedia.com'
@@ -121,7 +121,7 @@ const TEST = {
     Hostname: 'https://m-staging.tokopedia.com/ajax/hotlist.pl'
   },
   Lite: {
-    Hostname: 'https://lite-staging.tokopedia.com'
+    Hostname: 'https://m-staging.tokopedia.com'
   },
   Saldo: {
     Hostname: 'https://saldoapp-staging.tokopedia.com'
