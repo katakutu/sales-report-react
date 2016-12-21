@@ -60,7 +60,7 @@ class LoggedOutMenu extends Component {
             </a>
           </div>
           <div className='drawer__menu'>
-            <a href='/login'>
+            <a href='/login?theme=mobile'>
               <img className='drawer__menu-icon' src={loginIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>
                 { lang[l]['Login'] }
