@@ -37,7 +37,7 @@ class HotList extends Component {
     return (
       <div className='hotlist__item' key={`hotlist-${index}`}>
         <div className='hotlist__wrapper'>
-          <a aria-hidden='true' tabIndex='-1' href='#' className='hotlist__click u-block' />
+          <a aria-hidden='true' tabIndex='-1' href={item.url} className='hotlist__click u-block' />
           <img src={item.image_url} className='u-fit u-block u-mx-auto' alt={`Gambar ${item.title_enc}`} />
           <div className='hotlist__footer u-clearfix u-mt1'>
             <div className='u-clearfix'>
@@ -46,7 +46,7 @@ class HotList extends Component {
                 <span className='hotlist__name u-bold'>{ item.title_enc }</span>
               </div>
               <div className='u-col u-col-7 u-right-align u-relative'>
-                <a aria-hidden='true' tabIndex='-1' href='#' className='hotlist__click u-block' />
+                <a aria-hidden='true' tabIndex='-1' href={item.url} className='hotlist__click u-block' />
                 <small className='hotlist__start-from u-mr1'>Mulai dari:</small>
                 <span className='hotlist__price u-bold'>{ item.price_start_from }</span>&nbsp;&rsaquo;
               </div>

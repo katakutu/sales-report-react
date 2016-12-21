@@ -153,6 +153,7 @@ query Query {
       title_enc
       image_url
       price_start_from
+      url
     }
   }
 }
