@@ -63,7 +63,7 @@ function getUserInfo (context) {
           const sessionExists = sessData !== null
           const loggedInSess = sessData && !isNaN(sessData['admin_id'])
           const userID = loggedInSess ? sessData['admin_id'] : null
-          console.log(`UID: ${userID}, ${loggedInSess}, ${sessData}`)
+
           resolve(getDefaultLoginRedirect(userID, shouldRedir && sessionExists && loggedInSess))
         })
 

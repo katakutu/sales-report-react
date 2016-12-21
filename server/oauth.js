@@ -50,11 +50,10 @@ module.exports = {
       if (req.cookies && req.cookies[GlobalConfig['Cookie']['SessionID']]) {
         const sessID = req.cookies[GlobalConfig['Cookie']['SessionID']]
         return session.removeUserSession(sessID, success => {
-          console.log(`Session ${sessID} logged out.`)
           res.clearCookie(GlobalConfig['Cookie']['SessionID'])
 
           // Todo: flash to message user that logout is successful?
-          return res.redirect('/')
+          return res.redirect(GlobalConfig['Accounts']['Hostname'] + '/logout')
         })
       }
 
