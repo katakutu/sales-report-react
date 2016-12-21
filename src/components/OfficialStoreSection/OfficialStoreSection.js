@@ -89,7 +89,8 @@ const renderStore = (data, index) => (
 )
 
 export const OfficialStoreSection = () => (
-  <div className='u-clearfix official-store'>
+  /* #home-category is for editor's pick GTM */
+  <div id='home-category' className='u-clearfix official-store'>
     <TextHeader textType={1}>
       Official Store
     </TextHeader>

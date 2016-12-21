@@ -62,6 +62,8 @@ function getUserInfo (context) {
         session.getSession(context.cookies[GlobalConfig['Cookie']['SessionID']], sessData => {
           const sessionExists = sessData !== null
           const loggedInSess = sessData && !isNaN(sessData['admin_id'])
+          console.log(`sess data: ${sessData}`)
+          console.log(`shouldRedir ${shouldRedir} ${sessionExists} ${loggedInSess}`)
           resolve(getDefaultLoginRedirect(shouldRedir && sessionExists && loggedInSess))
         })
 

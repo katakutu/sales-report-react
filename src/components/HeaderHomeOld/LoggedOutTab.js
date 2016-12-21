@@ -20,9 +20,9 @@ class LoggedOutTab extends Component {
         </div>
         <div className='tab-item'>
           <label className='tab-link'>
-            <a href={`${HOSTNAME}/hot?page=1`} onClick={e => this.props.appIsLoading(true)}>
+            <Link to={`${HOSTNAME}/hot?page=1`}>
               Hot List
-            </a>
+            </Link>
           </label>
         </div>
       </div>

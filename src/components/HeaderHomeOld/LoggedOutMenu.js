@@ -10,8 +10,9 @@ import { updateSidebarStatus } from '../../store/app'
 import Cookies from '../../lib/utils/Cookies'
 import langEn from '../../lib/utils/lang_en-min.js'
 import langId from '../../lib/utils/lang_id-min.js'
+import { SITES } from '../../constants'
 
-var lang = {
+const lang = {
   'id':langId,
   'en':langEn
 }
@@ -32,7 +33,7 @@ class LoggedOutMenu extends Component {
   }
 
   render () {
-    let l = Cookies.getItem('lang')
+    let l = Cookies.getItem('lang') || 'id'
 
     return (
       <div className='drawer active'>
@@ -53,25 +54,25 @@ class LoggedOutMenu extends Component {
           <div className='drawer__menu'>
             <a href='/'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>{
-                lang[l]['Home']
-              }</span>
+              <span className='drawer__menu-title u-inline-block'>
+                { lang[l]['Home'] }
+              </span>
             </a>
           </div>
           <div className='drawer__menu'>
             <a href='/login'>
               <img className='drawer__menu-icon' src={loginIcon} alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>{
-                lang[l]['Login']
-              }</span>
+              <span className='drawer__menu-title u-inline-block'>
+                { lang[l]['Login'] }
+              </span>
             </a>
           </div>
           <div className='drawer__menu'>
-            <a href='https://accounts.tokopedia.com/register?theme=mobile'>
+            <a href={SITES['Register']}>
               <img className='drawer__menu-icon' src={registerIcon} alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>{
-                lang[l]['NOTE_REGISTER_TITLE']
-              }</span>
+              <span className='drawer__menu-title u-inline-block'>
+                { lang[l]['NOTE_REGISTER_TITLE'] }
+              </span>
             </a>
           </div>
         </div>
