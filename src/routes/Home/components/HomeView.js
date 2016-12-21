@@ -5,7 +5,6 @@ import CategoryList from '../../../components/CategoryList'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import OfficialStoreSection from '../../../components/OfficialStoreSection'
 import PromoSpacer from '../../../components/PromoSpacer'
-import PromoBanner from '../../../components/PromoBanner'
 import Ticker from '../../../components/Ticker'
 import HotList from '../../../components/HotList'
 import MoreInfo from '../../../components/MoreInfo'
@@ -48,10 +47,6 @@ class HomeView extends Component {
         <Carousel images={slides} />
         <PromoSpacer />
         <div id='widget-dmw' className='u-clearfix u-my2' /> { /* Pulsa widget container */ }
-        <PromoBanner
-          imageUrl='https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/media/images/top-picks-natal.png'
-          targetUrl='https://tokopedia.com'
-          imageAlt='414 x 90' />
         <HotList data={hotlists} />
         <CategoryList categories={categories} />
         <OfficialStoreSection />

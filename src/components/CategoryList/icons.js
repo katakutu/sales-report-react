@@ -42,7 +42,7 @@ export default {
   'kamera-foto-video': iconKamera,
   'laptop-aksesoris': iconLaptop,
   software: iconSoftware,
-  mainan: iconMainan,
+  'mainan-hobi': iconMainan,
   'makanan-minuman': iconMakanan,
   'perawatan-bayi': iconPerawatanBayi,
   'souvenir-kado-hadiah': iconSouvenir,
