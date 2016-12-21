@@ -325,7 +325,7 @@ class LoggedInMenu extends Component {
             </ul>
           </div>
           <div className='drawer__menu'>
-            <a href={`${HOSTNAME}/logout.pl`}>
+            <a href={`${HOSTNAME}/logout`}>
               <img className='drawer__menu-icon' src={logoutIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>{
                 lang[l]['Sign Out']
