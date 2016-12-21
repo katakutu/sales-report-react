@@ -37,9 +37,8 @@ class CategoryList extends Component {
   }
 
   renderHomeCategory () {
-    /* #home-category is for editor's pick GTM */
     return (
-      <div id='home-category' className='category-list__holder u-clearfix'>
+      <div className='category-list__holder u-clearfix'>
         <TextHeader textType={1}>
           Pembayaran &amp; Top up
         </TextHeader>
