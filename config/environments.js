@@ -24,6 +24,18 @@ module.exports = {
     }
   }),
 
+  beta: (config) => ({
+    compiler_public_path     : 'https://ecs7.tokopedia.net/assets-tokopedia-lite/beta/',
+    compiler_fail_on_warning : false,
+    compiler_hash_type       : 'chunkhash',
+    compiler_devtool         : null,
+    compiler_stats           : {
+      chunks       : true,
+      chunkModules : true,
+      colors       : true
+    }
+  }),
+
   // ======================================================
   // Overrides when NODE_ENV === 'production'
   // ======================================================

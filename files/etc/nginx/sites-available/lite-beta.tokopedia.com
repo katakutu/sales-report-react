@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name  m-beta.tokopedia.com;
+    server_name  lite-beta.tokopedia.com;
     root /var/www/tokopedia-lite/dist/;
 
     access_log /var/log/nginx/tokopedia-lite.access.log;
