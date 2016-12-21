@@ -47,8 +47,8 @@ class HomeView extends Component {
         <Carousel images={slides} />
         <PromoSpacer />
         <div id='widget-dmw' className='u-clearfix u-my2' /> { /* Pulsa widget container */ }
-        <HotList data={hotlists} />
         <CategoryList categories={categories} />
+        <HotList data={hotlists} />
         <OfficialStoreSection />
         <MoreInfo />
       </div>

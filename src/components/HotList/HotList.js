@@ -74,7 +74,7 @@ class HotList extends Component {
 
     return (
       <div className='hotlist u-clearfix'>
-        <TextHeader textType={2} injectClassName='hotlist__title'>
+        <TextHeader textType={2}>
           Hot List
         </TextHeader>
         <Slider {...settings}>
