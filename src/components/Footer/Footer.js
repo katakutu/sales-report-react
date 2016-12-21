@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import './Footer.scss'
 import footerAppsApple from './assets/footer-apps-apple@2x.png'
 import footerAppsAndroid from './assets/footer-apps-android@2x.png'
 
 import Cookies from '../../lib/utils/Cookies'
-import langEn from '../../lib/utils/lang_en-min.js'
-import langId from '../../lib/utils/lang_id-min.js'
+import lang from '../../lib/utils/Lang'
 import { DESKTOP_HOSTNAME, HOSTNAME } from '../../constants'
-
-var lang = {
-  'id':langId,
-  'en':langEn
-}
+import { updateLang } from '../../store/app'
 
 class Footer extends Component {
+  static propTypes = {
+    updateLang: React.PropTypes.func
+  }
+
   state = {
     language: (Cookies.getItem('lang')) ? Cookies.getItem('lang') : 'id'
   }
@@ -25,8 +25,9 @@ class Footer extends Component {
   }
 
   languageChange (event) {
-    const lang = event.target.value
-    this.setState({ language: lang }, () => Cookies.setItem('lang', lang))
+    const newLang = event.target.value
+    this.setState({ language: newLang }, () => Cookies.setItem('lang', newLang))
+    this.props.updateLang(newLang)
   }
 
   render () {
@@ -76,4 +77,13 @@ class Footer extends Component {
   }
 }
 
-export default Footer
+const mapDispatchToProps = {
+  updateLang
+}
+const mapStateToProps = (state) => {
+  return {
+    LANG: state['app'] ? state['app'].updateLang : state.updateLang
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer)

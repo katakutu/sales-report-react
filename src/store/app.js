@@ -16,6 +16,7 @@ export const APP_IS_NOT_LOADING = 'IS_NOT_LOADING'
 // temporary state until we moved to new design and remove sidebar
 export const SIDEBAR_STATUS_OPEN = 'SIDEBAR_STATUS_OPEN'
 export const SIDEBAR_STATUS_CLOSED = 'SIDEBAR_STATUS_CLOSED'
+export const LANG = 'LANG'
 
 // ------------------------------------
 // Actions
@@ -76,6 +77,13 @@ export function appIsLoading (isLoading) {
   }
 }
 
+export function updateLang (props) {
+  return {
+    type: LANG,
+    payload: props
+  }
+}
+
 export const actions = {
   notificationDispatch,
   notificationDismiss,
@@ -84,7 +92,8 @@ export const actions = {
   updateUserLoginStatus,
   updateSidebarStatus,
   storeUserData,
-  appIsLoading
+  appIsLoading,
+  updateLang
 }
 
 const ACTION_HANDLERS = {
@@ -135,7 +144,12 @@ const ACTION_HANDLERS = {
   },
   [APP_IS_NOT_LOADING]: (state, action) => {
     return Object.assign({}, state, { isLoading: action.payload })
-  }
+  },
+  [LANG] : (state, action) => {
+    return Object.assign({}, state, {
+      lang: state.lang.concat(action.payload)
+    })
+  },
 }
 
 // ------------------------------------
@@ -146,6 +160,7 @@ const initialState = {
   isOnline: true,
   isLoading: false,
   notifications: [],
+  lang: 'id',
   user: {
     loggedIn: false,
     searchID: '-',
