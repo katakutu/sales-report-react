@@ -7,7 +7,7 @@ class HotListView extends Component {
     return (
       <div>
         <HeaderHomeOld />
-        <div className='u-clearfix hotlist-holder u-mt3'>
+        <div className='u-clearfix hotlist hotlist--single-page u-mt2'>
           {/* Remove class u-display-none, If you want to see the breadcrumb.
             The Breadcrumb appears after you clicked a link "lihat semua".
             For example you can check to https://m.tokopedia.com/hot?view=1
@@ -16,112 +16,30 @@ class HotListView extends Component {
             <a className='link-green' href='#'>« Kembali</a>
           </div>
           <h1 className='text-header text-header-green u-center'>Hot list</h1>
+
           <div className='hotlist__item'>
-            <a href='#'>
-              <img className='hotlist__item-img' src='http://placehold.it/375x196?text=+' />
-              <div className='hotlist__captions u-clearfix'>
-                <div className='u-col u-col-6'>
-                  <div className='hotlist__captions-name u-bold'>
-                    Glow Stick
+            <div className='hotlist__wrapper'>
+              <a aria-hidden='true' tabIndex='-1' href='#' className='hotlist__click u-block' />
+              <img src='https://placehold.it/375x196?text=+' className='u-fit u-block u-mx-auto' alt='' />
+              <div className='hotlist__footer u-clearfix u-mt1'>
+                <div className='u-clearfix'>
+                  <div className='u-col u-col-5 u-truncate u-relative'>
+                    <a aria-hidden='true' tabIndex='-1' href='#' className='hotlist__click u-block' />
+                    <span className='hotlist__name u-bold'>Lorem Ipsum</span>
+                  </div>
+                  <div className='u-col u-col-7 u-right-align u-relative'>
+                    <a aria-hidden='true' tabIndex='-1' href='#' className='hotlist__click u-block' />
+                    <small className='hotlist__start-from u-mr1'>Mulai dari:</small>
+                    <span className='hotlist__price u-bold'>Rp 500rb</span>&nbsp;&rsaquo;
                   </div>
                 </div>
-                <div className='u-col u-col-6 u-right-align'>
-                  <small className='hotlist__start-from'>Mulai dari</small>&nbsp;
-                  <span className='hotlist__price'>Rp 5rb</span>
-                  <i className='more-info__arrow' />
-                </div>
               </div>
-            </a>
+            </div>
           </div>
-          <div className='hotlist__item'>
-            <a href='#'>
-              <img className='hotlist__item-img' src='http://placehold.it/375x196?text=+' />
-              <div className='hotlist__captions u-clearfix'>
-                <div className='u-col u-col-6'>
-                  <div className='hotlist__captions-name u-bold'>
-                    Glow Stick
-                  </div>
-                </div>
-                <div className='u-col u-col-6 u-right-align'>
-                  <small className='hotlist__start-from'>Mulai dari</small>&nbsp;
-                  <span className='hotlist__price'>Rp 5rb</span>
-                  <i className='more-info__arrow' />
-                </div>
-              </div>
-            </a>
-          </div>
-          <div className='hotlist__item'>
-            <a href='#'>
-              <img className='hotlist__item-img' src='http://placehold.it/375x196?text=+' />
-              <div className='hotlist__captions u-clearfix'>
-                <div className='u-col u-col-6'>
-                  <div className='hotlist__captions-name u-bold'>
-                    Glow Stick
-                  </div>
-                </div>
-                <div className='u-col u-col-6 u-right-align'>
-                  <small className='hotlist__start-from'>Mulai dari</small>&nbsp;
-                  <span className='hotlist__price'>Rp 5rb</span>
-                  <i className='more-info__arrow' />
-                </div>
-              </div>
-            </a>
-          </div>
-          <div className='hotlist__item'>
-            <a href='#'>
-              <img className='hotlist__item-img' src='http://placehold.it/375x196?text=+' />
-              <div className='hotlist__captions u-clearfix'>
-                <div className='u-col u-col-6'>
-                  <div className='hotlist__captions-name u-bold'>
-                    Glow Stick
-                  </div>
-                </div>
-                <div className='u-col u-col-6 u-right-align'>
-                  <small className='hotlist__start-from'>Mulai dari</small>&nbsp;
-                  <span className='hotlist__price'>Rp 5rb</span>
-                  <i className='more-info__arrow' />
-                </div>
-              </div>
-            </a>
-          </div>
-          <div className='hotlist__item'>
-            <a href='#'>
-              <img className='hotlist__item-img' src='http://placehold.it/375x196?text=+' />
-              <div className='hotlist__captions u-clearfix'>
-                <div className='u-col u-col-6'>
-                  <div className='hotlist__captions-name u-bold'>
-                    Glow Stick
-                  </div>
-                </div>
-                <div className='u-col u-col-6 u-right-align'>
-                  <small className='hotlist__start-from'>Mulai dari</small>&nbsp;
-                  <span className='hotlist__price'>Rp 5rb</span>
-                  <i className='more-info__arrow' />
-                </div>
-              </div>
-            </a>
-          </div>
-          <div className='hotlist__item'>
-            <a href='#'>
-              <img className='hotlist__item-img' src='http://placehold.it/375x196?text=+' />
-              <div className='hotlist__captions u-clearfix'>
-                <div className='u-col u-col-6'>
-                  <div className='hotlist__captions-name u-bold'>
-                    Glow Stick
-                  </div>
-                </div>
-                <div className='u-col u-col-6 u-right-align'>
-                  <small className='hotlist__start-from'>Mulai dari</small>&nbsp;
-                  <span className='hotlist__price'>Rp 5rb</span>
-                  <i className='more-info__arrow' />
-                </div>
-              </div>
-            </a>
-          </div>
+
           <div className='hotlist-showall'>
             <a className='link-green' href='#'>
-              Lihat semua
-              <i className='more-info__arrow' />
+              Lihat semua &rsaquo;
             </a>
           </div>
           {/* Remove class u-display-none, If you want to see the pagination.

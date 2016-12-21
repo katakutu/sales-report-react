@@ -12,7 +12,7 @@
     position: relative;
     margin: 0 0 0 10px;
     padding: 10px;
-    max-width: 273px;
+    max-width: 277px;
     height: 100%;
     border: 1px solid #EBEBEB;
     border-bottom: 5px solid #EBEBEB;
@@ -21,6 +21,16 @@
     vertical-align: top;
     text-decoration: none;
     font-size: 14px;
+
+    .hotlist--single-page & {
+        margin: 0 auto 20px;
+        max-width: 375px;
+    }
+}
+
+.hotlist--single-page {
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .hotlist__price {

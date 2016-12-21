@@ -37,6 +37,7 @@ class HotList extends Component {
     return (
       <div className='hotlist__item' key={`hotlist-${index}`}>
         <div className='hotlist__wrapper'>
+          <a aria-hidden='true' tabIndex='-1' href='#' className='hotlist__click u-block' />
           <img src={item.image_url} className='u-fit u-block u-mx-auto' alt={`Gambar ${item.title_enc}`} />
           <div className='hotlist__footer u-clearfix u-mt1'>
             <div className='u-clearfix'>
@@ -67,7 +68,7 @@ class HotList extends Component {
 
   render () {
     const placeholder = [
-      { image_url: 'https://placehold.it/277x144?text=+', title_enc: 'Hotlist', price_start_from: 'Rp 0' }
+      { image_url: 'https://placehold.it/375x196?text=+', title_enc: 'Hotlist', price_start_from: 'Rp 0' }
     ]
 
     const hotlists = this._verifyHotlistData(placeholder)
