@@ -16,7 +16,7 @@ import Cookies from '../../lib/utils/Cookies'
 import langEn from '../../lib/utils/lang_en-min.js'
 import langId from '../../lib/utils/lang_id-min.js'
 
-var lang = {
+const lang = {
   'id':langId,
   'en':langEn
 }
@@ -75,7 +75,7 @@ class LoggedInMenu extends Component {
   }
 
   render () {
-    let l = Cookies.getItem('lang')
+    let l = Cookies.getItem('lang') || 'id'
     let inboxClass = (!this.state.inboxIsOpen) ? 'u-display-none' : ''
     let purchaseClass = (!this.state.purchaseIsOpen) ? 'u-display-none' : ''
     let salesClass = (!this.state.salesIsOpen) ? 'u-display-none' : ''
@@ -92,9 +92,9 @@ class LoggedInMenu extends Component {
             <img className='drawer__menu-icon' src={addShop} alt='tokopedia' />
           </div>
           <div className='u-left drawer__menu-myshop'>
-            <div className='drawer__menu-myshop-name'>{
-              lang[l]['Open Shop']
-            }</div>
+            <div className='drawer__menu-myshop-name'>
+              { lang[l]['Open Shop'] }
+            </div>
           </div>
         </div>
       </a>) : (
