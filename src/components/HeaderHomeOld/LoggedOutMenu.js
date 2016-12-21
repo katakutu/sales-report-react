@@ -11,6 +11,11 @@ import Cookies from '../../lib/utils/Cookies'
 import langEn from '../../lib/utils/lang_en-min.js'
 import langId from '../../lib/utils/lang_id-min.js'
 
+var lang = {
+  'id':langId,
+  'en':langEn
+}
+
 class LoggedOutMenu extends Component {
   static propTypes = {
     updateSidebarStatus: React.PropTypes.func
@@ -27,7 +32,7 @@ class LoggedOutMenu extends Component {
   }
 
   render () {
-    let lang = Cookies.getItem('lang')
+    let l = Cookies.getItem('lang')
 
     return (
       <div className='drawer active'>
@@ -49,7 +54,7 @@ class LoggedOutMenu extends Component {
             <a href='/'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>{
-                (lang === 'en') ? langEn['Home'] : langId['Home']
+                lang[l]['Home']
               }</span>
             </a>
           </div>
@@ -57,7 +62,7 @@ class LoggedOutMenu extends Component {
             <a href='/login'>
               <img className='drawer__menu-icon' src={loginIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>{
-                (lang === 'en') ? langEn['Login'] : langId['Login']
+                lang[l]['Login']
               }</span>
             </a>
           </div>
@@ -65,7 +70,7 @@ class LoggedOutMenu extends Component {
             <a href='https://accounts.tokopedia.com/register?theme=mobile'>
               <img className='drawer__menu-icon' src={registerIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>{
-                (lang === 'en') ? langEn['NOTE_REGISTER_TITLE'] : langId['NOTE_REGISTER_TITLE']
+                lang[l]['NOTE_REGISTER_TITLE']
               }</span>
             </a>
           </div>

@@ -16,6 +16,11 @@ import Cookies from '../../lib/utils/Cookies'
 import langEn from '../../lib/utils/lang_en-min.js'
 import langId from '../../lib/utils/lang_id-min.js'
 
+var lang = {
+  'id':langId,
+  'en':langEn
+}
+
 class LoggedInMenu extends Component {
   static propTypes = {
     notifs: React.PropTypes.object,
@@ -70,7 +75,7 @@ class LoggedInMenu extends Component {
   }
 
   render () {
-    let lang = Cookies.getItem('lang')
+    let l = Cookies.getItem('lang')
     let inboxClass = (!this.state.inboxIsOpen) ? 'u-display-none' : ''
     let purchaseClass = (!this.state.purchaseIsOpen) ? 'u-display-none' : ''
     let salesClass = (!this.state.salesIsOpen) ? 'u-display-none' : ''
@@ -88,7 +93,7 @@ class LoggedInMenu extends Component {
           </div>
           <div className='u-left drawer__menu-myshop'>
             <div className='drawer__menu-myshop-name'>{
-              (lang === 'en') ? langEn['Open Shop'] : langId['Open Shop']
+              lang[l]['Open Shop']
             }</div>
           </div>
         </div>
@@ -212,7 +217,7 @@ class LoggedInMenu extends Component {
             <a href='/'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>{
-                (lang === 'en') ? langEn['Home'] : langId['Home']
+                lang[l]["Home"]
               }</span>
             </a>
           </div>
@@ -226,26 +231,26 @@ class LoggedInMenu extends Component {
             <a>
               <img className='drawer__menu-icon' src={inboxIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>{
-                (lang === 'en') ? langEn['Inbox'] : langId['Inbox']
+                lang[l]["Inbox"]
               }</span>
               { inboxNotif }
               <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${inboxParent}`} />
             </a>
             <ul className={`drawer__menu-child ${inboxClass}`}>
               <li><a href={`${HOSTNAME}/inbox-message.pl`}>{
-                (lang === 'en') ? langEn['MESSAGE'] : langId['MESSAGE']
+                lang[l]["MESSAGE"]
               }{inboxMessageNotif}</a></li>
               <li><a href={`${HOSTNAME}/inbox-talk.pl`}>{
-                (lang === 'en') ? langEn['Talk About It'] : langId['Talk About It']
+                lang[l]["Talk About It"]
               }{inboxPDNotif}</a></li>
               <li><a href={`${HOSTNAME}/inbox-reputation.pl`}>{
-                (lang === 'en') ? langEn['Reviews'] : langId['Reviews']
+                lang[l]["Reviews"]
               }{inboxReviewNotif}</a></li>
               <li><a href={`${HOSTNAME}/inbox-ticket.pl`}>{
-                (lang === 'en') ? langEn['Customer Care'] : langId['Customer Care']
+                lang[l]["Customer Care"]
               }{inboxCSNotif}</a></li>
               <li><a href={`${HOSTNAME}/resolution-center.pl`}>{
-                (lang === 'en') ? langEn['Resolution Center'] : langId['Resolution Center']
+                lang[l]["Resolution Center"]
               }{inboxRCNotif}</a></li>
             </ul>
           </div>
@@ -253,7 +258,7 @@ class LoggedInMenu extends Component {
             <a>
               <img className='drawer__menu-icon' src={buyingIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>{
-                (lang === 'en') ? langEn['Purchase'] : langId['Purchase']
+                lang[l]["Purchase"]
               }</span>
               { purchaseNotif }
               <img src='https://placehold.it/15x15'
@@ -263,27 +268,27 @@ class LoggedInMenu extends Component {
             <ul className={`drawer__menu-child ${purchaseClass}`}>
               <li>
                 <a href={`${HOSTNAME}/tx_order_list.pl?status=5`}>
-                  {(lang === 'en') ? langEn['Cancelled Order'] : langId['Cancelled Order']}{purchaseCancelNotif}
+                  {lang[l]["Cancelled Order"]}{purchaseCancelNotif}
                 </a>
               </li>
               <li>
                 <a href={`${HOSTNAME}/tx_payment_confirm.pl`}>
-                  {(lang === 'en') ? langEn['Confirm Payment'] : langId['Confirm Payment']}{purchaseConfirmNotif}
+                  {lang[l]["Confirm Payment"]}{purchaseConfirmNotif}
                 </a>
               </li>
               <li>
                 <a href={`${HOSTNAME}/tx_order_status.pl`}>
-                  {(lang === 'en') ? langEn['Order Status'] : langId['Order Status']}{purchaseOSNotif}
+                  {lang[l]["Order Status"]}{purchaseOSNotif}
                 </a>
               </li>
               <li>
                 <a href={`${HOSTNAME}/tx_order_list.pl?status=9`}>
-                  {(lang === 'en') ? langEn['Confirm Payment'] : langId['Confirm Payment']}{purchaseDCNotif}
+                  {lang[l]["Confirm Payment"]}{purchaseDCNotif}
                 </a>
               </li>
               <li>
                 <a href={`${HOSTNAME}/tx_order_list.pl`}>
-                  {(lang === 'en') ? langEn['Dispute List'] : langId['Dispute List']}{purchaseTLNotif}
+                  {lang[l]["Dispute List"]}{purchaseTLNotif}
                 </a>
               </li>
             </ul>
@@ -292,30 +297,30 @@ class LoggedInMenu extends Component {
             <a>
               <img className='drawer__menu-icon' src={sellingIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>{
-                (lang === 'en') ? langEn['Sales'] : langId['Sales']
+                lang[l]["Sales"]
               }</span>
               { salesNotif }
               <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${salesParent}`} />
             </a>
             <ul className={`drawer__menu-child ${salesClass}`}>
               <li><a href={`${HOSTNAME}/myshop_order.pl`}>{
-                (lang === 'en') ? langEn['New Order'] : langId['New Order']
+                lang[l]["New Order"]
               }{salesNONotif}</a></li>
               <li><a href={`${HOSTNAME}/myshop_order_process.pl`}>{
-                (lang === 'en') ? langEn['Confirm Shipment'] : langId['Confirm Shipment']
+                lang[l]["Confirm Shipment"]
               }{salesSCNotif}</a></li>
               <li><a href={`${HOSTNAME}/myshop_order_status.pl`}>{
-                (lang === 'en') ? langEn['Product Shipping Status'] : langId['Product Shipping Status']
+                lang[l]["Product Shipping Status"]
               }{salesDSNotif}</a></li>
               <li><a href={`${HOSTNAME}/myshop_order_list.pl`}>{
-                (lang === 'en') ? langEn['Transaction Status'] : langId['Transaction Status']
+                lang[l]["Transaction Status"]
               }{salesTLNotif}</a></li>
               <li><a href={`${HOSTNAME}/manage-product.pl`}>{
-                (lang === 'en') ? langEn['Product List'] : langId['Product List']
+                lang[l]["Product List"]
               }{salesPLNotif}</a></li>
               <li><a href={`${HOSTNAME}/manage-freereturns.pl`}>Free Returns</a></li>
               <li><a href={`${HOSTNAME}/myshop-etalase.pl`}>{
-                (lang === 'en') ? langEn['QUICK_GUIDE_SHOP_GOLD_TITLE_9'] : langId['QUICK_GUIDE_SHOP_GOLD_TITLE_9']
+                lang[l]['QUICK_GUIDE_SHOP_GOLD_TITLE_9']
               }{salesEtalaseNotif}</a></li>
             </ul>
           </div>
@@ -323,7 +328,7 @@ class LoggedInMenu extends Component {
             <a href={`${HOSTNAME}/logout.pl`}>
               <img className='drawer__menu-icon' src={logoutIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>{
-                (lang === 'en') ? langEn['Sign Out'] : langId['Sign Out']
+                lang[l]["Sign Out"]
               }</span>
             </a>
           </div>
