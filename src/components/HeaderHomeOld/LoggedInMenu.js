@@ -186,8 +186,12 @@ class LoggedInMenu extends Component {
             </div>
           </div>
           <div className='drawer__user-box'>
-            <img className='drawer__user-photo' src={this.props.userData.profilePicture} alt='tokopedia' />
-            <div className='drawer__username u-mt1'>{ this.props.userData.name }</div>
+            <a href={`${HOSTNAME}/people/${this.props.userData.id}`}>
+              <img className='drawer__user-photo' src={this.props.userData.profilePicture} alt='tokopedia' />
+            </a>
+            <div className='drawer__username u-mt1'>
+              <a href={`${HOSTNAME}/people/${this.props.userData.id}`}>{ this.props.userData.name }</a>
+            </div>
           </div>
           <div className='drawer__user-summary u-clearfix'>
             <div className='drawer__user-summary-box u-left'>
