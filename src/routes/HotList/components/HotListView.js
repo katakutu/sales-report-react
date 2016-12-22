@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
+import { graphql } from 'react-apollo'
+import queries from '../../../queries'
 
 import HotList from './HotList'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import './HotListView.scss'
 
 class HotListView extends Component {
+  static propTypes = {
+    data: React.PropTypes.object
+  }
+
   state = {
     page: 1
   }
@@ -30,7 +36,7 @@ class HotListView extends Component {
   render () {
     return (
       <div>
-        <HeaderHomeOld tabIsAvailable activeTab='hotlist' />
+        <HeaderHomeOld userInfo={this.props.data.user} tabIsAvailable activeTab='hotlist' />
 
         <div className='u-clearfix hotlist hotlist--single-page u-mt2'>
           <h1 className='text-header text-header-green u-center'>Hot list</h1>
@@ -48,4 +54,4 @@ class HotListView extends Component {
   }
 }
 
-export default HotListView
+export default graphql(queries.HomeQuery)(HotListView)
