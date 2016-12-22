@@ -74,49 +74,68 @@ function getUserInfo (context) {
     }
   }
 
-  const tType = context.session.oauth.token['token_type']
-  const token = context.session.oauth.token['access_token']
+  console.log('session oauth exists')
 
-  const authConsumer = new TopedAuthAPI(token, tType)
-  const saldoConsumer = new TopedSaldoAPI()
-  const notifConsumer = new TopedNotificationAPI(token, tType)
-  const pointConsumer = new TopedPointsAPI()
-  const shopConsumer = new TopedShopAPI()
-
-  return authConsumer.getUserInfo().then(user => {
-    const userID = user['user_id']
-    let saldo = PromiseHelper.timeout(saldoConsumer.getDeposit(userID), 5000, 'Saldo API Call')
-    let notif = PromiseHelper.timeout(notifConsumer.getNotification(userID), 5000, 'Notif API Call')
-    let point = PromiseHelper.timeout(pointConsumer.getPoints(userID), 5000, 'Points API Call')
-    let shop = PromiseHelper.timeout(shopConsumer.getShop(userID), 5000, 'Shop API Call')
-
-    return Promise.all([saldo, notif, point, shop])
-      .then(s => {
-        return {
-          'isLoggedIn': true,
-          'shouldRedirect': false,
-          'name': user['name'],
-          'id': userID,
-          'profilePicture': user['profile_picture'],
-          'deposit': s[0] || DEFAULT_SALDO_DATA,
-          'points': s[2] || DEFAULT_POINTS_DATA,
-          'notifications': s[1] || DEFAULT_NOTIFICATION_DATA,
-          'shop': s[3] || DEFAULT_SHOP_DATA
+  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
+  console.log(`session cookies ID: ${sessID}`)
+  return session.getSession(sessID, sessData => {
+    console.log(`session data: ${sessData}`)
+    // Check for session availability since we store OAuth tokens in express.js
+    // and logging out on perl will not remove express.js' session
+    if (sessData === null) {
+      return context.session.destroy(err => {
+        if (err) {
+          console.error(`Destroying session failed: ${err}`)
         }
+
+        return Promise.resolve(DEFAULT_NOT_LOGGED_IN)
       })
-      .catch(e => {
-        return {
-          'isLoggedIn': true,
-          'shouldRedirect': false,
-          'name': user['name'],
-          'id': userID,
-          'profilePicture': user['profile_picture'],
-          'deposit': DEFAULT_SALDO_DATA,
-          'points': DEFAULT_POINTS_DATA,
-          'notifications': DEFAULT_NOTIFICATION_DATA,
-          'shop': DEFAULT_SHOP_DATA
-        }
+    } else {
+      const tType = context.session.oauth.token['token_type']
+      const token = context.session.oauth.token['access_token']
+
+      const authConsumer = new TopedAuthAPI(token, tType)
+      const saldoConsumer = new TopedSaldoAPI()
+      const notifConsumer = new TopedNotificationAPI(token, tType)
+      const pointConsumer = new TopedPointsAPI()
+      const shopConsumer = new TopedShopAPI()
+
+      return authConsumer.getUserInfo().then(user => {
+        const userID = user['user_id']
+        let saldo = PromiseHelper.timeout(saldoConsumer.getDeposit(userID), 5000, 'Saldo API Call')
+        let notif = PromiseHelper.timeout(notifConsumer.getNotification(userID), 5000, 'Notif API Call')
+        let point = PromiseHelper.timeout(pointConsumer.getPoints(userID), 5000, 'Points API Call')
+        let shop = PromiseHelper.timeout(shopConsumer.getShop(userID), 5000, 'Shop API Call')
+
+        return Promise.all([saldo, notif, point, shop])
+          .then(s => {
+            return {
+              'isLoggedIn': true,
+              'shouldRedirect': false,
+              'name': user['name'],
+              'id': userID,
+              'profilePicture': user['profile_picture'],
+              'deposit': s[0] || DEFAULT_SALDO_DATA,
+              'points': s[2] || DEFAULT_POINTS_DATA,
+              'notifications': s[1] || DEFAULT_NOTIFICATION_DATA,
+              'shop': s[3] || DEFAULT_SHOP_DATA
+            }
+          })
+          .catch(e => {
+            return {
+              'isLoggedIn': true,
+              'shouldRedirect': false,
+              'name': user['name'],
+              'id': userID,
+              'profilePicture': user['profile_picture'],
+              'deposit': DEFAULT_SALDO_DATA,
+              'points': DEFAULT_POINTS_DATA,
+              'notifications': DEFAULT_NOTIFICATION_DATA,
+              'shop': DEFAULT_SHOP_DATA
+            }
+          })
       })
+    }
   })
 }
 
