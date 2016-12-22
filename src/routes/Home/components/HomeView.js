@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import './HomeView.scss'
 import Carousel from '../../../components/Carousel'
 import CategoryList from '../../../components/CategoryList'
@@ -11,7 +10,6 @@ import HotList from '../../../components/HotList'
 import MoreInfo from '../../../components/MoreInfo'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import lang from '../../../lib/utils/Lang'
 
 class HomeView extends Component {
   static propTypes = {
@@ -159,8 +157,6 @@ query Query {
     }
   }
 }
+`
 
-export default graphql(HomeQuery, {
-  // See the watchQuery API for the options you can provide here
-  options: { pollInterval: 10000 },
-})(HomeView)
+export default graphql(HomeQuery)(HomeView)
