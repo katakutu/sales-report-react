@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
 import { appIsLoading } from '../../store/app'
-import { HOSTNAME } from '../../constants'
 
 class LoggedOutTab extends Component {
   static propTypes = {
@@ -20,7 +19,7 @@ class LoggedOutTab extends Component {
         </div>
         <div className='tab-item'>
           <label className='tab-link'>
-            <Link to={`${HOSTNAME}/hot?page=1`}>
+            <Link to={`/hot?page=1`}>
               Hot List
             </Link>
           </label>
