@@ -42,7 +42,7 @@ class LoggedInMenu extends Component {
   _totalObjectValues (object) {
     let result = 0
     if (object) {
-      result = Object.keys(object).map(k => object[k]).reduce((t, n) => t + n, 0)
+      result = Object.keys(object).map(k => object[k]).reduce((t, n) => n, 0)
     }
 
     return result
@@ -104,7 +104,6 @@ class LoggedInMenu extends Component {
           </div>
         </a>
     )
-
     let inboxNotif = this._totalObjectValues(this.props.notifs['inbox']) > 0 ? (
       <span className='drawer__menu-notif' />
     ) : null
