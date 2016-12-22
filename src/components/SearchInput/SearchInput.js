@@ -47,7 +47,7 @@ class SearchInput extends Component {
 
   render () {
     let backgroundBlur = (this.state.showSelection) ? 'search-input__modal-active' : ''
-    let finalClassName = `search-input u-px2 ${this.props.injectClassName} ${backgroundBlur}`
+    let finalClassName = `search-input u-px2 u-pb2 ${this.props.injectClassName} ${backgroundBlur}`
     let searchBtnCN = (this.state.showSelection) ? 'focus' : ''
     let finalSearchBtnCN = `search-input__btn ${searchBtnCN}`
 
@@ -68,7 +68,7 @@ class SearchInput extends Component {
             placeholder={this.props.injectPlaceholder}
             onFocus={this.handleFocus}
             value={this.state.value} />
-          <button className={finalSearchBtnCN}>
+            <button className={finalSearchBtnCN}>
               Search
             </button>
 

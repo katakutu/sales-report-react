@@ -45,18 +45,19 @@ class SearchModal extends Component {
     return (
       <div className='modal__container'>
         <div className='search-modal__box'>
+          <span className='search-input__close' onClick={this.props.onClose}></span>
           <form className='search-modal__form'>
             <input type='text'
               ref='modalSearchInput'
               className='search-input__modal-input u-col-10'
-              placeholder='Cari produk atau toko'
+              placeholder='Cari Produk atau Toko'
               onChange={this.handleChange}
               value={this.state.query} />
             <span className='search-input__modal-icon' />
+            <span className='search-input__modal-cancel' onClick={this.clearText} />
 
             { this.state.hasContent && <span className='search-input__clear'
               onClick={this.clearText} /> }
-            <span className='search-input__close' onClick={this.props.onClose}>Cancel</span>
           </form>
         </div>
 

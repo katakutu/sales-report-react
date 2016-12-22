@@ -6,7 +6,7 @@ class HotListView extends Component {
   render () {
     return (
       <div>
-        <HeaderHomeOld />
+        <HeaderHomeOld tabIsAvailable />
         <div className='u-clearfix hotlist hotlist--single-page u-mt2'>
           {/* Remove class u-display-none, If you want to see the breadcrumb.
             The Breadcrumb appears after you clicked a link "lihat semua".
