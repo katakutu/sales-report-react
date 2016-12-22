@@ -75,71 +75,70 @@ function getUserInfo (context) {
   }
 
   const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
-  let f = session.getSession(sessID, sessData => {
-    const data = sessData ? JSON.parse(sessData) : {}
+  return new Promise((resolve, reject) => {
+    session.getSession(sessID, sessData => {
+      const data = sessData ? JSON.parse(sessData) : {}
 
-    // Check for session availability since we store OAuth tokens in express.js
-    // and logging out on perl will not remove express.js' session
-    if (!data['access_token'] || !data['admin_id']) {
-      return context.session.destroy(err => {
-        if (err) {
-          console.error(`Destroying session failed: ${err}`)
-        }
+      // Check for session availability since we store OAuth tokens in express.js
+      // and logging out on perl will not remove express.js' session
+      if (!data['access_token'] || !data['admin_id']) {
+        return context.session.destroy(err => {
+          if (err) {
+            console.error(`Destroying session failed: ${err}`)
+          }
 
-        return Promise.resolve(DEFAULT_NOT_LOGGED_IN)
-      })
-    } else {
-      const tType = context.session.oauth.token['token_type']
-      const token = context.session.oauth.token['access_token']
+          resolve(DEFAULT_NOT_LOGGED_IN)
+        })
+      } else {
+        const tType = context.session.oauth.token['token_type']
+        const token = context.session.oauth.token['access_token']
 
-      const authConsumer = new TopedAuthAPI(token, tType)
-      const saldoConsumer = new TopedSaldoAPI()
-      const notifConsumer = new TopedNotificationAPI(token, tType)
-      const pointConsumer = new TopedPointsAPI()
-      const shopConsumer = new TopedShopAPI()
+        const authConsumer = new TopedAuthAPI(token, tType)
+        const saldoConsumer = new TopedSaldoAPI()
+        const notifConsumer = new TopedNotificationAPI(token, tType)
+        const pointConsumer = new TopedPointsAPI()
+        const shopConsumer = new TopedShopAPI()
 
-      return authConsumer.getUserInfo().then(user => {
-        const userID = user['user_id']
-        let saldo = PromiseHelper.timeout(saldoConsumer.getDeposit(userID), 1000, 'Saldo API Call')
-        let notif = PromiseHelper.timeout(notifConsumer.getNotification(userID), 1000, 'Notif API Call')
-        let point = PromiseHelper.timeout(pointConsumer.getPoints(userID), 1000, 'Points API Call')
-        let shop = PromiseHelper.timeout(shopConsumer.getShop(userID), 1000, 'Shop API Call')
+        authConsumer.getUserInfo().then(user => {
+          const userID = user['user_id']
+          let saldo = PromiseHelper.timeout(saldoConsumer.getDeposit(userID), 1000, 'Saldo API Call')
+          let notif = PromiseHelper.timeout(notifConsumer.getNotification(userID), 1000, 'Notif API Call')
+          let point = PromiseHelper.timeout(pointConsumer.getPoints(userID), 1000, 'Points API Call')
+          let shop = PromiseHelper.timeout(shopConsumer.getShop(userID), 1000, 'Shop API Call')
 
-        return Promise.all([saldo, notif, point, shop])
-          .then(s => {
-            console.log(`success`)
-            return {
-              'isLoggedIn': true,
-              'shouldRedirect': false,
-              'name': user['name'],
-              'id': userID,
-              'profilePicture': user['profile_picture'],
-              'deposit': s[0] || DEFAULT_SALDO_DATA,
-              'points': s[2] || DEFAULT_POINTS_DATA,
-              'notifications': s[1] || DEFAULT_NOTIFICATION_DATA,
-              'shop': s[3] || DEFAULT_SHOP_DATA
-            }
-          })
-          .catch(e => {
-            console.log(`failed`)
-            return {
-              'isLoggedIn': true,
-              'shouldRedirect': false,
-              'name': user['name'],
-              'id': userID,
-              'profilePicture': user['profile_picture'],
-              'deposit': DEFAULT_SALDO_DATA,
-              'points': DEFAULT_POINTS_DATA,
-              'notifications': DEFAULT_NOTIFICATION_DATA,
-              'shop': DEFAULT_SHOP_DATA
-            }
-          })
-      })
-    }
+          return Promise.all([saldo, notif, point, shop])
+            .then(s => {
+              resolve({
+                'isLoggedIn': true,
+                'shouldRedirect': false,
+                'name': user['name'],
+                'id': userID,
+                'profilePicture': user['profile_picture'],
+                'deposit': s[0] || DEFAULT_SALDO_DATA,
+                'points': s[2] || DEFAULT_POINTS_DATA,
+                'notifications': s[1] || DEFAULT_NOTIFICATION_DATA,
+                'shop': s[3] || DEFAULT_SHOP_DATA
+              })
+            })
+            .catch(e => {
+              return resolve({
+                'isLoggedIn': true,
+                'shouldRedirect': false,
+                'name': user['name'],
+                'id': userID,
+                'profilePicture': user['profile_picture'],
+                'deposit': DEFAULT_SALDO_DATA,
+                'points': DEFAULT_POINTS_DATA,
+                'notifications': DEFAULT_NOTIFICATION_DATA,
+                'shop': DEFAULT_SHOP_DATA
+              })
+            })
+        })
+      }
+    })
+
+    setTimeout(reject, 5000)
   })
-
-  console.log(f)
-  return f
 }
 
 module.exports = getUserInfo
