@@ -9,6 +9,8 @@ import Slider from 'react-slick'
 const settings = {
   autoplay: true,
   autoplaySpeed: 5000,
+  pauseOnFocus: true,
+  pauseOnHover: true,
   dots: true,
   arrows: false,
   infinite: true,
@@ -52,12 +54,17 @@ class Carousel extends Component {
     images: React.PropTypes.arrayOf(React.PropTypes.object)
   }
 
+  state = {
+    carouselSettings: settings
+  }
+
   constructor (props) {
     super(props)
 
     this._createCarouselItems = this._createCarouselItems.bind(this)
     this._gtmNotifySlideClick = this._gtmNotifySlideClick.bind(this)
     this._gtmNotifySlideChange = this._gtmNotifySlideChange.bind(this)
+    this._stopCarousel = this._stopCarousel.bind(this)
   }
 
   _createCarouselItems (image, index) {
@@ -129,6 +136,12 @@ class Carousel extends Component {
     }
   }
 
+  _stopCarousel () {
+    this.setState({
+      carouselSettings: Object.assign(this.state.carouselSettings, { autoplay: false })
+    })
+  }
+
   render () {
     let placeholder = {
       'image_url': 'https://placehold.it/414x185?text=+',
@@ -140,8 +153,8 @@ class Carousel extends Component {
       : this.props.images.map(this._createCarouselItems)
 
     return (
-      <div className='carousel u-clearfix'>
-        <Slider {...settings} afterChange={this._gtmNotifySlideChange}>
+      <div className='carousel u-clearfix' onMouseDown={this._stopCarousel}>
+        <Slider {...this.state.carouselSettings} afterChange={this._gtmNotifySlideChange}>
           { sliders }
         </Slider>
       </div>
