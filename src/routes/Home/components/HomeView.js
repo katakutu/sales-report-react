@@ -35,7 +35,7 @@ class HomeView extends Component {
     const tickers = this.props.data.ticker ? this.props.data.ticker.tickers : []
 
     const defaultHotlist = { success: 0, message_status: 1, data: [] }
-    const hotlists = this.props.data.hotlists ? this.props.data.hotlists : defaultHotlist
+    const hotlists = this.props.data['hot_product_home'] ? this.props.data['hot_product_home'] : defaultHotlist
 
     const categories = this.props.data.category ? this.props.data.category : []
 
@@ -146,7 +146,7 @@ query Query {
       redirect_url
     }
   }
-  hotlists{
+  hot_product_home{
     message_status
     success
     data{
