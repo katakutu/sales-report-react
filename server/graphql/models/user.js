@@ -74,21 +74,13 @@ function getUserInfo (context) {
     }
   }
 
-  console.log('session oauth exists')
-
   const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
-  console.log(`session cookies ID: ${sessID}`)
-  return session.getSession(sessID, sessData => {
-    console.log(`session data: ${sessData}`)
+  let f = session.getSession(sessID, sessData => {
     const data = sessData ? JSON.parse(sessData) : {}
-    console.log(!data['access_token'])
-    console.log(data['access_token'])
-    console.log(!data['admin_id'])
-    console.log(data['admin_id'])
+
     // Check for session availability since we store OAuth tokens in express.js
     // and logging out on perl will not remove express.js' session
     if (!data['access_token'] || !data['admin_id']) {
-      console.log(`destroy session`)
       return context.session.destroy(err => {
         if (err) {
           console.error(`Destroying session failed: ${err}`)
@@ -97,7 +89,6 @@ function getUserInfo (context) {
         return Promise.resolve(DEFAULT_NOT_LOGGED_IN)
       })
     } else {
-      console.log(`check oauth`)
       const tType = context.session.oauth.token['token_type']
       const token = context.session.oauth.token['access_token']
 
@@ -109,13 +100,14 @@ function getUserInfo (context) {
 
       return authConsumer.getUserInfo().then(user => {
         const userID = user['user_id']
-        let saldo = PromiseHelper.timeout(saldoConsumer.getDeposit(userID), 5000, 'Saldo API Call')
-        let notif = PromiseHelper.timeout(notifConsumer.getNotification(userID), 5000, 'Notif API Call')
-        let point = PromiseHelper.timeout(pointConsumer.getPoints(userID), 5000, 'Points API Call')
-        let shop = PromiseHelper.timeout(shopConsumer.getShop(userID), 5000, 'Shop API Call')
+        let saldo = PromiseHelper.timeout(saldoConsumer.getDeposit(userID), 1000, 'Saldo API Call')
+        let notif = PromiseHelper.timeout(notifConsumer.getNotification(userID), 1000, 'Notif API Call')
+        let point = PromiseHelper.timeout(pointConsumer.getPoints(userID), 1000, 'Points API Call')
+        let shop = PromiseHelper.timeout(shopConsumer.getShop(userID), 1000, 'Shop API Call')
 
         return Promise.all([saldo, notif, point, shop])
           .then(s => {
+            console.log(`success`)
             return {
               'isLoggedIn': true,
               'shouldRedirect': false,
@@ -129,6 +121,7 @@ function getUserInfo (context) {
             }
           })
           .catch(e => {
+            console.log(`failed`)
             return {
               'isLoggedIn': true,
               'shouldRedirect': false,
@@ -144,6 +137,9 @@ function getUserInfo (context) {
       })
     }
   })
+
+  console.log(f)
+  return f
 }
 
 module.exports = getUserInfo
