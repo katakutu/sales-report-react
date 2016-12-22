@@ -36,12 +36,8 @@ class HotListView extends Component {
   render () {
     return (
       <div>
-<<<<<<< HEAD
-        <HeaderHomeOld tabIsAvailable />
-=======
         <HeaderHomeOld userInfo={this.props.data.user} tabIsAvailable activeTab='hotlist' />
 
->>>>>>> upstream/master
         <div className='u-clearfix hotlist hotlist--single-page u-mt2'>
           <h1 className='text-header text-header-green u-center'>Hot list</h1>
 
