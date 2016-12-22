@@ -74,7 +74,8 @@ class HotList extends Component {
     const hotlists = this._verifyHotlistData(placeholder)
 
     return (
-      <div className='hotlist u-clearfix'>
+      /* #home-category is for editor's pick GTM */
+      <div id='home-category' className='hotlist u-clearfix'>
         <TextHeader textType={2}>
           Hot List
         </TextHeader>
