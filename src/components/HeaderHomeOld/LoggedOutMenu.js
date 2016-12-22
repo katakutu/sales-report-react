@@ -14,7 +14,7 @@ class LoggedOutMenu extends Component {
   static propTypes = {
     updateSidebarStatus: React.PropTypes.func,
     updateLang: React.PropTypes.func,
-    lang: React.PropTypes.lang
+    lang: React.PropTypes.string
   }
 
   constructor (props) {
