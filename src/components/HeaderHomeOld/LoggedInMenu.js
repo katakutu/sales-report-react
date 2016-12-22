@@ -73,7 +73,7 @@ class LoggedInMenu extends Component {
     let salesParent = (!this.state.salesIsOpen) ? '' : 'opened'
 
     let topupLink = `${SITES['Pulsa']}/saldo/?utm_source=mobile&utm_medium=link&utm_campaign=top%20up%20saldo`
-    let shopSection = (this.props.shop['shop_id'] === 'ERROR FAIL' || this.props.shop['shop_id'] === null) ? (
+    let shopSection = (this.props.shop['shop_id'] === 'ERROR FAIL' || this.props.shop['shop_id'] === null || this.props.shop['shop_id'] === '0' ) ? (
       <div className='drawer__menu-shop u-clearfix'>
         <a href={`${HOSTNAME}/myshop.pl`}>
           <div className='u-left'>
@@ -95,6 +95,9 @@ class LoggedInMenu extends Component {
             <div className='u-left drawer__menu-myshop'>
               <div>Toko Saya</div>
               <div className='drawer__menu-myshop-name'>{`${this.props.shop['shop_name']}`}</div>
+            </div>
+            <div className='u-right drawer__menu-myshop'>
+              <img src={`https://ecs12.tokopedia.net/newimg/shops-1/${this.props.shop['shop_badge']}`} />
             </div>
           </div>
         </a>
@@ -313,7 +316,7 @@ class LoggedInMenu extends Component {
               }{salesEtalaseNotif}</a></li>
             </ul>
           </div>
-          <div className='drawer__menu'>
+          <div className='drawer__menu last__menu'>
             <a href={`${HOSTNAME}/logout`}>
               <img className='drawer__menu-icon' src={logoutIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>{
