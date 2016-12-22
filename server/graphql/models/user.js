@@ -35,12 +35,12 @@ const DEFAULT_NOT_LOGGED_IN = {
   'shop': DEFAULT_SHOP_DATA
 }
 
-const getDefaultLoginRedirect = (shouldRedirect) => {
+const getDefaultLoginRedirect = (userID, shouldRedirect) => {
   return {
     'isLoggedIn': true,
     'shouldRedirect': shouldRedirect,
     'name': null,
-    'id': null,
+    'id': userID,
     'profilePicture': null,
     'deposit': DEFAULT_SALDO_DATA,
     'points': DEFAULT_POINTS_DATA,
@@ -62,7 +62,9 @@ function getUserInfo (context) {
         session.getSession(context.cookies[GlobalConfig['Cookie']['SessionID']], sessData => {
           const sessionExists = sessData !== null
           const loggedInSess = sessData && !isNaN(sessData['admin_id'])
-          resolve(getDefaultLoginRedirect(shouldRedir && sessionExists && loggedInSess))
+          const userID = loggedInSess ? sessData['admin_id'] : null
+
+          resolve(getDefaultLoginRedirect(userID, shouldRedir && sessionExists && loggedInSess))
         })
 
         setTimeout(reject, 5000)

@@ -36,7 +36,7 @@ module.exports = {
 
     req.session.oauthState = state
 
-    res.redirect(oauthAuthorizationURI(state))
+    res.redirect(oauthAuthorizationURI(state) + '&theme=mobile')
   },
   logout: function (req, res, next) {
     req.session.destroy((err) => {
@@ -49,11 +49,11 @@ module.exports = {
 
       if (req.cookies && req.cookies[GlobalConfig['Cookie']['SessionID']]) {
         const sessID = req.cookies[GlobalConfig['Cookie']['SessionID']]
-        console.log(`User session: ${sessID}`)
         return session.removeUserSession(sessID, success => {
-          console.log(`Removed User session: ${sessID}, ${success}`)
+          res.clearCookie(GlobalConfig['Cookie']['SessionID'])
+
           // Todo: flash to message user that logout is successful?
-          return res.redirect('/')
+          return res.redirect(GlobalConfig['Accounts']['Hostname'] + '/logout')
         })
       }
 
