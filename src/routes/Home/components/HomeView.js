@@ -43,7 +43,7 @@ class HomeView extends Component {
       <div>
         <HeaderHomeOld userInfo={this.props.data.user} tabIsAvailable />
 
-        <Ticker tickers={tickers} perTickDuration={2} />
+        <Ticker tickers={tickers} perTickDuration={4} />
         <Carousel images={slides} />
         <PromoSpacer />
         <div id='widget-dmw' className='u-clearfix u-my2' /> { /* Pulsa widget container */ }
