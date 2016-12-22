@@ -42,7 +42,9 @@ class LoggedInMenu extends Component {
   _totalObjectValues (object) {
     let result = 0
     if (object) {
-      result = Object.keys(object).map(k => object[k]).reduce((t, n) => n, 0)
+      result = Object.keys(object).map(k => object[k])
+                                  .filter(d => !isNaN(d))
+                                  .reduce((t, n) => parseInt(t) + n, 0)
     }
 
     return result
@@ -120,8 +122,8 @@ class LoggedInMenu extends Component {
     let inboxPDNotif = this.props.notifs['inbox']['inbox_talk'] > 0 ? (
       <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_talk'] }</span>
     ) : null
-    let inboxReviewNotif = this.props.notifs['inbox']['inbox_reputation'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_reputation'] }</span>
+    let inboxReviewNotif = this.props.notifs['inbox']['inbox_review'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_review'] }</span>
     ) : null
     let inboxCSNotif = this.props.notifs['inbox']['inbox_ticket'] > 0 ? (
       <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_ticket'] }</span>
