@@ -82,7 +82,8 @@ function getUserInfo (context) {
     console.log(`session data: ${sessData}`)
     // Check for session availability since we store OAuth tokens in express.js
     // and logging out on perl will not remove express.js' session
-    if (sessData === null) {
+    if (!sessData['access_token'] || !sessData['admin_id']) {
+      console.log(`destroy session`)
       return context.session.destroy(err => {
         if (err) {
           console.error(`Destroying session failed: ${err}`)
@@ -91,6 +92,7 @@ function getUserInfo (context) {
         return Promise.resolve(DEFAULT_NOT_LOGGED_IN)
       })
     } else {
+      console.log(`check oauth`)
       const tType = context.session.oauth.token['token_type']
       const token = context.session.oauth.token['access_token']
 
