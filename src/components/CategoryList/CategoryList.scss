@@ -21,18 +21,14 @@
     position: relative;
     margin-bottom: 5px;
     padding: 3px 0;
-    white-space: normal;
-
-    @media (min-width: 315px) {
-        white-space: nowrap;
-    }
+    white-space: nowrap;
 }
 
-.category-list__content:first-child {
+.category-list__content:nth-child(odd) {
     border-right: 1px solid $color-grey-2;
 }
 
-.category-list__content:last-child {
+.category-list__content:nth-child(even) {
     padding-left: 10px;
 }
 
