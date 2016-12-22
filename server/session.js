@@ -56,11 +56,11 @@ function _createUserSessionBySID (userInfo, token, sessionID, callback) {
 function _getSession (sessionID, callback) {
   const key = _redisKey(sessionID)
 
-  redisClient.get(key, (err, res) => {
+  return redisClient.get(key, (err, res) => {
     if (err) console.log(`Session Extraction error: ${err}`)
 
     console.log(`[Redis] Session ID ${key} found`)
-    callback(res)
+    return callback(res)
   })
 }
 
