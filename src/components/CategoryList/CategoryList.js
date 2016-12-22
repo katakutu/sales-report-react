@@ -17,8 +17,9 @@ class CategoryList extends Component {
 
   _chunkArray (arr, length) {
     let result = []
-    while (arr.length) {
-      result.push(arr.splice(0, length))
+    let copy = arr.slice()
+    while (copy.length) {
+      result.push(copy.splice(0, length))
     }
 
     return result
