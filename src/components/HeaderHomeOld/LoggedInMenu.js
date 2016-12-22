@@ -71,10 +71,11 @@ class LoggedInMenu extends Component {
     let inboxParent = (!this.state.inboxIsOpen) ? '' : 'opened'
     let purchaseParent = (!this.state.purchaseIsOpen) ? '' : 'opened'
     let salesParent = (!this.state.salesIsOpen) ? '' : 'opened'
+    let shopId = this.props.shop['shop_id']
 
     let topupLink = `${SITES['Pulsa']}/saldo/?utm_source=mobile&utm_medium=link&utm_campaign=top%20up%20saldo`
-    let goldMerchant = (this.props.shop['is_gold']==='1') ? (<i className="mi-sprite mi-gold"></i>):''
-    let shopSection = (this.props.shop['shop_id'] === 'ERROR FAIL' || this.props.shop['shop_id'] === null || this.props.shop['shop_id'] === '0' ) ? (
+    let goldMerchant = (this.props.shop['is_gold'] === '1') ? (<i className='mi-sprite mi-gold' />) : ''
+    let shopSection = (shopId === 'ERROR FAIL' || shopId === null || shopId === '0') ? (
       <div className='drawer__menu-shop u-clearfix'>
         <a href={`${HOSTNAME}/myshop.pl`}>
           <div className='u-left'>
