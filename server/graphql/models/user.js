@@ -74,8 +74,12 @@ function getUserInfo (context) {
     }
   }
 
+  console.log('session oauth exists')
+
   const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
+  console.log(`session cookies ID: ${sessID}`)
   return session.getSession(sessID, sessData => {
+    console.log(`session data: ${sessData}`)
     // Check for session availability since we store OAuth tokens in express.js
     // and logging out on perl will not remove express.js' session
     if (sessData === null) {
