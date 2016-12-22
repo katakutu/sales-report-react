@@ -73,6 +73,7 @@ class LoggedInMenu extends Component {
     let salesParent = (!this.state.salesIsOpen) ? '' : 'opened'
 
     let topupLink = `${SITES['Pulsa']}/saldo/?utm_source=mobile&utm_medium=link&utm_campaign=top%20up%20saldo`
+    let goldMerchant = (this.props.shop['is_gold']==='1') ? (<i className="mi-sprite mi-gold"></i>):''
     let shopSection = (this.props.shop['shop_id'] === 'ERROR FAIL' || this.props.shop['shop_id'] === null || this.props.shop['shop_id'] === '0' ) ? (
       <div className='drawer__menu-shop u-clearfix'>
         <a href={`${HOSTNAME}/myshop.pl`}>
@@ -96,8 +97,8 @@ class LoggedInMenu extends Component {
               <div>Toko Saya</div>
               <div className='drawer__menu-myshop-name'>{`${this.props.shop['shop_name']}`}</div>
             </div>
-            <div className='u-right drawer__menu-myshop'>
-              <img src={`https://ecs12.tokopedia.net/newimg/shops-1/${this.props.shop['shop_badge']}`} />
+            <div className='u-right'>
+              { goldMerchant }
             </div>
           </div>
         </a>
