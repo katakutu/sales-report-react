@@ -41,7 +41,7 @@ class HomeView extends Component {
 
     return (
       <div>
-        <HeaderHomeOld userInfo={this.props.data.user} tabIsAvailable />
+        <HeaderHomeOld userInfo={this.props.data.user} tabIsAvailable activeTab='home' />
 
         <Ticker tickers={tickers} perTickDuration={5} />
         <Carousel images={slides} />

@@ -19,6 +19,7 @@ import lang from '../../lib/utils/Lang'
 
 class HeaderHome extends Component {
   static propTypes = {
+    activeTab: React.PropTypes.string,
     updateUserLoginStatus: React.PropTypes.func,
     updateSidebarStatus: React.PropTypes.func,
     storeUserData: React.PropTypes.func,
@@ -118,7 +119,9 @@ class HeaderHome extends Component {
 
   renderTabs () {
     if (this.props.tabIsAvailable) {
-      return this.props.userIsLoggedIn ? <LoggedInTab /> : <LoggedOutTab />
+      return this.props.userIsLoggedIn
+        ? <LoggedInTab activeTab={this.props.activeTab} />
+        : <LoggedOutTab activeTab={this.props.activeTab} />
     }
   }
 
