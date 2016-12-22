@@ -56,11 +56,12 @@
 
         li {
             border-bottom: 1px solid #ECECEC;
+            font-size: 15px;
+            position: relative;
             word-break: break-word;
-            font-size: 17px;
 
             a {
-                display: block;
+                display: inline-block;
                 padding: 12px 5px;
                 color: rgba(0, 0, 0, 0.54);
                 font-weight: 600;
@@ -94,6 +95,18 @@
     vertical-align: middle;
     width: 35px;
     float: left;
+}
+
+.autocomplete__official-store {
+    background: #999;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+    line-height: 16px;
+    padding: 1px 5px;
+    position: absolute;
+    right: 5px;
+    top: 12.5px;
 }
 
 #search-input__modal-background {

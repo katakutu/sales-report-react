@@ -71,7 +71,6 @@ class LoggedInMenu extends Component {
     let inboxParent = (!this.state.inboxIsOpen) ? '' : 'opened'
     let purchaseParent = (!this.state.purchaseIsOpen) ? '' : 'opened'
     let salesParent = (!this.state.salesIsOpen) ? '' : 'opened'
-    let shopId = this.props.shop['shop_id']
 
     let topupLink = `${SITES['Pulsa']}/saldo/?utm_source=mobile&utm_medium=link&utm_campaign=top%20up%20saldo`
     let shopSection = (this.props.shop['shop_id'] === 'ERROR FAIL' || this.props.shop['shop_id'] === null) ? (
