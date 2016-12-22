@@ -9,6 +9,8 @@ import Slider from 'react-slick'
 const settings = {
   autoplay: true,
   autoplaySpeed: 5000,
+  pauseOnFocus: true,
+  pauseOnHover: true,
   dots: true,
   arrows: false,
   infinite: true,
