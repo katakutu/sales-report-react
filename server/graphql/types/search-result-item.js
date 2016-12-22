@@ -1,4 +1,5 @@
 const {
+  GraphQLBoolean,
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString
@@ -9,7 +10,8 @@ const SearchResultItemType = new GraphQLObjectType({
   fields: {
     imageURI: { type: new GraphQLNonNull(GraphQLString) },
     keyword: { type: new GraphQLNonNull(GraphQLString) },
-    url: { type: new GraphQLNonNull(GraphQLString) }
+    url: { type: new GraphQLNonNull(GraphQLString) },
+    official: { type: new GraphQLNonNull(GraphQLBoolean) }
   }
 })
 

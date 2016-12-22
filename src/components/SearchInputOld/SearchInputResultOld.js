@@ -23,6 +23,9 @@ class SearchInputResultOld extends Component {
       const image = (name.toLowerCase() === 'autocomplete') ? null : (
         <img className={className} src={item.imageURI} />
       )
+      const official = (item.official)
+        ? (<span className='autocomplete__official-store'>Official Store</span>)
+        : null
 
       return (
         <li key={`it-${index}`}>
@@ -30,6 +33,7 @@ class SearchInputResultOld extends Component {
           <a href={`${HOSTNAME}${item.url}`}>
             { item.keyword }
           </a>
+          { official }
         </li>
       )
     }
@@ -62,6 +66,7 @@ query Query($query: String!, $userSearchID: String!) {
       keyword
       url
       imageURI
+      official
     }
   }
 }

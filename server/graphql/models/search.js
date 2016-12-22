@@ -21,7 +21,8 @@ function universalSearch (userSearchID, query) {
           return {
             keyword: i['keyword'],
             url: i['url'],
-            imageURI: i['imageURI'] || ''
+            imageURI: i['imageURI'] || '',
+            official: i['isOfficial'] || false
           }
         })
       }
