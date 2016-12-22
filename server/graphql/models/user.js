@@ -61,8 +61,9 @@ function getUserInfo (context) {
       return new Promise((resolve, reject) => {
         session.getSession(context.cookies[GlobalConfig['Cookie']['SessionID']], sessData => {
           const sessionExists = sessData !== null
-          const loggedInSess = sessData && !isNaN(sessData['admin_id'])
-          const userID = loggedInSess ? sessData['admin_id'] : null
+          const sessDataObj = sessData ? JSON.parse(sessData) : {}
+          const loggedInSess = sessData && !isNaN(sessDataObj['admin_id'])
+          const userID = loggedInSess ? sessDataObj['admin_id'] : null
 
           resolve(getDefaultLoginRedirect(userID, shouldRedir && sessionExists && loggedInSess))
         })
