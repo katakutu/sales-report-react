@@ -15,6 +15,7 @@ import LoggedOutTab from './LoggedOutTab'
 import OverlaySplash from './OverlaySplash'
 
 import { HOSTNAME } from '../../constants'
+import lang from '../../lib/utils/Lang'
 
 class HeaderHome extends Component {
   static propTypes = {
@@ -25,7 +26,8 @@ class HeaderHome extends Component {
     userInfo: React.PropTypes.object,
     userIsLoggedIn: React.PropTypes.bool,
     sidebarIsOpened: React.PropTypes.bool,
-    tabIsAvailable: React.PropTypes.bool
+    tabIsAvailable: React.PropTypes.bool,
+    lang: React.PropTypes.string
   }
 
   state = {
@@ -198,7 +200,7 @@ class HeaderHome extends Component {
 
             { this.state.showSearch &&
               <SearchInputOld injectClassName={finalSICN}
-                injectPlaceholder='Cari Produk atau Toko'
+                injectPlaceholder={lang[this.props.lang]['Search Products or Stores']}
                 showModal={this.state.showSearchModal} />
             }
 
@@ -240,7 +242,8 @@ const mapStateToProps = (state) => {
   return {
     sidebarIsOpened: state['app'] ? state['app'].sidebarIsOpen : state.sidebarIsOpen,
     userData: state['app'] ? state['app'].user.data : state.user.data,
-    userIsLoggedIn: state['app'] ? state['app'].user.loggedIn : state.user.loggedIn
+    userIsLoggedIn: state['app'] ? state['app'].user.loggedIn : state.user.loggedIn,
+    lang: state['app'] ? state['app'].lang : state.lang
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderHome)

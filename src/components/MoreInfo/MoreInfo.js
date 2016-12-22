@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import './MoreInfo.scss'
 
 import { HOSTNAME, SITES } from '../../constants'
+import lang from '../../lib/utils/Lang'
 
 class MoreInfo extends Component {
+  static propTypes = {
+    updateLang: React.PropTypes.func,
+    lang: React.PropTypes.string
+  }
+
   state = {
     show: true
   }
@@ -30,32 +37,32 @@ class MoreInfo extends Component {
           <ul className='u-list-reset more-info__content u-p0 u-m0' style={listStyle}>
             <li>
               <a className='more-info__link' href={`${HOSTNAME}/bebas-penipuan`}>
-                Belanja di Tokopedia
-            <i className='more-info__arrow' />
+                { lang[this.props.lang]['Why Buy on Tokopedia'] }
+                <i className='more-info__arrow' />
               </a>
             </li>
             <li>
               <a className='more-info__link' href={`${HOSTNAME}/jualan-online`}>
-                Jualan di Tokopedia
-            <i className='more-info__arrow' />
+                { lang[this.props.lang]['Why Sell on Tokopedia'] }
+                <i className='more-info__arrow' />
               </a>
             </li>
             <li>
               <a className='more-info__link' href={`${SITES['Tiket']}/kereta-api/`}>
-                Pesan Tiket Kereta
-            <i className='more-info__arrow' />
+                { lang[this.props.lang]['RESERVE_TRAIN_TICKET'] }
+                <i className='more-info__arrow' />
               </a>
             </li>
             <li>
               <a className='more-info__link' href={`${SITES['Pulsa']}`}>
-                Isi Ulang Pulsa
-            <i className='more-info__arrow' />
+                { lang[this.props.lang]['BUY_RECHARGE'] }
+                <i className='more-info__arrow' />
               </a>
             </li>
             <li>
               <a className='more-info__link' href={`${SITES['Events']}`}>
-                Kegiatan Kami
-            <i className='more-info__arrow' />
+                { lang[this.props.lang]['Events'] }
+                <i className='more-info__arrow' />
               </a>
             </li>
             <li>
@@ -66,14 +73,14 @@ class MoreInfo extends Component {
             </li>
             <li>
               <a className='more-info__link' href={`${HOSTNAME}/about`}>
-                Tentang Kami
-            <i className='more-info__arrow' />
+                { lang[this.props.lang]['About Us'] }
+                <i className='more-info__arrow' />
               </a>
             </li>
             <li>
               <a className='more-info__link' href={`${HOSTNAME}/careers`}>
-                Karir
-            <i className='more-info__arrow' />
+                { lang[this.props.lang]['Career'] }
+                <i className='more-info__arrow' />
               </a>
             </li>
             <li>
@@ -84,20 +91,20 @@ class MoreInfo extends Component {
             </li>
             <li>
               <a className='more-info__link' href={`${HOSTNAME}/terms.pl`}>
-                Syarat & Ketentuan
-            <i className='more-info__arrow' />
+                { lang[this.props.lang]['term & condition'] }
+                <i className='more-info__arrow' />
               </a>
             </li>
             <li>
               <a className='more-info__link' href={`${HOSTNAME}/privacy.pl`}>
-                Kebijakan Privasi
-            <i className='more-info__arrow' />
+                { lang[this.props.lang]['Privacy Policy'] }
+                <i className='more-info__arrow' />
               </a>
             </li>
             <li>
               <a className='more-info__link' href={`${HOSTNAME}/bantuan`}>
-                Hubungi Kami
-            <i className='more-info__arrow' />
+                { lang[this.props.lang]['Contact Us'] }
+                <i className='more-info__arrow' />
               </a>
             </li>
           </ul>
@@ -107,4 +114,9 @@ class MoreInfo extends Component {
   }
 }
 
-export default MoreInfo
+const mapStateToProps = (state) => {
+  return {
+    lang: state['app'] ? state['app'].lang : state.lang
+  }
+}
+export default connect(mapStateToProps, undefined)(MoreInfo)

@@ -1,21 +1,18 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import './Footer.scss'
 import footerAppsApple from './assets/footer-apps-apple@2x.png'
 import footerAppsAndroid from './assets/footer-apps-android@2x.png'
 
 import Cookies from '../../lib/utils/Cookies'
-import langEn from '../../lib/utils/lang_en-min.js'
-import langId from '../../lib/utils/lang_id-min.js'
+import lang from '../../lib/utils/Lang'
+import { updateLang } from '../../store/app'
 import { DESKTOP_HOSTNAME, HOSTNAME } from '../../constants'
 
-var lang = {
-  'id':langId,
-  'en':langEn
-}
-
 class Footer extends Component {
-  state = {
-    language: (Cookies.getItem('lang')) ? Cookies.getItem('lang') : 'id'
+  static propTypes = {
+    updateLang: React.PropTypes.func,
+    lang: React.PropTypes.string
   }
 
   constructor (props) {
@@ -25,16 +22,18 @@ class Footer extends Component {
   }
 
   languageChange (event) {
-    const lang = event.target.value
-    this.setState({ language: lang }, () => Cookies.setItem('lang', lang))
+    const newLang = event.target.value
+    this.setState({ language: newLang }, () => Cookies.setItem('lang', newLang))
+    this.props.updateLang(newLang)
   }
 
   render () {
-    let l = this.state.language
     return (
       <div className='footer u-clearfix'>
         <div className='footer__apps u-clearfix u-center'>
-          <p className='u-line-height-4 footer__apps-text'>Dapatkan Aplikasi Mobile Tokopedia</p>
+          <p className='u-line-height-4 footer__apps-text'>
+            { lang[this.props.lang]['Download Tokopedia Mobile Apps'] }
+          </p>
           <div className='u-inline-block u-px1 u-mb1'>
             <a href='https://play.google.com/store/apps/details?id=com.tokopedia.tkpd'>
               <img src={footerAppsAndroid} alt='' className='u-fit footer__apps-img' />
@@ -48,22 +47,23 @@ class Footer extends Component {
         </div>
         <div className='footer__lower u-clearfix u-center'>
           <p className='u-line-height-4'>
-            <a href={`${HOSTNAME}/bantuan`} className='u-ml1'>{
-              lang[l]['Need Help']
+            <a href={`${HOSTNAME}/bantuan`} className='u-ml1'>
+              {
+              lang[this.props.lang]['Need Help']
             }?</a>
             &nbsp; | &nbsp;
         <a href={DESKTOP_HOSTNAME}>{
-          lang[l]['Desktop Site']
+          lang[this.props.lang]['Desktop Site']
         }</a>
           </p>
           <p className='u-line-height-4 footer__lower-text--bigger'>
             <label htmlFor='language'>{
-              lang[l]['Choose Language']
+              lang[this.props.lang]['Choose Language']
             }</label>
             <select id='language'
               name='language'
               className='footer__select-language'
-              value={this.state.language}
+              value={this.props.lang}
               onChange={this.languageChange}>
               <option value='id'>Indonesia</option>
               <option value='en'>English</option>
@@ -76,4 +76,13 @@ class Footer extends Component {
   }
 }
 
-export default Footer
+const mapDispatchToProps = {
+  updateLang
+}
+const mapStateToProps = (state) => {
+  return {
+    lang: state['app'] ? state['app'].lang : state.lang
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer)
