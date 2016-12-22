@@ -80,6 +80,10 @@ function getUserInfo (context) {
   console.log(`session cookies ID: ${sessID}`)
   return session.getSession(sessID, sessData => {
     console.log(`session data: ${sessData}`)
+    console.log(!sessData['access_token'])
+    console.log(sessData['access_token'])
+    console.log(!sessData['admin_id'])
+    console.log(sessData['admin_id'])
     // Check for session availability since we store OAuth tokens in express.js
     // and logging out on perl will not remove express.js' session
     if (!sessData['access_token'] || !sessData['admin_id']) {
