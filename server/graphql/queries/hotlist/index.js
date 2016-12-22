@@ -1,3 +1,3 @@
-const hotlists = require('./hotlist')
+const hotlist = require('./hotlist')
 
-module.exports = { hotlists }
+module.exports = hotlist

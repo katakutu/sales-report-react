@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import TabSlider from 'react-slick'
+import { Link } from 'react-router'
 
 import { appIsLoading } from '../../store/app'
 import { HOSTNAME } from '../../constants'
@@ -19,17 +20,21 @@ var settings = {
 
 class LoggedInTab extends Component {
   static propTypes = {
-    appIsLoading: React.PropTypes.func
+    appIsLoading: React.PropTypes.func,
+    activeTab: React.PropTypes.string
   }
 
   render () {
     let loadingFunc = event => this.props.appIsLoading(true)
 
+    const homeCN = this.props.activeTab === 'home' ? 'tab-item active' : 'tab-item'
+    const hlCN = this.props.activeTab === 'hotlist' ? 'tab-item active' : 'tab-item'
+
     return (
       <TabSlider {...settings} className='tab logged-in'>
-        <div className='tab-item active'>
+        <div className={homeCN}>
           <label className='tab-link'>
-            <a href='#'>Home</a>
+            <Link to='/'>Home</Link>
           </label>
         </div>
         <div className='tab-item'>
@@ -42,9 +47,11 @@ class LoggedInTab extends Component {
             <a href={`${HOSTNAME}/fav-shop.pl?view=1`} onClick={loadingFunc}>Favorit</a>
           </label>
         </div>
-        <div className='tab-item'>
+        <div className={hlCN}>
           <label className='tab-link'>
-            <a href={`${HOSTNAME}/hot?page=1`} onClick={loadingFunc}>Hot List</a>
+            <Link to={`/hot?page=1`}>
+              Hot List
+            </Link>
           </label>
         </div>
         <div className='tab-item'>

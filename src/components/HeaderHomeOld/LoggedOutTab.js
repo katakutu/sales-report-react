@@ -3,24 +3,27 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
 import { appIsLoading } from '../../store/app'
-import { HOSTNAME } from '../../constants'
 
 class LoggedOutTab extends Component {
   static propTypes = {
-    appIsLoading: React.PropTypes.func
+    appIsLoading: React.PropTypes.func,
+    activeTab: React.PropTypes.string
   }
 
   render () {
+    const homeCN = this.props.activeTab === 'home' ? 'tab-item active' : 'tab-item'
+    const hlCN = this.props.activeTab === 'hotlist' ? 'tab-item active' : 'tab-item'
+
     return (
       <div className='tab logged-out'>
-        <div className='tab-item active'>
+        <div className={homeCN}>
           <label className='tab-link'>
-            <Link href='/'>Home</Link>
+            <Link to='/'>Home</Link>
           </label>
         </div>
-        <div className='tab-item'>
+        <div className={hlCN}>
           <label className='tab-link'>
-            <Link to={`${HOSTNAME}/hot?page=1`}>
+            <Link to={`/hot?page=1`}>
               Hot List
             </Link>
           </label>

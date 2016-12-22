@@ -42,7 +42,9 @@ class LoggedInMenu extends Component {
   _totalObjectValues (object) {
     let result = 0
     if (object) {
-      result = Object.keys(object).map(k => object[k]).reduce((t, n) => t + n, 0)
+      result = Object.keys(object).map(k => object[k])
+                                  .filter(d => !isNaN(d))
+                                  .reduce((t, n) => parseInt(t) + n, 0)
     }
 
     return result
@@ -71,9 +73,11 @@ class LoggedInMenu extends Component {
     let inboxParent = (!this.state.inboxIsOpen) ? '' : 'opened'
     let purchaseParent = (!this.state.purchaseIsOpen) ? '' : 'opened'
     let salesParent = (!this.state.salesIsOpen) ? '' : 'opened'
+    let shopId = this.props.shop['shop_id']
 
     let topupLink = `${SITES['Pulsa']}/saldo/?utm_source=mobile&utm_medium=link&utm_campaign=top%20up%20saldo`
-    let shopSection = (this.props.shop['shop_id'] === 'ERROR FAIL' || this.props.shop['shop_id'] === null) ? (
+    let goldMerchant = (this.props.shop['is_gold'] === '1') ? (<i className='mi-sprite mi-gold' />) : ''
+    let shopSection = (shopId === 'ERROR FAIL' || shopId === null || shopId === '0') ? (
       <div className='drawer__menu-shop u-clearfix'>
         <a href={`${HOSTNAME}/myshop.pl`}>
           <div className='u-left'>
@@ -96,10 +100,12 @@ class LoggedInMenu extends Component {
               <div>Toko Saya</div>
               <div className='drawer__menu-myshop-name'>{`${this.props.shop['shop_name']}`}</div>
             </div>
+            <div className='u-right'>
+              { goldMerchant }
+            </div>
           </div>
         </a>
     )
-
     let inboxNotif = this._totalObjectValues(this.props.notifs['inbox']) > 0 ? (
       <span className='drawer__menu-notif' />
     ) : null
@@ -116,8 +122,8 @@ class LoggedInMenu extends Component {
     let inboxPDNotif = this.props.notifs['inbox']['inbox_talk'] > 0 ? (
       <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_talk'] }</span>
     ) : null
-    let inboxReviewNotif = this.props.notifs['inbox']['inbox_reputation'] > 0 ? (
-      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_reputation'] }</span>
+    let inboxReviewNotif = this.props.notifs['inbox']['inbox_review'] > 0 ? (
+      <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_review'] }</span>
     ) : null
     let inboxCSNotif = this.props.notifs['inbox']['inbox_ticket'] > 0 ? (
       <span className='u-right drawer__menu-child-notif'>{ this.props.notifs['inbox']['inbox_ticket'] }</span>
@@ -181,8 +187,12 @@ class LoggedInMenu extends Component {
             </div>
           </div>
           <div className='drawer__user-box'>
-            <img className='drawer__user-photo' src={this.props.userData.profilePicture} alt='tokopedia' />
-            <div className='drawer__username u-mt1'>{ this.props.userData.name }</div>
+            <a href={`${HOSTNAME}/people/${this.props.userData.id}`}>
+              <img className='drawer__user-photo' src={this.props.userData.profilePicture} alt='tokopedia' />
+            </a>
+            <div className='drawer__username u-mt1'>
+              <a href={`${HOSTNAME}/people/${this.props.userData.id}`}>{ this.props.userData.name }</a>
+            </div>
           </div>
           <div className='drawer__user-summary u-clearfix'>
             <div className='drawer__user-summary-box u-left'>
@@ -313,7 +323,7 @@ class LoggedInMenu extends Component {
               }{salesEtalaseNotif}</a></li>
             </ul>
           </div>
-          <div className='drawer__menu'>
+          <div className='drawer__menu last__menu'>
             <a href={`${HOSTNAME}/logout`}>
               <img className='drawer__menu-icon' src={logoutIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>{

@@ -10,7 +10,6 @@
 
 .hotlist__wrapper {
     position: relative;
-    margin: 0 0 0 10px;
     padding: 10px;
     max-width: 277px;
     height: 100%;
@@ -52,4 +51,8 @@
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+.slick-slide.hotlist__item {
+    padding: 0 0 0 10px;
 }

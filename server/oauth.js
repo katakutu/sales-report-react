@@ -117,7 +117,6 @@ module.exports = {
         // temp for testing
         return session.getSession(req.cookies[GlobalConfig['Cookie']['SessionID']], sessData => {
           const sessExists = sessData !== null
-          console.log(`Session data: ${sessData}`)
           return res.status(200).json({ login_redirect: shouldRedir && sessExists })
         })
       } else {
