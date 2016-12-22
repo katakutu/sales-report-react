@@ -45,7 +45,7 @@ class SearchModal extends Component {
     return (
       <div className='modal__container'>
         <div className='search-modal__box'>
-          <span className='search-input__close' onClick={this.props.onClose}></span>
+          <span className='search-input__close' onClick={this.props.onClose} />
           <form className='search-modal__form'>
             <input type='text'
               ref='modalSearchInput'

@@ -109,115 +109,115 @@ class SearchModalResult extends Component {
   render () {
     return (
       <div className='clearfix'>
-        { /*this.renderRecentSearchList(this.props.data.search)*/ }
-        { /*this.renderResultList(this.props.data.search)*/ }
-        { /*this.renderResultList(this.props.data.search, 'shop', false)*/ }
-        { /*this.renderResultList(this.props.data.search, 'hotlist', false)*/ }
+        { /* this.renderRecentSearchList(this.props.data.search) */ }
+        { /* this.renderResultList(this.props.data.search) */ }
+        { /* this.renderResultList(this.props.data.search, 'shop', false) */ }
+        { /* this.renderResultList(this.props.data.search, 'hotlist', false) */ }
 
         { /* History */}
         <div className='u-clearfix search-modal__result-container search-modal__result--history'>
-         <h1 className='u-uppercase'>History</h1>
-         <a href='#' className='search-modal__clear-history'>Hapus Semua</a>
-         <ul className='u-list-reset u-p0 u-m0'>
-          <li className='search-modal__result-item'>
-            <a href='#' className='search-modal__item-action'><span /></a>
-            <Link className='search-modal__item-value' to='#'>
-              <i className='search-modal__icon'></i>
+          <h1 className='u-uppercase'>History</h1>
+          <a href='#' className='search-modal__clear-history'>Hapus Semua</a>
+          <ul className='u-list-reset u-p0 u-m0'>
+            <li className='search-modal__result-item'>
+              <a href='#' className='search-modal__item-action'><span /></a>
+              <Link className='search-modal__item-value' to='#'>
+                <i className='search-modal__icon' />
               Kemantapan
             </Link>
-          </li>
-          <li className='search-modal__result-item'>
-            <a href='#' className='search-modal__item-action'><span /></a>
-            <Link className='search-modal__item-value' to='#'>
-              <i className='search-modal__icon'></i>
+            </li>
+            <li className='search-modal__result-item'>
+              <a href='#' className='search-modal__item-action'><span /></a>
+              <Link className='search-modal__item-value' to='#'>
+                <i className='search-modal__icon' />
               Kemantapan
             </Link>
-          </li>
-         </ul>
+            </li>
+          </ul>
         </div>
 
         { /* Popular */}
         <div className='u-clearfix search-modal__result-container search-modal__result--popular'>
-         <h1 className='u-uppercase'>Popular</h1>
-         <ul className='u-list-reset u-p0 u-m0'>
-          <li className='search-modal__result-item'>
-            <Link className='search-modal__item-value' to='#'>
-              <i className='search-modal__icon'></i>
+          <h1 className='u-uppercase'>Popular</h1>
+          <ul className='u-list-reset u-p0 u-m0'>
+            <li className='search-modal__result-item'>
+              <Link className='search-modal__item-value' to='#'>
+                <i className='search-modal__icon' />
               Kemantapan
             </Link>
-          </li>
-          <li className='search-modal__result-item'>
-            <Link className='search-modal__item-value' to='#'>
-              <i className='search-modal__icon'></i>
+            </li>
+            <li className='search-modal__result-item'>
+              <Link className='search-modal__item-value' to='#'>
+                <i className='search-modal__icon' />
               Kemantapan
             </Link>
-          </li>
-         </ul>
+            </li>
+          </ul>
         </div>
 
         { /* Autocomplete */}
         <div className='u-clearfix search-modal__result-container search-modal__result--autocomplete'>
-         <h1 className='u-uppercase'>Autocomplete</h1>
-         <ul className='u-list-reset u-p0 u-m0'>
-          <li className='search-modal__result-item'>
-            <Link className='search-modal__item-value' to='#'>
-              <i className='search-modal__icon'></i>
+          <h1 className='u-uppercase'>Autocomplete</h1>
+          <ul className='u-list-reset u-p0 u-m0'>
+            <li className='search-modal__result-item'>
+              <Link className='search-modal__item-value' to='#'>
+                <i className='search-modal__icon' />
               Kemantapan
             </Link>
-          </li>
-          <li className='search-modal__result-item'>
-            <Link className='search-modal__item-value' to='#'>
-              <i className='search-modal__icon'></i>
+            </li>
+            <li className='search-modal__result-item'>
+              <Link className='search-modal__item-value' to='#'>
+                <i className='search-modal__icon' />
               Kemantapan
             </Link>
-          </li>
-         </ul>
+            </li>
+          </ul>
         </div>
 
         { /* Shop */}
         <div className='u-clearfix search-modal__result-container search-modal__result--shop'>
-         <h1 className='u-uppercase'>Shop</h1>
-         <ul className='u-list-reset u-p0 u-m0'>
-          <li className='search-modal__result-item'>
-            <Link className='search-modal__item-value' to='#'>
-              <img src='http://placehold.it/40x40' alt='' />
+          <h1 className='u-uppercase'>Shop</h1>
+          <ul className='u-list-reset u-p0 u-m0'>
+            <li className='search-modal__result-item'>
+              <Link className='search-modal__item-value' to='#'>
+                <img src='http://placehold.it/40x40' alt='' />
               Kemantapan
               <span className='search-modal__item-label'>Official Store</span>
-            </Link>
-          </li>
-          <li className='search-modal__result-item'>
-            <Link className='search-modal__item-value' to='#'>
-              <img src='http://placehold.it/40x40' alt='' />
+              </Link>
+            </li>
+            <li className='search-modal__result-item'>
+              <Link className='search-modal__item-value' to='#'>
+                <img src='http://placehold.it/40x40' alt='' />
               Kemantapan
               <span className='search-modal__item-label'>Promoted</span>
-            </Link>
-          </li>
-          <li className='search-modal__result-item'>
-            <Link className='search-modal__item-value' to='#'>
-              <img src='http://placehold.it/40x40' alt='' />
+              </Link>
+            </li>
+            <li className='search-modal__result-item'>
+              <Link className='search-modal__item-value' to='#'>
+                <img src='http://placehold.it/40x40' alt='' />
               Kemantapan
             </Link>
-          </li>
-         </ul>
+            </li>
+          </ul>
         </div>
 
         { /* Hot List */}
         <div className='u-clearfix search-modal__result-container search-modal__result--hotlist'>
-         <h1 className='u-uppercase'>Hot List</h1>
-         <ul className='u-list-reset u-p0 u-m0'>
-          <li className='search-modal__result-item'>
-            <Link className='search-modal__item-value' to='#'>
-              <i className='search-modal__icon'></i>
+          <h1 className='u-uppercase'>Hot List</h1>
+          <ul className='u-list-reset u-p0 u-m0'>
+            <li className='search-modal__result-item'>
+              <Link className='search-modal__item-value' to='#'>
+                <i className='search-modal__icon' />
               Kemantapan
             </Link>
-          </li>
-          <li className='search-modal__result-item'>
-            <Link className='search-modal__item-value' to='#'>
-              <i className='search-modal__icon'></i>
+            </li>
+            <li className='search-modal__result-item'>
+              <Link className='search-modal__item-value' to='#'>
+                <i className='search-modal__icon' />
               Kemantapan
             </Link>
-          </li>
-         </ul>
+            </li>
+          </ul>
         </div>
 
       </div>

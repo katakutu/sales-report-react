@@ -68,7 +68,7 @@ class SearchInput extends Component {
             placeholder={this.props.injectPlaceholder}
             onFocus={this.handleFocus}
             value={this.state.value} />
-            <button className={finalSearchBtnCN}>
+          <button className={finalSearchBtnCN}>
               Search
             </button>
 
