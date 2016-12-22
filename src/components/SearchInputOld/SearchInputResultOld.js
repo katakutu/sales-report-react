@@ -73,5 +73,8 @@ query Query($query: String!, $userSearchID: String!) {
 `
 
 export default graphql(SearchQuery, {
-  options: ({ query, userSearchID }) => ({ variables: { query, userSearchID } })
+  options: ({ query, userSearchID }) => ({
+    variables: { query, userSearchID },
+    returnPartialData: true
+  })
 })(SearchInputResultOld)
