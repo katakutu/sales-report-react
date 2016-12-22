@@ -32,7 +32,7 @@
     border-right: 1px solid $color-grey-2;
 }
 
-.category-list__content:last-child {
+.category-list__content:nth-child(even) {
     padding-left: 10px;
 }
 
