@@ -3,7 +3,8 @@ const GlobalConfig = require('../../../GlobalConfig')
 const URL = require('url')
 
 const HOTLIST_SERVICES = {
-  Get: `${GlobalConfig.Hotlist.Hostname}?action=:action`
+  GetHotProductHome: `${GlobalConfig.Hotlist.Hostname}?action=hot_product_home`,
+  GetHotProductList: `${GlobalConfig.Hotlist.Hostname}?action=hot_product_list&page=:page&perPage=:per_page`
 }
 
 class TopedHotlistAPI {
@@ -11,12 +12,26 @@ class TopedHotlistAPI {
     this.api = new TopedAPI()
   }
 
-  getHotlists (action = 'hot_product_home') {
-    let url = URL.parse(HOTLIST_SERVICES.Get.replace(':action', action))
+  getHotProductHome () {
+    const url = URL.parse(HOTLIST_SERVICES.GetHotProductHome)
 
     return this.api.consume(url, 'GET', {}, true)
       .catch(err => {
         console.error(`Failed to fetch ${url.format()}. Returning default value. Error: `, err)
+        return {}
+      })
+  }
+
+  GetHotProductList (page = 1, perPage = 9) {
+    const endpoint = HOTLIST_SERVICES.GetHotProductList
+                                     .replace(':page', page)
+                                     .replace(':per_page', perPage)
+    const url = URL.parse(endpoint)
+
+    return this.api.consume(url, 'GET', {}, true)
+      .catch(err => {
+        console.error(`Failed to fetch ${url.format()}. Returning default value. Error: `, err)
+
         return {}
       })
   }

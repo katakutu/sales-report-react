@@ -65,6 +65,7 @@
                 padding: 12px 5px;
                 color: rgba(0, 0, 0, 0.54);
                 font-weight: 600;
+                width: 100%;
             }
         }
     }
@@ -91,10 +92,14 @@
     margin-right: 25px;
     max-width: 100%;
     position: relative;
-    top: 5px;
     vertical-align: middle;
     width: 35px;
     float: left;
+}
+
+.autocomplete__item-text {
+  position: relative;
+  top: 10px;
 }
 
 .autocomplete__official-store {
@@ -106,7 +111,7 @@
     padding: 1px 5px;
     position: absolute;
     right: 5px;
-    top: 12.5px;
+    top: 20px;
 }
 
 #search-input__modal-background {

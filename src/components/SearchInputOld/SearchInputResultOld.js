@@ -29,11 +29,11 @@ class SearchInputResultOld extends Component {
 
       return (
         <li key={`it-${index}`}>
-          { image }
           <a href={`${HOSTNAME}${item.url}`}>
-            { item.keyword }
+            { image }
+            <span className='autocomplete__item-text'>{ item.keyword }</span>
+            { official }
           </a>
-          { official }
         </li>
       )
     }
@@ -73,5 +73,8 @@ query Query($query: String!, $userSearchID: String!) {
 `
 
 export default graphql(SearchQuery, {
-  options: ({ query, userSearchID }) => ({ variables: { query, userSearchID } })
+  options: ({ query, userSearchID }) => ({
+    variables: { query, userSearchID },
+    returnPartialData: true
+  })
 })(SearchInputResultOld)
