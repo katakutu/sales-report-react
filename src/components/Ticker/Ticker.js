@@ -58,8 +58,7 @@ class Ticker extends Component {
     if (this.state.content !== '') {
       result = (
         <div className='ticker'>
-          <div className='ticker__container' dangerouslySetInnerHTML={{ __html: this.state.content }}>
-          </div>
+          <div className='ticker__container' dangerouslySetInnerHTML={{ __html: this.state.content }} />
         </div>
       )
     }
