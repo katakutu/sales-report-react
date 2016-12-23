@@ -11,7 +11,8 @@ import lang from '../../../lib/utils/Lang'
 
 class HotListView extends Component {
   static propTypes = {
-    data: React.PropTypes.object
+    data: React.PropTypes.object,
+    lang: React.PropTypes.string
   }
 
   state = {
