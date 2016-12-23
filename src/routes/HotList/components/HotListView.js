@@ -45,7 +45,7 @@ class HotListView extends Component {
 
           <div className='hotlist-showall'>
             <a className='link-green' href='#' onClick={this.viewMore}>
-              Lihat lagi &nbsp; &gt;
+              Lihat lagi &rsaquo;
             </a>
           </div>
         </div>
