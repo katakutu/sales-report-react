@@ -38,7 +38,7 @@ class SearchModal extends Component {
   }
 
   handleChange (event) {
-    this.setState({ query: event.target.value })
+    this.setState({ query: event.target.value, hasContent: true })
   }
 
   render () {
@@ -56,7 +56,9 @@ class SearchModal extends Component {
               value={this.state.query} />
             <input type='hidden' name='st' defaultValue='product' />
             <span className='search-input__modal-icon' />
-            <span className='search-input__modal-cancel' onClick={this.clearText} />
+
+            { this.state.hasContent &&
+            <span className='search-input__modal-cancel' onClick={this.clearText} /> }
 
             { this.state.hasContent && <span className='search-input__clear'
               onClick={this.clearText} /> }
