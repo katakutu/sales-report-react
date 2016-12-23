@@ -226,8 +226,8 @@ class LoggedInMenu extends Component {
               <span className='drawer__menu-title u-inline-block'>Wishlist</span>
             </a>
           </div>
-          <div className='drawer__menu' onClick={this.handleInboxClicked}>
-            <a>
+          <div className='drawer__menu'>
+            <a onClick={this.handleInboxClicked}>
               <img className='drawer__menu-icon' src={inboxIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>{
                 lang[this.props.lang]['Inbox']
@@ -253,8 +253,8 @@ class LoggedInMenu extends Component {
               }{inboxRCNotif}</a></li>
             </ul>
           </div>
-          <div className='drawer__menu' onClick={this.handlePurhcaseClicked}>
-            <a>
+          <div className='drawer__menu'>
+            <a onClick={this.handlePurhcaseClicked}>
               <img className='drawer__menu-icon' src={buyingIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>{
                 lang[this.props.lang]['Purchase']
@@ -292,8 +292,8 @@ class LoggedInMenu extends Component {
               </li>
             </ul>
           </div>
-          <div className='drawer__menu' onClick={this.handleSalesClicked}>
-            <a>
+          <div className='drawer__menu'>
+            <a onClick={this.handleSalesClicked}>
               <img className='drawer__menu-icon' src={sellingIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>{
                 lang[this.props.lang]['Sales']
