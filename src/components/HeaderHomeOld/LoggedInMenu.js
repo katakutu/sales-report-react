@@ -97,7 +97,7 @@ class LoggedInMenu extends Component {
               <img src={`${this.props.shop['logo']}`} alt='tokopedia' className='drawer__menu-shop-icon' />
             </div>
             <div className='u-left drawer__menu-myshop'>
-              <div>Toko Saya</div>
+              <div>{ lang[this.props.lang]['Toko Saya'] }</div>
               <div className='drawer__menu-myshop-name'>{`${this.props.shop['shop_name']}`}</div>
             </div>
             <div className='u-right'>
