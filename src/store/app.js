@@ -150,6 +150,8 @@ const ACTION_HANDLERS = {
   }
 }
 
+import Cookies from '../lib/utils/Cookies'
+
 // ------------------------------------
 // Reducer
 // ------------------------------------
@@ -158,7 +160,7 @@ const initialState = {
   isOnline: true,
   isLoading: false,
   notifications: [],
-  lang: 'id',
+  lang: Cookies.getItem('lang'),
   user: {
     loggedIn: false,
     searchID: '-',
