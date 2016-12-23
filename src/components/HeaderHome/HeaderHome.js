@@ -11,7 +11,7 @@ class HeaderHome extends Component {
         <div className='header__search u-clearfix'>
           <div className='header__search-container u-col u-col-12'>
             <SearchInputOld injectClassName='u-col-12'
-              injectPlaceholder='Cari produk atau toko' />
+              injectPlaceholder='Cari Product atau Toko' />
 
             <Link to='/' className='header__search-btn' activeClassName='route--active'>
               <img src={HeaderSearchBtnCart} alt='' width='26' height='24' />

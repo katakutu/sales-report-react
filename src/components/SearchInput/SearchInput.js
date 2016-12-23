@@ -1,20 +1,27 @@
 import React, { Component } from 'react'
+import BodyClassName from 'react-body-classname'
 import { connect } from 'react-redux'
-import './SearchInput.scss'
 import SearchModal from '../SearchModal'
+import './SearchInput.scss'
 
 import lang from '../../lib/utils/Lang'
+import UserSearchID from '../../lib/utils/UserSearchID'
+import { storeUserSearchID } from '../../store/app'
 
 class SearchInput extends Component {
   static propTypes = {
     injectClassName: React.PropTypes.string,
     injectPlaceholder: React.PropTypes.string,
-    updateLang: React.PropTypes.func,
-    lang: React.PropTypes.string
+    lang: React.PropTypes.string,
+    showModal: React.PropTypes.bool,
+    storeUserSearchID: React.PropTypes.func,
+    userSearchID: React.PropTypes.string,
+    updateLang: React.PropTypes.func
   }
 
   state = {
-    searchModalOpened: false
+    searchModalOpened: this.props.showModal,
+    value: ''
   }
 
   constructor (props) {
@@ -25,6 +32,11 @@ class SearchInput extends Component {
   }
 
   handleFocus () {
+    UserSearchID.initUniqueID()
+    let uid = UserSearchID.getUniqueID(this.props.userSearchID)
+
+    this.props.storeUserSearchID(uid)
+
     this.setState({ searchModalOpened: true })
   }
 
@@ -34,28 +46,47 @@ class SearchInput extends Component {
   }
 
   render () {
+    let backgroundBlur = (this.state.showSelection) ? 'search-input__modal-active' : ''
+    let finalClassName = `search-input u-px2 u-pb2 ${this.props.injectClassName} ${backgroundBlur}`
+    let searchBtnCN = (this.state.showSelection) ? 'focus' : ''
+    let finalSearchBtnCN = `search-input__btn ${searchBtnCN}`
+
     return (
-      <div className={'search-input' + ' ' + this.props.injectClassName}>
-        <form>
-          <input id='search-input__input'
-            name='search-input__input'
-            type='text'
-            className='search-input__input u-col-12'
+      <div className={finalClassName}>
+        <form action='/search' method='get' className='u-relative'>
+          <input type='hidden' name='st' defaultValue='product' />
+          <label htmlFor='search_input' className='u-hide'>
+            { lang[this.props.lang]['Search Products or Stores'] }
+          </label>
+          <input name='q'
+            autoComplete='off'
+            autoFocus={this.state.showSelection}
+            type='search'
+            id='search_input'
+            ref='searchInput'
+            className='search-input__input'
             placeholder={this.props.injectPlaceholder}
-            onFocus={this.handleFocus} />
-          <span className='search-input__icon' />
-          <label htmlFor='search-input__input'
-            style={{ 'color': '#42b549' }}>{ lang[this.props.lang]['Search Products or Stores'] }</label>
+            onFocus={this.handleFocus}
+            value={this.state.value} />
+          <button className={finalSearchBtnCN}>
+              Search
+            </button>
+
+          { this.state.value !== '' && <span className='search-input__cancel' onClick={this.clearText} /> }
         </form>
 
         { this.state.searchModalOpened && <SearchModal onClose={this.handleModalClosed} /> }
+        { this.state.searchModalOpened && <BodyClassName className='u-body-overflow-no-scroll' /> }
       </div>
     )
   }
 }
+
+const mapDispatchToProps = { storeUserSearchID }
 const mapStateToProps = (state) => {
   return {
-    lang: state['app'] ? state['app'].lang : state.lang
+    lang: state['app'] ? state['app'].lang : state.lang,
+    userSearchID: state['app'] ? state['app'].user.searchID : state.user.searchID
   }
 }
-export default connect(mapStateToProps, undefined)(SearchInput)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchInput)

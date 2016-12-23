@@ -7,7 +7,8 @@ import BodyClassName from 'react-body-classname'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import './HeaderHomeOld.scss'
-import SearchInputOld from '../SearchInputOld'
+// import SearchInputOld from '../SearchInputOld'
+import SearchInput from '../SearchInput'
 import LoggedInMenu from './LoggedInMenu'
 import LoggedOutMenu from './LoggedOutMenu'
 import LoggedInTab from './LoggedInTab'
@@ -202,7 +203,7 @@ class HeaderHome extends Component {
             </div>
 
             { this.state.showSearch &&
-              <SearchInputOld injectClassName={finalSICN}
+              <SearchInput injectClassName={finalSICN}
                 injectPlaceholder={lang[this.props.lang]['Search Products or Stores']}
                 showModal={this.state.showSearchModal} />
             }

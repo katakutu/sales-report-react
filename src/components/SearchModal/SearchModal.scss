@@ -6,53 +6,129 @@
     left: 0;
     z-index: 4;
     overflow-y: auto;
-    padding-bottom: 53px;
+    padding: 60px 0 120px;
     width: 100%;
-    height: 100%;
-    background-color: $color-white-secondary;
+    height: 100vh;
+    background-color: $color-white-primary;
+
+    .normal-text {
+        font-weight: normal;
+    }
 }
 
 .search-modal__box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: $z-index-max;
     margin-bottom: 2px;
-    padding: 10px 10px 5px;
-    background-color: $color-white-primary;
+    padding: 10px;
+    width: 100%;
+    height: 60px;
+    background-color: $color-green;
     box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
 .search-modal__form {
     position: relative;
+    padding-left: 40px;
 }
 
 .search-modal__result-empty {
-    margin-bottom: 10px;
-    padding: 14px;
     color: rgba($color-black-primary, 0.54);
 
     h1 {
-        margin-top: 0;
-        color: $color-black-primary;
+        margin: 0;
+        padding: 14px 14px 9px;
+        color: $color-black-disabled;
         font-weight: normal;
-        font-size: 12px;
-        opacity: 0.54;
+        font-size: 14px;
     }
 }
 
 .search-modal__result-container {
-    margin-bottom: 10px;
-    padding: 14px 14px 0;
-
     h1 {
-        margin-top: 0;
-        color: $color-black-primary;
+        margin: 0;
+        padding: 14px 14px 9px;
+        color: $color-black-disabled;
         font-weight: normal;
-        font-size: 12px;
-        opacity: 0.54;
+        font-size: 14px;
     }
+}
+
+.search-input__modal-icon {
+    position: absolute;
+    top: 8px;
+    left: 40px;
+    display: block;
+    width: 24px;
+    height: 24px;
+    background: url('./assets/mobile-icon-search-green.png') transparent no-repeat;
+    background-size: 24px 24px;
+}
+
+.search-input__modal-cancel {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url('./assets/mobile-icon-close-white.png') transparent no-repeat;
+    background-position: center center;
+    background-size: 16px 16px;
+    cursor: pointer;
+}
+
+.search-input__modal-input {
+    padding: 0 32px 0 30px;
+    width: 100%;
+    height: 38px;
+    border: 0;
+    border-bottom: 1px solid $color-grey-3;
+    border-radius: 0;
+    background-color: $color-green;
+    box-shadow: none;
+    color: $color-white-primary;
+    text-align: left;
+    font-size: 14px;
+
+    &::-webkit-input-placeholder {
+        color: $color-white-secondary;
+    }
+
+    &:-moz-placeholder {
+        color: $color-white-secondary;
+    }
+
+    &::-moz-placeholder {
+        color: $color-white-secondary;
+    }
+
+    &:-ms-input-placeholder {
+        color: $color-white-secondary;
+    }
+}
+
+.search-input__close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: $z-index-max;
+    display: block;
+    width: 40px;
+    height: 60px;
+    background: url('./assets/mobile-icon-arrow-left.png') transparent no-repeat;
+    background-position: center center;
+    background-size: 16px 25px;
+    color: $color-white-primary;
+    text-align: center;
+    font-size: 50px;
+    line-height: 50px;
 }
 
 .search-modal__result-item {
     display: block;
-    border-bottom: 1px solid rgba($color-black-primary, 0.12);
 }
 
 .search-modal__result-item {
@@ -66,12 +142,37 @@
 
 .search-modal__item-value {
     display: block;
-    padding: 18px 0;
+    padding: 14px 14px 14px 40px;
     width: 100%;
-    color: rgba($color-black-primary, 0.38);
+    color: $color-black-secondary;
+    font-weight: 600;
+    font-size: 14px;
 }
 
-.search-modal__result--recent {
+.search-modal__icon {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    display: block;
+    width: 15px;
+    height: 15px;
+    background: url('http://placehold.it/15x15') transparent no-repeat;
+}
+
+.search-modal__item-label {
+    position: absolute;
+    top: 17.5px;
+    right: 10px;
+    display: block;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: #999;
+    color: $color-white-primary;
+    font-size: 11px;
+    line-height: 16px;
+}
+
+.search-modal__result--history {
     position: relative;
 
     .search-modal__result-action {
@@ -84,7 +185,7 @@
 
     .search-modal__result-item {
         position: relative;
-        padding: 0 0 0 30px;
+        padding: 0 30px 0 0;
 
         &:last-child {
             border-bottom: 0;
@@ -94,13 +195,77 @@
     .search-modal__item-action {
         position: absolute;
         top: 0;
-        left: 0;
+        right: 0;
         display: block;
-        width: 25px;
-        height: 49px;
+        width: 35px;
+        height: 44px;
         background: url('./assets/search-modal-delete@2x.png') transparent no-repeat;
         background-position: left center;
         background-size: 16px 16px;
     }
+
+    .search-modal__icon {
+        top: 14px;
+        left: 14px;
+        width: 15px;
+        height: 15px;
+        background: url('./assets/search-modal-icon-history.png') transparent no-repeat;
+        background-size: 15px 15px;
+    }
 }
 
+.search-modal__clear-history {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: block;
+    color: $color-red;
+}
+
+.search-modal__result--shop {
+    img {
+        display: inline-block;
+        height: 40px;
+        width: 40px;
+        margin-right: 8px;
+        border-radius: 9999px;
+        vertical-align: middle;
+    }
+
+    .search-modal__item-value {
+        padding: 7px 14px;
+    }
+}
+
+.search-modal__result--popular_search {
+    .search-modal__icon {
+        top: 14px;
+        left: 14px;
+        width: 15px;
+        height: 15px;
+        background: url('./assets/search-modal-icon-popular.png') transparent no-repeat;
+        background-size: 15px 15px;
+    }
+}
+
+.search-modal__result--autocomplete {
+    .search-modal__icon {
+        top: 14px;
+        left: 14px;
+        width: 15px;
+        height: 15px;
+        background: url('./assets/search-modal-icon-autocomplete.png') transparent no-repeat;
+        background-size: 15px 15px;
+    }
+}
+
+.search-modal__result--hotlist {
+    .search-modal__icon {
+        top: 10px;
+        left: 14px;
+        width: 16px;
+        height: 22px;
+        background: url('./assets/search-modal-icon-hotlist.png') transparent no-repeat;
+        background-size: 16px 22px;
+    }
+}
