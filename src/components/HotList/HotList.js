@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './HotList.scss'
 import TextHeader from '../../components/TextHeader'
 import Slider from 'react-slick'
+import HotListPlaceholder from './assets/hotlist-placeholder.jpg'
 
 const settings = {
   autoplay: true,
@@ -68,7 +69,7 @@ class HotList extends Component {
 
   render () {
     const placeholder = [
-      { image_url: 'https://placehold.it/375x196?text=+', title_enc: 'Hotlist', price_start_from: 'Rp 0' }
+      { image_url: HotListPlaceholder, title_enc: 'Hotlist', price_start_from: 'Rp 0' }
     ]
 
     const hotlists = this._verifyHotlistData(placeholder)
