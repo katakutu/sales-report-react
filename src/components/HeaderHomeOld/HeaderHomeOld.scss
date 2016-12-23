@@ -170,10 +170,10 @@
 
     .slick-arrow {
         position: absolute;
-        top: 20px;
+        top: 13px;
         z-index: $z-index-3;
         display: block;
-        width: 20px;
+        width: 30px;
         height: 40px;
 
         &::before {
@@ -184,6 +184,10 @@
             height: 40px;
             content: '';
         }
+    }
+
+    .slick-arrow.slick-disabled {
+        display: none !important;
     }
 
     .slick-prev {
@@ -272,7 +276,6 @@
 }
 
 .drawer__container {
-    position: absolute;
     z-index: $z-index-3;
     overflow-y: auto;
     width: 284px;
@@ -308,6 +311,12 @@
     width: 284px;
     background: $color-white-primary;
     box-shadow: 0 1px 50px 0 rgba(146, 146, 146, 0.4);
+
+    a {
+        display: block;
+        height: 10px;
+        width: 100%;
+    }
 }
 
 .drawer__menu-shop-icon {
@@ -566,8 +575,8 @@
 }
 
 .mi-sprite {
+    display: inline-block;
     background: url(./assets/nav-gold-merchant-logo.png) no-repeat transparent;
     background-size:33px 32px;
-    display: inline-block;
     vertical-align: middle;
 }

@@ -57,7 +57,9 @@ class Ticker extends Component {
     let result = <div />
     if (this.state.content !== '') {
       result = (
-        <div className='ticker' dangerouslySetInnerHTML={{ __html: this.state.content }} />
+        <div className='ticker'>
+          <div className='ticker__container' dangerouslySetInnerHTML={{ __html: this.state.content }} />
+        </div>
       )
     }
 
