@@ -32,7 +32,7 @@ class CategoryList extends Component {
         <div className='u-col u-col-6 category-list__content' key={key}>
           <a href={`${HOSTNAME}/p/${item['identifier']}`}>
             <img src={icons[item['identifier']]} alt={`Logo kategori ${item['name']}`} />
-            <span className='category-list__name'>{item['name']}</span>
+            <span className='category-list__name'>{ lang[this.props.lang][item['name']] }</span>
           </a>
         </div>
       )
@@ -56,7 +56,7 @@ class CategoryList extends Component {
           <div className='u-col u-col-6 category-list__content'>
             <a href={`${SITES['Pulsa']}/saldo/${utm}&utm_campaign=token%20listrik%20icon`} target='_blank'>
               <img src={icons['saldo']} alt='Logo kategori Saldo' />
-              <span className='category-list__name'>Saldo</span>
+              <span className='category-list__name'>{ lang[this.props.lang]['Balance'] }</span>
             </a>
           </div>
         </div>
@@ -65,7 +65,7 @@ class CategoryList extends Component {
           <div className='u-col u-col-6 category-list__content'>
             <a href={`${SITES['Pulsa']}/paket-data/${utm}&utm_campaign=paket%20data%20icon`} target='_blank'>
               <img src={icons['paket-data']} alt='Logo kategori Paket Data' />
-              <span className='category-list__name'>Paket Data</span>
+              <span className='category-list__name'>{ lang[this.props.lang]['Data Plan'] }</span>
             </a>
           </div>
           <div className='u-col u-col-6 category-list__content'>
@@ -80,13 +80,13 @@ class CategoryList extends Component {
           <div className='u-col u-col-6 category-list__content'>
             <a href={`${SITES['Pulsa']}/token-listrik/${utm}&utm_campaign=token%20listrik%20icon`} target='_blank'>
               <img src={icons['token-listrik']} alt='Logo kategori Token Listrik' />
-              <span className='category-list__name'>Token Listrik</span>
+              <span className='category-list__name'>{ lang[this.props.lang]['Electric Token'] }</span>
             </a>
           </div>
           <div className='u-col u-col-6 category-list__content'>
             <a href={`${SITES['Tiket']}/kereta-api/${utm}&utm_campaign=tiket%20kereta%20icon`} target='_blank'>
               <img src={icons['tiket']} alt='Logo kategori Tiket' />
-              <span className='category-list__name'>Tiket</span>
+              <span className='category-list__name'>{ lang[this.props.lang]['Ticket'] }</span>
             </a>
           </div>
         </div>
