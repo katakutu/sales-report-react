@@ -11,7 +11,7 @@ class Ticker extends Component {
     nextContentIndex: 0,
     content: '',
     // initial value that will get refreshed right away
-    refreshInterval: this.props.perTickDuration * 1000
+    refreshInterval: 0
   }
 
   constructor (props) {
