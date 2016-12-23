@@ -38,7 +38,11 @@ class SearchModal extends Component {
   }
 
   handleChange (event) {
-    this.setState({ query: event.target.value, hasContent: true })
+    const content = event.target.value
+    this.setState({
+      query: content,
+      hasContent: content !== ''
+    })
   }
 
   render () {
