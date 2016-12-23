@@ -56,4 +56,6 @@ class HomeView extends Component {
   }
 }
 
-export default graphql(queries.HomeQuery)(HomeView)
+export default graphql(queries.HomeQuery, {
+  options: { returnPartialData: true }
+})(HomeView)

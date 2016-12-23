@@ -63,4 +63,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default graphql(queries.HomeQuery)(connect(mapStateToProps, undefined)(HotListView))
+export default graphql(queries.HomeQuery, {
+  options: { returnPartialData: true }
+})(connect(mapStateToProps, undefined)(HotListView))
