@@ -68,9 +68,9 @@ class SearchInput extends Component {
             placeholder={this.props.injectPlaceholder}
             onFocus={this.handleFocus}
             value={this.state.value} />
-          <button className={finalSearchBtnCN}>
+          <button className={finalSearchBtnCN} onClick={e => e.preventDefault()}>
               Search
-            </button>
+          </button>
 
           { this.state.value !== '' && <span className='search-input__cancel' onClick={this.clearText} /> }
         </form>
