@@ -1,11 +1,20 @@
 @import 'base';
 
 .ticker {
+    display: table;
+    overflow-y: hidden;
     padding: 10px;
     width: 100%;
+    height: 5.57em;
     background-color: $color-tint;
     color: $color-black-disabled;
     text-align: center;
-    line-height: 1.4em;
-    height: 4.2em;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+.ticker__container {
+    display: table-cell;
+    vertical-align: middle;
+    word-break: break-word;
 }
