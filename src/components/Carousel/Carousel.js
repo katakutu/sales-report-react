@@ -5,6 +5,7 @@ import './Carousel.scss'
 import './slick.scss'
 import './slick-theme.scss'
 import Slider from 'react-slick'
+import CarouselPlaceholder from './assets/carousel-placeholder.jpg'
 
 const settings = {
   autoplay: true,
@@ -144,7 +145,7 @@ class Carousel extends Component {
 
   render () {
     let placeholder = {
-      'image_url': 'https://placehold.it/414x185?text=+',
+      'image_url': CarouselPlaceholder,
       'redirect_url': '#',
       'title': 'Placeholder Image'
     }
