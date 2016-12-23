@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
@@ -6,6 +7,7 @@ import queries from '../../../queries'
 import HotList from './HotList'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import './HotListView.scss'
+import lang from '../../../lib/utils/Lang'
 
 class HotListView extends Component {
   static propTypes = {
@@ -45,7 +47,7 @@ class HotListView extends Component {
 
           <div className='hotlist-showall'>
             <a className='link-green' href='#' onClick={this.viewMore}>
-              Lihat lagi &nbsp; &gt;
+              {lang[this.props.lang]['View More']} &nbsp; &gt;
             </a>
           </div>
         </div>
@@ -54,4 +56,10 @@ class HotListView extends Component {
   }
 }
 
-export default graphql(queries.HomeQuery)(HotListView)
+const mapStateToProps = (state) => {
+  return {
+    lang: state['app'] ? state['app'].lang : state.lang
+  }
+}
+
+export default graphql(queries.HomeQuery)(connect(mapStateToProps, undefined)(HotListView))
