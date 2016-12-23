@@ -301,8 +301,8 @@
 }
 
 .drawer__menu-shop {
-    position: fixed;
-    bottom: 0;
+    position: absolute;
+    bottom: 0px;
     z-index: $z-index-3;
     padding: 6px;
     width: 284px;
