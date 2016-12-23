@@ -161,7 +161,7 @@
 
 .search-modal__item-label {
     position: absolute;
-    top: 25px;
+    top: 17.5px;
     right: 10px;
     display: block;
     padding: 1px 5px;
@@ -225,6 +225,8 @@
 .search-modal__result--shop {
     img {
         display: inline-block;
+        height: 40px;
+        width: 40px;
         margin-right: 8px;
         border-radius: 9999px;
         vertical-align: middle;
@@ -235,7 +237,7 @@
     }
 }
 
-.search-modal__result--popular {
+.search-modal__result--popular_search {
     .search-modal__icon {
         top: 14px;
         left: 14px;
