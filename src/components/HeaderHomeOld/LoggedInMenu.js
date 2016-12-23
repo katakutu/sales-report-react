@@ -91,8 +91,8 @@ class LoggedInMenu extends Component {
         </a>
       </div>
       ) : (
-        <a href={`${HOSTNAME}/${this.props.shop['domain']}`}>
-          <div className='drawer__menu-shop u-clearfix'>
+        <div className='drawer__menu-shop u-clearfix'>
+          <a href={`${HOSTNAME}/${this.props.shop['domain']}`}>
             <div className='u-left'>
               <img src={`${this.props.shop['logo']}`} alt='tokopedia' className='drawer__menu-shop-icon' />
             </div>
@@ -103,8 +103,8 @@ class LoggedInMenu extends Component {
             <div className='u-right'>
               { goldMerchant }
             </div>
-          </div>
-        </a>
+          </a>
+        </div>
     )
     let inboxNotif = this._totalObjectValues(this.props.notifs['inbox']) > 0 ? (
       <span className='drawer__menu-notif' />

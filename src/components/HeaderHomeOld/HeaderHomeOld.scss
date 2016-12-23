@@ -308,6 +308,12 @@
     width: 284px;
     background: $color-white-primary;
     box-shadow: 0 1px 50px 0 rgba(146, 146, 146, 0.4);
+
+    a {
+        display: block;
+        height: 10px;
+        width: 100%;
+    }
 }
 
 .drawer__menu-shop-icon {
