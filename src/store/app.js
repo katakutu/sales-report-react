@@ -160,7 +160,7 @@ const initialState = {
   isOnline: true,
   isLoading: false,
   notifications: [],
-  lang: Cookies.getItem('lang'),
+  lang: Cookies.getItem('lang') || 'id',
   user: {
     loggedIn: false,
     searchID: '-',

@@ -19,7 +19,7 @@ function getTicker (context) {
   const api = new TopedMojitoAPI()
 
   return userID.then(uid => {
-    return api.getTickers(uid, 50, 'desktop', 'data_source_filter').then(response => {
+    return api.getTickers(uid, 50, 'mobile', 'data_source_filter').then(response => {
       if (!response['data']) {
         return EMPTY_TICKER
       }
