@@ -3,7 +3,7 @@ const GlobalConfig = require('../../../GlobalConfig')
 const URL = require('url')
 
 const ACCOUNTS_SERVICE = {
-  Info: `${GlobalConfig['Accounts']['Hostname']}/info`
+  Info: `${GlobalConfig['Accounts']['HostnameLocal']}/info`
 }
 
 class TopedAuthAPI {

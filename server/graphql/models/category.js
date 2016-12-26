@@ -29,7 +29,7 @@ function getMainPageCategories () {
   const api = new TopedHadesAPI()
 
   return api.allCategories().then(response => {
-    if (!response['data']) {
+    if (!response || !response['data']) {
       return []
     }
 
