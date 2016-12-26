@@ -6,14 +6,15 @@ const PRODUCTION = {
     SessionID: '_SID_Tokopedia_'
   },
   Ace: {
-    Hostname: 'https://ace.tokopedia.com'
+    Hostname: 'http://ace.tokopedia.local'
   },
   Accounts: {
     Hostname: 'https://accounts.tokopedia.com',
+    HostnameLocal: 'http://accounts.tokopedia.local',
     Callback: 'https://m.tokopedia.com/appauth/code'
   },
   Hades: {
-    'Hostname': 'https://hades.tokopedia.com'
+    'Hostname': 'http://hades.tokopedia.local'
   },
   Hotlist: {
     Hostname: 'https://m.tokopedia.com/ajax/hotlist.pl'
@@ -22,17 +23,17 @@ const PRODUCTION = {
     Hostname: 'https://m.tokopedia.com'
   },
   Saldo: {
-    Hostname: 'http://192.168.16.110'
+    Hostname: 'http://saldo.tokopedia.local'
   },
   Mojito: {
-    Hostname: 'https://mojito.tokopedia.com',
+    Hostname: 'http://mojito.tokopedia.local',
     SecretKey: 'mojito_api_v1'
   },
   Notification: {
     Hostname: 'http://orderapp.tokopedia.local/'
   },
   Points: {
-    Hostname: 'https://points.tokopedia.com',
+    Hostname: 'http://points.tokopedia.local',
     Secret: '4lclover'
   },
   LoginDataRedis: {
@@ -44,10 +45,10 @@ const PRODUCTION = {
     port: 6379
   },
   WS: {
-    Hostname: 'https://ws.tokopedia.com'
+    Hostname: 'http://ws.tokopedia.local'
   },
   Tome: {
-    Hostname: 'https://tome.tokopedia.com'
+    Hostname: 'http://tome.tokopedia.local'
   }
 }
 

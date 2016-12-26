@@ -42,7 +42,7 @@ class Ticker extends Component {
     if (this.props.tickers.length > 0) {
       let dataCount = this.props.tickers.length
       let nextRefresh = this.props.perTickDuration * dataCount * 1000
-      let contentIndex = (this.state.nextContentIndex >= (dataCount - 1)) ? 0
+      let contentIndex = (this.state.nextContentIndex > (dataCount - 1)) ? 0
         : this.state.nextContentIndex
 
       this.setState({
