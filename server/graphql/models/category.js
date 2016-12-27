@@ -28,29 +28,39 @@ const MAIN_CATEGORY = {
 function getMainPageCategories () {
   const api = new TopedHadesAPI()
 
-  return api.allCategories().then(response => {
-    if (!response || !response['data']) {
-      return []
-    }
+  return api.allCategories()
+    .then(response => {
+      if (!response || !response['data']) {
+        return []
+      }
 
-    const categories = response['data']['categories'] || []
-    let result = {
-      'Gaya Hidup': [],
-      'Teknologi': [],
-      'Kategori Lain': []
-    }
+      const categories = response['data']['categories'] || []
+      let result = {
+        'Gaya Hidup': [],
+        'Teknologi': [],
+        'Kategori Lain': []
+      }
 
-    categories.forEach(cat => {
-      if (MAIN_CATEGORY[cat['name']]) {
-        result[MAIN_CATEGORY[cat['name']]].push({
-          name: cat['name'],
-          identifier: cat['identifier']
-        })
+      categories.forEach(cat => {
+        if (MAIN_CATEGORY[cat['name']]) {
+          result[MAIN_CATEGORY[cat['name']]].push({
+            name: cat['name'],
+            identifier: cat['identifier']
+          })
+        }
+      })
+
+      return {
+        categories: Object.keys(result).map(k => { return { name: k, items: result[k] } }),
+        errors: []
       }
     })
-
-    return Object.keys(result).map(k => { return { name: k, items: result[k] } })
-  })
+    .catch(error => {
+      return {
+        categories: [],
+        errors: [error.name, error.message]
+      }
+    })
 }
 
 module.exports = {

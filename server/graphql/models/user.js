@@ -1,5 +1,4 @@
 const GlobalConfig = require('./../../GlobalConfig')
-const PromiseHelper = require('../../helpers/promise-helper')
 const TopedAuthAPI = require('./../../api-consumer/api/Auth/TopedAuthAPI')
 const session = require('../../session')
 
@@ -102,10 +101,10 @@ function getUserInfo (context) {
 
         authConsumer.getUserInfo().then(user => {
           const userID = user['user_id']
-          let saldo = PromiseHelper.timeout(saldoConsumer.getDeposit(userID), 1000, 'Saldo API Call')
-          let notif = PromiseHelper.timeout(notifConsumer.getNotification(userID), 1000, 'Notif API Call')
-          let point = PromiseHelper.timeout(pointConsumer.getPoints(userID), 1000, 'Points API Call')
-          let shop = PromiseHelper.timeout(shopConsumer.getShop(userID), 1000, 'Shop API Call')
+          let saldo = saldoConsumer.getDeposit(userID)
+          let notif = notifConsumer.getNotification(userID)
+          let point = pointConsumer.getPoints(userID)
+          let shop = shopConsumer.getShop(userID)
 
           return Promise.all([saldo, notif, point, shop])
             .then(s => {

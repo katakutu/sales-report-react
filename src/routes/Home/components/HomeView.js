@@ -37,7 +37,7 @@ class HomeView extends Component {
     const defaultHotlist = { success: 0, message_status: 1, data: [] }
     const hotlists = this.props.data['hot_product_home'] ? this.props.data['hot_product_home'] : defaultHotlist
 
-    const categories = this.props.data.category ? this.props.data.category : []
+    const categories = this.props.data.category ? this.props.data.category.categories : []
 
     return (
       <div>

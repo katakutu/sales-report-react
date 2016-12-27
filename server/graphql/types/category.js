@@ -5,6 +5,8 @@ const {
     GraphQLString
 } = require('graphql')
 
+const ErrorType = require('./error')
+
 const CategoryItemType = new GraphQLObjectType({
   name: 'CategoryItem',
   fields: {
@@ -21,4 +23,12 @@ const CategoryType = new GraphQLObjectType({
   }
 })
 
-module.exports = { CategoryType, CategoryItemType }
+const CategoriesType = new GraphQLObjectType({
+  name: 'Categories',
+  fields: {
+    categories: { type: new GraphQLList(CategoryType) },
+    errors: { type: new GraphQLList(ErrorType) }
+  }
+})
+
+module.exports = { CategoriesType, CategoryType, CategoryItemType }

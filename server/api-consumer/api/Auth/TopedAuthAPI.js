@@ -16,7 +16,7 @@ class TopedAuthAPI {
   getUserInfo () {
     let url = URL.parse(ACCOUNTS_SERVICE.Info)
 
-    return this.api.consumeOAuth(url, 'GET', this.token, this.tokenType, {}, true)
+    return this.api.consumeOAuth(url, 'GET', this.token, this.tokenType, {})
   }
 }
 

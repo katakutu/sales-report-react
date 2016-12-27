@@ -62,11 +62,17 @@ query Query {
       }
     }
   }
-  category{
-    name
-    items{
-      identifier
+  category {
+    categories {
+      items {
+        name
+        identifier
+      }
       name
+    }
+    errors{
+      name
+      message
     }
   }
   ticker{
