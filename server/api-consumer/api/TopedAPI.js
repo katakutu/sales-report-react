@@ -1,5 +1,4 @@
-const fetch = require('isomorphic-fetch')
-const JSONP = require('node-jsonp')
+const request = require('request-promise')
 /*
 const obcache = require('obcache')
 const redis = require('../../GlobalConfig').SessionRedis
@@ -36,23 +35,25 @@ class TopedAPI {
    * @param {URL} url The URL we want to consume
    * @param {string} method The HTTP Method we want to use on the API call.
    * @param {object} content The content we want to sent in body.
-   * @param {boolean} [sameOrigin=false] Is the request comes from same origin?
    * @returns {Promise<Object>} The resulting response promise, in JSON.
    *
    * @memberOf TopedAPI
    */
-  consume (url, method, content, sameOrigin = false) {
+  consume (url, method, content) {
     let options = (method === 'GET') ? {} : {
       method: method,
-      body: JSON.stringify(content)
+      body: JSON.stringify(content),
+      json: true
     }
-
-    let finalOptions = sameOrigin ? Object.assign({}, options, { credentials: 'same-origin' }) : options
 
     let finalURL = (method === 'POST') ? url.format()
             : this._formatGetURL(url, content)
 
-    return fetch(finalURL, finalOptions).then(response => response.json())
+    let finalOptions = Object.assign({}, options, {
+      timeout: 5000
+    })
+
+    return request(finalURL, finalOptions).then(response => JSON.parse(response))
     /*
     return new Promise((resolve, reject) => {
       wrappedTopedFetch(finalURL, finalOptions, (err, response) => {
@@ -72,60 +73,28 @@ class TopedAPI {
    * @param {string} token The OAuth Token.
    * @param {string} tokenType The OAuth Token Type.
    * @param {object} content The content we want to sent in body.
-   * @param {boolean} [sameOrigin=false] Is the request comes from same origin?
    * @returns {Promise<Object>} The resulting response promise, in JSON.
    *
    * @memberOf TopedAPI
    */
-  consumeOAuth (url, method, token, tokenType, content, sameOrigin = false) {
+  consumeOAuth (url, method, token, tokenType, content) {
     let options = (method === 'GET') ? {} : {
-      body: JSON.stringify(content)
+      body: JSON.stringify(content),
+      json: true
     }
 
-    let optWithAuth = Object.assign({}, options, {
+    let finalOptions = Object.assign({}, options, {
       method: method,
       headers: {
         'Authorization': `${tokenType} ${token}`
-      }
+      },
+      timeout: 5000
     })
-    let finalOptions = sameOrigin ? Object.assign({}, optWithAuth, { credentials: 'same-origin' }) : optWithAuth
 
     let finalURL = (method === 'POST') ? url.format()
             : this._formatGetURL(url, content)
 
-    return fetch(finalURL, finalOptions).then(response => {
-      return response.json()
-    })
-  }
-
-  /**
-   * Consume an API with JSONP, on specific URL and method.
-   * If the method is GET, content will be sent via serialized URL
-   *
-   * @param {URL} url The URL we want to consume
-   * @param {string} method The HTTP Method we want to use on the API call.
-   * @param {object} content The content we want to sent in body.
-   * @param {object} jsonpOptions The JSONP options. Available fields: {callback: '', timeout: 4000}
-   * @param {boolean} [sameOrigin=false] Is the request comes from same origin?
-   * @returns {Promise<Object>} The resulting response promise, in JSON.
-   *
-   * @memberOf TopedAPI
-   */
-  consumeJSONP (url, method, content, jsonpOptions, sameOrigin = false) {
-    let finalURL = (method === 'POST') ? url.format()
-            : this._formatGetURL(url, content)
-
-    let callback = jsonpOptions.callback || 'callback'
-    let timeout = jsonpOptions.timeout || 5000
-    return new Promise((resolve, reject) => {
-      JSONP(finalURL, content, callback, (response) => {
-        resolve(response)
-      })
-
-      setTimeout(() => {
-        reject(new Error(`JSONP request to ${finalURL} timed out after ${timeout}.`))
-      }, timeout)
-    })
+    return request(finalURL, finalOptions).then(response => JSON.parse(response))
   }
 
   /**
@@ -159,13 +128,12 @@ class TopedAPI {
    *
    * @param {URL} url The URL we want to consume
    * @param {object} content The content we want to sent in body.
-   * @param {boolean} [sameOrigin=false] Is the request comes from same origin?
    * @returns {Promise<Object>} The resulting response promise, in JSON.
    *
    * @memberOf
    */
-  consumeGet (url, content, sameOrigin = false) {
-    return this.consume(url, 'GET', content, sameOrigin)
+  consumeGet (url, content) {
+    return this.consume(url, 'GET', content)
   }
 
   /**
@@ -174,13 +142,12 @@ class TopedAPI {
    *
    * @param {URL} url The URL we want to consume
    * @param {object} content The content we want to sent in body.
-   * @param {boolean} [sameOrigin=false] Is the request comes from same origin?
    * @returns {Promise<Object>} The resulting response promise, in JSON.
    *
    * @memberOf
    */
-  consumePost (url, content, sameOrigin = false) {
-    return this.consume(url, 'POST', content, sameOrigin)
+  consumePost (url, content) {
+    return this.consume(url, 'POST', content)
   }
 }
 

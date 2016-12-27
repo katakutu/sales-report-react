@@ -14,7 +14,7 @@ class TopedLiteAuthAPI {
   getUserInfo () {
     let url = URL.parse(AUTH_SERVICE.GetUserInfo)
 
-    return this.api.consume(url, 'GET', {}, true)
+    return this.api.consume(url, 'GET', {})
   }
 }
 

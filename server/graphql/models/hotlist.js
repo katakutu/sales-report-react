@@ -43,7 +43,6 @@ function getHotProductList (page, perPage) {
       success: response['success'],
       max_page: response['data']['paging']['max'],
       data: response['data']['list'].map(data => {
-        console.log(data)
         return {
           title_enc: data['title'],
           price_start_from: data['price_start_from'],

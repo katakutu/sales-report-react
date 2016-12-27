@@ -1,5 +1,6 @@
-const fetch = require('isomorphic-fetch')
 const HMACToped = require('../hmac/HMACToped')
+const request = require('request-promise')
+const querystring = require('querystring')
 
 /**
  * A base class to consume http API with HMAC.
@@ -64,7 +65,7 @@ class TopedHMACAPI {
     try {
       let contentString = JSON.stringify(content)
       let apiCallDate = new Date()
-      let hashParams = this.generateHashParamFromObject(content)
+      let hashParams = querystring.stringify(content)
       let authHeader = HMACToped.generate(
         this.apiKey, method, url.pathname, apiCallDate, hashParams, hashHeader
       )
@@ -78,10 +79,10 @@ class TopedHMACAPI {
           'Content-MD5': HMACToped.generateContentHash(apiCallDate, hashParams, hashHeader),
           'X-Method': method
         },
-        credentials: 'same-origin'
+        timeout: 5000
       }
 
-      return fetch(url.format(), options)
+      return request(url, options).then(response => JSON.parse(response))
     } catch (exception) {
       if (exception instanceof TypeError) {
         return Promise.reject(`Invalid type exception: ${exception.message}`)
@@ -104,26 +105,26 @@ class TopedHMACAPI {
    */
   consumeForm (url, content, hashHeader = '~b') {
     try {
-      let formData = this.generateFormDataFromObject(content)
+      let formData = querystring.stringify(content)
       let apiCallDate = new Date()
-      let hashParams = this.generateHashParamFromObject(content)
+      let hashParams = querystring.stringify(content)
       let authHeader = HMACToped.generate(
         this.apiKey, 'POST', url.pathname, apiCallDate, hashParams, hashHeader
       )
 
       let options = {
         method: 'POST',
-        body: formData,
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
           'Authorization': authHeader,
           'Content-MD5': HMACToped.generateContentHash(apiCallDate, hashParams, hashHeader),
           'X-Method': 'POST'
         },
-        credentials: 'same-origin'
+        body: formData,
+        timeout: 5000
       }
 
-      return fetch(url.format(), options)
+      return request(url, options).then(response => JSON.parse(response))
     } catch (exception) {
       if (exception instanceof TypeError) {
         return Promise.reject(`Invalid type exception: ${exception.message}`)
@@ -131,42 +132,6 @@ class TopedHMACAPI {
 
       return Promise.reject(exception.message)
     }
-  }
-
-  /**
-   * Convert an object to the application/x-www-form-urlencoded encoded string,
-   * without the Percent Encoding.
-   *
-   * This method is created to generate the hashParams for Tokopedia's HMAC.
-   *
-   * @param {object} content The content object you want to convert to Hash Param
-   * @returns {string} The resulting Hash Param
-   *
-   * @memberOf TopedHMACAPI
-   */
-  generateHashParamFromObject (content) {
-    return Object.keys(content).map(key => {
-      return `${key}=${encodeURIComponent(content[key])}`
-    }).join('&')
-  }
-
-  /**
-   * Create a FormData object given an Object:
-   * - Object's key will be form's name.
-   * - Object's value will be form's value.
-   *
-   * @param {object} content The object you want to convert to FormData.
-   * @returns {FormData} The FormData based on content.
-   *
-   * @memberOf TopedHMACAPI
-   */
-  generateFormDataFromObject (content) {
-    let form = new FormData()
-    for (let k in content) {
-      form.append(k, content[k])
-    }
-
-    return form
   }
 }
 

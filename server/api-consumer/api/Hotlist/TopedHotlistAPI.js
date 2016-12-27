@@ -15,7 +15,7 @@ class TopedHotlistAPI {
   getHotProductHome () {
     const url = URL.parse(HOTLIST_SERVICES.GetHotProductHome)
 
-    return this.api.consume(url, 'GET', {}, true)
+    return this.api.consume(url, 'GET', {})
       .catch(err => {
         console.error(`Failed to fetch ${url.format()}. Returning default value. Error: `, err)
         return {}
@@ -28,7 +28,7 @@ class TopedHotlistAPI {
                                      .replace(':per_page', perPage)
     const url = URL.parse(endpoint)
 
-    return this.api.consume(url, 'GET', {}, true)
+    return this.api.consume(url, 'GET', {})
       .catch(err => {
         console.error(`Failed to fetch ${url.format()}. Returning default value. Error: `, err)
 
