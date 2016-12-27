@@ -27,6 +27,17 @@ class Ticker extends Component {
     this.poolTickerRefresh()
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.tickers.length > 0) {
+      const nextRefresh = this.props.perTickDuration * nextProps.tickers.length * 1000
+      this.setState({
+        nextContentIndex: 1,
+        content: nextProps.tickers[0]['message'],
+        refreshInterval: nextRefresh
+      })
+    }
+  }
+
   componentWillUnmount () {
     if (this._intervalID) {
       clearInterval(this._intervalID)
