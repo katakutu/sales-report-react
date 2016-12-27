@@ -194,24 +194,28 @@ class LoggedInMenu extends Component {
               <a href={`${HOSTNAME}/people/${this.props.userData.id}`}>{ this.props.userData.name }</a>
             </div>
           </div>
-          <div className='drawer__user-summary u-clearfix'>
-            <div className='drawer__user-summary-box u-left'>
-              <a href={`${HOSTNAME}/deposit.pl`}>
-                <span>{this.props.userData.deposit.deposit_fmt}</span>
-                <div className='drawer__user-infosum-title'>Saldo</div>
-              </a>
-            </div>
-            <div className='drawer__user-summary-box u-right'>
-              <a href={`${HOSTNAME}/lp.pl`}>
-                <span>{this.props.userData.points.data.attributes.amount_formatted}</span>
-                <div className='drawer__user-infosum-title'>TopPoints</div>
-              </a>
-            </div>
+          <div className='drawer__menu first__menu'>
+            <a href={`${HOSTNAME}/deposit.pl`}>
+              <span className='drawer__menu-icon icon__svg balanceIcon' />
+              <span className='drawer__menu-title u-inline-block'>{
+                lang[this.props.lang]['Balance']
+              }</span>
+            </a>
           </div>
-          <div className='drawer__user-topup'>
-            <a href={topupLink} className='drawer__btn-topup'>Top Up Saldo</a>
+          <div className='drawer__menu'>
+            <a href='/'>
+              <span className='drawer__menu-icon icon__svg tokoCashIcon' alt='tokopedia' />
+              <span className='drawer__menu-title u-inline-block'>TokoCash</span>
+              <span id="tokocash-activate-btn" className="drawer__activate-tokoCash">Aktivasi TokoCash</span>
+            </a>
           </div>
-
+          <div className='drawer__menu'>
+            <a href={`${HOSTNAME}/lp.pl`}>
+              <span className='drawer__menu-icon icon__svg topPointsIcon' alt='tokopedia' />
+              <span className='drawer__menu-title u-inline-block'>TopPoints</span>
+              <span id="user-total-toppoints" className="drawer__menu-detail">Rp 0</span>
+            </a>
+          </div>
           <div className='drawer__menu'>
             <a href='/'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
