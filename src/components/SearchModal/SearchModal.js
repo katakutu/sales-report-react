@@ -52,6 +52,7 @@ class SearchModal extends Component {
           <span className='search-input__close' onClick={this.props.onClose} />
           <form action='/search' method='get' className='search-modal__form'>
             <input type='text'
+              autoComplete='off'
               name='q'
               ref='modalSearchInput'
               className='search-input__modal-input u-col-10'
