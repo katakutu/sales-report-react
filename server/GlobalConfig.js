@@ -62,6 +62,7 @@ const BETA = {
   },
   Accounts: {
     Hostname: 'https://accounts.tokopedia.com',
+    HostnameLocal: 'https://accounts.tokopedia.com',
     Callback: 'https://m-beta.tokopedia.com/appauth/code'
   },
   Hades: {
@@ -113,6 +114,7 @@ const TEST = {
   },
   Accounts: {
     Hostname: 'https://accounts-staging.tokopedia.com',
+    HostnameLocal: 'https://accounts-staging.tokopedia.com',
     Callback: 'https://m-staging.tokopedia.com/appauth/code'
   },
   Hades: {
@@ -164,6 +166,7 @@ const DEVELOPMENT = {
   },
   Accounts: {
     Hostname: 'http://192.168.100.160:8009',
+    HostnameLocal: 'http://192.168.100.160:8009',
     Callback: 'http://localhost:3000/appauth/code'
   },
   Hades: {
