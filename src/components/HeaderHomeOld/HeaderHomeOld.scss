@@ -264,7 +264,6 @@
 
 .drawer.active {
     display: block;
-    transform: translateZ(0);
 }
 
 .drawer-active__overlay {
@@ -282,7 +281,6 @@
     width: 284px;
     height: 100%;
     background: $color-white-primary;
-    transform: translateZ(0);
 }
 
 .drawer__title {
