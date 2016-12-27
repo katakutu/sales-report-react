@@ -11,6 +11,29 @@ class SearchModalResult extends Component {
     query: React.PropTypes.string
   }
 
+  _boldKeyword (input, keyword) {
+    const regex = new RegExp(keyword, 'ig')
+    const splits = input.split(regex) || []
+    const matches = input.match(regex) || []
+
+    const key = Math.random().toString(36).substring(4, 3)
+    const segments = splits.map((segment, i) => React.DOM.span({ key: `${segment}-${key}-${i}` }, segment))
+    const replacements = matches.map((replacement, index) => {
+      return React.DOM.strong({ key: `${replacement}-${key}-${index}` }, replacement)
+    })
+
+    const createResult = (arr1, arr2) => {
+      return arr1.reduce((result, value, index) => result.concat(value, arr2[index]), [])
+                 .filter(s => s)
+    }
+
+    const res = (replacements.length > segments.length)
+      ? createResult(replacements, segments)
+      : createResult(segments, replacements)
+
+    return res
+  }
+
   _sentenceCase (string) {
     return string.replace(/\w\S*/g, txt => {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
@@ -44,7 +67,7 @@ class SearchModalResult extends Component {
           <a href='#' className='search-modal__item-action'><span /></a>
           <a className='search-modal__item-value' href={`${HOSTNAME}${item.url}`}>
             <i className='search-modal__icon' />
-            { item.keyword }
+            { this._boldKeyword(item.keyword, this.props.query) }
           </a>
         </li>
       )
@@ -58,7 +81,7 @@ class SearchModalResult extends Component {
           <a href='#' className='search-modal__item-action'><span /></a>
           <a className='search-modal__item-value' href={`${HOSTNAME}${item.url}`}>
             <img src={item.imageURI} alt={`${item.keyword} Store Logo`} />
-            { item.keyword }
+            { this._boldKeyword(item.keyword, this.props.query) }
             { item.official && <span className='search-modal__item-label'>Official Store</span> }
           </a>
         </li>

@@ -53,8 +53,12 @@ class LoggedInMenu extends Component {
      * Without this code, the "Buka Toko" button won't show on old default Android browser.
      */
     const el = document.querySelector('#toko-button')
-    console.log(el)
-    console.clear && console.clear()
+    setTimeout(() => {
+      el.style.display = 'none'
+      el.style.bottom
+      el.style.display = ''
+      el.style.transform = 'translate3d(0, 0, 0)'
+    }, 500)
   }
 
   _totalObjectValues (object) {
