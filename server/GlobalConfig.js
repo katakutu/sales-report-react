@@ -6,7 +6,7 @@ const PRODUCTION = {
     SessionID: '_SID_Tokopedia_'
   },
   Ace: {
-    Hostname: 'http://ace.tokopedia.local'
+    Hostname: 'http://ace.tokopedia.com'
   },
   Accounts: {
     Hostname: 'https://accounts.tokopedia.com',
