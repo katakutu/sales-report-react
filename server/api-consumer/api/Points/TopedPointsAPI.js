@@ -44,7 +44,7 @@ class TopedPointsAPI {
       'token': token
     }
 
-    return this.api.consume(url, 'GET', content, true)
+    return this.api.consume(url, 'GET', content)
         .catch(err => {
           console.error(`Failed to fetch ${url.format()}. Returning default value. Error: `, err)
 

@@ -3,7 +3,7 @@ const GlobalConfig = require('../../../GlobalConfig')
 const URL = require('url')
 
 const ACCOUNTS_SERVICE = {
-  Info: `${GlobalConfig['Accounts']['Hostname']}/info`
+  Info: `${GlobalConfig['Accounts']['HostnameLocal']}/info`
 }
 
 class TopedAuthAPI {
@@ -16,7 +16,7 @@ class TopedAuthAPI {
   getUserInfo () {
     let url = URL.parse(ACCOUNTS_SERVICE.Info)
 
-    return this.api.consumeOAuth(url, 'GET', this.token, this.tokenType, {}, true)
+    return this.api.consumeOAuth(url, 'GET', this.token, this.tokenType, {})
   }
 }
 

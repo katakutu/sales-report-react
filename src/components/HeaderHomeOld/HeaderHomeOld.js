@@ -27,6 +27,7 @@ class HeaderHome extends Component {
     userData: React.PropTypes.object,
     userInfo: React.PropTypes.object,
     userIsLoggedIn: React.PropTypes.bool,
+    searchModalIsOpen: React.PropTypes.bool,
     sidebarIsOpened: React.PropTypes.bool,
     tabIsAvailable: React.PropTypes.bool,
     lang: React.PropTypes.string
@@ -103,7 +104,7 @@ class HeaderHome extends Component {
       heightOffset = 145
     }
 
-    if (!this.props.sidebarIsOpened) {
+    if (!this.props.sidebarIsOpened && !this.props.searchModalIsOpen) {
       const ss = event.srcElement.body.scrollTop < heightOffset
       this.setState({
         showSearch: ss,
@@ -244,6 +245,7 @@ class HeaderHome extends Component {
 const mapDispatchToProps = { updateUserLoginStatus, updateSidebarStatus, storeUserData }
 const mapStateToProps = (state) => {
   return {
+    searchModalIsOpen: state['app'] ? state['app'].searchModalIsOpen : state.searchModalIsOpen,
     sidebarIsOpened: state['app'] ? state['app'].sidebarIsOpen : state.sidebarIsOpen,
     userData: state['app'] ? state['app'].user.data : state.user.data,
     userIsLoggedIn: state['app'] ? state['app'].user.loggedIn : state.user.loggedIn,

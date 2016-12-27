@@ -16,7 +16,7 @@ class TopedSaldoAPI {
   getDeposit (userID) {
     let url = URL.parse(SALDO_SERVICES.GetDeposit.replace(':user_id', userID))
 
-    return this.api.consume(url, 'GET', {}, true)
+    return this.api.consume(url, 'GET', {})
       .catch(err => {
         console.error(`Failed to fetch ${url.format()}. Returning default value. Error: `, err)
         return DEFAULT_SALDO_DATA

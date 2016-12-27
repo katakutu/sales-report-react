@@ -154,7 +154,9 @@ class Carousel extends Component {
       : this.props.images.map(this._createCarouselItems)
 
     return (
-      <div className='carousel u-clearfix' onMouseDown={this._stopCarousel}>
+      <div className='carousel u-clearfix'
+        onTouchEnd={this._stopCarousel}
+        onMouseOver={this._stopCarousel}>
         <Slider {...this.state.carouselSettings} afterChange={this._gtmNotifySlideChange}>
           { sliders }
         </Slider>

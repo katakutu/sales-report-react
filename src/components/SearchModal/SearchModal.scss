@@ -17,7 +17,7 @@
 }
 
 .search-modal__box {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: $z-index-max;

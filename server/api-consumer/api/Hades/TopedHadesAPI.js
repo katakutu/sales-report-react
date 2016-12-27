@@ -14,7 +14,7 @@ class TopedHadesAPI {
   allCategories () {
     const url = URL.parse(HADES_SERVICES.AllCategories)
 
-    return this.api.consume(url, 'GET', {}, true)
+    return this.api.consume(url, 'GET', {})
   }
 }
 

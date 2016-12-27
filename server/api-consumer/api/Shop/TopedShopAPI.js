@@ -28,7 +28,7 @@ class TopedShopAPI {
   getShop (userID) {
     let url = URL.parse(SHOP_SERVICES.GetShop.replace(':user_id', userID))
 
-    return this.api.consume(url, 'GET', {}, true)
+    return this.api.consume(url, 'GET', {})
       .catch(err => {
         console.error(`Failed to fetch ${url.format()}. Returning default value. Error: `, err)
         return DEFAULT_SHOP_DATA

@@ -6,7 +6,7 @@ import './SearchInput.scss'
 
 import lang from '../../lib/utils/Lang'
 import UserSearchID from '../../lib/utils/UserSearchID'
-import { storeUserSearchID } from '../../store/app'
+import { storeUserSearchID, updateSearchModalStatus } from '../../store/app'
 
 class SearchInput extends Component {
   static propTypes = {
@@ -16,7 +16,8 @@ class SearchInput extends Component {
     showModal: React.PropTypes.bool,
     storeUserSearchID: React.PropTypes.func,
     userSearchID: React.PropTypes.string,
-    updateLang: React.PropTypes.func
+    updateLang: React.PropTypes.func,
+    updateSearchModalStatus: React.PropTypes.func
   }
 
   state = {
@@ -37,12 +38,16 @@ class SearchInput extends Component {
 
     this.props.storeUserSearchID(uid)
 
-    this.setState({ searchModalOpened: true })
+    this.setState({ searchModalOpened: true }, () => {
+      this.props.updateSearchModalStatus(true)
+    })
   }
 
   handleModalClosed (event) {
     event.preventDefault()
-    this.setState({ searchModalOpened: false })
+    this.setState({ searchModalOpened: false }, () => {
+      this.props.updateSearchModalStatus(false)
+    })
   }
 
   render () {
@@ -82,7 +87,7 @@ class SearchInput extends Component {
   }
 }
 
-const mapDispatchToProps = { storeUserSearchID }
+const mapDispatchToProps = { storeUserSearchID, updateSearchModalStatus }
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
