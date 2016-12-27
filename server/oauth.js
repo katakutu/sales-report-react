@@ -5,9 +5,6 @@ const randomstring = require('randomstring')
 const session = require('./session')
 
 const TopedAuthAPI = require('./api-consumer/api/Auth/TopedAuthAPI')
-const { TopedSaldoAPI } = require('./api-consumer/api/Saldo/TopedSaldoAPI')
-const { TopedNotificationAPI } = require('./api-consumer/api/Notification/TopedNotificationAPI')
-const { TopedPointsAPI } = require('./api-consumer/api/Points/TopedPointsAPI')
 
 const oauthCredentials = {
   client: {
@@ -110,51 +107,5 @@ module.exports = {
           })
       })
     }
-  },
-  userInfo: function (req, res, next) {
-    if (!req.session.oauth) {
-      // break to two condition to pass linter (and better readability)
-      if (req.cookies && req.cookies[GlobalConfig['Cookie']['SessionID']]) {
-        // to prevent infinite loop we only force redirect to /login
-        // if the callback URL is the same as hostname.
-        // e.g. if we host on lite-staging.tokopedia.com and redir to m-staging.tokopedia.com
-        //      this will be false so we won't get infinite redirection
-        const shouldRedir = GlobalConfig['Accounts']['Callback'].indexOf(GlobalConfig['Hostname']) === 0
-
-        // temp for testing
-        return session.getSession(req.cookies[GlobalConfig['Cookie']['SessionID']], sessData => {
-          const sessExists = sessData !== null
-          return res.status(200).json({ login_redirect: shouldRedir && sessExists })
-        })
-      } else {
-        return res.status(200).json({ error: 'User is not logged in!' })
-      }
-    }
-
-    const tType = req.session.oauth.token['token_type']
-    const token = req.session.oauth.token['access_token']
-
-    const authConsumer = new TopedAuthAPI(token, tType)
-    const saldoConsumer = new TopedSaldoAPI()
-    const notifConsumer = new TopedNotificationAPI(token, tType)
-    const pointConsumer = new TopedPointsAPI()
-
-    authConsumer.getUserInfo().then(user => {
-      const userID = user['user_id']
-      let saldo = saldoConsumer.getDeposit(userID)
-      let notif = notifConsumer.getNotification(userID)
-      let point = pointConsumer.getPoints(userID)
-
-      Promise.all([saldo, notif, point]).then(s => {
-        return res.json({
-          'name': user['name'],
-          'id': userID,
-          'profilePicture': user['profile_picture'],
-          'deposit': s[0]['deposit_fmt'] || 'Rp 0',
-          'points': s[2]['data']['attributes']['amount_formatted'] || 'Rp 0',
-          'notifications': s[1]['data']
-        })
-      })
-    })
   }
 }
