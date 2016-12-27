@@ -4,7 +4,14 @@ const EMPTY_SEARCH_RESULT = [
   {
     id: 'autocomplete',
     name: 'AUTOCOMPLETE',
-    items: [{ keyword: 'No Result Available', url: '/' }]
+    items: [
+      {
+        keyword: 'No Result Available',
+        url: '/',
+        imageURI: '',
+        official: false
+      }
+    ]
   }
 ]
 
