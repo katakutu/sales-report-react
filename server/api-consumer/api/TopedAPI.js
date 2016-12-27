@@ -94,7 +94,13 @@ class TopedAPI {
     let finalURL = (method === 'POST') ? url.format()
             : this._formatGetURL(url, content)
 
-    return request(finalURL, finalOptions).then(response => JSON.parse(response))
+    console.log(finalURL)
+    console.log(JSON.stringify(finalOptions))
+
+    return request(finalURL, finalOptions).then(response => {
+      console.log(response)
+      return JSON.parse(response)
+    })
   }
 
   /**

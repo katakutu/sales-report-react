@@ -85,22 +85,29 @@ module.exports = {
         const token = oauth2.accessToken.create(result)
         req.session.oauth = token
 
-        const authConsumer = new TopedAuthAPI(token['token']['access_token'], token['token']['token_type'])
-        authConsumer.getUserInfo().then(user => {
-          const sid = req.cookies[GlobalConfig['Cookie']['SessionID']] || session.newSessionID()
+        const accessToken = token['token']['access_token']
+        const authConsumer = new TopedAuthAPI(accessToken, token['token']['token_type'])
+        authConsumer.getUserInfo()
+          .then(user => {
+            const sid = req.cookies[GlobalConfig['Cookie']['SessionID']] || session.newSessionID()
 
-          return session.createUserSessionBySID(user, token['token']['access_token'], sid, (_, reply, sessionData) => {
-            const cookieOpt = {
-              domain: GlobalConfig['Cookie']['Domain'],
-              expires: GlobalConfig['Cookie']['MaxAge'],
-              httpOnly: true,
-              maxAge: GlobalConfig['Cookie']['MaxAge']
-            }
-            res.cookie(GlobalConfig['Cookie']['SessionID'], sid, cookieOpt)
+            return session.createUserSessionBySID(user, accessToken, sid, (_, reply, sessionData) => {
+              const cookieOpt = {
+                domain: GlobalConfig['Cookie']['Domain'],
+                expires: GlobalConfig['Cookie']['MaxAge'],
+                httpOnly: true,
+                maxAge: GlobalConfig['Cookie']['MaxAge']
+              }
+              res.cookie(GlobalConfig['Cookie']['SessionID'], sid, cookieOpt)
 
-            return res.redirect(`${GlobalConfig['Hostname']}/?view=feed_preview`)
+              return res.redirect(`${GlobalConfig['Hostname']}/?view=feed_preview`)
+            })
           })
-        })
+          .catch(error => {
+            console.log(`Get User Info Error: ${error.message}`)
+
+            return res.redirect(`${GlobalConfig['Hostname']}/`)
+          })
       })
     }
   },
