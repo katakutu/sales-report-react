@@ -2,7 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import Scroll from 'react-scroll'
-import { updateUserLoginStatus, updateSidebarStatus, storeUserData, initialState } from '../../store/app'
+import {
+  updateUserLoginStatus,
+  updateSearchModalStatus,
+  updateSidebarStatus,
+  storeUserData,
+  initialState
+} from '../../store/app'
 import BodyClassName from 'react-body-classname'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
@@ -22,6 +28,7 @@ class HeaderHome extends Component {
   static propTypes = {
     activeTab: React.PropTypes.string,
     updateUserLoginStatus: React.PropTypes.func,
+    updateSearchModalStatus: React.PropTypes.func,
     updateSidebarStatus: React.PropTypes.func,
     storeUserData: React.PropTypes.func,
     userData: React.PropTypes.object,
@@ -156,6 +163,7 @@ class HeaderHome extends Component {
       showSearchModal: true
     }, () => {
       Scroll.animateScroll.scrollToTop({ smooth: false, duration: 0 })
+      this.props.updateSearchModalStatus(true)
     })
   }
 
@@ -242,7 +250,12 @@ class HeaderHome extends Component {
   }
 }
 
-const mapDispatchToProps = { updateUserLoginStatus, updateSidebarStatus, storeUserData }
+const mapDispatchToProps = {
+  updateUserLoginStatus,
+  updateSearchModalStatus,
+  updateSidebarStatus,
+  storeUserData
+}
 const mapStateToProps = (state) => {
   return {
     searchModalIsOpen: state['app'] ? state['app'].searchModalIsOpen : state.searchModalIsOpen,
