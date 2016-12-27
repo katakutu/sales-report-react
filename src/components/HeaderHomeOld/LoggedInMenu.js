@@ -39,6 +39,24 @@ class LoggedInMenu extends Component {
     this.handlePurhcaseClicked = this.handlePurhcaseClicked.bind(this)
   }
 
+  componentDidMount () {
+    /*
+     * This thing is workaround for rendering bug in Old webkit browsers.
+     * See:
+     *
+     * - https://bugs.chromium.org/p/chromium/issues/detail?id=288747
+     * - https://stackoverflow.com/questions/11258877/fixed-element-disappears-in-chrome
+     *
+     * We basically force webkit to re-render some element that's not rendering right
+     * by calling it in console.log.
+     *
+     * Without this code, the "Buka Toko" button won't show on old default Android browser.
+     */
+    const el = document.querySelector('#toko-button')
+    console.log(el)
+    console.clear && console.clear()
+  }
+
   _totalObjectValues (object) {
     let result = 0
     if (object) {
@@ -78,7 +96,7 @@ class LoggedInMenu extends Component {
     let topupLink = `${SITES['Pulsa']}/saldo/?utm_source=mobile&utm_medium=link&utm_campaign=top%20up%20saldo`
     let goldMerchant = (this.props.shop['is_gold'] === '1') ? (<i className='mi-sprite mi-gold' />) : ''
     let shopSection = (shopId === 'ERROR FAIL' || shopId === null || shopId === '0') ? (
-      <div className='drawer__menu-shop u-clearfix'>
+      <div className='drawer__menu-shop u-clearfix' id='toko-button'>
         <a href={`${HOSTNAME}/myshop.pl`}>
           <div className='u-left'>
             <img className='drawer__menu-icon' src={addShop} alt='tokopedia' />
@@ -91,7 +109,7 @@ class LoggedInMenu extends Component {
         </a>
       </div>
       ) : (
-        <div className='drawer__menu-shop u-clearfix'>
+        <div className='drawer__menu-shop u-clearfix' id='toko-button'>
           <a href={`${HOSTNAME}/${this.props.shop['domain']}`}>
             <div className='u-left'>
               <img src={`${this.props.shop['logo']}`} alt='tokopedia' className='drawer__menu-shop-icon' />
