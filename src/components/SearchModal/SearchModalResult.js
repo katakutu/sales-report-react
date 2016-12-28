@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
+import 'whatwg-fetch'
 import { Link } from 'react-router'
-import { HOSTNAME } from '../../constants'
+import { HOSTNAME, SITES } from '../../constants'
 
 class SearchModalResult extends Component {
   static propTypes = {
     data: React.PropTypes.object,
+    userSearchID: React.PropTypes.string,
     query: React.PropTypes.string
   }
 
@@ -89,11 +91,27 @@ class SearchModalResult extends Component {
     })
   }
 
+  _deleteKeywordFunction (keyword) {
+    return (event) => {
+      const uid = this.props.userSearchID
+      const url = `${SITES.Ace}/universe/v2?q=${keyword}&unique_id=${uid}`
+
+      fetch(url, { method: 'DELETE', credentials: 'same-origin' })
+        .then(response => {
+          if (response.status === 204) {
+            this.props.data.refetch()
+          }
+        })
+    }
+  }
+
   _renderRecentSearch (items, key) {
     return items.map((item, index) => {
       return (
         <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
-          <a href='#' className='search-modal__item-action'><span /></a>
+          <a onClick={this._deleteKeywordFunction(item.keyword)} className='search-modal__item-action'>
+            <span />
+          </a>
           <a className='search-modal__item-value' href={`${HOSTNAME}${item.url}`}>
             <i className='search-modal__icon' />
             { this._boldKeyword(item.keyword, this.props.query) }
@@ -101,6 +119,17 @@ class SearchModalResult extends Component {
         </li>
       )
     })
+  }
+
+  _deleteAllHistory (event) {
+    const uid = this.props.userSearchID
+    const url = `${SITES.Ace}/universe/v2?q=0&unique_id=${uid}&clear_all=true`
+    fetch(url, { method: 'DELETE', credentials: 'same-origin' })
+      .then(response => {
+        if (response.status === 204) {
+          this.props.data.refetch()
+        }
+      })
   }
 
   _renderResultList (data, filter = '', withHeader = true) {
@@ -118,20 +147,37 @@ class SearchModalResult extends Component {
       ? null
       : resultData.map((result, index) => {
         const key = `search-result-${filter}-${index}`
+
+        let resultItems = null
+        if (filter === 'shop') {
+          resultItems = this._renderShopResult(result['items'], key)
+        } else if (filter === 'recent_search') {
+          resultItems = this._renderRecentSearch(result['items'], key)
+        } else {
+          resultItems = this._renderResultItems(result['items'], key)
+        }
+
         return (
           <div className={mainClassName} key={key}>
             { withHeader && <h1 className='u-uppercase'>{ finalTitle }</h1> }
-            { finalTitle === 'History' && <a className='search-modal__clear-history'>Hapus Semua</a> }
+            {
+              finalTitle === 'History' &&
+                <a onClick={this._deleteAllHistory} className='search-modal__clear-history'>
+                  Hapus Semua
+                </a>
+            }
             <ul className='u-list-reset u-p0 u-m0'>
-              {
-                filter === 'shop'
-                  ? this._renderShopResult(result['items'], key)
-                  : this._renderResultItems(result['items'], key)
-              }
+              { resultItems }
             </ul>
           </div>
         )
       })
+  }
+
+  constructor (props) {
+    super(props)
+
+    this._deleteAllHistory = this._deleteAllHistory.bind(this)
   }
 
   render () {
