@@ -6,7 +6,7 @@ import queries from '../../../queries'
 
 import HotList from './HotList'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
-import Spinner from '../../../components/Loading/Spinner'
+import SplashScreen from '../../../components/Loading/SplashScreen'
 import './HotListView.scss'
 import lang from '../../../lib/utils/Lang'
 
@@ -40,7 +40,7 @@ class HotListView extends Component {
   render () {
     if (this.props.data.loading) {
       return (
-        <div><Spinner /></div>
+        <SplashScreen />
       )
     }
 

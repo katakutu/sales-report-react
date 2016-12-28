@@ -8,7 +8,7 @@ import PromoSpacer from '../../../components/PromoSpacer'
 import Ticker from '../../../components/Ticker'
 import HotList from '../../../components/HotList'
 import MoreInfo from '../../../components/MoreInfo'
-import Spinner from '../../../components/Loading/Spinner'
+import SplashScreen from '../../../components/Loading/SplashScreen'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
 
@@ -34,7 +34,7 @@ class HomeView extends Component {
   render () {
     if (this.props.data.loading) {
       return (
-        <div><Spinner /></div>
+        <SplashScreen />
       )
     }
 
