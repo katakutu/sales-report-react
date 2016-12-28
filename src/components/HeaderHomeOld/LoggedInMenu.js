@@ -24,9 +24,9 @@ class LoggedInMenu extends Component {
   }
 
   state = {
-    inboxIsOpen: false,
-    purchaseIsOpen: false,
-    salesIsOpen: false
+    inboxIsOpen: true,
+    purchaseIsOpen: true,
+    salesIsOpen: true
   }
 
   constructor (props) {
@@ -59,6 +59,14 @@ class LoggedInMenu extends Component {
       el.style.display = ''
       el.style.transform = 'translate3d(0, 0, 0)'
     }, 500)
+
+    setTimeout(() => {
+      this.setState({
+        inboxIsOpen: false,
+        purchaseIsOpen: false,
+        salesIsOpen: false
+      })
+    }, 50)
   }
 
   _totalObjectValues (object) {
