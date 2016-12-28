@@ -4,7 +4,8 @@ const URL = require('url')
 
 const MOJITO_SERVICES = {
   Ticker: `${GlobalConfig.Mojito.Hostname}/api/v1/tickers`,
-  Slides: `${GlobalConfig.Mojito.Hostname}/api/v1/slides`
+  Slides: `${GlobalConfig.Mojito.Hostname}/api/v1/slides`,
+  Category: `${GlobalConfig.Mojito.Hostname}/api/v1/layout/category`
 }
 
 /**
@@ -19,6 +20,12 @@ class TopedMojitoAPI {
    */
   constructor () {
     this.api = new TopedAPI()
+  }
+
+  getCategory () {
+    let url = URL.parse(MOJITO_SERVICES.Category)
+
+    return this.api.consume(url, 'GET', {})
   }
 
   /**

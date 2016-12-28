@@ -1,4 +1,4 @@
-const TopedHadesAPI = require('./../../api-consumer/api/Hades/TopedHadesAPI')
+const TopedMojitoAPI = require('./../../api-consumer/api/Search/TopedMojitoAPI')
 
 const MAIN_CATEGORY = {
   'Fashion \u0026 Aksesoris': 'Gaya Hidup',
@@ -28,33 +28,31 @@ const MAIN_CATEGORY = {
   'Produk Lainnya': 'Kategori Lain'
 }
 
-function getMainPageCategories () {
-  const api = new TopedHadesAPI()
+function getMainPageCategories() {
+  const api = new TopedMojitoAPI()
 
-  return api.allCategories()
+  return api.getCategory()
     .then(response => {
       if (!response || !response['data']) {
         return []
       }
 
-      const categories = response['data']['categories'] || []
-      let result = {
-        'Gaya Hidup': [],
-        'Teknologi': [],
-        'Kategori Lain': []
-      }
-
-      categories.forEach(cat => {
-        if (MAIN_CATEGORY[cat['name']]) {
-          result[MAIN_CATEGORY[cat['name']]].push({
-            name: cat['name'],
-            identifier: cat['identifier']
-          })
-        }
-      })
-
       return {
-        categories: Object.keys(result).map(k => { return { name: k, items: result[k] } }),
+        categories: response['data']['layout_sections'].map(section => {
+          const key = section['title']
+          return {
+            name: section['title'],
+            items: section['layout_rows'].map(row => {
+              const id = row['url'].split('/')
+
+              return {
+                name: row['name'],
+                identifier: id[id.length - 1]
+              }
+            })
+          }
+
+        }),
         errors: []
       }
     })
