@@ -2,6 +2,9 @@ const TopedHadesAPI = require('./../../api-consumer/api/Hades/TopedHadesAPI')
 
 const MAIN_CATEGORY = {
   'Fashion \u0026 Aksesoris': 'Gaya Hidup',
+  'Fashion Pria': 'Gaya Hidup',
+  'Fashion Wanita': 'Gaya Hidup',
+  'Fashion Muslim': 'Gaya Hidup',
   'Kecantikan': 'Gaya Hidup',
   'Rumah Tangga': 'Gaya Hidup',
   'Olahraga': 'Gaya Hidup',
