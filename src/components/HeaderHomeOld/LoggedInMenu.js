@@ -223,7 +223,12 @@ class LoggedInMenu extends Component {
               }</span>
             </a>
           </div>
+          <input type='text' id='include-deposit' value={`
+            ${this.props.userData.deposit.deposit_fmt}
+          `} readonly hidden/>
+          <input type='text' id='accounts_client_host' value={`${HOSTNAME}`} readonly hidden/>
           <div className='drawer__menu'>
+            <div id='tokocash-balance-container'></div>
             <a href='/'>
               <span className='drawer__menu-icon icon__svg tokoCashIcon' alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>TokoCash</span>
