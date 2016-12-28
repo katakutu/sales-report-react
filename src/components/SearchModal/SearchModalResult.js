@@ -89,12 +89,27 @@ class SearchModalResult extends Component {
     })
   }
 
+  _renderRecentSearch (items, key) {
+    return items.map((item, index) => {
+      return (
+        <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
+          <a href='#' className='search-modal__item-action'><span /></a>
+          <a className='search-modal__item-value' href={`${HOSTNAME}${item.url}`}>
+            <i className='search-modal__icon' />
+            { this._boldKeyword(item.keyword, this.props.query) }
+          </a>
+        </li>
+      )
+    })
+  }
+
   _renderResultList (data, filter = '', withHeader = true) {
     const finalData = data || []
     const filterFunc = i => i['id'].toLowerCase() === filter.toLowerCase()
 
     const mainClassName = `u-clearfix search-modal__result-container search-modal__result--${filter}`
     const title = this._sentenceCase(filter.split('_').join(' '))
+    const finalTitle = title === 'Recent Search' ? 'History' : title
 
     const resultData = filter === '' ? finalData : finalData.filter(filterFunc)
 
@@ -105,8 +120,8 @@ class SearchModalResult extends Component {
         const key = `search-result-${filter}-${index}`
         return (
           <div className={mainClassName} key={key}>
-            { withHeader && <h1 className='u-uppercase'>{ title }</h1> }
-            { title === 'History' && <a className='search-modal__clear-history'>Hapus Semua</a> }
+            { withHeader && <h1 className='u-uppercase'>{ finalTitle }</h1> }
+            { finalTitle === 'History' && <a className='search-modal__clear-history'>Hapus Semua</a> }
             <ul className='u-list-reset u-p0 u-m0'>
               {
                 filter === 'shop'

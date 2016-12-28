@@ -155,7 +155,7 @@
     display: block;
     width: 15px;
     height: 15px;
-    background: url('http://placehold.it/15x15') transparent no-repeat;
+    background: url('./assets/search-modal-icon-history.png') transparent no-repeat;
 }
 
 .search-modal__item-label {
@@ -266,5 +266,37 @@
         height: 22px;
         background: url('./assets/search-modal-icon-hotlist.png') transparent no-repeat;
         background-size: 16px 22px;
+    }
+}
+
+.search-modal__result--recent_search {
+    position: relative;
+
+    .search-modal__result-action {
+        position: absolute;
+        top: 13px;
+        right: 14px;
+        display: block;
+        font-size: 14px;
+    }
+
+    .search-modal__result-item {
+        position: relative;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+    .search-modal__item-action {
+        position: absolute;
+        top: -4px;
+        right: 0;
+        display: block;
+        width: 25px;
+        height: 49px;
+        background: url('./assets/search-modal-delete@2x.png') transparent no-repeat;
+        background-position: left center;
+        background-size: 16px 16px;
     }
 }

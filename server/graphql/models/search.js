@@ -36,7 +36,7 @@ function universalSearch (userSearchID, query) {
         }
       })
 
-      return finalResult
+      return finalResult.concat({ id: 'recent_search', name: 'RECENT SEARCH', items: [{ keyword: 'test', url: 'test', imageURI: '', official: false }] })
     })
     .catch(error => {
       console.log(`Error getting search result: ${error.message}`)
