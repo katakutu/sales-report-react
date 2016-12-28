@@ -17,12 +17,12 @@ class SearchInput extends Component {
     storeUserSearchID: React.PropTypes.func,
     userSearchID: React.PropTypes.string,
     updateLang: React.PropTypes.func,
-    updateSearchModalStatus: React.PropTypes.func
+    updateSearchModalStatus: React.PropTypes.func,
+    searchQuery: React.PropTypes.string
   }
 
   state = {
-    searchModalOpened: this.props.showModal,
-    value: ''
+    searchModalOpened: this.props.showModal
   }
 
   constructor (props) {
@@ -72,12 +72,11 @@ class SearchInput extends Component {
             className='search-input__input'
             placeholder={this.props.injectPlaceholder}
             onFocus={this.handleFocus}
-            value={this.state.value} />
+            readOnly
+            value={this.props.searchQuery} />
           <button className={finalSearchBtnCN} onClick={e => e.preventDefault()}>
               Search
           </button>
-
-          { this.state.value !== '' && <span className='search-input__cancel' onClick={this.clearText} /> }
         </form>
 
         { this.state.searchModalOpened && <SearchModal onClose={this.handleModalClosed} /> }
@@ -91,6 +90,7 @@ const mapDispatchToProps = { storeUserSearchID, updateSearchModalStatus }
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
+    searchQuery: state['app'] ? state['app'].searchQuery : state.searchQuery,
     userSearchID: state['app'] ? state['app'].user.searchID : state.user.searchID
   }
 }

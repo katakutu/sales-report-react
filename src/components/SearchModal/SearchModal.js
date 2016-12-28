@@ -4,17 +4,16 @@ import ReactDOM from 'react-dom'
 import SearchModalResult from './SearchModalResult'
 
 import './SearchModal.scss'
+import { clearSearchQuery, updateSearchQuery } from '../../store/app'
 
 class SearchModal extends Component {
   static propTypes = {
+    clearSearchQuery: React.PropTypes.func,
     onClose: React.PropTypes.func,
     injectPlaceholder: React.PropTypes.string,
-    userSearchID: React.PropTypes.string
-  }
-
-  state = {
-    hasContent: false,
-    query: ''
+    updateSearchQuery: React.PropTypes.func,
+    userSearchID: React.PropTypes.string,
+    searchQuery: React.PropTypes.string
   }
 
   constructor (props) {
@@ -29,20 +28,13 @@ class SearchModal extends Component {
   }
 
   clearText () {
-    this.setState({
-      hasContent: false,
-      query: ''
-    }, function () {
-      ReactDOM.findDOMNode(this.refs.modalSearchInput).focus()
-    })
+    this.props.clearSearchQuery()
+    ReactDOM.findDOMNode(this.refs.modalSearchInput).focus()
   }
 
   handleChange (event) {
     const content = event.target.value
-    this.setState({
-      query: content,
-      hasContent: content !== ''
-    })
+    this.props.updateSearchQuery(content)
   }
 
   render () {
@@ -58,27 +50,29 @@ class SearchModal extends Component {
               className='search-input__modal-input u-col-10'
               placeholder='Cari Produk atau Toko'
               onChange={this.handleChange}
-              value={this.state.query} />
+              value={this.props.searchQuery} />
             <input type='hidden' name='st' defaultValue='product' />
             <span className='search-input__modal-icon' />
 
-            { this.state.hasContent &&
+            { this.props.searchQuery !== '' &&
             <span className='search-input__modal-cancel' onClick={this.clearText} /> }
 
-            { this.state.hasContent && <span className='search-input__clear'
+            { this.props.searchQuery !== '' && <span className='search-input__clear'
               onClick={this.clearText} /> }
           </form>
         </div>
 
-        <SearchModalResult query={this.state.query} userSearchID={this.props.userSearchID} />
+        <SearchModalResult query={this.props.searchQuery} userSearchID={this.props.userSearchID} />
       </div>
     )
   }
 }
 
+const mapDispatchToProps = { clearSearchQuery, updateSearchQuery }
 const mapStateToProps = (state) => {
   return {
+    searchQuery: state['app'] ? state['app'].searchQuery : state.searchQuery,
     userSearchID: state['app'] ? state['app'].user.searchID : state.user.searchID
   }
 }
-export default connect(mapStateToProps, null)(SearchModal)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchModal)
