@@ -122,7 +122,7 @@ class SearchModalResult extends Component {
   render () {
     return (
       <div className='clearfix'>
-        { this.props.query === '' && this._renderResultList(this.props.data.search, 'history', true) }
+        { this.props.query === '' && this._renderResultList(this.props.data.search, 'recent_search', true) }
         { this.props.query === '' && this._renderResultList(this.props.data.search, 'popular_search', true) }
         { this.props.query !== '' && this._renderResultList(this.props.data.search, 'autocomplete', false) }
         { this.props.query !== '' && this._renderResultList(this.props.data.search, 'shop', true) }
