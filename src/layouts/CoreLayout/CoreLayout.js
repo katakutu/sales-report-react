@@ -70,12 +70,12 @@ class CoreLayout extends Component {
   }
 
   render () {
-    let gs = this.props.isOnline ? 'grayscale(0%)' : 'grayscale(100%)'
-    let ds = { height: '100%', filter: gs }
+    let ds = { height: '100%' }
+    let finalDS = this.props.isOnline ? ds : Object.assign({}, ds, { filter: 'grayscale(100%)' })
 
     return (
       <OnOffWrapper onOnline={this.handleOnOnline} onOffline={this.handleOnOffline}>
-        <div style={ds} className='layout u-flex u-flex-column'>
+        <div style={finalDS} className='layout u-flex u-flex-column'>
           { this.props.isLoading && <Spinner /> }
 
           <div className='content u-flex-auto'>

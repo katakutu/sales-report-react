@@ -10,6 +10,7 @@ export const USER_LOGGED_IN = 'USER_LOGGED_IN'
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
 export const STORE_USER_DATA = 'STORE_USER_DATA'
 
+export const SEARCH_QUERY = 'SEARCH_QUERY'
 export const SEARCH_MODAL_OPEN = 'SEARCH_MODAL_OPEN'
 export const SEARCH_MODAL_CLOSE = 'SEARCH_MODAL_CLOSE'
 
@@ -73,6 +74,17 @@ export function updateSearchModalStatus (isOpen) {
   }
 }
 
+export function updateSearchQuery (query) {
+  return {
+    type: SEARCH_QUERY,
+    payload: query
+  }
+}
+
+export function clearSearchQuery () {
+  return updateSearchQuery('')
+}
+
 export function storeUserData (data) {
   return {
     type: STORE_USER_DATA,
@@ -102,6 +114,8 @@ export const actions = {
   updateUserLoginStatus,
   updateSidebarStatus,
   updateSearchModalStatus,
+  clearSearchQuery,
+  updateSearchQuery,
   storeUserData,
   appIsLoading,
   updateLang
@@ -151,6 +165,9 @@ const ACTION_HANDLERS = {
   [SEARCH_MODAL_CLOSE]: (state, action) => {
     return Object.assign({}, state, { searchModalIsOpen: action.payload })
   },
+  [SEARCH_QUERY]: (state, action) => {
+    return Object.assign({}, state, { searchQuery: action.payload })
+  },
   [STORE_USER_DATA]: (state, action) => {
     return Object.assign({}, state, {
       user: Object.assign({}, state.user, { data: action.payload })
@@ -173,6 +190,7 @@ import Cookies from '../lib/utils/Cookies'
 // Reducer
 // ------------------------------------
 const initialState = {
+  searchQuery: '',
   searchModalIsOpen: false,
   sidebarIsOpen: false,
   isOnline: true,

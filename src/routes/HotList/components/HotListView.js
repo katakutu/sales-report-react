@@ -6,6 +6,7 @@ import queries from '../../../queries'
 
 import HotList from './HotList'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
+import SplashScreen from '../../../components/Loading/SplashScreen'
 import './HotListView.scss'
 import lang from '../../../lib/utils/Lang'
 
@@ -37,6 +38,12 @@ class HotListView extends Component {
   }
 
   render () {
+    if (this.props.data.loading) {
+      return (
+        <SplashScreen />
+      )
+    }
+
     return (
       <div>
         <HeaderHomeOld userInfo={this.props.data.user} tabIsAvailable activeTab='hotlist' />
