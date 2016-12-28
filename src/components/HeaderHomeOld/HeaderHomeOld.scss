@@ -436,7 +436,9 @@
 .drawer__menu-detail{
     font-size: 10px!important;
     color: #42b549;
-    margin-left:-30px;
+    right: 20px;
+    position: absolute;
+    margin-top: 5px;
 }
 
 .drawer__activate-tokoCash{

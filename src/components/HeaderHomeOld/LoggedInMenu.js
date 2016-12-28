@@ -234,7 +234,9 @@ class LoggedInMenu extends Component {
             <a href={`${HOSTNAME}/lp.pl`}>
               <span className='drawer__menu-icon icon__svg topPointsIcon' alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>TopPoints</span>
-              <span id='user-total-toppoints' className='drawer__menu-detail'>Rp 0</span>
+              <span id='user-total-toppoints' className='drawer__menu-detail'>{`
+                ${this.props.userData.points.data.attributes.amount_formatted}
+              `}</span>
             </a>
           </div>
           <div className='drawer__menu'>
