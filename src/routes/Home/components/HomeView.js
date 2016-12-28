@@ -31,6 +31,10 @@ class HomeView extends Component {
   }
 
   render () {
+    if (this.props.data.loading) {
+      return null
+    }
+
     const slides = this.props.data.slides ? this.props.data.slides.slides : []
     const tickers = this.props.data.ticker ? this.props.data.ticker.tickers : []
 
