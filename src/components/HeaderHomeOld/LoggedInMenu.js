@@ -11,7 +11,7 @@ import addShop from './assets/nav-add-shop-icon.png'
 
 import { updateSidebarStatus } from '../../store/app'
 
-import { HOSTNAME } from '../../constants'
+import { HOSTNAME, SITES } from '../../constants'
 import lang from '../../lib/utils/Lang'
 
 class LoggedInMenu extends Component {
@@ -97,6 +97,7 @@ class LoggedInMenu extends Component {
     let salesParent = (!this.state.salesIsOpen) ? '' : 'opened'
     let shopId = this.props.shop['shop_id']
 
+    let topupLink = `${SITES['Pulsa']}/saldo/?utm_source=mobile&utm_medium=link&utm_campaign=top%20up%20saldo`
     let goldMerchant = (this.props.shop['is_gold'] === '1') ? (<i className='mi-sprite mi-gold' />) : ''
     let shopSection = (shopId === 'ERROR FAIL' || shopId === null || shopId === '0') ? (
       <div className='drawer__menu-shop u-clearfix' id='toko-button'>
@@ -215,27 +216,22 @@ class LoggedInMenu extends Component {
               <a href={`${HOSTNAME}/people/${this.props.userData.id}`}>{ this.props.userData.name }</a>
             </div>
           </div>
-          <div className='drawer__menu first__menu'>
-            <a href={`${HOSTNAME}/deposit.pl`}>
-              <span className='drawer__menu-icon icon__svg balanceIcon' />
-              <span className='drawer__menu-title u-inline-block'>{
-                lang[this.props.lang]['Balance']
-              }</span>
-            </a>
+          <div className='drawer__user-summary u-clearfix'>
+            <div className='drawer__user-summary-box u-left'>
+              <a href={`${HOSTNAME}/deposit.pl`}>
+                <span>{this.props.userData.deposit.deposit_fmt}</span>
+                <div className='drawer__user-infosum-title'>Saldo</div>
+              </a>
+            </div>
+            <div className='drawer__user-summary-box u-right'>
+              <a href={`${HOSTNAME}/lp.pl`}>
+                <span>{this.props.userData.points.data.attributes.amount_formatted}</span>
+                <div className='drawer__user-infosum-title'>TopPoints</div>
+              </a>
+            </div>
           </div>
-          <div className='drawer__menu'>
-            <a href='/'>
-              <span className='drawer__menu-icon icon__svg tokoCashIcon' alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>TokoCash</span>
-              <span id='tokocash-activate-btn' className='drawer__activate-tokoCash'>Aktivasi TokoCash</span>
-            </a>
-          </div>
-          <div className='drawer__menu'>
-            <a href={`${HOSTNAME}/lp.pl`}>
-              <span className='drawer__menu-icon icon__svg topPointsIcon' alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>TopPoints</span>
-              <span id='user-total-toppoints' className='drawer__menu-detail'>Rp 0</span>
-            </a>
+          <div className='drawer__user-topup'>
+            <a href={topupLink} className='drawer__btn-topup'>Top Up Saldo</a>
           </div>
           <div className='drawer__menu'>
             <a href='/'>
