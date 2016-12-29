@@ -5,6 +5,7 @@ import SearchModal from '../SearchModal'
 import './SearchInput.scss'
 
 import lang from '../../lib/utils/Lang'
+import GTM from '../../lib/utils/GTM'
 import UserSearchID from '../../lib/utils/UserSearchID'
 import { storeUserSearchID, updateSearchModalStatus } from '../../store/app'
 
@@ -30,6 +31,7 @@ class SearchInput extends Component {
 
     this.handleFocus = this.handleFocus.bind(this)
     this.handleModalClosed = this.handleModalClosed.bind(this)
+    this.handleSearchButtonClicked = this.handleSearchButtonClicked.bind(this)
   }
 
   handleFocus () {
@@ -48,6 +50,10 @@ class SearchInput extends Component {
     this.setState({ searchModalOpened: false }, () => {
       this.props.updateSearchModalStatus(false)
     })
+  }
+
+  handleSearchButtonClicked (event) {
+    GTM.pushEvent('clickSearch', 'Search', 'Search', this.props.searchQuery)
   }
 
   render () {
@@ -74,7 +80,7 @@ class SearchInput extends Component {
             onFocus={this.handleFocus}
             readOnly
             value={this.props.searchQuery} />
-          <button className={finalSearchBtnCN} onClick={e => e.preventDefault()}>
+          <button className={finalSearchBtnCN} onClick={this.handleSearchButtonClicked}>
               Search
           </button>
         </form>

@@ -3,8 +3,8 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import 'whatwg-fetch'
-import { Link } from 'react-router'
 import { HOSTNAME, SITES } from '../../constants'
+import GTM from '../../lib/utils/GTM'
 
 class SearchModalResult extends Component {
   static propTypes = {
@@ -42,32 +42,41 @@ class SearchModalResult extends Component {
     })
   }
 
-  _renderEmptyResult (title, withHeader, mainClassName) {
-    return (
-      <div className={mainClassName}>
-        {
-          withHeader &&
-            <h1 className='u-uppercase'>{ title }</h1>
-        }
-
-        <ul className='u-list-reset u-p0 u-m0'>
-          <li className='search-modal__result-item'>
-            <Link className='search-modal__item-value' to='#'>
-              <i className='search-modal__icon' />
-              Tidak ada hasil pencarian
-            </Link>
-          </li>
-        </ul>
-      </div>
-    )
+  _renderEmptyResult (keyword) {
+    GTM.pushEvent('noSearchResult', 'No Search Result', 'No Result', keyword)
+    return null
   }
 
-  _renderResultItems (items, key) {
+  _itemType (filter) {
+    let result = 'Search Autocomplete'
+    switch (filter) {
+      case 'popular_search':
+        result = 'Popular Search'
+        break
+      case 'hotlist':
+        result = 'Search Hotlist'
+        break
+      default:
+        result = 'Search Autocomplete'
+    }
+
+    return result
+  }
+
+  _renderResultItems (items, key, itemType) {
+    const _gtmNotifyClick = (keyword) => {
+      return (event) => {
+        GTM.pushEvent('clickSearch', 'Search', this._itemType(itemType), keyword)
+      }
+    }
+
     return items.map((item, index) => {
       return (
         <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
           <a href='#' className='search-modal__item-action'><span /></a>
-          <a className='search-modal__item-value' href={`${HOSTNAME}${item.url}`}>
+          <a className='search-modal__item-value'
+            href={`${HOSTNAME}${item.url}`}
+            onClick={_gtmNotifyClick(item.keyword)}>
             <i className='search-modal__icon' />
             { this._boldKeyword(item.keyword, this.props.query) }
           </a>
@@ -106,13 +115,21 @@ class SearchModalResult extends Component {
   }
 
   _renderRecentSearch (items, key) {
+    const _gtmNotifyClick = (keyword) => {
+      return (event) => {
+        GTM.pushEvent('clickSearch', 'Search', 'Recent Search', keyword)
+      }
+    }
+
     return items.map((item, index) => {
       return (
         <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
           <a onClick={this._deleteKeywordFunction(item.keyword)} className='search-modal__item-action'>
             <span />
           </a>
-          <a className='search-modal__item-value' href={`${HOSTNAME}${item.url}`}>
+          <a className='search-modal__item-value'
+            href={`${HOSTNAME}${item.url}`}
+            onClick={_gtmNotifyClick(item.keyword)}>
             <i className='search-modal__icon' />
             { this._boldKeyword(item.keyword, this.props.query) }
           </a>
@@ -143,8 +160,7 @@ class SearchModalResult extends Component {
     const resultData = filter === '' ? finalData : finalData.filter(filterFunc)
 
     return resultData.length <= 0
-      // ? this._renderEmptyResult(title, withHeader, mainClassName)
-      ? null
+      ? this._renderEmptyResult(this.props.query)
       : resultData.map((result, index) => {
         const key = `search-result-${filter}-${index}`
 
@@ -154,7 +170,7 @@ class SearchModalResult extends Component {
         } else if (filter === 'recent_search') {
           resultItems = this._renderRecentSearch(result['items'], key)
         } else {
-          resultItems = this._renderResultItems(result['items'], key)
+          resultItems = this._renderResultItems(result['items'], key, filter)
         }
 
         return (
@@ -181,6 +197,10 @@ class SearchModalResult extends Component {
   }
 
   render () {
+    if (this.props.data.loading) {
+      return null
+    }
+
     return (
       <div className='clearfix'>
         { this.props.query === '' && this._renderResultList(this.props.data.search, 'recent_search', true) }
