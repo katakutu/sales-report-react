@@ -23,7 +23,20 @@ class Footer extends Component {
 
   languageChange (event) {
     const newLang = event.target.value
-    this.setState({ language: newLang }, () => Cookies.setItem('lang', newLang))
+    this.setState({ language: newLang }, () => {
+      let domain = location.hostname
+      if (window.location.href.indexOf('ndvl') > -1) {
+        domain = /(\..*\.ndvl)/.exec(location.hostname)[1]
+      } else if (window.location.href.indexOf('localhost') > -1) {
+        domain = /(localhost)/.exec(location.hostname)[1]
+      } else if (window.location.href.indexOf('ndvl') < 0) {
+        domain = /(\..*\.com)/.exec(location.hostname) &&
+          /(\..*\.com)/.exec(location.hostname)[1] ||
+          location.hostname
+      }
+
+      Cookies.setItem('lang', newLang, 31536000, '/', domain, true)
+    })
     this.props.updateLang(newLang)
   }
 
