@@ -5,11 +5,21 @@ import { HOSTNAME } from '../../constants'
 import './CategoryList.scss'
 import TextHeader from '../../components/TextHeader'
 import lang from '../../lib/utils/Lang'
+import GTM from '../../lib/utils/GTM'
 
 class CategoryList extends Component {
   static propTypes = {
     categories: React.PropTypes.arrayOf(React.PropTypes.object),
     lang: React.PropTypes.string
+  }
+
+  constructor (props) {
+    super(props)
+
+    this._chunkArray = this._chunkArray.bind(this)
+    this._gtmNotifyCategoryClicked = this._gtmNotifyCategoryClicked.bind(this)
+    this.renderCategoryItem = this.renderCategoryItem.bind(this)
+    this.renderCategoryList = this.renderCategoryList.bind(this)
   }
 
   _chunkArray (arr, length) {
@@ -20,6 +30,12 @@ class CategoryList extends Component {
     }
 
     return result
+  }
+
+  _gtmNotifyCategoryClicked (item) {
+    return (event) => {
+      GTM.pushEvent('clickKategori', 'Kategori', 'Click', item['name'])
+    }
   }
 
   renderCategoryItem (catItems, parentIndex) {
