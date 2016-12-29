@@ -88,5 +88,8 @@ query Query($page: Int!) {
 `
 
 export default graphql(HotListQuery, {
-  options: ({ page }) => ({ variables: { page } })
+  options: ({ page }) => ({
+    variables: { page },
+    returnPartialData: true
+  })
 })(HotList)
