@@ -68,6 +68,7 @@ query Query {
         name
         identifier
         imageURI
+        url
       }
       name
     }
