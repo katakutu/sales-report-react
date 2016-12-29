@@ -67,6 +67,7 @@ class Carousel extends Component {
     this._createCarouselItems = this._createCarouselItems.bind(this)
     this._gtmNotifySlideClick = this._gtmNotifySlideClick.bind(this)
     this._gtmNotifySlideChange = this._gtmNotifySlideChange.bind(this)
+    this._startCarousel = this._startCarousel.bind(this)
     this._stopCarousel = this._stopCarousel.bind(this)
   }
 
@@ -141,6 +142,12 @@ class Carousel extends Component {
     })
   }
 
+  _startCarousel () {
+    this.setState({
+      carouselSettings: Object.assign(this.state.carouselSettings, { autoplay: true })
+    })
+  }
+
   render () {
     let placeholder = {
       'image_url': CarouselPlaceholder,
@@ -154,7 +161,8 @@ class Carousel extends Component {
     return (
       <div className='carousel u-clearfix'
         onTouchEnd={this._stopCarousel}
-        onMouseOver={this._stopCarousel}>
+        onMouseOver={this._stopCarousel}
+        onMouseLeave={this._startCarousel}>
         <Slider {...this.state.carouselSettings} afterChange={this._gtmNotifySlideChange}>
           { sliders }
         </Slider>
