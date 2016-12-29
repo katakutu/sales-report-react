@@ -79,7 +79,7 @@ class SearchModalResult extends Component {
             onClick={_gtmNotifyClick(item.keyword)}>
             <i className='search-modal__icon' />
             {
-              this.props.query === '' 
+              this.props.query === ''
                 ? item.keyword
                 : this._boldKeyword(item.keyword, this.props.query)
             }
@@ -97,7 +97,7 @@ class SearchModalResult extends Component {
           <a className='search-modal__item-value' href={`${HOSTNAME}${item.url}`}>
             <img src={item.imageURI} alt={`${item.keyword} Store Logo`} />
             {
-              this.props.query === '' 
+              this.props.query === ''
               ? item.keyword
               : this._boldKeyword(item.keyword, this.props.query)
             }
