@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import './HotList.scss'
 import TextHeader from '../../components/TextHeader'
 import Slider from 'react-slick'
 import HotListPlaceholder from './assets/hotlist-placeholder.jpg'
+import lang from '../../lib/utils/Lang'
 
 const settings = {
   autoplay: true,
@@ -24,7 +27,8 @@ class HotList extends Component {
       message_status: React.PropTypes.number,
       success: React.PropTypes.number,
       data: React.PropTypes.arrayOf(React.PropTypes.object)
-    })
+    }),
+    propLang: React.PropTypes.string
   }
 
   constructor (props) {
@@ -83,9 +87,22 @@ class HotList extends Component {
         <Slider {...settings}>
           { hotlists.map(this._renderHotlistItem) }
         </Slider>
+
+        <div className='u-clearfix' id='hotlist-spacer'>
+          <Link to={'/hot'} className='hotlist-spacer__link' >
+            { lang[this.props.propLang]['Lihat Semua Hotlist'] }
+            <i className='hotlist-spacer__icon hotlist-spacer__icon--arrow' />
+            <div className='u-clearfix' />
+          </Link>
+        </div>
       </div>
     )
   }
 }
 
-export default HotList
+const mapStateToProps = (state) => {
+  return {
+    propLang: state['app'] ? state['app'].lang : state.lang
+  }
+}
+export default connect(mapStateToProps, undefined)(HotList)

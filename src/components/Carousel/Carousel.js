@@ -97,7 +97,7 @@ class Carousel extends Component {
           'event': 'sliderBanner',
           'eventCategory': 'Slider',
           'eventAction': 'Click',
-          'eventLabel': this.props.images[index]
+          'eventLabel': this.props.images[index].title
         })
       }
     }
@@ -111,7 +111,7 @@ class Carousel extends Component {
         'event': 'sliderBanner',
         'eventCategory': 'Slider',
         'eventAction': 'Impression',
-        'eventLabel': this.props.images[index]
+        'eventLabel': this.props.images[index].title
       })
 
       let link = this.props.images[index]['redirect_url']
