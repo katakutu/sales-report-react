@@ -6,6 +6,7 @@ import TextHeader from '../../components/TextHeader'
 import Slider from 'react-slick'
 import HotListPlaceholder from './assets/hotlist-placeholder.jpg'
 import lang from '../../lib/utils/Lang'
+import GTM from '../../lib/utils/GTM'
 
 const settings = {
   autoplay: true,
@@ -34,13 +35,20 @@ class HotList extends Component {
   constructor (props) {
     super(props)
 
+    this._gtmNotifyItemClicked = this._gtmNotifyItemClicked.bind(this)
     this._renderHotlistItem = this._renderHotlistItem.bind(this)
     this._verifyHotlistData = this._verifyHotlistData.bind(this)
   }
 
+  _gtmNotifyItemClicked (item) {
+    return (event) => {
+      GTM.pushEvent('clickHotlist', 'Hotlist', 'Click', item.title_enc)
+    }
+  }
+
   _renderHotlistItem (item, index) {
     return (
-      <div className='hotlist__item' key={`hotlist-${index}`}>
+      <div className='hotlist__item' onClick={this._gtmNotifyItemClicked(item)} key={`hotlist-${index}`}>
         <div className='hotlist__wrapper'>
           <a aria-hidden='true' tabIndex='-1' href={item.url} className='hotlist__click u-block' />
           <img src={item.image_url} className='u-fit u-block u-mx-auto' alt={`Gambar ${item.title_enc}`} />

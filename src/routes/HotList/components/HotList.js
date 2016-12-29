@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
+import GTM from '../../../lib/utils/GTM'
+
 class HotList extends Component {
   static propTypes = {
     data: React.PropTypes.object
@@ -9,6 +11,12 @@ class HotList extends Component {
 
   state = {
     hotlists: []
+  }
+
+  constructor (props) {
+    super(props)
+
+    this._gtmNotifyItemClicked = this._gtmNotifyItemClicked.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -25,13 +33,19 @@ class HotList extends Component {
     }
   }
 
+  _gtmNotifyItemClicked (item) {
+    return (event) => {
+      GTM.pushEvent('clickHotlist', 'Hotlist', 'Click', item.title_enc)
+    }
+  }
+
   render () {
     return (
       <div>
         {
           this.state.hotlists.map((item, index) => {
             return (
-              <div className='hotlist__item' key={`hotlist-${index}`}>
+              <div className='hotlist__item' onClick={this._gtmNotifyItemClicked(item)} key={`hotlist-${index}`}>
                 <div className='hotlist__wrapper'>
                   <a aria-hidden='true' tabIndex='-1' href={item.url} className='hotlist__click u-block' />
                   <img src={item.image_url} className='u-fit u-block u-mx-auto' alt='' />

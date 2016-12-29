@@ -7,6 +7,8 @@ import './slick-theme.scss'
 import Slider from 'react-slick'
 import CarouselPlaceholder from './assets/carousel-placeholder.jpg'
 
+import GTM from '../../lib/utils/GTM'
+
 const settings = {
   autoplay: true,
   autoplaySpeed: 5000,
@@ -90,29 +92,25 @@ class Carousel extends Component {
 
   _gtmNotifySlideClick (index) {
     return (event) => {
-      window.dataLayer = window.dataLayer || []
-
       if (this.props.images.length > 0) {
-        window.dataLayer.push({
-          'event': 'sliderBanner',
-          'eventCategory': 'Slider',
-          'eventAction': 'Click',
-          'eventLabel': this.props.images[index].title
-        })
+        GTM.pushEvent(
+          'slideBanner',
+          'Slider',
+          'Click',
+          this.props.images[index].title
+       )
       }
     }
   }
 
   _gtmNotifySlideChange (index) {
-    window.dataLayer = window.dataLayer || []
-
     if (this.props.images.length > 0) {
-      window.dataLayer.push({
-        'event': 'sliderBanner',
-        'eventCategory': 'Slider',
-        'eventAction': 'Impression',
-        'eventLabel': this.props.images[index].title
-      })
+      GTM.pushEvent(
+        'sliderBanner',
+        'Slider',
+        'Impression',
+        this.props.images[index].title
+      )
 
       let link = this.props.images[index]['redirect_url']
       let baseURL = link.split('?')[0]
@@ -120,7 +118,7 @@ class Carousel extends Component {
       let title = parts[parts.length - 1] || parts[parts.length - 2]
 
       if (title.length) {
-        window.dataLayer.push({
+        GTM.pushObject({
           'banner_impression_id': title,
           'ecommerce': {
             'promoView': {
