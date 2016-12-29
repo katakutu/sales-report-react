@@ -60,7 +60,7 @@ class Footer extends Component {
         </div>
         <div className='footer__lower u-clearfix u-center'>
           <p className='u-line-height-4'>
-            <a href={`${HOSTNAME}/bantuan`} className='u-ml1'>
+            <a href={`${HOSTNAME}/bantuan?utm_source=mobile&utm_medium=linkbantuan`} className='u-ml1'>
               {
               lang[this.props.lang]['Need Help']
             }?</a>
