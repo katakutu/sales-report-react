@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { HOSTNAME } from '../../constants'
 
 import './CategoryList.scss'
 import TextHeader from '../../components/TextHeader'
@@ -43,7 +42,7 @@ class CategoryList extends Component {
       const key = `${item['identifier']}-${parentIndex}-${index}`
       return (
         <div className='u-col u-col-6 category-list__content' key={key}>
-          <a href={`${HOSTNAME}/p/${item['identifier']}`}>
+          <a href={item['url']}>
             <div className='category-list__content-image'>
               <img src={item['imageURI']} alt={`Logo kategori ${item['name']}`} />
             </div>
