@@ -11,7 +11,9 @@ const CategoryItemType = new GraphQLObjectType({
   name: 'CategoryItem',
   fields: {
     name: { type: new GraphQLNonNull(GraphQLString) },
-    identifier: { type: new GraphQLNonNull(GraphQLString) }
+    identifier: { type: new GraphQLNonNull(GraphQLString) },
+    imageURI: { type: new GraphQLNonNull(GraphQLString) },
+    url: { type: new GraphQLNonNull(GraphQLString) }
   }
 })
 
