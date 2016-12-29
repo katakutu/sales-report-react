@@ -20,10 +20,12 @@ class HotList extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps['data']) {
+    if (nextProps['data'] && !nextProps.data.loading) {
       // only add new urls that's not already there
       const urls = this.state.hotlists.map(h => h['url'])
-      const newData = nextProps['data']['hot_product_list']['data'].filter(data => {
+      const data = nextProps['data']['hot_product_list'] && nextProps['data']['hot_product_list']['data']
+      const gqlData = data || []
+      const newData = gqlData.filter(data => {
         return urls.length === 0 ? true : !urls.includes(data['url'])
       })
 

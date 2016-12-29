@@ -35,9 +35,14 @@ class HotList extends Component {
   constructor (props) {
     super(props)
 
+    this._gtmNotifyAllHotlistsClicked = this._gtmNotifyAllHotlistsClicked.bind(this)
     this._gtmNotifyItemClicked = this._gtmNotifyItemClicked.bind(this)
     this._renderHotlistItem = this._renderHotlistItem.bind(this)
     this._verifyHotlistData = this._verifyHotlistData.bind(this)
+  }
+
+  _gtmNotifyAllHotlistsClicked () {
+    GTM.pushEvent('clickHomepage', 'Homepage', 'Click', 'View All Hotlist')
   }
 
   _gtmNotifyItemClicked (item) {
@@ -97,7 +102,7 @@ class HotList extends Component {
         </Slider>
 
         <div className='u-clearfix' id='hotlist-spacer'>
-          <Link to={'/hot'} className='hotlist-spacer__link' >
+          <Link to={'/hot'} className='hotlist-spacer__link' onClick={this._gtmNotifyAllHotlistsClicked}>
             { lang[this.props.propLang]['Lihat Semua Hotlist'] }
             <i className='hotlist-spacer__icon hotlist-spacer__icon--arrow' />
             <div className='u-clearfix' />
