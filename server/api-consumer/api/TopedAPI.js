@@ -42,8 +42,7 @@ class TopedAPI {
   consume (url, method, content) {
     let options = (method === 'GET') ? {} : {
       method: method,
-      body: JSON.stringify(content),
-      json: true
+      body: JSON.stringify(content)
     }
 
     let finalURL = (method === 'POST') ? url.format()

@@ -32,17 +32,29 @@
     padding-left: 10px;
 }
 
-.category-list__content a {
-    display: block;
-}
+.category-list__content {
+    .category-list__content-image,
+    .category-list__content-link {
+        display: inline-block;
+    }
 
-.category-list__content img {
-    display: inline-block;
-    margin-right: 8px;
-    max-width: 100%;
-    width: 24px;
-    height: auto;
-    vertical-align: middle;
+    .category-list__content-image {
+        margin-right: 8px;
+        text-align: center;
+        width: 35px;
+
+        img {
+            display: inline-block;
+            max-width: 100%;
+            height: 24px;
+            width: auto;
+            vertical-align: middle;
+        }
+    }
+
+    a {
+        display: block;
+    }
 }
 
 .category-list__name {

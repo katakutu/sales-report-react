@@ -7,6 +7,8 @@ import './slick-theme.scss'
 import Slider from 'react-slick'
 import CarouselPlaceholder from './assets/carousel-placeholder.jpg'
 
+import GTM from '../../lib/utils/GTM'
+
 const settings = {
   autoplay: true,
   autoplaySpeed: 5000,
@@ -65,6 +67,7 @@ class Carousel extends Component {
     this._createCarouselItems = this._createCarouselItems.bind(this)
     this._gtmNotifySlideClick = this._gtmNotifySlideClick.bind(this)
     this._gtmNotifySlideChange = this._gtmNotifySlideChange.bind(this)
+    this._startCarousel = this._startCarousel.bind(this)
     this._stopCarousel = this._stopCarousel.bind(this)
   }
 
@@ -90,29 +93,25 @@ class Carousel extends Component {
 
   _gtmNotifySlideClick (index) {
     return (event) => {
-      window.dataLayer = window.dataLayer || []
-
       if (this.props.images.length > 0) {
-        window.dataLayer.push({
-          'event': 'sliderBanner',
-          'eventCategory': 'Slider',
-          'eventAction': 'Click',
-          'eventLabel': this.props.images[index]
-        })
+        GTM.pushEvent(
+          'slideBanner',
+          'Slider',
+          'Click',
+          this.props.images[index].title
+       )
       }
     }
   }
 
   _gtmNotifySlideChange (index) {
-    window.dataLayer = window.dataLayer || []
-
     if (this.props.images.length > 0) {
-      window.dataLayer.push({
-        'event': 'sliderBanner',
-        'eventCategory': 'Slider',
-        'eventAction': 'Impression',
-        'eventLabel': this.props.images[index]
-      })
+      GTM.pushEvent(
+        'sliderBanner',
+        'Slider',
+        'Impression',
+        this.props.images[index].title
+      )
 
       let link = this.props.images[index]['redirect_url']
       let baseURL = link.split('?')[0]
@@ -120,7 +119,7 @@ class Carousel extends Component {
       let title = parts[parts.length - 1] || parts[parts.length - 2]
 
       if (title.length) {
-        window.dataLayer.push({
+        GTM.pushObject({
           'banner_impression_id': title,
           'ecommerce': {
             'promoView': {
@@ -143,6 +142,12 @@ class Carousel extends Component {
     })
   }
 
+  _startCarousel () {
+    this.setState({
+      carouselSettings: Object.assign(this.state.carouselSettings, { autoplay: true })
+    })
+  }
+
   render () {
     let placeholder = {
       'image_url': CarouselPlaceholder,
@@ -156,7 +161,8 @@ class Carousel extends Component {
     return (
       <div className='carousel u-clearfix'
         onTouchEnd={this._stopCarousel}
-        onMouseOver={this._stopCarousel}>
+        onMouseOver={this._stopCarousel}
+        onMouseLeave={this._startCarousel}>
         <Slider {...this.state.carouselSettings} afterChange={this._gtmNotifySlideChange}>
           { sliders }
         </Slider>

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
+import GTM from '../../../lib/utils/GTM'
+
 class HotList extends Component {
   static propTypes = {
     data: React.PropTypes.object
@@ -11,11 +13,19 @@ class HotList extends Component {
     hotlists: []
   }
 
+  constructor (props) {
+    super(props)
+
+    this._gtmNotifyItemClicked = this._gtmNotifyItemClicked.bind(this)
+  }
+
   componentWillReceiveProps (nextProps) {
-    if (nextProps['data']) {
+    if (nextProps['data'] && !nextProps.data.loading) {
       // only add new urls that's not already there
       const urls = this.state.hotlists.map(h => h['url'])
-      const newData = nextProps['data']['hot_product_list']['data'].filter(data => {
+      const data = nextProps['data']['hot_product_list'] && nextProps['data']['hot_product_list']['data']
+      const gqlData = data || []
+      const newData = gqlData.filter(data => {
         return urls.length === 0 ? true : !urls.includes(data['url'])
       })
 
@@ -25,13 +35,19 @@ class HotList extends Component {
     }
   }
 
+  _gtmNotifyItemClicked (item) {
+    return (event) => {
+      GTM.pushEvent('clickHotlist', 'Hotlist', 'Click', item.title_enc)
+    }
+  }
+
   render () {
     return (
       <div>
         {
           this.state.hotlists.map((item, index) => {
             return (
-              <div className='hotlist__item' key={`hotlist-${index}`}>
+              <div className='hotlist__item' onClick={this._gtmNotifyItemClicked(item)} key={`hotlist-${index}`}>
                 <div className='hotlist__wrapper'>
                   <a aria-hidden='true' tabIndex='-1' href={item.url} className='hotlist__click u-block' />
                   <img src={item.image_url} className='u-fit u-block u-mx-auto' alt='' />
@@ -74,5 +90,8 @@ query Query($page: Int!) {
 `
 
 export default graphql(HotListQuery, {
-  options: ({ page }) => ({ variables: { page } })
+  options: ({ page }) => ({
+    variables: { page },
+    returnPartialData: true
+  })
 })(HotList)

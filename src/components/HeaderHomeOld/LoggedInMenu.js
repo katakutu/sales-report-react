@@ -66,7 +66,7 @@ class LoggedInMenu extends Component {
         purchaseIsOpen: false,
         salesIsOpen: false
       })
-    }, 50)
+    }, 1000)
   }
 
   _totalObjectValues (object) {
