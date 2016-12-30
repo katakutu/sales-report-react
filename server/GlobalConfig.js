@@ -1,6 +1,9 @@
 const config = require('../config')
 
 const PRODUCTION = {
+  DataDog: {
+    Hostname: 'localhost'
+  },
   Hostname: 'https://m.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_'
@@ -17,7 +20,7 @@ const PRODUCTION = {
     'Hostname': 'http://hades.tokopedia.local'
   },
   Hotlist: {
-    Hostname: 'https://m.tokopedia.com/ajax/hotlist.pl'
+    Hostname: 'http://localhost/ajax/hotlist.pl'
   },
   Lite: {
     Hostname: 'https://m.tokopedia.com'
@@ -41,8 +44,9 @@ const PRODUCTION = {
     port: '6380'
   },
   SessionRedis: {
-    host: '127.0.0.1',
-    port: 6379
+    host: '192.168.17.190',
+    port: 6379,
+    no_ready_check: true
   },
   WS: {
     Hostname: 'http://ws.tokopedia.local'
@@ -53,6 +57,9 @@ const PRODUCTION = {
 }
 
 const BETA = {
+  DataDog: {
+    Hostname: 'datadog.tokopedia.local'
+  },
   Hostname: 'https://m-beta.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_'
@@ -94,7 +101,8 @@ const BETA = {
   },
   SessionRedis: {
     host: '127.0.0.1',
-    port: 6379
+    port: 6379,
+    no_ready_check: true
   },
   WS: {
     Hostname: 'https://ws.tokopedia.com'
@@ -105,6 +113,9 @@ const BETA = {
 }
 
 const TEST = {
+  DataDog: {
+    Hostname: 'datadog.tokopedia.local'
+  },
   Hostname: 'https://m-staging.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_Coba_'
@@ -157,6 +168,9 @@ const TEST = {
 }
 
 const DEVELOPMENT = {
+  DataDog: {
+    Hostname: 'localhost'
+  },
   Hostname: 'https://m-staging.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_Coba_'
@@ -198,7 +212,8 @@ const DEVELOPMENT = {
   },
   SessionRedis: {
     host: '127.0.0.1',
-    port: 6379
+    port: 6379,
+    no_ready_check: true
   },
   WS: {
     Hostname: 'https://ws-staging.tokopedia.com'
