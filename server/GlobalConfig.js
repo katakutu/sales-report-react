@@ -44,8 +44,9 @@ const PRODUCTION = {
     port: '6380'
   },
   SessionRedis: {
-    host: '127.0.0.1',
-    port: 6379
+    host: '192.168.17.190',
+    port: 6379,
+    no_ready_check: true
   },
   WS: {
     Hostname: 'http://ws.tokopedia.local'
@@ -100,7 +101,8 @@ const BETA = {
   },
   SessionRedis: {
     host: '127.0.0.1',
-    port: 6379
+    port: 6379,
+    no_ready_check: true
   },
   WS: {
     Hostname: 'https://ws.tokopedia.com'
@@ -210,7 +212,8 @@ const DEVELOPMENT = {
   },
   SessionRedis: {
     host: '127.0.0.1',
-    port: 6379
+    port: 6379,
+    no_ready_check: true
   },
   WS: {
     Hostname: 'https://ws-staging.tokopedia.com'
