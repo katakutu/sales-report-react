@@ -20,7 +20,7 @@ const PRODUCTION = {
     'Hostname': 'http://hades.tokopedia.local'
   },
   Hotlist: {
-    Hostname: 'https://m.tokopedia.com/ajax/hotlist.pl'
+    Hostname: 'http://localhost/ajax/hotlist.pl'
   },
   Lite: {
     Hostname: 'https://m.tokopedia.com'
