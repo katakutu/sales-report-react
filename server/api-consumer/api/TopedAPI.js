@@ -35,11 +35,12 @@ class TopedAPI {
    * @param {URL} url The URL we want to consume
    * @param {string} method The HTTP Method we want to use on the API call.
    * @param {object} content The content we want to sent in body.
+   * @param {number} timeout Timeout, defaults to 5000
    * @returns {Promise<Object>} The resulting response promise, in JSON.
    *
    * @memberOf TopedAPI
    */
-  consume (url, method, content) {
+  consume (url, method, content, timeout = 5000) {
     let options = (method === 'GET') ? {} : {
       method: method,
       body: JSON.stringify(content)
@@ -49,7 +50,7 @@ class TopedAPI {
             : this._formatGetURL(url, content)
 
     let finalOptions = Object.assign({}, options, {
-      timeout: 5000
+      timeout: timeout
     })
 
     return request(finalURL, finalOptions).then(response => JSON.parse(response))

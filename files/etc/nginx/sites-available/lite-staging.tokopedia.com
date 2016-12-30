@@ -12,6 +12,7 @@ server {
 
     location / {
         set $url http://127.0.0.1:7899;
+        proxy_http_version 1.1;
         proxy_pass $url;
     }
 }
