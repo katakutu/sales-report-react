@@ -1,5 +1,9 @@
 @import 'base';
 
+.slick-track {
+    transition: 100ms linear;
+}
+
 .hotlist {
     margin-bottom: 10px;
 }

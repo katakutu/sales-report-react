@@ -19,7 +19,20 @@ const settings = {
   centerMode: false,
   variableWidth: true,
   slidesToShow: 3,
-  slidesToScroll: 1
+  slidesToScroll: 1,
+  afterChange: function (currentSlide) {
+    if (currentSlide === 2) {
+      const slideTrackEl = document.querySelector('#home-category .slick-track')
+      const viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+      const slideEl = document.querySelector('#home-category .slick-slide')
+      const slideWidth = slideEl.offsetWidth
+      const slideViewportOffset = viewportWidth - slideWidth
+      const paddingLeft = 10
+
+      const maxTranslateX = (slideWidth * 2 - slideViewportOffset) + paddingLeft
+      slideTrackEl.style.transform = `translate3d(-${maxTranslateX}px, 0, 0)`
+    }
+  }
 }
 
 class HotList extends Component {
