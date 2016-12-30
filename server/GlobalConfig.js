@@ -1,6 +1,9 @@
 const config = require('../config')
 
 const PRODUCTION = {
+  DataDog: {
+    Hostname: 'localhost'
+  },
   Hostname: 'https://m.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_'
@@ -53,6 +56,9 @@ const PRODUCTION = {
 }
 
 const BETA = {
+  DataDog: {
+    Hostname: 'datadog.tokopedia.local'
+  },
   Hostname: 'https://m-beta.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_'
@@ -105,6 +111,9 @@ const BETA = {
 }
 
 const TEST = {
+  DataDog: {
+    Hostname: 'datadog.tokopedia.local'
+  },
   Hostname: 'https://m-staging.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_Coba_'
@@ -157,6 +166,9 @@ const TEST = {
 }
 
 const DEVELOPMENT = {
+  DataDog: {
+    Hostname: 'localhost'
+  },
   Hostname: 'https://m-staging.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_Coba_'
