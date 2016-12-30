@@ -76,10 +76,10 @@
 .hotlist-spacer__link {
     z-index: $z-index-4;
     float: right;
+    background: transparent;
     color: $color-green;
     text-decoration: none;
     font-size: 13px;
-    background: transparent;
 }
 
 .hotlist-spacer__icon {

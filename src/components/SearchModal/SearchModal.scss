@@ -92,22 +92,22 @@
     color: $color-white-primary;
     text-align: left;
     font-size: 14px;
+}
 
-    &::-webkit-input-placeholder {
-        color: $color-white-secondary;
-    }
+input[type="search"].search-input__modal-input::-webkit-input-placeholder {
+    color: $color-white-secondary;
+}
 
-    &:-moz-placeholder {
-        color: $color-white-secondary;
-    }
+input[type="search"].search-input__modal-input:-moz-placeholder {
+    color: $color-white-secondary;
+}
 
-    &::-moz-placeholder {
-        color: $color-white-secondary;
-    }
+input[type="search"].search-input__modal-input::-moz-placeholder {
+    color: $color-white-secondary;
+}
 
-    &:-ms-input-placeholder {
-        color: $color-white-secondary;
-    }
+input[type="search"].search-input__modal-input:-ms-input-placeholder {
+    color: $color-white-secondary;
 }
 
 .search-input__close {
