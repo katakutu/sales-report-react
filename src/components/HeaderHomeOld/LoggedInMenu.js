@@ -287,7 +287,7 @@ class LoggedInMenu extends Component {
             hidden />
           <div className='drawer__menu'>
             <div id='tokocash-balance-container'>
-              <a href='/'>
+              <a href={`${SITES['Accounts']}/wallet/activation?v=2`}>
                 <span className='drawer__menu-icon icon__svg tokoCashIcon' alt='tokopedia' />
                 <span className='drawer__menu-title u-inline-block'>TokoCash</span>
                 <span id='tokocash-activate-btn' className='drawer__activate-tokoCash'>
