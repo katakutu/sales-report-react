@@ -8,7 +8,7 @@ const EMPTY_TICKER = {
 
 function getTicker (context) {
   let userID = Promise.resolve(0)
-  if (context && context.session.oauth) {
+  if (context && context.session && context.session.oauth) {
     const tType = context.session.oauth.token['token_type']
     const token = context.session.oauth.token['access_token']
 
