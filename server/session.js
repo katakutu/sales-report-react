@@ -53,8 +53,6 @@ function _createUserSessionBySID (userInfo, token, sessionID, callback) {
   return redisClient.set(key, JSON.stringify(sessionData), function (err, reply) {
     if (err) {
       console.error('[Redis] Reply error when saving user session: ', err)
-    } else {
-      console.log(`[Redis] Successfully saved session for user ${uid} on ${key}. Message: ${reply}`)
     }
 
     return callback(err, reply, sessionData)
@@ -78,8 +76,6 @@ function _createUserSessionBySIDAsync (userInfo, token, sessionID) {
   return redisClient.setAsync(key, JSON.stringify(sessionData))
     .timeout(5000)
     .then(reply => {
-      console.log(`[Redis] Successfully saved session for user ${uid} on ${key}. Message: ${reply}`)
-
       return { reply, sessionData }
     })
     .catch(err => {
@@ -93,9 +89,8 @@ function _getSession (sessionID, callback) {
   const key = _redisKey(sessionID)
 
   return redisClient.get(key, (err, res) => {
-    if (err) console.log(`Session Extraction error: ${err}`)
+    if (err) console.error(`Session Extraction error: ${err}`)
 
-    console.log(`[Redis] Session ID ${key} found`)
     return callback(res)
   })
 }
@@ -106,11 +101,10 @@ function _getSessionAsync (sessionID) {
   return redisClient.getAsync(key)
     .timeout(5000)
     .then(res => {
-      console.log(`[Redis] Session ID ${key} found`)
       return res
     })
     .catch(err => {
-      console.log(`Session Extraction error: ${err}`)
+      console.error(`Session Extraction error: ${err}`)
       return 'ERROR'
     })
 }
@@ -131,8 +125,6 @@ function _removeUserSession (sessionID, callback) {
       success = false
     }
 
-    console.log('[Redis] Successfully deleted user session.')
-
     return callback(success)
   })
 }
@@ -141,8 +133,6 @@ function _removeUserSessionAsync (sessionID) {
   return redisClient.delAsync(_redisKey(sessionID))
     .timeout(5000)
     .then(reply => {
-      console.log('[Redis] Successfully deleted user session.')
-
       return true
     })
     .catch(err => {
