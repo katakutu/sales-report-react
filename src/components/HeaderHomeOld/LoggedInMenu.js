@@ -59,6 +59,11 @@ class LoggedInMenu extends Component {
       el.style.display = ''
       el.style.transform = 'translate3d(0, 0, 0)'
     }, 500)
+    /*
+     * This code is workaround for wallet menu on sidebar
+     * Copied from dv3-admin-sidebar.js
+    */
+    init_wallet_balance()
   }
 
   _totalObjectValues (object) {
@@ -70,6 +75,42 @@ class LoggedInMenu extends Component {
     }
 
     return result
+  }
+
+  init_wallet_balance() {
+    var accounts_client_host = $("#accounts_client_host").attr("value");
+    var wallet_host = $("#wallet_host").attr("value");
+    $.ajax({
+        url: accounts_client_host + '/api/wallet/balance',
+        global: false,
+        type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function(result){
+            /* if the link is there, we show current balance, show activate button otherwise (ST). */
+            if(result && result.data) {
+                var a = [], element;
+                if(result.data.link) {
+                    /* show current balance. */
+                    a.push('<div class="relative">');
+                        a.push('<a href="' + wallet_host + '" class="deposit-link-sidebar display-block">');
+                            a.push('<i class="icon-wallet-balance pull-left mr-5"></i><strong class="fs-11 ellipsis">' + result.data.balance + '</strong><span class="white ellipsis pull-right display-block"></span>');
+                        a.push('</a><br>');
+                    a.push('</div>');
+                    a.push('<hr class="mt-5 mb-5">');
+                    element = a.join('');
+                    $("#tokocash-balance-container").html(element);
+                } else {
+                  /* instead of directly show the button, we need to trigger 'wallet_no_link" event for segmentation filter */
+                  window.dataLayer = window.dataLayer || [];
+                  window.dataLayer.push({
+                'event': 'wallet_no_link'
+                  });
+                }
+            }
+        }
+    });  
   }
 
   closeSidebar () {
@@ -225,8 +266,8 @@ class LoggedInMenu extends Component {
           </div>
           <input type='text' id='include-deposit' value={`
             ${this.props.userData.deposit.deposit_fmt}
-          `} readonly hidden/>
-          <input type='text' id='accounts_client_host' value={`${HOSTNAME}`} readonly hidden/>
+          `} readOnly hidden/>
+          <input type='text' id='accounts_client_host' value={`${HOSTNAME}`} readOnly hidden/>
           <div className='drawer__menu'>
             <div id='tokocash-balance-container'></div>
             <a href='/'>

@@ -53,6 +53,19 @@ if (!Array.prototype.findIndex) {
 }
 
 // ========================================================
+// Initiate Wallet 
+// ========================================================
+window.show_wallet_activation_button = function () {
+    var accounts_client_host = $('#accounts_client_host').attr('value');
+    if(accounts_client_host) {
+        var btn = [];
+        btn.push('<a href="' + accounts_client_host + '/wallet/activation?v=2" class="topcash-btn display-block"><strong class="fs-11 ellipsis">' + tokopedia.loc('Activate TokoCash') + '</strong><span class="white ellipsis pull-right display-block"></span></a>');
+        btn.push('<hr class="mt-5 mb-5">');
+        $('#tokocash-balance-container').html(btn.join(''));
+    }
+}
+
+// ========================================================
 // Store Instantiation
 // ========================================================
 const initialState = window.___INITIAL_STATE__
