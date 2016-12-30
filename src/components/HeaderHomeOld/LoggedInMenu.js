@@ -152,7 +152,6 @@ class LoggedInMenu extends Component {
     let salesParent = (!this.state.salesIsOpen) ? '' : 'opened'
     let shopId = this.props.shop['shop_id']
 
-    let topupLink = `${SITES['Pulsa']}/saldo/?utm_source=mobile&utm_medium=link&utm_campaign=top%20up%20saldo`
     let goldMerchant = (this.props.shop['is_gold'] === '1') ? (<i className='mi-sprite mi-gold' />) : ''
     let shopSection = (shopId === 'ERROR FAIL' || shopId === null || shopId === '0') ? (
       <div className='drawer__menu-shop u-clearfix' id='toko-button'>
@@ -297,160 +296,160 @@ class LoggedInMenu extends Component {
               </a>
             </div>
           </div>
-            <div className='drawer__menu'>
-              <a href={`${HOSTNAME}/lp.pl`}>
-                <span className='drawer__menu-icon icon__svg topPointsIcon' alt='tokopedia' />
-                <span className='drawer__menu-title u-inline-block'>TopPoints</span>
-                <span id='user-total-toppoints' className='drawer__menu-detail'>
-                  { this.props.userData.points.data.attributes.amount_formatted }
-                </span>
-              </a>
-            </div>
-            <div className='drawer__menu'>
-              <a href='/'>
-                <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
-                <span className='drawer__menu-title u-inline-block'>
-                  { lang[this.props.lang]['Home'] }
-                </span>
-              </a>
-            </div>
-            <div className='drawer__menu'>
-              <a href={`${HOSTNAME}/?view=wishlist_preview`}>
-                <img className='drawer__menu-icon' src={wishlistIcon} alt='tokopedia' />
-                <span className='drawer__menu-title u-inline-block'>Wishlist</span>
-              </a>
-            </div>
-            <div className='drawer__menu'>
-              <a onClick={this.handleInboxClicked}>
-                <img className='drawer__menu-icon' src={inboxIcon} alt='tokopedia' />
-                <span className='drawer__menu-title u-inline-block'>
-                  { lang[this.props.lang]['Inbox'] }
-                </span>
-                { inboxNotif }
-                <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${inboxParent}`} />
-              </a>
-              <ul className={`drawer__menu-child ${inboxClass}`}>
-                <li>
-                  <a href={`${HOSTNAME}/inbox-message.pl`}>
-                    { lang[this.props.lang]['MESSAGE'] } { inboxMessageNotif }
-                  </a>
-                </li>
-                <li>
-                  <a href={`${HOSTNAME}/inbox-talk.pl`}>
-                    { lang[this.props.lang]['Talk About It'] } { inboxPDNotif }
-                  </a>
-                </li>
-                <li>
-                  <a href={`${HOSTNAME}/inbox-reputation.pl`}>
-                    { lang[this.props.lang]['Reviews'] } { inboxReviewNotif }
-                  </a>
-                </li>
-                <li>
-                  <a href={`${HOSTNAME}/inbox-ticket.pl`}>
-                    { lang[this.props.lang]['Customer Care'] } { inboxCSNotif }
-                  </a>
-                </li>
-                <li>
-                  <a href={`${HOSTNAME}/resolution-center.pl`}>
-                    { lang[this.props.lang]['Resolution Center'] } { inboxRCNotif }
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className='drawer__menu'>
-              <a onClick={this.handlePurhcaseClicked}>
-                <img className='drawer__menu-icon' src={buyingIcon} alt='tokopedia' />
-                <span className='drawer__menu-title u-inline-block'>
-                  { lang[this.props.lang]['Purchase'] }
-                </span>
-                { purchaseNotif }
-                <img src='https://placehold.it/15x15'
-                  alt='tokopedia'
-                  className={`drawer__menu-arrow ${purchaseParent}`} />
-              </a>
-              <ul className={`drawer__menu-child ${purchaseClass}`}>
-                <li>
-                  <a href={`${HOSTNAME}/tx_order_list.pl?status=5`}>
-                    { lang[this.props.lang]['Cancelled Order'] } { purchaseCancelNotif }
-                  </a>
-                </li>
-                <li>
-                  <a href={`${HOSTNAME}/tx_payment_confirm.pl`}>
-                    { lang[this.props.lang]['Confirm Payment'] } { purchaseConfirmNotif }
-                  </a>
-                </li>
-                <li>
-                  <a href={`${HOSTNAME}/tx_order_status.pl`}>
-                    { lang[this.props.lang]['Order Status'] } { purchaseOSNotif }
-                  </a>
-                </li>
-                <li>
-                  <a href={`${HOSTNAME}/tx_order_list.pl?status=9`}>
-                    { lang[this.props.lang]['Confirm Payment'] } { purchaseDCNotif }
-                  </a>
-                </li>
-                <li>
-                  <a href={`${HOSTNAME}/tx_order_list.pl`}>
-                    { lang[this.props.lang]['Dispute List'] } { purchaseTLNotif }
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className='drawer__menu'>
-              <a onClick={this.handleSalesClicked}>
-                <img className='drawer__menu-icon' src={sellingIcon} alt='tokopedia' />
-                <span className='drawer__menu-title u-inline-block'>
-                  { lang[this.props.lang]['Sales'] }
-                </span>
-                { salesNotif }
-                <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${salesParent}`} />
-              </a>
-              <ul className={`drawer__menu-child ${salesClass}`}>
-                <li>
-                  <a href={`${HOSTNAME}/myshop_order.pl`}>
-                    { lang[this.props.lang]['New Order'] } { salesNONotif }
-                  </a>
-                </li>
-                <li>
-                  <a href={`${HOSTNAME}/myshop_order_process.pl`}>
-                    { lang[this.props.lang]['Confirm Shipment'] } { salesSCNotif }
-                  </a>
-                </li>
-                <li>
-                  <a href={`${HOSTNAME}/myshop_order_status.pl`}>
-                    { lang[this.props.lang]['Product Shipping Status'] } { salesDSNotif }
-                  </a>
-                </li>
-                <li>
-                  <a href={`${HOSTNAME}/myshop_order_list.pl`}>
-                    { lang[this.props.lang]['Transaction Status'] } { salesTLNotif }
-                  </a>
-                </li>
-                <li>
-                  <a href={`${HOSTNAME}/manage-product.pl`}>
-                    { lang[this.props.lang]['Product List'] } { salesPLNotif }
-                  </a>
-                </li>
-                <li><a href={`${HOSTNAME}/manage-freereturns.pl`}>Free Returns</a></li>
-                <li>
-                  <a href={`${HOSTNAME}/myshop-etalase.pl`}>
-                    { lang[this.props.lang]['QUICK_GUIDE_SHOP_GOLD_TITLE_9'] } { salesEtalaseNotif }
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className='drawer__menu last__menu'>
-              <a href={`${HOSTNAME}/logout`}>
-                <img className='drawer__menu-icon' src={logoutIcon} alt='tokopedia' />
-                <span className='drawer__menu-title u-inline-block'>
-                  { lang[this.props.lang]['Sign Out'] }
-                </span>
-              </a>
-            </div>
-
-            { shopSection }
+          <div className='drawer__menu'>
+            <a href={`${HOSTNAME}/lp.pl`}>
+              <span className='drawer__menu-icon icon__svg topPointsIcon' alt='tokopedia' />
+              <span className='drawer__menu-title u-inline-block'>TopPoints</span>
+              <span id='user-total-toppoints' className='drawer__menu-detail'>
+                { this.props.userData.points.data.attributes.amount_formatted }
+              </span>
+            </a>
           </div>
+          <div className='drawer__menu'>
+            <a href='/'>
+              <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
+              <span className='drawer__menu-title u-inline-block'>
+                { lang[this.props.lang]['Home'] }
+              </span>
+            </a>
+          </div>
+          <div className='drawer__menu'>
+            <a href={`${HOSTNAME}/?view=wishlist_preview`}>
+              <img className='drawer__menu-icon' src={wishlistIcon} alt='tokopedia' />
+              <span className='drawer__menu-title u-inline-block'>Wishlist</span>
+            </a>
+          </div>
+          <div className='drawer__menu'>
+            <a onClick={this.handleInboxClicked}>
+              <img className='drawer__menu-icon' src={inboxIcon} alt='tokopedia' />
+              <span className='drawer__menu-title u-inline-block'>
+                { lang[this.props.lang]['Inbox'] }
+              </span>
+              { inboxNotif }
+              <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${inboxParent}`} />
+            </a>
+            <ul className={`drawer__menu-child ${inboxClass}`}>
+              <li>
+                <a href={`${HOSTNAME}/inbox-message.pl`}>
+                  { lang[this.props.lang]['MESSAGE'] } { inboxMessageNotif }
+                </a>
+              </li>
+              <li>
+                <a href={`${HOSTNAME}/inbox-talk.pl`}>
+                  { lang[this.props.lang]['Talk About It'] } { inboxPDNotif }
+                </a>
+              </li>
+              <li>
+                <a href={`${HOSTNAME}/inbox-reputation.pl`}>
+                  { lang[this.props.lang]['Reviews'] } { inboxReviewNotif }
+                </a>
+              </li>
+              <li>
+                <a href={`${HOSTNAME}/inbox-ticket.pl`}>
+                  { lang[this.props.lang]['Customer Care'] } { inboxCSNotif }
+                </a>
+              </li>
+              <li>
+                <a href={`${HOSTNAME}/resolution-center.pl`}>
+                  { lang[this.props.lang]['Resolution Center'] } { inboxRCNotif }
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className='drawer__menu'>
+            <a onClick={this.handlePurhcaseClicked}>
+              <img className='drawer__menu-icon' src={buyingIcon} alt='tokopedia' />
+              <span className='drawer__menu-title u-inline-block'>
+                { lang[this.props.lang]['Purchase'] }
+              </span>
+              { purchaseNotif }
+              <img src='https://placehold.it/15x15'
+                alt='tokopedia'
+                className={`drawer__menu-arrow ${purchaseParent}`} />
+            </a>
+            <ul className={`drawer__menu-child ${purchaseClass}`}>
+              <li>
+                <a href={`${HOSTNAME}/tx_order_list.pl?status=5`}>
+                  { lang[this.props.lang]['Cancelled Order'] } { purchaseCancelNotif }
+                </a>
+              </li>
+              <li>
+                <a href={`${HOSTNAME}/tx_payment_confirm.pl`}>
+                  { lang[this.props.lang]['Confirm Payment'] } { purchaseConfirmNotif }
+                </a>
+              </li>
+              <li>
+                <a href={`${HOSTNAME}/tx_order_status.pl`}>
+                  { lang[this.props.lang]['Order Status'] } { purchaseOSNotif }
+                </a>
+              </li>
+              <li>
+                <a href={`${HOSTNAME}/tx_order_list.pl?status=9`}>
+                  { lang[this.props.lang]['Confirm Payment'] } { purchaseDCNotif }
+                </a>
+              </li>
+              <li>
+                <a href={`${HOSTNAME}/tx_order_list.pl`}>
+                  { lang[this.props.lang]['Dispute List'] } { purchaseTLNotif }
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className='drawer__menu'>
+            <a onClick={this.handleSalesClicked}>
+              <img className='drawer__menu-icon' src={sellingIcon} alt='tokopedia' />
+              <span className='drawer__menu-title u-inline-block'>
+                { lang[this.props.lang]['Sales'] }
+              </span>
+              { salesNotif }
+              <img src='https://placehold.it/15x15' alt='tokopedia' className={`drawer__menu-arrow ${salesParent}`} />
+            </a>
+            <ul className={`drawer__menu-child ${salesClass}`}>
+              <li>
+                <a href={`${HOSTNAME}/myshop_order.pl`}>
+                  { lang[this.props.lang]['New Order'] } { salesNONotif }
+                </a>
+              </li>
+              <li>
+                <a href={`${HOSTNAME}/myshop_order_process.pl`}>
+                  { lang[this.props.lang]['Confirm Shipment'] } { salesSCNotif }
+                </a>
+              </li>
+              <li>
+                <a href={`${HOSTNAME}/myshop_order_status.pl`}>
+                  { lang[this.props.lang]['Product Shipping Status'] } { salesDSNotif }
+                </a>
+              </li>
+              <li>
+                <a href={`${HOSTNAME}/myshop_order_list.pl`}>
+                  { lang[this.props.lang]['Transaction Status'] } { salesTLNotif }
+                </a>
+              </li>
+              <li>
+                <a href={`${HOSTNAME}/manage-product.pl`}>
+                  { lang[this.props.lang]['Product List'] } { salesPLNotif }
+                </a>
+              </li>
+              <li><a href={`${HOSTNAME}/manage-freereturns.pl`}>Free Returns</a></li>
+              <li>
+                <a href={`${HOSTNAME}/myshop-etalase.pl`}>
+                  { lang[this.props.lang]['QUICK_GUIDE_SHOP_GOLD_TITLE_9'] } { salesEtalaseNotif }
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className='drawer__menu last__menu'>
+            <a href={`${HOSTNAME}/logout`}>
+              <img className='drawer__menu-icon' src={logoutIcon} alt='tokopedia' />
+              <span className='drawer__menu-title u-inline-block'>
+                { lang[this.props.lang]['Sign Out'] }
+              </span>
+            </a>
+          </div>
+
+          { shopSection }
         </div>
+      </div>
     )
   }
 }
