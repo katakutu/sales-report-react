@@ -94,19 +94,19 @@
     font-size: 14px;
 
     &::-webkit-input-placeholder {
-        color: $color-white-secondary;
+        color: $color-white-secondary !important;
     }
 
     &:-moz-placeholder {
-        color: $color-white-secondary;
+        color: $color-white-secondary !important;
     }
 
     &::-moz-placeholder {
-        color: $color-white-secondary;
+        color: $color-white-secondary !important;
     }
 
     &:-ms-input-placeholder {
-        color: $color-white-secondary;
+        color: $color-white-secondary !important;
     }
 }
 
