@@ -12,9 +12,6 @@ import SplashScreen from '../../../components/Loading/SplashScreen'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
 
-import { GTM_CONTAINER_ID } from '../../../constants'
-import GoogleTagManager from '../../../components/GoogleTagManager'
-
 class HomeView extends Component {
   static propTypes = {
     data: React.PropTypes.object
@@ -51,7 +48,6 @@ class HomeView extends Component {
 
     return (
       <div>
-        <GoogleTagManager gtmID={GTM_CONTAINER_ID} />
         <HeaderHomeOld userInfo={this.props.data.user} tabIsAvailable activeTab='home' />
 
         <Ticker tickers={tickers} perTickDuration={5} />

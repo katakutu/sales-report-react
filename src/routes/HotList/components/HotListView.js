@@ -10,9 +10,6 @@ import SplashScreen from '../../../components/Loading/SplashScreen'
 import './HotListView.scss'
 import lang from '../../../lib/utils/Lang'
 
-import { GTM_CONTAINER_ID } from '../../../constants'
-import GoogleTagManager from '../../../components/GoogleTagManager'
-
 class HotListView extends Component {
   static propTypes = {
     data: React.PropTypes.object,
@@ -49,7 +46,6 @@ class HotListView extends Component {
 
     return (
       <div>
-        <GoogleTagManager gtmID={GTM_CONTAINER_ID} />
         <HeaderHomeOld userInfo={this.props.data.user} tabIsAvailable activeTab='hotlist' />
 
         <div className='u-clearfix hotlist hotlist--single-page u-mt2'>
