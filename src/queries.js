@@ -67,6 +67,8 @@ query Query {
       items {
         name
         identifier
+        imageURI
+        url
       }
       name
     }

@@ -3,6 +3,7 @@ export const GA_PROPERTY_ID = 'UA-9801603-6'
 let desktopHostname = 'https://staging.tokopedia.com/?m2w'
 let hostname = 'https://m-staging.tokopedia.com'
 let sites = {
+  Ace: 'https://ace-staging.tokopedia.com',
   Pulsa: 'https://pulsa-staging.tokopedia.com',
   Tiket: 'https://tiket-staging.tokopedia.com',
   Events: 'https://events.tokopedia.com/',
@@ -16,6 +17,7 @@ if (__TEST__) {
   desktopHostname = 'https://staging.tokopedia.com/?m2w'
   hostname = 'https://m-staging.tokopedia.com'
   sites = {
+    Ace: 'https://ace-staging.tokopedia.com',
     Pulsa: 'https://pulsa-staging.tokopedia.com',
     Tiket: 'https://tiket-staging.tokopedia.com',
     Events: 'https://events.tokopedia.com/',
@@ -28,6 +30,7 @@ if (__TEST__) {
   desktopHostname = 'https://www.tokopedia.com/?m2w'
   hostname = 'https://m.tokopedia.com'
   sites = {
+    Ace: 'https://ace.tokopedia.com',
     Pulsa: 'https://pulsa.tokopedia.com',
     Tiket: 'https://tiket.tokopedia.com',
     Events: 'https://events.tokopedia.com/',
@@ -40,6 +43,7 @@ if (__TEST__) {
   desktopHostname = 'https://beta.tokopedia.com/?m2w'
   hostname = 'https://m-beta.tokopedia.com'
   sites = {
+    Ace: 'https://ace.tokopedia.com',
     Pulsa: 'https://pulsa.tokopedia.com',
     Tiket: 'https://tiket.tokopedia.com',
     Events: 'https://events.tokopedia.com/',

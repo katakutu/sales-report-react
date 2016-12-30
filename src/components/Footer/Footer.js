@@ -23,7 +23,20 @@ class Footer extends Component {
 
   languageChange (event) {
     const newLang = event.target.value
-    this.setState({ language: newLang }, () => Cookies.setItem('lang', newLang))
+    this.setState({ language: newLang }, () => {
+      let domain = location.hostname
+      if (window.location.href.indexOf('ndvl') > -1) {
+        domain = /(\..*\.ndvl)/.exec(location.hostname)[1]
+      } else if (window.location.href.indexOf('localhost') > -1) {
+        domain = /(localhost)/.exec(location.hostname)[1]
+      } else if (window.location.href.indexOf('ndvl') < 0) {
+        domain = /(\..*\.com)/.exec(location.hostname) &&
+          /(\..*\.com)/.exec(location.hostname)[1] ||
+          location.hostname
+      }
+
+      Cookies.setItem('lang', newLang, 31536000, '/', domain, true)
+    })
     this.props.updateLang(newLang)
   }
 
@@ -47,7 +60,7 @@ class Footer extends Component {
         </div>
         <div className='footer__lower u-clearfix u-center'>
           <p className='u-line-height-4'>
-            <a href={`${HOSTNAME}/bantuan`} className='u-ml1'>
+            <a href={`${HOSTNAME}/bantuan?utm_source=mobile&utm_medium=linkbantuan`} className='u-ml1'>
               {
               lang[this.props.lang]['Need Help']
             }?</a>

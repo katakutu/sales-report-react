@@ -162,7 +162,7 @@ const DEVELOPMENT = {
     SessionID: '_SID_Tokopedia_'
   },
   Ace: {
-    Hostname: 'https://ace-alpha.tokopedia.com'
+    Hostname: 'https://ace-staging.tokopedia.com'
   },
   Accounts: {
     Hostname: 'http://192.168.100.160:8009',
@@ -182,7 +182,7 @@ const DEVELOPMENT = {
     Hostname: '192.168.100.160:9093'
   },
   Mojito: {
-    Hostname: 'https://mojito-alpha.tokopedia.com',
+    Hostname: 'https://mojito-staging.tokopedia.com',
     SecretKey: 'mojito_api_v1'
   },
   Notification: {
@@ -201,7 +201,7 @@ const DEVELOPMENT = {
     port: 6379
   },
   WS: {
-    Hostname: 'https://ws-alpha.tokopedia.com'
+    Hostname: 'https://ws-staging.tokopedia.com'
   },
   Tome: {
     Hostname: 'https://tome-staging.tokopedia.com'

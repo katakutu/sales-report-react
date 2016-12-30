@@ -49,7 +49,7 @@ const getDefaultLoginRedirect = (userID, shouldRedirect) => {
 }
 
 function getUserInfo (context) {
-  if (!context.session.oauth) {
+  if (!context || !context.session || !context.session.oauth) {
     // break to two condition to pass linter (and better readability)
     if (context.cookies && context.cookies[GlobalConfig['Cookie']['SessionID']]) {
       // to prevent infinite loop we only force redirect to /login

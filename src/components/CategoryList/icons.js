@@ -26,9 +26,15 @@ import iconPaketData from './assets/icon-paketdata.png'
 import iconBpjs from './assets/icon-bpjs.png'
 import iconTokenListrik from './assets/icon-tokenlistrik.png'
 import iconTiket from './assets/icon-tiket.png'
+import iconFashionPria from './assets/icon-fashionpria.png'
+import iconFashionWanita from './assets/icon-fashionwanita.png'
+import iconFashionMuslim from './assets/icon-fashionmuslim.png'
 
 export default {
   'fashion-aksesoris': iconFashion,
+  'fashion-pria': iconFashionPria,
+  'fashion-wanita': iconFashionWanita,
+  'fashion-muslim': iconFashionMuslim,
   otomotif: iconOtomotif,
   kecantikan: iconKecantikan,
   pakaian: iconPakaian,

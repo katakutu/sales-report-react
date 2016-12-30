@@ -12,7 +12,7 @@ import addShop from './assets/nav-add-shop-icon.png'
 
 import { updateSidebarStatus } from '../../store/app'
 
-import { HOSTNAME } from '../../constants'
+import { HOSTNAME, SITES } from '../../constants'
 import lang from '../../lib/utils/Lang'
 
 class LoggedInMenu extends Component {
@@ -25,9 +25,9 @@ class LoggedInMenu extends Component {
   }
 
   state = {
-    inboxIsOpen: false,
-    purchaseIsOpen: false,
-    salesIsOpen: false
+    inboxIsOpen: true,
+    purchaseIsOpen: true,
+    salesIsOpen: true
   }
 
   constructor (props) {
@@ -65,6 +65,14 @@ class LoggedInMenu extends Component {
      * Copied from dv3-admin-sidebar.js
     */
     this.initWalletBalance()
+
+    setTimeout(() => {
+      this.setState({
+        inboxIsOpen: false,
+        purchaseIsOpen: false,
+        salesIsOpen: false
+      })
+    }, 1000)
   }
 
   _totalObjectValues (object) {
@@ -143,6 +151,7 @@ class LoggedInMenu extends Component {
     let salesParent = (!this.state.salesIsOpen) ? '' : 'opened'
     let shopId = this.props.shop['shop_id']
 
+    let topupLink = `${SITES['Pulsa']}/saldo/?utm_source=mobile&utm_medium=link&utm_campaign=top%20up%20saldo`
     let goldMerchant = (this.props.shop['is_gold'] === '1') ? (<i className='mi-sprite mi-gold' />) : ''
     let shopSection = (shopId === 'ERROR FAIL' || shopId === null || shopId === '0') ? (
       <div className='drawer__menu-shop u-clearfix' id='toko-button'>
@@ -284,14 +293,8 @@ class LoggedInMenu extends Component {
               </a>
             </div>
           </div>
-          <div className='drawer__menu'>
-            <a href={`${HOSTNAME}/lp.pl`}>
-              <span className='drawer__menu-icon icon__svg topPointsIcon' alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>TopPoints</span>
-              <span id='user-total-toppoints' className='drawer__menu-detail'>{`
-                ${this.props.userData.points.data.attributes.amount_formatted}
-              `}</span>
-            </a>
+          <div className='drawer__user-topup'>
+            <a href={topupLink} className='drawer__btn-topup'>Top Up Saldo</a>
           </div>
           <div className='drawer__menu'>
             <a href='/'>

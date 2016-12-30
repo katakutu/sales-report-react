@@ -5,6 +5,7 @@ import SearchModal from '../SearchModal'
 import './SearchInput.scss'
 
 import lang from '../../lib/utils/Lang'
+import GTM from '../../lib/utils/GTM'
 import UserSearchID from '../../lib/utils/UserSearchID'
 import { storeUserSearchID, updateSearchModalStatus } from '../../store/app'
 
@@ -17,12 +18,12 @@ class SearchInput extends Component {
     storeUserSearchID: React.PropTypes.func,
     userSearchID: React.PropTypes.string,
     updateLang: React.PropTypes.func,
-    updateSearchModalStatus: React.PropTypes.func
+    updateSearchModalStatus: React.PropTypes.func,
+    searchQuery: React.PropTypes.string
   }
 
   state = {
-    searchModalOpened: this.props.showModal,
-    value: ''
+    searchModalOpened: this.props.showModal
   }
 
   constructor (props) {
@@ -30,6 +31,7 @@ class SearchInput extends Component {
 
     this.handleFocus = this.handleFocus.bind(this)
     this.handleModalClosed = this.handleModalClosed.bind(this)
+    this.handleSearchButtonClicked = this.handleSearchButtonClicked.bind(this)
   }
 
   handleFocus () {
@@ -48,6 +50,10 @@ class SearchInput extends Component {
     this.setState({ searchModalOpened: false }, () => {
       this.props.updateSearchModalStatus(false)
     })
+  }
+
+  handleSearchButtonClicked (event) {
+    GTM.pushEvent('clickSearch', 'Search', 'Search', this.props.searchQuery)
   }
 
   render () {
@@ -72,12 +78,11 @@ class SearchInput extends Component {
             className='search-input__input'
             placeholder={this.props.injectPlaceholder}
             onFocus={this.handleFocus}
-            value={this.state.value} />
-          <button className={finalSearchBtnCN} onClick={e => e.preventDefault()}>
+            readOnly
+            value={this.props.searchQuery} />
+          <button className={finalSearchBtnCN} onClick={this.handleSearchButtonClicked}>
               Search
           </button>
-
-          { this.state.value !== '' && <span className='search-input__cancel' onClick={this.clearText} /> }
         </form>
 
         { this.state.searchModalOpened && <SearchModal onClose={this.handleModalClosed} /> }
@@ -91,6 +96,7 @@ const mapDispatchToProps = { storeUserSearchID, updateSearchModalStatus }
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
+    searchQuery: state['app'] ? state['app'].searchQuery : state.searchQuery,
     userSearchID: state['app'] ? state['app'].user.searchID : state.user.searchID
   }
 }

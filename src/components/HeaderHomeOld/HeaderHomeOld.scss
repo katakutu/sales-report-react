@@ -599,3 +599,29 @@
     background-size:33px 32px;
     vertical-align: middle;
 }
+
+
+/* ================================= MENU DENGAN TOP UP KOTAK ========================== */
+.drawer__user-summary-box {     
+    box-sizing: border-box;       
+    padding: 10px 0;      
+    width: 50%;       
+    border-top: 1px solid $color-grey;        
+    border-bottom: 1px solid $color-grey;     
+    color: $color-green;      
+    text-align: center;       
+    font-size: 12px;      
+      
+    span {        
+        line-height: 1.5;     
+    }     
+}
+
+.drawer__user-summary-box:first-child {        
+    border-right: 1px solid $color-grey;      
+}     
+      
+.drawer__user-topup {     
+    padding: 10px 20px;       
+    border-bottom: 1px solid $color-grey;     
+}     

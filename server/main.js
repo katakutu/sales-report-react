@@ -26,7 +26,10 @@ if (config.globals.__PROD__ || config.globals.__BETA__) {
   app.set('trust proxy', 1)
   // sessionConfig.cookie.secure = true
 }
-app.use(morgan('combined'))
+
+if (config.globals.__PROD__) {
+  app.use(morgan('combined'))
+}
 app.use(session(sessionConfig))
 // cookie-parser's and express-session's secret must be the same
 app.use(cookieParser(GlobalConfig['AppSecret']))

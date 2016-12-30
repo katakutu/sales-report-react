@@ -3,7 +3,7 @@ const GlobalConfig = require('../../../GlobalConfig')
 const URL = require('url')
 
 const HADES_SERVICES = {
-  AllCategories: `${GlobalConfig.Hades.Hostname}/v1/categories?filter=type%3D%3Dlist%3Blevel%3D%3D1`
+  AllCategories: `${GlobalConfig.Hades.Hostname}/v1/categories?filter=type==tree`
 }
 
 class TopedHadesAPI {

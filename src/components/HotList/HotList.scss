@@ -1,5 +1,9 @@
 @import 'base';
 
+.slick-track {
+    transition: 100ms linear;
+}
+
 .hotlist {
     margin-bottom: 10px;
 }
@@ -56,4 +60,48 @@
 
 .slick-slide.hotlist__item {
     padding: 0 0 0 10px;
+}
+
+.hotlist-spacer {
+    position: relative;
+    margin-bottom: 7px;
+    width: 100%;
+    height: 24px;
+    color: $color-green;
+    vertical-align: middle;
+    text-align: right;
+    line-height: 1;
+}
+
+.hotlist-spacer__link {
+    z-index: $z-index-4;
+    float: right;
+    color: $color-green;
+    text-decoration: none;
+    font-size: 13px;
+    background: transparent;
+}
+
+.hotlist-spacer__icon {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: middle;
+
+    &--percent {
+        width: 22px;
+        height: 22px;
+        background: url('./assets/promo-spacer-icon-percent@2x.png') transparent no-repeat;
+        background-size: 22px 22px;
+    }
+
+    &--arrow {
+        width: 6px;
+        height: 9px;
+        background: url('./assets/promo-spacer-icon-arrow@2x.png') transparent no-repeat;
+        background-size: 6px 9px;
+    }
+}
+
+#hotlist-spacer {
+    margin-top: 16px;
 }
