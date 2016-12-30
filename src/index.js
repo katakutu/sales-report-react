@@ -1,3 +1,4 @@
+/* global $ */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
@@ -5,6 +6,7 @@ import AppContainer from './containers/AppContainer'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import Promise from 'promise-polyfill'
+// import lang from '../../lib/utils/Lang'
 
 // ========================================================
 // Promise Polyfill
@@ -53,16 +55,19 @@ if (!Array.prototype.findIndex) {
 }
 
 // ========================================================
-// Initiate Wallet 
+// Initiate Wallet
 // ========================================================
 window.show_wallet_activation_button = function () {
-    var accounts_client_host = $('#accounts_client_host').attr('value');
-    if(accounts_client_host) {
-        var btn = [];
-        btn.push('<a href="' + accounts_client_host + '/wallet/activation?v=2" class="topcash-btn display-block"><strong class="fs-11 ellipsis">' + tokopedia.loc('Activate TokoCash') + '</strong><span class="white ellipsis pull-right display-block"></span></a>');
-        btn.push('<hr class="mt-5 mb-5">');
-        $('#tokocash-balance-container').html(btn.join(''));
-    }
+  var accountsClientHost = $('#accounts_client_host').attr('value')
+  if (accountsClientHost) {
+    var btn = []
+    btn.push('<a href="' + accountsClientHost +
+    '/wallet/activation?v=2" class="topcash-btn display-block"><strong class="fs-11 ellipsis">' +
+    'Activate TokoCash' + // lang[this.props.lang]['Activate TokoCash']
+    '</strong><span class="white ellipsis pull-right display-block"></span></a>')
+    btn.push('<hr class="mt-5 mb-5">')
+    $('#tokocash-balance-container').html(btn.join(''))
+  }
 }
 
 // ========================================================

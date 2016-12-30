@@ -1,3 +1,4 @@
+/* global $ */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
@@ -63,7 +64,7 @@ class LoggedInMenu extends Component {
      * This code is workaround for wallet menu on sidebar
      * Copied from dv3-admin-sidebar.js
     */
-    init_wallet_balance()
+    this.initWalletBalance()
   }
 
   _totalObjectValues (object) {
@@ -77,40 +78,44 @@ class LoggedInMenu extends Component {
     return result
   }
 
-  init_wallet_balance() {
-    var accounts_client_host = $("#accounts_client_host").attr("value");
-    var wallet_host = $("#wallet_host").attr("value");
+  initWalletBalance () {
+    var accountsClientHost = $('#accounts_client_host').attr('value')
+    var walletHost = $('#wallet_host').attr('value')
     $.ajax({
-        url: accounts_client_host + '/api/wallet/balance',
-        global: false,
-        type: "GET",
-        xhrFields: {
-            withCredentials: true
-        },
-        success: function(result){
+      url: accountsClientHost + '/api/wallet/balance',
+      global: false,
+      type: 'GET',
+      xhrFields: {
+        withCredentials: true
+      },
+      success: function (result) {
             /* if the link is there, we show current balance, show activate button otherwise (ST). */
-            if(result && result.data) {
-                var a = [], element;
-                if(result.data.link) {
+        if (result && result.data) {
+          var a = []
+          var element
+          if (result.data.link) {
                     /* show current balance. */
-                    a.push('<div class="relative">');
-                        a.push('<a href="' + wallet_host + '" class="deposit-link-sidebar display-block">');
-                            a.push('<i class="icon-wallet-balance pull-left mr-5"></i><strong class="fs-11 ellipsis">' + result.data.balance + '</strong><span class="white ellipsis pull-right display-block"></span>');
-                        a.push('</a><br>');
-                    a.push('</div>');
-                    a.push('<hr class="mt-5 mb-5">');
-                    element = a.join('');
-                    $("#tokocash-balance-container").html(element);
-                } else {
-                  /* instead of directly show the button, we need to trigger 'wallet_no_link" event for segmentation filter */
-                  window.dataLayer = window.dataLayer || [];
-                  window.dataLayer.push({
-                'event': 'wallet_no_link'
-                  });
-                }
-            }
+            a.push('<div class="relative">')
+            a.push('<a href="' + walletHost + '" class="deposit-link-sidebar display-block">')
+            a.push('<i class="icon-wallet-balance pull-left mr-5"></i><strong class="fs-11 ellipsis">' +
+             result.data.balance +
+             '</strong><span class="white ellipsis pull-right display-block"></span>')
+            a.push('</a><br>')
+            a.push('</div>')
+            a.push('<hr class="mt-5 mb-5">')
+            element = a.join('')
+            $('#tokocash-balance-container').html(element)
+          } else {
+            /* instead of directly show the button,
+                we need to trigger 'wallet_no_link" event for segmentation filter */
+            window.dataLayer = window.dataLayer || []
+            window.dataLayer.push({
+              'event': 'wallet_no_link'
+            })
+          }
         }
-    });  
+      }
+    })
   }
 
   closeSidebar () {
@@ -266,15 +271,18 @@ class LoggedInMenu extends Component {
           </div>
           <input type='text' id='include-deposit' value={`
             ${this.props.userData.deposit.deposit_fmt}
-          `} readOnly hidden/>
-          <input type='text' id='accounts_client_host' value={`${HOSTNAME}`} readOnly hidden/>
+          `} readOnly hidden />
+          <input type='text' id='accounts_client_host' value={`${HOSTNAME}`} readOnly hidden />
           <div className='drawer__menu'>
-            <div id='tokocash-balance-container'></div>
-            <a href='/'>
-              <span className='drawer__menu-icon icon__svg tokoCashIcon' alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>TokoCash</span>
-              <span id='tokocash-activate-btn' className='drawer__activate-tokoCash'>Aktivasi TokoCash</span>
-            </a>
+            <div id='tokocash-balance-container'>
+              <a href='/'>
+                <span className='drawer__menu-icon icon__svg tokoCashIcon' alt='tokopedia' />
+                <span className='drawer__menu-title u-inline-block'>TokoCash</span>
+                <span id='tokocash-activate-btn' className='drawer__activate-tokoCash'>{
+                  lang[this.props.lang]['Activate TokoCash']
+                }</span>
+              </a>
+            </div>
           </div>
           <div className='drawer__menu'>
             <a href={`${HOSTNAME}/lp.pl`}>
