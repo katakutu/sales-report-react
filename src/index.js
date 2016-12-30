@@ -1,3 +1,4 @@
+/* global $ */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
@@ -5,6 +6,8 @@ import AppContainer from './containers/AppContainer'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import Promise from 'promise-polyfill'
+
+import { SITES } from 'constants'
 
 // ========================================================
 // Promise Polyfill
@@ -53,6 +56,22 @@ if (!Array.prototype.findIndex) {
 }
 
 // ========================================================
+// Initiate Wallet
+//
+// Globalfunction for GTM
+// ========================================================
+window.show_wallet_activation_button = function () {
+  const accountsClientHost = SITES['Accounts']
+  if (accountsClientHost) {
+    let btn = []
+    btn.push('<a href="' + accountsClientHost +
+    '/wallet/activation?v=2" class="topcash-btn display-block"><strong class="fs-11 ellipsis">' +
+    'Activate TokoCash' +
+    '</strong><span class="white ellipsis pull-right display-block"></span></a>')
+    btn.push('<hr class="mt-5 mb-5">')
+    $('#tokocash-balance-container').html(btn.join(''))
+  }
+}
 // Array.includes Polyfill
 // This polyfill is needed specifically for hotlist support
 // in older browser (UC, Android Old Browser).
