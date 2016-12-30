@@ -14,6 +14,15 @@ const cookieParser = require('cookie-parser')
 const app = express()
 const paths = config.utils_paths
 
+const StatsD = require('node-dogstatsd').StatsD
+const dogStatsD = new StatsD(GlobalConfig['DataDog']['Hostname'])
+
+const ConnectDataDog = require('connect-datadog')({
+  dogstats: dogStatsD,
+  'response_code':true,
+  'tags': ['tkpd:tokopedia-lite']
+})
+
 const sessionConfig = {
   store: new RedisStore(GlobalConfig.SessionRedis),
   secret: GlobalConfig['AppSecret'],
@@ -27,12 +36,16 @@ if (config.globals.__PROD__ || config.globals.__BETA__) {
   // sessionConfig.cookie.secure = true
 }
 
-if (config.globals.__PROD__) {
+if (!config.globals.__PROD__) {
   app.use(morgan('combined'))
 }
 app.use(session(sessionConfig))
 // cookie-parser's and express-session's secret must be the same
 app.use(cookieParser(GlobalConfig['AppSecret']))
+
+// datadog before router
+app.use(ConnectDataDog)
+
 app.use('/graphql', graphql)
 
 app.get('/status', (req, res) => res.end('ok'))
