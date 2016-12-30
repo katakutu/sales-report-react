@@ -19,10 +19,8 @@
 
 .category-list__content {
     position: relative;
-    overflow-x: hidden;
     margin-bottom: 5px;
     padding: 3px 0;
-    text-overflow: ellipsis;
     white-space: nowrap;
 }
 
@@ -61,7 +59,16 @@
 
 .category-list__name {
     display: inline-block;
+    overflow-x: hidden;
+    max-width: 102px;
     color: $color-black-secondary;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: 11px;
     line-height: 27px;
+
+    @media (min-width: 380px) {
+        max-width: 100%;
+    }
 }
