@@ -61,6 +61,14 @@ query Query {
         }
       }
     }
+    wallet {
+      linked
+      balance
+      errors {
+        name
+        message
+      }
+    }
   }
   category {
     categories {
@@ -72,7 +80,7 @@ query Query {
       }
       name
     }
-    errors{
+    errors {
       name
       message
     }

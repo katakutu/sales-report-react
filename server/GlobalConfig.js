@@ -53,6 +53,9 @@ const PRODUCTION = {
   },
   Tome: {
     Hostname: 'http://tome.tokopedia.local'
+  },
+  Wallet: {
+    Hostname: 'https://wallet.tokopedia.id'
   }
 }
 
@@ -109,6 +112,9 @@ const BETA = {
   },
   Tome: {
     Hostname: 'https://tome.tokopedia.com'
+  },
+  Wallet: {
+    Hostname: 'https://wallet-staging.tokopedia.id'
   }
 }
 
@@ -164,6 +170,9 @@ const TEST = {
   },
   Tome: {
     Hostname: 'https://tome-staging.tokopedia.com'
+  },
+  Wallet: {
+    Hostname: 'https://wallet-staging.tokopedia.id'
   }
 }
 
@@ -220,6 +229,9 @@ const DEVELOPMENT = {
   },
   Tome: {
     Hostname: 'https://tome-staging.tokopedia.com'
+  },
+  Wallet: {
+    Hostname: 'https://wallet-staging.tokopedia.id'
   }
 }
 
