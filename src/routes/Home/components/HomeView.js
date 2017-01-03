@@ -10,6 +10,8 @@ import HotList from '../../../components/HotList'
 import MoreInfo from '../../../components/MoreInfo'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
+import Toppicks from '../../../components/Toppicks'
+import RecommendationProduct from '../../../components/RecommendationProduct'
 
 class HomeView extends Component {
   static propTypes = {
@@ -49,6 +51,8 @@ class HomeView extends Component {
         <div id='widget-dmw' className='u-clearfix u-my2' /> { /* Pulsa widget container */ }
         <CategoryList categories={categories} />
         <HotList data={hotlists} />
+        <Toppicks />
+        <RecommendationProduct />
         <OfficialStoreSection />
         <MoreInfo />
       </div>
