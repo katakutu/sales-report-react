@@ -207,7 +207,7 @@ class HeaderHome extends Component {
               { headerNotif }
             </button>
             <div className='u-center u-block'>
-              <Link to='/' className='u-inline-block header__logo-container'>
+              <Link to='/?h=3' className='u-inline-block header__logo-container'>
                 <span className='header__logo'>Tokopedia</span>
               </Link>
             </div>

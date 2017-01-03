@@ -18,7 +18,7 @@ class LoggedOutTab extends Component {
       <div className='tab logged-out'>
         <div className={homeCN}>
           <label className='tab-link'>
-            <Link to='/'>Home</Link>
+            <Link to='/?h=3'>Home</Link>
           </label>
         </div>
         <div className={hlCN}>
