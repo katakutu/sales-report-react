@@ -10,6 +10,7 @@ const SaldoType = require('./saldo')
 const PointsType = require('./points')
 const NotificationType = require('./notification')
 const ShopType = require('./shop')
+const WalletType = require('./wallet')
 
 const UserType = new GraphQLObjectType({
   name: 'User',
@@ -22,7 +23,8 @@ const UserType = new GraphQLObjectType({
     deposit: { type: SaldoType },
     points: { type: PointsType },
     notifications: { type: NotificationType },
-    shop: { type: ShopType }
+    shop: { type: ShopType },
+    wallet: { type: WalletType }
   }
 })
 

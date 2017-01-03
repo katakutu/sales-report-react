@@ -70,7 +70,8 @@ class HeaderHome extends Component {
           'deposit': userInfo['deposit'],
           'points': userInfo['points'],
           'notifications': userInfo['notifications']['data'],
-          'shop': userInfo['shop']
+          'shop': userInfo['shop'],
+          'wallet': userInfo['wallet']
         })
       } else {
         this.props.updateUserLoginStatus(false)

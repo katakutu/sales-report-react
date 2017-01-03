@@ -1,4 +1,3 @@
-/* global $ */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
@@ -14,6 +13,7 @@ import { updateSidebarStatus } from '../../store/app'
 
 import { HOSTNAME, SITES } from '../../constants'
 import lang from '../../lib/utils/Lang'
+import GTM from '../../lib/utils/GTM'
 
 class LoggedInMenu extends Component {
   static propTypes = {
@@ -61,12 +61,6 @@ class LoggedInMenu extends Component {
       el.style.transform = 'translate3d(0, 0, 0)'
     }, 500)
 
-    /*
-     * This code is workaround for wallet menu on sidebar
-     * Copied from dv3-admin-sidebar.js
-    */
-    this._initWalletBalance()
-
     setTimeout(() => {
       this.setState({
         inboxIsOpen: false,
@@ -74,6 +68,11 @@ class LoggedInMenu extends Component {
         salesIsOpen: false
       })
     }, 1000)
+
+    // GTM for wallet
+    if (!this.props.userData.wallet.linked) {
+      GTM.pushEventName('wallet_no_link')
+    }
   }
 
   _totalObjectValues (object) {
@@ -85,45 +84,6 @@ class LoggedInMenu extends Component {
     }
 
     return result
-  }
-
-  _initWalletBalance () {
-    const accountsClientHost = SITES['Accounts']
-    const walletHost = SITES['Wallet']
-    $.ajax({
-      url: `${accountsClientHost}/api/wallet/balance`,
-      global: false,
-      type: 'GET',
-      xhrFields: {
-        withCredentials: true
-      },
-      success: function (result) {
-        /* if the link is there, we show current balance, show activate button otherwise (ST). */
-        if (result && result.data) {
-          var a = []
-          var element
-          if (result.data.link) {
-            /* show current balance. */
-            a.push('<a href="' + walletHost + '" class="deposit-link-sidebar display-block">')
-            a.push('<span class="drawer__menu-icon icon__svg icon__tokocash" alt="tokopedia"></span>')
-            a.push('<span class="drawer__menu-title u-inline-block">TokoCash</span>')
-            a.push('<i class="icon-wallet-balance pull-left mr-5"></i><span class="drawer__menu-detail">' +
-             'Rp 0' +
-             '</span><span class="white ellipsis pull-right display-block"></span>')
-            a.push('</a>')
-            element = a.join('')
-            $('#tokocash-balance-container').html(element)
-          } else {
-            /* instead of directly show the button,
-                we need to trigger 'wallet_no_link" event for segmentation filter */
-            window.dataLayer = window.dataLayer || []
-            window.dataLayer.push({
-              'event': 'wallet_no_link'
-            })
-          }
-        }
-      }
-    })
   }
 
   closeSidebar () {
@@ -151,7 +111,28 @@ class LoggedInMenu extends Component {
     let salesParent = (!this.state.salesIsOpen) ? '' : 'opened'
     let shopId = this.props.shop['shop_id']
 
-    let goldMerchant = (this.props.shop['is_gold'] === '1') ? (<i className='mi-sprite mi-gold' />) : ''
+    let walletSection = this.props.userData.wallet.linked ? (
+      <a href={SITES['Wallet']} className='deposit-link-sidebar display-block'>
+        <span className='drawer__menu-icon icon__svg icon__tokocash' />
+        <span className='drawer__menu-title u-inline-block'>TokoCash</span>
+        <i className='icon-wallet-balance pull-left mr-5' />
+        <span className='drawer__menu-detail'>
+          { this.props.userData.wallet.balance }
+        </span>
+        <span className='white ellipsis pull-right display-block' />
+      </a>
+    ) : (
+      <a href={`${SITES['Accounts']}/wallet/activation?v=2`}>
+        <span className='drawer__menu-icon icon__svg icon__tokocash' alt='tokopedia' />
+        <span className='drawer__menu-title u-inline-block'>TokoCash</span>
+        <span id='tokocash-activate-btn' className='drawer__activate-tokoCash'>
+          {lang[this.props.lang]['Aktivasi TokoCash']}
+        </span>
+      </a>
+    )
+
+    let goldMerchant = (+this.props.shop['is_gold'] === 1) ? (<i className='mi-sprite mi-gold' />) : null
+    let officialStore = (+this.props.shop['is_official'] === 1) ? (<i className='mi-official' />) : null
     let shopSection = (shopId === 'ERROR FAIL' || shopId === null || shopId === '0') ? (
       <div className='drawer__menu-shop u-clearfix' id='toko-button'>
         <a href={`${HOSTNAME}/myshop.pl`}>
@@ -176,7 +157,7 @@ class LoggedInMenu extends Component {
               <div className='drawer__menu-myshop-name'>{`${this.props.shop['shop_name']}`}</div>
             </div>
             <div className='u-right'>
-              { goldMerchant }
+              { goldMerchant } { officialStore }
             </div>
           </a>
         </div>
@@ -285,13 +266,7 @@ class LoggedInMenu extends Component {
             readOnly
             hidden />
           <div className='drawer__menu bg__grey-4' id='tokocash-balance-container'>
-            <a href={`${SITES['Accounts']}/wallet/activation?v=2`}>
-              <span className='drawer__menu-icon icon__svg icon__tokocash' alt='tokopedia' />
-              <span className='drawer__menu-title u-inline-block'>TokoCash</span>
-              <span id='tokocash-activate-btn' className='drawer__activate-tokoCash'>
-                {lang[this.props.lang]['Aktivasi TokoCash']}
-              </span>
-            </a>
+            { walletSection }
           </div>
           <div className='drawer__menu bg__grey-4'>
             <a href={`${HOSTNAME}/lp.pl`}>

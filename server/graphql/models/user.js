@@ -22,6 +22,11 @@ const {
   TopedShopAPI
 } = require('./../../api-consumer/api/Shop/TopedShopAPI')
 
+const {
+  DEFAULT_WALLET_DATA,
+  TopedWalletAPI
+} = require('./../../api-consumer/api/Wallet/TopedWalletAPI')
+
 const DEFAULT_NOT_LOGGED_IN = {
   'isLoggedIn': false,
   'shouldRedirect': false,
@@ -31,7 +36,8 @@ const DEFAULT_NOT_LOGGED_IN = {
   'deposit': DEFAULT_SALDO_DATA,
   'points': DEFAULT_POINTS_DATA,
   'notifications': DEFAULT_NOTIFICATION_DATA,
-  'shop': DEFAULT_SHOP_DATA
+  'shop': DEFAULT_SHOP_DATA,
+  'wallet': DEFAULT_WALLET_DATA
 }
 
 const getDefaultLoginRedirect = (userID, shouldRedirect) => {
@@ -44,7 +50,8 @@ const getDefaultLoginRedirect = (userID, shouldRedirect) => {
     'deposit': DEFAULT_SALDO_DATA,
     'points': DEFAULT_POINTS_DATA,
     'notifications': DEFAULT_NOTIFICATION_DATA,
-    'shop': DEFAULT_SHOP_DATA
+    'shop': DEFAULT_SHOP_DATA,
+    'wallet': DEFAULT_WALLET_DATA
   }
 }
 
@@ -100,6 +107,7 @@ function getUserInfo (context) {
       const notifConsumer = new TopedNotificationAPI(token, tType)
       const pointConsumer = new TopedPointsAPI()
       const shopConsumer = new TopedShopAPI()
+      const walletConsumer = new TopedWalletAPI()
 
       return authConsumer.getUserInfo().then(user => {
         const userID = user['user_id']
@@ -116,8 +124,12 @@ function getUserInfo (context) {
         let notif = notifConsumer.getNotification(userID)
         let point = pointConsumer.getPoints(userID)
         let shop = shopConsumer.getShop(userID)
+        let wallet = walletConsumer.getWalletBalance(
+          context.get('Origin') || GlobalConfig['Hostname'],
+          sessID
+        )
 
-        return Promise.all([saldo, notif, point, shop])
+        return Promise.all([saldo, notif, point, shop, wallet])
           .then(s => {
             return {
               'isLoggedIn': true,
@@ -128,7 +140,8 @@ function getUserInfo (context) {
               'deposit': s[0] || DEFAULT_SALDO_DATA,
               'points': s[2] || DEFAULT_POINTS_DATA,
               'notifications': s[1] || DEFAULT_NOTIFICATION_DATA,
-              'shop': s[3] || DEFAULT_SHOP_DATA
+              'shop': s[3] || DEFAULT_SHOP_DATA,
+              'wallet': s[4] || DEFAULT_WALLET_DATA
             }
           })
           .catch(e => {
@@ -141,7 +154,8 @@ function getUserInfo (context) {
               'deposit': DEFAULT_SALDO_DATA,
               'points': DEFAULT_POINTS_DATA,
               'notifications': DEFAULT_NOTIFICATION_DATA,
-              'shop': DEFAULT_SHOP_DATA
+              'shop': DEFAULT_SHOP_DATA,
+              'wallet': DEFAULT_WALLET_DATA
             }
           })
       })

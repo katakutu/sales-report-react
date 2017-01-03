@@ -8,6 +8,12 @@ const GTM = {
       'eventLabel': eventLabel
     })
   },
+  pushEventName: function (eventName) {
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({
+      'event': eventName
+    })
+  },
   pushObject: function (object) {
     window.dataLayer = window.dataLayer || []
     window.dataLayer.push(object)

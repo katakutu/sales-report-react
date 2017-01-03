@@ -30,18 +30,19 @@ const wrappedTopedFetch = topedAPICache.wrap((url, options, cb) => {
 class TopedAPI {
   /**
    * Consume an API with specific URL and method.
-   * If the method is GET, content will be sent via serialized URL
+   * If the method is GET, content will be sent via serialized URL.
+   * Default timeout for API is 5s, this could be modified via options.
    *
    * @param {URL} url The URL we want to consume
    * @param {string} method The HTTP Method we want to use on the API call.
    * @param {object} content The content we want to sent in body.
-   * @param {number} timeout Timeout, defaults to 5000
+   * @param {object} options Additional options for request. Defaults to empty object
    * @returns {Promise<Object>} The resulting response promise, in JSON.
    *
    * @memberOf TopedAPI
    */
-  consume (url, method, content, timeout = 5000) {
-    let options = (method === 'GET') ? {} : {
+  consume (url, method, content, options = {}) {
+    let additionalOptions = (method === 'GET') ? {} : {
       method: method,
       body: JSON.stringify(content)
     }
@@ -49,9 +50,7 @@ class TopedAPI {
     let finalURL = (method === 'POST') ? url.format()
             : this._formatGetURL(url, content)
 
-    let finalOptions = Object.assign({}, options, {
-      timeout: timeout
-    })
+    let finalOptions = Object.assign({}, additionalOptions, options)
 
     return request(finalURL, finalOptions).then(response => JSON.parse(response))
     /*
