@@ -54,6 +54,12 @@ class HotList extends Component {
     this._verifyHotlistData = this._verifyHotlistData.bind(this)
   }
 
+  componentDidMount () {
+    // for GTM to consume
+    const event = new Event('HomeCategoryLoaded')
+    document.dispatchEvent(event)
+  }
+
   _gtmNotifyAllHotlistsClicked () {
     GTM.pushEvent('clickHomepage', 'Homepage', 'Click', 'View All Hotlist')
   }
