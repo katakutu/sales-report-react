@@ -61,18 +61,17 @@ class Footer extends Component {
         <div className='footer__lower u-clearfix u-center'>
           <p className='u-line-height-4'>
             <a href={`${HOSTNAME}/bantuan?utm_source=mobile&utm_medium=linkbantuan`} className='u-ml1'>
-              {
-              lang[this.props.lang]['Need Help']
-            }?</a>
+              { lang[this.props.lang]['Need Help'] }?
+            </a>
             &nbsp; | &nbsp;
-        <a href={DESKTOP_HOSTNAME}>{
-          lang[this.props.lang]['Desktop Site']
-        }</a>
+        <a href={DESKTOP_HOSTNAME}>
+          { lang[this.props.lang]['Desktop Site'] }
+        </a>
           </p>
           <p className='u-line-height-4 footer__lower-text--bigger'>
-            <label htmlFor='language'>{
-              lang[this.props.lang]['Choose Language']
-            }</label>
+            <label htmlFor='language'>
+              { lang[this.props.lang]['Choose Language'] }
+            </label>
             <select id='language'
               name='language'
               className='footer__select-language'
@@ -82,7 +81,9 @@ class Footer extends Component {
               <option value='en'>English</option>
             </select>
           </p>
-          <p className='u-line-height-4 footer__lower-text--smaller'>&copy; 2009-2016, PT Tokopedia</p>
+          <p className='u-line-height-4 footer__lower-text--smaller'>
+            &copy; 2009-{ new Date().getFullYear() }, PT Tokopedia
+          </p>
         </div>
       </div>
     )
