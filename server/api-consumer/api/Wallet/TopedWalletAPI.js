@@ -20,7 +20,7 @@ class TopedWalletAPI {
 
   getWalletBalance (origin, sid) {
     const url = URL.parse(HOSTNAME_SERVICES.WalletBalance)
-    const sidCookie = `${GlobalConfig['Cookie']['SessionID']}=${sid}`
+    const sidCookie = `${GlobalConfig['Cookie']['SessionID']}=${sid};`
     const headers = {
       'Cookie': sidCookie,
       'Origin': origin
