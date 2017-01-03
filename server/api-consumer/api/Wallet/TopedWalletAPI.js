@@ -28,13 +28,21 @@ class TopedWalletAPI {
     const opt = { headers: headers }
 
     return this.api.consume(url, 'GET', {}, opt)
-          .catch(err => {
-            console.error(`Failed to fetch ${url.format()}. Returning default value. Error: `, err)
+               .then(response => {
+                 return {
+                   linked: !!+response['data']['link'],
+                   balance: response['data']['balance'],
+                   errors: []
+                 }
+               })
+               .catch(err => {
+                 console.error(`Failed to fetch ${url.format()}. Returning default value. Error: `, err)
 
-            return Object.assign(DEFAULT_WALLET_DATA, {
-              errors: [{ name: 'ERRFAILED', message: err }]
-            })
-          })
+                 const finalMessage = `${err}, url: ${url.format()}, c: ${sidCookie}, o: ${origin}`
+                 return Object.assign(DEFAULT_WALLET_DATA, {
+                   errors: [{ name: 'ERRFAILED', message: finalMessage }]
+                 })
+               })
   }
 }
 
