@@ -41,6 +41,7 @@ class Footer extends Component {
   }
 
   render () {
+    let currentDate = new Date();
     return (
       <div className='footer u-clearfix'>
         <div className='footer__apps u-clearfix u-center'>
@@ -82,7 +83,7 @@ class Footer extends Component {
               <option value='en'>English</option>
             </select>
           </p>
-          <p className='u-line-height-4 footer__lower-text--smaller'>&copy; 2009-2016, PT Tokopedia</p>
+          <p className='u-line-height-4 footer__lower-text--smaller'>&copy; 2009-{currentDate.getFullYear()}, PT Tokopedia</p>
         </div>
       </div>
     )
