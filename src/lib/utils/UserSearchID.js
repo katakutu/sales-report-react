@@ -1,4 +1,12 @@
+import CryptoJS from 'crypto-js'
+
 class UserSearchID {
+  static generateUserIDMD5 (userID) {
+    const hash = CryptoJS.MD5(userID)
+
+    return hash.toString()
+  }
+
   /* cookie handler */
   static _getCookie (cname) {
     const name = cname + '='

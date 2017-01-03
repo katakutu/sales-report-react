@@ -16,6 +16,8 @@ class SearchInput extends Component {
     lang: React.PropTypes.string,
     showModal: React.PropTypes.bool,
     storeUserSearchID: React.PropTypes.func,
+    userData: React.PropTypes.object,
+    userIsLoggedIn: React.PropTypes.bool,
     userSearchID: React.PropTypes.string,
     updateLang: React.PropTypes.func,
     updateSearchModalStatus: React.PropTypes.func,
@@ -37,6 +39,10 @@ class SearchInput extends Component {
   handleFocus () {
     UserSearchID.initUniqueID()
     let uid = UserSearchID.getUniqueID(this.props.userSearchID)
+
+    if (this.props.userIsLoggedIn && this.props.userData.id) {
+      uid = UserSearchID.generateUserIDMD5(this.props.userData.id)
+    }
 
     this.props.storeUserSearchID(uid)
 
@@ -97,6 +103,8 @@ const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
     searchQuery: state['app'] ? state['app'].searchQuery : state.searchQuery,
+    userData: state['app'] ? state['app'].user.data : state.user.data,
+    userIsLoggedIn: state['app'] ? state['app'].user.loggedIn : state.user.loggedIn,
     userSearchID: state['app'] ? state['app'].user.searchID : state.user.searchID
   }
 }
