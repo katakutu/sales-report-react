@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import { browserHistory, Router } from 'react-router'
 import { Provider } from 'react-redux'
 import ReactGA from 'react-ga'
-import { GA_PROPERTY_ID } from '../constants'
+import { GA_PROPERTY_ID, GTM_CONTAINER_ID } from '../constants'
+import GoogleTagManager from '../components/GoogleTagManager'
 
 ReactGA.initialize(GA_PROPERTY_ID)
 
@@ -28,6 +29,7 @@ class AppContainer extends Component {
     return (
       <Provider store={store}>
         <div>
+          <GoogleTagManager gtmID={GTM_CONTAINER_ID} />
           <Router history={browserHistory} children={routes} onUpdate={this.logPageView} />
         </div>
       </Provider>

@@ -173,7 +173,7 @@ const DEVELOPMENT = {
   },
   Hostname: 'https://m-staging.tokopedia.com',
   Cookie: {
-    SessionID: '_SID_Tokopedia_Coba_'
+    SessionID: '_SID_Tokopedia_'
   },
   Ace: {
     Hostname: 'https://ace-staging.tokopedia.com'
