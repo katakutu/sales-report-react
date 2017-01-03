@@ -11,6 +11,7 @@ import MoreInfo from '../../../components/MoreInfo'
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
+import GTM from '../../../lib/utils/GTM'
 
 class HomeView extends Component {
   static propTypes = {
@@ -45,6 +46,14 @@ class HomeView extends Component {
     const hotlists = this.props.data['hot_product_home'] ? this.props.data['hot_product_home'] : defaultHotlist
 
     const categories = this.props.data.category ? this.props.data.category.categories : []
+
+    if (this.props.data.user && this.props.data.user.id) {
+      GTM.pushObject({
+        'contactInfo': {
+          'userId': this.props.data.user.id
+        }
+      })
+    }
 
     return (
       <div>
