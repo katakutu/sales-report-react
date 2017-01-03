@@ -45,7 +45,7 @@ class LoggedOutMenu extends Component {
             <img className='drawer__banner-img' src={bannerDrawer} alt='tokopedia' />
           </div>
           <div className='drawer__menu'>
-            <a href='/'>
+            <a href='/?h=3'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>
                 { lang[this.props.lang]['Home'] }

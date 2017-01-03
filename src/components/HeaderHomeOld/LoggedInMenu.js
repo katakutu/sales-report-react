@@ -122,7 +122,7 @@ class LoggedInMenu extends Component {
         <span className='white ellipsis pull-right display-block' />
       </a>
     ) : (
-      <a href={`${SITES['Accounts']}/wallet/activation?v=2`}>
+      <a href={`${SITES['Accounts']}/wallet/activation?v=2`} target='_blank'>
         <span className='drawer__menu-icon icon__svg icon__tokocash' alt='tokopedia' />
         <span className='drawer__menu-title u-inline-block'>TokoCash</span>
         <span id='tokocash-activate-btn' className='drawer__activate-tokoCash'>
@@ -165,7 +165,7 @@ class LoggedInMenu extends Component {
     let inboxNotif = this._totalObjectValues(this.props.notifs['inbox']) > 0 ? (
       <span className='drawer__menu-notif' />
     ) : null
-    let purchaseNotif = this._totalObjectValues(this.props.notifs['sales']) > 0 ? (
+    let purchaseNotif = this._totalObjectValues(this.props.notifs['purchase']) > 0 ? (
       <span className='drawer__menu-notif' />
     ) : null
     let salesNotif = this._totalObjectValues(this.props.notifs['sales']) > 0 ? (
@@ -278,7 +278,7 @@ class LoggedInMenu extends Component {
             </a>
           </div>
           <div className='drawer__menu'>
-            <a href='/'>
+            <a href='/?h=3'>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>
                 { lang[this.props.lang]['Home'] }
