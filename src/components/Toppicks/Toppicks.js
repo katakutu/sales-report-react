@@ -44,7 +44,7 @@ export const Toppicks = () => (
           </div>
         </div>
         <div className='toppicks__see-all'>
-          <a className='toppicks__see-all-link' href='https://www.tokopedia.com/toppicks/'>
+          <a className='toppicks__see-all-link' href='#'>
             Lihat Semua <i className='promo-spacer__icon promo-spacer__icon--arrow' />
           </a>
         </div>

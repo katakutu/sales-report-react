@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import './RecommendationProduct.scss'
 import TextHeader from '../../components/TextHeader'
 import RecommendationProductPlaceholder from './assets/recommendation-product-placeholder.png'
@@ -38,9 +39,9 @@ export const RecommendationProduct = () => (
         </div>
         <div className='u-clearfix' />
         <div className='recommendation-product__see-all'>
-          <a className='recommendation-product__see-all-link' href='https://www.tokopedia.com/toppicks/'>
+          <Link className='recommendation-product__see-all-link' to='/hot'>
             Lihat Semua <i className='promo-spacer__icon promo-spacer__icon--arrow' />
-          </a>
+          </Link>
         </div>
       </div>
     </div>
