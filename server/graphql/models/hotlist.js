@@ -23,7 +23,7 @@ function getHotProductHome () {
           return {
             title_enc: data['title_enc'],
             price_start_from: data['price_start_from'],
-            image_url: data['img_uri'],
+            image_url: data['img_uri_375'] || data['img_uri'],
             url: data['url']
           }
         })
