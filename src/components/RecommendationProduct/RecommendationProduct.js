@@ -6,7 +6,7 @@ import RecommendationProductPlaceholder from './assets/recommendation-product-pl
 export const RecommendationProduct = () => (
   <div className='u-clearfix'>
     <TextHeader textType={2} injectClassName='recommendation-product__title'>
-      Yang lagi Hot
+      Hot List
     </TextHeader>
     <div className='recommendation-product-container'>
       <div className='recommendation-product__contents'>
