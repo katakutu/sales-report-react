@@ -2,7 +2,6 @@ import React from 'react'
 import './Toppicks.scss'
 import TextHeader from '../../components/TextHeader'
 import ToppicksPlaceholder from './assets/toppicks-placeholder.png'
-import ToppicksBannerPlaceholder from './assets/toppicks-banner-placeholder.png'
 
 export const Toppicks = () => (
   <div className='u-clearfix'>
@@ -15,7 +14,7 @@ export const Toppicks = () => (
           <div className='u-col u-col-6 toppicks__box'>
             <a href='#'>
               <div className='toppicks__banner'>
-                <img src={ToppicksBannerPlaceholder} alt='' className='toppicks__img' />
+                <img src={ToppicksPlaceholder} alt='' className='toppicks__img' />
               </div>
             </a>
           </div>
@@ -23,12 +22,6 @@ export const Toppicks = () => (
             <div className='toppicks__box-content'>
               <a href='#'>
                 <img src={ToppicksPlaceholder} alt='' className='toppicks__img' />
-                <div className='toppicks__content-desc'>
-                  <div className='toppicks__content-title u-truncate'>Munafie Slimming Pants</div>
-                  <div className='toppicks__content-startto u-truncate'>Mulai dari
-                    <span className='toppicks__content-price'>Rp. 350rb</span>
-                  </div>
-                </div>
               </a>
             </div>
           </div>
@@ -39,12 +32,6 @@ export const Toppicks = () => (
             <div className='toppicks__box-content'>
               <a href='#'>
                 <img src={ToppicksPlaceholder} alt='' className='toppicks__img' />
-                <div className='toppicks__content-desc'>
-                  <div className='toppicks__content-title u-truncate'>Munafie Slimming Pants</div>
-                  <div className='toppicks__content-startto u-truncate'>Mulai dari
-                    <span className='toppicks__content-price'>Rp. 350rb</span>
-                  </div>
-                </div>
               </a>
             </div>
           </div>
@@ -52,12 +39,6 @@ export const Toppicks = () => (
             <div className='toppicks__box-content'>
               <a href='#'>
                 <img src={ToppicksPlaceholder} alt='' className='toppicks__img' />
-                <div className='toppicks__content-desc'>
-                  <div className='toppicks__content-title u-truncate'>Munafie Slimming Pants</div>
-                  <div className='toppicks__content-startto u-truncate'>Mulai dari
-                    <span className='toppicks__content-price'>Rp. 350rb</span>
-                  </div>
-                </div>
               </a>
             </div>
           </div>
