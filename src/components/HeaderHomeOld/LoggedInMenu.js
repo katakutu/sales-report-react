@@ -131,7 +131,8 @@ class LoggedInMenu extends Component {
       </a>
     )
 
-    let goldMerchant = (this.props.shop['is_gold'] === '1') ? (<i className='mi-sprite mi-gold' />) : ''
+    let goldMerchant = (this.props.shop['is_gold'] === '1') ? (<i className='mi-sprite mi-gold' />) : null
+    let officialStore = (this.props.shop['is_official'] === '1') ? (<i className='mi-official' />) : null
     let shopSection = (shopId === 'ERROR FAIL' || shopId === null || shopId === '0') ? (
       <div className='drawer__menu-shop u-clearfix' id='toko-button'>
         <a href={`${HOSTNAME}/myshop.pl`}>
@@ -156,7 +157,7 @@ class LoggedInMenu extends Component {
               <div className='drawer__menu-myshop-name'>{`${this.props.shop['shop_name']}`}</div>
             </div>
             <div className='u-right'>
-              { goldMerchant }
+              { goldMerchant } { officialStore }
             </div>
           </a>
         </div>
