@@ -104,14 +104,13 @@ class LoggedInMenu extends Component {
           var element
           if (result.data.link) {
             /* show current balance. */
-            a.push('<div class="relative">')
             a.push('<a href="' + walletHost + '" class="deposit-link-sidebar display-block">')
-            a.push('<i class="icon-wallet-balance pull-left mr-5"></i><strong class="fs-11 ellipsis">' +
-             result.data.balance +
-             '</strong><span class="white ellipsis pull-right display-block"></span>')
-            a.push('</a><br>')
-            a.push('</div>')
-            a.push('<hr class="mt-5 mb-5">')
+            a.push('<span class="drawer__menu-icon icon__svg icon__tokocash" alt="tokopedia"></span>')
+            a.push('<span class="drawer__menu-title u-inline-block">TokoCash</span>')
+            a.push('<i class="icon-wallet-balance pull-left mr-5"></i><span class="drawer__menu-detail">' +
+             'Rp 0' +
+             '</span><span class="white ellipsis pull-right display-block"></span>')
+            a.push('</a>')
             element = a.join('')
             $('#tokocash-balance-container').html(element)
           } else {
@@ -262,7 +261,7 @@ class LoggedInMenu extends Component {
               </div>
             </div>
           </div>
-          <div className='drawer__user-box'>
+          <div className='drawer__user-box bg__grey-4'>
             <a href={`${HOSTNAME}/people/${this.props.userData.id}`}>
               <img className='drawer__user-photo' src={this.props.userData.profilePicture} alt='tokopedia' />
             </a>
@@ -272,9 +271,9 @@ class LoggedInMenu extends Component {
               </a>
             </div>
           </div>
-          <div className='drawer__menu first__menu'>
+          <div className='drawer__menu bg__grey-4 first__menu'>
             <a href={`${HOSTNAME}/deposit.pl`}>
-              <span className='drawer__menu-icon icon__svg balanceIcon' />
+              <span className='drawer__menu-icon icon__svg icon__balance' />
               <span className='drawer__menu-title u-inline-block'>
                 { lang[this.props.lang]['Balance'] }
               </span>
@@ -285,18 +284,16 @@ class LoggedInMenu extends Component {
             value={`${this.props.userData.deposit.deposit_fmt}`}
             readOnly
             hidden />
-          <div className='drawer__menu'>
-            <div id='tokocash-balance-container'>
-              <a href={`${SITES['Accounts']}/wallet/activation?v=2`}>
-                <span className='drawer__menu-icon icon__svg tokoCashIcon' alt='tokopedia' />
-                <span className='drawer__menu-title u-inline-block'>TokoCash</span>
-                <span id='tokocash-activate-btn' className='drawer__activate-tokoCash'>
-                  { lang[this.props.lang]['Aktivasi TokoCash'] }
-                </span>
-              </a>
-            </div>
+          <div className='drawer__menu bg__grey-4' id='tokocash-balance-container'>
+            <a href={`${SITES['Accounts']}/wallet/activation?v=2`}>
+              <span className='drawer__menu-icon icon__svg icon__tokocash' alt='tokopedia' />
+              <span className='drawer__menu-title u-inline-block'>TokoCash</span>
+              <span id='tokocash-activate-btn' className='drawer__activate-tokoCash'>
+                {lang[this.props.lang]['Aktivasi TokoCash']}
+              </span>
+            </a>
           </div>
-          <div className='drawer__menu'>
+          <div className='drawer__menu bg__grey-4'>
             <a href={`${HOSTNAME}/lp.pl`}>
               <span className='drawer__menu-icon icon__svg topPointsIcon' alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>TopPoints</span>
