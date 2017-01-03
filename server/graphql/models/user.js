@@ -103,6 +103,15 @@ function getUserInfo (context) {
 
       return authConsumer.getUserInfo().then(user => {
         const userID = user['user_id']
+
+        if (!userID) {
+          const tokenMsg = `Token exists but no user for token ${token}.`
+          const dataMsg = `Data returned from Accounts API: ${JSON.stringify(user)}`
+          console.error(`[UserInfo] Session error: ${tokenMsg} ${dataMsg}`)
+
+          return Promise.resolve(DEFAULT_NOT_LOGGED_IN)
+        }
+
         let saldo = saldoConsumer.getDeposit(userID)
         let notif = notifConsumer.getNotification(userID)
         let point = pointConsumer.getPoints(userID)
