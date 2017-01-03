@@ -2,7 +2,7 @@ const TopedAPI = require('../TopedAPI')
 const GlobalConfig = require('../../../GlobalConfig')
 const URL = require('url')
 
-const HOSTNAME = GlobalConfig['Wallet']['Hostname']
+const HOSTNAME = GlobalConfig['Accounts']['Hostname']
 const HOSTNAME_SERVICES = {
   WalletBalance: `${HOSTNAME}/api/wallet/balance`
 }
