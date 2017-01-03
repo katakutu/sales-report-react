@@ -20,7 +20,7 @@ function getMainPageCategories () {
                 name: row['name'],
                 identifier: id[id.length - 1],
                 imageURI: row['image_url'],
-                url: row['url']
+                url: row['url'].replace('www', 'm')
               }
             })
           }
