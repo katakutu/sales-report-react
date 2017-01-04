@@ -47,6 +47,7 @@ class HomeView extends Component {
     const hotlists = this.props.data['hot_product_home'] ? this.props.data['hot_product_home'] : defaultHotlist
 
     const toppicks = this.props.data['toppicks'] ? this.props.data['toppicks'] : []
+    const officialStores = this.props.data['official_store'] ? this.props.data['official_store'] : []
 
     const categories = this.props.data.category ? this.props.data.category.categories : []
 
@@ -69,7 +70,7 @@ class HomeView extends Component {
         <CategoryList categories={categories} />
         <Toppicks data={toppicks} />
         <RecommendationProduct data={hotlists} />
-        <OfficialStoreSection />
+        <OfficialStoreSection data={officialStores} />
         <MoreInfo />
       </div>
     )

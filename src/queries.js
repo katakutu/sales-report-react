@@ -126,6 +126,12 @@ query Query {
       image_url
     }
   }
+  official_store{
+    id
+    name
+    logo_url
+    url
+  }
 }
 `
 
