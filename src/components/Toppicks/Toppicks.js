@@ -21,13 +21,6 @@ class Toppicks extends Component {
       const key = `${tName}-${parentIndex}-${index}`
 
       return (
-        <div className='u-col u-col-6 toppicks__box'>
-          <a href='#'>
-            <div className='toppicks__banner'>
-              <img src={ToppicksPlaceholder} alt='' className='toppicks__img' />
-            </div>
-          </a>
-        </div>
         <div className='u-col u-col-6 toppicks__box' key={key}>
           <a href={tp['url']}>
             <div className='toppicks__banner'>

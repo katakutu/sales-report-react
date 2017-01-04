@@ -75,6 +75,9 @@ class SearchInput extends Component {
           <label htmlFor='search_input' className='u-hide'>
             { lang[this.props.lang]['Search Products or Stores'] }
           </label>
+          <i className={finalSearchBtnCN} onClick={this.handleSearchButtonClicked}>
+              Search
+          </i>
           <input name='q'
             autoComplete='off'
             autoFocus={this.state.showSelection}
@@ -86,9 +89,6 @@ class SearchInput extends Component {
             onFocus={this.handleFocus}
             readOnly
             value={this.props.searchQuery} />
-          <button className={finalSearchBtnCN} onClick={this.handleSearchButtonClicked}>
-              Search
-          </button>
         </form>
 
         { this.state.searchModalOpened && <SearchModal onClose={this.handleModalClosed} /> }
