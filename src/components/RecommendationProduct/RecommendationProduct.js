@@ -47,12 +47,12 @@ class RecommendationProduct extends Component {
       <div className='u-col u-col-6 recommendation-product__box'
         onClick={this._gtmNotifyItemClicked(item)} key={`recommended-${index}`}>
         <div className='recommendation-product__box-content'>
-          <a aria-hidden='true' tabIndex='-1' href={item.url} className='hotlist__click u-block'>
+          <a aria-hidden='true' tabIndex='-1' href={item.url} className='u-block'>
             <img src={item.image_url} alt={`Gambar ${item.title_enc}`} className='recommendation-product__img' />
             <div className='recommendation-product__content-desc'>
               <div className='recommendation-product__content-title u-truncate'>{ item.title_enc }</div>
               <div className='recommendation-product__content-startto'>
-                Mulai dari <span className='recommendation-product__content-price'>Rp. { item.price_start_from }</span>
+                Mulai dari <span className='recommendation-product__content-price'>{ item.price_start_from }</span>
               </div>
             </div>
           </a>
@@ -82,12 +82,12 @@ class RecommendationProduct extends Component {
         <TextHeader textType={2} injectClassName='recommendation-product__title'>
           Hot List
         </TextHeader>
-        <div className='recommendation-product-container'>
-          <div className='recommendation-product__contents'>
-            {hotlists.map(this._renderHotlistItem) }
-
-            <div className='u-clearfix' />
-            <div className='recommendation-product__see-all'>
+        <div className='recommendation-product-container u-clearfix'>
+          <div className='recommendation-product__contents u-clearfix'>
+            <div className='u-clearfix'>
+              {hotlists.map(this._renderHotlistItem) }
+            </div>
+            <div className='recommendation-product__see-all u-clearfix'>
               <Link className='recommendation-product__see-all-link'
                 to='/hot'
                 onClick={this._gtmNotifyAllHotlistsClicked}>

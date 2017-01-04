@@ -1,6 +1,7 @@
 @import 'base';
 
 .hotlist {
+    margin-top: 15px;
     margin-bottom: 10px;
 }
 
@@ -13,8 +14,8 @@
     padding: 10px;
     max-width: 277px;
     height: 100%;
-    border: 1px solid #EBEBEB;
-    border-bottom: 5px solid #EBEBEB;
+    border: 1px solid $color-grey-2;
+    border-bottom: 5px solid $color-grey-2;
     border-radius: 2px;
     background: $color-white-primary;
     vertical-align: top;
@@ -22,7 +23,7 @@
     font-size: 14px;
 
     .hotlist--single-page & {
-        margin: 0 auto 20px;
+        margin: 0 auto 10px;
         max-width: 375px;
     }
 }
@@ -33,7 +34,7 @@
 }
 
 .hotlist__price {
-    color: #E00000;
+    color: $color-orange;
     white-space: nowrap;
 }
 
@@ -118,7 +119,7 @@
     a {
         float: left;
         padding: 0 14px;
-        border: 1px solid #DDD;
+        border: 1px solid $color-grey-1;
         border-left-width: 0;
         background-color: $color-white-primary;
         color: $color-grey-3;
