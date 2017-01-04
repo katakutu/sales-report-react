@@ -8,6 +8,10 @@ class TextHeader extends Component {
     injectClassName: React.PropTypes.string
   }
 
+  static defaultProps = {
+    injectClassName: ''
+  }
+
   render () {
     if (this.props.textType === 1) {
       return (
