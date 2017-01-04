@@ -12,7 +12,8 @@ const ACE_SERVICES = {
   RecentSearch: `${GlobalConfig.Ace.Hostname}/recent_search/v1`,
   SearchCatalog: `${GlobalConfig.Ace.Hostname}/search/v1/catalog`,
   SearchShop: `${GlobalConfig.Ace.Hostname}/search/v1/shop`,
-  SpellCheck: `${GlobalConfig.Ace.Hostname}/v1/products/spellcheck`
+  SpellCheck: `${GlobalConfig.Ace.Hostname}/v1/products/spellcheck`,
+  TopPicks: `${GlobalConfig.Ace.Hostname}/hoth/toppicks/widget?random=true&device=mobile&source=home`
 }
 
 class TopedAceAPI {
@@ -129,6 +130,10 @@ class TopedAceAPI {
     }
 
     return this.api.consumeGet(ACE_SERVICES.RecentSearch, content)
+  }
+
+  topPicks () {
+    return this.api.consumeGet(ACE_SERVICES.TopPicks, {})
   }
 
   /**
