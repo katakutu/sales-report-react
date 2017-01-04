@@ -5,7 +5,6 @@ import SearchModal from '../SearchModal'
 import './SearchInput.scss'
 
 import lang from '../../lib/utils/Lang'
-import GTM from '../../lib/utils/GTM'
 import UserSearchID from '../../lib/utils/UserSearchID'
 import { storeUserSearchID, updateSearchModalStatus } from '../../store/app'
 

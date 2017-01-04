@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './Toppicks.scss'
 import TextHeader from '../../components/TextHeader'
-import ArrayHelper from '../../lib/utils/ArrayHelper'
 
 class Toppicks extends Component {
   static propTypes = {
@@ -37,26 +36,24 @@ class Toppicks extends Component {
       const name = data['name'].toLowerCase().replace(' ', '-')
       const key = `${name}-container-${dataIndex}`
 
+      const firstRow = data.item.slice().splice(0, 1)
+      const secondRow = data.item.slice().splice(1)
+
       return (
         <div className='u-clearfix' key={key}>
           <TextHeader textType={2} injectClassName='toppicks__title'>
             Top Picks
           </TextHeader>
-          {/* data['name'] */}
           <div className='u-clearfix toppicks-container'>
             <div className='toppicks__contents'>
-              {
-                ArrayHelper.chunk(data.item, 2).map((toppick, index) => {
-                  const name = data['name'].toLowerCase().replace(' ', '-')
-                  const key = `${name}-${2 * index}`
+              <div className='toppicks__row u-clearfix'>
+                { this.renderTopPickItem([data], dataIndex) }
+                { this.renderTopPickItem(firstRow, dataIndex + 1) }
+              </div>
 
-                  return (
-                    <div className='toppicks__row u-clearfix' key={key}>
-                      {this.renderTopPickItem(toppick, index)}
-                    </div>
-                  )
-                })
-              }
+              <div className='toppicks__row u-clearfix'>
+                { this.renderTopPickItem(secondRow, dataIndex + 2) }
+              </div>
 
               <div className='toppicks__see-all u-clearfix'>
                 <a className='toppicks__see-all-link' href='#'>
