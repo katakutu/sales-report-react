@@ -1,5 +1,5 @@
 const ArrayHelper = {
-  chunck: (arr, length) => {
+  chunk: (arr, length) => {
     let result = []
     let copy = arr.slice()
     while (copy.length) {

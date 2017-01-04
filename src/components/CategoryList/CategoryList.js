@@ -56,7 +56,7 @@ class CategoryList extends Component {
           </TextHeader>
 
           {
-            ArrayHelper.chunck(category.items, 2).map((items, index) => {
+            ArrayHelper.chunk(category.items, 2).map((items, index) => {
               const cn = category['name'].toLowerCase().replace(' ', '-')
               const key = `${cn}-${2 * index}`
 

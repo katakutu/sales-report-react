@@ -45,7 +45,7 @@ class Toppicks extends Component {
           <div className='u-clearfix toppicks-container'>
             <div className='toppicks__contents'>
               {
-                ArrayHelper.chunck(data.item, 2).map((toppick, index) => {
+                ArrayHelper.chunk(data.item, 2).map((toppick, index) => {
                   const name = data['name'].toLowerCase().replace(' ', '-')
                   const key = `${name}-${2 * index}`
 
