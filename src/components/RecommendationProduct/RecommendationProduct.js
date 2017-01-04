@@ -47,7 +47,7 @@ class RecommendationProduct extends Component {
       <div className='u-col u-col-6 recommendation-product__box'
         onClick={this._gtmNotifyItemClicked(item)} key={`recommended-${index}`}>
         <div className='recommendation-product__box-content'>
-          <a aria-hidden='true' tabIndex='-1' href={item.url} className='hotlist__click u-block'>
+          <a aria-hidden='true' tabIndex='-1' href={item.url} className='u-block'>
             <img src={item.image_url} alt={`Gambar ${item.title_enc}`} className='recommendation-product__img' />
             <div className='recommendation-product__content-desc'>
               <div className='recommendation-product__content-title u-truncate'>{ item.title_enc }</div>
