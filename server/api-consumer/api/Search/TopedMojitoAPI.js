@@ -5,7 +5,8 @@ const URL = require('url')
 const MOJITO_SERVICES = {
   Ticker: `${GlobalConfig.Mojito.Hostname}/api/v1/tickers`,
   Slides: `${GlobalConfig.Mojito.Hostname}/api/v1/slides`,
-  Category: `${GlobalConfig.Mojito.Hostname}/api/v1/layout/category`
+  Category: `${GlobalConfig.Mojito.Hostname}/api/v1/layout/category`,
+  OfficialStores: `${GlobalConfig.Mojito.Hostname}/os/api/v1/brands/list?device=lite`
 }
 
 /**
@@ -74,6 +75,12 @@ class TopedMojitoAPI {
     let url = URL.parse(MOJITO_SERVICES.Slides)
 
     return this.api.consume(url, 'GET', content)
+  }
+
+  getOfficialStores () {
+    let url = URL.parse(MOJITO_SERVICES.OfficialStores)
+
+    return this.api.consume(url, 'GET', {})
   }
 }
 
