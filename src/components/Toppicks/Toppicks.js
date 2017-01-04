@@ -21,6 +21,13 @@ class Toppicks extends Component {
       const key = `${tName}-${parentIndex}-${index}`
 
       return (
+        <div className='u-col u-col-6 toppicks__box'>
+          <a href='#'>
+            <div className='toppicks__banner'>
+              <img src={ToppicksPlaceholder} alt='' className='toppicks__img' />
+            </div>
+          </a>
+        </div>
         <div className='u-col u-col-6 toppicks__box' key={key}>
           <a href={tp['url']}>
             <div className='toppicks__banner'>
@@ -40,8 +47,9 @@ class Toppicks extends Component {
       return (
         <div className='u-clearfix' key={key}>
           <TextHeader textType={2} injectClassName='toppicks__title'>
-            { data['name'] }
+            Top Picks
           </TextHeader>
+          {/* data['name'] */}
           <div className='u-clearfix toppicks-container'>
             <div className='toppicks__contents'>
               {
