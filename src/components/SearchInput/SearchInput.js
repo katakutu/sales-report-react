@@ -58,10 +58,6 @@ class SearchInput extends Component {
     })
   }
 
-  handleSearchButtonClicked (event) {
-    GTM.pushEvent('clickSearch', 'Search', 'Search', this.props.searchQuery)
-  }
-
   render () {
     let backgroundBlur = (this.state.showSelection) ? 'search-input__modal-active' : ''
     let finalClassName = `search-input u-px2 u-pb2 ${this.props.injectClassName} ${backgroundBlur}`
@@ -75,7 +71,7 @@ class SearchInput extends Component {
           <label htmlFor='search_input' className='u-hide'>
             { lang[this.props.lang]['Search Products or Stores'] }
           </label>
-          <i className={finalSearchBtnCN} onClick={this.handleSearchButtonClicked}>
+          <i className={finalSearchBtnCN}>
               Search
           </i>
           <input name='q'
