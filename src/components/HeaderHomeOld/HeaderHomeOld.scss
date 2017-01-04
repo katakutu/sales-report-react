@@ -276,7 +276,7 @@
 }
 
 .drawer__container {
-    z-index: $z-index-3;
+    z-index: $z-index-max;
     overflow-y: auto;
     width: 284px;
     height: 100%;

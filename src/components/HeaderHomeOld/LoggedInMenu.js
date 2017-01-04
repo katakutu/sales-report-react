@@ -112,7 +112,7 @@ class LoggedInMenu extends Component {
     let shopId = this.props.shop['shop_id']
 
     let walletSection = this.props.userData.wallet.linked ? (
-      <a href={SITES['Wallet']} className='deposit-link-sidebar display-block'>
+      <a href={SITES['Wallet']} className='deposit-link-sidebar display-block' target='_blank'>
         <span className='drawer__menu-icon icon__svg icon__tokocash' />
         <span className='drawer__menu-title u-inline-block'>TokoCash</span>
         <i className='icon-wallet-balance pull-left mr-5' />
@@ -122,7 +122,7 @@ class LoggedInMenu extends Component {
         <span className='white ellipsis pull-right display-block' />
       </a>
     ) : (
-      <a href={`${SITES['Accounts']}/wallet/activation?v=2`} target='_blank'>
+      <a href={`${SITES['Accounts']}/wallet/activation?v=2`}>
         <span className='drawer__menu-icon icon__svg icon__tokocash' alt='tokopedia' />
         <span className='drawer__menu-title u-inline-block'>TokoCash</span>
         <span id='tokocash-activate-btn' className='drawer__activate-tokoCash'>
@@ -165,7 +165,7 @@ class LoggedInMenu extends Component {
     let inboxNotif = this._totalObjectValues(this.props.notifs['inbox']) > 0 ? (
       <span className='drawer__menu-notif' />
     ) : null
-    let purchaseNotif = this._totalObjectValues(this.props.notifs['purchase']) > 0 ? (
+    let purchaseNotif = this._totalObjectValues(this.props.notifs['purchasg']) > 0 ? (
       <span className='drawer__menu-notif' />
     ) : null
     let salesNotif = this._totalObjectValues(this.props.notifs['sales']) > 0 ? (
