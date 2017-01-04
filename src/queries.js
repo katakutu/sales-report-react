@@ -116,6 +116,16 @@ query Query {
       url
     }
   }
+  toppicks {
+    name
+    image_url
+    url
+    item{
+      name
+      url
+      image_url
+    }
+  }
 }
 `
 

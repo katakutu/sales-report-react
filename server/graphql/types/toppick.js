@@ -22,7 +22,7 @@ const TopPickType = new GraphQLObjectType({
     name: { type: new GraphQLNonNull(GraphQLString) },
     image_url: { type: new GraphQLNonNull(GraphQLURL) },
     url: { type: new GraphQLNonNull(GraphQLURL) },
-    items: { type: new GraphQLList(TopPickItemType) }
+    item: { type: new GraphQLList(TopPickItemType) }
   }
 })
 

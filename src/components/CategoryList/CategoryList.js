@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import './CategoryList.scss'
 import TextHeader from '../../components/TextHeader'
 import lang from '../../lib/utils/Lang'
+import ArrayHelper from '../../lib/utils/ArrayHelper'
 import GTM from '../../lib/utils/GTM'
 
 class CategoryList extends Component {
@@ -15,20 +16,9 @@ class CategoryList extends Component {
   constructor (props) {
     super(props)
 
-    this._chunkArray = this._chunkArray.bind(this)
     this._gtmNotifyCategoryClicked = this._gtmNotifyCategoryClicked.bind(this)
     this.renderCategoryItem = this.renderCategoryItem.bind(this)
     this.renderCategoryList = this.renderCategoryList.bind(this)
-  }
-
-  _chunkArray (arr, length) {
-    let result = []
-    let copy = arr.slice()
-    while (copy.length) {
-      result.push(copy.splice(0, length))
-    }
-
-    return result
   }
 
   _gtmNotifyCategoryClicked (item) {
@@ -66,7 +56,7 @@ class CategoryList extends Component {
           </TextHeader>
 
           {
-            this._chunkArray(category.items, 2).map((items, index) => {
+            ArrayHelper.chunck(category.items, 2).map((items, index) => {
               const cn = category['name'].toLowerCase().replace(' ', '-')
               const key = `${cn}-${2 * index}`
 

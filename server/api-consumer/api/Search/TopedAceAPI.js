@@ -133,7 +133,8 @@ class TopedAceAPI {
   }
 
   topPicks () {
-    return this.api.consumeGet(ACE_SERVICES.TopPicks, {})
+    const url = URL.parse(ACE_SERVICES.TopPicks)
+    return this.api.consumeGet(url, {})
   }
 
   /**
