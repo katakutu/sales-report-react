@@ -33,7 +33,6 @@ class SearchInput extends Component {
 
     this.handleFocus = this.handleFocus.bind(this)
     this.handleModalClosed = this.handleModalClosed.bind(this)
-    this.handleSearchButtonClicked = this.handleSearchButtonClicked.bind(this)
   }
 
   handleFocus () {
