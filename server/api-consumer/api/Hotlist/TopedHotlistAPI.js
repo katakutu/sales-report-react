@@ -13,7 +13,7 @@ class TopedHotlistAPI {
   }
 
   getHotProductHome () {
-    const endpoint = HOTLIST_SERVICES.GetHotProductList.replace(':page', 1).replace(':per_page', 4)
+    const endpoint = HOTLIST_SERVICES.GetHotProductList.replace(':page', 1).replace(':per_page', 2)
     const url = URL.parse(endpoint)
 
     console.log('--------')
