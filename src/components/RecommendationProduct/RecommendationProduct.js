@@ -82,12 +82,12 @@ class RecommendationProduct extends Component {
         <TextHeader textType={2} injectClassName='recommendation-product__title'>
           Hot List
         </TextHeader>
-        <div className='recommendation-product-container'>
-          <div className='recommendation-product__contents'>
-            {hotlists.map(this._renderHotlistItem) }
-
-            <div className='u-clearfix' />
-            <div className='recommendation-product__see-all'>
+        <div className='recommendation-product-container u-clearfix'>
+          <div className='recommendation-product__contents u-clearfix'>
+            <div className='u-clearfix'>
+              {hotlists.map(this._renderHotlistItem) }
+            </div>
+            <div className='recommendation-product__see-all u-clearfix'>
               <Link className='recommendation-product__see-all-link'
                 to='/hot'
                 onClick={this._gtmNotifyAllHotlistsClicked}>
