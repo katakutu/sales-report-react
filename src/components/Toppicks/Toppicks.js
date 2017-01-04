@@ -43,7 +43,7 @@ export const Toppicks = () => (
             </div>
           </div>
         </div>
-        <div className='toppicks__see-all'>
+        <div className='toppicks__see-all u-clearfix'>
           <a className='toppicks__see-all-link' href='#'>
             Lihat Semua <i className='promo-spacer__icon promo-spacer__icon--arrow' />
           </a>
