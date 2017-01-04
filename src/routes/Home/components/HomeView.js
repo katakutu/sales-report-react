@@ -46,6 +46,8 @@ class HomeView extends Component {
     const defaultHotlist = { success: 0, message_status: 1, data: [] }
     const hotlists = this.props.data['hot_product_home'] ? this.props.data['hot_product_home'] : defaultHotlist
 
+    const toppicks = this.props.data['toppicks'] ? this.props.data['toppicks'] : []
+
     const categories = this.props.data.category ? this.props.data.category.categories : []
 
     if (this.props.data.user && this.props.data.user.id) {
@@ -65,7 +67,7 @@ class HomeView extends Component {
         <PromoSpacer />
         <div id='widget-dmw' className='u-clearfix u-my2' /> { /* Pulsa widget container */ }
         <CategoryList categories={categories} />
-        <Toppicks />
+        <Toppicks data={toppicks} />
         <RecommendationProduct data={hotlists} />
         <OfficialStoreSection />
         <MoreInfo />

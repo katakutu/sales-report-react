@@ -16,9 +16,6 @@ class TopedHotlistAPI {
     const endpoint = HOTLIST_SERVICES.GetHotProductList.replace(':page', 1).replace(':per_page', 2)
     const url = URL.parse(endpoint)
 
-    console.log('--------')
-    console.log(endpoint)
-
     return this.api.consume(url, 'GET', {}, { timeout: 4000 })
       .catch(err => {
         console.error(`Failed to fetch ${url.format()}. Returning default value. Error: `, err)
