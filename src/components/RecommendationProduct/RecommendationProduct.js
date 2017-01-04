@@ -52,7 +52,7 @@ class RecommendationProduct extends Component {
             <div className='recommendation-product__content-desc'>
               <div className='recommendation-product__content-title u-truncate'>{ item.title_enc }</div>
               <div className='recommendation-product__content-startto'>
-                Mulai dari <span className='recommendation-product__content-price'>Rp. { item.price_start_from }</span>
+                Mulai dari <span className='recommendation-product__content-price'>{ item.price_start_from }</span>
               </div>
             </div>
           </a>
