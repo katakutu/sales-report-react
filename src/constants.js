@@ -1,6 +1,6 @@
 export const GA_PROPERTY_ID = 'UA-9801603-6'
 
-let desktopHostname = 'https://staging.tokopedia.com/?m2w'
+let desktopHostname = 'https://staging.tokopedia.com'
 let hostname = 'https://m-staging.tokopedia.com'
 let sites = {
   Ace: 'https://ace-staging.tokopedia.com',
@@ -16,7 +16,7 @@ let sites = {
 let gtmContainerID = 'GTM-T8MQ8Z'
 
 if (__TEST__) {
-  desktopHostname = 'https://staging.tokopedia.com/?m2w'
+  desktopHostname = 'https://staging.tokopedia.com'
   hostname = 'https://m-staging.tokopedia.com'
   sites = {
     Ace: 'https://ace-staging.tokopedia.com',
@@ -31,7 +31,7 @@ if (__TEST__) {
   }
   gtmContainerID = 'GTM-T8MQ8Z'
 } else if (__PROD__) {
-  desktopHostname = 'https://www.tokopedia.com/?m2w'
+  desktopHostname = 'https://www.tokopedia.com'
   hostname = 'https://m.tokopedia.com'
   sites = {
     Ace: 'https://ace.tokopedia.com',
@@ -46,7 +46,7 @@ if (__TEST__) {
   }
   gtmContainerID = 'GTM-WD6SLP'
 } else if (__BETA__) {
-  desktopHostname = 'https://beta.tokopedia.com/?m2w'
+  desktopHostname = 'https://beta.tokopedia.com'
   hostname = 'https://m-beta.tokopedia.com'
   sites = {
     Ace: 'https://ace.tokopedia.com',

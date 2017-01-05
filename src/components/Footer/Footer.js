@@ -64,7 +64,7 @@ class Footer extends Component {
               { lang[this.props.lang]['Need Help'] }?
             </a>
             &nbsp; | &nbsp;
-        <a href={DESKTOP_HOSTNAME}>
+        <a href={`${DESKTOP_HOSTNAME}/?m2w`}>
           { lang[this.props.lang]['Desktop Site'] }
         </a>
           </p>

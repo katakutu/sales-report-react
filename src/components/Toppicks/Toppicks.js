@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Toppicks.scss'
 import TextHeader from '../../components/TextHeader'
+import { DESKTOP_HOSTNAME } from '../../constants'
 
 class Toppicks extends Component {
   static propTypes = {
@@ -56,7 +57,7 @@ class Toppicks extends Component {
               </div>
 
               <div className='toppicks__see-all u-clearfix'>
-                <a className='toppicks__see-all-link' href='#'>
+                <a className='toppicks__see-all-link' href={`${DESKTOP_HOSTNAME}/toppicks/`}>
                   Lihat Semua <i className='promo-spacer__icon promo-spacer__icon--arrow' />
                 </a>
               </div>
