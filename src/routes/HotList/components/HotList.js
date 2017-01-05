@@ -55,7 +55,6 @@ class HotList extends Component {
                     initialImage={'https://ecs7.tokopedia.net/img/mobile/default-img-prod.jpg'}
                     fallbackImage={'https://ecs7.tokopedia.net/img/mobile/default-img-prod.jpg'}
                     className='u-fit u-block u-mx-auto'
-                    width='375' height='375'
                     alt={`${item.title} image`} />
                   <div className='hotlist__footer u-clearfix u-mt1'>
                     <div className='u-clearfix'>
