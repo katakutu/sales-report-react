@@ -11,7 +11,7 @@ import addShop from './assets/nav-add-shop-icon.png'
 
 import { updateSidebarStatus } from '../../store/app'
 
-import { HOSTNAME } from '../../constants'
+import { HOSTNAME, SITES } from '../../constants'
 import lang from '../../lib/utils/Lang'
 import GTM from '../../lib/utils/GTM'
 
@@ -110,6 +110,26 @@ class LoggedInMenu extends Component {
     let purchaseParent = (!this.state.purchaseIsOpen) ? '' : 'opened'
     let salesParent = (!this.state.salesIsOpen) ? '' : 'opened'
     let shopId = this.props.shop['shop_id']
+
+    let walletSection = this.props.userData.wallet.linked ? (
+      <a href={SITES['Wallet']} className='deposit-link-sidebar display-block' target='_blank'>
+        <span className='drawer__menu-icon icon__svg icon__tokocash' />
+        <span className='drawer__menu-title u-inline-block'>TokoCash</span>
+        <i className='icon-wallet-balance pull-left mr-5' />
+        <span className='drawer__menu-detail'>
+          { this.props.userData.wallet.balance }
+        </span>
+        <span className='white ellipsis pull-right display-block' />
+      </a>
+    ) : (
+      <a href={`${SITES['Accounts']}/wallet/activation?v=2`}>
+        <span className='drawer__menu-icon icon__svg icon__tokocash' alt='tokopedia' />
+        <span className='drawer__menu-title u-inline-block'>TokoCash</span>
+        <span id='tokocash-activate-btn' className='drawer__activate-tokoCash'>
+          {lang[this.props.lang]['Aktivasi TokoCash']}
+        </span>
+      </a>
+    )
 
     let goldMerchant = (+this.props.shop['is_gold'] === 1) ? (<i className='mi-sprite mi-gold' />) : null
     let officialStore = (+this.props.shop['is_official'] === 1) ? (<i className='mi-official' />) : null
@@ -245,6 +265,9 @@ class LoggedInMenu extends Component {
             value={`${this.props.userData.deposit.deposit_fmt}`}
             readOnly
             hidden />
+          <div className='drawer__menu bg__grey-4' id='tokocash-balance-container'>
+            { walletSection }
+          </div>
           <div className='drawer__menu bg__grey-4'>
             <a href={`${HOSTNAME}/lp.pl`}>
               <span className='drawer__menu-icon icon__svg topPointsIcon' alt='tokopedia' />
