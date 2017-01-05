@@ -51,7 +51,7 @@ class HotListView extends Component {
           <HotList page={this.state.page} />
           <div className='hotlist-showall'>
             <a className='link-green' href='#' onClick={this.viewMore}>
-              {lang[this.props.lang]['View More']} &rsaquo;
+              { lang[this.props.lang]['View More'] } &rsaquo;
             </a>
           </div>
         </div>

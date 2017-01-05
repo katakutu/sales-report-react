@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import './Toppicks.scss'
 import TextHeader from '../../components/TextHeader'
 import { DESKTOP_HOSTNAME } from '../../constants'
+import lang from '../../lib/utils/Lang'
 
 class Toppicks extends Component {
   static propTypes = {
-    data: React.PropTypes.arrayOf(React.PropTypes.object)
+    data: React.PropTypes.arrayOf(React.PropTypes.object),
+    propLang: React.PropTypes.string
   }
 
   constructor (props) {
@@ -58,7 +61,8 @@ class Toppicks extends Component {
 
               <div className='toppicks__see-all u-clearfix'>
                 <a className='toppicks__see-all-link' href={`${DESKTOP_HOSTNAME}/toppicks/`}>
-                  Lihat Semua <i className='promo-spacer__icon promo-spacer__icon--arrow' />
+                  { lang[this.props.propLang]['Lihat Semua'] }
+                  <i className='promo-spacer__icon promo-spacer__icon--arrow' />
                 </a>
               </div>
             </div>
@@ -77,4 +81,9 @@ class Toppicks extends Component {
   }
 }
 
-export default Toppicks
+const mapStateToProps = (state) => {
+  return {
+    propLang: state['app'] ? state['app'].lang : state.lang
+  }
+}
+export default connect(mapStateToProps, undefined)(Toppicks)

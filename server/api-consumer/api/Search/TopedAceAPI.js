@@ -7,7 +7,7 @@ const ACE_SERVICES = {
   CatalogShopList: `${GlobalConfig.Ace.Hostname}/search/v1/catalog/product`,
   DynamicAttributes: `${GlobalConfig.Ace.Hostname}/v1/dynamic_attributes`,
   HotListHome: `${GlobalConfig.Ace.Hostname}/hoth/hotlist/v1/home`,
-  HotListPage: `${GlobalConfig.Ace.Hostname}/hoth/hotlist/v1?page=:page&perPage=:per_page`,
+  HotListPage: `${GlobalConfig.Ace.Hostname}/hoth/hotlist/v1/?page=:page&perPage=:per_page`,
   PopularSearch: `${GlobalConfig.Ace.Hostname}/v1/popular_search`,
   PriceRange: `${GlobalConfig.Ace.Hostname}/v1/price_range`, // /v1/price_range/[catalog_id]
   RecentSearch: `${GlobalConfig.Ace.Hostname}/recent_search/v1`,

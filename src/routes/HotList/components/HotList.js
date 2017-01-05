@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import Img from 'react-image-fallback'
 
 import GTM from '../../../lib/utils/GTM'
 
@@ -50,7 +51,12 @@ class HotList extends Component {
               <div className='hotlist__item' onClick={this._gtmNotifyItemClicked(item)} key={`hotlist-${index}`}>
                 <div className='hotlist__wrapper'>
                   <a aria-hidden='true' tabIndex='-1' href={item.url} className='hotlist__click u-block' />
-                  <img src={item.image_url} className='u-fit u-block u-mx-auto' alt='' />
+                  <Img src={item.image_url}
+                    initialImage={'https://ecs7.tokopedia.net/img/mobile/default-img-prod.jpg'}
+                    fallbackImage={'https://ecs7.tokopedia.net/img/mobile/default-img-prod.jpg'}
+                    className='u-fit u-block u-mx-auto'
+                    width='375' height='375'
+                    alt={`${item.title} image`} />
                   <div className='hotlist__footer u-clearfix u-mt1'>
                     <div className='u-clearfix'>
                       <div className='u-col u-col-5 u-truncate u-relative'>
