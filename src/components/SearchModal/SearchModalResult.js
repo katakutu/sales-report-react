@@ -19,9 +19,9 @@ class SearchModalResult extends Component {
     const matches = input.match(regex) || []
 
     const key = Math.random().toString(36).substring(4, 3)
-    const segments = matches.map((segment, i) => React.DOM.span({ key: `${segment}-${key}-${i}` }, segment))
+    const segments = matches.map((segment, i) => React.DOM.strong({ key: `${segment}-${key}-${i}` }, segment))
     const replacements = splits.map((replacement, index) => {
-      return React.DOM.strong({ key: `${replacement}-${key}-${index}` }, replacement)
+      return React.DOM.span({ key: `${replacement}-${key}-${index}` }, replacement)
     })
 
     const createResult = (arr1, arr2) => {

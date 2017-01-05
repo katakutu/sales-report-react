@@ -47,12 +47,8 @@ class HotListView extends Component {
     return (
       <div>
         <HeaderHomeOld userInfo={this.props.data.user} tabIsAvailable activeTab='hotlist' />
-
         <div className='u-clearfix hotlist hotlist--single-page u-mt2'>
-          <h1 className='text-header text-header-green u-center'>Hot list</h1>
-
           <HotList page={this.state.page} />
-
           <div className='hotlist-showall'>
             <a className='link-green' href='#' onClick={this.viewMore}>
               {lang[this.props.lang]['View More']} &rsaquo;

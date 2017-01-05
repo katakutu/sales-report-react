@@ -116,6 +116,22 @@ query Query {
       url
     }
   }
+  toppicks {
+    name
+    image_url
+    url
+    item{
+      name
+      url
+      image_url
+    }
+  }
+  official_store{
+    id
+    name
+    logo_url
+    url
+  }
 }
 `
 

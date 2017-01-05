@@ -19,9 +19,9 @@ function getHotProductHome () {
         message_status: response['message_status'],
         success: response['success'],
         max_page: 1,
-        data: response['data'].map(data => {
+        data: response['data']['list'].map(data => {
           return {
-            title_enc: data['title_enc'],
+            title_enc: data['title'],
             price_start_from: data['price_start_from'],
             image_url: data['img_uri_375'] || data['img_uri'],
             url: data['url']
@@ -53,7 +53,7 @@ function getHotProductList (page, perPage) {
           return {
             title_enc: data['title'],
             price_start_from: data['price_start_from'],
-            image_url: data['img_uri'],
+            image_url: data['img_uri_375'] || data['img_uri'],
             url: data['url']
           }
         })

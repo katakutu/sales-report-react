@@ -9,7 +9,7 @@ import lang from '../../lib/utils/Lang'
 import GTM from '../../lib/utils/GTM'
 
 const settings = {
-  autoplay: true,
+  autoplay: false,
   dots: false,
   arrows: false,
   infinite: false,
@@ -18,7 +18,7 @@ const settings = {
   swipeToSlide: true,
   centerMode: false,
   variableWidth: true,
-  slidesToShow: 3,
+  slidesToShow: 1,
   slidesToScroll: 1,
   afterChange: function (currentSlide) {
     if (currentSlide === 2) {
