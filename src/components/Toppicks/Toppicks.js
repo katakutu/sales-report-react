@@ -46,7 +46,7 @@ class Toppicks extends Component {
       return (
         <div className='u-clearfix' key={key}>
           <TextHeader textType={2} injectClassName='toppicks__title'>
-            Top Picks
+            { data['name'] }
           </TextHeader>
           <div className='u-clearfix toppicks-container'>
             <div className='toppicks__contents'>
