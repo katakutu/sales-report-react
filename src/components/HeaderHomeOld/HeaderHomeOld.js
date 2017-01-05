@@ -48,6 +48,7 @@ class HeaderHome extends Component {
   constructor (props) {
     super(props)
 
+    this._shouldShowSearch = this._shouldShowSearch.bind(this)
     this.handleScroll = this.handleScroll.bind(this)
     this.openSidebarMenu = this.openSidebarMenu.bind(this)
     this.renderTabs = this.renderTabs.bind(this)
@@ -83,12 +84,25 @@ class HeaderHome extends Component {
     }
   }
 
+  _shouldShowSearch (scrollPos) {
+    let heightOffset = 111
+    if (this.props.tabIsAvailable) {
+      heightOffset = 142
+    }
+
+    return scrollPos < heightOffset
+  }
+
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll)
 
     const userIsLoggedIn = this.props.userInfo ? this.props.userInfo.isLoggedIn : false
     const userShouldRedirect = this.props.userInfo ? this.props.userInfo.shouldRedirect : false
     this._updateUserState(userIsLoggedIn, userShouldRedirect, this.props.userInfo)
+
+    this.setState({
+      showSearch: this._shouldShowSearch(document.body.scrollTop)
+    })
   }
 
   componentWillReceiveProps (nextProps) {
@@ -107,15 +121,9 @@ class HeaderHome extends Component {
   }
 
   handleScroll (event) {
-    let heightOffset = 111
-    if (this.props.tabIsAvailable) {
-      heightOffset = 142
-    }
-
     if (!this.props.sidebarIsOpened && !this.props.searchModalIsOpen) {
-      const ss = event.srcElement.body.scrollTop < heightOffset
       this.setState({
-        showSearch: ss,
+        showSearch: this._shouldShowSearch(event.srcElement.body.scrollTop),
         showSearchModal: false
       })
     }
