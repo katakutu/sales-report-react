@@ -43,7 +43,7 @@ class HomeView extends Component {
     const slides = this.props.data.slides ? this.props.data.slides.slides : []
     const tickers = this.props.data.ticker ? this.props.data.ticker.tickers : []
 
-    const defaultHotlist = { success: 0, message_status: 1, data: [] }
+    const defaultHotlist = { curr_page: 0, max_page: 0, per_page: 0, items: [] }
     const hotlists = this.props.data['hot_product_home'] ? this.props.data['hot_product_home'] : defaultHotlist
 
     const toppicks = this.props.data['toppicks'] ? this.props.data['toppicks'] : []

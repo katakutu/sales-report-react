@@ -23,7 +23,7 @@ class HotList extends Component {
     if (nextProps['data'] && !nextProps.data.loading) {
       // only add new urls that's not already there
       const urls = this.state.hotlists.map(h => h['url'])
-      const data = nextProps['data']['hot_product_list'] && nextProps['data']['hot_product_list']['data']
+      const data = nextProps['data']['hot_product_list'] && nextProps['data']['hot_product_list']['items']
       const gqlData = data || []
       const newData = gqlData.filter(data => {
         return urls.length === 0 ? true : !urls.includes(data['url'])
@@ -37,7 +37,7 @@ class HotList extends Component {
 
   _gtmNotifyItemClicked (item) {
     return (event) => {
-      GTM.pushEvent('clickHotlist', 'Hotlist', 'Click', item.title_enc)
+      GTM.pushEvent('clickHotlist', 'Hotlist', 'Click', item.title)
     }
   }
 
@@ -55,7 +55,7 @@ class HotList extends Component {
                     <div className='u-clearfix'>
                       <div className='u-col u-col-5 u-truncate u-relative'>
                         <a aria-hidden='true' tabIndex='-1' href='#' className='hotlist__click u-block' />
-                        <span className='hotlist__name u-bold'>{item.title_enc}</span>
+                        <span className='hotlist__name u-bold'>{item.title}</span>
                       </div>
                       <div className='u-col u-col-7 u-right-align u-relative'>
                         <a aria-hidden='true' tabIndex='-1' href='#' className='hotlist__click u-block' />
@@ -76,13 +76,14 @@ class HotList extends Component {
 
 const HotListQuery = gql`
 query Query($page: Int!) {
-    hot_product_list(page: $page, per_page:9) {
-    message_status
-    success
-    data{
-      title_enc
-      image_url
+  hot_product_list(page: $page, per_page:9) {
+    curr_page
+    per_page
+    max_page
+    items {
+      title
       url
+      image_url
       price_start_from
     }
   }

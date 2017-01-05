@@ -106,14 +106,15 @@ query Query {
       redirect_url
     }
   }
-  hot_product_home{
-    message_status
-    success
-    data{
-      title_enc
+  hot_product_home {
+    curr_page
+    per_page
+    max_page
+    items {
+      title
+      url
       image_url
       price_start_from
-      url
     }
   }
   toppicks {

@@ -10,9 +10,10 @@ import GTM from '../../lib/utils/GTM'
 class RecommendationProduct extends Component {
   static propTypes = {
     data: React.PropTypes.shape({
-      message_status: React.PropTypes.number,
-      success: React.PropTypes.number,
-      data: React.PropTypes.arrayOf(React.PropTypes.object)
+      curr_page: React.PropTypes.number,
+      per_page: React.PropTypes.number,
+      max_page: React.PropTypes.number,
+      items: React.PropTypes.arrayOf(React.PropTypes.object)
     }),
     propLang: React.PropTypes.string
   }
@@ -38,7 +39,7 @@ class RecommendationProduct extends Component {
 
   _gtmNotifyItemClicked (item) {
     return (event) => {
-      GTM.pushEvent('clickHotlist', 'Hotlist', 'Click', item.title_enc)
+      GTM.pushEvent('clickHotlist', 'Hotlist', 'Click', item.title)
     }
   }
 
@@ -48,9 +49,9 @@ class RecommendationProduct extends Component {
         onClick={this._gtmNotifyItemClicked(item)} key={`recommended-${index}`}>
         <div className='recommendation-product__box-content'>
           <a aria-hidden='true' tabIndex='-1' href={item.url} className='u-block'>
-            <img src={item.image_url} alt={`Gambar ${item.title_enc}`} className='recommendation-product__img' />
+            <img src={item.image_url} alt={`Gambar ${item.title}`} className='recommendation-product__img' />
             <div className='recommendation-product__content-desc'>
-              <div className='recommendation-product__content-title u-truncate'>{ item.title_enc }</div>
+              <div className='recommendation-product__content-title u-truncate'>{ item.title }</div>
               <div className='recommendation-product__content-startto'>
                 Mulai dari <span className='recommendation-product__content-price'>{ item.price_start_from }</span>
               </div>
@@ -63,8 +64,8 @@ class RecommendationProduct extends Component {
 
   _verifyHotlistData (defaultValue) {
     let result = defaultValue
-    if (this.props.data.data && this.props.data.success === 1) {
-      result = this.props.data.data
+    if (this.props.data.items && this.props.data.curr_page === 1) {
+      result = this.props.data.items
     }
 
     return result
