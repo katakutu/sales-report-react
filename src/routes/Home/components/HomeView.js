@@ -6,9 +6,10 @@ import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import OfficialStoreSection from '../../../components/OfficialStoreSection'
 import PromoSpacer from '../../../components/PromoSpacer'
 import Ticker from '../../../components/Ticker'
-import HotList from '../../../components/HotList'
 import MoreInfo from '../../../components/MoreInfo'
 import SplashScreen from '../../../components/Loading/SplashScreen'
+import Toppicks from '../../../components/Toppicks'
+import RecommendationProduct from '../../../components/RecommendationProduct'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
 import GTM from '../../../lib/utils/GTM'
@@ -45,6 +46,9 @@ class HomeView extends Component {
     const defaultHotlist = { success: 0, message_status: 1, data: [] }
     const hotlists = this.props.data['hot_product_home'] ? this.props.data['hot_product_home'] : defaultHotlist
 
+    const toppicks = this.props.data['toppicks'] ? this.props.data['toppicks'] : []
+    const officialStores = this.props.data['official_store'] ? this.props.data['official_store'] : []
+
     const categories = this.props.data.category ? this.props.data.category.categories : []
 
     if (this.props.data.user && this.props.data.user.id) {
@@ -64,8 +68,9 @@ class HomeView extends Component {
         <PromoSpacer />
         <div id='widget-dmw' className='u-clearfix u-my2' /> { /* Pulsa widget container */ }
         <CategoryList categories={categories} />
-        <HotList data={hotlists} />
-        <OfficialStoreSection />
+        <Toppicks data={toppicks} />
+        <RecommendationProduct data={hotlists} />
+        <OfficialStoreSection data={officialStores} />
         <MoreInfo />
       </div>
     )

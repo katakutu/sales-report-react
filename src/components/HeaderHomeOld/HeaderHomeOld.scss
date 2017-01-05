@@ -1,10 +1,10 @@
 @import 'base';
 
 .header__wrapper {
-    height: 107px;
+    height: 111px;
 
     .is-tab-available & {
-        height: 146px;
+        height: 142px;
     }
 }
 
@@ -166,6 +166,7 @@
 
 .tab {
     position: relative;
+    margin-top: -13px;
     background-color: $color-green;
 
     .slick-arrow {
@@ -225,12 +226,13 @@
     text-align: center;
     text-transform: uppercase;
     white-space: nowrap;
+    font-size: 12px;
 
     a {
         display: block;
-        padding: 3px 20px 11px;
+        padding: 11px 20px;
         width: 100%;
-        border-bottom: 6px solid transparent;
+        border-bottom: 2px solid transparent;
         color: inherit;
         line-height: 20px;
     }
@@ -314,8 +316,8 @@
 
     a {
         display: block;
-        height: 10px;
         width: 100%;
+        height: 10px;
     }
 }
 
@@ -406,10 +408,10 @@
     height: auto;
     vertical-align: middle;
 }
-.icon__svg{ 
+.icon__svg{
+    display: inline-block;
     width: 27px;
     height: 27px;
-    display: inline-block;
     vertical-align: middle;
 }
 
@@ -434,24 +436,24 @@
 }
 
 .drawer__menu-detail{
-    font-size: 10px!important;
-    color: #42b549;
-    right: 20px;
     position: absolute;
+    right: 20px;
     margin-top: 5px;
+    color: #42b549;
+    font-size: 10px!important;
 }
 
 .drawer__activate-tokoCash{
-    background: #f26039;
-    padding: 5px 10px;
-    color: #fff;
     display: block;
-    font-size: 11px;
-    text-align: center;
-    border-radius: 3px;
     float:right;
-    width: 115px;
     margin: -35px 20px;
+    padding: 5px 10px;
+    width: 115px;
+    border-radius: 3px;
+    background: #f26039;
+    color: #fff;
+    text-align: center;
+    font-size: 11px;
 }
 
 .drawer__menu-arrow {
@@ -588,11 +590,11 @@
 
 .mi-official {
     display: inline-block;
+    width: 33px;
+    height: 32px;
     background: url(./assets/nav-official-logo.png) no-repeat transparent;
     background-size:33px 32px;
     vertical-align: middle;
-    width: 33px;
-    height: 32px;
 }
 
 .mi-gold {
@@ -611,26 +613,26 @@
 
 
 /* ================================= MENU DENGAN TOP UP KOTAK ========================== */
-.drawer__user-summary-box {     
-    box-sizing: border-box;       
-    padding: 10px 0;      
-    width: 50%;       
-    border-top: 1px solid $color-grey;        
-    border-bottom: 1px solid $color-grey;     
-    color: $color-green;      
-    text-align: center;       
-    font-size: 12px;      
-      
-    span {        
-        line-height: 1.5;     
-    }     
+.drawer__user-summary-box {
+    box-sizing: border-box;
+    padding: 10px 0;
+    width: 50%;
+    border-top: 1px solid $color-grey;
+    border-bottom: 1px solid $color-grey;
+    color: $color-green;
+    text-align: center;
+    font-size: 12px;
+
+    span {
+        line-height: 1.5;
+    }
 }
 
-.drawer__user-summary-box:first-child {        
-    border-right: 1px solid $color-grey;      
-}     
-      
-.drawer__user-topup {     
-    padding: 10px 20px;       
-    border-bottom: 1px solid $color-grey;     
-}     
+.drawer__user-summary-box:first-child {
+    border-right: 1px solid $color-grey;
+}
+
+.drawer__user-topup {
+    padding: 10px 20px;
+    border-bottom: 1px solid $color-grey;
+}

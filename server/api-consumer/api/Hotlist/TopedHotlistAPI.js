@@ -13,7 +13,8 @@ class TopedHotlistAPI {
   }
 
   getHotProductHome () {
-    const url = URL.parse(HOTLIST_SERVICES.GetHotProductHome)
+    const endpoint = HOTLIST_SERVICES.GetHotProductList.replace(':page', 1).replace(':per_page', 2)
+    const url = URL.parse(endpoint)
 
     return this.api.consume(url, 'GET', {}, { timeout: 4000 })
       .catch(err => {

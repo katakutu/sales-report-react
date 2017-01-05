@@ -107,9 +107,9 @@ class HeaderHome extends Component {
   }
 
   handleScroll (event) {
-    let heightOffset = 107
+    let heightOffset = 111
     if (this.props.tabIsAvailable) {
-      heightOffset = 145
+      heightOffset = 142
     }
 
     if (!this.props.sidebarIsOpened && !this.props.searchModalIsOpen) {

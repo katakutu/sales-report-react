@@ -5,7 +5,6 @@ import SearchModal from '../SearchModal'
 import './SearchInput.scss'
 
 import lang from '../../lib/utils/Lang'
-import GTM from '../../lib/utils/GTM'
 import UserSearchID from '../../lib/utils/UserSearchID'
 import { storeUserSearchID, updateSearchModalStatus } from '../../store/app'
 
@@ -33,7 +32,6 @@ class SearchInput extends Component {
 
     this.handleFocus = this.handleFocus.bind(this)
     this.handleModalClosed = this.handleModalClosed.bind(this)
-    this.handleSearchButtonClicked = this.handleSearchButtonClicked.bind(this)
   }
 
   handleFocus () {
@@ -58,10 +56,6 @@ class SearchInput extends Component {
     })
   }
 
-  handleSearchButtonClicked (event) {
-    GTM.pushEvent('clickSearch', 'Search', 'Search', this.props.searchQuery)
-  }
-
   render () {
     let backgroundBlur = (this.state.showSelection) ? 'search-input__modal-active' : ''
     let finalClassName = `search-input u-px2 u-pb2 ${this.props.injectClassName} ${backgroundBlur}`
@@ -75,6 +69,9 @@ class SearchInput extends Component {
           <label htmlFor='search_input' className='u-hide'>
             { lang[this.props.lang]['Search Products or Stores'] }
           </label>
+          <i className={finalSearchBtnCN}>
+              Search
+          </i>
           <input name='q'
             autoComplete='off'
             autoFocus={this.state.showSelection}
@@ -86,9 +83,6 @@ class SearchInput extends Component {
             onFocus={this.handleFocus}
             readOnly
             value={this.props.searchQuery} />
-          <button className={finalSearchBtnCN} onClick={this.handleSearchButtonClicked}>
-              Search
-          </button>
         </form>
 
         { this.state.searchModalOpened && <SearchModal onClose={this.handleModalClosed} /> }

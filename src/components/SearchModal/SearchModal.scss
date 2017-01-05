@@ -4,7 +4,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 4;
+    z-index: $z-index-max;
     overflow-y: auto;
     padding: 60px 0 120px;
     width: 100%;
