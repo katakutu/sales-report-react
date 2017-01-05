@@ -6,6 +6,7 @@ const slide = require('./slide')
 const ticker = require('./ticker')
 const toppicks = require('./toppicks')
 const user = require('./user')
+const wishlist = require('./wishlist')
 
 let queries = {}
 
@@ -18,5 +19,6 @@ queries = Object.assign({}, queries, slide)
 queries = Object.assign({}, queries, ticker)
 queries = Object.assign({}, queries, toppicks)
 queries = Object.assign({}, queries, user)
+queries = Object.assign({}, queries, wishlist)
 
 module.exports = queries
