@@ -20,7 +20,7 @@ function getHotProductHome () {
           return {
             title: data['title'],
             price_start_from: data['price_start_from'],
-            image_url: data['img'] || data['img_uri'],
+            image_url: data['img_square'] || data['img'],
             url: data['url']
           }
         })
