@@ -117,14 +117,17 @@ query Query {
       price_start_from
     }
   }
-  toppicks {
+  toppicks{
     name
-    image_url
-    url
-    item{
+    toppicks{
       name
       url
       image_url
+      item{
+        name
+        url
+        image_url
+      }
     }
   }
   official_store{

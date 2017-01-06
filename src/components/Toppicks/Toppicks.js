@@ -35,13 +35,22 @@ class Toppicks extends Component {
     })
   }
 
+  _getFirstTopPicks (data) {
+    if (!data['toppicks'] || !data['toppicks'][0] || !data['toppicks'][0].item) {
+      return { items: [] }
+    }
+
+    return data['toppicks'][0]
+  }
+
   renderTopPickList () {
     return this.props.data.map((data, dataIndex) => {
       const name = data['name'].toLowerCase().replace(' ', '-')
       const key = `${name}-container-${dataIndex}`
 
-      const firstRow = data.item.slice().splice(0, 1)
-      const secondRow = data.item.slice().splice(1)
+      const firstToppicks = this._getFirstTopPicks(data)
+      const firstRow = firstToppicks.item.slice().splice(0, 1)
+      const secondRow = firstToppicks.item.slice().splice(1)
 
       return (
         <div className='u-clearfix' key={key}>
@@ -51,7 +60,7 @@ class Toppicks extends Component {
           <div className='u-clearfix toppicks-container'>
             <div className='toppicks__contents'>
               <div className='toppicks__row u-clearfix'>
-                { this.renderTopPickItem([data], dataIndex) }
+                { this.renderTopPickItem([firstToppicks], dataIndex) }
                 { this.renderTopPickItem(firstRow, dataIndex + 1) }
               </div>
 

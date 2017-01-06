@@ -6,14 +6,14 @@ function getTopPicks () {
   const api = new TopedAceAPI()
 
   return api.topPicks().then(response => {
-    if (!response['data'] || !response['data']['toppicks']) {
+    if (!response['data'] || !response['data']['groups']) {
       const raw = JSON.stringify(response)
       console.error(`[Ace][TopPicks] Top picks API calls returns no usual data. Raw data: ${raw}`)
 
       return EMPTY_TOP_PICKS
     }
 
-    return response['data']['toppicks']
+    return response['data']['groups']
   })
   .catch(err => {
     console.error(`[Ace][TopPicks] Top Picks API call faield. Cause: ${err.message}`)

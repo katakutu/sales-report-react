@@ -1,8 +1,8 @@
-const { TopPicksType } = require('../../types/toppick')
+const { TopPickGroupsType } = require('../../types/toppick')
 const getTopPicks = require('../../models/toppicks')
 
 const toppickQuery = {
-  type: TopPicksType,
+  type: TopPickGroupsType,
   args: {},
   resolve: function (_, args) {
     return getTopPicks()
