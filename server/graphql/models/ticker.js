@@ -1,5 +1,5 @@
-const TopedAuthAPI = require('./../../api-consumer/api/Auth/TopedAuthAPI')
 const TopedMojitoAPI = require('./../../api-consumer/api/Search/TopedMojitoAPI')
+const common = require('./common')
 
 const EMPTY_TICKER = {
   meta: { total_data: 0 },
@@ -7,15 +7,7 @@ const EMPTY_TICKER = {
 }
 
 function getTicker (context) {
-  let userID = Promise.resolve(0)
-  if (context && context.session && context.session.oauth) {
-    const tType = context.session.oauth.token['token_type']
-    const token = context.session.oauth.token['access_token']
-
-    const authConsumer = new TopedAuthAPI(token, tType)
-    userID = authConsumer.getUserInfo().then(user => user['user_id'])
-  }
-
+  const userID = common.getUserID(context)
   const api = new TopedMojitoAPI()
 
   return userID.then(uid => {
