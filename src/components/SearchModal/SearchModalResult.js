@@ -102,6 +102,7 @@ class SearchModalResult extends Component {
               : this._boldKeyword(item.keyword, this.props.query)
             }
             { item.official && <span className='search-modal__item-label'>Official Store</span> }
+            { item.promoted && <span className='search-modal__item-label'>Promoted</span> }
           </a>
         </li>
       )
@@ -235,6 +236,7 @@ query Query($query: String!, $userSearchID: String!) {
       url
       imageURI
       official
+      promoted
     }
   }
 }

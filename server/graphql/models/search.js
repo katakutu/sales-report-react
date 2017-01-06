@@ -9,7 +9,8 @@ const EMPTY_SEARCH_RESULT = [
         keyword: 'No Result Available',
         url: '/',
         imageURI: '',
-        official: false
+        official: false,
+        promoted: false
       }
     ]
   }
@@ -30,7 +31,8 @@ function universalSearch (userSearchID, query) {
               keyword: i['keyword'],
               url: i['url'],
               imageURI: i['imageURI'] || '',
-              official: i['isOfficial'] || false
+              official: i['isOfficial'] || false,
+              promoted: i['isPromoted'] || false
             }
           })
         }
