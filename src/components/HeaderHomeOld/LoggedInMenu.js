@@ -145,7 +145,7 @@ class LoggedInMenu extends Component {
     let inboxNotif = this._totalObjectValues(this.props.notifs['inbox']) > 0 ? (
       <span className='drawer__menu-notif' />
     ) : null
-    let purchaseNotif = this._totalObjectValues(this.props.notifs['purchasg']) > 0 ? (
+    let purchaseNotif = this._totalObjectValues(this.props.notifs['purchase']) > 0 ? (
       <span className='drawer__menu-notif' />
     ) : null
     let salesNotif = this._totalObjectValues(this.props.notifs['sales']) > 0 ? (
