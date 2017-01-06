@@ -5,6 +5,8 @@ import Img from 'react-image-fallback'
 
 import GTM from '../../../lib/utils/GTM'
 
+import loading from '../../../static/media/images/lite-loading.png'
+
 class HotList extends Component {
   static propTypes = {
     data: React.PropTypes.object
@@ -52,8 +54,8 @@ class HotList extends Component {
                 <div className='hotlist__wrapper'>
                   <a aria-hidden='true' tabIndex='-1' href={item.url} className='hotlist__click u-block' />
                   <Img src={item.image_url}
-                    initialImage={'https://ecs7.tokopedia.net/img/mobile/default-img-prod.jpg'}
-                    fallbackImage={'https://ecs7.tokopedia.net/img/mobile/default-img-prod.jpg'}
+                    initialImage={loading}
+                    fallbackImage={loading}
                     className='u-fit u-block u-mx-auto'
                     alt={`${item.title} image`} />
                   <div className='hotlist__footer u-clearfix u-mt1'>
