@@ -5,10 +5,12 @@ import SearchModalResult from './SearchModalResult'
 
 import './SearchModal.scss'
 import { clearSearchQuery, updateSearchQuery } from '../../store/app'
+import lang from '../../lib/utils/Lang'
 
 class SearchModal extends Component {
   static propTypes = {
     clearSearchQuery: React.PropTypes.func,
+    lang: React.PropTypes.string,
     onClose: React.PropTypes.func,
     injectPlaceholder: React.PropTypes.string,
     updateSearchQuery: React.PropTypes.func,
@@ -48,7 +50,7 @@ class SearchModal extends Component {
               name='q'
               ref='modalSearchInput'
               className='search-input__modal-input u-col-10'
-              placeholder='Cari Produk atau Toko'
+              placeholder={ lang[this.props.lang]['Search Products or Stores'] }
               onChange={this.handleChange}
               value={this.props.searchQuery} />
             <input type='hidden' name='st' defaultValue='product' />
@@ -71,6 +73,7 @@ class SearchModal extends Component {
 const mapDispatchToProps = { clearSearchQuery, updateSearchQuery }
 const mapStateToProps = (state) => {
   return {
+    lang: state['app'] ? state['app'].lang : state.lang,
     searchQuery: state['app'] ? state['app'].searchQuery : state.searchQuery,
     userSearchID: state['app'] ? state['app'].user.searchID : state.user.searchID
   }
