@@ -50,7 +50,7 @@ class SearchModal extends Component {
               name='q'
               ref='modalSearchInput'
               className='search-input__modal-input u-col-10'
-              placeholder={ lang[this.props.lang]['Search Products or Stores'] }
+              placeholder={lang[this.props.lang]['Search Products or Stores']}
               onChange={this.handleChange}
               value={this.props.searchQuery} />
             <input type='hidden' name='st' defaultValue='product' />
