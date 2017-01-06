@@ -99,8 +99,18 @@ function getUserInfo (context) {
         return DEFAULT_NOT_LOGGED_IN
       })
     } else {
+      // make sure we have the latest token taken from redis
+      const token = data['access_token'] || context.session.oauth.token['access_token']
       const tType = context.session.oauth.token['token_type']
-      const token = context.session.oauth.token['access_token']
+
+      // refresh token in case user has already logged out on
+      // desktop and relogin with other account
+      context.session.oauth = Object.assign(context.session.oauth, {
+        token: {
+          'token_type': tType,
+          'access_token': data['access_token']
+        }
+      })
 
       const authConsumer = new TopedAuthAPI(token, tType)
       const saldoConsumer = new TopedSaldoAPI()
