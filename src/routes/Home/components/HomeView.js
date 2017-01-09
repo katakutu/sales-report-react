@@ -29,6 +29,14 @@ class HomeView extends Component {
     this.handleTabChange = this.handleTabChange.bind(this)
   }
 
+  componentDidMount () {
+    const pulsaWidget = document.querySelector('#widget-dmw')
+    const pulsaWidgetContent = (pulsaWidget && pulsaWidget.textContent) || ''
+    if (window.recharge_init_category && pulsaWidgetContent === '') {
+      window.recharge_init_category()
+    }
+  }
+
   handleTabChange (index) {
     this.setState({ activeTabIndex: index })
   }
