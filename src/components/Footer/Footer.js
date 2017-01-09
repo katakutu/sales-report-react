@@ -7,7 +7,7 @@ import footerAppsAndroid from './assets/footer-apps-android@2x.png'
 import Cookies from '../../lib/utils/Cookies'
 import lang from '../../lib/utils/Lang'
 import { updateLang } from '../../store/app'
-import { DESKTOP_HOSTNAME, HOSTNAME } from '../../constants'
+import { DESKTOP_HOSTNAME } from '../../constants'
 
 class Footer extends Component {
   static propTypes = {
@@ -60,7 +60,7 @@ class Footer extends Component {
         </div>
         <div className='footer__lower u-clearfix u-center'>
           <p className='u-line-height-4'>
-            <a href={`${HOSTNAME}/bantuan?utm_source=mobile&utm_medium=linkbantuan`} className='u-ml1'>
+            <a href='https://help.tokopedia.com/hc/en-us?utm_source=mobile&utm_medium=linkbantuan' className='u-ml1'>
               { lang[this.props.lang]['Need Help'] }?
             </a>
             &nbsp; | &nbsp;
