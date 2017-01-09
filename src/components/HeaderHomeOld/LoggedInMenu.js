@@ -73,6 +73,10 @@ class LoggedInMenu extends Component {
     if (!this.props.userData.wallet.linked) {
       GTM.pushEventName('wallet_no_link')
     }
+
+    // for GTM to consume
+    const event = new Event('MenuOpened')
+    document.dispatchEvent(event)
   }
 
   _totalObjectValues (object) {
