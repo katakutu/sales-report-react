@@ -35,7 +35,7 @@ class Footer extends Component {
           location.hostname
       }
 
-      Cookies.setItem('lang', newLang, 31536000, '/', domain, true)
+      Cookies.setItem('lang', newLang, 31536000, '/', domain, false)
     })
     this.props.updateLang(newLang)
   }
