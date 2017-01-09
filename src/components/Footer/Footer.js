@@ -1,3 +1,4 @@
+/* global $ */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './Footer.scss'
@@ -7,7 +8,7 @@ import footerAppsAndroid from './assets/footer-apps-android@2x.png'
 import Cookies from '../../lib/utils/Cookies'
 import lang from '../../lib/utils/Lang'
 import { updateLang } from '../../store/app'
-import { DESKTOP_HOSTNAME } from '../../constants'
+import { DESKTOP_HOSTNAME, HOSTNAME } from '../../constants'
 
 class Footer extends Component {
   static propTypes = {
@@ -36,8 +37,10 @@ class Footer extends Component {
       }
 
       Cookies.setItem('lang', newLang, 31536000, '/', domain, false)
+      $.get(`${HOSTNAME}/privacy.pl?lang=${newLang}`, () => {
+        this.props.updateLang(newLang)
+      })
     })
-    this.props.updateLang(newLang)
   }
 
   render () {
