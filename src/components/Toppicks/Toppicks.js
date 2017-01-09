@@ -54,7 +54,7 @@ class Toppicks extends Component {
 
   _getFirstTopPicks (data) {
     if (!data['toppicks'] || !data['toppicks'][0] || !data['toppicks'][0].item) {
-      return { items: [] }
+      return { item: [] }
     }
 
     return data['toppicks'][0]
