@@ -14,6 +14,7 @@ class Toppicks extends Component {
   constructor (props) {
     super(props)
 
+    this.renderFirstTopPickItem = this.renderFirstTopPickItem.bind(this)
     this.renderTopPickItem = this.renderTopPickItem.bind(this)
     this.renderTopPickList = this.renderTopPickList.bind(this)
   }
