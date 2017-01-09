@@ -48,6 +48,7 @@ class SearchModal extends Component {
             <input type='search'
               autoComplete='off'
               name='q'
+              id='search_modal_input'
               ref='modalSearchInput'
               className='search-input__modal-input u-col-10'
               placeholder={lang[this.props.lang]['Search Products or Stores']}

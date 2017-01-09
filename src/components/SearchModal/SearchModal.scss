@@ -94,19 +94,19 @@
     font-size: 14px;
 }
 
-input[type="search"].search-input__modal-input::-webkit-input-placeholder {
+#search_modal_input::-webkit-input-placeholder {
     color: $color-white-secondary;
 }
 
-input[type="search"].search-input__modal-input:-moz-placeholder {
+#search_modal_input:-moz-placeholder {
     color: $color-white-secondary;
 }
 
-input[type="search"].search-input__modal-input::-moz-placeholder {
+#search_modal_input::-moz-placeholder {
     color: $color-white-secondary;
 }
 
-input[type="search"].search-input__modal-input:-ms-input-placeholder {
+#search_modal_input:-ms-input-placeholder {
     color: $color-white-secondary;
 }
 
