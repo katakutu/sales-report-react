@@ -19,6 +19,7 @@ const UserType = new GraphQLObjectType({
     shouldRedirect: { type: new GraphQLNonNull(GraphQLBoolean) },
     id: { type: GraphQLID },
     name: { type: GraphQLString },
+    email: { type: GraphQLString },
     profilePicture: { type: GraphQLString },
     deposit: { type: SaldoType },
     points: { type: PointsType },

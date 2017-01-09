@@ -62,7 +62,8 @@ class HomeView extends Component {
     if (this.props.data.user && this.props.data.user.id) {
       GTM.pushObject({
         'contactInfo': {
-          'userId': this.props.data.user.id
+          'userId': this.props.data.user.id,
+          'userEmail': this.props.data.user.email
         }
       })
     }

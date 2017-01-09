@@ -8,6 +8,7 @@ query Query {
     shouldRedirect
     profilePicture
     name
+    email
     shop{
       shop_id
       shop_url
