@@ -123,7 +123,9 @@ class LoggedInMenu extends Component {
           <span className='white ellipsis pull-right display-block' />
         </a>
       </div>
-    ) : null
+    ) : (
+      <div className='drawer__menu bg__grey-4' id='tokocash-balance-container' />
+    )
 
     const isOfficialStore = +this.props.shop['is_official'] === 1
     const isGoldMerchant = +this.props.shop['is_gold'] === 1
