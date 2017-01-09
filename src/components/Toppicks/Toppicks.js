@@ -18,7 +18,7 @@ class Toppicks extends Component {
     this.renderTopPickList = this.renderTopPickList.bind(this)
   }
 
-  renderTopPickItem (toppick, parentIndex) {
+  renderFirstTopPickItem (toppick, parentIndex) {
     return toppick.map((tp, index) => {
       const tName = tp['name'].toLowerCase().replace(' ', '-')
       const key = `${tName}-${parentIndex}-${index}`
@@ -30,6 +30,23 @@ class Toppicks extends Component {
               <img src={tp['image_url']} alt={tp['name']} className='toppicks__img' />
             </div>
           </a>
+        </div>
+      )
+    })
+  }
+
+  renderTopPickItem (toppick, parentIndex) {
+    return toppick.map((tp, index) => {
+      const tName = tp['name'].toLowerCase().replace(' ', '-')
+      const key = `${tName}-${parentIndex}-${index}`
+
+      return (
+        <div className='u-col u-col-6 toppicks__box' key={key}>
+          <div className='toppicks__box-content'>
+            <a href={tp['url']}>
+              <img src={tp['image_url']} alt={tp['name']} className='toppicks__img' />
+            </a>
+          </div>
         </div>
       )
     })
@@ -60,7 +77,7 @@ class Toppicks extends Component {
           <div className='u-clearfix toppicks-container'>
             <div className='toppicks__contents'>
               <div className='toppicks__row u-clearfix'>
-                { this.renderTopPickItem([firstToppicks], dataIndex) }
+                { this.renderFirstTopPickItem([firstToppicks], dataIndex) }
                 { this.renderTopPickItem(firstRow, dataIndex + 1) }
               </div>
 
