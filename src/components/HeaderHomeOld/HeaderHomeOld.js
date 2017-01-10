@@ -48,6 +48,7 @@ class HeaderHome extends Component {
   constructor (props) {
     super(props)
 
+    this._shouldShowSearch = this._shouldShowSearch.bind(this)
     this.handleScroll = this.handleScroll.bind(this)
     this.openSidebarMenu = this.openSidebarMenu.bind(this)
     this.renderTabs = this.renderTabs.bind(this)
@@ -69,8 +70,9 @@ class HeaderHome extends Component {
           'profilePicture': userInfo['profilePicture'],
           'deposit': userInfo['deposit'],
           'points': userInfo['points'],
-          'notifications': userInfo['notifications']['data'],
-          'shop': userInfo['shop']
+          'notifications': userInfo['notifications'],
+          'shop': userInfo['shop'],
+          'wallet': userInfo['wallet']
         })
       } else {
         this.props.updateUserLoginStatus(false)
@@ -82,12 +84,25 @@ class HeaderHome extends Component {
     }
   }
 
+  _shouldShowSearch (scrollPos) {
+    let heightOffset = 111
+    if (this.props.tabIsAvailable) {
+      heightOffset = 142
+    }
+
+    return scrollPos < heightOffset
+  }
+
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll)
 
     const userIsLoggedIn = this.props.userInfo ? this.props.userInfo.isLoggedIn : false
     const userShouldRedirect = this.props.userInfo ? this.props.userInfo.shouldRedirect : false
     this._updateUserState(userIsLoggedIn, userShouldRedirect, this.props.userInfo)
+
+    this.setState({
+      showSearch: this._shouldShowSearch(document.body.scrollTop)
+    })
   }
 
   componentWillReceiveProps (nextProps) {
@@ -106,15 +121,9 @@ class HeaderHome extends Component {
   }
 
   handleScroll (event) {
-    let heightOffset = 107
-    if (this.props.tabIsAvailable) {
-      heightOffset = 145
-    }
-
     if (!this.props.sidebarIsOpened && !this.props.searchModalIsOpen) {
-      const ss = event.srcElement.body.scrollTop < heightOffset
       this.setState({
-        showSearch: ss,
+        showSearch: this._shouldShowSearch(event.srcElement.body.scrollTop),
         showSearchModal: false
       })
     }
@@ -206,7 +215,7 @@ class HeaderHome extends Component {
               { headerNotif }
             </button>
             <div className='u-center u-block'>
-              <Link to='/' className='u-inline-block header__logo-container'>
+              <Link to='/?h=3' className='u-inline-block header__logo-container'>
                 <span className='header__logo'>Tokopedia</span>
               </Link>
             </div>

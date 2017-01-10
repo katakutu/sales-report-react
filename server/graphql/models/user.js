@@ -1,37 +1,14 @@
 const GlobalConfig = require('./../../GlobalConfig')
-const TopedAuthAPI = require('./../../api-consumer/api/Auth/TopedAuthAPI')
 const session = require('../../session')
-
-const {
-  DEFAULT_SALDO_DATA,
-  TopedSaldoAPI
-} = require('./../../api-consumer/api/Saldo/TopedSaldoAPI')
-
-const {
-  DEFAULT_NOTIFICATION_DATA,
-  TopedNotificationAPI
-} = require('./../../api-consumer/api/Notification/TopedNotificationAPI')
-
-const {
-  DEFAULT_POINTS_DATA,
-  TopedPointsAPI
-} = require('./../../api-consumer/api/Points/TopedPointsAPI')
-
-const {
-  DEFAULT_SHOP_DATA,
-  TopedShopAPI
-} = require('./../../api-consumer/api/Shop/TopedShopAPI')
+const commons = require('./common')
 
 const DEFAULT_NOT_LOGGED_IN = {
   'isLoggedIn': false,
   'shouldRedirect': false,
+  'email': null,
   'name': null,
   'id': null,
-  'profilePicture': null,
-  'deposit': DEFAULT_SALDO_DATA,
-  'points': DEFAULT_POINTS_DATA,
-  'notifications': DEFAULT_NOTIFICATION_DATA,
-  'shop': DEFAULT_SHOP_DATA
+  'profilePicture': null
 }
 
 const getDefaultLoginRedirect = (userID, shouldRedirect) => {
@@ -39,12 +16,9 @@ const getDefaultLoginRedirect = (userID, shouldRedirect) => {
     'isLoggedIn': true,
     'shouldRedirect': shouldRedirect,
     'name': null,
+    'email': null,
     'id': userID,
-    'profilePicture': null,
-    'deposit': DEFAULT_SALDO_DATA,
-    'points': DEFAULT_POINTS_DATA,
-    'notifications': DEFAULT_NOTIFICATION_DATA,
-    'shop': DEFAULT_SHOP_DATA
+    'profilePicture': null
   }
 }
 
@@ -77,67 +51,26 @@ function getUserInfo (context) {
     }
   }
 
-  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
-  return session.getSessionAsync(sessID).then(sessData => {
-    const data = sessData ? JSON.parse(sessData) : {}
-
-    // Check for session availability since we store OAuth tokens in express.js
-    // and logging out on perl will not remove express.js' session
-    if (!data['access_token'] || !data['admin_id']) {
-      return context.session.destroy(err => {
-        if (err) {
-          console.error(`Destroying session failed: ${err}`)
-        }
-
+  return commons.getUserData(context)
+    .then(user => {
+      if (!user['user_id'] || !user['email']) {
         return DEFAULT_NOT_LOGGED_IN
-      })
-    } else {
-      const tType = context.session.oauth.token['token_type']
-      const token = context.session.oauth.token['access_token']
+      }
 
-      const authConsumer = new TopedAuthAPI(token, tType)
-      const saldoConsumer = new TopedSaldoAPI()
-      const notifConsumer = new TopedNotificationAPI(token, tType)
-      const pointConsumer = new TopedPointsAPI()
-      const shopConsumer = new TopedShopAPI()
+      return {
+        'isLoggedIn': true,
+        'shouldRedirect': false,
+        'name': user['name'],
+        'email': user['email'],
+        'id': user['user_id'],
+        'profilePicture': user['profile_picture']
+      }
+    })
+    .catch(error => {
+      console.error(`[GraphQL][Models][User] Error getting user data: ${error}`)
 
-      return authConsumer.getUserInfo().then(user => {
-        const userID = user['user_id']
-        let saldo = saldoConsumer.getDeposit(userID)
-        let notif = notifConsumer.getNotification(userID)
-        let point = pointConsumer.getPoints(userID)
-        let shop = shopConsumer.getShop(userID)
-
-        return Promise.all([saldo, notif, point, shop])
-          .then(s => {
-            return {
-              'isLoggedIn': true,
-              'shouldRedirect': false,
-              'name': user['name'],
-              'id': userID,
-              'profilePicture': user['profile_picture'],
-              'deposit': s[0] || DEFAULT_SALDO_DATA,
-              'points': s[2] || DEFAULT_POINTS_DATA,
-              'notifications': s[1] || DEFAULT_NOTIFICATION_DATA,
-              'shop': s[3] || DEFAULT_SHOP_DATA
-            }
-          })
-          .catch(e => {
-            return {
-              'isLoggedIn': true,
-              'shouldRedirect': false,
-              'name': user['name'],
-              'id': userID,
-              'profilePicture': user['profile_picture'],
-              'deposit': DEFAULT_SALDO_DATA,
-              'points': DEFAULT_POINTS_DATA,
-              'notifications': DEFAULT_NOTIFICATION_DATA,
-              'shop': DEFAULT_SHOP_DATA
-            }
-          })
-      })
-    }
-  })
+      return DEFAULT_NOT_LOGGED_IN
+    })
 }
 
 module.exports = getUserInfo

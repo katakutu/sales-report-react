@@ -5,7 +5,6 @@ import SearchModal from '../SearchModal'
 import './SearchInput.scss'
 
 import lang from '../../lib/utils/Lang'
-import GTM from '../../lib/utils/GTM'
 import UserSearchID from '../../lib/utils/UserSearchID'
 import { storeUserSearchID, updateSearchModalStatus } from '../../store/app'
 
@@ -16,6 +15,8 @@ class SearchInput extends Component {
     lang: React.PropTypes.string,
     showModal: React.PropTypes.bool,
     storeUserSearchID: React.PropTypes.func,
+    userData: React.PropTypes.object,
+    userIsLoggedIn: React.PropTypes.bool,
     userSearchID: React.PropTypes.string,
     updateLang: React.PropTypes.func,
     updateSearchModalStatus: React.PropTypes.func,
@@ -31,12 +32,15 @@ class SearchInput extends Component {
 
     this.handleFocus = this.handleFocus.bind(this)
     this.handleModalClosed = this.handleModalClosed.bind(this)
-    this.handleSearchButtonClicked = this.handleSearchButtonClicked.bind(this)
   }
 
   handleFocus () {
     UserSearchID.initUniqueID()
     let uid = UserSearchID.getUniqueID(this.props.userSearchID)
+
+    if (this.props.userIsLoggedIn && this.props.userData.id) {
+      uid = UserSearchID.generateUserIDMD5(this.props.userData.id)
+    }
 
     this.props.storeUserSearchID(uid)
 
@@ -52,10 +56,6 @@ class SearchInput extends Component {
     })
   }
 
-  handleSearchButtonClicked (event) {
-    GTM.pushEvent('clickSearch', 'Search', 'Search', this.props.searchQuery)
-  }
-
   render () {
     let backgroundBlur = (this.state.showSelection) ? 'search-input__modal-active' : ''
     let finalClassName = `search-input u-px2 u-pb2 ${this.props.injectClassName} ${backgroundBlur}`
@@ -69,6 +69,9 @@ class SearchInput extends Component {
           <label htmlFor='search_input' className='u-hide'>
             { lang[this.props.lang]['Search Products or Stores'] }
           </label>
+          <i className={finalSearchBtnCN}>
+              Search
+          </i>
           <input name='q'
             autoComplete='off'
             autoFocus={this.state.showSelection}
@@ -80,9 +83,6 @@ class SearchInput extends Component {
             onFocus={this.handleFocus}
             readOnly
             value={this.props.searchQuery} />
-          <button className={finalSearchBtnCN} onClick={this.handleSearchButtonClicked}>
-              Search
-          </button>
         </form>
 
         { this.state.searchModalOpened && <SearchModal onClose={this.handleModalClosed} /> }
@@ -97,6 +97,8 @@ const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
     searchQuery: state['app'] ? state['app'].searchQuery : state.searchQuery,
+    userData: state['app'] ? state['app'].user.data : state.user.data,
+    userIsLoggedIn: state['app'] ? state['app'].user.loggedIn : state.user.loggedIn,
     userSearchID: state['app'] ? state['app'].user.searchID : state.user.searchID
   }
 }

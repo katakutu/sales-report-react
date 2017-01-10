@@ -9,7 +9,7 @@ import lang from '../../lib/utils/Lang'
 import GTM from '../../lib/utils/GTM'
 
 const settings = {
-  autoplay: true,
+  autoplay: false,
   dots: false,
   arrows: false,
   infinite: false,
@@ -18,7 +18,7 @@ const settings = {
   swipeToSlide: true,
   centerMode: false,
   variableWidth: true,
-  slidesToShow: 3,
+  slidesToShow: 1,
   slidesToScroll: 1,
   afterChange: function (currentSlide) {
     if (currentSlide === 2) {
@@ -52,6 +52,12 @@ class HotList extends Component {
     this._gtmNotifyItemClicked = this._gtmNotifyItemClicked.bind(this)
     this._renderHotlistItem = this._renderHotlistItem.bind(this)
     this._verifyHotlistData = this._verifyHotlistData.bind(this)
+  }
+
+  componentDidMount () {
+    // for GTM to consume
+    const event = new Event('HomeCategoryLoaded')
+    document.dispatchEvent(event)
   }
 
   _gtmNotifyAllHotlistsClicked () {

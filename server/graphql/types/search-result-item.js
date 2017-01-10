@@ -11,7 +11,8 @@ const SearchResultItemType = new GraphQLObjectType({
     imageURI: { type: new GraphQLNonNull(GraphQLString) },
     keyword: { type: new GraphQLNonNull(GraphQLString) },
     url: { type: new GraphQLNonNull(GraphQLString) },
-    official: { type: new GraphQLNonNull(GraphQLBoolean) }
+    official: { type: new GraphQLNonNull(GraphQLBoolean) },
+    promoted: { type: new GraphQLNonNull(GraphQLBoolean) }
   }
 })
 

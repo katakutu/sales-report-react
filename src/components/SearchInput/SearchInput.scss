@@ -5,15 +5,15 @@
 }
 
 .search-input__input {
-    padding: 0 60px 0 6px;
+    padding: 0 6px 0 30px;
     width: 100%;
-    height: 38px;
+    height: 42px;
     border: 0;
     border-radius: 3px;
     box-shadow: none;
-    color: $color-white-primary;
+    color: $color-black-secondary;
     text-align: left;
-    font-size: 14px;
+    font-size: 12px;
 
     &:focus {
         color: $color-green;
@@ -48,18 +48,14 @@
 
 .search-input__btn {
     position: absolute;
-    top: 9px;
-    right: 10px;
-    width: 20.5px;
-    height: 20px;
+    top: 14px;
+    left: 10px;
+    width: 16px;
+    height: 16px;
     border: 0;
-    background: url('./assets/header-magnifier-orange.png') transparent no-repeat;
+    background: url('./assets/header-magnifier@2x.png') transparent no-repeat;
     background-position: center center;
-    background-size: 20.5px 20px;
+    background-size: 16px 16px;
     text-indent: -99999px;
     font-size: 0;
-
-    &.focus {
-        background-image: url('./assets/header-magnifier-green.png');
-    }
 }

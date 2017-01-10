@@ -4,7 +4,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 4;
+    z-index: $z-index-max;
     overflow-y: auto;
     padding: 60px 0 120px;
     width: 100%;
@@ -92,22 +92,22 @@
     color: $color-white-primary;
     text-align: left;
     font-size: 14px;
+}
 
-    &::-webkit-input-placeholder {
-        color: $color-white-secondary;
-    }
+#search_modal_input::-webkit-input-placeholder {
+    color: $color-white-secondary;
+}
 
-    &:-moz-placeholder {
-        color: $color-white-secondary;
-    }
+#search_modal_input:-moz-placeholder {
+    color: $color-white-secondary;
+}
 
-    &::-moz-placeholder {
-        color: $color-white-secondary;
-    }
+#search_modal_input::-moz-placeholder {
+    color: $color-white-secondary;
+}
 
-    &:-ms-input-placeholder {
-        color: $color-white-secondary;
-    }
+#search_modal_input:-ms-input-placeholder {
+    color: $color-white-secondary;
 }
 
 .search-input__close {

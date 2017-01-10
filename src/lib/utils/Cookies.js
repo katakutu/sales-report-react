@@ -52,9 +52,9 @@ const Cookies = {
     const sPathPart = sPath ? '; path=' + sPath : ''
     const bSecurePart = bSecure ? '; secure' : ''
     document.cookie = encodeURIComponent(sKey) +
-'=' +
-encodeURIComponent(sValue) +
-sExpires + sDomainPart + sPathPart + bSecurePart
+      '=' +
+      encodeURIComponent(sValue) +
+      sExpires + sDomainPart + sPathPart + bSecurePart
 
     return true
   },

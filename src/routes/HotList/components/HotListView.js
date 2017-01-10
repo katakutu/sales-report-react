@@ -44,18 +44,23 @@ class HotListView extends Component {
       )
     }
 
+    const user = this.props.data.user || {}
+    const userInfo = Object.assign(user, {
+      'deposit': this.props.data.saldo,
+      'points': this.props.data.points,
+      'notifications': this.props.data.notifications.data,
+      'shop': this.props.data.shop,
+      'wallet': this.props.data.wallet
+    })
+
     return (
       <div>
-        <HeaderHomeOld userInfo={this.props.data.user} tabIsAvailable activeTab='hotlist' />
-
+        <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='hotlist' />
         <div className='u-clearfix hotlist hotlist--single-page u-mt2'>
-          <h1 className='text-header text-header-green u-center'>Hot list</h1>
-
           <HotList page={this.state.page} />
-
           <div className='hotlist-showall'>
             <a className='link-green' href='#' onClick={this.viewMore}>
-              {lang[this.props.lang]['View More']} &rsaquo;
+              { lang[this.props.lang]['View More'] } &rsaquo;
             </a>
           </div>
         </div>

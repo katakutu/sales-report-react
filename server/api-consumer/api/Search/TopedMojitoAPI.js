@@ -5,7 +5,8 @@ const URL = require('url')
 const MOJITO_SERVICES = {
   Ticker: `${GlobalConfig.Mojito.Hostname}/api/v1/tickers`,
   Slides: `${GlobalConfig.Mojito.Hostname}/api/v1/slides`,
-  Category: `${GlobalConfig.Mojito.Hostname}/api/v1/layout/category`
+  Category: `${GlobalConfig.Mojito.Hostname}/api/v1/layout/category`,
+  OfficialStores: `${GlobalConfig.Mojito.Hostname}/os/api/v1/brands/list?device=lite`
 }
 
 /**
@@ -41,29 +42,31 @@ class TopedMojitoAPI {
    */
   getTickers (userid, pageSize, deviceFilter, action) {
     let content = {
-      'user_id': userid,
       'page[size]': pageSize,
       'filter[device]': deviceFilter,
       'action': action
     }
     let url = URL.parse(MOJITO_SERVICES.Ticker)
 
-    return this.api.consume(url, 'GET', content)
+    return this.api.consume(url, 'GET', content, {
+      headers: { 'Tkpd-UserId': userid }
+    })
   }
 
   /**
    * Get slides for frontpage
    *
    * @param {number} pageSize How many images you want to get for one page
-   * @param {number} deviceFilter What devide is these images accessed from.
+   * @param {number} deviceFilter What device is these images accessed from.
    * @param {number} targetFilter Target devices
    * @param {number} stateFilter Target state
    * @param {number} expiredFilter Expired filter
+   * @param {string} userid The user_id. 0 if anonymous.
    * @returns {Promise<Response>} The resulting response promise.
    *
    * @memberOf TopedMojitoAPI
    */
-  getSlides (pageSize, deviceFilter, targetFilter, stateFilter, expiredFilter) {
+  getSlides (pageSize, deviceFilter, targetFilter, stateFilter, expiredFilter, userid) {
     let content = {
       'page[size]': pageSize,
       'filter[device]': deviceFilter,
@@ -73,7 +76,15 @@ class TopedMojitoAPI {
     }
     let url = URL.parse(MOJITO_SERVICES.Slides)
 
-    return this.api.consume(url, 'GET', content)
+    return this.api.consume(url, 'GET', content, {
+      headers: { 'Tkpd-UserId': userid }
+    })
+  }
+
+  getOfficialStores () {
+    let url = URL.parse(MOJITO_SERVICES.OfficialStores)
+
+    return this.api.consume(url, 'GET', {})
   }
 }
 

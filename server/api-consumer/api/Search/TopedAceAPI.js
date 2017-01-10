@@ -4,15 +4,18 @@ const URL = require('url')
 
 const ACE_SERVICES = {
   Autocomplete: `${GlobalConfig.Ace.Hostname}/v1/products/autocomplete`,
-  Universe: `${GlobalConfig.Ace.Hostname}/universe/v2`,
   CatalogShopList: `${GlobalConfig.Ace.Hostname}/search/v1/catalog/product`,
   DynamicAttributes: `${GlobalConfig.Ace.Hostname}/v1/dynamic_attributes`,
+  HotListHome: `${GlobalConfig.Ace.Hostname}/hoth/hotlist/v1/home`,
+  HotListPage: `${GlobalConfig.Ace.Hostname}/hoth/hotlist/v1/?page=:page&perPage=:per_page`,
   PopularSearch: `${GlobalConfig.Ace.Hostname}/v1/popular_search`,
   PriceRange: `${GlobalConfig.Ace.Hostname}/v1/price_range`, // /v1/price_range/[catalog_id]
   RecentSearch: `${GlobalConfig.Ace.Hostname}/recent_search/v1`,
   SearchCatalog: `${GlobalConfig.Ace.Hostname}/search/v1/catalog`,
   SearchShop: `${GlobalConfig.Ace.Hostname}/search/v1/shop`,
-  SpellCheck: `${GlobalConfig.Ace.Hostname}/v1/products/spellcheck`
+  SpellCheck: `${GlobalConfig.Ace.Hostname}/v1/products/spellcheck`,
+  TopPicks: `${GlobalConfig.Ace.Hostname}/hoth/toppicks/widget?random=true&device=mobile&source=home`,
+  Universe: `${GlobalConfig.Ace.Hostname}/universe/v2`
 }
 
 class TopedAceAPI {
@@ -131,11 +134,36 @@ class TopedAceAPI {
     return this.api.consumeGet(ACE_SERVICES.RecentSearch, content)
   }
 
+  topPicks () {
+    const url = URL.parse(ACE_SERVICES.TopPicks)
+    return this.api.consumeGet(url, {})
+  }
+
   /**
    * Dynamic attributes such as filter and sort
    */
   dynamicAttributes () {
     // TODO: Implement this
+  }
+
+  getHotProductHome () {
+    const url = URL.parse(ACE_SERVICES.HotListHome)
+
+    return this.api.consume(url, 'GET', {
+      'headers': { 'X-Device': 'lite' }
+    })
+  }
+
+  getHotProductList (page = 1, perPage = 9) {
+    const endpoint = ACE_SERVICES.HotListPage
+                                 .replace(':page', page)
+                                 .replace(':per_page', perPage)
+
+    const url = URL.parse(endpoint)
+
+    return this.api.consume(url, 'GET', {
+      'headers': { 'X-Device': 'lite' }
+    })
   }
 }
 

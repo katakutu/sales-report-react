@@ -14,7 +14,7 @@ proxy_cache_path /dev/shm/nginx-cache levels=1 keys_zone=hotlist:10m max_size=10
 server {
     listen 80;
     server_name  lite.tokopedia.com;
-    root /var/www/tokopedia-lite/dist/;
+    root /var/www/tokopedia-lite/public/;
 
     access_log /var/log/nginx/tokopedia-lite.access.log main;
     error_log  /var/log/nginx/tokopedia-lite.error.log;
