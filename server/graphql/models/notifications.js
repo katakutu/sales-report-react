@@ -15,7 +15,7 @@ function getNotifications (context) {
 
   return userID
         .then(uid => {
-          return api.getNotifications(uid)
+          return api.getNotification(uid)
         })
         .catch(error => {
           console.error(`[GraphQL][Models][Notification] Error getting notification data: ${error}`)
