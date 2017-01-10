@@ -195,7 +195,7 @@ class SearchModalResult extends Component {
             {
               finalTitle === 'History' &&
                 <a onClick={this._deleteAllHistory} className='search-modal__clear-history'>
-                  { lang[this.props.lang]['Clear All'] }
+                  { lang[this.props.lang]['Hapus Semua'] }
                 </a>
             }
             <ul className='u-list-reset u-p0 u-m0'>
