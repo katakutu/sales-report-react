@@ -8,8 +8,12 @@ function getNotifications (context) {
   const userID = common.getUserID(context)
 
   // token is always newest after calling common.getUserID
-  const token = context.session.oauth.token['access_token']
-  const tType = context.session.oauth.token['token_type']
+  let token = ''
+  let tType = ''
+  if (context && context.session && context.session.oauth) {
+    token = context.session.oauth.token['access_token'] || ''
+    tType = context.session.oauth.token['token_type'] || ''
+  }
 
   const api = new TopedNotificationAPI(token, tType)
 
