@@ -3,6 +3,7 @@ import CoreLayout from '../layouts/CoreLayout/CoreLayout'
 import Home from './Home'
 import HotListRoute from './HotList'
 import CategoryRoute from './Category'
+import WishListRoute from './WishList'
 import NotFound from './NotFound'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -15,6 +16,7 @@ export const createRoutes = (store) => ({
   childRoutes : [
     HotListRoute(store),
     CategoryRoute(store),
+    WishListRoute(store),
     {
       path: '*',
       component: NotFound

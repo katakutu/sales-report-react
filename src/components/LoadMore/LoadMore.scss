@@ -1,0 +1,18 @@
+@import 'base';
+
+.loadmore-container {
+    padding: 0 10px 20px;
+}
+
+.loadmore__box {
+    border: 1px solid $color-grey-3;
+    border-radius: 3px;
+}
+
+.loadmore__link {
+    text-align: center;
+    color: $color-black-disabled;
+    font-weight: 600;
+    display: block;
+    padding: 15px 0;
+}
