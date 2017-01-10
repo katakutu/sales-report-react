@@ -32,7 +32,7 @@ function getUserData (context) {
       context.session.oauth = Object.assign(context.session.oauth, {
         token: {
           'token_type': tType,
-          'access_token': data['access_token']
+          'access_token': token
         }
       })
 
