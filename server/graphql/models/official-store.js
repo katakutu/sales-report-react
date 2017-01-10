@@ -23,7 +23,7 @@ function getOfficialStores () {
     })
   })
     .catch(err => {
-      console.error(`[TopPicks] Top Picks API call faield. Cause: ${err.message}`)
+      console.error(`[Mojito][OfficialStore] Official Store API call faield. Cause: ${err.message}`)
 
       return EMPTY_OFFICIAL_STORE
     })

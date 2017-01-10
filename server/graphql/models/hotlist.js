@@ -27,7 +27,7 @@ function getHotProductHome () {
       }
     })
     .catch(error => {
-      console.log(`Error getting hotlist: ${error.message}`)
+      console.error(`Error getting hotlist: ${error.message}`)
 
       return HOTLIST_ERROR
     })
@@ -53,7 +53,7 @@ function getHotProductList (page, perPage) {
       }
     })
     .catch(error => {
-      console.log(`Error getting hotlist: ${error.message}`)
+      console.error(`Error getting hotlist: ${error.message}`)
 
       return HOTLIST_ERROR
     })

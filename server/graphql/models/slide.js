@@ -25,7 +25,7 @@ function getSlides (context) {
         return { meta: resultMeta, slides: response['data']['slides'] }
       })
       .catch(error => {
-        console.log(`Error getting slides: ${error.message}`)
+        console.error(`Error getting slides: ${error.message}`)
 
         return { EMPTY_SLIDES }
       })

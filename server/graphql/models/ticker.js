@@ -25,12 +25,12 @@ function getTicker (context) {
         return { meta: resultMeta, tickers: response['data']['tickers'] }
       })
       .catch(error => {
-        console.log(`Error getting tickers: ${error.message}`)
+        console.error(`Error getting tickers: ${error.message}`)
 
         return EMPTY_TICKER
       })
   }).catch(error => {
-    console.log(`Error getting user data for tickers: ${error.message}`)
+    console.error(`Error getting user data for tickers: ${error.message}`)
 
     return EMPTY_TICKER
   })

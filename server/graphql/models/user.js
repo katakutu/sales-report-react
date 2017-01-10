@@ -42,7 +42,7 @@ function getUserInfo (context) {
           return getDefaultLoginRedirect(userID, shouldRedir && sessionExists && loggedInSess)
         })
         .catch(error => {
-          console.log(`Get user info error: ${error.message}`)
+          console.error(`Get user info error: ${error.message}`)
 
           return DEFAULT_NOT_LOGGED_IN
         })
