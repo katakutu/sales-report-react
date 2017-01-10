@@ -20,8 +20,12 @@ function getUserData (context) {
       return Promise.resolve(EMPTY_OBJECT)
     } else {
       // make sure we have the latest token taken from redis
-      const token = data['access_token'] || context.session.oauth.token['access_token']
-      const tType = context.session.oauth.token['token_type']
+      let token = ''
+      let tType = ''
+      if (context && context.session && context.session.oauth) {
+        token = data['access_token'] || context.session.oauth.token['access_token'] || ''
+        tType = context.session.oauth.token['token_type'] || ''
+      }
 
       // refresh token in case user has already logged out on
       // desktop and relogin with other account
