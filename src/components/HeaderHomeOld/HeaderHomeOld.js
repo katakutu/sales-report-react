@@ -70,7 +70,7 @@ class HeaderHome extends Component {
           'profilePicture': userInfo['profilePicture'],
           'deposit': userInfo['deposit'],
           'points': userInfo['points'],
-          'notifications': userInfo['notifications']['data'],
+          'notifications': userInfo['notifications'],
           'shop': userInfo['shop'],
           'wallet': userInfo['wallet']
         })
