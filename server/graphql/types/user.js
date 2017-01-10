@@ -6,11 +6,7 @@ const {
   GraphQLString
 } = require('graphql')
 
-const SaldoType = require('./saldo')
-const PointsType = require('./points')
-const NotificationType = require('./notification')
-const ShopType = require('./shop')
-const WalletType = require('./wallet')
+const { GraphQLEmail } = require('graphql-custom-types')
 
 const UserType = new GraphQLObjectType({
   name: 'User',
@@ -19,13 +15,8 @@ const UserType = new GraphQLObjectType({
     shouldRedirect: { type: new GraphQLNonNull(GraphQLBoolean) },
     id: { type: GraphQLID },
     name: { type: GraphQLString },
-    email: { type: GraphQLString },
-    profilePicture: { type: GraphQLString },
-    deposit: { type: SaldoType },
-    points: { type: PointsType },
-    notifications: { type: NotificationType },
-    shop: { type: ShopType },
-    wallet: { type: WalletType }
+    email: { type: GraphQLEmail },
+    profilePicture: { type: GraphQLString }
   }
 })
 

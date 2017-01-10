@@ -52,7 +52,7 @@ class TopedAPI {
 
     let finalOptions = Object.assign({}, additionalOptions, options)
 
-    return request(finalURL, finalOptions).then(response => JSON.parse(response))
+    return request(finalURL, finalOptions).then(response => this._processJSON(response))
     /*
     return new Promise((resolve, reject) => {
       wrappedTopedFetch(finalURL, finalOptions, (err, response) => {
@@ -94,7 +94,7 @@ class TopedAPI {
             : this._formatGetURL(url, content)
 
     return request(finalURL, finalOptions).then(response => {
-      return JSON.parse(response)
+      return this._processJSON(response)
     })
   }
 
@@ -118,6 +118,18 @@ class TopedAPI {
     let result = url.format()
     if (Object.keys(content).length > 0) {
       result = result + '?' + this.contentToURIParams(content)
+    }
+
+    return result
+  }
+
+  _processJSON (jsonString) {
+    let result = {}
+    try {
+      result = JSON.parse(jsonString)
+    } catch (e) {
+      console.error(`[TopedAPI] Error parsing ${jsonString} to JSON. Message: ${e.getMessage}`)
+      result = {}
     }
 
     return result

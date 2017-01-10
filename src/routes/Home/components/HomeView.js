@@ -59,6 +59,14 @@ class HomeView extends Component {
 
     const categories = this.props.data.category ? this.props.data.category.categories : []
 
+    const userInfo = Object.assign(this.props.data.user, {
+      'deposit': this.props.data.saldo,
+      'points': this.props.data.points,
+      'notifications': this.props.data.notifications.data,
+      'shop': this.props.data.shop,
+      'wallet': this.props.data.wallet
+    })
+
     if (this.props.data.user && this.props.data.user.id) {
       GTM.pushObject({
         'contactInfo': {
@@ -70,7 +78,7 @@ class HomeView extends Component {
 
     return (
       <div>
-        <HeaderHomeOld userInfo={this.props.data.user} tabIsAvailable activeTab='home' />
+        <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='home' />
 
         <Ticker tickers={tickers} perTickDuration={5} />
         <Carousel images={slides} />
