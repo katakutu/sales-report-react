@@ -11,7 +11,7 @@ function getSlides (context) {
   const api = new TopedMojitoAPI()
 
   return userID.then(uid => {
-    return api.getSlides(25, 2, 65535, 1, 0, uid)
+    return api.getSlides(25, 2, 65535, 1, 0, uid || 0)
       .then(response => {
         if (!response['data']) {
           return EMPTY_SLIDES
@@ -25,7 +25,7 @@ function getSlides (context) {
         return { meta: resultMeta, slides: response['data']['slides'] }
       })
       .catch(error => {
-        console.log(`Error getting slides: ${error.message}`)
+        console.error(`Error getting slides: ${error.message}`)
 
         return { EMPTY_SLIDES }
       })

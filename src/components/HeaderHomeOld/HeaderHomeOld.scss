@@ -177,7 +177,7 @@
 
         &::before {
             position: absolute;
-            top: 0;
+            top: -1px;
             display: block;
             width: 20px;
             height: 40px;
@@ -608,7 +608,6 @@
     background-size:33px 32px;
     vertical-align: middle;
 }
-
 
 /* ================================= MENU DENGAN TOP UP KOTAK ========================== */
 .drawer__user-summary-box {

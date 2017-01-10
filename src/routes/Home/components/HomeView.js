@@ -29,6 +29,14 @@ class HomeView extends Component {
     this.handleTabChange = this.handleTabChange.bind(this)
   }
 
+  componentDidMount () {
+    const pulsaWidget = document.querySelector('#widget-dmw')
+    const pulsaWidgetContent = (pulsaWidget && pulsaWidget.textContent) || ''
+    if (window.recharge_init_category && pulsaWidgetContent === '') {
+      window.recharge_init_category()
+    }
+  }
+
   handleTabChange (index) {
     this.setState({ activeTabIndex: index })
   }
@@ -51,17 +59,27 @@ class HomeView extends Component {
 
     const categories = this.props.data.category ? this.props.data.category.categories : []
 
+    const user = this.props.data.user || {}
+    const userInfo = Object.assign(user, {
+      'deposit': this.props.data.saldo,
+      'points': this.props.data.points,
+      'notifications': this.props.data.notifications.data,
+      'shop': this.props.data.shop,
+      'wallet': this.props.data.wallet
+    })
+
     if (this.props.data.user && this.props.data.user.id) {
       GTM.pushObject({
         'contactInfo': {
-          'userId': this.props.data.user.id
+          'userId': this.props.data.user.id,
+          'userEmail': this.props.data.user.email
         }
       })
     }
 
     return (
       <div>
-        <HeaderHomeOld userInfo={this.props.data.user} tabIsAvailable activeTab='home' />
+        <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='home' />
 
         <Ticker tickers={tickers} perTickDuration={5} />
         <Carousel images={slides} />

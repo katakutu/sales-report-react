@@ -62,8 +62,6 @@ module.exports = {
   redirect: function (req, res, next) {
     // already logged in
     if (req.session.oauth) {
-      const sess = req.cookies && req.cookies[GlobalConfig['Cookie']['SessionID']] || 'unknown'
-      console.log(`User already logged in. Session: ${sess}`)
       return res.redirect('/')
     }
 
@@ -78,7 +76,7 @@ module.exports = {
       oauth2.authorizationCode.getToken(options, (error, result) => {
         if (error) {
           // TODO: error message / redirect to special page?
-          console.log('Access Token Error', error.message)
+          console.error('Access Token Error', error.message)
           return res.redirect('/')
         }
 
@@ -109,7 +107,7 @@ module.exports = {
             })
           })
           .catch(error => {
-            console.log(`Get User Info Error: ${error.message}`)
+            console.error(`Get User Info Error: ${error.message}`)
 
             return res.redirect(`${GlobalConfig['Hostname']}/`)
           })

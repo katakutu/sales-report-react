@@ -41,7 +41,7 @@ function universalSearch (userSearchID, query) {
       return finalResult
     })
     .catch(error => {
-      console.log(`Error getting search result: ${error.message}`)
+      console.error(`Error getting search result: ${error.message}`)
 
       return EMPTY_SEARCH_RESULT
     })
