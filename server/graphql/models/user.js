@@ -51,7 +51,7 @@ function getUserInfo (context) {
     }
   }
 
-  commons.getUserData(context)
+  return commons.getUserData(context)
     .then(user => {
       if (!user['user_id'] || !user['email']) {
         return DEFAULT_NOT_LOGGED_IN

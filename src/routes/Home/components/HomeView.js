@@ -59,7 +59,8 @@ class HomeView extends Component {
 
     const categories = this.props.data.category ? this.props.data.category.categories : []
 
-    const userInfo = Object.assign(this.props.data.user, {
+    const user = this.props.data.user || {}
+    const userInfo = Object.assign(user, {
       'deposit': this.props.data.saldo,
       'points': this.props.data.points,
       'notifications': this.props.data.notifications.data,
