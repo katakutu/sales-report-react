@@ -62,7 +62,6 @@ module.exports = {
   redirect: function (req, res, next) {
     // already logged in
     if (req.session.oauth) {
-      const sess = req.cookies && req.cookies[GlobalConfig['Cookie']['SessionID']] || 'unknown'
       return res.redirect('/')
     }
 
