@@ -20,6 +20,14 @@ export const APP_IS_NOT_LOADING = 'IS_NOT_LOADING'
 // temporary state until we moved to new design and remove sidebar
 export const SIDEBAR_STATUS_OPEN = 'SIDEBAR_STATUS_OPEN'
 export const SIDEBAR_STATUS_CLOSED = 'SIDEBAR_STATUS_CLOSED'
+
+export const SIDEBAR_INBOX_OPEN = 'SIDEBAR_INBOX_OPEN'
+export const SIDEBAR_INBOX_CLOSED = 'SIDEBAR_INBOX_CLOSED'
+export const SIDEBAR_PURCHASE_OPEN = 'SIDEBAR_PURCHASE_OPEN'
+export const SIDEBAR_PURCHASE_CLOSED = 'SIDEBAR_PURCHASE_CLOSED'
+export const SIDEBAR_SALES_OPEN = 'SIDEBAR_SALES_OPEN'
+export const SIDEBAR_SALES_CLOSED = 'SIDEBAR_SALES_CLOSED'
+
 export const LANG = 'LANG'
 
 // ------------------------------------
@@ -63,6 +71,27 @@ export function updateUserLoginStatus (isLoggedIn) {
 export function updateSidebarStatus (isOpen) {
   return {
     type: isOpen ? SIDEBAR_STATUS_OPEN : SIDEBAR_STATUS_CLOSED,
+    payload: isOpen
+  }
+}
+
+export function updateSidebarPurcahseStatus (isOpen) {
+  return {
+    type: isOpen ? SIDEBAR_PURCHASE_OPEN : SIDEBAR_PURCHASE_CLOSED,
+    payload: isOpen
+  }
+}
+
+export function updateSidebarInboxStatus (isOpen) {
+  return {
+    type: isOpen ? SIDEBAR_INBOX_OPEN : SIDEBAR_INBOX_CLOSED,
+    payload: isOpen
+  }
+}
+
+export function updateSidebarSalesStatus (isOpen) {
+  return {
+    type: isOpen ? SIDEBAR_SALES_OPEN : SIDEBAR_SALES_CLOSED,
     payload: isOpen
   }
 }
@@ -113,6 +142,9 @@ export const actions = {
   storeUserSearchID,
   updateUserLoginStatus,
   updateSidebarStatus,
+  updateSidebarInboxStatus,
+  updateSidebarPurcahseStatus,
+  updateSidebarSalesStatus,
   updateSearchModalStatus,
   clearSearchQuery,
   updateSearchQuery,
@@ -159,6 +191,24 @@ const ACTION_HANDLERS = {
   [SIDEBAR_STATUS_CLOSED]: (state, action) => {
     return Object.assign({}, state, { sidebarIsOpen: action.payload })
   },
+  [SIDEBAR_INBOX_OPEN]: (state, action) => {
+    return Object.assign({}, state, { sidebarInboxOpen: action.payload })
+  },
+  [SIDEBAR_INBOX_CLOSED]: (state, action) => {
+    return Object.assign({}, state, { sidebarInboxOpen: action.payload })
+  },
+  [SIDEBAR_PURCHASE_OPEN]: (state, action) => {
+    return Object.assign({}, state, { sidebarPurchaseOpen: action.payload })
+  },
+  [SIDEBAR_PURCHASE_CLOSED]: (state, action) => {
+    return Object.assign({}, state, { sidebarPurchaseOpen: action.payload })
+  },
+  [SIDEBAR_SALES_OPEN]: (state, action) => {
+    return Object.assign({}, state, { sidebarSalesOpen: action.payload })
+  },
+  [SIDEBAR_SALES_CLOSED]: (state, action) => {
+    return Object.assign({}, state, { sidebarSalesOpen: action.payload })
+  },
   [SEARCH_MODAL_OPEN]: (state, action) => {
     return Object.assign({}, state, { searchModalIsOpen: action.payload })
   },
@@ -193,6 +243,9 @@ const initialState = {
   searchQuery: '',
   searchModalIsOpen: false,
   sidebarIsOpen: false,
+  sidebarInboxOpen: false,
+  sidebarPurchaseOpen: false,
+  sidebarSalesOpen: false,
   isOnline: true,
   isLoading: false,
   notifications: [],

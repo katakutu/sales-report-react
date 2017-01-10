@@ -9,7 +9,12 @@ import sellingIcon from './assets/nav-selling-icon.png'
 import logoutIcon from './assets/nav-logout-icon.png'
 import addShop from './assets/nav-add-shop-icon.png'
 
-import { updateSidebarStatus } from '../../store/app'
+import {
+  updateSidebarStatus,
+  updateSidebarInboxStatus,
+  updateSidebarPurcahseStatus,
+  updateSidebarSalesStatus
+} from '../../store/app'
 
 import { HOSTNAME, SITES } from '../../constants'
 import lang from '../../lib/utils/Lang'
@@ -20,6 +25,12 @@ class LoggedInMenu extends Component {
     notifs: React.PropTypes.object,
     userData: React.PropTypes.object,
     updateSidebarStatus: React.PropTypes.func,
+    updateSidebarInboxStatus: React.PropTypes.func,
+    updateSidebarPurcahseStatus: React.PropTypes.func,
+    updateSidebarSalesStatus: React.PropTypes.func,
+    sidebarInboxOpen: React.PropTypes.bool,
+    sidebarPurchaseOpen: React.PropTypes.bool,
+    sidebarSalesOpen: React.PropTypes.bool,
     shop: React.PropTypes.object,
     lang: React.PropTypes.string
   }
@@ -77,6 +88,16 @@ class LoggedInMenu extends Component {
     // for GTM to consume
     const event = new Event('MenuOpened')
     document.dispatchEvent(event)
+
+    // remember last state
+    // setTimeout is for workaround of previous workaround
+    setTimeout(() => {
+      this.setState({
+        inboxIsOpen: this.props.sidebarInboxOpen,
+        purchaseIsOpen: this.props.sidebarPurchaseOpen,
+        salesIsOpen: this.props.sidebarSalesOpen
+      })
+    }, 1100)
   }
 
   _totalObjectValues (object) {
@@ -95,15 +116,27 @@ class LoggedInMenu extends Component {
   }
 
   handleInboxClicked () {
-    this.setState({ inboxIsOpen: !this.state.inboxIsOpen })
+    this.setState({
+      inboxIsOpen: !this.state.inboxIsOpen
+    }, () => {
+      this.props.updateSidebarInboxStatus(this.state.inboxIsOpen)
+    })
   }
 
   handleSalesClicked () {
-    this.setState({ salesIsOpen: !this.state.salesIsOpen })
+    this.setState({
+      salesIsOpen: !this.state.salesIsOpen
+    }, () => {
+      this.props.updateSidebarSalesStatus(this.state.salesIsOpen)
+    })
   }
 
   handlePurhcaseClicked () {
-    this.setState({ purchaseIsOpen: !this.state.purchaseIsOpen })
+    this.setState({
+      purchaseIsOpen: !this.state.purchaseIsOpen
+    }, () => {
+      this.props.updateSidebarPurcahseStatus(this.state.purchaseIsOpen)
+    })
   }
 
   render () {
@@ -428,10 +461,18 @@ class LoggedInMenu extends Component {
   }
 }
 
-const mapDispatchToProps = { updateSidebarStatus }
+const mapDispatchToProps = {
+  updateSidebarStatus,
+  updateSidebarInboxStatus,
+  updateSidebarPurcahseStatus,
+  updateSidebarSalesStatus
+}
 const mapStateToProps = (state) => {
   return {
-    lang: state['app'] ? state['app'].lang : state.lang
+    lang: state['app'] ? state['app'].lang : state.lang,
+    sidebarInboxOpen: state['app'] ? state['app'].sidebarInboxOpen : state.sidebarInboxOpen,
+    sidebarPurchaseOpen: state['app'] ? state['app'].sidebarPurchaseOpen : state.sidebarPurchaseOpen,
+    sidebarSalesOpen: state['app'] ? state['app'].sidebarSalesOpen : state.sidebarSalesOpen
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LoggedInMenu)
