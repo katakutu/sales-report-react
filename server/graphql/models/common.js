@@ -5,7 +5,7 @@ const session = require('./../../session')
 const EMPTY_OBJECT = {}
 
 function getUserID (context) {
-  return getUserData(context).then(ud => ud['user_id'])
+  return getUserData(context).then(ud => ud['user_id'] || 0)
 }
 
 function getUserData (context) {
