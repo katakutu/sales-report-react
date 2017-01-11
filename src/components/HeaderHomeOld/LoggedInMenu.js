@@ -9,9 +9,14 @@ import sellingIcon from './assets/nav-selling-icon.png'
 import logoutIcon from './assets/nav-logout-icon.png'
 import addShop from './assets/nav-add-shop-icon.png'
 
-import { updateSidebarStatus } from '../../store/app'
+import {
+  updateSidebarStatus,
+  updateSidebarInboxStatus,
+  updateSidebarPurcahseStatus,
+  updateSidebarSalesStatus
+} from '../../store/app'
 
-import { HOSTNAME } from '../../constants'
+import { HOSTNAME, SITES } from '../../constants'
 import lang from '../../lib/utils/Lang'
 import GTM from '../../lib/utils/GTM'
 
@@ -20,6 +25,12 @@ class LoggedInMenu extends Component {
     notifs: React.PropTypes.object,
     userData: React.PropTypes.object,
     updateSidebarStatus: React.PropTypes.func,
+    updateSidebarInboxStatus: React.PropTypes.func,
+    updateSidebarPurcahseStatus: React.PropTypes.func,
+    updateSidebarSalesStatus: React.PropTypes.func,
+    sidebarInboxOpen: React.PropTypes.bool,
+    sidebarPurchaseOpen: React.PropTypes.bool,
+    sidebarSalesOpen: React.PropTypes.bool,
     shop: React.PropTypes.object,
     lang: React.PropTypes.string
   }
@@ -73,6 +84,20 @@ class LoggedInMenu extends Component {
     if (!this.props.userData.wallet.linked) {
       GTM.pushEventName('wallet_no_link')
     }
+
+    // for GTM to consume
+    const event = new Event('MenuOpened')
+    document.dispatchEvent(event)
+
+    // remember last state
+    // setTimeout is for workaround of previous workaround
+    setTimeout(() => {
+      this.setState({
+        inboxIsOpen: this.props.sidebarInboxOpen,
+        purchaseIsOpen: this.props.sidebarPurchaseOpen,
+        salesIsOpen: this.props.sidebarSalesOpen
+      })
+    }, 1100)
   }
 
   _totalObjectValues (object) {
@@ -91,15 +116,27 @@ class LoggedInMenu extends Component {
   }
 
   handleInboxClicked () {
-    this.setState({ inboxIsOpen: !this.state.inboxIsOpen })
+    this.setState({
+      inboxIsOpen: !this.state.inboxIsOpen
+    }, () => {
+      this.props.updateSidebarInboxStatus(this.state.inboxIsOpen)
+    })
   }
 
   handleSalesClicked () {
-    this.setState({ salesIsOpen: !this.state.salesIsOpen })
+    this.setState({
+      salesIsOpen: !this.state.salesIsOpen
+    }, () => {
+      this.props.updateSidebarSalesStatus(this.state.salesIsOpen)
+    })
   }
 
   handlePurhcaseClicked () {
-    this.setState({ purchaseIsOpen: !this.state.purchaseIsOpen })
+    this.setState({
+      purchaseIsOpen: !this.state.purchaseIsOpen
+    }, () => {
+      this.props.updateSidebarPurcahseStatus(this.state.purchaseIsOpen)
+    })
   }
 
   render () {
@@ -111,8 +148,26 @@ class LoggedInMenu extends Component {
     let salesParent = (!this.state.salesIsOpen) ? '' : 'opened'
     let shopId = this.props.shop['shop_id']
 
-    let goldMerchant = (+this.props.shop['is_gold'] === 1) ? (<i className='mi-sprite mi-gold' />) : null
-    let officialStore = (+this.props.shop['is_official'] === 1) ? (<i className='mi-official' />) : null
+    let walletSection = this.props.userData.wallet.linked ? (
+      <div className='drawer__menu bg__grey-4' id='tokocash-balance-container'>
+        <a href={SITES['Wallet']} className='deposit-link-sidebar display-block' target='_blank'>
+          <span className='drawer__menu-icon icon__svg icon__tokocash' />
+          <span className='drawer__menu-title u-inline-block'>TokoCash</span>
+          <i className='icon-wallet-balance pull-left mr-5' />
+          <span className='drawer__menu-detail'>
+            { this.props.userData.wallet.balance }
+          </span>
+          <span className='white ellipsis pull-right display-block' />
+        </a>
+      </div>
+    ) : (
+      <div className='drawer__menu bg__grey-4' id='tokocash-balance-container' />
+    )
+
+    const isOfficialStore = +this.props.shop['is_official'] === 1
+    const isGoldMerchant = +this.props.shop['is_gold'] === 1
+    let goldMerchant = (isGoldMerchant && !isOfficialStore) ? (<i className='mi-sprite mi-gold' />) : null
+    let officialStore = isOfficialStore ? (<i className='mi-official' />) : null
     let shopSection = (shopId === 'ERROR FAIL' || shopId === null || shopId === '0') ? (
       <div className='drawer__menu-shop u-clearfix' id='toko-button'>
         <a href={`${HOSTNAME}/myshop.pl`}>
@@ -145,7 +200,7 @@ class LoggedInMenu extends Component {
     let inboxNotif = this._totalObjectValues(this.props.notifs['inbox']) > 0 ? (
       <span className='drawer__menu-notif' />
     ) : null
-    let purchaseNotif = this._totalObjectValues(this.props.notifs['purchasg']) > 0 ? (
+    let purchaseNotif = this._totalObjectValues(this.props.notifs['purchase']) > 0 ? (
       <span className='drawer__menu-notif' />
     ) : null
     let salesNotif = this._totalObjectValues(this.props.notifs['sales']) > 0 ? (
@@ -245,6 +300,9 @@ class LoggedInMenu extends Component {
             value={`${this.props.userData.deposit.deposit_fmt}`}
             readOnly
             hidden />
+
+          {walletSection }
+
           <div className='drawer__menu bg__grey-4'>
             <a href={`${HOSTNAME}/lp.pl`}>
               <span className='drawer__menu-icon icon__svg topPointsIcon' alt='tokopedia' />
@@ -403,10 +461,18 @@ class LoggedInMenu extends Component {
   }
 }
 
-const mapDispatchToProps = { updateSidebarStatus }
+const mapDispatchToProps = {
+  updateSidebarStatus,
+  updateSidebarInboxStatus,
+  updateSidebarPurcahseStatus,
+  updateSidebarSalesStatus
+}
 const mapStateToProps = (state) => {
   return {
-    lang: state['app'] ? state['app'].lang : state.lang
+    lang: state['app'] ? state['app'].lang : state.lang,
+    sidebarInboxOpen: state['app'] ? state['app'].sidebarInboxOpen : state.sidebarInboxOpen,
+    sidebarPurchaseOpen: state['app'] ? state['app'].sidebarPurchaseOpen : state.sidebarPurchaseOpen,
+    sidebarSalesOpen: state['app'] ? state['app'].sidebarSalesOpen : state.sidebarSalesOpen
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LoggedInMenu)

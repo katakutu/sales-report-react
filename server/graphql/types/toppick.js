@@ -28,4 +28,20 @@ const TopPickType = new GraphQLObjectType({
 
 const TopPicksType = new GraphQLList(TopPickType)
 
-module.exports = { TopPickItemType, TopPickType, TopPicksType }
+const TopPickGroupType = new GraphQLObjectType({
+  name: 'TopPickGroup',
+  fields: {
+    name: { type: new GraphQLNonNull(GraphQLString) },
+    toppicks: { type: TopPicksType }
+  }
+})
+
+const TopPickGroupsType = new GraphQLList(TopPickGroupType)
+
+module.exports = {
+  TopPickItemType,
+  TopPickType,
+  TopPicksType,
+  TopPickGroupType,
+  TopPickGroupsType
+}

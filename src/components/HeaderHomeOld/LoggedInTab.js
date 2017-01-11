@@ -29,12 +29,26 @@ class LoggedInTab extends Component {
       if (currentSlide >= 2) {
         const slideTrackEl = document.querySelector('#loggedin-tab .slick-track')
         const viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
-        const slideEl = document.querySelector('#loggedin-tab .slick-slide')
-        const slideWidth = slideEl.offsetWidth
-        const slideViewportOffset = viewportWidth - slideWidth
-        const paddingLeft = 29
+        const tabWidths = Array.prototype.slice.call(
+          document.querySelectorAll('#loggedin-tab .slick-slide'),
+          0
+        ).map(s => s.offsetWidth)
 
-        const maxTranslateX = (slideWidth * 2 - slideViewportOffset) + paddingLeft
+        // Move menu to the right (in variable offset)
+        // based on how many menus fit on one screen.
+        // Menus are moved to the right one by one based
+        // on each tab's width until we reach the max point
+        // we want (paddingRight)
+        const paddingRight = 29
+        let offset = 0
+        let offsetIndex = 0
+        while (viewportWidth - offset > paddingRight) {
+          offset = offset + tabWidths[offsetIndex]
+          offsetIndex = offsetIndex + 1
+        }
+
+        // calculate the actual translation needed
+        const maxTranslateX = viewportWidth - offset
         slideTrackEl.style.transform = `translate3d(${maxTranslateX}px, 0px, 0px)`
 
         el.slickGoTo(2)

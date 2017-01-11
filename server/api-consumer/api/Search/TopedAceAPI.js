@@ -150,7 +150,7 @@ class TopedAceAPI {
     const url = URL.parse(ACE_SERVICES.HotListHome)
 
     return this.api.consume(url, 'GET', {
-      'headers': { 'X-Device': 'lite-1.0' }
+      'headers': { 'X-Device': 'lite' }
     })
   }
 
@@ -162,7 +162,7 @@ class TopedAceAPI {
     const url = URL.parse(endpoint)
 
     return this.api.consume(url, 'GET', {
-      'headers': { 'X-Device': 'lite-1.0' }
+      'headers': { 'X-Device': 'lite' }
     })
   }
 }

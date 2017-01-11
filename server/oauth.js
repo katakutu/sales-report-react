@@ -32,16 +32,18 @@ module.exports = {
     const state = randomstring.generate()
 
     req.session.oauthState = state
+    req.session.beforeLogin = req.headers.referer
 
     res.redirect(oauthAuthorizationURI(state) + '&theme=mobile')
   },
   logout: function (req, res, next) {
+    const redir = req.headers.referer || '/'
     req.session.destroy((err) => {
       if (err) {
         console.error('Logout failed', err)
 
         // TODO: Handle this case
-        return res.redirect('/')
+        return res.redirect(redir)
       }
 
       if (req.cookies && req.cookies[GlobalConfig['Cookie']['SessionID']]) {
@@ -54,14 +56,12 @@ module.exports = {
         })
       }
 
-      return res.redirect('/')
+      return res.redirect(redir)
     })
   },
   redirect: function (req, res, next) {
     // already logged in
     if (req.session.oauth) {
-      const sess = req.cookies && req.cookies[GlobalConfig['Cookie']['SessionID']] || 'unknown'
-      console.log(`User already logged in. Session: ${sess}`)
       return res.redirect('/')
     }
 
@@ -76,7 +76,7 @@ module.exports = {
       oauth2.authorizationCode.getToken(options, (error, result) => {
         if (error) {
           // TODO: error message / redirect to special page?
-          console.log('Access Token Error', error.message)
+          console.error('Access Token Error', error.message)
           return res.redirect('/')
         }
 
@@ -98,11 +98,16 @@ module.exports = {
               }
               res.cookie(GlobalConfig['Cookie']['SessionID'], sid, cookieOpt)
 
-              return res.redirect(`${GlobalConfig['Hostname']}/?view=feed_preview`)
+              const redir = req.session.beforeLogin || `${GlobalConfig['Hostname']}/?view=feed_preview`
+              if (req.session.beforeLogin) {
+                req.session.beforeLogin = undefined
+              }
+
+              return res.redirect(redir)
             })
           })
           .catch(error => {
-            console.log(`Get User Info Error: ${error.message}`)
+            console.error(`Get User Info Error: ${error.message}`)
 
             return res.redirect(`${GlobalConfig['Hostname']}/`)
           })

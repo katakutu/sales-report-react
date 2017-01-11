@@ -156,7 +156,6 @@
     right: 11px;
     display: inline;
     padding: 5px 4px;
-    height: auto;
     border-radius: 4px;
     background-color: $color-red;
     color: $color-white-primary;
@@ -171,7 +170,6 @@
 
     .slick-arrow {
         position: absolute;
-        top: 13px;
         z-index: $z-index-3;
         display: block;
         width: 30px;
@@ -179,7 +177,7 @@
 
         &::before {
             position: absolute;
-            top: 0;
+            top: -1px;
             display: block;
             width: 20px;
             height: 40px;
@@ -610,7 +608,6 @@
     background-size:33px 32px;
     vertical-align: middle;
 }
-
 
 /* ================================= MENU DENGAN TOP UP KOTAK ========================== */
 .drawer__user-summary-box {

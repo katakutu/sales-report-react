@@ -70,7 +70,7 @@ class HeaderHome extends Component {
           'profilePicture': userInfo['profilePicture'],
           'deposit': userInfo['deposit'],
           'points': userInfo['points'],
-          'notifications': userInfo['notifications']['data'],
+          'notifications': userInfo['notifications'],
           'shop': userInfo['shop'],
           'wallet': userInfo['wallet']
         })
@@ -122,8 +122,9 @@ class HeaderHome extends Component {
 
   handleScroll (event) {
     if (!this.props.sidebarIsOpened && !this.props.searchModalIsOpen) {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
       this.setState({
-        showSearch: this._shouldShowSearch(event.srcElement.body.scrollTop),
+        showSearch: this._shouldShowSearch(scrollTop),
         showSearchModal: false
       })
     }
