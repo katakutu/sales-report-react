@@ -86,7 +86,7 @@ class HomeView extends Component {
         <PromoSpacer />
         <div id='widget-dmw' className='u-clearfix u-my2' /> { /* Pulsa widget container */ }
         <CategoryList categories={categories} />
-        <Toppicks data={toppicks} />
+        { (toppicks.length > 0 && toppicks[0]['toppicks'].length > 0) && <Toppicks data={toppicks} /> }
         <RecommendationProduct data={hotlists} />
         <OfficialStoreSection data={officialStores} />
         <MoreInfo />
