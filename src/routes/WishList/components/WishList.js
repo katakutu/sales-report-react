@@ -21,7 +21,7 @@ export const WishList = (props) => {
         <input type='text' name='searchwishlist' className='wishlist__searchbar' placeholder='Cari wishlist kamu' />
         <span className='wishlist__count-item'>{wishlistCount} item</span>
       </div>
-      <div className='wishlist-container'>
+      <div className='wishlist-container u-clearfix'>
         { wishlists['items'].map((wishlist, index) => {
           const currentPage = window.location.href
           const mainLink = `${HOSTNAME}/add-to-cart.pl`
@@ -35,16 +35,16 @@ export const WishList = (props) => {
                   <img src={wishlist['image']} className='wishlist__img' alt='tokopedia' />
                   <div className='wishlist__title'>{ wishlist['name'] }</div>
                 </a>
-                <div className='wishlist__price'>{ wishlist['price_formatted'] }</div>
-                <div className='wishlist__rating'>
+                <div className='wishlist__price u-truncate'>{ wishlist['price_formatted'] }</div>
+                <div className='wishlist__rating u-truncate'>
                   <span className='wishlist__rating-star star_3' />
                   <span className='wishlist__count-rating'>(14282989)</span>
                 </div>
-                <div className='wishlist__type-marketing'>
+                <div className='wishlist__type-marketing u-truncate'>
                   <span className='wishlist__cashback'>Cashback 5%</span>
                 </div>
                 <a href={wishlist['shop']['url']}>
-                  <div className='wishlist__shop-name'>{ wishlist['shop']['name'] }</div>
+                  <div className='wishlist__shop-name u-truncate'>{ wishlist['shop']['name'] }</div>
                 </a>
                 <div className='wishlist__shop-loc-badge'>
                   <span className='wishlist__shop-location u-truncate'>
