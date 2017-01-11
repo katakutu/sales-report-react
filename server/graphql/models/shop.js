@@ -6,10 +6,15 @@ const common = require('./common')
 
 function getShop (context) {
   const userID = common.getUserID(context)
-  const api = new TopedShopAPI()
 
   return userID
         .then(uid => {
+          if (uid === 0) {
+            return Promise.resolve(DEFAULT_SHOP_DATA)
+          }
+
+          const api = new TopedShopAPI()
+
           return api.getShop(uid)
         })
         .catch(error => {

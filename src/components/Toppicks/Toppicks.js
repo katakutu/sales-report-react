@@ -36,7 +36,8 @@ class Toppicks extends Component {
 
   renderFirstTopPickItem (toppick, parentIndex) {
     return toppick.map((tp, index) => {
-      const tName = tp['name'].toLowerCase().replace(' ', '-')
+      const n = tp['name'] || ''
+      const tName = n.toLowerCase().replace(' ', '-')
       const key = `${tName}-${parentIndex}-${index}`
 
       return (
@@ -53,7 +54,8 @@ class Toppicks extends Component {
 
   renderTopPickItem (toppickName, toppick, parentIndex) {
     return toppick.map((tp, index) => {
-      const tName = tp['name'].toLowerCase().replace(' ', '-')
+      const n = tp['name'] || ''
+      const tName = n.toLowerCase().replace(' ', '-')
       const key = `${tName}-${parentIndex}-${index}`
 
       return (
@@ -78,7 +80,8 @@ class Toppicks extends Component {
 
   renderTopPickList () {
     return this.props.data.map((data, dataIndex) => {
-      const name = data['name'].toLowerCase().replace(' ', '-')
+      const n = data['name'] || ''
+      const name = n.toLowerCase().replace(' ', '-')
       const key = `${name}-container-${dataIndex}`
 
       const firstToppicks = this._getFirstTopPicks(data)
