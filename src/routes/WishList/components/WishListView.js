@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import WishList from './WishList'
+import SplashScreen from '../../../components/Loading/SplashScreen'
 import LoadMore from '../../../components/LoadMore'
 
-class WishListView extends Component {
-  static propTypes = {
-    data: React.PropTypes.object,
-    lang: React.PropTypes.string
-  }
-
+class WishlistView extends Component {
   render () {
     return (
       <div>
@@ -22,4 +18,4 @@ class WishListView extends Component {
   }
 }
 
-export default WishListView
+export default WishlistView
