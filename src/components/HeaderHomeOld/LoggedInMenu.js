@@ -293,6 +293,9 @@ class LoggedInMenu extends Component {
               <span className='drawer__menu-title u-inline-block'>
                 { lang[this.props.lang]['Balance'] }
               </span>
+              <span id='user-total-toppoints' className='drawer__menu-detail'>
+                { this.props.userData.deposit.deposit_fmt }
+              </span>
             </a>
           </div>
           <input type='text'

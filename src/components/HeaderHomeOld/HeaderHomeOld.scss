@@ -202,7 +202,9 @@
     }
 
     .slick-next {
-        right: 0;
+        @media (max-width: 430px) {
+            right: 0;
+        }
         background: linear-gradient(-90deg, $color-green, rgba(66, 181, 73, 0.05)) !important;
 
         &::before {
