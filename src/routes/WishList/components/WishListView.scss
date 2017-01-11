@@ -1,13 +1,13 @@
 @import 'base';
 
 .wishlist-container {
-    padding: 0 10px 10px;
+    padding: 0 0 10px;
 }
 
 .wishlist__searchbar-holder {
-    background-color: #D8D8D8;
-    margin: 0 -10px;
-    padding: 10px;
+    // background-color: #D8D8D8;
+    // margin: 0 -10px;
+    padding: 10px 10px 0;
     position: relative;
 }
 
@@ -18,7 +18,12 @@
     padding: 10px 15px 10px 30px;
     color: $color-black-disabled;
     height: 42px;
-    border-color: transparent;
+    border: 1px solid $color-grey-2;
+    // border-top: none;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .wishlist__set-love-grey {
@@ -52,12 +57,20 @@
     border-top-right-radius: 3px;
 }
 
+.wishlist__contents:first-child .wishlist__content-box {
+    padding-right: 5px;
+}
+
+.wishlist__contents:last-child .wishlist__content-box {
+    padding-left: 5px;
+}
+
 .wishlist__contents-holder {
     margin: 10px 0;
 }
 
 .wishlist__content-box {
-    padding: 5px;
+    padding: 5px 10px;
     position: relative;
 }
 
@@ -184,7 +197,7 @@
 }
 
 .wishlist__shop-location {
-    max-width: 74px;
+    max-width: 90px;
     font-size: 11px;
     color: $color-black-disabled;
     display: inline-block;
@@ -193,6 +206,7 @@
 .wishlist__badges {
     max-width: 65px;
     float: right;
+    line-height: 23px;
 }
 
 .wishlist__img-badge {
@@ -204,7 +218,7 @@
 }
 
 .wishlist__buy {
-    border-top: 1px solid #EBEBEB;
+    // border-top: 1px solid #EBEBEB;
     padding: 5px 5px 0;
     margin-left: -5px;
     margin-right: -5px;
@@ -291,14 +305,14 @@
 .wishlist__love-full {
     background: url('../assets/love-full.png') transparent no-repeat;
     background-position: center center;
-    background-size: 28px 25px;
+    background-size: 26px 23px;
     cursor: pointer;
 }
 
 .wishlist__love-empty {
     background: url('../assets/love-grey.png') transparent no-repeat;
     background-position: center center;
-    background-size: 28px 25px;
+    background-size: 26px 23px;
     cursor: pointer;
 }
 

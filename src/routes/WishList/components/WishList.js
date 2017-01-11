@@ -28,7 +28,7 @@ export const WishList = () => (
             <a href='#'><div className='wishlist__shop-name'>Barakah Clothing Dept</div></a>
             <div className='wishlist__shop-loc-badge'>
               <span className='wishlist__shop-location u-truncate'>
-                <i className='icon-location' />Tanggerang Yang Sangat Jauh Sekali Disebelahnya Ujung Kulon
+                <i className='icon-location' />Tanggerang
               </span>
               <span className='wishlist__badges'>
                 <img className='wishlist__img-badge' src='http://placehold.it/12x12' />
