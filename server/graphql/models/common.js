@@ -5,7 +5,13 @@ const session = require('./../../session')
 const EMPTY_OBJECT = {}
 
 function getUserID (context) {
-  return getUserData(context).then(ud => ud['user_id'] || 0)
+  return getUserData(context)
+    .then(ud => ud['user_id'] || 0)
+    .catch(err => {
+      console.error(`[GraphQL][Common][GetUserID] Failed to get User ID. Error: ${err}`)
+
+      return 0
+    })
 }
 
 function getUserData (context) {
