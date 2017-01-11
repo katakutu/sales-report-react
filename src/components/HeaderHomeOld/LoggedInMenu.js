@@ -294,13 +294,13 @@ class LoggedInMenu extends Component {
                 { lang[this.props.lang]['Balance'] }
               </span>
               <span id='user-total-toppoints' className='drawer__menu-detail'>
-                { this.props.userData.deposit.deposit_fmt }
+                { this.props.userData.saldo.deposit_fmt }
               </span>
             </a>
           </div>
           <input type='text'
             id='include-deposit'
-            value={`${this.props.userData.deposit.deposit_fmt}`}
+            value={`${this.props.userData.saldo.deposit_fmt}`}
             readOnly
             hidden />
 
