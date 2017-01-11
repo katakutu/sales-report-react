@@ -7,6 +7,7 @@ import queries from '../../../queries'
 import HotList from './HotList'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import SplashScreen from '../../../components/Loading/SplashScreen'
+import LoadMore from '../../../components/LoadMore'
 import './HotListView.scss'
 import lang from '../../../lib/utils/Lang'
 
@@ -58,12 +59,10 @@ class HotListView extends Component {
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='hotlist' />
         <div className='u-clearfix hotlist hotlist--single-page u-mt2'>
           <HotList page={this.state.page} />
-          <div className='hotlist-showall'>
-            <a className='link-green' href='#' onClick={this.viewMore}>
-              { lang[this.props.lang]['View More'] } &rsaquo;
-            </a>
-          </div>
         </div>
+        <LoadMore onClick={this.viewMore}>
+          { lang[this.props.lang]['View More'] }
+        </LoadMore>
       </div>
     )
   }
