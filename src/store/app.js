@@ -186,28 +186,44 @@ const ACTION_HANDLERS = {
     })
   },
   [SIDEBAR_STATUS_OPEN]: (state, action) => {
-    return Object.assign({}, state, { sidebarIsOpen: action.payload })
+    return Object.assign({}, state, {
+      sidebar: Object.assign({}, state.sidebar, { isOpen: action.payload })
+    })
   },
   [SIDEBAR_STATUS_CLOSED]: (state, action) => {
-    return Object.assign({}, state, { sidebarIsOpen: action.payload })
+    return Object.assign({}, state, {
+      sidebar: Object.assign({}, state.sidebar, { isOpen: action.payload })
+    })
   },
   [SIDEBAR_INBOX_OPEN]: (state, action) => {
-    return Object.assign({}, state, { sidebarInboxOpen: action.payload })
+    return Object.assign({}, state, {
+      sidebar: Object.assign({}, state.sidebar, { inboxOpen: action.payload })
+    })
   },
   [SIDEBAR_INBOX_CLOSED]: (state, action) => {
-    return Object.assign({}, state, { sidebarInboxOpen: action.payload })
+    return Object.assign({}, state, {
+      sidebar: Object.assign({}, state.sidebar, { inboxOpen: action.payload })
+    })
   },
   [SIDEBAR_PURCHASE_OPEN]: (state, action) => {
-    return Object.assign({}, state, { sidebarPurchaseOpen: action.payload })
+    return Object.assign({}, state, {
+      sidebar: Object.assign({}, state.sidebar, { purchaseOpen: action.payload })
+    })
   },
   [SIDEBAR_PURCHASE_CLOSED]: (state, action) => {
-    return Object.assign({}, state, { sidebarPurchaseOpen: action.payload })
+    return Object.assign({}, state, {
+      sidebar: Object.assign({}, state.sidebar, { purchaseOpen: action.payload })
+    })
   },
   [SIDEBAR_SALES_OPEN]: (state, action) => {
-    return Object.assign({}, state, { sidebarSalesOpen: action.payload })
+    return Object.assign({}, state, {
+      sidebar: Object.assign({}, state.sidebar, { salesOpen: action.payload })
+    })
   },
   [SIDEBAR_SALES_CLOSED]: (state, action) => {
-    return Object.assign({}, state, { sidebarSalesOpen: action.payload })
+    return Object.assign({}, state, {
+      sidebar: Object.assign({}, state.sidebar, { salesOpen: action.payload })
+    })
   },
   [SEARCH_MODAL_OPEN]: (state, action) => {
     return Object.assign({}, state, { searchModalIsOpen: action.payload })
@@ -242,10 +258,12 @@ import Cookies from '../lib/utils/Cookies'
 const initialState = {
   searchQuery: '',
   searchModalIsOpen: false,
-  sidebarIsOpen: false,
-  sidebarInboxOpen: false,
-  sidebarPurchaseOpen: false,
-  sidebarSalesOpen: false,
+  sidebar: {
+    isOpen: false,
+    inboxOpen: false,
+    purchaseOpen: false,
+    salesOpen: false
+  },
   isOnline: true,
   isLoading: false,
   notifications: [],
