@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import 'whatwg-fetch'
 import { HOSTNAME, SITES } from '../../constants'
+import lang from '../../lib/utils/Lang'
 import GTM from '../../lib/utils/GTM'
 
 class SearchModalResult extends Component {
   static propTypes = {
     data: React.PropTypes.object,
+    lang: React.PropTypes.string,
     userSearchID: React.PropTypes.string,
     query: React.PropTypes.string
   }
@@ -192,7 +195,7 @@ class SearchModalResult extends Component {
             {
               finalTitle === 'History' &&
                 <a onClick={this._deleteAllHistory} className='search-modal__clear-history'>
-                  Hapus Semua
+                  { lang[this.props.lang]['Hapus Semua'] }
                 </a>
             }
             <ul className='u-list-reset u-p0 u-m0'>
@@ -242,10 +245,16 @@ query Query($query: String!, $userSearchID: String!) {
 }
 `
 
+const mapStateToProps = (state) => {
+  return {
+    lang: state['app'] ? state['app'].lang : state.lang
+  }
+}
+
 export default graphql(SearchQuery, {
   options: ({ query, userSearchID }) => ({
     variables: { query, userSearchID },
     returnPartialData: true
   })
-})(SearchModalResult)
+})(connect(mapStateToProps, undefined)(SearchModalResult))
 

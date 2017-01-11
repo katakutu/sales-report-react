@@ -6,7 +6,7 @@ const MOJITO_SERVICES = {
   Ticker: `${GlobalConfig.Mojito.Hostname}/api/v1/tickers`,
   Slides: `${GlobalConfig.Mojito.Hostname}/api/v1/slides`,
   Category: `${GlobalConfig.Mojito.Hostname}/api/v1/layout/category`,
-  OfficialStores: `${GlobalConfig.Mojito.Hostname}/os/api/v1/brands/list?device=lite`
+  OfficialStores: `${GlobalConfig.Mojito.OfficialStoreHostname}/os/api/v1/brands/list?device=lite`
 }
 
 /**
