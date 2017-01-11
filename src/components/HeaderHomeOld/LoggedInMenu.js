@@ -28,9 +28,7 @@ class LoggedInMenu extends Component {
     updateSidebarInboxStatus: React.PropTypes.func,
     updateSidebarPurcahseStatus: React.PropTypes.func,
     updateSidebarSalesStatus: React.PropTypes.func,
-    sidebarInboxOpen: React.PropTypes.bool,
-    sidebarPurchaseOpen: React.PropTypes.bool,
-    sidebarSalesOpen: React.PropTypes.bool,
+    sidebar: React.PropTypes.object,
     shop: React.PropTypes.object,
     lang: React.PropTypes.string
   }
@@ -93,9 +91,9 @@ class LoggedInMenu extends Component {
     // setTimeout is for workaround of previous workaround
     setTimeout(() => {
       this.setState({
-        inboxIsOpen: this.props.sidebarInboxOpen,
-        purchaseIsOpen: this.props.sidebarPurchaseOpen,
-        salesIsOpen: this.props.sidebarSalesOpen
+        inboxIsOpen: this.props.sidebar.inboxOpen,
+        purchaseIsOpen: this.props.sidebar.purchaseOpen,
+        salesIsOpen: this.props.sidebar.salesOpen
       })
     }, 1100)
   }
@@ -470,9 +468,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
-    sidebarInboxOpen: state['app'] ? state['app'].sidebarInboxOpen : state.sidebarInboxOpen,
-    sidebarPurchaseOpen: state['app'] ? state['app'].sidebarPurchaseOpen : state.sidebarPurchaseOpen,
-    sidebarSalesOpen: state['app'] ? state['app'].sidebarSalesOpen : state.sidebarSalesOpen
+    sidebar: state['app'] ? state['app'].sidebar : state.sidebar
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LoggedInMenu)

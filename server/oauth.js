@@ -60,11 +60,6 @@ module.exports = {
     })
   },
   redirect: function (req, res, next) {
-    // already logged in
-    if (req.session.oauth) {
-      return res.redirect('/')
-    }
-
     const code = req.query.code
     const options = { code }
 

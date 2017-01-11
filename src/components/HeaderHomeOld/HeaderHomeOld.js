@@ -35,7 +35,7 @@ class HeaderHome extends Component {
     userInfo: React.PropTypes.object,
     userIsLoggedIn: React.PropTypes.bool,
     searchModalIsOpen: React.PropTypes.bool,
-    sidebarIsOpened: React.PropTypes.bool,
+    sidebar: React.PropTypes.object,
     tabIsAvailable: React.PropTypes.bool,
     lang: React.PropTypes.string
   }
@@ -121,7 +121,7 @@ class HeaderHome extends Component {
   }
 
   handleScroll (event) {
-    if (!this.props.sidebarIsOpened && !this.props.searchModalIsOpen) {
+    if (!this.props.sidebar.isOpen && !this.props.searchModalIsOpen) {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
       this.setState({
         showSearch: this._shouldShowSearch(scrollTop),
@@ -146,12 +146,12 @@ class HeaderHome extends Component {
 
   renderSidebar () {
     let result = null
-    if (this.props.sidebarIsOpened && this.props.userIsLoggedIn) {
+    if (this.props.sidebar.isOpen && this.props.userIsLoggedIn) {
       result = <LoggedInMenu
         notifs={this.props.userData.notifications}
         userData={this.props.userData}
         shop={this.props.userData.shop} />
-    } else if (this.props.sidebarIsOpened && !this.props.userIsLoggedIn) {
+    } else if (this.props.sidebar.isOpen && !this.props.userIsLoggedIn) {
       result = <LoggedOutMenu />
     }
 
@@ -160,7 +160,7 @@ class HeaderHome extends Component {
 
   renderOverlay () {
     let result = null
-    if (this.props.sidebarIsOpened) {
+    if (this.props.sidebar.isOpen) {
       result = <OverlaySplash />
     }
 
@@ -253,7 +253,7 @@ class HeaderHome extends Component {
           { this.renderOverlay() }
         </ReactCSSTransitionGroup>
 
-        { this.props.sidebarIsOpened && <BodyClassName className='u-body-overflow-no-scroll' /> }
+        { this.props.sidebar.isOpen && <BodyClassName className='u-body-overflow-no-scroll' /> }
         { this.props.tabIsAvailable && <BodyClassName className='is-tab-available' /> }
       </div>
     )
@@ -269,7 +269,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => {
   return {
     searchModalIsOpen: state['app'] ? state['app'].searchModalIsOpen : state.searchModalIsOpen,
-    sidebarIsOpened: state['app'] ? state['app'].sidebarIsOpen : state.sidebarIsOpen,
+    sidebar: state['app'] ? state['app'].sidebar : state.sidebar,
     userData: state['app'] ? state['app'].user.data : state.user.data,
     userIsLoggedIn: state['app'] ? state['app'].user.loggedIn : state.user.loggedIn,
     lang: state['app'] ? state['app'].lang : state.lang

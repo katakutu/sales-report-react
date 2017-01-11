@@ -6,10 +6,15 @@ const common = require('./common')
 
 function getPoints (context) {
   const userID = common.getUserID(context)
-  const api = new TopedPointsAPI()
 
   return userID
         .then(uid => {
+          if (uid === 0) {
+            return Promise.resolve(DEFAULT_POINTS_DATA)
+          }
+
+          const api = new TopedPointsAPI()
+
           return api.getPoints(uid)
         })
         .catch(error => {
