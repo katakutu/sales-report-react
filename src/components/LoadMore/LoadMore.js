@@ -1,12 +1,28 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './LoadMore.scss'
 
-export const LoadMore = () => (
-  <div className='u-clearfix loadmore-container'>
-    <div className='loadmore__box'>
-      <a href='#' className='loadmore__link'>Load More</a>
-    </div>
-  </div>
-)
+class LoadMore extends Component {
+  static propTypes = {
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
+    onClick: React.PropTypes.func
+  }
+
+  static defaultProps = {
+    className: ''
+  }
+
+  render () {
+    return (
+      <div className={'u-clearfix loadmore-container ' + this.props.className}>
+        <div className='loadmore__box'>
+          <button className='loadmore__link' onClick={this.props.onClick}>
+            {this.props.children}
+          </button>
+        </div>
+      </div>
+    )
+  }
+}
 
 export default LoadMore
