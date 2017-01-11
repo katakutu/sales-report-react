@@ -4,12 +4,19 @@ import WishList from './WishList'
 import LoadMore from '../../../components/LoadMore'
 
 class WishListView extends Component {
+  static propTypes = {
+    data: React.PropTypes.object,
+    lang: React.PropTypes.string
+  }
+
   render () {
     return (
       <div>
         <HeaderHomeOld />
         <WishList />
-        <LoadMore />
+        <LoadMore>
+          Lihat Selebihnya
+        </LoadMore>
       </div>
     )
   }

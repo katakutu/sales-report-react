@@ -3,16 +3,16 @@ import './WishListView.scss'
 
 export const WishList = () => (
   <div className='u-clearfix'>
+    <div className='wishlist__searchbar-holder'>
+      <i className='wishlist__icon wishlist__love-grey wishlist__set-love-grey' />
+      <input type='text' name='searchwishlist' className='wishlist__searchbar' placeholder='Cari wishlist kamu' />
+      <span className='wishlist__count-item'>10 item</span>
+    </div>
     <div className='wishlist-container'>
-      <div className='wishlist__searchbar-holder'>
-        <i className='wishlist__icon wishlist__love-grey wishlist__set-love-grey' />
-        <input type='text' name='searchwishlist' className='wishlist__searchbar' placeholder='Cari wishlist kamu' />
-        <span className='wishlist__count-item'>10 item</span>
-      </div>
       <div className='wishlist__contents-holder u-clearfix'>
         <div className='u-col u-col-6'>
           <div className='wishlist__content-box'>
-            <div className='wishlist__button-wish'><i className='wishlist__icon wishlist__love-full' /></div>
+            <button className='wishlist__button-wish'><i className='wishlist__icon wishlist__love-full' /></button>
             <img src='http://placehold.it/720x720' className='wishlist__img' alt='tokopedia' />
             <div className='wishlist__title'>Kaos Cantwo The Travelers - Hijau Merah Muda Jambu</div>
             <div className='wishlist__price'>Rp. 60.000</div>
@@ -39,7 +39,7 @@ export const WishList = () => (
         </div>
         <div className='u-col u-col-6'>
           <div className='wishlist__content-box'>
-            <div className='wishlist__button-wish'><i className='wishlist__icon wishlist__love-empty' /></div>
+            <button className='wishlist__button-wish'><i className='wishlist__icon wishlist__love-empty' /></button>
             <img src='http://placehold.it/720x720' className='wishlist__img' alt='tokopedia' />
             <div className='wishlist__title'>Kaos Cantwo The Travelers - Hijau</div>
             <div className='wishlist__price'>Rp. 60.000</div>
@@ -68,7 +68,7 @@ export const WishList = () => (
       <div className='wishlist__contents-holder u-clearfix'>
         <div className='u-col u-col-6'>
           <div className='wishlist__content-box'>
-            <div className='wishlist__button-wish'><i className='wishlist__icon wishlist__love-empty' /></div>
+            <button className='wishlist__button-wish'><i className='wishlist__icon wishlist__love-empty' /></button>
             <img src='http://placehold.it/720x720' className='wishlist__img' alt='tokopedia' />
             <div className='wishlist__title'>Kaos Cantwo The Travelers - Hijau</div>
             <div className='wishlist__price'>Rp. 60.000</div>
@@ -95,7 +95,7 @@ export const WishList = () => (
         </div>
         <div className='u-col u-col-6'>
           <div className='wishlist__content-box'>
-            <div className='wishlist__button-wish'><i className='wishlist__icon wishlist__love-full' /></div>
+            <button className='wishlist__button-wish'><i className='wishlist__icon wishlist__love-full' /></button>
             <img src='http://placehold.it/720x720' className='wishlist__img' alt='tokopedia' />
             <div className='wishlist__title'>Kaos Cantwo The Travelers - Hijau</div>
             <div className='wishlist__price'>Rp. 60.000</div>
