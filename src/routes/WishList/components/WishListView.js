@@ -5,10 +5,21 @@ import SplashScreen from '../../../components/Loading/SplashScreen'
 import LoadMore from '../../../components/LoadMore'
 
 class WishlistView extends Component {
+  static propTypes = {
+    data: React.PropTypes.object,
+    lang: React.PropTypes.string
+  }
+
   render () {
+    if (this.props.data.loading) {
+      return (
+        <SplashScreen />
+      )
+    }
+
     return (
       <div>
-        <HeaderHomeOld />
+        <HeaderHomeOld tabIsAvailable activeTab='wishlist' />
         <WishList />
         <LoadMore>
           Lihat Selebihnya

@@ -5,16 +5,14 @@
 }
 
 .loadmore__box {
+    border: 1px solid $color-grey-3;
     border-radius: 3px;
 }
 
 .loadmore__link {
     display: block;
-    padding: 15px 0;
+    padding: 18px 0;
     width: 100%;
-    border: 1px solid $color-grey-3;
-    border-radius: 3px;
-    background: transparent;
     color: $color-black-disabled;
     text-align: center;
     font-weight: 600;

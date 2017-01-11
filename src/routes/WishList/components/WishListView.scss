@@ -18,7 +18,7 @@
     padding: 10px 15px 10px 30px;
     width: 100%;
     height: 42px;
-    border: 1px solid #EBEBEB;
+    border-color: transparent;
     border-radius: 3px;
     color: $color-black-disabled;
     font-size: 12px;
@@ -26,8 +26,8 @@
 
 .wishlist__set-love-grey {
     position: absolute;
-    top: 18px;
-    left: 20px;
+    top: 13px;
+    left: 15px;
 }
 
 .wishlist__count-item {
@@ -39,6 +39,22 @@
     font-size: 12px;
 }
 
+.wishlist__contents {
+    background-color: $color-white-primary;
+}
+
+.wishlist__contents:first-child {
+    border-right: 1px solid #EBEBEB;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.wishlist__contents:last-child {
+    border-left: 1px solid $color-white-primary;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
 .wishlist__contents-holder {
     margin: 10px 0;
 }
@@ -46,11 +62,6 @@
 .wishlist__content-box {
     position: relative;
     padding: 5px;
-    background-color: $color-white-primary;
-}
-
-.wishlist__content-box:first-child {
-    border-right: 1px solid #EBEBEB;
 }
 
 .wishlist__img {
@@ -72,9 +83,45 @@
 }
 
 @-moz-document url-prefix() {
+    .wishlist-container {
+        margin: auto;
+        max-width: 430px;
+    }
+
     .wishlist__title {
         position: relative;
         overflow: hidden;
+        max-height: 39px;
+        height: 39px;
+    }
+
+    .wishlist__title::before {
+        position: absolute;
+        right: 0;
+        bottom: 2px;
+        float: right;
+        margin-left: -3rem;
+        width: 3rem;
+        background-color: $color-white-primary;
+        content: '\2026';
+    }
+
+    .wishlist__title::after {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 50px;
+        background-color: $color-white-primary;
+        content: '';
+    }
+}
+
+@media screen\0 {
+    .wishlist__title {
+        position: relative;
+        overflow: hidden;
+        max-height: 38px;
+        height: 38px;
     }
 
     .wishlist__title::before {
@@ -115,10 +162,21 @@
 }
 
 .wishlist__cashback {
-    padding: 3px 5px;
+    display: inline-block;
+    margin-right: 3px;
+    padding: 3px;
     border-radius: 3px;
     background-color: $color-green;
     color: $color-white-primary;
+    font-size: 10px;
+}
+
+.wishlist__grosir-or-po {
+    margin-right: 3px;
+    padding: 1px 3px;
+    border: 1px solid #EBEBEB;
+    border-radius: 3px;
+    color: $color-black-disabled;
     font-size: 10px;
 }
 
@@ -157,7 +215,7 @@
 
 .wishlist__button-buy {
     display: block;
-    padding: 18px 0;
+    padding: 13px 0;
     border-radius: 3px;
     background-color: $color-orange;
     color: $color-white-primary;
@@ -171,7 +229,7 @@
     right: 0;
     padding: 3px 2px 0;
     border: 0;
-    border-radius: 99999px;
+    border-radius: 50%;
     background: $color-white-primary;
 }
 
@@ -219,9 +277,10 @@
 
 .wishlist__icon {
     display: inline-block;
-    width: 22px;
-    height: 23px;
+    width: 34px;
+    height: 35px;
     vertical-align: middle;
+    cursor: pointer;
 }
 
 .icon-location {
@@ -236,13 +295,15 @@
 .wishlist__love-full {
     background: url('../assets/love-full.png') transparent no-repeat;
     background-position: center center;
-    background-size: 17px 14px;
+    background-size: 28px 25px;
+    cursor: pointer;
 }
 
 .wishlist__love-empty {
-    background: url('../assets/love-empty.png') transparent no-repeat;
+    background: url('../assets/love-grey.png') transparent no-repeat;
     background-position: center center;
-    background-size: 17px 14px;
+    background-size: 28px 25px;
+    cursor: pointer;
 }
 
 .wishlist__love-grey {
