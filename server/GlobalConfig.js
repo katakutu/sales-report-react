@@ -30,6 +30,7 @@ const PRODUCTION = {
   },
   Mojito: {
     Hostname: 'http://mojito.tokopedia.local',
+    OfficialStoreHostname: 'http://mojito-os.tokopedia.local',
     SecretKey: 'mojito_api_v1'
   },
   Notification: {
@@ -86,6 +87,7 @@ const BETA = {
   },
   Mojito: {
     Hostname: 'https://mojito.tokopedia.com',
+    OfficialStoreHostname: 'https://mojito.tokopedia.com',
     SecretKey: 'mojito_api_v1'
   },
   Notification: {
@@ -142,6 +144,7 @@ const TEST = {
   },
   Mojito: {
     Hostname: 'https://mojito-staging.tokopedia.com',
+    OfficialStoreHostname: 'https://mojito-staging.tokopedia.com',
     SecretKey: 'mojito_api_v1'
   },
   Notification: {
@@ -197,6 +200,7 @@ const DEVELOPMENT = {
   },
   Mojito: {
     Hostname: 'https://mojito-staging.tokopedia.com',
+    OfficialStoreHostname: 'https://mojito-staging.tokopedia.com',
     SecretKey: 'mojito_api_v1'
   },
   Notification: {
