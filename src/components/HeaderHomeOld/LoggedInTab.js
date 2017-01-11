@@ -42,14 +42,18 @@ class LoggedInTab extends Component {
         const paddingRight = 29
         let offset = 0
         let offsetIndex = 0
-        while (viewportWidth - offset > paddingRight) {
+        const lastElWidth = tabWidths[tabWidths.length - 1]
+        while (viewportWidth - offset > lastElWidth) {
           offset = offset + tabWidths[offsetIndex]
           offsetIndex = offsetIndex + 1
         }
 
         // calculate the actual translation needed
-        const maxTranslateX = viewportWidth - offset
-        slideTrackEl.style.transform = `translate3d(${maxTranslateX}px, 0px, 0px)`
+        const translateX = viewportWidth - offset 
+        //const maxTranslateX = (translateX > lastElWidth) ? -1 * (lastElWidth + paddingRight) : translateX
+        const remainingArr = tabWidths.slice(offsetIndex + 1)
+        const maxTranslateX = remainingArr.length > 0 ? (remainingArr.reduce((a, b) => a + b) + paddingRight) : translateX + paddingRight
+        slideTrackEl.style.transform = `translate3d(-${maxTranslateX}px, 0px, 0px)`
 
         el.slickGoTo(2)
       }
@@ -73,6 +77,7 @@ class LoggedInTab extends Component {
 
     const homeCN = this.props.activeTab === 'home' ? 'tab-item active' : 'tab-item'
     const hlCN = this.props.activeTab === 'hotlist' ? 'tab-item active' : 'tab-item'
+    const wlCN = this.props.activeTab === 'wishlist' ? 'tab-item active' : 'tab-item'
 
     return (
       <div id='loggedin-tab'>
@@ -99,9 +104,9 @@ class LoggedInTab extends Component {
             </Link>
             </label>
           </div>
-          <div className='tab-item'>
+          <div className={wlCN}>
             <label className='tab-link'>
-              <a href={`${HOSTNAME}/?view=wishlist_preview`} onClick={loadingFunc}>Wishlist</a>
+              <Link to='/wishlist'>Wishlist</Link>
             </label>
           </div>
         </TabSlider>
