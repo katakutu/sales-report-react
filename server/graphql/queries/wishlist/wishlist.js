@@ -1,14 +1,11 @@
-const {
-    GraphQLInt,
-    GraphQLString
-} = require('graphql')
+const { GraphQLInt } = require('graphql')
 const { WishlistsType } = require('../../types/wishlist')
 const getUserWishlist = require('../../models/wishlist')
 
 const userWishlistQuery = {
   type: WishlistsType,
   args: {
-    user_id: { type: GraphQLString },
+    user_id: { type: GraphQLInt },
     page: { type: GraphQLInt },
     count: { type: GraphQLInt }
   },

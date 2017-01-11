@@ -147,7 +147,7 @@ query Query {
   }
 }
 `
-const HotlistQuery = gql`
+const UserDataQuery = gql`
 query Query {
   user{
     id
@@ -235,7 +235,7 @@ const ApolloExecutors = (client) => {
 
 export default {
   HomeQuery: HomeQuery,
-  HotlistQuery: HotlistQuery,
+  UserDataQuery: UserDataQuery,
   UserIsLoggedIn: UserIsLoggedIn,
   ApolloExecutors: ApolloExecutors
 }

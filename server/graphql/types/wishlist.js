@@ -25,8 +25,7 @@ const WishlistType = new GraphQLObjectType({
     condition: { type: new GraphQLNonNull(GraphQLString) },
     shop: { type: new GraphQLNonNull(WishlistShopType) },
     available: { type: new GraphQLNonNull(GraphQLBoolean) },
-    status: { type: new GraphQLNonNull(GraphQLString) },
-    score: { type: new GraphQLNonNull(GraphQLInt) }
+    status: { type: new GraphQLNonNull(GraphQLString) }
   }
 })
 
