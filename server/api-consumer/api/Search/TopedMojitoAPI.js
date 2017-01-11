@@ -6,7 +6,8 @@ const MOJITO_SERVICES = {
   Ticker: `${GlobalConfig.Mojito.Hostname}/api/v1/tickers`,
   Slides: `${GlobalConfig.Mojito.Hostname}/api/v1/slides`,
   Category: `${GlobalConfig.Mojito.Hostname}/api/v1/layout/category`,
-  OfficialStores: `${GlobalConfig.Mojito.OfficialStoreHostname}/os/api/v1/brands/list?device=lite`
+  OfficialStores: `${GlobalConfig.Mojito.OfficialStoreHostname}/os/api/v1/brands/list?device=lite`,
+  WishlistProductList: `${GlobalConfig.Mojito.Hostname}/v1/users/:user_id/wishlist/products?count=:count&page=:page`
 }
 
 /**
@@ -85,6 +86,15 @@ class TopedMojitoAPI {
     let url = URL.parse(MOJITO_SERVICES.OfficialStores)
 
     return this.api.consume(url, 'GET', {})
+  }
+
+  getWishlistProducts (userID, count = 10, page = 1) {
+    const endpoint = MOJITO_SERVICES.WishlistProductList
+                                    .replace(':user_id', userID)
+                                    .replace(':count', count)
+                                    .replace(':page', page)
+
+    return this.api.consume(URL.parse(endpoint), 'GET', {})
   }
 }
 

@@ -3,20 +3,20 @@ import CoreLayout from '../layouts/CoreLayout/CoreLayout'
 import Home from './Home'
 import HotListRoute from './HotList'
 import CategoryRoute from './Category'
-import WishListRoute from './WishList'
+import WishlistRoute from './Wishlist'
 import NotFound from './NotFound'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
 
-export const createRoutes = (store) => ({
-  path        : '/',
-  component   : CoreLayout,
-  indexRoute  : Home,
-  childRoutes : [
+export const createRoutes = (store, ApolloExecutors) => ({
+  path: '/',
+  component: CoreLayout,
+  indexRoute: Home,
+  childRoutes: [
     HotListRoute(store),
     CategoryRoute(store),
-    WishListRoute(store),
+    WishlistRoute(store, ApolloExecutors),
     {
       path: '*',
       component: NotFound

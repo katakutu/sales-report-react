@@ -1,5 +1,13 @@
 import gql from 'graphql-tag'
 
+const UserIsLoggedIn = gql`
+query Query {
+  user {
+    isLoggedIn
+  }
+}
+`
+
 const HomeQuery = gql`
 query Query {
   user{
@@ -213,7 +221,21 @@ query Query {
 }
 `
 
+const ApolloExecutors = (client) => {
+  return {
+    isUserLoggedIn: () => {
+      return client.query({
+        forceFetch: true,
+        query: UserIsLoggedIn
+      })
+      .then(result => !result['loading'] && result['data']['user']['isLoggedIn'])
+    }
+  }
+}
+
 export default {
   HomeQuery: HomeQuery,
-  HotlistQuery: HotlistQuery
+  HotlistQuery: HotlistQuery,
+  UserIsLoggedIn: UserIsLoggedIn,
+  ApolloExecutors: ApolloExecutors
 }
