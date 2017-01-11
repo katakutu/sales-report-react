@@ -10,18 +10,20 @@ export const WishList = () => (
         <span className='wishlist__count-item'>10 item</span>
       </div>
       <div className='wishlist__contents-holder u-clearfix'>
-        <div className='u-col u-col-6'>
+        <div className='u-col u-col-6 wishlist__contents'>
           <div className='wishlist__content-box'>
             <div className='wishlist__button-wish'><i className='wishlist__icon wishlist__love-full' /></div>
-            <img src='http://placehold.it/720x720' className='wishlist__img' alt='tokopedia' />
-            <div className='wishlist__title'>Kaos Cantwo The Travelers - Hijau Merah Muda Jambu</div>
+            <a href='#'>
+              <img src='http://placehold.it/720x720' className='wishlist__img' alt='tokopedia' />
+              <div className='wishlist__title'>Kaos Cantwo The Travelers - Hijau Merah Muda Jambu</div>
+            </a>
             <div className='wishlist__price'>Rp. 60.000</div>
             <div className='wishlist__rating'>
               <span className='wishlist__rating-star star_3' />
               <span className='wishlist__count-rating'>(14282989)</span>
             </div>
             <span className='wishlist__cashback'>Cashback 5%</span>
-            <div className='wishlist__shop-name'>Barakah Clothing Dept</div>
+            <a href='#'><div className='wishlist__shop-name'>Barakah Clothing Dept</div></a>
             <div className='wishlist__shop-loc-badge'>
               <span className='wishlist__shop-location u-truncate'>
                 <i className='icon-location' />Tanggerang Yang Sangat Jauh Sekali Disebelahnya Ujung Kulon
@@ -37,18 +39,20 @@ export const WishList = () => (
             </div>
           </div>
         </div>
-        <div className='u-col u-col-6'>
+        <div className='u-col u-col-6 wishlist__contents'>
           <div className='wishlist__content-box'>
             <div className='wishlist__button-wish'><i className='wishlist__icon wishlist__love-empty' /></div>
-            <img src='http://placehold.it/720x720' className='wishlist__img' alt='tokopedia' />
-            <div className='wishlist__title'>Kaos Cantwo The Travelers - Hijau</div>
+            <a href='#'>
+              <img src='http://placehold.it/720x720' className='wishlist__img' alt='tokopedia' />
+              <div className='wishlist__title'>Kaos Cantwo The Travelers - Hijau</div>
+            </a>
             <div className='wishlist__price'>Rp. 60.000</div>
             <div className='wishlist__rating'>
               <span className='wishlist__rating-star star_4' />
               <span className='wishlist__count-rating'>(14282989)</span>
             </div>
             <span className='wishlist__cashback'>Cashback 5%</span>
-            <div className='wishlist__shop-name'>Barakah Clothing Dept</div>
+            <a href='#'><div className='wishlist__shop-name'>Barakah Clothing Dept</div></a>
             <div className='wishlist__shop-loc-badge'>
               <span className='wishlist__shop-location u-truncate'>
                 <i className='icon-location' />Tanggerang Yang Sangat Jauh Sekali Disebelahnya Ujung Kulon
@@ -66,18 +70,20 @@ export const WishList = () => (
         </div>
       </div>
       <div className='wishlist__contents-holder u-clearfix'>
-        <div className='u-col u-col-6'>
+        <div className='u-col u-col-6 wishlist__contents'>
           <div className='wishlist__content-box'>
             <div className='wishlist__button-wish'><i className='wishlist__icon wishlist__love-empty' /></div>
-            <img src='http://placehold.it/720x720' className='wishlist__img' alt='tokopedia' />
-            <div className='wishlist__title'>Kaos Cantwo The Travelers - Hijau</div>
+            <a href='#'>
+              <img src='http://placehold.it/720x720' className='wishlist__img' alt='tokopedia' />
+              <div className='wishlist__title'>Kaos Cantwo The Travelers - Hijau</div>
+            </a>
             <div className='wishlist__price'>Rp. 60.000</div>
             <div className='wishlist__rating'>
-              <span className='wishlist__rating-star star_5' />
+              <span className='wishlist__rating-star star_3' />
               <span className='wishlist__count-rating'>(14282989)</span>
             </div>
             <span className='wishlist__cashback'>Cashback 5%</span>
-            <div className='wishlist__shop-name'>Barakah Clothing Dept</div>
+            <a href='#'><div className='wishlist__shop-name'>Barakah Clothing Dept</div></a>
             <div className='wishlist__shop-loc-badge'>
               <span className='wishlist__shop-location u-truncate'>
                 <i className='icon-location' />Tanggerang Yang Sangat Jauh Sekali Disebelahnya Ujung Kulon
@@ -93,18 +99,20 @@ export const WishList = () => (
             </div>
           </div>
         </div>
-        <div className='u-col u-col-6'>
+        <div className='u-col u-col-6 wishlist__contents'>
           <div className='wishlist__content-box'>
             <div className='wishlist__button-wish'><i className='wishlist__icon wishlist__love-full' /></div>
-            <img src='http://placehold.it/720x720' className='wishlist__img' alt='tokopedia' />
-            <div className='wishlist__title'>Kaos Cantwo The Travelers - Hijau</div>
+            <a href='#'>
+              <img src='http://placehold.it/720x720' className='wishlist__img' alt='tokopedia' />
+              <div className='wishlist__title'>Kaos Cantwo The Travelers - Hijau</div>
+            </a>
             <div className='wishlist__price'>Rp. 60.000</div>
             <div className='wishlist__rating'>
-              <span className='wishlist__rating-star star_2' />
+              <span className='wishlist__rating-star star_4' />
               <span className='wishlist__count-rating'>(14282989)</span>
             </div>
             <span className='wishlist__cashback'>Cashback 5%</span>
-            <div className='wishlist__shop-name'>Barakah Clothing Dept</div>
+            <a href='#'><div className='wishlist__shop-name'>Barakah Clothing Dept</div></a>
             <div className='wishlist__shop-loc-badge'>
               <span className='wishlist__shop-location u-truncate'>
                 <i className='icon-location' />Tanggerang Yang Sangat Jauh Sekali Disebelahnya Ujung Kulon

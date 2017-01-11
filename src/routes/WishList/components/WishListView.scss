@@ -13,18 +13,18 @@
 
 .wishlist__searchbar {
     width: 100%;
-    border: 1px solid #EBEBEB;
     border-radius: 3px;
     font-size: 12px;
     padding: 10px 15px 10px 30px;
     color: $color-black-disabled;
     height: 42px;
+    border-color: transparent;
 }
 
 .wishlist__set-love-grey {
     position: absolute;
-    top: 18px;
-    left: 16px;
+    top: 13px;
+    left: 11px;
 }
 
 .wishlist__count-item {
@@ -36,18 +36,29 @@
     font-weight: 600;
 }
 
-.wishlist__contents-holder {
+.wishlist__contents {
     background-color: $color-white-primary;
+}
+
+.wishlist__contents:first-child {
+    border-right: 1px solid #EBEBEB;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.wishlist__contents:last-child {
+    border-left: 1px solid $color-white-primary;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.wishlist__contents-holder {
     margin: 10px 0;
 }
 
 .wishlist__content-box {
     padding: 5px;
     position: relative;
-}
-
-.wishlist__content-box:first-child {
-    border-right: 1px solid #EBEBEB;
 }
 
 .wishlist__img {
@@ -69,9 +80,45 @@
 }
 
 @-moz-document url-prefix() {
+    .wishlist-container {
+        max-width: 430px;
+        margin: auto;
+    }
+
     .wishlist__title {
         overflow: hidden;
         position: relative;
+        height: 39px;
+        max-height: 39px;
+    }
+
+    .wishlist__title::before {
+        background-color: $color-white-primary;
+        bottom: 2px;
+        position: absolute;
+        right: 0;
+        float: right;
+        content: '\2026';
+        margin-left: -3rem;
+        width: 3rem;
+    }
+
+    .wishlist__title::after {
+        content: '';
+        background-color: $color-white-primary;
+        position: absolute;
+        height: 50px;
+        width: 100%;
+        z-index: 1;
+    }
+}
+
+@media screen\0 {
+    .wishlist__title {
+        overflow: hidden;
+        position: relative;
+        height: 38px;
+        max-height: 38px;
     }
 
     .wishlist__title::before {
@@ -117,6 +164,7 @@
     padding: 3px 5px;
     font-size: 10px;
     border-radius: 3px;
+    display: inline-block;
 }
 
 .wishlist__shop-name {
@@ -156,7 +204,7 @@
     color: $color-white-primary;
     font-weight: 600;
     background-color: $color-orange;
-    padding: 18px 0;
+    padding: 13px 0;
     display: block;
     text-align: center;
     border-radius: 3px;
@@ -214,10 +262,11 @@
 }
 
 .wishlist__icon {
-    width: 22px;
-    height: 23px;
+    width: 34px;
+    height: 35px;
     display: inline-block;
     vertical-align: middle;
+    cursor: pointer;
 }
 
 .icon-location {
@@ -232,13 +281,15 @@
 .wishlist__love-full {
     background: url('../assets/love-full.png') transparent no-repeat;
     background-position: center center;
-    background-size: 17px 14px;
+    background-size: 28px 25px;
+    cursor: pointer;
 }
 
 .wishlist__love-empty {
-    background: url('../assets/love-empty.png') transparent no-repeat;
+    background: url('../assets/love-grey.png') transparent no-repeat;
     background-position: center center;
-    background-size: 17px 14px;
+    background-size: 28px 25px;
+    cursor: pointer;
 }
 
 .wishlist__love-grey {
