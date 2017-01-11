@@ -161,10 +161,20 @@
 .wishlist__cashback {
     background-color: $color-green;
     color: $color-white-primary;
-    padding: 3px 5px;
+    padding: 3px;
     font-size: 10px;
     border-radius: 3px;
     display: inline-block;
+    margin-right: 3px;
+}
+
+.wishlist__grosir-or-po {
+    font-size: 10px;
+    padding: 1px 3px;
+    border-radius: 3px;
+    color: $color-black-disabled;
+    border: 1px solid #EBEBEB;
+    margin-right: 3px;
 }
 
 .wishlist__shop-name {

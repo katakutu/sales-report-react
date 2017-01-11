@@ -22,7 +22,9 @@ export const WishList = () => (
               <span className='wishlist__rating-star star_3' />
               <span className='wishlist__count-rating'>(14282989)</span>
             </div>
-            <span className='wishlist__cashback'>Cashback 5%</span>
+            <div className='wishlist__type-marketing'>
+              <span className='wishlist__cashback'>Cashback 5%</span>
+            </div>
             <a href='#'><div className='wishlist__shop-name'>Barakah Clothing Dept</div></a>
             <div className='wishlist__shop-loc-badge'>
               <span className='wishlist__shop-location u-truncate'>
@@ -51,7 +53,11 @@ export const WishList = () => (
               <span className='wishlist__rating-star star_4' />
               <span className='wishlist__count-rating'>(14282989)</span>
             </div>
-            <span className='wishlist__cashback'>Cashback 5%</span>
+            <div className='wishlist__type-marketing'>
+              <span className='wishlist__cashback'>Cashback 5%</span>
+              <span className='wishlist__grosir-or-po'>Grosir</span>
+              <span className='wishlist__grosir-or-po'>PO</span>
+            </div>
             <a href='#'><div className='wishlist__shop-name'>Barakah Clothing Dept</div></a>
             <div className='wishlist__shop-loc-badge'>
               <span className='wishlist__shop-location u-truncate'>
@@ -82,7 +88,10 @@ export const WishList = () => (
               <span className='wishlist__rating-star star_3' />
               <span className='wishlist__count-rating'>(14282989)</span>
             </div>
-            <span className='wishlist__cashback'>Cashback 5%</span>
+            <div className='wishlist__type-marketing'>
+              <span className='wishlist__grosir-or-po'>Grosir</span>
+              <span className='wishlist__grosir-or-po'>PO</span>
+            </div>
             <a href='#'><div className='wishlist__shop-name'>Barakah Clothing Dept</div></a>
             <div className='wishlist__shop-loc-badge'>
               <span className='wishlist__shop-location u-truncate'>
@@ -111,7 +120,9 @@ export const WishList = () => (
               <span className='wishlist__rating-star star_4' />
               <span className='wishlist__count-rating'>(14282989)</span>
             </div>
-            <span className='wishlist__cashback'>Cashback 5%</span>
+            <div className='wishlist__type-marketing'>
+              <span className='wishlist__grosir-or-po'>PO</span>
+            </div>
             <a href='#'><div className='wishlist__shop-name'>Barakah Clothing Dept</div></a>
             <div className='wishlist__shop-loc-badge'>
               <span className='wishlist__shop-location u-truncate'>
