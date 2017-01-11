@@ -6,10 +6,15 @@ const common = require('./common')
 
 function getSaldo (context) {
   const userID = common.getUserID(context)
-  const api = new TopedSaldoAPI()
 
   return userID
         .then(uid => {
+          if (uid === 0) {
+            return Promise.resolve(DEFAULT_SALDO_DATA)
+          }
+
+          const api = new TopedSaldoAPI()
+
           return api.getDeposit(uid)
         })
         .catch(error => {
