@@ -35,6 +35,60 @@ class Tabs extends Component {
     this.updatePointer = this.updatePointer.bind(this)
   }
 
+  generateAfterChange (direction) {
+    let prev = document.getElementById('prev');
+    let next = document.getElementById('next');
+    console.log(direction);
+    if(direction=='next'){
+      next.className="slick-arrow slick-next slick-disabled";
+      prev.className="slick-arrow slick-prev";
+    }else if(direction=='prev'){
+      next.className="slick-arrow slick-next";
+      prev.className="slick-arrow slick-prev slick-disabled";
+    }
+    const slideTrackEl = document.querySelector('#loggedin-tab .tab')
+    const viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+    const tabWidths = Array.prototype.slice.call(
+      document.querySelectorAll('#loggedin-tab .tab__link'),
+      0
+    ).map(s => s.offsetWidth)
+    let widthTabs = 0
+    console.log(tabWidths.length);
+    for (let i = tabWidths.length; i > 0; i--) {
+      widthTabs += tabWidths[i]
+      
+    }
+    console.log(widthTabs);
+    const maxTranslateX = -1 * (widthTabs - viewportWidth)
+    slideTrackEl.style.transform = `translate3d(${maxTranslateX}px, 0px, 0px)`
+    // return (currentSlide) => {
+    //   if (currentSlide >= 2) {
+    //     const slideTrackEl = document.querySelector('#loggedin-tab .slick-track')
+    //     const viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+    //     const tabWidths = Array.prototype.slice.call(
+    //       document.querySelectorAll('#loggedin-tab .slick-slide'),
+    //       0
+    //     ).map(s => s.offsetWidth)
+
+    //     // Move menu to the right (in variable offset)
+    //     // based on how many menus fit on one screen.
+    //     // Menus are moved to the right one by one based
+    //     // on each tab's width until we reach the max point
+    //     // we want (paddingRight)
+    //     let widthTabs = 0
+    //     for (let i = tabWidths.length; i > 0; i--) {
+    //       widthTabs += tabWidths[i]
+    //     }
+
+    //     // calculate the actual translation needed
+    //     const maxTranslateX = -1 * (widthTabs - viewportWidth)
+    //     slideTrackEl.style.transform = `translate3d(${maxTranslateX}px, 0px, 0px)`
+
+    //     el.slickGoTo(2)
+    //   }
+    // }
+  }
+
   componentDidMount () {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
@@ -142,11 +196,13 @@ class Tabs extends Component {
     })
 
     return (
-      <div className={_className}>
+      <div className={_className} id="loggedin-tab">
         <nav ref={this.initNavigationNode} className='tab'>
-          {this.renderHeaders(headers)}
+          <button type="button" onClick={() => this.generateAfterChange("prev")} id="prev" className="slick-arrow slick-prev slick-disabled"> Previous</button>
+            {this.renderHeaders(headers)}
+          <button type="button" onClick={() => this.generateAfterChange("next")} id="next" className="slick-arrow slick-next"> Next</button>
         </nav>
-
+        
         {this.renderContents(contents)}
       </div>
     )
