@@ -1,5 +1,5 @@
 const request = require('request-promise')
-/*
+
 const obcache = require('obcache')
 const redis = require('../../GlobalConfig').SessionRedis
 
@@ -11,15 +11,14 @@ const topedAPICache = obcache.debug.register(new obcache.Create({
 }), 'topedapi')
 
 const wrappedTopedFetch = topedAPICache.wrap((url, options, cb) => {
-  fetch(url, options)
+  request(url, options)
   .then(response => {
-    cb(null, response.json())
+    cb(null, response)
   })
   .catch(err => {
     cb(err)
   })
 })
-*/
 
 /**
  * A base class to consume http API without HMAC.
@@ -54,15 +53,14 @@ class TopedAPI {
       timeout: 5000
     }, additionalOptions, options)
 
-    return request(finalURL, finalOptions).then(response => this._processJSON(response))
-    /*
+    // return request(finalURL, finalOptions).then(response => this._processJSON(response))
+
     return new Promise((resolve, reject) => {
       wrappedTopedFetch(finalURL, finalOptions, (err, response) => {
         if (err) return reject(err)
-        resolve(response)
+        resolve(this._processJSON(response))
       })
     })
-    */
   }
 
   /**
