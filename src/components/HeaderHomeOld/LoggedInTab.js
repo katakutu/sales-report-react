@@ -39,21 +39,14 @@ class LoggedInTab extends Component {
         // Menus are moved to the right one by one based
         // on each tab's width until we reach the max point
         // we want (paddingRight)
-        const paddingRight = 29
-        let offset = 0
-        let offsetIndex = 0
-        const lastElWidth = tabWidths[tabWidths.length - 1]
-        while (viewportWidth - offset > lastElWidth) {
-          offset = offset + tabWidths[offsetIndex]
-          offsetIndex = offsetIndex + 1
+        let widthTabs = 0
+        for (let i = tabWidths.length; i > 0; i--) {
+          widthTabs += tabWidths[i]
         }
 
         // calculate the actual translation needed
-        const translateX = viewportWidth - offset 
-        //const maxTranslateX = (translateX > lastElWidth) ? -1 * (lastElWidth + paddingRight) : translateX
-        const remainingArr = tabWidths.slice(offsetIndex + 1)
-        const maxTranslateX = remainingArr.length > 0 ? (remainingArr.reduce((a, b) => a + b) + paddingRight) : translateX + paddingRight
-        slideTrackEl.style.transform = `translate3d(-${maxTranslateX}px, 0px, 0px)`
+        const maxTranslateX = -1 * (widthTabs - viewportWidth)
+        slideTrackEl.style.transform = `translate3d(${maxTranslateX}px, 0px, 0px)`
 
         el.slickGoTo(2)
       }

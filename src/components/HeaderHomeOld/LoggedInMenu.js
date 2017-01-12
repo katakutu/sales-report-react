@@ -289,7 +289,10 @@ class LoggedInMenu extends Component {
             <a href={`${HOSTNAME}/deposit.pl`}>
               <span className='drawer__menu-icon icon__svg icon__balance' />
               <span className='drawer__menu-title u-inline-block'>
-                { lang[this.props.lang]['Balance'] }
+                { lang[this.props.lang]['Saldo'] }
+              </span>
+              <span id='user-total-toppoints' className='drawer__menu-detail'>
+                { this.props.userData.deposit.deposit_fmt }
               </span>
             </a>
           </div>
