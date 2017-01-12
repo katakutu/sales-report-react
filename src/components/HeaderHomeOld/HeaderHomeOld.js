@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import Scroll from 'react-scroll'
@@ -7,7 +7,8 @@ import {
   updateSearchModalStatus,
   updateSidebarStatus,
   storeUserData,
-  initialState
+  initialState,
+  updateScrollPosition
 } from '../../store/app'
 import BodyClassName from 'react-body-classname'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -39,7 +40,14 @@ class HeaderHome extends Component {
     searchModalIsOpen: React.PropTypes.bool,
     sidebar: React.PropTypes.object,
     tabIsAvailable: React.PropTypes.bool,
-    lang: React.PropTypes.string
+    lang: React.PropTypes.string,
+    updateScrollPosition: React.PropTypes.func,
+    location: React.PropTypes.object,
+    scrollHistory: React.PropTypes.array
+  }
+
+  static contextTypes = {
+    router: PropTypes.object
   }
 
   state = {
@@ -56,6 +64,7 @@ class HeaderHome extends Component {
     this.renderTabs = this.renderTabs.bind(this)
     this.renderSidebar = this.renderSidebar.bind(this)
     this.showSearch = this.showSearch.bind(this)
+    this._savePosition = this._savePosition.bind(this)
   }
 
   _updateUserState (userIsLoggedIn, userShouldRedirect, userInfo) {
@@ -95,13 +104,26 @@ class HeaderHome extends Component {
     return scrollPos < heightOffset
   }
 
+  _scrollHistory () {
+    const { router } = this.context
+    var scroll = Scroll.animateScroll
+    var currentLocation = router.getCurrentLocation().pathname
+    var currentState = this.props.scrollHistory
+    if (currentState.length) {
+      currentState.map((item, index) => {
+        if (item.path === currentLocation) {
+          scroll.scrollTo(item.point)
+        }
+      })
+    }
+  }
+
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll)
-
     const userIsLoggedIn = this.props.userInfo ? this.props.userInfo.isLoggedIn : false
     const userShouldRedirect = this.props.userInfo ? this.props.userInfo.shouldRedirect : false
     this._updateUserState(userIsLoggedIn, userShouldRedirect, this.props.userInfo)
-
+    this._scrollHistory()
     this.setState({
       showSearch: this._shouldShowSearch(document.body.scrollTop)
     })
@@ -142,11 +164,11 @@ class HeaderHome extends Component {
     if (this.props.tabIsAvailable) {
       if (this.props.userIsLoggedIn) {
         return <Tabs>
-          <Tab label='Home' />
-          <Tab label='Feed' />
-          <Tab label='Favorite' />
-          <Tab label='Hot List' />
-          <Tab label='Wishlist' />
+          <Tab label='Home' onClick={() => this._savePosition('/')} />
+          <Tab label='Feed' url={`${HOSTNAME}/?view=feed_preview`} />
+          <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} />
+          <Tab label='Hot List' onClick={() => this._savePosition('/hot')} />
+          <Tab label='Wishlist' url={`${HOSTNAME}/?view=wishlist_preview`} />
         </Tabs>
       } else {
         return <LoggedOutTab activeTab={this.props.activeTab} />
@@ -184,6 +206,39 @@ class HeaderHome extends Component {
     }, () => {
       Scroll.animateScroll.scrollToTop({ smooth: false, duration: 0 })
       this.props.updateSearchModalStatus(true)
+    })
+  }
+
+  _savePosition (val) {
+    const { router } = this.context
+    // get scrolled position
+    var scrollPosition = (window.pageYOffset !== undefined) ? window.pageYOffset
+    : (document.documentElement || document.body.parentNode || document.body).scrollTop
+    // update scroll history
+    var updateState = []
+    var currentLocation = router.getCurrentLocation().pathname
+    var currentState = this.props.scrollHistory
+    // updateState = [...currentState, ...[{ path: currentLocation, point:scrollPosition }]]
+    if (currentState.length) {
+      var adding = true
+      currentState.map((item, index) => {
+        if (item.path === currentLocation) {
+          updateState.push({ path: currentLocation, point: scrollPosition })
+          adding = false
+        } else {
+          updateState.push({ path: item.path, point: item.point
+          })
+        }
+      })
+      if (adding) { updateState.push({ path: currentLocation, point: scrollPosition }) }
+    } else {
+      updateState = [{ path: currentLocation, point: scrollPosition }]
+    }
+    // update to state
+    this.props.updateScrollPosition(updateState)
+    // push location state
+    router.push({
+      pathname: val
     })
   }
 
@@ -274,7 +329,8 @@ const mapDispatchToProps = {
   updateUserLoginStatus,
   updateSearchModalStatus,
   updateSidebarStatus,
-  storeUserData
+  storeUserData,
+  updateScrollPosition
 }
 const mapStateToProps = (state) => {
   return {
@@ -282,7 +338,8 @@ const mapStateToProps = (state) => {
     sidebar: state['app'] ? state['app'].sidebar : state.sidebar,
     userData: state['app'] ? state['app'].user.data : state.user.data,
     userIsLoggedIn: state['app'] ? state['app'].user.loggedIn : state.user.loggedIn,
-    lang: state['app'] ? state['app'].lang : state.lang
+    lang: state['app'] ? state['app'].lang : state.lang,
+    scrollHistory: state['app'] ? state['app'].scrollHistory : state.scrollHistory
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderHome)

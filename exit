@@ -1,0 +1,2231 @@
+[33mcommit df8b1cbfadd3934fcac6764bde9fa65be633ccec[m
+Author: Kelvin Mijaya <kelvin.mijaya@tokopedia.com>
+Date:   Thu Jan 12 09:01:59 2017 +0700
+
+    Change old slick tab to new component tab
+
+[33mcommit 5a28296ce6b22b9cabf62477e83a10f056e8548c[m
+Merge: aa4f1f2 a315bd8
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 11 15:16:32 2017 +0700
+
+    Merge pull request #133 from darrylsepeda/b_darryl_chlanguage
+    
+    fixing 4 bugs from Alex : Balance, arrow on tab, translation
+
+[33mcommit a315bd8b38e4143683922481e8d27e8e7d6ca7c2[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Wed Jan 11 15:08:26 2017 +0700
+
+    change deposit to saldo
+
+[33mcommit fe9c280e65faeb085946b5dc710c00d847323e12[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Wed Jan 11 15:04:52 2017 +0700
+
+    fixing 4 bugs from Alex : Balance, arrow on tab, translation
+
+[33mcommit aa4f1f2b21a45a84d2e4d0d353aa80a394cc2975[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 11 14:59:54 2017 +0700
+
+    Don't show toppicks when it's empty
+
+[33mcommit bc2ed9142d4781ef175c25b5da1e5ecbd9e31d96[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 11 13:31:42 2017 +0700
+
+    Refactorred sidebar to prepare for scroll state
+
+[33mcommit 6286c2f256c05df684baa1e2a318b958a37096ad[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 11 12:31:26 2017 +0700
+
+    Performance optimization, top picks safety
+
+[33mcommit c61c4074a640bc63c6cdaa377d4cf0253702d840[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 11 11:10:38 2017 +0700
+
+    Oauth no longer check session - will always refresh session
+
+[33mcommit eb8d437c54c9bf0ef8b8495dad73b7bf8bd5452a[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 11 09:10:56 2017 +0700
+
+    Header stay on top for firefox
+
+[33mcommit 49bd2148387424d7389ca3a567ef37c88f35b237[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 17:17:30 2017 +0700
+
+    Added special hostname for official-store
+
+[33mcommit fb2bf90dbbb05f08e87f3a2996330dc5da7a2ff5[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 16:43:08 2017 +0700
+
+    Wrong string
+
+[33mcommit ed7f3516c23b87a1905600f3f62083ef1a660127[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 16:37:17 2017 +0700
+
+    Search result clear all translation
+
+[33mcommit 6801fd7bd3c380c3721051cea7cd9e307e01a7ca[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 16:20:15 2017 +0700
+
+    Use all image sources for hotlist
+
+[33mcommit fef4946f0af6c2121a7ea86de067e9dcf7166193[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 14:37:19 2017 +0700
+
+    Added hotlist query for better perf on hotlist page
+
+[33mcommit 4254a6dbb576bb580fd55cff8579f1f20222706b[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 13:08:13 2017 +0700
+
+    lint fix
+
+[33mcommit 95d1278bf52d2b196a1d491ae85d4edb3486c08a[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 12:57:09 2017 +0700
+
+    Removed console.log
+
+[33mcommit 53ca09a3b9b7a010b2a5da971838e6c84b21479e[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 12:09:05 2017 +0700
+
+    Hotfix
+
+[33mcommit cd8b045af9b22f1476a8228b6a312a460e3e49e6[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 11:34:38 2017 +0700
+
+    Default value for slide
+
+[33mcommit c6aaf1e486f2513d8671187e4383af324aa71240[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 11:26:16 2017 +0700
+
+    hotfix token bug
+
+[33mcommit 1222556469a0dc5ccbc630b0e2b9435e9268f56e[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 11:16:16 2017 +0700
+
+    Token problem
+
+[33mcommit bf29e04d32c179149319cd644044a6f91c18ecb0[m
+Merge: 0bba800 2c0f95a
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 10:53:29 2017 +0700
+
+    Production merge 10 Jan 2017
+
+[33mcommit 2c0f95a7a1d00583d75dfe51731666b7ff267c17[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 10:38:46 2017 +0700
+
+    Login menu state
+
+[33mcommit 26abef1ccec8d9db872839b0cd058362b96bfe85[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 09:44:31 2017 +0700
+
+    Notification token check
+
+[33mcommit 80aaafbd111bd50bd2c893513a47ff9ed402da29[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 09:31:20 2017 +0700
+
+    Notification wrong api call
+
+[33mcommit 72a1d091d6b1796b444a1d16ea5088b18ec1799e[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 09:24:28 2017 +0700
+
+    OAuth token for notification
+
+[33mcommit df3df4bb6f3cf4e8384fc0d79fc6daf6cd599301[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 09:17:15 2017 +0700
+
+    Fix hotlist tab
+
+[33mcommit 4689b81945795eaa1a5b710570bdf9d72240c226[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 09:10:12 2017 +0700
+
+    Notif field name error
+
+[33mcommit ca34a679ad61550ce740aea1bec069b4e003a598[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 08:55:06 2017 +0700
+
+    User actually returns value
+
+[33mcommit 09fd506798a629e9d65c42168c06d7328d0e49d2[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 08:50:31 2017 +0700
+
+    Better timeout for request
+
+[33mcommit 38a50383b057f2c85280d558ced1ecacf821d97e[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 10 08:35:53 2017 +0700
+
+    Overhauled user query for better performance and reliability
+
+[33mcommit 852e2f8922bd36ea746657e74585373013e93b34[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 18:15:33 2017 +0700
+
+    Insert email to gtm
+
+[33mcommit 24d8e8882278291038c30fecff2ff9b15e7ebbd2[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 17:41:58 2017 +0700
+
+    Menu open GTM
+
+[33mcommit b3f0a6a8d5e461d227cd9a8fafdf35e52e3d4d97[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 17:30:26 2017 +0700
+
+    Logged in menu tokocash
+
+[33mcommit f343c869f0e97339030faff4f571bceb2845063f[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 16:28:14 2017 +0700
+
+    Force call perl with ajax on language change
+
+[33mcommit 0445543d2ffd3428793a801aeb69e90342096ecd[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 16:02:55 2017 +0700
+
+    Non secure cookies for lang
+
+[33mcommit 4c2abc97dfc0871d7d2b1d4c8e7c66ffcd09cdb4[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 15:51:31 2017 +0700
+
+    No gold merchant for official store
+
+[33mcommit dfe8829be7a472d040c2a36a9edefd891fdc7a74[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 15:34:52 2017 +0700
+
+    Pulsa GTM hardcoded fix
+
+[33mcommit e82ec9c9b4eec4bb78449523486e371143068ca4[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 14:00:43 2017 +0700
+
+    Updated need help link
+
+[33mcommit c30ba62e766811b02da4a873b556b78f81a2801e[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 13:11:28 2017 +0700
+
+    Toppicks GTM
+
+[33mcommit e035bd1cd4ef7329a43308520f2cdf5cef0603ed[m
+Merge: 0254e9e f40165e
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 12:02:34 2017 +0700
+
+    Merge pull request #132 from arianjinx/master
+    
+    Design Fix 9 Jan 2017
+
+[33mcommit f40165ec4f134e6ed7c560c5b3e9956c95e4780c[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Mon Jan 9 11:46:42 2017 +0700
+
+    Make slider arrow in tab header more precise
+
+[33mcommit 0254e9eee3459fd822f82477846b11fc1c41c625[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 11:46:37 2017 +0700
+
+    Prefix for ios 4
+
+[33mcommit 90bf83f8fd3c560af6c30a80b10afcf80f4b7af9[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Mon Jan 9 11:42:28 2017 +0700
+
+    Add padding to see all
+
+[33mcommit 120847865017f8727af39790c5fc7cfaf75cd93a[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 11:06:20 2017 +0700
+
+    Status pemesanan translation
+
+[33mcommit f3878d925775a9a15e78f5a3343d4b5e5b7bd19b[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Mon Jan 9 10:53:07 2017 +0700
+
+    add bind
+
+[33mcommit accff20d0db57ca49aa45fb9aefb6f831aaeb3bf[m
+Merge: 6dfed61 0df60e2
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Mon Jan 9 10:29:22 2017 +0700
+
+    Merge remote-tracking branch 'upstream/master'
+
+[33mcommit 0df60e231692d5caf446a21bdf9ba55707aac5ea[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 10:28:56 2017 +0700
+
+    Fix typo in toppicks field name when API is down
+
+[33mcommit 6dfed61b1d6bf20cd07d940c62557f72c8fa523b[m
+Merge: 1f79093 e4e7ed1
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Mon Jan 9 10:21:48 2017 +0700
+
+    Merge remote-tracking branch 'upstream/master'
+
+[33mcommit e4e7ed1d8c2b5e4d7648ee2021518ed30e92be70[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 10:08:32 2017 +0700
+
+    Added profiler flag on staging
+
+[33mcommit 1f79093dc6b00c13ad47d883546fd60da69de86f[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Mon Jan 9 09:48:04 2017 +0700
+
+    Fix code hacks for hot list desc
+
+[33mcommit a467e771a1042082caf0c89d1ebba76cf8cabefe[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Mon Jan 9 09:47:36 2017 +0700
+
+    Differentiate render between toppick banner and item
+
+[33mcommit ac342efda6089cef52a48c3b69af3ff64c379056[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Mon Jan 9 09:47:16 2017 +0700
+
+    Increase specificity selector for search modal placeholder
+
+[33mcommit 6f66cd34d1c22f0909ee7f987a10d829a74217e5[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 09:41:12 2017 +0700
+
+    Logged in tab scroll
+
+[33mcommit f3e1ed575384fe639e64cacec1124adb42bde837[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Mon Jan 9 08:11:32 2017 +0700
+
+    Redirect to correct paths in login / logout
+
+[33mcommit 1439a17be1ca2f70f9b99bc5cf9c87ab8374df9c[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Jan 6 17:39:34 2017 +0700
+
+    lint fix
+
+[33mcommit 95f3b707f65c1b02cc5c57590d40d4940a6b74aa[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Jan 6 17:35:46 2017 +0700
+
+    Search modal language fix
+
+[33mcommit 69fc08926ede91aa59fc2fcf9996830279b2c42b[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Jan 6 17:20:17 2017 +0700
+
+    Brings tokocash up
+
+[33mcommit 7fa696cc8674220e91404f2a38eafbbbef9b02fa[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Jan 6 16:57:29 2017 +0700
+
+    Added promoted shop
+
+[33mcommit 825e4c581315388e0ed4621f1c091e8f4569ca00[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Jan 6 16:32:38 2017 +0700
+
+    Fix user session not synced properly with desktop
+    
+    Because we didn't refresh token with one from redis
+
+[33mcommit 731a6229f6931184227506c5380afd5da2f24f7b[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Jan 6 15:41:04 2017 +0700
+
+    Arrow alignment issue
+
+[33mcommit d9b120f8d711738b60943dc9a6c52b4a6a5916b2[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Jan 6 15:37:42 2017 +0700
+
+    Homepage hotlist design tweak as requested by PO
+
+[33mcommit be3505575fa78a10a7842039d1f3ca5ca706b4fa[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Jan 6 15:17:56 2017 +0700
+
+    Added changes to API calls as per Mojito request
+
+[33mcommit 2c934efb38219f2cc9512ecc105a6bad42ad69c0[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Jan 6 12:37:55 2017 +0700
+
+    Hotlist links
+
+[33mcommit f4e38b71fae8a5073f8fee824b3c50fd566873dd[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Jan 6 10:58:22 2017 +0700
+
+    Update transaction
+
+[33mcommit cf2ef3d6e38b512619e2ca6740863aecfbee7a78[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Jan 6 10:09:22 2017 +0700
+
+    Language string update
+
+[33mcommit d037e36bd570d64443228de64ee437a7e18989e3[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Jan 6 10:05:40 2017 +0700
+
+    Updated toppicks query
+
+[33mcommit 1030d19223a31af531f13c0c38d893cdba1399d5[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Jan 6 08:41:51 2017 +0700
+
+    Purchase notif typo
+
+[33mcommit 5b45c35c4a3e203a1cec67b9099046ee8e79d33c[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Jan 6 08:32:20 2017 +0700
+
+    Hotlist loading
+
+[33mcommit b95af214c4efa0386f85b57536e233357fc75662[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Jan 5 13:54:22 2017 +0700
+
+    Top picks showing title instead of Top Pick
+
+[33mcommit 4ea9cb6a2d4705f2c74cd9e3442f78e00901fce1[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Jan 5 13:32:30 2017 +0700
+
+    Header top shown after change page
+
+[33mcommit fd5d11d6dbb6ce95c59a33d13fcd819c2c1259be[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Jan 5 12:30:35 2017 +0700
+
+    Hotlist dimension auto
+
+[33mcommit 46772b42c68dc78231f897627236e19b2404fc50[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Jan 5 12:25:19 2017 +0700
+
+    Update nginx config
+
+[33mcommit 8da79b222fbc936d6efbdf5dd002e977f46c9e04[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Jan 5 11:28:53 2017 +0700
+
+    Preload image for hotlist (experimental)
+
+[33mcommit 2ba16b88f074402f4a078855dfecef4d87ac0d85[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Jan 5 10:02:46 2017 +0700
+
+    Ace X-Device to lite-1.0
+
+[33mcommit f3976fd7071a632ce38b548133bd7bdd8261bdc6[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Jan 5 09:59:18 2017 +0700
+
+    Hotlist using go API now
+
+[33mcommit 0b7fc8ef4177e53fdcab60fe2309530970221823[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Jan 5 08:11:32 2017 +0700
+
+    All toppicks link
+
+[33mcommit c22d48d539d0693728011b6491c8a29fc0201611[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Jan 5 07:52:38 2017 +0700
+
+    Deleted unused test
+
+[33mcommit 98d694d0eac16fdfbf783c2ca184b773055659d4[m
+Merge: 6245821 85fde5a
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Jan 5 07:42:17 2017 +0700
+
+    Merge pull request #129 from darrylsepeda/master
+    
+    remove toko cash
+
+[33mcommit 6245821f6dfd2189ff69b8ada457058ac5117e2c[m
+Merge: 686a652 33a5994
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Jan 5 07:40:10 2017 +0700
+
+    Merge branch 'master' of github.com:tokopedia/tokopedia-lite
+
+[33mcommit 686a6520aec9cdf6da0bbcd263942a09e9c3a728[m
+Merge: 7961bc9 5107be3
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Jan 5 07:39:59 2017 +0700
+
+    Merge branch 'f_alex_sim_merge_arian'
+
+[33mcommit 33a5994e069e103af1ec7b20bed632f88f52255f[m
+Merge: 4d18837 5107be3
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Jan 5 07:39:39 2017 +0700
+
+    Merge pull request #130 from bertzzie/f_alex_sim_merge_arian
+    
+    New design update and some new APIs consumer
+
+[33mcommit 5107be3054713f0b402572b880466e53544fbaa6[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 4 17:57:33 2017 +0700
+
+    Official store
+
+[33mcommit 84cb3bd47bb595a93164fae81aaf24acecfc7fe3[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 4 17:24:48 2017 +0700
+
+    Official store graphql
+
+[33mcommit 6edb533fb1e1eba3502fb52f494dbc792a994f68[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 4 17:00:52 2017 +0700
+
+    Toppicks now displayed correctly
+
+[33mcommit 4d18837af3b710a802c63bed42f64a9be952f167[m
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Wed Jan 4 15:02:19 2017 +0530
+
+    removed unused asset
+
+[33mcommit 5f746f7e9fc60a3971e3cfb6be966ad7cb1b1f64[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 15:30:33 2017 +0700
+
+    Search modal z-index fix and reverse autocomplete keyword emphasis
+
+[33mcommit c792b0024e124751f3cdb406e1727a5652724c7a[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 14:57:52 2017 +0700
+
+    Delete GTM handle search
+
+[33mcommit 7e7ec46fae402835d2f9e1a1551df250476b1c1f[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 14:56:23 2017 +0700
+
+    Delete GTM handle search
+
+[33mcommit 391cc92de0af378253513a9e98ec5997da65e952[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 14:39:09 2017 +0700
+
+    Move maginifier icon search to the left
+
+[33mcommit f552ab3cef157e18e4565575e103915e0f17ae79[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 14:09:29 2017 +0700
+
+    Change top picks title to default
+
+[33mcommit 85fde5acd0d75a63dcebcb541327e2b5d28e9b25[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Wed Jan 4 14:02:44 2017 +0700
+
+    remove toko cash
+
+[33mcommit ccca61081755a54e3fb9317277c367ed55c63407[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 13:49:53 2017 +0700
+
+    Fix typo arrayhelper function
+
+[33mcommit 7961bc94265f7b21ea979aeb38d1376e20f8e769[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 4 13:35:15 2017 +0700
+
+    Removed counter route from scaffold
+
+[33mcommit 3a631447af808c64bf3b7a87c6ba380830d4ff73[m
+Merge: 5e3ecc8 f657084
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 13:30:25 2017 +0700
+
+    Merge branch 'master' of github.com:arianjinx/tokopedia-lite
+
+[33mcommit 5e3ecc8ab041926f480ce88eee7e149dd12932ba[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 13:30:14 2017 +0700
+
+    Fix search input height and font-size
+
+[33mcommit f6570847cd4d6d07963a210b022626ae59aedd92[m
+Merge: 07c6bcd db2435c
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 4 13:02:53 2017 +0700
+
+    Toppicks dynamic merge
+
+[33mcommit 07c6bcdc2fc89a311babfa4637eba4301b58417e[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 4 12:58:24 2017 +0700
+
+    Top picks dynamically served via API
+
+[33mcommit db2435c1834039254ed0c24e41ff52c7d2fcc1da[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 12:11:27 2017 +0700
+
+    Sync to new header design
+
+[33mcommit f79c1beb5046a68695d160aeb428ea92b0ce8dfb[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 12:11:07 2017 +0700
+
+    Fix color and design alignment in home page and hotlist
+
+[33mcommit 7091817810059ba2189863559dc64f71f0dccb16[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 10:49:18 2017 +0700
+
+    Fix toppicks see all
+
+[33mcommit 00882935c1667bbaebb1a74bd02e6dee3f859c53[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 10:37:49 2017 +0700
+
+    Fix anomalies on hotlist section after moving to different routes again
+
+[33mcommit 85d9ab797d6b340357d4186f211e7eebdd900cc1[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 10:26:39 2017 +0700
+
+    Fix anomalies on hotlist section after moving to different routes
+
+[33mcommit 9f9eb6470484abf71456c0e134b21b38ffb6e1b4[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 4 10:01:44 2017 +0700
+
+    Top picks graphql
+
+[33mcommit 4c6c07d3d9aef3441b1b5cf07bc4dc0270d48016[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 09:44:46 2017 +0700
+
+    Tweak hotlist
+
+[33mcommit 4f733245f201fbbc26776d57f5e7b5483aa99b61[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 4 09:37:13 2017 +0700
+
+    Hotlist home 2 items
+
+[33mcommit d3c68b94b2dd58530aff6f5d910c8bbb09acec19[m
+Merge: 8e937d0 d84a8b6
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 4 09:21:51 2017 +0700
+
+    Merge branch 'master' of github.com:arianjinx/tokopedia-lite into f_alex_sim_merge_arian
+
+[33mcommit 8e937d0c3b56872c472422ef1668b114ebec463f[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Jan 4 09:14:50 2017 +0700
+
+    Hotlist dynamically shown
+
+[33mcommit d84a8b6c8d329c8aebdcfa3a2345f4553a2aec8d[m
+Merge: 34a0eff bec464f
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Wed Jan 4 09:14:50 2017 +0700
+
+    Merge remote-tracking branch 'upstream/master'
+
+[33mcommit ab83b679562e298d9ba397437432ebd587194c09[m
+Merge: bec464f 34a0eff
+Author: Alex <alex@Alexs-MacBook-Air.local>
+Date:   Wed Jan 4 08:22:10 2017 +0700
+
+    Merge branch 'master' of github.com:arianjinx/tokopedia-lite into f_alex_sim_merge_arian
+
+[33mcommit bec464f426dce74c9196c91ee0a7e2dba87dfa9e[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 17:49:40 2017 +0700
+
+    Various fixes
+
+[33mcommit 51d8fc7c1d1fc88eef94a670b7a02c8662852da4[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 17:06:21 2017 +0700
+
+    Transform and z-index tweak for iphone
+
+[33mcommit 6f9243635a1434b076d3a3e17526c2ad5d75f324[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 16:59:36 2017 +0700
+
+    After login universe id
+
+[33mcommit 34a0effe97da7a5dab93581084cca58d36a41966[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Tue Jan 3 16:29:52 2017 +0700
+
+    Fix lint and change hotlist CSS
+
+[33mcommit b8487b1b422fc93423cfe80b83c83a9da01d439f[m
+Merge: a151909 eeef663
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Tue Jan 3 15:33:13 2017 +0700
+
+    Merge remote-tracking branch 'upstream/master'
+
+[33mcommit a151909008ae751149198c7595a91a9695bd3eaa[m
+Merge: e4686c4 6741fb7
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Tue Jan 3 15:32:55 2017 +0700
+
+    Change design for new hot list
+
+[33mcommit eeef6633273db9167b1f82ccf3a26546712928ed[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 15:32:04 2017 +0700
+
+    Various menu tweak
+
+[33mcommit 6e7b9ba3a19fd77e592babd63ac4456335b04d35[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 15:23:27 2017 +0700
+
+    Hotlist image
+
+[33mcommit 2adbdc71e4e455cb91c2734774cb62ca9e25b016[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 15:09:14 2017 +0700
+
+    Home links to /?h=3
+
+[33mcommit 6741fb75e0bfd1b8ca5dc3c15091b865684d055e[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 14:43:48 2017 +0700
+
+    UserID to dataLayer for GTM
+
+[33mcommit e4686c4515cb985314d5864e612ef2bde8c21c71[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Tue Jan 3 14:43:38 2017 +0700
+
+    set footer dynamic as referenced from http://updateyourfooter.com/
+
+[33mcommit 09dfd98b1eed1f673117d5ca15fe17b08e0dd8ff[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 14:39:47 2017 +0700
+
+    Copyright not hardcoded anymore
+
+[33mcommit 2858c1ad1b6dd14b486a009993f6ad8431ab2cea[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Tue Jan 3 14:37:01 2017 +0700
+
+    Change to the latest top picks design
+
+[33mcommit d75d1c6b85bd432c02601749ef8653e43121e4a5[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 14:21:33 2017 +0700
+
+    Replace www with m for category
+
+[33mcommit 02a25059fdf20990ba7a72f0c7d8e7af90f05c5a[m
+Merge: 19ff71a 7eb3adb
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Tue Jan 3 14:05:12 2017 +0700
+
+    Merge remote-tracking branch 'upstream/master'
+
+[33mcommit 7eb3adb0fb6ced343944c4c068d5c5cb76168f81[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 13:59:38 2017 +0700
+
+    Custom event for home-category so GTM can load correctly
+
+[33mcommit 19ff71a7ca51ff5105aff6708dc2b7e227b9e639[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Tue Jan 3 13:57:05 2017 +0700
+
+    Fix code for new hotlist and toppicks
+
+[33mcommit 214f5298779f6c4416e772c52b9b618d1697d8ee[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Tue Jan 3 13:56:41 2017 +0700
+
+    Set text header defaultprops value
+
+[33mcommit a8b89433b5d4519661566875a5e69c6837a519c2[m
+Merge: 404d0c7 7599f8d
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Tue Jan 3 13:56:21 2017 +0700
+
+    Merge branch 'wd_victor' of github.com:arianjinx/tokopedia-lite into wd_arian_sync_with_victor
+    
+    # Conflicts:
+    #	src/components/HeaderHomeOld/HeaderHomeOld.scss
+    #	src/components/SearchInputOld/SearchInputOld.scss
+
+[33mcommit 5a5f069ac42a83da0c03b49baf0174061a6e6cbc[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 13:37:14 2017 +0700
+
+    Official store
+
+[33mcommit 2480d8737661f4d4c6f8f3795e26cd93c5f33379[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 12:49:46 2017 +0700
+
+    Official store
+
+[33mcommit b5d22b39929fe797775bba3b458e5629dbb2be21[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 11:21:29 2017 +0700
+
+    Change hostname for wallet
+
+[33mcommit bdadf800f8c4fc9727a51b270b4c010536a7c923[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 11:14:26 2017 +0700
+
+    Cookie semi-colon
+
+[33mcommit 3c5347eb93fab598dfde1e055a721c6b82d7f04e[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 11:08:57 2017 +0700
+
+    Wallet improvement and error
+
+[33mcommit 08750a2e158cfb3d04889681f6981555049e865f[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 10:57:43 2017 +0700
+
+    Wallet via graphql
+
+[33mcommit 404d0c7d3ecebcc6a3a0a9b050ddbdb3b150c76f[m
+Merge: d7ec947 d4bf8b7
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Tue Jan 3 09:57:36 2017 +0700
+
+    Merge remote-tracking branch 'upstream/master'
+
+[33mcommit 7599f8dddadc9d5b69b2075bae2a9b303651ba33[m
+Author: Victor Irawan <Victor Irawan>
+Date:   Tue Jan 3 09:53:46 2017 +0700
+
+    Create Toppicks and Recommendation Product Fix Failed test
+
+[33mcommit d4bf8b7424bf314c848e2d23773a26cfac04b3a2[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 09:41:23 2017 +0700
+
+    Fix tokocash design
+
+[33mcommit 7e3da6869421f38b11e28f91272172dfe9ed4f45[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Jan 3 07:27:47 2017 +0700
+
+    Userinfo handle when sonic returns no result
+
+[33mcommit d7ec9474c3f5708029cb4f792354e3712fefaf76[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 30 17:25:51 2016 +0700
+
+    Kill auto play and set slide to show 1
+
+[33mcommit 1a02150fb2193a2629f26823e2e10829cdecf693[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 17:21:34 2016 +0700
+
+    Aktivasi tokocash link
+
+[33mcommit 406b89f0427096c1ca55c8afba7fe877ab3c0de7[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 17:12:26 2016 +0700
+
+    lint fix
+
+[33mcommit f6ff59619601bb4c6fc887182409f02872dbb7c4[m
+Merge: 7955ee1 2a4d9c3
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 17:08:25 2016 +0700
+
+    Merge pull request #127 from arianjinx/master
+    
+    Design bugfix 30 Dec
+
+[33mcommit 7955ee1d2b228e0592f099f086e510aa27662175[m
+Merge: 827e4e1 fb430e5
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 17:08:19 2016 +0700
+
+    Merge pull request #126 from darrylsepeda/mc_dev_f_darryl_menu_wallet
+    
+    Mc dev f darryl menu wallet
+
+[33mcommit fb430e577483099ed9bb939053057325e4b10201[m
+Merge: ac89b7e 827e4e1
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 17:01:02 2016 +0700
+
+    Merge branch 'master' into mc_dev_f_darryl_menu_wallet
+
+[33mcommit 2a4d9c35a7d0de60a5f4926e6e5eb166f22d7fe2[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 30 16:58:59 2016 +0700
+
+    Fix mobile overlap category list
+
+[33mcommit d00ba76d9b0bcc96f9c69494326ac91c973d4a9f[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 30 16:58:41 2016 +0700
+
+    Revert hot list exceeded width changes
+
+[33mcommit 827e4e1bd64508dececc81f96cb61239dd369f92[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 16:57:14 2016 +0700
+
+    Revert "GTM reload per page load"
+    
+    This reverts commit 4f2b03906f47d2f6e786d79f8729e850a46ec42a.
+
+[33mcommit 49de25fe6a986850839552eff0a30cc8e722a227[m
+Merge: 1441a21 4f2b039
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 30 16:49:26 2016 +0700
+
+    Merge remote-tracking branch 'upstream/master'
+
+[33mcommit 4f2b03906f47d2f6e786d79f8729e850a46ec42a[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 16:41:25 2016 +0700
+
+    GTM reload per page load
+
+[33mcommit 4d134012beaf63f05e3f2a108853ae824b13a5ce[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 16:32:51 2016 +0700
+
+    Session logging for logged in user
+
+[33mcommit 0bba800177d52af6bd7940de997192f642cf3410[m
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Fri Dec 30 14:41:43 2016 +0530
+
+    http 1.1 and hotlist reverse proxy for nginx
+
+[33mcommit a8a78ba7f7dd6ec04d16c219cac420b97204a618[m
+Merge: 38951d2 c18c45d
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 15:53:28 2016 +0700
+
+    Merge branch 'production' of github.com:tokopedia/tokopedia-lite into production
+
+[33mcommit 38951d20e1bcf05e128176c6cc15fc341c6a6817[m
+Merge: 1ad3b08 c34506e
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 15:52:59 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit c34506e1de0f4b39c74f29e221754768e9b72751[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 15:52:22 2016 +0700
+
+    Production hotlist to localhost
+
+[33mcommit 005a3f182c968b141252d6a3a30a310ebabfc917[m
+Merge: caf4bf5 9c8e658
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 15:43:45 2016 +0700
+
+    Merge branch 'master' of github.com:tokopedia/tokopedia-lite
+
+[33mcommit caf4bf51d6ba9bd438d454e72e1e52ac5583e43c[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 15:43:24 2016 +0700
+
+    Hotlist timeout to 4s
+
+[33mcommit c18c45dc5430945aeb89efccc8ff680ec01120ee[m
+Merge: 95102d9 1ad3b08
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Fri Dec 30 14:10:05 2016 +0530
+
+    Merge branch 'production' of github.com:tokopedia/tokopedia-lite into production
+
+[33mcommit 95102d93e7d4f6b88e5be989df4fbb966c96282b[m
+Merge: 5ad4f06 9c8e658
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Fri Dec 30 14:09:44 2016 +0530
+
+    Merge branch 'master' into production
+
+[33mcommit 9c8e658e90302b4f26124299deea9d7bbc731383[m
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Fri Dec 30 14:09:07 2016 +0530
+
+    Added proxy_http_version 1.1; to nginx
+
+[33mcommit 258d9ca1cede60f9791bf46ea9315b69df0b62b4[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 15:36:49 2016 +0700
+
+    Removed redis logging
+
+[33mcommit 1ad3b08d93aea6dd3d6288d29b7998fb47053e4c[m
+Merge: 45fe745 5ad4f06
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 14:57:05 2016 +0700
+
+    Merge branch 'production' of github.com:tokopedia/tokopedia-lite into production
+
+[33mcommit 45fe7454a4807ac885f8d96d64d86c9e59fa8c8e[m
+Merge: 610528b 9cec012
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 14:56:35 2016 +0700
+
+    Merge branch 'master' of github.com:tokopedia/tokopedia-lite into production
+
+[33mcommit 5ad4f06e91342078aa989344c61ff9f4ba460083[m
+Merge: e35051d 9cec012
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Fri Dec 30 13:25:06 2016 +0530
+
+    Merge branch 'master' into production
+
+[33mcommit 9cec012e9dcfd455972f23e02d048e626802da05[m
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Fri Dec 30 13:24:05 2016 +0530
+
+    production session redis
+
+[33mcommit 610528b9925a6b19ff212032fa170564b00c9460[m
+Merge: c7f0950 26aaf0f
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 14:50:57 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit ac89b7e70aa77fae36cbbc71317c35934f5dcb62[m
+Merge: d213e2a dbd0efa
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 14:38:35 2016 +0700
+
+    Fix merge issue
+
+[33mcommit dbd0efa63667b85d4a3b23177d99470dc1d326ff[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 14:06:49 2016 +0700
+
+    Some fixes
+
+[33mcommit 26aaf0f96743af935184f929c987504d5bace40a[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 13:21:06 2016 +0700
+
+    Datadog
+
+[33mcommit 1441a21590d55ac1c467b3c45e2939063d94b496[m
+Merge: 5119de9 821ba17
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 30 13:17:44 2016 +0700
+
+    Merge remote-tracking branch 'upstream/master'
+
+[33mcommit d213e2a137bae11587f2c7d675394efacfc7b25f[m
+Merge: d65656d 821ba17
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Fri Dec 30 13:02:10 2016 +0700
+
+    Merge Conflict Resolved By: dx160919
+
+[33mcommit d65656df1b1453492f55fb3cf91792b675cca97c[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Fri Dec 30 12:55:06 2016 +0700
+
+    menu wallet using javascript
+
+[33mcommit e35051d970545c285152b1babc0c3a65816b9f9c[m
+Merge: a6b5382 821ba17
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Fri Dec 30 10:53:18 2016 +0530
+
+    Merge branch 'master' into production
+
+[33mcommit 821ba171ae8393ad4c7c98ca3adeb985238023cb[m
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Fri Dec 30 10:52:42 2016 +0530
+
+    session error fix
+
+[33mcommit a6b53828ff947c8a0573071dcaa01c835554b7d0[m
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Fri Dec 30 10:08:37 2016 +0530
+
+    removed wrong init
+
+[33mcommit cdb04c04f27addcc9d0c5657921eaeff8d5a3e64[m
+Merge: d8020ba 067111e
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Fri Dec 30 10:02:22 2016 +0530
+
+    Merge branch 'master' into production
+
+[33mcommit 067111e29314b6571730d9afe46279bf168be6af[m
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Fri Dec 30 10:01:33 2016 +0530
+
+    removed comment
+
+[33mcommit 5119de9a0302badf75ee11611dae6fb22ec44fee[m
+Merge: 4eafe4d 31a606d
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 30 11:30:19 2016 +0700
+
+    Merge remote-tracking branch 'upstream/master'
+
+[33mcommit e38413bb768eb59798897fb299c849247514b6be[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Fri Dec 30 11:30:07 2016 +0700
+
+    call wallet using ajax and GTM
+
+[33mcommit 4eafe4d5ffb30dd487726ad2d1a921ff8fbc677f[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 30 11:29:42 2016 +0700
+
+    Add header to notfound page
+
+[33mcommit d8020ba712366143e7b22d46b301354b76d941c1[m
+Merge: c7f0950 457d798
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Fri Dec 30 09:57:49 2016 +0530
+
+    Merge branch 'master' into production
+
+[33mcommit 457d798ac1b80cb8fe07bd12aa1a355a343e1d58[m
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Fri Dec 30 09:57:20 2016 +0530
+
+     conf file name
+
+[33mcommit 31a606d80b76c766b1d6c49d1e15ddd891309d05[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 11:15:26 2016 +0700
+
+    Hotlist snap
+
+[33mcommit c7f095015670af3100c391e415413763a4d6f594[m
+Merge: 9c47dfc db15a2b
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 30 10:43:37 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit df0c13a6500028ce0e84bd0bf8f33ef3f212df7c[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 30 10:39:02 2016 +0700
+
+    Fix hotlist exceeded width
+
+[33mcommit 0e8788da9585a8709ceda54902e3323663e332c3[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 30 10:37:39 2016 +0700
+
+    Fix searchmodal placeholder color issues
+
+[33mcommit cf7ab1693ddfc7d4985abc730739b75eabc9802f[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 30 10:24:15 2016 +0700
+
+    Fix placeholder color on search modal, make it as important
+
+[33mcommit 4d3bba4c44375b6cd22548f0284d1aff82001729[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 30 09:47:21 2016 +0700
+
+    Fix overlap spacing page Y index on iPhone 5s
+
+[33mcommit db15a2bdb120d77ecb63a0ca0138759c4142a1dd[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 18:19:18 2016 +0700
+
+    Disbale log on prod
+
+[33mcommit 9c47dfc5e35dd3c50e0184720ecfcaf95acc4323[m
+Merge: d1d32e7 a3ce702
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 17:32:47 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit a3ce702eb0f15013bffc7597a0fa72b1d261e8ec[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 17:31:52 2016 +0700
+
+    Translation
+
+[33mcommit d1d32e7e9d311ea45b1ed09efdf0aa9f54150d0b[m
+Merge: 129cc2b a08c70b
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 17:15:46 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit a08c70b4920628b56abbddd53998931c46bc0735[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 17:14:34 2016 +0700
+
+    Lint fix
+
+[33mcommit 129cc2b7ed4d2f3852df096d42918c62fbd647bb[m
+Merge: 4d0ec75 118320c
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 17:13:46 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit 118320c29b80db061cfe58a02333837edfdcfd95[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 17:13:26 2016 +0700
+
+    Search modal result tweak
+
+[33mcommit 4d0ec75ced85c4d592a100e594777a6a69939085[m
+Merge: a420674 76b04e0
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 14:45:22 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit 76b04e082544cc6c9c7d05f6e2ed5b5610ada25f[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 14:45:05 2016 +0700
+
+    Category list link:
+
+[33mcommit a420674aca0e7a60a5213fc9d6cfdd087bfae6b8[m
+Merge: 9d94779 1c4ed3b
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 14:16:51 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit 1c4ed3b6102ac179cbc750876e795804a0334aac[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 14:16:34 2016 +0700
+
+    GTM tags for search
+
+[33mcommit debcf62feaf4d4ab713cc1c408e1ee1e84cf055d[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 13:52:01 2016 +0700
+
+    Category list gtm
+
+[33mcommit 801d251cec9570ddb3e52d9e3921dbd9f3067807[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 13:47:13 2016 +0700
+
+    View all hotlist GTM
+
+[33mcommit 3ef4af7d391284b9cbf5ab03ab22e5ca64208f57[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 13:38:41 2016 +0700
+
+    Mouse leave return animation Carousel
+
+[33mcommit cfb4edfa3b62946ca060f9dc9d3a6bba9f0de684[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 13:30:31 2016 +0700
+
+    Make hotlist work in old android browser
+
+[33mcommit bcc4d871642dd204e72291b935bbf3bed026f0d6[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 13:16:58 2016 +0700
+
+    Bantuan link in footer update
+
+[33mcommit 2b42ca10f8c57ccb6d55def9d6cd59bac193abd6[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 13:16:05 2016 +0700
+
+    Hotlist GTM
+
+[33mcommit 3f54cd42da3210439096a849b7850c2b7483ca93[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 10:50:16 2016 +0700
+
+    Hotlist all lists link
+
+[33mcommit dba38d670f87368e095530d33edfa76906241d8a[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 08:05:24 2016 +0700
+
+    Cookie domain for language
+
+[33mcommit 86e7016b3980b2464ceb86783ea6a2f59a1273b2[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 29 07:54:38 2016 +0700
+
+    Category image dynamically loaded
+
+[33mcommit a701b8c6b0e98d6efc4074cb5fcac7f0a2f3b49a[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 17:56:50 2016 +0700
+
+    Correct category API
+
+[33mcommit 065421ad1d5fa81f7de4a7920fa850b5067f8564[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 16:39:04 2016 +0700
+
+    number tweak
+
+[33mcommit 0eedac31941f822ca77c314fb123e83af0ccdf40[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 16:34:05 2016 +0700
+
+    Tweak menu num
+
+[33mcommit 9d94779dcf37b7f132cc0f30f59e2ea373c28a4c[m
+Merge: eec1711 e9dab81
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 16:29:51 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit e9dab81177bf6b0c83bcd1c827caa99c0c57d043[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 16:27:53 2016 +0700
+
+    More workaround for old droid menu
+
+[33mcommit 266cf8d704b48cc58d064b86f6879efa94879563[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 16:02:59 2016 +0700
+
+    Added fashion sub categories
+
+[33mcommit 325f976206b560b0c6d0f606de05b5ebaa388ea5[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 15:42:21 2016 +0700
+
+    Bantuan link fixed
+
+[33mcommit 6f17d03bc687536894306e47de760a10a31896ec[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 15:40:29 2016 +0700
+
+    Green loading screen
+
+[33mcommit 427cac5968b8220d0eed0f9dbb0c375ddb0c4b84[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 13:51:30 2016 +0700
+
+    Search query linked between modal and input
+
+[33mcommit b41e22d628f09d8b30bc3e4d8432a0b1d1f78afe[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 13:35:33 2016 +0700
+
+    Search deletion interactive
+
+[33mcommit 84bccf06fd01ec3eba29d9923e0b1e7bfa085247[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 12:50:40 2016 +0700
+
+    History search view
+
+[33mcommit 859c2c21ed1d28196c068f883260e278b7006468[m
+Merge: 41717c6 2846dc6
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 12:19:36 2016 +0700
+
+    Merge pull request #125 from darrylsepeda/master
+    
+    Revert back menubar to square (topPoints and Saldo)
+
+[33mcommit 2846dc653c32155e358e319cbd1518cef190dff4[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Wed Dec 28 12:17:44 2016 +0700
+
+    revert menu back to square for toppoints and saldo
+
+[33mcommit 41717c6061634d6ad1a597964d988ac259054701[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 12:15:03 2016 +0700
+
+    Search history showing
+
+[33mcommit 4716ab920bedc5d45e1e97d4c13db35babf27655[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Wed Dec 28 12:11:02 2016 +0700
+
+    add hidden input field for GTM
+
+[33mcommit 7706d28dcebed707244caae977b915578df4aef9[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Wed Dec 28 09:06:17 2016 +0700
+
+    fixing top points
+
+[33mcommit 4b3c7b1ccdf861a994b25d5bcb02c750210f9d2c[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 08:40:18 2016 +0700
+
+    Lint fix
+
+[33mcommit 5869494bb93a5c00019a1d890ab3ef1af32794c5[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 08:33:50 2016 +0700
+
+    Search result bold inversed
+
+[33mcommit 4a8e5049bb36a898436092b9a557e07ed011dd29[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 08:22:39 2016 +0700
+
+    Loading in hotlist
+
+[33mcommit ab150eff9314fcc0990fd5fbc294f0e82ce6976c[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 08:20:38 2016 +0700
+
+    Spinner instead of null when loading
+
+[33mcommit 9bb0a391f2b245c7a95aa916c7b912dc6bba15b7[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 07:22:09 2016 +0700
+
+    Removed flicker on logged in
+
+[33mcommit 9b80484f0d3f7770bbea70ef3b459b77e45abf5f[m
+Merge: e58b5dc 7dfe172
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 07:18:38 2016 +0700
+
+    Merge branch 'master' of github.com:tokopedia/tokopedia-lite
+
+[33mcommit 7dfe17235fb1c7b9d7f8a96502882b309a741478[m
+Merge: 0fb480b fb74347
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 07:18:20 2016 +0700
+
+    Merge pull request #123 from darrylsepeda/master
+    
+    switch bold keyword
+
+[33mcommit e58b5dcfa54ccc300b95af1fd7668afe4972d49e[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Wed Dec 28 07:17:47 2016 +0700
+
+    Removed grayscale filter when online
+
+[33mcommit fb743473153f745007b1dce39411e2edb4c3c1b0[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Tue Dec 27 17:50:25 2016 +0700
+
+    revert bold search
+
+[33mcommit 7608dd6bc45e76ee557a64e4498092344830798d[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Tue Dec 27 17:46:37 2016 +0700
+
+    remove transform: translateZ(0) to fix sidebar
+
+[33mcommit e92bff2bb284ed788d27ad59a05e286ea5d0f6cd[m
+Merge: 2bab43d 0fb480b
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Tue Dec 27 17:39:35 2016 +0700
+
+    Merge branch 'master' of https://github.com/tokopedia/tokopedia-lite
+
+[33mcommit 0fb480bfebb02372ef19ec37741a5f35f00b5bfd[m
+Merge: 63032a6 8c02c25
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 17:30:30 2016 +0700
+
+    Merge pull request #122 from darrylsepeda/f_darryl_menu_wallet
+    
+    half done adding wallet to sidebar
+
+[33mcommit 2bab43d3206d638a047c82856ae9b8fd44689df3[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Tue Dec 27 16:39:04 2016 +0700
+
+    switch bold keyword
+
+[33mcommit 8c02c25308e4b178071c8b908aa516e092b1a20c[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Tue Dec 27 15:48:47 2016 +0700
+
+    revert user.js bcak
+
+[33mcommit eec1711359bb3ba06a83c706cbd2a63c399da0a0[m
+Merge: 90f5905 63032a6
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 15:37:20 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit 63032a660cdefffe1974ff39c0b3a87614e03096[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 15:37:05 2016 +0700
+
+    Autocomplete off, toys and hobbies
+
+[33mcommit f6f80f21814c35c13e18d8c1a221a1ac85d8dd55[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Tue Dec 27 15:32:42 2016 +0700
+
+    half done adding wallet to sidebar
+
+[33mcommit 90f590587f5995746c1ee0491f39a7304d8be664[m
+Merge: 8d41497 d46cc5d
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 14:31:35 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit d46cc5d95f03552aee02a43ec211d54834c7dfc3[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 14:31:29 2016 +0700
+
+    Ace points
+
+[33mcommit 8d41497131f3f368d4cc684d701296b34af52e3a[m
+Merge: 9a25ae6 888e8f4
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 14:25:06 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit 888e8f4be21ab33d1e9da8473b6b504e756b4fe8[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 14:24:50 2016 +0700
+
+    Various little fixes
+
+[33mcommit 9a25ae61b6c1bb219ea9a0b37966f1422443c452[m
+Merge: 04424a0 a3ebc9e
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 14:01:31 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit a3ebc9e037530fdbf0c28b427a045b748bf17235[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 14:01:18 2016 +0700
+
+    Search result bold
+
+[33mcommit 68c90ab7040f00cde06b89dc4670198660e849ca[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 13:05:14 2016 +0700
+
+    Open dialog on show search
+
+[33mcommit 353609892784b40fd7642d328efc4a9f30126edd[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 13:01:00 2016 +0700
+
+    Fix menu not showing
+
+[33mcommit 04424a09e51b1684b4a77f7724b1809073ac39ea[m
+Merge: f6f482f 786ab8e
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 11:53:44 2016 +0700
+
+    Merge branch 'production' of github.com:tokopedia/tokopedia-lite into production
+
+[33mcommit f6f482f35fbd02c6c8ff12a92096eb7914c46dfc[m
+Merge: 594e487 0c40423
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 11:53:14 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit 0c40423e7b044370398ed77be2412866a7dc49a2[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 11:52:43 2016 +0700
+
+    Menu not showing
+
+[33mcommit 54117c1a9409ffb5624d88e8268f15f4a772ab7f[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 11:26:53 2016 +0700
+
+    Slider not move after hover / drag
+
+[33mcommit cdc9a7e15bcf9dc0ccba923947edcbb5682d7e9b[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 11:20:48 2016 +0700
+
+    Search modal state so safari didn't break modal
+
+[33mcommit ec79a8c61b6f67be08c158837a2ca9a7e0c13020[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 10:27:05 2016 +0700
+
+    Fix search bar not scrolling on android browser
+
+[33mcommit 3740d30f964977d3c95b75a5cdebdd98efc9fa98[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 10:13:10 2016 +0700
+
+    Ticker immidiately shown
+
+[33mcommit ee3f64844c54a460c121e69c1042857e746f1404[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 10:00:03 2016 +0700
+
+    Redis async with promise
+
+[33mcommit 9d20314641d7cdfcffc3ebb3a12dbd95cb0d54ce[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 09:03:33 2016 +0700
+
+    Removed uneccessary logs
+
+[33mcommit 8f0333fea3bdd6e689ba7de91846117503a8a646[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 08:59:34 2016 +0700
+
+    Added HostnameLocal for all instances
+
+[33mcommit 4668d238dfea5b050741a24d6da6437788061f2f[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 08:54:18 2016 +0700
+
+    Error handling in oauth login
+
+[33mcommit 7ecec39551373850dbf551f6a5fb90e376aca633[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 08:43:13 2016 +0700
+
+    Error handling for queries
+
+[33mcommit bf99c63b64219d39f1b32eb40ce103ecbb097b14[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Tue Dec 27 08:10:44 2016 +0700
+
+    Changed TopedAPI and TopedHMACAPI to use request-promise
+
+[33mcommit 786ab8eb31b80e9dca17180c1a114d5853b944ba[m
+Merge: 839b941 2c234b7
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Mon Dec 26 12:56:52 2016 +0530
+
+    Merge branch 'master' into production
+
+[33mcommit 2c234b780182d9ccf204e2ea9cb4351172b84347[m
+Author: Nikhil Ranjan <nikhil.ranjan@tokopedia.com>
+Date:   Mon Dec 26 12:33:26 2016 +0530
+
+    local api urls for production
+
+[33mcommit e06521d80382cdd59d477e57737754b44de96fd8[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 16:54:40 2016 +0700
+
+    Ticker count fix
+
+[33mcommit 594e4870ac8b3289a63211d247320e532d1b3fb9[m
+Merge: 839b941 b7df74f
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 16:43:27 2016 +0700
+
+    Merge branch 'master' of github.com:tokopedia/tokopedia-lite into production
+
+[33mcommit b7df74fdd1c9384ee23315d0c8d1e2c0ea3c993e[m
+Merge: 5b358e3 b9e22e8
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 16:42:43 2016 +0700
+
+    Merge pull request #121 from bertzzie/f_alex_sim_new_search
+    
+    Design tweaks
+
+[33mcommit b9e22e8d3081284f288c34edb31fe06e5fca18d9[m
+Merge: c33ef25 bee4932
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 16:41:43 2016 +0700
+
+    Merge pull request #3 from arianjinx/wd_arian
+    
+    Fix ticker and add placeholder
+
+[33mcommit 5b358e336f156cd155a04ee2383c85b0b0a7c30f[m
+Merge: abe85d9 1ebc071
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 16:41:23 2016 +0700
+
+    Merge pull request #120 from darrylsepeda/master
+    
+    'toko saya' has a translation
+
+[33mcommit 1ebc07180058f65477271800a395525a869895aa[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Fri Dec 23 16:40:17 2016 +0700
+
+    'toko saya' has a translation
+
+[33mcommit bee4932d680701929baad0ae123e08f56b6e40a7[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 23 16:05:54 2016 +0700
+
+    Make the ticker bulletproof
+
+[33mcommit 839b94149d0c282c69e40652b585fb1b877ce2ea[m
+Merge: 4c10d0b abe85d9
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 15:48:15 2016 +0700
+
+    Merge branch 'master' into production
+
+[33mcommit abe85d9c22f0a7526600ff399b751155e4865d1e[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 15:47:48 2016 +0700
+
+    partial data for main views graphql query
+
+[33mcommit ad10c43921c7bc93f991954f458790ecd7fd5d47[m
+Merge: 6101a0c e6bf9a72
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 15:41:17 2016 +0700
+
+    Merge pull request #119 from darrylsepeda/master
+    
+    dropdown state not changing when ctrl+open submenu done
+
+[33mcommit 4c10d0b174c212b1a42cee3286c6b717dd966fa1[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 15:22:28 2016 +0700
+
+    Prod configs
+
+[33mcommit e6bf9a729dde702fbcda91b370a624b4cc9a56c7[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Fri Dec 23 15:19:46 2016 +0700
+
+    dropdown state not changing when ctrl+open submenu done
+
+[33mcommit 2d99ed44027b82ef6f50361dcefd00a810d62256[m
+Merge: 2f334c2 6101a0c
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Fri Dec 23 15:16:18 2016 +0700
+
+    Merge branch 'master' of https://github.com/tokopedia/tokopedia-lite
+
+[33mcommit a606bc997e838b5a2fe6eb313257dd18dea90192[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 23 14:57:51 2016 +0700
+
+    Fix ticker anomalies
+
+[33mcommit 6101a0c6486237bbfba6089c9012ea37f57fe272[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 14:27:54 2016 +0700
+
+    Fix ticker
+
+[33mcommit e29de007efd300bd7a680a7e44770a8f11259484[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 23 14:21:21 2016 +0700
+
+    Set placeholder image to local
+
+[33mcommit 3ca46789e7b20b037963ec252a286c572f406fa7[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 14:17:59 2016 +0700
+
+    Ticker update
+
+[33mcommit ab644e145325387f1ef47732457c725c25c367c5[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 14:14:18 2016 +0700
+
+    Mojito device to mobile
+
+[33mcommit 0eb71dd2c25ada09dd7af802ac38a34849c5c5c9[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 13:59:22 2016 +0700
+
+    clear search displayed after user input
+
+[33mcommit e8ef10196a066d058b29d326bb72cc7053e18724[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 13:55:30 2016 +0700
+
+    Default lang for cookie
+
+[33mcommit 2f334c23b6c65e39b129e3185ee22890113a1eae[m
+Merge: a500aaa 3885a7e
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Fri Dec 23 13:52:31 2016 +0700
+
+    Merge branch 'master' of https://github.com/tokopedia/tokopedia-lite
+
+[33mcommit 3885a7eda06963131978c168bfd92507f10f7424[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 13:32:43 2016 +0700
+
+    Removed unused files and components
+
+[33mcommit 29952072c515f83a32cb1d3566aacf7320b1cc9a[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 12:30:11 2016 +0700
+
+    Cookie default lang, lint fix
+
+[33mcommit 07a67423a1ab2374da561adb92d8a9b45c68aa8c[m
+Merge: 9fb4678 5e27c1f
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 12:22:18 2016 +0700
+
+    Merge pull request #117 from darrylsepeda/master
+    
+    Category has translation done
+
+[33mcommit 5e27c1f2b26db714046bd3532b207e3ca9aaf3ef[m
+Merge: 6535d97 9fb4678
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 12:21:48 2016 +0700
+
+    Merge branch 'master' into master
+
+[33mcommit 9fb467898601b8b40c0304964e68cc999ed3e56e[m
+Merge: e066082 5e2116f
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 12:18:04 2016 +0700
+
+    Merge branch 'master' into f_alex_sim_new_search
+
+[33mcommit e066082ffdfd3a070edc3bbc6d7de1273c9b2af9[m
+Merge: 92e99a8 c33ef25
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 12:18:01 2016 +0700
+
+    Merge branch 'f_alex_sim_new_search' of github.com:bertzzie/tokopedia-lite into f_alex_sim_new_search
+
+[33mcommit c33ef2529866999d0394010769980fe1a6b2a700[m
+Merge: 2afd25e dba215c
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 12:16:12 2016 +0700
+
+    Merge pull request #2 from arianjinx/wd_arian
+    
+    Design changes and fix before pray jum'ah
+
+[33mcommit 5e2116f6b9a0c9bce2c49198fd6459a969a2ffbe[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 11:38:14 2016 +0700
+
+    Fix view bug in menu
+
+[33mcommit dba215c1c92c4fb526d0bdb745f721ae1b2d14d9[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 23 11:21:04 2016 +0700
+
+    Set minimum height for ticker so it won't shaking on different height
+
+[33mcommit 352ea629f601b83bfc2acf62a3c40c61df9f721b[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 11:20:19 2016 +0700
+
+    Links to shop
+
+[33mcommit 7640cb0706fe96f9301ca5a943f5ba9173219492[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 23 11:20:02 2016 +0700
+
+    Add browserlist for perfect browser targeting autoprefixer
+
+[33mcommit a500aaa8adce22e70feadfcf2d78da45549a1c8d[m
+Merge: 29533ef 446342e
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Fri Dec 23 10:56:34 2016 +0700
+
+    Merge branch 'master' of https://github.com/tokopedia/tokopedia-lite
+
+[33mcommit 446342eb34265c07d5a8240d19f05acb6c1c8ccd[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 10:53:26 2016 +0700
+
+    Revert position back to 0
+
+[33mcommit 29533eff3b0fc60f825038c4afd41a8b01c9b6f4[m
+Merge: 6535d97 1aa8365
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Fri Dec 23 10:38:55 2016 +0700
+
+    Merge branch 'master' of https://github.com/tokopedia/tokopedia-lite
+
+[33mcommit 6535d9743a9479a9ff3d8b98b677cbae9d909856[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Fri Dec 23 10:38:17 2016 +0700
+
+    add lang as component's property
+
+[33mcommit 4ae2f40877815e4e0074555c521393e9f350f564[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Fri Dec 23 10:35:46 2016 +0700
+
+    add translation for 'lihat lagi'
+
+[33mcommit 9a339185953ae7a73914a2487091c7ffb94dd2ba[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 23 10:14:27 2016 +0700
+
+    Fix tabbing arrow padding and behaviour
+
+[33mcommit 1aa8365b16d516e51af526eeb9dea4ed43c29eee[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 10:08:39 2016 +0700
+
+    Search button not doing anything fix
+
+[33mcommit 1021df8b936889a2f694cfbdf3812af018ebd0ba[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 10:07:37 2016 +0700
+
+    Fix ticker problem
+
+[33mcommit 76c3eb97599ea3ffae59b5f1e30094a5037e0f61[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Fri Dec 23 09:55:43 2016 +0700
+
+    Category has translation done
+
+[33mcommit 37fa4736aa4ee177510381396790c0e8ae7a02e7[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 09:53:07 2016 +0700
+
+    Fix shop not showing
+
+[33mcommit 0dba6d03ad8f817c2b796f42132dcff229696bc9[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 23 09:47:43 2016 +0700
+
+    Fix editor pick margin
+
+[33mcommit 8c307273691b2bdaea45af78dd9e4dd9d49a32f3[m
+Merge: 1996be6 2afd25e
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Fri Dec 23 09:31:30 2016 +0700
+
+    Merge remote-tracking branch 'alex/f_alex_sim_new_search' into wd_arian
+
+[33mcommit 6f89db83746debcfa58cfb214c055a17fb28769d[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 09:14:23 2016 +0700
+
+    Form submit:
+
+[33mcommit 21e093d4b08aaf1c3b9889f76a5728adce75cec9[m
+Merge: dd53cf9 92e99a8
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 09:02:31 2016 +0700
+
+    Merge branch 'f_alex_sim_new_search'
+
+[33mcommit 92e99a837a403c8d90fc413e7482669c88bd2eee[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 09:00:31 2016 +0700
+
+    Added returnPartialData for search
+
+[33mcommit dd53cf9ed3496098dced05beb6b8b1ac4ead8922[m
+Merge: 7436a64 2afd25e
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 08:56:39 2016 +0700
+
+    Merge pull request #116 from bertzzie/f_alex_sim_new_search
+    
+    New Search Page
+
+[33mcommit 2afd25e9d6fb23fd3dbf3502592d28698264d9e3[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Fri Dec 23 08:50:21 2016 +0700
+
+    Search result interactivity
+
+[33mcommit 1996be691b62422280588db84f2f85d3c8bc79d3[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Thu Dec 22 18:22:16 2016 +0700
+
+    Fix hotlist show all link size
+
+[33mcommit b8e45028ecef2002ca93e67cc3114423454395f5[m
+Merge: 8e6dbff bcc2995
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 16:59:16 2016 +0700
+
+    Merge pull request #1 from arianjinx/wd_arian_search
+    
+    Wd arian search
+
+[33mcommit bcc2995bab7a5a15e109bb0c9e58cd369460cdae[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Thu Dec 22 16:55:48 2016 +0700
+
+    Fix lint
+
+[33mcommit 8eb0a0090f13fe7aceb75adb39cc97a40e0dfa7b[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Thu Dec 22 16:45:09 2016 +0700
+
+    Fix conflict
+
+[33mcommit fef4a14d024a93cfa9e0212e96b7ff489a00bb61[m
+Merge: 3e6ca53 7436a64
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Thu Dec 22 16:43:59 2016 +0700
+
+    merge update
+
+[33mcommit 3e6ca53105f2eee9f3348c83b78cef766fef5f11[m
+Author: Arian Pradana <arian.raptor@gmail.com>
+Date:   Thu Dec 22 16:43:16 2016 +0700
+
+    Move hotlist after editor pick & search view V2
+
+[33mcommit 7436a6403223c229eaa398c9615b9178389d1048[m
+Merge: eed32be f1c0c07
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 16:38:47 2016 +0700
+
+    Merge branch 'master' of github.com:tokopedia/tokopedia-lite
+
+[33mcommit eed32be79bdc6fe0e747537312f717edf9cdf45d[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 16:38:37 2016 +0700
+
+    Hotlist view with proper menu and tweaks
+
+[33mcommit f1c0c074eefeefe1a8f3941e6305dfc16ac7fc25[m
+Merge: 24834cd 47be4e2
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 16:37:48 2016 +0700
+
+    Merge pull request #115 from darrylsepeda/master
+    
+    change "daftar akun toped" to "daftar"
+
+[33mcommit 37315a22dd5c1f66247cc198c281c7c68135186d[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 16:28:33 2016 +0700
+
+    Hotlist more link adjustments
+
+[33mcommit 138ae9a4b7361597f19629c1813f7459566f9a5a[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 16:23:34 2016 +0700
+
+    Logout tab hotlist fix
+
+[33mcommit 47be4e2bb2ef074d0269152d51092b8437413ad8[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Thu Dec 22 16:21:43 2016 +0700
+
+    change daftar akun toped to daftar
+
+[33mcommit 24834cd8de470a3adee6cdbd3bb09ab3480fe892[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 16:08:41 2016 +0700
+
+    Fix T15618
+
+[33mcommit 2723ea976da3db2eab97c5cd8c1a2cfdeb6e39b7[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 15:56:57 2016 +0700
+
+    Notif fix
+
+[33mcommit 8dad2dd4b1de2e189fef960f46d563cce5ba19ed[m
+Merge: 481df93 444cfed
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 15:44:12 2016 +0700
+
+    Merge branch 'master' of github.com:tokopedia/tokopedia-lite
+
+[33mcommit 444cfed2bcd3eb6bed7c198aaefddaaf662227c2[m
+Merge: a1f697c 65d5798
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 15:38:43 2016 +0700
+
+    Merge pull request #114 from darrylsepeda/master
+    
+    Notification solved
+
+[33mcommit 65d57986364356d8f11ff75d7a6aa98ec9a58ad6[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Thu Dec 22 15:36:59 2016 +0700
+
+    solve lint:fix
+
+[33mcommit 481df9379c19ab07880a7ce7e83d805115a2f8a9[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 15:36:11 2016 +0700
+
+    Single item padding fix on category
+
+[33mcommit ba9b21c237087fb4f55be1dae55c73db7ce9cfe8[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Thu Dec 22 15:33:43 2016 +0700
+
+    notification solved
+
+[33mcommit a1f697c1f642e9cc001454d223bd7a4099163261[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 15:30:34 2016 +0700
+
+    Official store below hotlist
+
+[33mcommit a5a65a0c93e9e87de07c5aa73c467d4d7122aaf8[m
+Merge: 86d8bb5 fdcc884
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Thu Dec 22 15:21:25 2016 +0700
+
+    Merge branch 'master' of https://github.com/tokopedia/tokopedia-lite
+
+[33mcommit fdcc8844c947afdd2d7981e32ca7a756f1270861[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 15:20:32 2016 +0700
+
+    Category missing after language change fix
+
+[33mcommit 86d8bb5b25751c8716af8bff26f1a061034fb414[m
+Merge: dc886fb 5d8f4e4
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Thu Dec 22 15:13:11 2016 +0700
+
+    Merge branch 'master' of https://github.com/tokopedia/tokopedia-lite
+
+[33mcommit dc886fb9ab5312a120b32164fc26e8e89b5fbfb3[m
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Thu Dec 22 15:12:42 2016 +0700
+
+    bisa menggunakan interval
+
+[33mcommit 5d8f4e4c6e41f1d17620939ce81a1ea5cc8c0775[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 15:11:59 2016 +0700
+
+    Carousel autoplay off when clicked
+
+[33mcommit bb23796d7dcc14fec8252c8fd35e29f2afe1fe44[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 14:58:53 2016 +0700
+
+    Ticker tweak, user link on menu
+
+[33mcommit e1f04455e30f3b64c2c0778fe9d1e1e2f1e739fd[m
+Merge: 877c165 b27cda3
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Thu Dec 22 14:41:28 2016 +0700
+
+    Merge branch 'master' of https://github.com/tokopedia/tokopedia-lite
+
+[33mcommit 25bdf52809ae11be2428a235bbf3bb9c81f2797a[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 14:32:04 2016 +0700
+
+    Pause carousel on focus
+
+[33mcommit b27cda321ed87453bd20ecd96825527016fa0f0b[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 14:21:46 2016 +0700
+
+    Search unclickable fix
+
+[33mcommit 22373de8e397386609fd7ef895410d42cb60b822[m
+Merge: 053feca 5b48f89
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 14:09:25 2016 +0700
+
+    Merge pull request #112 from bertzzie/f_alex_sim_hotlist_page
+    
+    Hotlist page before login
+
+[33mcommit 5b48f891d7af2516ed142acf4d34d73741b92991[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 14:08:37 2016 +0700
+
+    View more hotlist ok
+
+[33mcommit 05b0407471bcb8eceae912c8881fb110c4c3a441[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 13:01:21 2016 +0700
+
+    Added hot product list graphql query
+
+[33mcommit 053feca7f49cdae51268a624844383b8b06de625[m
+Merge: cbd44d2 bdf4e67
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 11:41:59 2016 +0700
+
+    Merge pull request #111 from darrylsepeda/master
+    
+    Fixing shop section in sidebar
+
+[33mcommit cbd44d2d32a5542493f3a3ee4e2974aabab2ead3[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 11:37:33 2016 +0700
+
+    Updated not loggin sync
+
+[33mcommit 0819243ee3c1772f841e8f63d8b72174429a082c[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 11:28:22 2016 +0700
+
+    Promisify callbacks
+
+[33mcommit 877c165ef66f192b96dc9b8d1d6b226f3ba24be2[m
+Merge: 415f611 9bb7b63
+Author: darrylsepeda <darryl@thereal-website.com>
+Date:   Thu Dec 22 11:20:44 2016 +0700
+
+    Merge branch 'master' of https://github.com/tokopedia/tokopedia-lite
+
+[33mcommit 9bb7b6325ba1c39375856e110a9637717ba53c39[m
+Author: Alex Xandra Albert Sim <bertzzie@gmail.com>
+Date:   Thu Dec 22 11:15:43 2016 +0700
+
+    Return something in callback for getsession
