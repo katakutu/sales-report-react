@@ -39,10 +39,6 @@ export const WishList = (props) => {
                   <div className='wishlist__title'>{ wishlist['name'] }</div>
                 </a>
                 <div className='wishlist__price u-truncate'>{ wishlist['price_formatted'] }</div>
-                <div className='wishlist__rating u-truncate'>
-                  <span className='wishlist__rating-star star_3' />
-                  <span className='wishlist__count-rating'>(14282989)</span>
-                </div>
                 <div className='wishlist__type-marketing u-truncate'>
                   {
                   labels.map((label, li) => {
