@@ -1,3 +1,4 @@
+/* eslint max-len: ["error", { "ignoreStrings": true }] */
 import React, { Component } from 'react'
 import classnames from 'classnames'
 import './Tabs.scss'
@@ -37,41 +38,40 @@ class Tabs extends Component {
   }
 
   generateAfterChange (direction) {
-    let prev = document.getElementById('prev');
-    let next = document.getElementById('next');
+    let prev = document.getElementById('prev')
+    let next = document.getElementById('next')
+    let inner = window.innerWidth
     const slideTrackEl = document.querySelector('#loggedin-tab .tab')
-    const viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+    const vpWidth = Math.max(document.documentElement.clientWidth, inner || 0)
 
     let widthTabs = 0
-    widthTabs = document.getElementById('slick-track').offsetWidth;
-    if(direction=='next'){
-      next.className="slick-arrow slick-next slick-disabled";
-      prev.className="slick-arrow slick-prev";
+    widthTabs = document.getElementById('slick-track').offsetWidth
+    if (direction === 'next') {
+      next.className = 'slick-arrow slick-next slick-disabled'
+      prev.className = 'slick-arrow slick-prev'
       this.detectScroll()
-      const maxTranslateX = -1 * (widthTabs - viewportWidth)
+      const maxTranslateX = -1 * (widthTabs - vpWidth)
       slideTrackEl.style.transform = `translate3d(${maxTranslateX}px, 0px, 0px)`
-    }else if(direction=='prev'){
-      next.className="slick-arrow slick-next";
-      prev.className="slick-arrow slick-prev slick-disabled";
+    } else if (direction === 'prev') {
+      next.className = 'slick-arrow slick-next'
+      prev.className = 'slick-arrow slick-prev slick-disabled'
       this.detectScroll()
       slideTrackEl.style.transform = `translate3d(0px, 0px, 0px)`
     }
-    
-    
   }
-  detectScroll(){
-    var header = document.getElementsByTagName('header')[0].className;
-    if(header.indexOf('transform')>=0){
-      document.getElementById('next').classList.add('mini');
-      document.getElementById('prev').classList.add('mini');
-    }else{
-      document.getElementById('next').classList.remove('mini');
-      document.getElementById('prev').classList.remove('mini');
-    } 
+  detectScroll () {
+    var header = document.getElementsByTagName('header')[0].className
+    if (header.indexOf('transform') >= 0) {
+      document.getElementById('next').classList.add('mini')
+      document.getElementById('prev').classList.add('mini')
+    } else {
+      document.getElementById('next').classList.remove('mini')
+      document.getElementById('prev').classList.remove('mini')
+    }
   }
   componentDidMount () {
     window.addEventListener('resize', this.handleResize)
-    window.addEventListener('scroll',this.detectScroll)
+    window.addEventListener('scroll', this.detectScroll)
     this.handleResize()
   }
 
@@ -154,15 +154,19 @@ class Tabs extends Component {
     })
 
     return (
-      <div className={_className} id="loggedin-tab">
-        <button type="button" onClick={() => this.generateAfterChange("prev")} id="prev" className="slick-arrow slick-prev slick-disabled"> Previous</button>
-        <button type="button" onClick={() => this.generateAfterChange("next")} id="next" className="slick-arrow slick-next"> Next</button>
+      <div className={_className} id='loggedin-tab'>
+        <button type='button' onClick={() => this.generateAfterChange('prev')} id='prev' className='slick-arrow slick-prev slick-disabled'>
+         Previous
+        </button>
+        <button type='button' onClick={() => this.generateAfterChange('next')} id='next' className='slick-arrow slick-next'>
+         Next
+        </button>
         <nav ref={this.initNavigationNode} className='tab'>
-          <span id="slick-track">
+          <span id='slick-track'>
             {this.renderHeaders(headers)}
           </span>
         </nav>
-        
+
         {this.renderContents(contents)}
       </div>
     )
