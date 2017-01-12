@@ -5,8 +5,7 @@
     display: flex;
     background-color: $color-green;
     width:100%;
-    transform: translate3d(0px, 0px, 0px);
-    transition: 0.4s ease-in-out;
+    overflow-x: hidden;
 }
 
 .tab__inverted {
@@ -110,10 +109,18 @@
     .slick-disabled::before {
         display: none;
     }
-    .slick-track {
-        opacity: 1; 
-        transform: translate3d(0px, 0px, 0px); 
-        width: 854.75px; 
+    #slick-track {
+        opacity: 1;
+        transform: translate3d(0px, 0px, 0px);
+        width: 854.75px;
         transition: -webkit-transform 500ms ease;
+        transition: 0.4s ease-in-out;
     }
+}
+
+.slider {
+  width: 100%;
+  height: auto;
+  overflow-x: hidden;
+  padding-top: 5px;
 }
