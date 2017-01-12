@@ -102,7 +102,7 @@ class MoreInfo extends Component {
               </a>
             </li>
             <li>
-              <a className='more-info__link' href={`${HOSTNAME}/bantuan?utm_source=mobile&utm_medium=linkbantuan`}>
+              <a className='more-info__link' href={`https://help.tokopedia.com/hc/en-us?utm_source=mobile&utm_medium=linkbantuan`}>
                 { lang[this.props.lang]['Contact Us'] }
                 <i className='more-info__arrow' />
               </a>
