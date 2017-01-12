@@ -146,7 +146,6 @@ class Tabs extends Component {
         <nav ref={this.initNavigationNode} className='tab'>
           {this.renderHeaders(headers)}
         </nav>
-        <span className='tab__pointer' style={this.state.pointer} />
 
         {this.renderContents(contents)}
       </div>

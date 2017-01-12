@@ -5,6 +5,8 @@
     display: flex;
     background-color: $color-green;
     box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.2);
+    width:auto;
+    overflow-x:auto;
 }
 
 .tab__inverted {
@@ -28,9 +30,9 @@
 }
 
 .tab__link {
-    display: inline-flex;
-    flex-grow: 1;
-    justify-content: center;
+    // display: inline-flex;
+    // flex-grow: 1;
+    // justify-content: center;
     border-bottom: 2px solid transparent;
     color: $color-white-primary;
     text-align: center;
@@ -38,22 +40,16 @@
     text-transform: uppercase;
     font-weight: normal;
     font-size: 12px;
-    line-height: 44px;
+    line-height: 40px;
     opacity: 0.54;
     cursor: pointer;
+    padding:0 15px;
+    white-space:nowrap;
 
     &.tab__active {
         opacity: 1;
+        border-bottom:4px solid #fff;
     }
-}
-
-.tab__pointer {
-    position: relative;
-    display: block;
-    margin-top: -0.2em;
-    height: 0.2em;
-    background-color: $color-white-primary;
-    transition: left 0.45s ease;
 }
 
 .tab__hidden {
