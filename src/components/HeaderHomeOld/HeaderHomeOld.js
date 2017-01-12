@@ -17,7 +17,9 @@ import './HeaderHomeOld.scss'
 import SearchInput from '../SearchInput'
 import LoggedInMenu from './LoggedInMenu'
 import LoggedOutMenu from './LoggedOutMenu'
-import LoggedInTab from './LoggedInTab'
+// import LoggedInTab from './LoggedInTab'
+import Tabs from '../Tabs/Tabs'
+import Tab from '../Tabs/Tab'
 import LoggedOutTab from './LoggedOutTab'
 import OverlaySplash from './OverlaySplash'
 
@@ -138,9 +140,17 @@ class HeaderHome extends Component {
 
   renderTabs () {
     if (this.props.tabIsAvailable) {
-      return this.props.userIsLoggedIn
-        ? <LoggedInTab activeTab={this.props.activeTab} />
-        : <LoggedOutTab activeTab={this.props.activeTab} />
+      if (this.props.userIsLoggedIn) {
+        return <Tabs>
+          <Tab label='Home' />
+          <Tab label='Feed' />
+          <Tab label='Favorite' />
+          <Tab label='Hot List' />
+          <Tab label='Wishlist' />
+        </Tabs>
+      } else {
+        return <LoggedOutTab activeTab={this.props.activeTab} />
+      }
     }
   }
 

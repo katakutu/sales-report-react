@@ -57,7 +57,8 @@ class LoggedInTab extends Component {
   }
 
   state = {
-    settings: this.settings
+    settings: this.settings,
+    count: 6
   }
 
   componentDidMount () {
