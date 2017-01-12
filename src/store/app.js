@@ -282,7 +282,6 @@ const initialState = {
   isLoading: false,
   notifications: [],
   lang: Cookies.getItem('lang') || 'id',
-  scrollHistory: [],
   user: {
     loggedIn: false,
     searchID: '-',

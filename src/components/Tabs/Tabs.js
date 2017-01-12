@@ -97,7 +97,6 @@ class Tabs extends Component {
       return React.cloneElement(item, {
         className: 'tab__link',
         id: index,
-        isActive: this.props.index === index,
         key: `tab-header-${index}`,
         onClick: (event) => {
           this.handleHeaderClick(event)
@@ -146,8 +145,7 @@ class Tabs extends Component {
         <nav ref={this.initNavigationNode} className='tab'>
           {this.renderHeaders(headers)}
         </nav>
-        <span className='tab__pointer' style={this.state.pointer} />
-
+        {/* <span className='tab__pointer' style={this.state.pointer} /> */}
         {this.renderContents(contents)}
       </div>
     )

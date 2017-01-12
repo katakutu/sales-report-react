@@ -27,6 +27,8 @@ import OverlaySplash from './OverlaySplash'
 import { HOSTNAME } from '../../constants'
 import lang from '../../lib/utils/Lang'
 
+let scrollHistoryName = { '/': 'home', '/hot': 'hotlist' }
+
 class HeaderHome extends Component {
   static propTypes = {
     activeTab: React.PropTypes.string,
@@ -43,7 +45,7 @@ class HeaderHome extends Component {
     lang: React.PropTypes.string,
     updateScrollPosition: React.PropTypes.func,
     location: React.PropTypes.object,
-    scrollHistory: React.PropTypes.array
+    scrollHistory: React.PropTypes.object
   }
 
   static contextTypes = {
@@ -108,13 +110,17 @@ class HeaderHome extends Component {
     const { router } = this.context
     var scroll = Scroll.animateScroll
     var currentLocation = router.getCurrentLocation().pathname
+    var currentKey = scrollHistoryName[currentLocation]
     var currentState = this.props.scrollHistory
-    if (currentState.length) {
-      currentState.map((item, index) => {
-        if (item.path === currentLocation) {
-          scroll.scrollTo(item.point)
-        }
-      })
+    if (currentState) {
+      if (currentState[currentKey]) {
+        scroll.scrollTo(currentState[currentKey].point, {
+          duration: 0,
+          delay: 0,
+          smooth: false,
+          ignoreCancelEvents: true
+        })
+      }
     }
   }
 
@@ -160,14 +166,23 @@ class HeaderHome extends Component {
     this.setState({ showSearch: true })
   }
 
+  checkActive (val) {
+    const { router } = this.context
+    var currentLocation = router.getCurrentLocation().pathname
+    let result = currentLocation === val
+    return result
+  }
+
   renderTabs () {
     if (this.props.tabIsAvailable) {
       if (this.props.userIsLoggedIn) {
+        const { router } = this.context
+        console.log(router.isActive('/'))
         return <Tabs>
-          <Tab label='Home' onClick={() => this._savePosition('/')} />
-          <Tab label='Feed' url={`${HOSTNAME}/?view=feed_preview`} />
+          <Tab isActive={this.checkActive('/')} label='Home' onClick={() => this._savePosition('/')} />
+          <Tab label='Feed' url={`${HOSTNAME}/?view=fehoted_preview`} />
           <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} />
-          <Tab label='Hot List' onClick={() => this._savePosition('/hot')} />
+          <Tab isActive={this.checkActive('/hot')} label='Hot List' onClick={() => this._savePosition('/hot')} />
           <Tab label='Wishlist' url={`${HOSTNAME}/?view=wishlist_preview`} />
         </Tabs>
       } else {
@@ -215,26 +230,19 @@ class HeaderHome extends Component {
     var scrollPosition = (window.pageYOffset !== undefined) ? window.pageYOffset
     : (document.documentElement || document.body.parentNode || document.body).scrollTop
     // update scroll history
-    var updateState = []
+    var updateState = {}
     var currentLocation = router.getCurrentLocation().pathname
+    var currentKey = scrollHistoryName[currentLocation]
     var currentState = this.props.scrollHistory
-    // updateState = [...currentState, ...[{ path: currentLocation, point:scrollPosition }]]
-    if (currentState.length) {
-      var adding = true
-      currentState.map((item, index) => {
-        if (item.path === currentLocation) {
-          updateState.push({ path: currentLocation, point: scrollPosition })
-          adding = false
-        } else {
-          updateState.push({ path: item.path, point: item.point
-          })
-        }
-      })
-      if (adding) { updateState.push({ path: currentLocation, point: scrollPosition }) }
+    // check available
+    if (currentState) {
+      // update state
+      currentState[currentKey] = { path: currentLocation, point: scrollPosition }
+      updateState = currentState
     } else {
-      updateState = [{ path: currentLocation, point: scrollPosition }]
+      updateState[currentKey] = { path: currentLocation, point: scrollPosition }
     }
-    // update to state
+    // update to store
     this.props.updateScrollPosition(updateState)
     // push location state
     router.push({
