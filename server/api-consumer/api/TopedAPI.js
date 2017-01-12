@@ -6,7 +6,8 @@ const redis = require('../../GlobalConfig').SessionRedis
 const topedAPICache = obcache.debug.register(new obcache.Create({
   max: 10000,
   maxAge: 30 * 60 * 1000,
-  redis: redis
+  redis: redis,
+  id: 2
 }), 'topedapi')
 
 const wrappedTopedFetch = topedAPICache.wrap((url, options, cb) => {
