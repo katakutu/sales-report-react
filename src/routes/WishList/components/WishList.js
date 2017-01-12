@@ -27,11 +27,14 @@ export const WishList = (props) => {
           const mainLink = `${HOSTNAME}/add-to-cart.pl`
           const buyLink = `${mainLink}?refback=${currentPage}&id=${wishlist['id']}&referer=${currentPage}`
 
+          const labels = wishlist['labels'] || []
+          const badges = wishlist['badges'] || []
+
           return (
             <div className='u-col u-col-6 wishlist__contents' key={`wishlist-${index}`}>
               <div className='wishlist__content-box'>
                 <button className='wishlist__button-wish'><i className='wishlist__icon wishlist__love-full' /></button>
-                <a href='#'>
+                <a href={wishlist['url']}>
                   <img src={wishlist['image']} className='wishlist__img' alt='tokopedia' />
                   <div className='wishlist__title'>{ wishlist['name'] }</div>
                 </a>
@@ -41,7 +44,30 @@ export const WishList = (props) => {
                   <span className='wishlist__count-rating'>(14282989)</span>
                 </div>
                 <div className='wishlist__type-marketing u-truncate'>
-                  <span className='wishlist__cashback'>Cashback 5%</span>
+                  {
+                  labels.map((label, li) => {
+                    let style = { backgroundColor: label['color'] }
+                    if (label['color'] === '#ffffff') {
+                      style = Object.assign(style, {
+                        border: '1px solid #bbb',
+                        color: '#606060'
+                      })
+                    }
+
+                    return (
+                      <span
+                        className='wishlist__label'
+                        key={`wishlist-${index}-label-${li}`}
+                        style={style}>
+                        { label['title'] }
+                      </span>
+                    )
+                  })
+                }
+                  {
+                  labels.length === 0 &&
+                    <span className='wishlist__label' style={{ backgroundColor: '#ffffff' }}>&nbsp;</span>
+                }
                 </div>
                 <a href={wishlist['shop']['url']}>
                   <div className='wishlist__shop-name u-truncate'>{ wishlist['shop']['name'] }</div>
@@ -51,9 +77,17 @@ export const WishList = (props) => {
                     <i className='icon-location' /> { wishlist['shop']['location'] }
                   </span>
                   <span className='wishlist__badges'>
-                    <img className='wishlist__img-badge' src='http://placehold.it/12x12' />
-                    <img className='wishlist__img-badge' src='http://placehold.it/12x12' />
-                    <img className='wishlist__img-badge' src='http://placehold.it/12x12' />
+                    {
+                    badges.map((badge, bi) => {
+                      return (
+                        <img
+                          alt={badge['title']}
+                          className='wishlist__img-badge'
+                          key={`wishlist-${index}-badge-${bi}`}
+                          src={badge['image_url']} />
+                      )
+                    })
+                  }
                   </span>
                 </div>
                 <div className='wishlist__buy'>
@@ -102,6 +136,14 @@ query Query($userID: Int!, $count: Int!, $page: Int!) {
         gold_merchant
         location
         status
+      }
+      badges{
+        title
+        image_url
+      }
+      labels{
+        title
+        color
       }
       available
       status

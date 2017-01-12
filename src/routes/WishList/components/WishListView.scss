@@ -41,6 +41,7 @@
 .wishlist__contents {
     margin: 10px 0 5px;
     background-color: $color-white-primary;
+    height: 350px;
 }
 
 .wishlist__contents:nth-child(odd) {
@@ -170,7 +171,7 @@
     font-size: 11px;
 }
 
-.wishlist__cashback {
+.wishlist__label {
     display: inline-block;
     margin-right: 3px;
     padding: 3px;
@@ -216,6 +217,7 @@
 
 .wishlist__img-badge {
     padding: 0 5px 0 0;
+    height: 16px;
 }
 
 .wishlist__img-badge:last-child {

@@ -17,7 +17,7 @@ function getUserWishlist (userID, count, page) {
     }
 
     return {
-      total_data: response['data'].length,
+      total_data: response['header']['total_data'],
       items: response['data']
     }
   })

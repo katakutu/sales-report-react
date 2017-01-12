@@ -34,7 +34,7 @@ class WishlistView extends Component {
     return (
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='wishlist' />
-        <WishList userID={parseInt(userInfo['id'])} page={1} count={9} />
+        <WishList userID={parseInt(userInfo['id'])} page={1} count={10} />
         <LoadMore>
           { lang[this.props.lang]['View More'] }
         </LoadMore>
