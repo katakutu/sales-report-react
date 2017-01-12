@@ -45,6 +45,10 @@
     &.tab__active {
         opacity: 1;
     }
+
+    a {
+        color: $color-white-primary;
+    }
 }
 
 .tab__pointer {

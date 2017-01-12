@@ -8,6 +8,7 @@ class Tab extends Component {
     disabled: React.PropTypes.bool,
     hidden: React.PropTypes.bool,
     isActive: React.PropTypes.bool,
+    url: React.PropTypes.string,
     label: React.PropTypes.node,
     onActive: React.PropTypes.func,
     onClick: React.PropTypes.func
@@ -40,7 +41,7 @@ class Tab extends Component {
   }
 
   render () {
-    const { className, disabled, hidden, isActive, label, ...others } = this.props
+    const { className, disabled, hidden, isActive, url, label, ...others } = this.props
 
     const _className = classnames(
             className,
@@ -51,10 +52,17 @@ class Tab extends Component {
       }
         )
 
+    let contentLabel
+    if (url) {
+      contentLabel = <a href={url}>{label}</a>
+    } else {
+      contentLabel = label
+    }
+
     return (
       <label {...others} className={_className}
         onClick={this.handleClick}>
-        {label}
+        {contentLabel}
       </label>
     )
   }
