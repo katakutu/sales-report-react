@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import Scroll from 'react-scroll'
@@ -7,8 +7,7 @@ import {
   updateSearchModalStatus,
   updateSidebarStatus,
   storeUserData,
-  initialState,
-  updateScrollPosition
+  initialState
 } from '../../store/app'
 import BodyClassName from 'react-body-classname'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -18,16 +17,12 @@ import './HeaderHomeOld.scss'
 import SearchInput from '../SearchInput'
 import LoggedInMenu from './LoggedInMenu'
 import LoggedOutMenu from './LoggedOutMenu'
-// import LoggedInTab from './LoggedInTab'
-import Tabs from '../Tabs/Tabs'
-import Tab from '../Tabs/Tab'
+import LoggedInTab from './LoggedInTab'
 import LoggedOutTab from './LoggedOutTab'
 import OverlaySplash from './OverlaySplash'
 
 import { HOSTNAME } from '../../constants'
 import lang from '../../lib/utils/Lang'
-
-let scrollHistoryName = { '/': 'home', '/hot': 'hotlist' }
 
 class HeaderHome extends Component {
   static propTypes = {
@@ -42,14 +37,7 @@ class HeaderHome extends Component {
     searchModalIsOpen: React.PropTypes.bool,
     sidebar: React.PropTypes.object,
     tabIsAvailable: React.PropTypes.bool,
-    lang: React.PropTypes.string,
-    updateScrollPosition: React.PropTypes.func,
-    location: React.PropTypes.object,
-    scrollHistory: React.PropTypes.object
-  }
-
-  static contextTypes = {
-    router: PropTypes.object
+    lang: React.PropTypes.string
   }
 
   state = {
@@ -66,7 +54,6 @@ class HeaderHome extends Component {
     this.renderTabs = this.renderTabs.bind(this)
     this.renderSidebar = this.renderSidebar.bind(this)
     this.showSearch = this.showSearch.bind(this)
-    this._savePosition = this._savePosition.bind(this)
   }
 
   _updateUserState (userIsLoggedIn, userShouldRedirect, userInfo) {
@@ -106,30 +93,13 @@ class HeaderHome extends Component {
     return scrollPos < heightOffset
   }
 
-  _scrollHistory () {
-    const { router } = this.context
-    var scroll = Scroll.animateScroll
-    var currentLocation = router.getCurrentLocation().pathname
-    var currentKey = scrollHistoryName[currentLocation]
-    var currentState = this.props.scrollHistory
-    if (currentState) {
-      if (currentState[currentKey]) {
-        scroll.scrollTo(currentState[currentKey].point, {
-          duration: 0,
-          delay: 0,
-          smooth: false,
-          ignoreCancelEvents: true
-        })
-      }
-    }
-  }
-
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll)
+
     const userIsLoggedIn = this.props.userInfo ? this.props.userInfo.isLoggedIn : false
     const userShouldRedirect = this.props.userInfo ? this.props.userInfo.shouldRedirect : false
     this._updateUserState(userIsLoggedIn, userShouldRedirect, this.props.userInfo)
-    this._scrollHistory()
+
     this.setState({
       showSearch: this._shouldShowSearch(document.body.scrollTop)
     })
@@ -166,28 +136,11 @@ class HeaderHome extends Component {
     this.setState({ showSearch: true })
   }
 
-  checkActive (val) {
-    const { router } = this.context
-    var currentLocation = router.getCurrentLocation().pathname
-    let result = currentLocation === val
-    return result
-  }
-
   renderTabs () {
     if (this.props.tabIsAvailable) {
-      if (this.props.userIsLoggedIn) {
-        const { router } = this.context
-        console.log(router.isActive('/'))
-        return <Tabs>
-          <Tab isActive={this.checkActive('/')} label='Home' onClick={() => this._savePosition('/')} />
-          <Tab label='Feed' url={`${HOSTNAME}/?view=fehoted_preview`} />
-          <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} />
-          <Tab isActive={this.checkActive('/hot')} label='Hot List' onClick={() => this._savePosition('/hot')} />
-          <Tab label='Wishlist' url={`${HOSTNAME}/?view=wishlist_preview`} />
-        </Tabs>
-      } else {
-        return <LoggedOutTab activeTab={this.props.activeTab} />
-      }
+      return this.props.userIsLoggedIn
+        ? <LoggedInTab activeTab={this.props.activeTab} />
+        : <LoggedOutTab activeTab={this.props.activeTab} />
     }
   }
 
@@ -221,32 +174,6 @@ class HeaderHome extends Component {
     }, () => {
       Scroll.animateScroll.scrollToTop({ smooth: false, duration: 0 })
       this.props.updateSearchModalStatus(true)
-    })
-  }
-
-  _savePosition (val) {
-    const { router } = this.context
-    // get scrolled position
-    var scrollPosition = (window.pageYOffset !== undefined) ? window.pageYOffset
-    : (document.documentElement || document.body.parentNode || document.body).scrollTop
-    // update scroll history
-    var updateState = {}
-    var currentLocation = router.getCurrentLocation().pathname
-    var currentKey = scrollHistoryName[currentLocation]
-    var currentState = this.props.scrollHistory
-    // check available
-    if (currentState) {
-      // update state
-      currentState[currentKey] = { path: currentLocation, point: scrollPosition }
-      updateState = currentState
-    } else {
-      updateState[currentKey] = { path: currentLocation, point: scrollPosition }
-    }
-    // update to store
-    this.props.updateScrollPosition(updateState)
-    // push location state
-    router.push({
-      pathname: val
     })
   }
 
@@ -337,8 +264,7 @@ const mapDispatchToProps = {
   updateUserLoginStatus,
   updateSearchModalStatus,
   updateSidebarStatus,
-  storeUserData,
-  updateScrollPosition
+  storeUserData
 }
 const mapStateToProps = (state) => {
   return {
@@ -346,8 +272,7 @@ const mapStateToProps = (state) => {
     sidebar: state['app'] ? state['app'].sidebar : state.sidebar,
     userData: state['app'] ? state['app'].user.data : state.user.data,
     userIsLoggedIn: state['app'] ? state['app'].user.loggedIn : state.user.loggedIn,
-    lang: state['app'] ? state['app'].lang : state.lang,
-    scrollHistory: state['app'] ? state['app'].scrollHistory : state.scrollHistory
+    lang: state['app'] ? state['app'].lang : state.lang
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderHome)
