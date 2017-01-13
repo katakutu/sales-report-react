@@ -30,6 +30,9 @@ export const SIDEBAR_SALES_CLOSED = 'SIDEBAR_SALES_CLOSED'
 
 export const LANG = 'LANG'
 
+// action for set history scroll location
+export const SCROLL_HISTORY = 'SCROLL_HISTORY'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -135,6 +138,13 @@ export function updateLang (props) {
   }
 }
 
+export function updateScrollPosition (props) {
+  return {
+    type: SCROLL_HISTORY,
+    payload: props
+  }
+}
+
 export const actions = {
   notificationDispatch,
   notificationDismiss,
@@ -150,7 +160,8 @@ export const actions = {
   updateSearchQuery,
   storeUserData,
   appIsLoading,
-  updateLang
+  updateLang,
+  updateScrollPosition
 }
 
 const ACTION_HANDLERS = {
@@ -247,6 +258,9 @@ const ACTION_HANDLERS = {
   },
   [LANG] : (state, action) => {
     return Object.assign({}, state, { lang: action.payload })
+  },
+  [SCROLL_HISTORY] : (state, action) => {
+    return Object.assign({}, state, { scrollHistory: action.payload })
   }
 }
 

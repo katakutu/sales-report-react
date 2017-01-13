@@ -56,7 +56,6 @@ function getUserInfo (context) {
       if (!user['user_id'] || !user['email']) {
         return DEFAULT_NOT_LOGGED_IN
       }
-
       return {
         'isLoggedIn': true,
         'shouldRedirect': false,
@@ -66,6 +65,7 @@ function getUserInfo (context) {
         'profilePicture': user['profile_picture']
       }
     })
+
     .catch(error => {
       console.error(`[GraphQL][Models][User] Error getting user data: ${error}`)
 
