@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import Scroll from 'react-scroll'
@@ -126,10 +126,11 @@ class HeaderHome extends Component {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll)
+
     const userIsLoggedIn = this.props.userInfo ? this.props.userInfo.isLoggedIn : false
     const userShouldRedirect = this.props.userInfo ? this.props.userInfo.shouldRedirect : false
     this._updateUserState(userIsLoggedIn, userShouldRedirect, this.props.userInfo)
-    this._scrollHistory()
+
     this.setState({
       showSearch: this._shouldShowSearch(document.body.scrollTop)
     })
@@ -175,7 +176,9 @@ class HeaderHome extends Component {
 
   renderTabs () {
     if (this.props.tabIsAvailable) {
-      if (this.props.userIsLoggedIn) {
+      return this.props.userIsLoggedIn
+        const { router } = this.context
+        console.log(router.isActive('/'))
         return <Tabs>
           <Tab isActive={this.checkActive('/')} label='Home' onClick={() => this._savePosition('/')} />
           <Tab label='Feed' url={`${HOSTNAME}/?view=fehoted_preview`} />

@@ -58,7 +58,8 @@ class Carousel extends Component {
   }
 
   state = {
-    carouselSettings: settings
+    carouselSettings: settings,
+    slickStop: 0
   }
 
   constructor (props) {
@@ -79,12 +80,12 @@ class Carousel extends Component {
           onClick={this._gtmNotifySlideClick(index)}
           target='_blank'>
           <div className='carousel__item-container u-mx-auto u-block'>
-            <picture className='carousel__img u-fit u-mx-auto' alt={image.title}>
+            <div className='carousel__img u-fit u-mx-auto' alt={image.title}>
               <source srcSet={image.image_url} />
               <img className='carousel__img u-fit u-mx-auto'
                 src={image.image_url}
                 alt={image.title} />
-            </picture>
+            </div>
           </div>
         </a>
       </div>
@@ -137,9 +138,12 @@ class Carousel extends Component {
   }
 
   _stopCarousel () {
-    this.setState({
-      carouselSettings: Object.assign(this.state.carouselSettings, { autoplay: false })
-    })
+    if (this.state.slickStop === 0) {
+      this.setState({
+        carouselSettings: Object.assign(this.state.carouselSettings, { autoplay: false }),
+        slickStop: 1
+      })
+    }
   }
 
   _startCarousel () {

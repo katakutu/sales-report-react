@@ -47,6 +47,7 @@ const PRODUCTION = {
   SessionRedis: {
     host: '192.168.17.190',
     port: 6379,
+    // twemproxy: true,
     no_ready_check: true
   },
   WS: {
@@ -143,8 +144,8 @@ const TEST = {
     Hostname: 'https://saldoapp-staging.tokopedia.com'
   },
   Mojito: {
-    Hostname: 'https://mojito-staging.tokopedia.com',
-    OfficialStoreHostname: 'https://mojito-staging.tokopedia.com',
+    Hostname: 'http://127.0.0.1/mojito',
+    OfficialStoreHostname: 'http://127.0.0.1/mojito',
     SecretKey: 'mojito_api_v1'
   },
   Notification: {

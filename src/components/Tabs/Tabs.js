@@ -5,6 +5,9 @@ import './Tabs.scss'
 import Tab from './Tab.js'
 import TabContent from './TabContent'
 
+let xDown = null
+let yDown = null
+let location = 0
 class Tabs extends Component {
   static propTypes = {
     children: React.PropTypes.node,
@@ -61,8 +64,14 @@ class Tabs extends Component {
       slideTrackEl.style.transform = `translate3d(0px, 0px, 0px)`
     }
   }
+
+  componentWillReceiveProps () {
+    this.detectScroll()
+  }
+
   detectScroll () {
     var header = document.getElementsByTagName('header')[0].className
+    console.log(header)
     if (header.indexOf('transform') >= 0) {
       document.getElementById('next').classList.add('mini')
       document.getElementById('prev').classList.add('mini')
@@ -182,6 +191,7 @@ class Tabs extends Component {
     window.addEventListener('resize', this.handleResize)
     window.addEventListener('scroll', this.detectScroll)
     window.addEventListener('load', this.loadTouch())
+    window.addEventListener('touchmove', this.handleTouchMove)
     this.handleResize()
   }
 
@@ -264,10 +274,16 @@ class Tabs extends Component {
 
     return (
       <div className={_className} id='loggedin-tab'>
-        <button type='button' onClick={() => this.generateAfterChange('prev')} id='prev' className='slick-arrow slick-prev slick-disabled'>
+        <button type='button'
+          onClick={() => this.generateAfterChange('prev')}
+          id='prev'
+          className='slick-arrow slick-prev slick-disabled'>
          Previous
         </button>
-        <button type='button' onClick={() => this.generateAfterChange('next')} id='next' className='slick-arrow slick-next'>
+        <button type='button'
+          onClick={() => this.generateAfterChange('next')}
+          id='next'
+          className='slick-arrow slick-next'>
          Next
         </button>
         <div className='slider'>
