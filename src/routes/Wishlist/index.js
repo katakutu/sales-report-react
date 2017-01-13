@@ -2,7 +2,7 @@ export default (store, ApolloExecutors) => ({
   path: '/wishlist',
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
-      const Wishlist = require('./components/WishlistView').default
+      const Wishlist = require('./components/WishListView').default
 
       cb(null, Wishlist)
     }, 'wishlist')
