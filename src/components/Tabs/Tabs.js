@@ -5,7 +5,7 @@ import './Tabs.scss'
 import Tab from './Tab.js'
 import TabContent from './TabContent'
 
-let axis = 0
+let axis = 0 // define global for axis touch
 class Tabs extends Component {
   static propTypes = {
     children: React.PropTypes.node,
@@ -81,23 +81,36 @@ class Tabs extends Component {
   }
 
   loadTouch () {
-    var velo = 1
-    var el = document.getElementById('slick-track')
+    var velo = 0.8, range = 50
+    let ele = document.getElementById('slick-track')
     let inner = window.innerWidth
     const vpWidth = Math.max(document.documentElement.clientWidth, inner || 0)
     const widthTabs = document.getElementById('slick-track').offsetWidth
     const maxTranslateX = -1 * (widthTabs - vpWidth)
-    this.ontouch(el, function (evt, dir, phase, swipetype, distance) {
-      const slideTrackEl = document.querySelector('#loggedin-tab #slick-track')
-      if (axis + (distance * velo) <= 0 &&
-      axis + (distance * velo) >= maxTranslateX) {
+    const slideTrackEl = document.querySelector('#loggedin-tab #slick-track')
+    this.ontouch(ele, function (evt, dir, phase, swipetype, distance) {
+      if (axis + (distance * velo) <= (0 + range) &&
+      axis + (distance * velo) >= (maxTranslateX - range) && phase === 'move') {
         axis = axis + (distance * velo)
         slideTrackEl.style.transform = `translate3d(${axis}px,
           0px, 0px)`
       }
-    }, maxTranslateX)
+      if (phase === 'end') {
+        if (axis >= 0) {
+          slideTrackEl.style.transform = `translate3d(${0}px,
+            0px, 0px)`
+        } else if (axis <= maxTranslateX) {
+          slideTrackEl.style.transform = `translate3d(${maxTranslateX}px,
+            0px, 0px)`
+        }
+      }
+    })
   }
+
   ontouch (el, callback) {
+  /* eslint one-var:
+  ["error", { var: "always", let: "never", const: "never" }] */
+    /* eslint-env es6 */
     var touchsurface = el,
       dir,
       swipeType,
@@ -109,7 +122,6 @@ class Tabs extends Component {
       restraint = 100,
       allowedTime = 500,
       elapsedTime,
-      dist,
       startTime,
       handletouch = callback ||
     function (evt, dir, phase, swipetype, distance) {}
@@ -118,7 +130,6 @@ class Tabs extends Component {
       var touchobj = e.changedTouches[0]
       dir = 'none'
       swipeType = 'none'
-      dist = 0
       startX = touchobj.pageX
       startY = touchobj.pageY
       startTime = new Date().getTime()
@@ -141,14 +152,13 @@ class Tabs extends Component {
     }, false)
 
     touchsurface.addEventListener('touchend', function (e) {
-      // var touchobj = e.changedTouches[0]
-      elapsedTime = new Date().getTime() - startTime // get time elapsed
+      elapsedTime = new Date().getTime() - startTime
       if (elapsedTime <= allowedTime) {
         if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
-          swipeType = dir // set swipeType to either "left" or "right"
+          swipeType = dir
         } else if (Math.abs(distY) >= threshold &&
           Math.abs(distX) <= restraint) {
-          swipeType = dir // set swipeType to either "top" or "down"
+          swipeType = dir
         }
       }
       handletouch(e, dir, 'end', swipeType, (dir === 'left' || dir === 'right') ? distX : distY)

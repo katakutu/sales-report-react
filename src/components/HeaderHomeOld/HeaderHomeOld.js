@@ -176,8 +176,6 @@ class HeaderHome extends Component {
   renderTabs () {
     if (this.props.tabIsAvailable) {
       if (this.props.userIsLoggedIn) {
-        const { router } = this.context
-        console.log(router.isActive('/'))
         return <Tabs>
           <Tab isActive={this.checkActive('/')} label='Home' onClick={() => this._savePosition('/')} />
           <Tab label='Feed' url={`${HOSTNAME}/?view=fehoted_preview`} />
