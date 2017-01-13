@@ -31,7 +31,7 @@ class TopedWalletAPI {
                .then(response => {
                  return {
                    linked: !!+response['data']['link'],
-                   balance: response['data']['balance'],
+                   balance: response['data']['balance'] || 'Rp 0',
                    errors: []
                  }
                })

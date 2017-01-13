@@ -12,11 +12,11 @@ function getWallet (context) {
         context.get('Origin') || GlobalConfig['Hostname'],
         sessID
     )
-      .catch(error => {
-        console.error(`[GraphQL][Models][Wallet] Error getting wallet data: ${error}`)
+    .catch(error => {
+      console.error(`[GraphQL][Models][Wallet] Error getting wallet data: ${error}`)
 
-        return Promise.resolve(DEFAULT_WALLET_DATA)
-      })
+      return Promise.resolve(DEFAULT_WALLET_DATA)
+    })
 }
 
 module.exports = getWallet
