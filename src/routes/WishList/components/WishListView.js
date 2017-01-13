@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import WishList from './WishList'
 import SplashScreen from '../../../components/Loading/SplashScreen'
@@ -13,6 +14,27 @@ class WishlistView extends Component {
   static propTypes = {
     data: React.PropTypes.object,
     lang: React.PropTypes.string
+  }
+
+  state = {
+    page: 1
+  }
+
+  constructor (props) {
+    super(props)
+
+    this.viewMore = this.viewMore.bind(this)
+  }
+
+  viewMore (event) {
+    event.preventDefault()
+
+    this.setState({ page: this.state.page + 1 }, () => {
+      browserHistory.push({
+        pathname: '/wishlist',
+        query: { page: this.state.page }
+      })
+    })
   }
 
   render () {
@@ -34,8 +56,8 @@ class WishlistView extends Component {
     return (
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='wishlist' />
-        <WishList userID={parseInt(userInfo['id'])} page={1} count={10} />
-        <LoadMore>
+        <WishList userID={parseInt(userInfo['id'])} page={this.state.page} count={10} />
+        <LoadMore onClick={this.viewMore}>
           { lang[this.props.lang]['View More'] }
         </LoadMore>
       </div>
