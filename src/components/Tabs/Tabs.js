@@ -5,7 +5,6 @@ import './Tabs.scss'
 import Tab from './Tab.js'
 import TabContent from './TabContent'
 
-let axis = 0 // define global for axis touch
 class Tabs extends Component {
   static propTypes = {
     children: React.PropTypes.node,
@@ -72,15 +71,9 @@ class Tabs extends Component {
       document.getElementById('prev').classList.remove('mini')
     }
   }
-  componentDidMount () {
-    window.addEventListener('resize', this.handleResize)
-    window.addEventListener('scroll', this.detectScroll)
-    this.handleResize()
-    window.addEventListener('load', this.loadTouch)
-    this.loadTouch()
-  }
 
   loadTouch () {
+    let axis = 0 // define global for axis touch
     var velo = 0.8, range = 50
     let ele = document.getElementById('slick-track')
     let inner = window.innerWidth
@@ -96,17 +89,24 @@ class Tabs extends Component {
           0px, 0px)`
       }
       if (phase === 'end') {
+        let tamp
+        let prev = document.getElementById('prev')
+        let next = document.getElementById('next')
         if (axis >= 0) {
+          tamp = 0
           next.className = 'slick-arrow slick-next'
           prev.className = 'slick-arrow slick-prev slick-disabled'
           slideTrackEl.style.transform = `translate3d(${0}px,
             0px, 0px)`
         } else if (axis <= maxTranslateX) {
+          tamp = maxTranslateX
           next.className = 'slick-arrow slick-next slick-disabled'
           prev.className = 'slick-arrow slick-prev'
           slideTrackEl.style.transform = `translate3d(${maxTranslateX}px,
             0px, 0px)`
         }
+        slideTrackEl.style.transform = `translate3d(${tamp}px,
+          0px, 0px)`
         var header = document.getElementsByTagName('header')[0].className
         if (header.indexOf('transform') >= 0) {
           document.getElementById('next').classList.add('mini')
@@ -146,7 +146,7 @@ class Tabs extends Component {
       startY = touchobj.pageY
       startTime = new Date().getTime()
       handletouch(e, 'none', 'start', swipeType, 0)
-      e.preventDefault()
+      // e.preventDefault()
     }, false)
 
     touchsurface.addEventListener('touchmove', function (e) {
@@ -160,7 +160,7 @@ class Tabs extends Component {
         dir = (distY < 0) ? 'up' : 'down'
         handletouch(e, dir, 'move', swipeType, distY)
       }
-      e.preventDefault()
+      // e.preventDefault()
     }, false)
 
     touchsurface.addEventListener('touchend', function (e) {
@@ -174,8 +174,15 @@ class Tabs extends Component {
         }
       }
       handletouch(e, dir, 'end', swipeType, (dir === 'left' || dir === 'right') ? distX : distY)
-      e.preventDefault()
+      // e.preventDefault()
     }, false)
+  }
+
+  componentDidMount () {
+    window.addEventListener('resize', this.handleResize)
+    window.addEventListener('scroll', this.detectScroll)
+    window.addEventListener('load', this.loadTouch())
+    this.handleResize()
   }
 
   componentWillUnmount () {
