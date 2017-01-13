@@ -77,6 +77,9 @@ class HomeView extends Component {
       })
     }
 
+    const shouldShowToppicks = toppicks.length > 0 && toppicks[0]['toppicks'].length > 0
+    const shouldShowOffStore = officialStores.length > 0
+
     return (
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='home' />
@@ -86,9 +89,9 @@ class HomeView extends Component {
         <PromoSpacer />
         <div id='widget-dmw' className='u-clearfix u-my2' /> { /* Pulsa widget container */ }
         <CategoryList categories={categories} />
-        { (toppicks.length > 0 && toppicks[0]['toppicks'].length > 0) && <Toppicks data={toppicks} /> }
+        { shouldShowToppicks && <Toppicks data={toppicks} /> }
         <RecommendationProduct data={hotlists} />
-        <OfficialStoreSection data={officialStores} />
+        { shouldShowOffStore && <OfficialStoreSection data={officialStores} /> }
         <MoreInfo />
       </div>
     )
