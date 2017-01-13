@@ -97,11 +97,23 @@ class Tabs extends Component {
       }
       if (phase === 'end') {
         if (axis >= 0) {
+          next.className = 'slick-arrow slick-next'
+          prev.className = 'slick-arrow slick-prev slick-disabled'
           slideTrackEl.style.transform = `translate3d(${0}px,
             0px, 0px)`
         } else if (axis <= maxTranslateX) {
+          next.className = 'slick-arrow slick-next slick-disabled'
+          prev.className = 'slick-arrow slick-prev'
           slideTrackEl.style.transform = `translate3d(${maxTranslateX}px,
             0px, 0px)`
+        }
+        var header = document.getElementsByTagName('header')[0].className
+        if (header.indexOf('transform') >= 0) {
+          document.getElementById('next').classList.add('mini')
+          document.getElementById('prev').classList.add('mini')
+        } else {
+          document.getElementById('next').classList.remove('mini')
+          document.getElementById('prev').classList.remove('mini')
         }
       }
     })
