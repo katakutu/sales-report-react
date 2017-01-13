@@ -47,6 +47,7 @@ const PRODUCTION = {
   SessionRedis: {
     host: '192.168.17.190',
     port: 6379,
+    // twemproxy: true,
     no_ready_check: true
   },
   WS: {
