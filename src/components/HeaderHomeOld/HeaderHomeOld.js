@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import Scroll from 'react-scroll'
@@ -67,6 +67,7 @@ class HeaderHome extends Component {
     this.renderSidebar = this.renderSidebar.bind(this)
     this.showSearch = this.showSearch.bind(this)
     this._savePosition = this._savePosition.bind(this)
+    this._scrollHistory = this._scrollHistory.bind(this)
   }
 
   _updateUserState (userIsLoggedIn, userShouldRedirect, userInfo) {
@@ -126,14 +127,13 @@ class HeaderHome extends Component {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll)
-
     const userIsLoggedIn = this.props.userInfo ? this.props.userInfo.isLoggedIn : false
     const userShouldRedirect = this.props.userInfo ? this.props.userInfo.shouldRedirect : false
     this._updateUserState(userIsLoggedIn, userShouldRedirect, this.props.userInfo)
-
     this.setState({
       showSearch: this._shouldShowSearch(document.body.scrollTop)
     })
+    this._scrollHistory()
   }
 
   componentWillReceiveProps (nextProps) {
@@ -176,19 +176,15 @@ class HeaderHome extends Component {
 
   renderTabs () {
     if (this.props.tabIsAvailable) {
-      return this.props.userIsLoggedIn
-        const { router } = this.context
-        console.log(router.isActive('/'))
-        return <Tabs>
-          <Tab isActive={this.checkActive('/')} label='Home' onClick={() => this._savePosition('/')} />
-          <Tab label='Feed' url={`${HOSTNAME}/?view=fehoted_preview`} />
-          <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} />
-          <Tab isActive={this.checkActive('/hot')} label='Hot List' onClick={() => this._savePosition('/hot')} />
-          <Tab label='Wishlist' url={`${HOSTNAME}/?view=wishlist_preview`} />
-        </Tabs>
-      } else {
-        return <LoggedOutTab activeTab={this.props.activeTab} />
-      }
+      return <Tabs>
+        <Tab isActive={this.checkActive('/')} label='Home' onClick={() => this._savePosition('/')} />
+        <Tab label='Feed' url={`${HOSTNAME}/?view=fehoted_preview`} />
+        <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} />
+        <Tab isActive={this.checkActive('/hot')} label='Hot List' onClick={() => this._savePosition('/hot')} />
+        <Tab label='Wishlist' url={`${HOSTNAME}/?view=wishlist_preview`} />
+      </Tabs>
+    } else {
+      return <LoggedOutTab activeTab={this.props.activeTab} />
     }
   }
 

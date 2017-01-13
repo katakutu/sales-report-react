@@ -5,9 +5,6 @@ import './Tabs.scss'
 import Tab from './Tab.js'
 import TabContent from './TabContent'
 
-let xDown = null
-let yDown = null
-let location = 0
 class Tabs extends Component {
   static propTypes = {
     children: React.PropTypes.node,
@@ -65,13 +62,8 @@ class Tabs extends Component {
     }
   }
 
-  componentWillReceiveProps () {
-    this.detectScroll()
-  }
-
   detectScroll () {
     var header = document.getElementsByTagName('header')[0].className
-    console.log(header)
     if (header.indexOf('transform') >= 0) {
       document.getElementById('next').classList.add('mini')
       document.getElementById('prev').classList.add('mini')
@@ -155,7 +147,6 @@ class Tabs extends Component {
       startY = touchobj.pageY
       startTime = new Date().getTime()
       handletouch(e, 'none', 'start', swipeType, 0)
-      // e.preventDefault()
     }, false)
 
     touchsurface.addEventListener('touchmove', function (e) {
@@ -169,7 +160,6 @@ class Tabs extends Component {
         dir = (distY < 0) ? 'up' : 'down'
         handletouch(e, dir, 'move', swipeType, distY)
       }
-      // e.preventDefault()
     }, false)
 
     touchsurface.addEventListener('touchend', function (e) {
@@ -183,7 +173,6 @@ class Tabs extends Component {
         }
       }
       handletouch(e, dir, 'end', swipeType, (dir === 'left' || dir === 'right') ? distX : distY)
-      // e.preventDefault()
     }, false)
   }
 
@@ -191,8 +180,11 @@ class Tabs extends Component {
     window.addEventListener('resize', this.handleResize)
     window.addEventListener('scroll', this.detectScroll)
     window.addEventListener('load', this.loadTouch())
-    window.addEventListener('touchmove', this.handleTouchMove)
     this.handleResize()
+  }
+
+  componentWillReceiveProps () {
+    this.detectScroll()
   }
 
   componentWillUnmount () {
