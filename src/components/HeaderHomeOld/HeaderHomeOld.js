@@ -14,11 +14,9 @@ import BodyClassName from 'react-body-classname'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import './HeaderHomeOld.scss'
-// import SearchInputOld from '../SearchInputOld'
 import SearchInput from '../SearchInput'
 import LoggedInMenu from './LoggedInMenu'
 import LoggedOutMenu from './LoggedOutMenu'
-// import LoggedInTab from './LoggedInTab'
 import Tabs from '../Tabs/Tabs'
 import Tab from '../Tabs/Tab'
 import LoggedOutTab from './LoggedOutTab'
@@ -176,13 +174,15 @@ class HeaderHome extends Component {
 
   renderTabs () {
     if (this.props.tabIsAvailable) {
-      return <Tabs>
-        <Tab isActive={this.checkActive('/')} label='Home' onClick={() => this._savePosition('/')} />
-        <Tab label='Feed' url={`${HOSTNAME}/?view=fehoted_preview`} />
-        <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} />
-        <Tab isActive={this.checkActive('/hot')} label='Hot List' onClick={() => this._savePosition('/hot')} />
-        <Tab label='Wishlist' url={`${HOSTNAME}/?view=wishlist_preview`} />
-      </Tabs>
+      return (
+        <Tabs>
+          <Tab isActive={this.checkActive('/')} label='Home' onClick={() => this._savePosition('/')} />
+          <Tab label='Feed' url={`${HOSTNAME}/?view=fehoted_preview`} />
+          <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} />
+          <Tab isActive={this.checkActive('/hot')} label='Hot List' onClick={() => this._savePosition('/hot')} />
+          <Tab label='Wishlist' url={`${HOSTNAME}/?view=wishlist_preview`} />
+        </Tabs>
+      )
     } else {
       return <LoggedOutTab activeTab={this.props.activeTab} />
     }

@@ -1,9 +1,9 @@
-/* eslint max-len: ["error", { "ignoreStrings": true }] */
 import React, { Component } from 'react'
 import classnames from 'classnames'
 import './Tabs.scss'
 import Tab from './Tab.js'
 import TabContent from './TabContent'
+import OnTouch from './OnTouch'
 
 class Tabs extends Component {
   static propTypes = {
@@ -34,9 +34,19 @@ class Tabs extends Component {
     this.renderContents = this.renderContents.bind(this)
     this.renderHeaders = this.renderHeaders.bind(this)
     this.detectScroll = this.detectScroll.bind(this)
-    this.ontouch = this.ontouch.bind(this)
     this.loadTouch = this.loadTouch.bind(this)
-    // this.updatePointer = this.updatePointer.bind(this)
+    this.activeStateTabArrow = this.activeStateTabArrow.bind(this)
+  }
+
+  activeStateTabArrow (next, prev, state) {
+    // set active for tab arrow
+    if (state === 'activeNext') {
+      next.className = 'slick-arrow slick-next'
+      prev.className = 'slick-arrow slick-prev slick-disabled'
+    } else {
+      next.className = 'slick-arrow slick-next slick-disabled'
+      prev.className = 'slick-arrow slick-prev'
+    }
   }
 
   generateAfterChange (direction) {
@@ -49,14 +59,12 @@ class Tabs extends Component {
     let widthTabs = 0
     widthTabs = document.getElementById('slick-track').offsetWidth
     if (direction === 'next') {
-      next.className = 'slick-arrow slick-next slick-disabled'
-      prev.className = 'slick-arrow slick-prev'
+      this.activeStateTabArrow(next, prev, 'activePrev')
       this.detectScroll()
       const maxTranslateX = -1 * (widthTabs - vpWidth)
       slideTrackEl.style.transform = `translate3d(${maxTranslateX}px, 0px, 0px)`
     } else if (direction === 'prev') {
-      next.className = 'slick-arrow slick-next'
-      prev.className = 'slick-arrow slick-prev slick-disabled'
+      this.activeStateTabArrow(next, prev, 'activeNext')
       this.detectScroll()
       slideTrackEl.style.transform = `translate3d(0px, 0px, 0px)`
     }
@@ -75,14 +83,19 @@ class Tabs extends Component {
 
   loadTouch () {
     let axis = 0 // define global for axis touch
-    var velo = 0.8, range = 50
+    var velo = 0.8 // define velocity for speed tab
+    var range = 50 // define range for bounche
     let ele = document.getElementById('slick-track')
     let inner = window.innerWidth
     const vpWidth = Math.max(document.documentElement.clientWidth, inner || 0)
     const widthTabs = document.getElementById('slick-track').offsetWidth
     const maxTranslateX = -1 * (widthTabs - vpWidth)
     const slideTrackEl = document.querySelector('#loggedin-tab #slick-track')
-    this.ontouch(ele, function (evt, dir, phase, swipetype, distance) {
+    let prev = document.getElementById('prev')
+    let next = document.getElementById('next')
+    const that = this
+    OnTouch.load(ele, function (evt, dir, phase, swipetype, distance) {
+      // check prediction of distance swipe in available range
       if (axis + (distance * velo) <= (0 + range) &&
       axis + (distance * velo) >= (maxTranslateX - range) && phase === 'move') {
         axis = axis + (distance * velo)
@@ -90,90 +103,20 @@ class Tabs extends Component {
           0px, 0px)`
       }
       if (phase === 'end') {
+        // put back on track range for bounching effect
         let tamp
-        let prev = document.getElementById('prev')
-        let next = document.getElementById('next')
         if (axis >= 0) {
           tamp = 0
-          next.className = 'slick-arrow slick-next'
-          prev.className = 'slick-arrow slick-prev slick-disabled'
-          slideTrackEl.style.transform = `translate3d(${0}px,
-            0px, 0px)`
+          that.activeStateTabArrow(next, prev, 'activeNext')
         } else if (axis <= maxTranslateX) {
           tamp = maxTranslateX
-          next.className = 'slick-arrow slick-next slick-disabled'
-          prev.className = 'slick-arrow slick-prev'
-          slideTrackEl.style.transform = `translate3d(${maxTranslateX}px,
-            0px, 0px)`
+          that.activeStateTabArrow(next, prev, 'activePrev')
         }
         slideTrackEl.style.transform = `translate3d(${tamp}px,
           0px, 0px)`
-        var header = document.getElementsByTagName('header')[0].className
-        if (header.indexOf('transform') >= 0) {
-          document.getElementById('next').classList.add('mini')
-          document.getElementById('prev').classList.add('mini')
-        } else {
-          document.getElementById('next').classList.remove('mini')
-          document.getElementById('prev').classList.remove('mini')
-        }
+        that.detectScroll()
       }
     })
-  }
-
-  ontouch (el, callback) {
-  /* eslint one-var:
-  ["error", { var: "always", let: "never", const: "never" }] */
-    /* eslint-env es6 */
-    var touchsurface = el,
-      dir,
-      swipeType,
-      startX,
-      startY,
-      distX,
-      distY,
-      threshold = 150,
-      restraint = 100,
-      allowedTime = 500,
-      elapsedTime,
-      startTime,
-      handletouch = callback ||
-    function (evt, dir, phase, swipetype, distance) {}
-
-    touchsurface.addEventListener('touchstart', function (e) {
-      var touchobj = e.changedTouches[0]
-      dir = 'none'
-      swipeType = 'none'
-      startX = touchobj.pageX
-      startY = touchobj.pageY
-      startTime = new Date().getTime()
-      handletouch(e, 'none', 'start', swipeType, 0)
-    }, false)
-
-    touchsurface.addEventListener('touchmove', function (e) {
-      var touchobj = e.changedTouches[0]
-      distX = touchobj.pageX - startX
-      distY = touchobj.pageY - startY
-      if (Math.abs(distX) > Math.abs(distY)) {
-        dir = (distX < 0) ? 'left' : 'right'
-        handletouch(e, dir, 'move', swipeType, distX)
-      } else {
-        dir = (distY < 0) ? 'up' : 'down'
-        handletouch(e, dir, 'move', swipeType, distY)
-      }
-    }, false)
-
-    touchsurface.addEventListener('touchend', function (e) {
-      elapsedTime = new Date().getTime() - startTime
-      if (elapsedTime <= allowedTime) {
-        if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
-          swipeType = dir
-        } else if (Math.abs(distY) >= threshold &&
-          Math.abs(distX) <= restraint) {
-          swipeType = dir
-        }
-      }
-      handletouch(e, dir, 'end', swipeType, (dir === 'left' || dir === 'right') ? distX : distY)
-    }, false)
   }
 
   componentDidMount () {
@@ -285,7 +228,6 @@ class Tabs extends Component {
             </span>
           </nav>
         </div>
-        {/* <span className='tab__pointer' style={this.state.pointer} /> */}
         {this.renderContents(contents)}
       </div>
     )
