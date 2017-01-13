@@ -8,12 +8,8 @@ function getWallet (context) {
   const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
   const api = new TopedWalletAPI()
 
-  console.log("===================================================================");
-  // console.log(context);
-  // console.log(context.get('Origin'));
-  console.log("===================================================================");
   return api.getWalletBalance(
-        context.get('Origin') || GlobalConfig['Hostname'],
+        context.read('Origin') || GlobalConfig['Hostname'],
         sessID
     )
       .catch(error => {
