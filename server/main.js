@@ -1,3 +1,4 @@
+const bodyParser = require('body-parser')
 const express = require('express')
 const debug = require('debug')('app:server')
 const webpack = require('webpack')
@@ -46,7 +47,13 @@ app.use(cookieParser(GlobalConfig['AppSecret']))
 // datadog before router
 app.use(ConnectDataDog)
 
-app.use('/graphql', graphql)
+app.use('/graphql', bodyParser.json(), graphql)
+if (!config.globals.__PROD__) {
+  const gse = require('graphql-server-express')
+  app.use('/graphqli', gse.graphiqlExpress({
+    endpointURL: '/graphql'
+  }))
+}
 
 app.get('/status', (req, res) => res.end('ok'))
 app.get('/login', oauth.login)

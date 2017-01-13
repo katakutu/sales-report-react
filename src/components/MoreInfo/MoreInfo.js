@@ -31,6 +31,8 @@ class MoreInfo extends Component {
       height: 0
     }
 
+    const helpLink = `https://help.tokopedia.com/hc/en-us?utm_source=mobile&utm_medium=linkbantuan`
+
     return (
       <div className='more-info u-clearfix'>
         <div className='u-col-12 more-info__holder'>
@@ -102,7 +104,7 @@ class MoreInfo extends Component {
               </a>
             </li>
             <li>
-              <a className='more-info__link' href={`https://help.tokopedia.com/hc/en-us?utm_source=mobile&utm_medium=linkbantuan`}>
+              <a className='more-info__link' href={helpLink}>
                 { lang[this.props.lang]['Contact Us'] }
                 <i className='more-info__arrow' />
               </a>

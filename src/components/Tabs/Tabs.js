@@ -1,12 +1,12 @@
-/* eslint max-len: ["error", { "ignoreStrings": true }] */
 import React, { Component } from 'react'
 import classnames from 'classnames'
 import './Tabs.scss'
 import Tab from './Tab.js'
 import TabContent from './TabContent'
-let xDown = null;                                                        
-let yDown = null; 
-let location = 0;
+
+let xDown = null
+let yDown = null
+let location = 0
 class Tabs extends Component {
   static propTypes = {
     children: React.PropTypes.node,
@@ -62,69 +62,64 @@ class Tabs extends Component {
     }
   }
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps () {
     this.detectScroll()
   }
-                                                      
 
-  handleTouchStart(evt) {                                         
-      xDown = evt.touches[0].clientX;                                      
-      yDown = evt.touches[0].clientY;                                      
-  }                                               
+  handleTouchStart (evt) {
+    xDown = evt.touches[0].clientX
+    yDown = evt.touches[0].clientY
+  }
 
-  handleTouchMove(evt) {
-      if ( ! xDown || ! yDown ) {
-          return;
-      }
+  handleTouchMove (evt) {
+    if (!xDown || !yDown) {
+      return
+    }
 
-      var xUp = evt.touches[0].clientX;                                    
-      var yUp = evt.touches[0].clientY;
+    var xUp = evt.touches[0].clientX
 
-      var xDiff = xDown - xUp;
-      var yDiff = yDown - yUp;
-      console.log(xDiff)
-      const slideTrackEl = document.getElementById('slick-track')
-      let inner = window.innerWidth
+    var xDiff = xDown - xUp
+    const slideTrackEl = document.getElementById('slick-track')
+    let inner = window.innerWidth
       // const maxTranslateX = (widthTabs - vpWidth)
       // let value = window.getComputedStyle(slideTrackEl).getPropertyValue('transform');
       // const value2 = value.split(', ');
       // console.log(window.getComputedStyle(slideTrackEl).getPropertyValue('transform'));
       // console.log(value2[4]+', '+(xDiff/2)+' = '+maxTranslateX);
       // if(xDiff<0) { xDiff = 0; }
-      if(location + (-1 * xDiff) > (inner/5) || location + (-1 * xDiff) < (-1 * (inner/2))){
+    if (location + (-1 * xDiff) > (inner / 5) || location + (-1 * xDiff) < (-1 * (inner / 2))) {
 
-      }else{
-        location += (-1 * xDiff/2)
-      }
-      
+    } else {
+      location += (-1 * xDiff / 2)
+    }
 
-      slideTrackEl.style.transform = `translate3d(${location}px, 0px, 0px)`
+    slideTrackEl.style.transform = `translate3d(${location}px, 0px, 0px)`
       // if(maxTranslateX < 0){
       //   maxTranslateX = 0;
       // }
-     
+
       // console.log(window.getComputedStyle(slideTrackEl,null).getPropertyValue('transform'));
       // if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
       //     if ( xDiff > 0 ) {
-      //         /* left swipe */ 
+      //         /* left swipe */
       //     } else {
       //         /* right swipe */
-      //     }                       
+      //     }
       // } else {
       //     if ( yDiff > 0 ) {
-      //         /* up swipe */ 
-      //     } else { 
+      //         /* up swipe */
+      //     } else {
       //         /* down swipe */
-      //     }                                                                 
+      //     }
       // }
       // /* reset values */
       // xDown = null;
-      // yDown = null;                                             
+      // yDown = null;
   }
 
   detectScroll () {
     var header = document.getElementsByTagName('header')[0].className
-    console.log(header);
+    console.log(header)
     if (header.indexOf('transform') >= 0) {
       document.getElementById('next').classList.add('mini')
       document.getElementById('prev').classList.add('mini')
@@ -220,13 +215,19 @@ class Tabs extends Component {
 
     return (
       <div className={_className} id='loggedin-tab'>
-        <button type='button' onClick={() => this.generateAfterChange('prev')} id='prev' className='slick-arrow slick-prev slick-disabled'>
+        <button type='button'
+          onClick={() => this.generateAfterChange('prev')}
+          id='prev'
+          className='slick-arrow slick-prev slick-disabled'>
          Previous
         </button>
-        <button type='button' onClick={() => this.generateAfterChange('next')} id='next' className='slick-arrow slick-next'>
+        <button type='button'
+          onClick={() => this.generateAfterChange('next')}
+          id='next'
+          className='slick-arrow slick-next'>
          Next
         </button>
-        <div className="slider">
+        <div className='slider'>
           <nav ref={this.initNavigationNode} className='tab'>
             <span id='slick-track'>
               {this.renderHeaders(headers)}

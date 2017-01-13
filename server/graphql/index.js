@@ -1,11 +1,9 @@
-const graphqlHTTP = require('express-graphql')
+const gse = require('graphql-server-express')
 const graphql = require('graphql')
 const GraphQLSchema = graphql.GraphQLSchema
 const GraphQLObjectType = graphql.GraphQLObjectType
 
 const Queries = require('./queries')
-
-const config = require('../../config')
 
 // Construct a schema, using GraphQL schema language
 const schema = new GraphQLSchema({
@@ -15,7 +13,7 @@ const schema = new GraphQLSchema({
   })
 })
 
-module.exports = graphqlHTTP({
+module.exports = gse.graphqlExpress((req) => ({
   schema: schema,
-  graphiql: !config.globals.__PROD__
-})
+  context: req
+}))

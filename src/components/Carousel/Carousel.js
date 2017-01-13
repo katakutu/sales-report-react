@@ -138,7 +138,7 @@ class Carousel extends Component {
   }
 
   _stopCarousel () {
-    if(this.state.slickStop == 0 ){
+    if (this.state.slickStop === 0) {
       this.setState({
         carouselSettings: Object.assign(this.state.carouselSettings, { autoplay: false }),
         slickStop: 1
