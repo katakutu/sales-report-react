@@ -8,10 +8,7 @@ import gql from 'graphql-tag'
 
 class WishList extends Component {
   static propTypes = {
-    count: React.PropTypes.number,
-    data: React.PropTypes.object,
-    page: React.PropTypes.number,
-    userID: React.PropTypes.number
+    data: React.PropTypes.object
   }
 
   state = {
@@ -40,12 +37,6 @@ class WishList extends Component {
     const wishlistCount = this.props.data['wishlist']['total_data']
 
     return (
-      <div className='u-clearfix'>
-        <div className='wishlist__searchbar-holder'>
-          <i className='wishlist__icon wishlist__love-grey wishlist__set-love-grey' />
-          <input type='text' name='searchwishlist' className='wishlist__searchbar' placeholder='Cari wishlist kamu' />
-          <span className='wishlist__count-item'>{wishlistCount} item</span>
-        </div>
         <div className='wishlist-container u-clearfix'>
           { wishlists.map((wishlist, index) => {
             const currentPage = window.location.href
@@ -58,7 +49,9 @@ class WishList extends Component {
             return (
               <div className='u-col u-col-6 wishlist__contents' key={`wishlist-${index}`}>
                 <div className='wishlist__content-box'>
-                  <button className='wishlist__button-wish'><i className='wishlist__icon wishlist__love-full' /></button>
+                  <button className='wishlist__button-wish'>
+                    <i className='wishlist__icon wishlist__love-full' />
+                  </button>
                   <a href={wishlist['url']}>
                     <img src={wishlist['image']} className='wishlist__img' alt='tokopedia' />
                     <div className='wishlist__title'>{ wishlist['name'] }</div>
@@ -119,38 +112,24 @@ class WishList extends Component {
             )
           })}
         </div>
-      </div>
     )
   }
 }
 
 const WishlistQuery = gql`
-query Query($userID: Int!, $count: Int!, $page: Int!) {
-  wishlist(user_id:$userID, count: $count, page: $page){
+query Query($userID: Int!, $query: String!, $count: Int!, $page: Int!) {
+  wishlist(user_id:$userID, query: $query, count: $count, page: $page){
     total_data
     items{
       id
       name
       url
       image
-      price
       price_formatted
-      minimum_order
-      condition
       shop{
-        id
         name
         url
-        reputation{
-          score
-          set
-          level
-          image
-        }
-        official_store
-        gold_merchant
         location
-        status
       }
       badges{
         title
@@ -168,8 +147,8 @@ query Query($userID: Int!, $count: Int!, $page: Int!) {
 `
 
 export default graphql(WishlistQuery, {
-  options: ({ userID, count, page }) => ({
-    variables: { userID, count, page },
+  options: ({ userID, query, count, page }) => ({
+    variables: { userID, query, count, page },
     returnPartialData: true
   })
 })(WishList)

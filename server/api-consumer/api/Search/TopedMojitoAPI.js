@@ -7,7 +7,8 @@ const MOJITO_SERVICES = {
   Slides: `${GlobalConfig.Mojito.Hostname}/api/v1/slides`,
   Category: `${GlobalConfig.Mojito.Hostname}/api/v1/layout/category`,
   OfficialStores: `${GlobalConfig.Mojito.OfficialStoreHostname}/os/api/v1/brands/list?device=lite`,
-  WishlistProductList: `${GlobalConfig.Mojito.Hostname}/v1.0.2/users/:user_id/wishlist/products?count=:count&page=:page`
+  WishlistProductList: `${GlobalConfig.Mojito.Hostname}/v1.0.2/users/:user_id/wishlist/products?count=:count&page=:page`,
+  WishlsitSearch: `${GlobalConfig.Mojito.Hostname}/users/:user_id/wishlist/search/v2?q=:query`
 }
 
 /**
@@ -93,6 +94,14 @@ class TopedMojitoAPI {
                                     .replace(':user_id', userID)
                                     .replace(':count', count)
                                     .replace(':page', page)
+
+    return this.api.consume(URL.parse(endpoint), 'GET', {})
+  }
+
+  filterWishlist(userID, query = '') {
+    const endpoint = MOJITO_SERVICES.WishlsitSearch
+                                    .replace(':user_id', userID)
+                                    .replace(':query', query)
 
     return this.api.consume(URL.parse(endpoint), 'GET', {})
   }

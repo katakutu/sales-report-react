@@ -17,13 +17,19 @@ class WishlistView extends Component {
   }
 
   state = {
-    page: 1
+    page: 1,
+    query: ''
   }
 
   constructor (props) {
     super(props)
 
+    this.searchWishlist = this.searchWishlist.bind(this)
     this.viewMore = this.viewMore.bind(this)
+  }
+
+  searchWishlist (event) {
+    this.setState({ query: event.target.value })
   }
 
   viewMore (event) {
@@ -56,7 +62,20 @@ class WishlistView extends Component {
     return (
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='wishlist' />
-        <WishList userID={parseInt(userInfo['id'])} page={this.state.page} count={10} />
+        <div className='u-clearfix'>
+          <div className='wishlist__searchbar-holder'>
+            <i className='wishlist__icon wishlist__love-grey wishlist__set-love-grey' />
+            <input
+              type='text'
+              name='searchwishlist'
+              className='wishlist__searchbar'
+              placeholder='Cari wishlist kamu'
+              onChange={this.searchWishlist}
+              value={this.state.query} />
+            <span className='wishlist__count-item'>10 item</span>
+          </div>
+          <WishList userID={parseInt(userInfo['id'])} query={this.state.query} page={this.state.page} count={10} />
+        </div>
         <LoadMore onClick={this.viewMore}>
           { lang[this.props.lang]['View More'] }
         </LoadMore>
