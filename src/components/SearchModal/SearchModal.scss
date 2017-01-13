@@ -95,19 +95,19 @@
 }
 
 #search_modal_input::-webkit-input-placeholder {
-    color: $color-white-secondary;
+    color: $color-white-secondary !important;
 }
 
 #search_modal_input:-moz-placeholder {
-    color: $color-white-secondary;
+    color: $color-white-secondary !important;
 }
 
 #search_modal_input::-moz-placeholder {
-    color: $color-white-secondary;
+    color: $color-white-secondary !important;
 }
 
 #search_modal_input:-ms-input-placeholder {
-    color: $color-white-secondary;
+    color: $color-white-secondary !important;
 }
 
 .search-input__close {
