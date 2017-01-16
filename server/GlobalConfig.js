@@ -57,7 +57,7 @@ const PRODUCTION = {
     Hostname: 'http://tome.tokopedia.local'
   },
   Fave: {
-    Hostname: 'https://ta-staging.tokopedia.com'
+    Hostname: 'https://ta.tokopedia.com'
   }
 }
 
