@@ -1,4 +1,5 @@
 const category = require('./category')
+const favorite = require('./favorite')
 const hotlists = require('./hotlist')
 const notifications = require('./notifications')
 const officialStore = require('./official-store')
@@ -15,6 +16,7 @@ const wallet = require('./wallet')
 let queries = {}
 
 queries = Object.assign({}, queries, category)
+queries = Object.assign({}, queries, favorite)
 queries = Object.assign({}, queries, hotlists.hot_product_home)
 queries = Object.assign({}, queries, hotlists.hot_product_list)
 queries = Object.assign({}, queries, notifications)
