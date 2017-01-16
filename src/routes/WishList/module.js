@@ -38,10 +38,15 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [ADD_WISHLISTS]     : (state, action) => {
-    return Object.assign(state, { wishlists: state.wishlists.concat(action.payload) })
+    const oldData = state.wishlists.map(w => w['id'])
+    const newData = action.payload.filter(d => !oldData.includes(d['id']))
+
+    return Object.assign({}, state, { wishlists: state.wishlists.concat(newData) })
   },
-  [CLEAR_WISHLISTS]   : (state, action) => Object.assign(state, { wishlists: [] }),
-  [REPLACE_WISHLISTS] : (state, action) => Object.assign(state, { wishlists: action.payload })
+  [CLEAR_WISHLISTS]   : (state, action) => Object.assign({}, state, { wishlists: [] }),
+  [REPLACE_WISHLISTS] : (state, action) => {
+    return Object.assign({}, state, { wishlists: action.payload })
+  }
 }
 
 // ------------------------------------

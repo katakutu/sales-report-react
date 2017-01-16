@@ -1,8 +1,13 @@
+import { injectReducer } from '../../store/reducers'
+
 export default (store, ApolloExecutors) => ({
   path: '/wishlist',
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
       const Wishlist = require('./components/WishListView').default
+      const reducer  = require('./module').default
+
+      injectReducer(store, { key: 'wishlist', reducer })
 
       cb(null, Wishlist)
     }, 'wishlist')

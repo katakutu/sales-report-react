@@ -13,7 +13,8 @@ import { graphql } from 'react-apollo'
 class WishlistView extends Component {
   static propTypes = {
     data: React.PropTypes.object,
-    lang: React.PropTypes.string
+    lang: React.PropTypes.string,
+    wishlists: React.PropTypes.arrayOf(React.PropTypes.object)
   }
 
   state = {
@@ -72,7 +73,7 @@ class WishlistView extends Component {
               placeholder='Cari wishlist kamu'
               onChange={this.searchWishlist}
               value={this.state.query} />
-            <span className='wishlist__count-item'>10 item</span>
+            <span className='wishlist__count-item'>{ this.props.wishlists.length } item</span>
           </div>
           <WishList userID={parseInt(userInfo['id'])} query={this.state.query} page={this.state.page} count={10} />
         </div>
@@ -86,7 +87,8 @@ class WishlistView extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    lang: state['app'] ? state['app'].lang : state.lang
+    lang: state['app'] ? state['app'].lang : state.lang,
+    wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists
   }
 }
 

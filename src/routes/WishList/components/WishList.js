@@ -1,30 +1,41 @@
-import React, { Component } from 'react'
-import './WishListView.scss'
-
-import { HOSTNAME } from './../../../constants'
-
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
+import { HOSTNAME } from './../../../constants'
+import { addWishlist, clearWishlists, replaceWishlists } from '../module'
+
+import './WishListView.scss'
+
 class WishList extends Component {
   static propTypes = {
-    data: React.PropTypes.object
-  }
-
-  state = {
-    wishlists: []
+    count: PropTypes.number,
+    data: PropTypes.object,
+    page: PropTypes.number,
+    query: PropTypes.string,
+    replaceWishlists: PropTypes.func,
+    userID: PropTypes.number,
+    wishlists: PropTypes.arrayOf(PropTypes.object)
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps['data'] && !nextProps.data.loading) {
-      const ids = this.state.wishlists.map(w => w['id'])
+      const ids = this.props.wishlists.map(w => w['id'])
       const data = nextProps['data']['wishlist'] && nextProps['data']['wishlist']['items']
       const gqlData = data || []
 
       const newData = gqlData.filter(d => !ids.includes(d['id']))
-      this.setState({
-        wishlists: this.state.wishlists.concat(newData)
-      })
+      if (nextProps.query === '' && newData.length > 0) {
+        // if returning from search
+        if (this.props.query !== '') {
+          this.props.clearWishlists()
+        }
+
+        this.props.addWishlist(newData)
+      } else if (nextProps.query !== '') {
+        this.props.replaceWishlists(gqlData)
+      }
     }
   }
 
@@ -33,8 +44,7 @@ class WishList extends Component {
       return null
     }
 
-    const wishlists = this.state.wishlists
-    const wishlistCount = this.props.data['wishlist']['total_data']
+    const wishlists = this.props.wishlists
 
     return (
         <div className='wishlist-container u-clearfix'>
@@ -146,9 +156,15 @@ query Query($userID: Int!, $query: String!, $count: Int!, $page: Int!) {
 }
 `
 
+const mapDispatchToProps = { addWishlist, clearWishlists, replaceWishlists }
+const mapStateToProps = (state) => {
+  return {
+    wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists
+  }
+}
+
 export default graphql(WishlistQuery, {
   options: ({ userID, query, count, page }) => ({
-    variables: { userID, query, count, page },
-    returnPartialData: true
+    variables: { userID, query, count, page }
   })
-})(WishList)
+})(connect(mapStateToProps, mapDispatchToProps)(WishList))
