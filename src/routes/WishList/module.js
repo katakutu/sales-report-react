@@ -70,9 +70,9 @@ const ACTION_HANDLERS = {
   [ACTIVATE_WISHLIST]: (state, action) => {
     const newData = state.wishlists.map(w => {
       if (parseInt(w['id']) === action.payload) {
-        return w
+        return Object.assign({}, w, { isActive: true })
       } else {
-        return Object.assign({}, w, { isActive: false })
+        return w
       }
     })
 

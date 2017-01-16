@@ -6,6 +6,7 @@ import { HOSTNAME } from './../../../constants'
 import queries from './../../../queries'
 import mutations from './../../../mutations'
 import {
+  activateWishlist,
   addWishlist,
   clearWishlists,
   deactivateWishlist,
@@ -56,14 +57,45 @@ const WishlistLoveQL = graphql(mutations.Wishlist.removeWishlist)(WishlistLove)
 const WishlistLoveQLR = connect(undefined, { deactivateWishlist })(WishlistLoveQL)
 
 class WishlistUnloved extends Component {
+  static propTypes = {
+    activateWishlist: PropTypes.func,
+    mutate: PropTypes.func.isRequired,
+    productID: PropTypes.number,
+    userID: PropTypes.number
+  }
+
+  constructor (props) {
+    super(props)
+
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick () {
+    const variables = {
+      variables: {
+        userID: this.props.userID,
+        productID: this.props.productID
+      }
+    }
+
+    this.props.mutate(variables).then(addSuccess => {
+      if (addSuccess) {
+        this.props.activateWishlist(this.props.productID)
+      }
+    })
+  }
+
   render () {
     return (
-      <button className='wishlist__button-wish'>
+      <button className='wishlist__button-wish' onClick={this.handleClick}>
         <i className='wishlist__icon wishlist__love-empty' />
       </button>
     )
   }
 }
+
+const WishlistUnlovedQL = graphql(mutations.Wishlist.addWishlist)(WishlistUnloved)
+const WishlistUnlovedQLR = connect(undefined, { activateWishlist })(WishlistUnlovedQL)
 
 class WishList extends Component {
   static propTypes = {
@@ -121,7 +153,7 @@ class WishList extends Component {
                 {
                   wishlist['isActive']
                     ? <WishlistLoveQLR userID={this.props.userID} productID={parseInt(wishlist['id'])} />
-                    : <WishlistUnloved />
+                    : <WishlistUnlovedQLR userID={this.props.userID} productID={parseInt(wishlist['id'])} />
                 }
                 <a href={wishlist['url']}>
                   <img src={wishlist['image']} className='wishlist__img' alt='tokopedia' />

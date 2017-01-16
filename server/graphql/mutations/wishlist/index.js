@@ -1,3 +1,3 @@
 const wishlist = require('./wishlist')
 
-module.exports = { wishlist }
+module.exports = wishlist

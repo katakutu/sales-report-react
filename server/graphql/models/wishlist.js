@@ -11,6 +11,12 @@ function removeWishlist (userID, productID) {
   return api.removeWishlist(userID, productID)
 }
 
+function addWishlist (userID, productID) {
+  const api = new TopedMojitoAPI()
+
+  return api.addWishlist(userID, productID)
+}
+
 function getUserWishlist (userID, query, count, page) {
   const api = new TopedMojitoAPI()
 
@@ -62,6 +68,7 @@ function _getWishlist (api, userID, count, page) {
 }
 
 module.exports = {
+  addWishlist,
   getUserWishlist,
   removeWishlist
 }

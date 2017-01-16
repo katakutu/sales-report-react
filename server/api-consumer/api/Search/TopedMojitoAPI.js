@@ -9,7 +9,7 @@ const MOJITO_SERVICES = {
   Category: `${GlobalConfig.Mojito.Hostname}/api/v1/layout/category`,
   OfficialStores: `${GlobalConfig.Mojito.OfficialStoreHostname}/os/api/v1/brands/list?device=lite`,
   WishlistProducts: `${GlobalConfig.Mojito.Hostname}/v1.0.2/users/:user_id/wishlist/products?count=:count&page=:page`,
-  WishlistRemove: `${GlobalConfig.Mojito.Hostname}/v1/products/:product_id/wishlist`,
+  WishlistModification: `${GlobalConfig.Mojito.Hostname}/v1/products/:product_id/wishlist`,
   WishlsitSearch: `${GlobalConfig.Mojito.Hostname}/users/:user_id/wishlist/search/v2?q=:query`
 }
 
@@ -112,7 +112,7 @@ class TopedMojitoAPI {
   }
 
   removeWishlist (userID, productID) {
-    const endpoint = MOJITO_SERVICES.WishlistRemove.replace(':product_id', productID)
+    const endpoint = MOJITO_SERVICES.WishlistModification.replace(':product_id', productID)
     const content = {
       'user_id': userID,
       'product_id': productID,
@@ -129,6 +129,29 @@ class TopedMojitoAPI {
                        .then(response => response.statusCode === 204)
                        .catch(err => {
                          console.error(`[Mojito][Wishlist][Delete] API call returning error: ${err}`)
+
+                         return false
+                       })
+  }
+
+  addWishlist (userID, productID) {
+    const endpoint = MOJITO_SERVICES.WishlistModification.replace(':product_id', productID)
+    const content = {
+      'user_id': userID,
+      'product_id': productID,
+      'bypass_hmac': 1,
+      'bypass_hash': 1,
+      'device_id': 'b'
+    }
+    const header = {
+      'X-User-ID': userID,
+      'X-Device': 'lite'
+    }
+
+    return this.HMACApi.consumeJSON(URL.parse(endpoint), 'POST', header, content)
+                       .then(response => response.statusCode === 201)
+                       .catch(err => {
+                         console.error(`[Mojito][Wishlist][Add] API call returning error: ${err}`)
 
                          return false
                        })
