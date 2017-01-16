@@ -77,8 +77,19 @@ class Tabs extends Component {
   }
 
   updateScroll (state) {
-    state ? ''
-    : this.activeStateTabArrow('disabled')
+    if (state) {
+      // check for state tab arrow
+      let inner = window.innerWidth
+      let widthTabs = 0
+      let rangeArrow = 10
+      const vpWidth = Math.max(document.documentElement.clientWidth, inner || 0)
+      widthTabs = document.getElementById('slick-track').offsetWidth
+      const maxTranslateX = (widthTabs - vpWidth)
+      maxTranslateX < rangeArrow ? this.activeStateTabArrow('activePrev')
+      : this.activeStateTabArrow('activeNext')
+    } else {
+      this.activeStateTabArrow('disabled')
+    }
   }
 
   activeStateTabArrow (state) {
