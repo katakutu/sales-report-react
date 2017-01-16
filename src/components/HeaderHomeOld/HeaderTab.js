@@ -50,9 +50,6 @@ class HeaderTab extends Component {
     })
   }
 
-  componentDidMount () {
-  }
-
   render () {
     const homeCN = this.props.activeTab === 'home'
     const hlCN = this.props.activeTab === 'hotlist'
@@ -60,7 +57,7 @@ class HeaderTab extends Component {
     return (
       <Tabs userIsLoggedIn={this.props.userIsLoggedIn} headerState={this.props.headerState}>
         <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/')} />
-        { this.props.userIsLoggedIn ? <Tab label='Feed' url={`${HOSTNAME}/?view=fehoted_preview`} /> : ''}
+        { this.props.userIsLoggedIn ? <Tab label='Feed' url={`${HOSTNAME}/?view=fehoted_preview`} /> : '' }
         { this.props.userIsLoggedIn ? <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
         <Tab isActive={hlCN} label='Hot List' onClick={() => this._savePosition('/hot')} />
         { this.props.userIsLoggedIn ? <Tab label='Wishlist' url={`${HOSTNAME}/?view=wishlist_preview`} /> : '' }
