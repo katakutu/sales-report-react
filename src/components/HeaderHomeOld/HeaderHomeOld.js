@@ -96,9 +96,9 @@ class HeaderHome extends Component {
   }
 
   _scrollHistory () {
-    var scroll = Scroll.animateScroll
-    var currentKey = this.props.activeTab
-    var currentState = this.props.scrollHistory
+    let scroll = Scroll.animateScroll
+    let currentKey = this.props.activeTab
+    let currentState = this.props.scrollHistory
     if (currentState) {
       if (currentState[currentKey]) {
         scroll.scrollTo(currentState[currentKey].point, {
@@ -155,7 +155,7 @@ class HeaderHome extends Component {
 
   checkActive (val) {
     const { router } = this.context
-    var currentLocation = router.getCurrentLocation().pathname
+    let currentLocation = router.getCurrentLocation().pathname
     let result = currentLocation === val
     return result
   }

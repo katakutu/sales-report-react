@@ -21,7 +21,7 @@ let OnTouch = {
     function (evt, dir, phase, swipetype, distance) { }
 
     setting.touchsurface.addEventListener('touchstart', function (e) {
-      var touchobj = e.changedTouches[0]
+      let touchobj = e.changedTouches[0]
       setting.dir = 'none'
       setting.swipeType = 'none'
       setting.startX = touchobj.pageX
@@ -31,7 +31,7 @@ let OnTouch = {
     }, false)
 
     setting.touchsurface.addEventListener('touchmove', function (e) {
-      var touchobj = e.changedTouches[0]
+      let touchobj = e.changedTouches[0]
       setting.distX = touchobj.pageX - setting.startX
       setting.distY = touchobj.pageY - setting.startY
       if (Math.abs(setting.distX) > Math.abs(setting.distY)) {

@@ -27,13 +27,13 @@ class HeaderTab extends Component {
 
   _savePosition (val) {
     const { router } = this.context
+    let currentKey = this.props.activeTab
     // get scrolled position
-    var scrollPosition = (window.pageYOffset !== undefined) ? window.pageYOffset
+    let scrollPosition = (window.pageYOffset !== undefined) ? window.pageYOffset
     : (document.documentElement || document.body.parentNode || document.body).scrollTop
     // update scroll history
-    var updateState = {}
-    var currentKey = this.props.activeTab
-    var currentState = this.props.scrollHistory
+    let updateState = {}
+    let currentState = this.props.scrollHistory
     // check available
     if (currentState) {
       // update state

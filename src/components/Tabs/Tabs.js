@@ -115,7 +115,7 @@ class Tabs extends Component {
   }
 
   detectScroll () {
-    var header = document.getElementsByTagName('header')[0].className
+    const header = document.getElementsByTagName('header')[0].className
     if (header.indexOf('transform') >= 0) {
       document.getElementById('next').classList.add('mini')
       document.getElementById('prev').classList.add('mini')
@@ -127,16 +127,16 @@ class Tabs extends Component {
 
   loadTouch () {
     let axis = 0 // define global for axis touch
-    var velo = 0.8 // define velocity for speed tab
-    var range = 50 // define range for bounche
+    let velo = 0.8 // define velocity for speed tab
+    let range = 50 // define range for bounche
     let ele = document.getElementById('slick-track')
     let inner = window.innerWidth
     const vpWidth = Math.max(document.documentElement.clientWidth, inner || 0)
     const widthTabs = document.getElementById('slick-track').offsetWidth
     const maxTranslateX = -1 * (widthTabs - vpWidth)
     const slideTrackEl = document.querySelector('#loggedin-tab #slick-track')
+    const arrowState = this.checkScrollTab()
     const that = this
-    let arrowState = this.checkScrollTab()
     OnTouch.load(ele, function (evt, dir, phase, swipetype, distance) {
       // check prediction of distance swipe in available range
       if (axis + (distance * velo) <= (0 + range) &&
