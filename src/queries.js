@@ -221,6 +221,38 @@ query Query {
 }
 `
 
+const WishlistQueries = {
+  getAll: gql`
+  query Query($userID: Int!, $query: String!, $count: Int!, $page: Int!) {
+    wishlist(user_id:$userID, query: $query, count: $count, page: $page){
+      total_data
+      items{
+        id
+        name
+        url
+        image
+        price_formatted
+        shop{
+          name
+          url
+          location
+        }
+        badges{
+          title
+          image_url
+        }
+        labels{
+          title
+          color
+        }
+        available
+        status
+      }
+    }
+  }
+  `
+}
+
 const ApolloExecutors = (client) => {
   return {
     isUserLoggedIn: () => {
@@ -237,5 +269,6 @@ export default {
   HomeQuery: HomeQuery,
   UserDataQuery: UserDataQuery,
   UserIsLoggedIn: UserIsLoggedIn,
-  ApolloExecutors: ApolloExecutors
+  ApolloExecutors: ApolloExecutors,
+  WishlistQueries: WishlistQueries
 }

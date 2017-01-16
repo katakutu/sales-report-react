@@ -1,12 +1,69 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
 
 import { HOSTNAME } from './../../../constants'
-import { addWishlist, clearWishlists, replaceWishlists } from '../module'
+import queries from './../../../queries'
+import mutations from './../../../mutations'
+import {
+  addWishlist,
+  clearWishlists,
+  deactivateWishlist,
+  replaceWishlists
+} from '../module'
 
 import './WishListView.scss'
+
+class WishlistLove extends Component {
+  static propTypes = {
+    deactivateWishlist: PropTypes.func,
+    mutate: PropTypes.func.isRequired,
+    productID: PropTypes.number,
+    userID: PropTypes.number
+  }
+
+  constructor (props) {
+    super(props)
+
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick () {
+    const variables = {
+      variables: {
+        userID: this.props.userID,
+        productID: this.props.productID
+      }
+    }
+
+    this.props.mutate(variables).then(removeSuccess => {
+      if (removeSuccess) {
+        this.props.deactivateWishlist(this.props.productID)
+      }
+    })
+  }
+
+  render () {
+    return (
+      <button className='wishlist__button-wish' onClick={this.handleClick}>
+        <i className='wishlist__icon wishlist__love-full' />
+      </button>
+    )
+  }
+}
+
+const WishlistLoveQL = graphql(mutations.Wishlist.removeWishlist)(WishlistLove)
+const WishlistLoveQLR = connect(undefined, { deactivateWishlist })(WishlistLoveQL)
+
+class WishlistUnloved extends Component {
+  render () {
+    return (
+      <button className='wishlist__button-wish'>
+        <i className='wishlist__icon wishlist__love-empty' />
+      </button>
+    )
+  }
+}
 
 class WishList extends Component {
   static propTypes = {
@@ -61,9 +118,11 @@ class WishList extends Component {
           return (
             <div className='u-col u-col-6 wishlist__contents' key={`wishlist-${index}`}>
               <div className='wishlist__content-box'>
-                <button className='wishlist__button-wish'>
-                  <i className='wishlist__icon wishlist__love-full' />
-                </button>
+                {
+                  wishlist['isActive']
+                    ? <WishlistLoveQLR userID={this.props.userID} productID={parseInt(wishlist['id'])} />
+                    : <WishlistUnloved />
+                }
                 <a href={wishlist['url']}>
                   <img src={wishlist['image']} className='wishlist__img' alt='tokopedia' />
                   <div className='wishlist__title'>{ wishlist['name'] }</div>
@@ -93,7 +152,7 @@ class WishList extends Component {
                   {
                       labels.length === 0 &&
                       <span className='wishlist__label' style={{ backgroundColor: '#ffffff' }}>&nbsp;</span>
-                    }
+                  }
                 </div>
                 <a href={wishlist['shop']['url']}>
                   <div className='wishlist__shop-name u-truncate'>{ wishlist['shop']['name'] }</div>
@@ -128,36 +187,6 @@ class WishList extends Component {
   }
 }
 
-const WishlistQuery = gql`
-query Query($userID: Int!, $query: String!, $count: Int!, $page: Int!) {
-  wishlist(user_id:$userID, query: $query, count: $count, page: $page){
-    total_data
-    items{
-      id
-      name
-      url
-      image
-      price_formatted
-      shop{
-        name
-        url
-        location
-      }
-      badges{
-        title
-        image_url
-      }
-      labels{
-        title
-        color
-      }
-      available
-      status
-    }
-  }
-}
-`
-
 const mapDispatchToProps = { addWishlist, clearWishlists, replaceWishlists }
 const mapStateToProps = (state) => {
   return {
@@ -165,8 +194,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default graphql(WishlistQuery, {
+export default graphql(queries.WishlistQueries.getAll, {
   options: ({ userID, query, count, page }) => ({
     variables: { userID, query, count, page }
   })
-})(connect(mapStateToProps, mapDispatchToProps)(WishList))
+}
+)(connect(mapStateToProps, mapDispatchToProps)(WishList))
