@@ -21,7 +21,11 @@
         position: fixed;
         top: 0;
         left: 0;
-        transform: none;
+        // transform: none;
+        -webkit-animation: HEADER-DOWN .25s; /* Safari 4+ */
+        -moz-animation:    HEADER-DOWN .25s; /* Fx 5+ */
+        -o-animation:      HEADER-DOWN .25s; /* Opera 12+ */
+        animation:         HEADER-DOWN .25s; /* IE 10+, Fx 29+ */
     }
 }
 
@@ -585,4 +589,21 @@
 .drawer__user-topup {
     padding: 10px 20px;
     border-bottom: 1px solid $color-grey;
+}
+
+@-webkit-keyframes HEADER-DOWN {
+  0%   { -webkit-transform: translateY(-150px); -moz-transform: translateY(-150px); -o-transform: translateY(-150px); }
+  100% { -webkit-transform: translateY(0); -moz-transform: translateY(0); -o-transform: translateY(0); }
+}
+@-moz-keyframes HEADER-DOWNP {
+  0%   { -webkit-transform: translateY(-150px); -moz-transform: translateY(-150px); -o-transform: translateY(-150px); }
+  100% { -webkit-transform: translateY(0); -moz-transform: translateY(0); -o-transform: translateY(0); }
+}
+@-o-keyframes HEADER-DOWN{
+  0%   { -webkit-transform: translateY(-150px); -moz-transform: translateY(-150px); -o-transform: translateY(-150px); }
+  100% { -webkit-transform: translateY(0); -moz-transform: translateY(0); -o-transform: translateY(0); }
+}
+@keyframes HEADER-DOWN {
+  0%   { -webkit-transform: translateY(-150px); -moz-transform: translateY(-150px); -o-transform: translateY(-150px); }
+  100% { -webkit-transform: translateY(0); -moz-transform: translateY(0); -o-transform: translateY(0); }
 }
