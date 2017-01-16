@@ -10,6 +10,10 @@
     width: 100%;
     height: 100vh;
     background-color: $color-white-primary;
+    -webkit-animation: MODAL-POP .1s; /* Safari 4+ */
+    -moz-animation:    MODAL-POP .1s; /* Fx 5+ */
+    -o-animation:      MODAL-POP .1s; /* Opera 12+ */
+    animation:         MODAL-POP .1s; /* IE 10+, Fx 29+ */
 
     .normal-text {
         font-weight: normal;
@@ -300,4 +304,22 @@
         background-position: left center;
         background-size: 16px 16px;
     }
+}
+
+
+@-webkit-keyframes MODAL-POP {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes MODAL-POP {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes MODAL-POP{
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes MODAL-POP {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
