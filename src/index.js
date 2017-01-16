@@ -126,10 +126,10 @@ const batchingNetworkInterface = createBatchingNetworkInterface({
     credentials: 'same-origin'
   }
 })
-const client = new ApolloClient({ 
+const client = new ApolloClient({
   networkInterface: batchingNetworkInterface,
   queryDeduplication: true,
-  shouldBatch: true,
+  shouldBatch: true
 })
 
 // ========================================================
