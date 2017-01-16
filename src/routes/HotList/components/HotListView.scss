@@ -28,7 +28,11 @@
     }
 
     img {
-        width: 100%;
+        max-width: 100%;
+    }
+
+    .hotlist__image_holder {
+        min-height: 200px;
     }
 }
 
@@ -149,11 +153,11 @@
     }
 }
 
-.hotlist__item {
-    -webkit-animation: IMAGE-POP .08s; /* Safari 4+ */
-    -moz-animation:    IMAGE-POP .08s; /* Fx 5+ */
-    -o-animation:      IMAGE-POP .08s; /* Opera 12+ */
-    animation:         IMAGE-POP .08s; /* IE 10+, Fx 29+ */
+.hotlist__item, .hotlist__image {
+    -webkit-animation: IMAGE-POP .25s; /* Safari 4+ */
+    -moz-animation:    IMAGE-POP .25s; /* Fx 5+ */
+    -o-animation:      IMAGE-POP .25s; /* Opera 12+ */
+    animation:         IMAGE-POP .25s; /* IE 10+, Fx 29+ */
 }
 
 @-webkit-keyframes IMAGE-POP {
