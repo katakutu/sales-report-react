@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
-import ApolloClient, { createNetworkInterface } from 'apollo-client'
+import ApolloClient, { createBatchingNetworkInterface } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import Promise from 'promise-polyfill'
 
@@ -119,13 +119,18 @@ if (!Array.prototype.includes) {
 // ========================================================
 const initialState = window.___INITIAL_STATE__
 const store = createStore(initialState)
-const networkInterface = createNetworkInterface({
+const batchingNetworkInterface = createBatchingNetworkInterface({
   uri: '/graphql',
+  batchInterval: 250,
   opts: {
     credentials: 'same-origin'
   }
 })
-const client = new ApolloClient({ networkInterface })
+const client = new ApolloClient({
+  networkInterface: batchingNetworkInterface,
+  queryDeduplication: true,
+  shouldBatch: true
+})
 
 // ========================================================
 // Render Setup

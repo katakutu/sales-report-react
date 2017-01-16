@@ -13,12 +13,10 @@ import BodyClassName from 'react-body-classname'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import './HeaderHomeOld.scss'
-// import SearchInputOld from '../SearchInputOld'
 import SearchInput from '../SearchInput'
 import LoggedInMenu from './LoggedInMenu'
 import LoggedOutMenu from './LoggedOutMenu'
-import LoggedInTab from './LoggedInTab'
-import LoggedOutTab from './LoggedOutTab'
+import HeaderTab from './HeaderTab'
 import OverlaySplash from './OverlaySplash'
 
 import { HOSTNAME } from '../../constants'
@@ -37,7 +35,10 @@ class HeaderHome extends Component {
     searchModalIsOpen: React.PropTypes.bool,
     sidebar: React.PropTypes.object,
     tabIsAvailable: React.PropTypes.bool,
-    lang: React.PropTypes.string
+    lang: React.PropTypes.string,
+    updateScrollPosition: React.PropTypes.func,
+    location: React.PropTypes.object,
+    scrollHistory: React.PropTypes.object
   }
 
   state = {
@@ -54,6 +55,7 @@ class HeaderHome extends Component {
     this.renderTabs = this.renderTabs.bind(this)
     this.renderSidebar = this.renderSidebar.bind(this)
     this.showSearch = this.showSearch.bind(this)
+    this._scrollHistory = this._scrollHistory.bind(this)
   }
 
   _updateUserState (userIsLoggedIn, userShouldRedirect, userInfo) {
@@ -93,16 +95,31 @@ class HeaderHome extends Component {
     return scrollPos < heightOffset
   }
 
+  _scrollHistory () {
+    let scroll = Scroll.animateScroll
+    let currentKey = this.props.activeTab
+    let currentState = this.props.scrollHistory
+    if (currentState) {
+      if (currentState[currentKey]) {
+        scroll.scrollTo(currentState[currentKey].point, {
+          duration: 0,
+          delay: 0,
+          smooth: false,
+          ignoreCancelEvents: true
+        })
+      }
+    }
+  }
+
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll)
-
     const userIsLoggedIn = this.props.userInfo ? this.props.userInfo.isLoggedIn : false
     const userShouldRedirect = this.props.userInfo ? this.props.userInfo.shouldRedirect : false
     this._updateUserState(userIsLoggedIn, userShouldRedirect, this.props.userInfo)
-
     this.setState({
       showSearch: this._shouldShowSearch(document.body.scrollTop)
     })
+    this._scrollHistory()
   }
 
   componentWillReceiveProps (nextProps) {
@@ -136,11 +153,21 @@ class HeaderHome extends Component {
     this.setState({ showSearch: true })
   }
 
+  checkActive (val) {
+    const { router } = this.context
+    let currentLocation = router.getCurrentLocation().pathname
+    let result = currentLocation === val
+    return result
+  }
+
   renderTabs () {
+    let fixedHeaderState = (this.state.showSearch) ? '' : 'transform'
     if (this.props.tabIsAvailable) {
-      return this.props.userIsLoggedIn
-        ? <LoggedInTab activeTab={this.props.activeTab} />
-        : <LoggedOutTab activeTab={this.props.activeTab} />
+      return (<HeaderTab
+        headerState={fixedHeaderState}
+        activeTab={this.props.activeTab}
+        scrollHistory={this.props.scrollHistory}
+        userIsLoggedIn={this.props.userIsLoggedIn} />)
     }
   }
 
@@ -272,7 +299,8 @@ const mapStateToProps = (state) => {
     sidebar: state['app'] ? state['app'].sidebar : state.sidebar,
     userData: state['app'] ? state['app'].user.data : state.user.data,
     userIsLoggedIn: state['app'] ? state['app'].user.loggedIn : state.user.loggedIn,
-    lang: state['app'] ? state['app'].lang : state.lang
+    lang: state['app'] ? state['app'].lang : state.lang,
+    scrollHistory: state['app'] ? state['app'].scrollHistory : state.scrollHistory
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderHome)
