@@ -1,54 +1,60 @@
-const OnTouch = {
+let setting = {
+  touchsurface: null,
+  dir: null,
+  swipeType: null,
+  startX: 0,
+  startY: 0,
+  distX: 0,
+  distY: 0,
+  threshold: 150,
+  restraint: 100,
+  allowedTime: 500,
+  elapsedTime: 0,
+  startTime: 0,
+  handletouch: null
+}
+
+let OnTouch = {
   load: function (el, callback) {
-    var touchsurface = el
-    var dir
-    var swipeType
-    var startX
-    var startY
-    var distX
-    var distY
-    var threshold = 150
-    var restraint = 100
-    var allowedTime = 500
-    var elapsedTime
-    var startTime
-    var handletouch = callback ||
+    setting.touchsurface = el
+    setting.handletouch = callback ||
     function (evt, dir, phase, swipetype, distance) { }
 
-    touchsurface.addEventListener('touchstart', function (e) {
+    setting.touchsurface.addEventListener('touchstart', function (e) {
       var touchobj = e.changedTouches[0]
-      dir = 'none'
-      swipeType = 'none'
-      startX = touchobj.pageX
-      startY = touchobj.pageY
-      startTime = new Date().getTime()
-      handletouch(e, 'none', 'start', swipeType, 0)
+      setting.dir = 'none'
+      setting.swipeType = 'none'
+      setting.startX = touchobj.pageX
+      setting.startY = touchobj.pageY
+      setting.startTime = new Date().getTime()
+      setting.handletouch(e, 'none', 'start', setting.swipeType, 0)
     }, false)
 
-    touchsurface.addEventListener('touchmove', function (e) {
+    setting.touchsurface.addEventListener('touchmove', function (e) {
       var touchobj = e.changedTouches[0]
-      distX = touchobj.pageX - startX
-      distY = touchobj.pageY - startY
-      if (Math.abs(distX) > Math.abs(distY)) {
-        dir = (distX < 0) ? 'left' : 'right'
-        handletouch(e, dir, 'move', swipeType, distX)
+      setting.distX = touchobj.pageX - setting.startX
+      setting.distY = touchobj.pageY - setting.startY
+      if (Math.abs(setting.distX) > Math.abs(setting.distY)) {
+        setting.dir = (setting.distX < 0) ? 'left' : 'right'
+        setting.handletouch(e, setting.dir, 'move', setting.swipeType, setting.distX)
       } else {
-        dir = (distY < 0) ? 'up' : 'down'
-        handletouch(e, dir, 'move', swipeType, distY)
+        setting.dir = (setting.distY < 0) ? 'up' : 'down'
+        setting.handletouch(e, setting.dir, 'move', setting.swipeType, setting.distY)
       }
     }, false)
 
-    touchsurface.addEventListener('touchend', function (e) {
-      elapsedTime = new Date().getTime() - startTime
-      if (elapsedTime <= allowedTime) {
-        if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
-          swipeType = dir
-        } else if (Math.abs(distY) >= threshold &&
-          Math.abs(distX) <= restraint) {
-          swipeType = dir
+    setting.touchsurface.addEventListener('touchend', function (e) {
+      setting.elapsedTime = new Date().getTime() - setting.startTime
+      if (setting.elapsedTime <= setting.allowedTime) {
+        if (Math.abs(setting.distX) >= setting.threshold && Math.abs(setting.distY) <= setting.restraint) {
+          setting.swipeType = setting.dir
+        } else if (Math.abs(setting.distY) >= setting.threshold &&
+          Math.abs(setting.distX) <= setting.restraint) {
+          setting.swipeType = setting.dir
         }
       }
-      handletouch(e, dir, 'end', swipeType, (dir === 'left' || dir === 'right') ? distX : distY)
+      setting.handletouch(e, setting.dir, 'end', setting.swipeType,
+      (setting.dir === 'left' || setting.dir === 'right') ? setting.distX : setting.distY)
     }, false)
   }
 }
