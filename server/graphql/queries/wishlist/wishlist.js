@@ -3,7 +3,7 @@ const {
   GraphQLString
 } = require('graphql')
 const { WishlistsType } = require('../../types/wishlist')
-const getUserWishlist = require('../../models/wishlist')
+const { getUserWishlist } = require('../../models/wishlist')
 
 const userWishlistQuery = {
   type: WishlistsType,

@@ -5,15 +5,21 @@ const EMPTY_WISHLIST = {
   items: []
 }
 
+function removeWishlist (userID, productID) {
+  const api = new TopedMojitoAPI()
+
+  return api.removeWishlist(userID, productID)
+}
+
 function getUserWishlist (userID, query, count, page) {
   const api = new TopedMojitoAPI()
 
-  return query === '' ?
-    _getWishlist(api, userID, count, page) :
-    _searchWishlist(api, userID, query)
+  return query === ''
+    ? _getWishlist(api, userID, count, page)
+    : _searchWishlist(api, userID, query)
 }
 
-function _searchWishlist(api, userID, query) {
+function _searchWishlist (api, userID, query) {
   return api.filterWishlist(userID, query).then(response => {
     if (!response['data']) {
       const raw = JSON.stringify(response)
@@ -28,13 +34,13 @@ function _searchWishlist(api, userID, query) {
     }
   })
   .catch(err => {
-      console.error(`[Mojito][Wishlist][Search] Wishlist API call faield. Cause: ${err.message}`)
+    console.error(`[Mojito][Wishlist][Search] Wishlist API call faield. Cause: ${err.message}`)
 
-      return EMPTY_WISHLIST
+    return EMPTY_WISHLIST
   })
 }
 
-function _getWishlist(api, userID, count, page) {
+function _getWishlist (api, userID, count, page) {
   return api.getWishlistProducts(userID, count, page).then(response => {
     if (!response['data']) {
       const raw = JSON.stringify(response)
@@ -55,4 +61,7 @@ function _getWishlist(api, userID, count, page) {
     })
 }
 
-module.exports = getUserWishlist
+module.exports = {
+  getUserWishlist,
+  removeWishlist
+}

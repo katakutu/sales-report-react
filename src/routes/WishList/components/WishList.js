@@ -10,6 +10,8 @@ import './WishListView.scss'
 
 class WishList extends Component {
   static propTypes = {
+    addWishlist: PropTypes.func,
+    clearWishlists: PropTypes.func,
     count: PropTypes.number,
     data: PropTypes.object,
     page: PropTypes.number,
@@ -47,28 +49,28 @@ class WishList extends Component {
     const wishlists = this.props.wishlists
 
     return (
-        <div className='wishlist-container u-clearfix'>
-          { wishlists.map((wishlist, index) => {
-            const currentPage = window.location.href
-            const mainLink = `${HOSTNAME}/add-to-cart.pl`
-            const buyLink = `${mainLink}?refback=${currentPage}&id=${wishlist['id']}&referer=${currentPage}`
+      <div className='wishlist-container u-clearfix'>
+        { wishlists.map((wishlist, index) => {
+          const currentPage = window.location.href
+          const mainLink = `${HOSTNAME}/add-to-cart.pl`
+          const buyLink = `${mainLink}?refback=${currentPage}&id=${wishlist['id']}&referer=${currentPage}`
 
-            const labels = wishlist['labels'] || []
-            const badges = wishlist['badges'] || []
+          const labels = wishlist['labels'] || []
+          const badges = wishlist['badges'] || []
 
-            return (
-              <div className='u-col u-col-6 wishlist__contents' key={`wishlist-${index}`}>
-                <div className='wishlist__content-box'>
-                  <button className='wishlist__button-wish'>
-                    <i className='wishlist__icon wishlist__love-full' />
-                  </button>
-                  <a href={wishlist['url']}>
-                    <img src={wishlist['image']} className='wishlist__img' alt='tokopedia' />
-                    <div className='wishlist__title'>{ wishlist['name'] }</div>
-                  </a>
-                  <div className='wishlist__price u-truncate'>{ wishlist['price_formatted'] }</div>
-                  <div className='wishlist__type-marketing u-truncate'>
-                    {
+          return (
+            <div className='u-col u-col-6 wishlist__contents' key={`wishlist-${index}`}>
+              <div className='wishlist__content-box'>
+                <button className='wishlist__button-wish'>
+                  <i className='wishlist__icon wishlist__love-full' />
+                </button>
+                <a href={wishlist['url']}>
+                  <img src={wishlist['image']} className='wishlist__img' alt='tokopedia' />
+                  <div className='wishlist__title'>{ wishlist['name'] }</div>
+                </a>
+                <div className='wishlist__price u-truncate'>{ wishlist['price_formatted'] }</div>
+                <div className='wishlist__type-marketing u-truncate'>
+                  {
                       labels.map((label, li) => {
                         let style = { backgroundColor: label['color'] }
                         if (label['color'] === '#ffffff') {
@@ -88,20 +90,20 @@ class WishList extends Component {
                         )
                       })
                     }
-                    {
+                  {
                       labels.length === 0 &&
                       <span className='wishlist__label' style={{ backgroundColor: '#ffffff' }}>&nbsp;</span>
                     }
-                  </div>
-                  <a href={wishlist['shop']['url']}>
-                    <div className='wishlist__shop-name u-truncate'>{ wishlist['shop']['name'] }</div>
-                  </a>
-                  <div className='wishlist__shop-loc-badge'>
-                    <span className='wishlist__shop-location u-truncate'>
-                      <i className='icon-location' /> { wishlist['shop']['location'] }
-                    </span>
-                    <span className='wishlist__badges'>
-                      {
+                </div>
+                <a href={wishlist['shop']['url']}>
+                  <div className='wishlist__shop-name u-truncate'>{ wishlist['shop']['name'] }</div>
+                </a>
+                <div className='wishlist__shop-loc-badge'>
+                  <span className='wishlist__shop-location u-truncate'>
+                    <i className='icon-location' /> { wishlist['shop']['location'] }
+                  </span>
+                  <span className='wishlist__badges'>
+                    {
                         badges.map((badge, bi) => {
                           return (
                             <img
@@ -112,16 +114,16 @@ class WishList extends Component {
                           )
                         })
                       }
-                    </span>
-                  </div>
-                  <div className='wishlist__buy'>
-                    <a href={buyLink} className='wishlist__button-buy'>Beli</a>
-                  </div>
+                  </span>
+                </div>
+                <div className='wishlist__buy'>
+                  <a href={buyLink} className='wishlist__button-buy'>Beli</a>
                 </div>
               </div>
-            )
-          })}
-        </div>
+            </div>
+          )
+        })}
+      </div>
     )
   }
 }

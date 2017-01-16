@@ -20,31 +20,28 @@ class HMACToped {
      * @param {Date} date - The current time for the function call.
      * @param {string} hashParam - Hash parameter for the API. Usually user_id~device_id.
      * @param {string} hashHeader - The HTTP Header for the API. Exclude hash and device_time here.
+     * @param {string} formType - json/form. Will be used for content type encoding.
      * @returns {string} HMAC signature needed for API call.
      *
      * @throws {TypeError} When method is not GET or POST and when date is not a Date object.
      *
      * @memberOf HMACToped
      */
-  static generate (key, method, path, date, hashParam, hashHeader) {
-    if (method !== 'GET' && method !== 'POST') {
-      throw new TypeError(`Expected GET or POST for the method parameter. Got ${method}.`)
-    }
-
+  static generate (key, method, path, date, hashParam, hashHeader, formType) {
     if (Object.prototype.toString.call(date) !== '[object Date]' || isNaN(date.getTime())) {
       let t = Object.prototype.toString.call(date)
       throw new TypeError(`Expected date to be a Date Object. Got ${t} instead.`)
     }
 
     let contentMD5 = HMACToped.generateContentHash(date, hashParam, hashHeader)
-    let time = dateFormat(date, 'ddd, DD MMM YYYY HH:mm:ss ZZ')
-    let formType = (method === 'POST') ? 'application/x-www-form-urlencoded' : ''
+    let time = dateFormat(date, 'ddd, dd mmm yyyy HH:mm:ss o')
+    let formEnc = (formType === 'json') ? 'application/json' : 'application/x-www-form-urlencoded'
 
-    let data = `${method}\n${contentMD5}\n${formType}\n${time}\n${path}`
+    let data = `${method}\n${contentMD5}\n${formEnc}\n${time}\n${path}`
 
     let hmac = CryptoJS.HmacSHA1(data, key).toString(CryptoJS.enc.Base64)
 
-    return `TKPD Tokopedia: ${hmac}`
+    return `TKPD Tokopedia:${hmac}`
   }
 
     /**
