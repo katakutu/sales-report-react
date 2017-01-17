@@ -1,5 +1,13 @@
 import gql from 'graphql-tag'
 
+const UserIsLoggedIn = gql`
+query Query {
+  user {
+    isLoggedIn
+  }
+}
+`
+
 const HomeQuery = gql`
 query Query {
   user{
@@ -139,7 +147,7 @@ query Query {
   }
 }
 `
-const HotlistQuery = gql`
+const UserDataQuery = gql`
 query Query {
   user{
     id
@@ -315,8 +323,56 @@ query Query {
   }
 }
 `
+
+const WishlistQueries = {
+  getAll: gql`
+  query Query($userID: Int!, $query: String!, $count: Int!, $page: Int!) {
+    wishlist(user_id:$userID, query: $query, count: $count, page: $page){
+      total_data
+      items{
+        id
+        name
+        url
+        image
+        price_formatted
+        shop{
+          name
+          url
+          location
+        }
+        badges{
+          title
+          image_url
+        }
+        labels{
+          title
+          color
+        }
+        available
+        status
+      }
+    }
+  }
+  `
+}
+
+const ApolloExecutors = (client) => {
+  return {
+    isUserLoggedIn: () => {
+      return client.query({
+        forceFetch: true,
+        query: UserIsLoggedIn
+      })
+      .then(result => !result['loading'] && result['data']['user']['isLoggedIn'])
+    }
+  }
+}
+
 export default {
   HomeQuery: HomeQuery,
-  HotlistQuery: HotlistQuery,
+  UserDataQuery: UserDataQuery,
+  UserIsLoggedIn: UserIsLoggedIn,
+  ApolloExecutors: ApolloExecutors,
+  WishlistQueries: WishlistQueries,
   FaveQuery: FaveQuery
 }

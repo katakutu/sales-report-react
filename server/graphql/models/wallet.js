@@ -9,7 +9,7 @@ function getWallet (context) {
   const api = new TopedWalletAPI()
 
   return api.getWalletBalance(
-        context.get('Origin') || GlobalConfig['Hostname'],
+        context.read('Origin') || GlobalConfig['Hostname'],
         sessID
     )
     .catch(error => {

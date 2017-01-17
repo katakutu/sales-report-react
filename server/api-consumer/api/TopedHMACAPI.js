@@ -1,4 +1,5 @@
 const HMACToped = require('../hmac/HMACToped')
+const dateFormat = require('dateformat')
 const request = require('request-promise')
 const querystring = require('querystring')
 
@@ -36,7 +37,7 @@ class TopedHMACAPI {
     let result
     switch (type) {
       case 'FORM':
-        result = this.consumeForm(url, content, hashHeader)
+        result = this.consumeForm(url, method, content, hashHeader)
         break
 
       case 'JSON':
@@ -55,34 +56,37 @@ class TopedHMACAPI {
    *
    * @param {URL} url The URL we want to consume
    * @param {string} method The HTTP Method we want to use on the API call.
+   * @param {object} additional header that will be added (e.g. X-User-ID).
    * @param {object} content The content we want to sent in body.
    * @param {string} [hashHeader='~b'] The header in user_id~device_id format.
    * @returns {Promise<Response>} The resulting response promise.
    *
    * @memberOf TopedHMACAPI
    */
-  consumeJSON (url, method, content, hashHeader = '~b') {
+  consumeJSON (url, method, headers, content, hashHeader = '~b') {
     try {
-      let contentString = JSON.stringify(content)
-      let apiCallDate = new Date()
-      let hashParams = querystring.stringify(content)
-      let authHeader = HMACToped.generate(
-        this.apiKey, method, url.pathname, apiCallDate, hashParams, hashHeader
+      const contentString = JSON.stringify(content)
+      const apiCallDate = new Date()
+      const hashParams = querystring.stringify(content)
+      const authHeader = HMACToped.generate(
+        this.apiKey, method, url.pathname, apiCallDate, hashParams, hashHeader, 'json'
       )
+      const header = Object.assign({
+        'Authorization': authHeader,
+        'Content-MD5': HMACToped.generateContentHash(apiCallDate, hashParams, hashHeader),
+        'Content-Type': 'application/json',
+        'X-Date': dateFormat(apiCallDate, 'ddd, dd mmm yyyy HH:mm:ss o')
+      }, headers)
 
       let options = {
         method: method,
         body: contentString,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': authHeader,
-          'Content-MD5': HMACToped.generateContentHash(apiCallDate, hashParams, hashHeader),
-          'X-Method': method
-        },
-        timeout: 5000
+        headers: header,
+        timeout: 5000,
+        resolveWithFullResponse: true
       }
 
-      return request(url, options).then(response => JSON.parse(response))
+      return request(url, options)
     } catch (exception) {
       if (exception instanceof TypeError) {
         return Promise.reject(`Invalid type exception: ${exception.message}`)
@@ -97,34 +101,36 @@ class TopedHMACAPI {
    * and POST HTTP Method.
    *
    * @param {URL} url The URL we want to consume
+   * @param {string} method The HTTP Method we want to use on the API call.
    * @param {object} content The content we want to sent in body. This will be converted to FormData.
    * @param {string} [hashHeader='~b'] The header in user_id~device_id format.
    * @returns {Promise<Response>} The resulting response promise.
    *
    * @memberOf TopedHMACAPI
    */
-  consumeForm (url, content, hashHeader = '~b') {
+  consumeForm (url, method, content, hashHeader = '~b') {
     try {
       let formData = querystring.stringify(content)
       let apiCallDate = new Date()
       let hashParams = querystring.stringify(content)
       let authHeader = HMACToped.generate(
-        this.apiKey, 'POST', url.pathname, apiCallDate, hashParams, hashHeader
+        this.apiKey, method, url.pathname, apiCallDate, hashParams, hashHeader, 'form'
       )
 
       let options = {
-        method: 'POST',
+        method: method,
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
           'Authorization': authHeader,
           'Content-MD5': HMACToped.generateContentHash(apiCallDate, hashParams, hashHeader),
-          'X-Method': 'POST'
+          'X-Method': method
         },
         body: formData,
-        timeout: 5000
+        timeout: 5000,
+        resolveWithFullResponse: true
       }
 
-      return request(url, options).then(response => JSON.parse(response))
+      return request(url, options)
     } catch (exception) {
       if (exception instanceof TypeError) {
         return Promise.reject(`Invalid type exception: ${exception.message}`)

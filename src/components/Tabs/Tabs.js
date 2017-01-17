@@ -3,17 +3,18 @@ import classnames from 'classnames'
 import './Tabs.scss'
 import Tab from './Tab.js'
 import TabContent from './TabContent'
+import OnTouch from './OnTouch'
 
-let xDown = null
-let yDown = null
-let location = 0
 class Tabs extends Component {
   static propTypes = {
     children: React.PropTypes.node,
     className: React.PropTypes.string,
+    activeTab: React.PropTypes.string,
     index: React.PropTypes.number,
     inverse: React.PropTypes.bool,
-    onChange: React.PropTypes.func
+    userIsLoggedIn: React.PropTypes.bool,
+    onChange: React.PropTypes.func,
+    headerState: React.PropTypes.string
   }
 
   static defaultProps = {
@@ -36,12 +37,76 @@ class Tabs extends Component {
     this.renderContents = this.renderContents.bind(this)
     this.renderHeaders = this.renderHeaders.bind(this)
     this.detectScroll = this.detectScroll.bind(this)
-    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this)
+    this.loadTouch = this.loadTouch.bind(this)
+    this.activeStateTabArrow = this.activeStateTabArrow.bind(this)
+    this.checkScrollTab = this.checkScrollTab.bind(this)
+  }
+
+  componentDidMount () {
+    window.addEventListener('load', this.loadTouch())
+    window.addEventListener('resize', this.handleResize)
+    window.addEventListener('scroll', this.detectScroll)
+    if (!this.props.userIsLoggedIn) {
+      let state = this.checkScrollTab()
+      this.updateScroll(state)
+    }
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.detectScroll()
+  }
+
+  componentWillUnmount () {
+    if (window.removeEventListener && this.handleResize) {
+      window.removeEventListener('resize', this.handleResize)
+      clearTimeout(this.resizeTimeout)
+    }
+  }
+
+  componentDidUpdate (props) {
+    window.addEventListener('load', this.loadTouch())
+    let state = this.checkScrollTab()
+    this.updateScroll(state)
+  }
+
+  checkScrollTab () {
+    let inner = window.innerWidth
+    const vpWidth = Math.max(document.documentElement.clientWidth, inner || 0)
+    let widthTabs = document.getElementById('slick-track').offsetWidth
+    return widthTabs > vpWidth
+  }
+
+  updateScroll (state) {
+    if (state) {
+      // check for state tab arrow
+      let inner = window.innerWidth
+      let widthTabs = 0
+      let rangeArrow = 10
+      const vpWidth = Math.max(document.documentElement.clientWidth, inner || 0)
+      widthTabs = document.getElementById('slick-track').offsetWidth
+      const maxTranslateX = (widthTabs - vpWidth)
+      maxTranslateX < rangeArrow ? this.activeStateTabArrow('activePrev')
+      : this.activeStateTabArrow('activeNext')
+    } else {
+      this.activeStateTabArrow('disabled')
+    }
+  }
+
+  activeStateTabArrow (state) {
+    // set active for tab arrow
+    if (state === 'activeNext') {
+      document.getElementById('next').classList.remove('slick-disabled')
+      document.getElementById('prev').classList.add('slick-disabled')
+    } else if (state === 'activePrev') {
+      document.getElementById('next').classList.add('slick-disabled')
+      document.getElementById('prev').classList.remove('slick-disabled')
+    } else {
+      document.getElementById('next').classList.add('slick-disabled')
+      document.getElementById('prev').classList.add('slick-disabled')
+    }
   }
 
   generateAfterChange (direction) {
-    let prev = document.getElementById('prev')
-    let next = document.getElementById('next')
     let inner = window.innerWidth
     const slideTrackEl = document.querySelector('#loggedin-tab #slick-track')
     const vpWidth = Math.max(document.documentElement.clientWidth, inner || 0)
@@ -49,77 +114,19 @@ class Tabs extends Component {
     let widthTabs = 0
     widthTabs = document.getElementById('slick-track').offsetWidth
     if (direction === 'next') {
-      next.className = 'slick-arrow slick-next slick-disabled'
-      prev.className = 'slick-arrow slick-prev'
+      this.activeStateTabArrow('activePrev')
       this.detectScroll()
       const maxTranslateX = -1 * (widthTabs - vpWidth)
       slideTrackEl.style.transform = `translate3d(${maxTranslateX}px, 0px, 0px)`
     } else if (direction === 'prev') {
-      next.className = 'slick-arrow slick-next'
-      prev.className = 'slick-arrow slick-prev slick-disabled'
+      this.activeStateTabArrow('activeNext')
       this.detectScroll()
       slideTrackEl.style.transform = `translate3d(0px, 0px, 0px)`
     }
   }
 
-  componentWillReceiveProps () {
-    this.detectScroll()
-  }
-
-  handleTouchStart (evt) {
-    xDown = evt.touches[0].clientX
-    yDown = evt.touches[0].clientY
-  }
-
-  handleTouchMove (evt) {
-    if (!xDown || !yDown) {
-      return
-    }
-
-    var xUp = evt.touches[0].clientX
-
-    var xDiff = xDown - xUp
-    const slideTrackEl = document.getElementById('slick-track')
-    let inner = window.innerWidth
-      // const maxTranslateX = (widthTabs - vpWidth)
-      // let value = window.getComputedStyle(slideTrackEl).getPropertyValue('transform');
-      // const value2 = value.split(', ');
-      // console.log(window.getComputedStyle(slideTrackEl).getPropertyValue('transform'));
-      // console.log(value2[4]+', '+(xDiff/2)+' = '+maxTranslateX);
-      // if(xDiff<0) { xDiff = 0; }
-    if (location + (-1 * xDiff) > (inner / 5) || location + (-1 * xDiff) < (-1 * (inner / 2))) {
-
-    } else {
-      location += (-1 * xDiff / 2)
-    }
-
-    slideTrackEl.style.transform = `translate3d(${location}px, 0px, 0px)`
-      // if(maxTranslateX < 0){
-      //   maxTranslateX = 0;
-      // }
-
-      // console.log(window.getComputedStyle(slideTrackEl,null).getPropertyValue('transform'));
-      // if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-      //     if ( xDiff > 0 ) {
-      //         /* left swipe */
-      //     } else {
-      //         /* right swipe */
-      //     }
-      // } else {
-      //     if ( yDiff > 0 ) {
-      //         /* up swipe */
-      //     } else {
-      //         /* down swipe */
-      //     }
-      // }
-      // /* reset values */
-      // xDown = null;
-      // yDown = null;
-  }
-
   detectScroll () {
-    var header = document.getElementsByTagName('header')[0].className
-    console.log(header)
+    const header = document.getElementsByTagName('header')[0].className
     if (header.indexOf('transform') >= 0) {
       document.getElementById('next').classList.add('mini')
       document.getElementById('prev').classList.add('mini')
@@ -128,19 +135,42 @@ class Tabs extends Component {
       document.getElementById('prev').classList.remove('mini')
     }
   }
-  componentDidMount () {
-    window.addEventListener('resize', this.handleResize)
-    window.addEventListener('scroll', this.detectScroll)
-    window.addEventListener('touchstart', this.handleTouchStart)
-    window.addEventListener('touchmove', this.handleTouchMove)
-    this.handleResize()
-  }
 
-  componentWillUnmount () {
-    if (window.removeEventListener && this.handleResize) {
-      window.removeEventListener('resize', this.handleResize)
-      clearTimeout(this.resizeTimeout)
-    }
+  loadTouch () {
+    let axis = 0 // define global for axis touch
+    let velo = 0.8 // define velocity for speed tab
+    let range = 50 // define range for bounche
+    let ele = document.getElementById('slick-track')
+    let inner = window.innerWidth
+    const vpWidth = Math.max(document.documentElement.clientWidth, inner || 0)
+    const widthTabs = document.getElementById('slick-track').offsetWidth
+    const maxTranslateX = -1 * (widthTabs - vpWidth)
+    const slideTrackEl = document.querySelector('#loggedin-tab #slick-track')
+    const arrowState = this.checkScrollTab()
+    const that = this
+    OnTouch.load(ele, function (evt, dir, phase, swipetype, distance) {
+      // check prediction of distance swipe in available range
+      if (axis + (distance * velo) <= (0 + range) &&
+      axis + (distance * velo) >= (maxTranslateX - range)) {
+        axis = axis + (distance * velo)
+        slideTrackEl.style.transform = `translate3d(${axis}px,
+          0px, 0px)`
+      }
+      if (phase === 'end') {
+        // put back on track range for bounching effect
+        let tamp
+        if (axis >= 0) {
+          tamp = 0
+          arrowState ? that.activeStateTabArrow('activeNext') : ''
+        } else if (axis <= maxTranslateX) {
+          tamp = maxTranslateX
+          arrowState ? that.activeStateTabArrow('activePrev') : ''
+        }
+        slideTrackEl.style.transform = `translate3d(${tamp}px,
+          0px, 0px)`
+      }
+      // arrowState ? that.detectScroll() : ''
+    })
   }
 
   handleHeaderClick (event) {
@@ -176,7 +206,6 @@ class Tabs extends Component {
         contents.push(item)
       }
     })
-
     return { headers, contents }
   }
 
@@ -212,6 +241,7 @@ class Tabs extends Component {
     const _className = classnames(this.props.className, {
       'tab__inverted': this.props.inverse
     })
+    const _classTab = this.props.userIsLoggedIn ? 'tab' : 'tab logged-out'
 
     return (
       <div className={_className} id='loggedin-tab'>
@@ -228,13 +258,12 @@ class Tabs extends Component {
          Next
         </button>
         <div className='slider'>
-          <nav ref={this.initNavigationNode} className='tab'>
+          <nav ref={this.initNavigationNode} className={_classTab}>
             <span id='slick-track'>
               {this.renderHeaders(headers)}
             </span>
           </nav>
         </div>
-        {/* <span className='tab__pointer' style={this.state.pointer} /> */}
         {this.renderContents(contents)}
       </div>
     )
