@@ -17,25 +17,25 @@ function getFavorite (context) {
         return Promise.resolve(DEFAULT_FAVE_DATA)
       }
       return response['data'].map(section => {
-          return {
-            shop_id: section['shop'].id,
-            shop_name: section['shop'].name,
-            domain: section['shop'].domain,
-            shop_url: section['shop'].uri,
-            is_gold: section['shop'].gold_shop,
-            is_official: section['shop'].shop_is_official,
-            location: section['shop'].location,
-            city: section['shop'].city,
-            products: section['shop'].image_product.map(row => {
-              return {
-                id: row['product_id'],
-                name: row['product_name'],
-                img_url: row['image_url']
-              }
-            })
-          }
-        })
-      }
+        return {
+          shop_id: section['shop'].id,
+          shop_name: section['shop'].name,
+          domain: section['shop'].domain,
+          shop_url: section['shop'].uri,
+          is_gold: section['shop'].gold_shop,
+          is_official: section['shop'].shop_is_official,
+          location: section['shop'].location,
+          city: section['shop'].city,
+          products: section['shop'].image_product.map(row => {
+            return {
+              id: row['product_id'],
+              name: row['product_name'],
+              img_url: row['image_url']
+            }
+          })
+        }
+      })
+    }
     )
       .catch(error => {
         return {
