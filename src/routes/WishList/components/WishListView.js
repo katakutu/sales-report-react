@@ -85,8 +85,10 @@ class WishlistView extends Component {
           }
 
           {
+            /*
             wlCount > 0 &&
             <p style={{ textAlign: 'center' }}>Menampilkan {wlCount} dari {this.props.totalWishlist}</p>
+            */
           }
 
           <WishList
