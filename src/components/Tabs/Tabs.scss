@@ -5,8 +5,18 @@
     display: flex;
     background-color: $color-green;
     width:100%;
-    overflow-x:hidden;
-
+    overflow-x: hidden;
+    &.logged-out {
+      width: 100%;
+      #slick-track {
+        min-width: 100% !important;
+      }
+      .tab__link {
+        width: 50%;
+        display: inline-block;
+        padding: 0 !important;
+      }
+    }
 }
 
 .tab__inverted {
@@ -110,17 +120,18 @@
     .slick-disabled::before {
         display: none;
     }
-    .slick-track {
-        opacity: 1; 
-        transform: translate3d(0px, 0px, 0px); 
-        width: 854.75px; 
-        // transition: -webkit-transform 500ms ease;
+    #slick-track {
+        opacity: 1;
         transform: translate3d(0px, 0px, 0px);
+        min-width: auto;
+        // transition: -webkit-transform 500ms ease;
         transition: 0.4s ease-in-out;
-        overflow: hidden;
     }
-    .slider {
-        width:100%;
-        overflow-y: hidden;
-    }
+}
+
+.slider {
+  width: 100%;
+  height: auto;
+  overflow-x: hidden;
+  padding-top: 5px;
 }

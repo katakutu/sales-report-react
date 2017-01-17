@@ -13,7 +13,7 @@ function getSlides (context) {
   return userID.then(uid => {
     return api.getSlides(25, 2, 65535, 1, 0, uid || 0)
       .then(response => {
-        if (!response['data']) {
+        if (!response || !response['data']) {
           return EMPTY_SLIDES
         }
 
