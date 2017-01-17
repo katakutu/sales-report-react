@@ -69,20 +69,17 @@ class WishlistView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='wishlist' />
         <div className='u-clearfix'>
-          {
-            this.props.totalWishlist > 0 &&
-            <div className='wishlist__searchbar-holder'>
-              <i className='wishlist__icon wishlist__love-grey wishlist__set-love-grey' />
-              <input
-                type='text'
-                name='searchwishlist'
-                className='wishlist__searchbar'
-                placeholder='Cari wishlist kamu'
-                onChange={this.searchWishlist}
-                value={this.state.query} />
-              <span className='wishlist__count-item'>{ this.props.totalWishlist } item</span>
-            </div>
-          }
+          <div className='wishlist__searchbar-holder'>
+            <i className='wishlist__icon wishlist__love-grey wishlist__set-love-grey' />
+            <input
+              type='text'
+              name='searchwishlist'
+              className='wishlist__searchbar'
+              placeholder='Cari wishlist kamu'
+              onChange={this.searchWishlist}
+              value={this.state.query} />
+            <span className='wishlist__count-item'>{this.props.totalWishlist} item</span>
+          </div>
 
           <WishList
             userID={parseInt(userInfo['id'])}
