@@ -11,6 +11,7 @@ import {
   replaceWishlists
 } from '../module'
 
+import WishlistEmpty from './WishlistEmpty'
 import WishlistLove from './WishlistLove'
 import WishlistUnloved from './WishlistUnloved'
 
@@ -58,7 +59,8 @@ class WishList extends Component {
 
     return (
       <div className='wishlist-container u-clearfix'>
-        { wishlists.map((wishlist, index) => {
+        { wishlists.length === 0 && <WishlistEmpty /> }
+        { wishlists.length > 0 && wishlists.map((wishlist, index) => {
           const currentPage = window.location.href
           const mainLink = `${HOSTNAME}/add-to-cart.pl`
           const buyLink = `${mainLink}?refback=${currentPage}&id=${wishlist['id']}&referer=${currentPage}`

@@ -60,6 +60,8 @@ class WishlistView extends Component {
       'wallet': this.props.data.wallet
     })
 
+    const wlCount = this.props.wishlists.length
+
     return (
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='wishlist' />
@@ -73,13 +75,17 @@ class WishlistView extends Component {
               placeholder='Cari wishlist kamu'
               onChange={this.searchWishlist}
               value={this.state.query} />
-            <span className='wishlist__count-item'>{ this.props.wishlists.length } item</span>
+            <span className='wishlist__count-item'>{ wlCount } item</span>
           </div>
           <WishList userID={parseInt(userInfo['id'])} query={this.state.query} page={this.state.page} count={10} />
         </div>
-        <LoadMore onClick={this.viewMore}>
-          { lang[this.props.lang]['View More'] }
-        </LoadMore>
+
+        {
+          wlCount > 0 &&
+          <LoadMore onClick={this.viewMore}>
+            {lang[this.props.lang]['View More']}
+          </LoadMore>
+        }
       </div>
     )
   }
