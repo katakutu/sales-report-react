@@ -13,6 +13,7 @@ class OfficialStoreSection extends Component {
     super(props)
 
     this._gtmNotifyOfficialStoreClicked = this._gtmNotifyOfficialStoreClicked.bind(this)
+    this.renderStore = this.renderStore.bind(this)
   }
 
   _gtmNotifyOfficialStoreClicked (item) {
