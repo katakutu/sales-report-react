@@ -314,7 +314,15 @@ query Query {
     location
     city
     is_gold
-    is_official_store
+    is_official
+    img_shop {
+      cover
+      s_url
+      xs_url
+      cover_ecs
+      s_ecs
+      xs_ecs
+    }
     products {
       id
       name

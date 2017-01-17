@@ -14,6 +14,18 @@ const Products = new GraphQLObjectType({
   }
 })
 
+const Img_shop = new GraphQLObjectType({
+  name: 'img_shop',
+  fields: {
+    cover: { type: new GraphQLNonNull(GraphQLString) },
+    s_url: { type: new GraphQLNonNull(GraphQLString) },
+    xs_url: { type: new GraphQLNonNull(GraphQLString) },
+    cover_ecs: { type: new GraphQLNonNull(GraphQLString) },
+    s_ecs: { type: new GraphQLNonNull(GraphQLString) },
+    xs_ecs: { type: new GraphQLNonNull(GraphQLString) }
+  }
+})
+
 const Favorite = new GraphQLObjectType({
   name: 'Favorite',
   fields: {
@@ -25,9 +37,10 @@ const Favorite = new GraphQLObjectType({
     is_official: { type: new GraphQLNonNull(GraphQLString) },
     location: { type: new GraphQLNonNull(GraphQLString) },
     city: { type: new GraphQLNonNull(GraphQLString) },
+    img_shop: { type: new GraphQLNonNull(Img_shop) },
     products: { type: new GraphQLList(Products) }
   }
 })
 const Favorites = new GraphQLList(Favorite)
 
-module.exports = { Favorites, Favorite, Products }
+module.exports = { Favorites, Favorite, Img_shop, Products }
