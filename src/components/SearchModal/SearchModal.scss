@@ -10,10 +10,10 @@
     width: 100%;
     height: 100vh;
     background-color: $color-white-primary;
-    -webkit-animation: MODAL-POP .1s; /* Safari 4+ */
-    -moz-animation:    MODAL-POP .1s; /* Fx 5+ */
-    -o-animation:      MODAL-POP .1s; /* Opera 12+ */
-    animation:         MODAL-POP .1s; /* IE 10+, Fx 29+ */
+    -webkit-animation: MODAL-POP .2s; /* Safari 4+ */
+    -moz-animation:    MODAL-POP .2s; /* Fx 5+ */
+    -o-animation:      MODAL-POP .2s; /* Opera 12+ */
+    animation:         MODAL-POP .2s; /* IE 10+, Fx 29+ */
 
     .normal-text {
         font-weight: normal;
