@@ -12,6 +12,7 @@ import {
   updateTotalWishlist
 } from '../module'
 
+import ModuleSpinner from './../../../components/Loading/ModuleSpinner'
 import WishlistEmpty from './WishlistEmpty'
 import WishlistLove from './WishlistLove'
 import WishlistUnloved from './WishlistUnloved'
@@ -57,7 +58,7 @@ class WishList extends Component {
 
   render () {
     if (this.props.data.loading) {
-      return null
+      return <ModuleSpinner />
     }
 
     const wishlists = this.props.wishlists
