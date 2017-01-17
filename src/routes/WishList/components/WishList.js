@@ -95,8 +95,14 @@ class WishList extends Component {
               <div className='wishlist__content-box'>
                 {
                   wishlist['isActive']
-                    ? <WishlistLove userID={this.props.userID} productID={parseInt(wishlist['id'])} />
-                    : <WishlistUnloved userID={this.props.userID} productID={parseInt(wishlist['id'])} />
+                    ? <WishlistLove
+                      userID={this.props.userID}
+                      productID={parseInt(wishlist['id'])}
+                      productName={wishlist['name']} />
+                    : <WishlistUnloved
+                      userID={this.props.userID}
+                      productID={parseInt(wishlist['id'])}
+                      productName={wishlist['name']} />
                 }
                 <a href={wishlist['url']}>
                   <img src={wishlist['image']} className='wishlist__img' alt='tokopedia' />
