@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import deepEqual from 'deep-equal'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 
@@ -34,7 +35,22 @@ class WishList extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps['data'] && !nextProps.data.loading) {
+    // comparing only the relevant changes
+    const np = {
+      count: nextProps.count,
+      page: nextProps.page,
+      query: nextProps.query,
+      wishlists: nextProps.wishlists
+    }
+    const tp = {
+      count: this.props.count,
+      page: this.props.page,
+      query: this.props.query,
+      wishlists: this.props.wishlists
+    }
+    const propsChanged = deepEqual(np, tp)
+
+    if (nextProps['data'] && !nextProps.data.loading && propsChanged) {
       const ids = this.props.wishlists.map(w => w['id'])
       const data = nextProps['data']['wishlist'] && nextProps['data']['wishlist']['items']
       const gqlData = data || []
