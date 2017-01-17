@@ -84,11 +84,6 @@ class WishlistView extends Component {
             </div>
           }
 
-          {
-            wlCount > 0 &&
-            <p style={{ textAlign: 'center' }}>Menampilkan {wlCount} dari {this.props.totalWishlist}</p>
-          }
-
           <WishList
             userID={parseInt(userInfo['id'])}
             query={this.state.query}
