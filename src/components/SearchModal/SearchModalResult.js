@@ -75,19 +75,19 @@ class SearchModalResult extends Component {
 
     return items.map((item, index) => {
       return (
-          <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
-            <a href='#' className='search-modal__item-action'><span /></a>
-            <a className='search-modal__item-value'
-              href={`${HOSTNAME}${item.url}`}
-              onClick={_gtmNotifyClick(item.keyword)}>
-              <i className='search-modal__icon' />
-              {
+        <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
+          <a href='#' className='search-modal__item-action'><span /></a>
+          <a className='search-modal__item-value'
+            href={`${HOSTNAME}${item.url}`}
+            onClick={_gtmNotifyClick(item.keyword)}>
+            <i className='search-modal__icon' />
+            {
                   this.props.query === ''
                     ? item.keyword
                     : this._boldKeyword(item.keyword, this.props.query)
                 }
-            </a>
-          </li>
+          </a>
+        </li>
       )
     })
   }
@@ -95,19 +95,19 @@ class SearchModalResult extends Component {
   _renderShopResult (items, key) {
     return items.map((item, index) => {
       return (
-          <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
-            <a href='#' className='search-modal__item-action'><span /></a>
-            <a className='search-modal__item-value' href={`${HOSTNAME}${item.url}`}>
-              <img src={item.imageURI} alt={`${item.keyword} Store Logo`} />
-              {
+        <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
+          <a href='#' className='search-modal__item-action'><span /></a>
+          <a className='search-modal__item-value' href={`${HOSTNAME}${item.url}`}>
+            <img src={item.imageURI} alt={`${item.keyword} Store Logo`} />
+            {
                 this.props.query === ''
                 ? item.keyword
                 : this._boldKeyword(item.keyword, this.props.query)
               }
-              { item.official && <span className='search-modal__item-label'>Official Store</span> }
-              { item.promoted && <span className='search-modal__item-label'>Promoted</span> }
-            </a>
-          </li>
+            { item.official && <span className='search-modal__item-label'>Official Store</span> }
+            { item.promoted && <span className='search-modal__item-label'>Promoted</span> }
+          </a>
+        </li>
       )
     })
   }
@@ -135,21 +135,21 @@ class SearchModalResult extends Component {
 
     return items.map((item, index) => {
       return (
-          <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
-            <a onClick={this._deleteKeywordFunction(item.keyword)} className='search-modal__item-action'>
-              <span />
-            </a>
-            <a className='search-modal__item-value'
-              href={`${HOSTNAME}${item.url}`}
-              onClick={_gtmNotifyClick(item.keyword)}>
-              <i className='search-modal__icon' />
-              {
+        <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
+          <a onClick={this._deleteKeywordFunction(item.keyword)} className='search-modal__item-action'>
+            <span />
+          </a>
+          <a className='search-modal__item-value'
+            href={`${HOSTNAME}${item.url}`}
+            onClick={_gtmNotifyClick(item.keyword)}>
+            <i className='search-modal__icon' />
+            {
                 this.props.query === ''
                 ? item.keyword
                 : this._boldKeyword(item.keyword, this.props.query)
               }
-            </a>
-          </li>
+          </a>
+        </li>
       )
     })
   }
@@ -213,7 +213,6 @@ class SearchModalResult extends Component {
   }
 
   render () {
-
     return (
       <div className='clearfix'>
         { this.props.query === '' && this._renderResultList(this.props.data.search, 'recent_search', true) }
