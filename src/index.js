@@ -136,9 +136,10 @@ const client = new ApolloClient({
 // Render Setup
 // ========================================================
 const MOUNT_NODE = document.getElementById('root')
+const ApolloExecutors = require('./queries').default.ApolloExecutors(client)
 
 let render = () => {
-  const routes = require('./routes/index').default(store)
+  const routes = require('./routes/index').default(store, ApolloExecutors)
 
   ReactDOM.render(
     <ApolloProvider client={client}>

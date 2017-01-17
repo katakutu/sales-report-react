@@ -60,7 +60,7 @@ class HeaderTab extends Component {
         { this.props.userIsLoggedIn ? <Tab label='Feed' url={`${HOSTNAME}/?view=fehoted_preview`} /> : '' }
         { this.props.userIsLoggedIn ? <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
         <Tab isActive={hlCN} label='Hot List' onClick={() => this._savePosition('/hot')} />
-        { this.props.userIsLoggedIn ? <Tab label='Wishlist' url={`${HOSTNAME}/?view=wishlist_preview`} /> : '' }
+        { this.props.userIsLoggedIn ? <Tab label='Wishlist' onClick={() => this._savePosition('/wishlist')} /> : '' }
       </Tabs>
     )
   }
