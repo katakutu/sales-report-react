@@ -21,19 +21,31 @@ class WishlistView extends Component {
   static WISHLIST_PER_PAGE = 10
 
   state = {
+    finalQuery: '',
     page: 1,
-    query: ''
+    query: '',
+    refetch: false
   }
 
   constructor (props) {
     super(props)
 
     this.searchWishlist = this.searchWishlist.bind(this)
+    this.updateFinalQuery = this.updateFinalQuery.bind(this)
     this.viewMore = this.viewMore.bind(this)
   }
 
   searchWishlist (event) {
     this.setState({ query: event.target.value })
+  }
+
+  updateFinalQuery (event) {
+    if (event.key === 'Enter') {
+      this.setState({
+        finalQuery: event.target.value,
+        refetch: true
+      })
+    }
   }
 
   viewMore (event) {
@@ -75,17 +87,19 @@ class WishlistView extends Component {
               type='text'
               name='searchwishlist'
               className='wishlist__searchbar'
-              placeholder='Cari wishlist kamu'
+              placeholder='Cari produk di wishlist'
               onChange={this.searchWishlist}
+              onKeyPress={this.updateFinalQuery}
               value={this.state.query} />
             <span className='wishlist__count-item'>{this.props.totalWishlist} item</span>
           </div>
 
           <WishList
             userID={parseInt(userInfo['id'])}
-            query={this.state.query}
+            query={this.state.finalQuery}
             page={this.state.page}
-            count={WishlistView.WISHLIST_PER_PAGE} />
+            count={WishlistView.WISHLIST_PER_PAGE}
+            shouldRefetch={this.state.refetch} />
         </div>
 
         {

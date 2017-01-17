@@ -29,6 +29,7 @@ class WishList extends Component {
     page: PropTypes.number,
     query: PropTypes.string,
     replaceWishlists: PropTypes.func,
+    shouldRefetch: PropTypes.bool,
     updateTotalWishlist: PropTypes.func,
     userID: PropTypes.number,
     wishlists: PropTypes.arrayOf(PropTypes.object)
@@ -177,7 +178,9 @@ const mapStateToProps = (state) => {
 
 export default graphql(queries.WishlistQueries.getAll, {
   options: ({ userID, query, count, page }) => ({
-    variables: { userID, query, count, page }
+    variables: { userID, query, count, page },
+    forceFetch: true,
+    returnPartialData: true
   })
 }
 )(connect(mapStateToProps, mapDispatchToProps)(WishList))
