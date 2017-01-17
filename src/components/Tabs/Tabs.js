@@ -9,7 +9,7 @@ class Tabs extends Component {
   static propTypes = {
     children: React.PropTypes.node,
     className: React.PropTypes.string,
-    activeTab: React.PropTypes.string,
+    stateTab: React.PropTypes.string,
     index: React.PropTypes.number,
     inverse: React.PropTypes.bool,
     userIsLoggedIn: React.PropTypes.bool,
@@ -54,6 +54,9 @@ class Tabs extends Component {
 
   componentWillReceiveProps (nextProps) {
     this.detectScroll()
+    if (nextProps.stateTab === 'activePrev') {
+      this.activeStateTabArrow('activePrev')
+    }
   }
 
   componentWillUnmount () {
@@ -79,30 +82,10 @@ class Tabs extends Component {
   updateScroll (state) {
     if (state) {
       // check for state tab arrow
-      let inner = window.innerWidth
-      let widthTabs = 0
-      let rangeArrow = 10
-      const vpWidth = Math.max(document.documentElement.clientWidth, inner || 0)
-      widthTabs = document.getElementById('slick-track').offsetWidth
-      const maxTranslateX = (widthTabs - vpWidth)
-      maxTranslateX < rangeArrow ? this.activeStateTabArrow('activePrev')
+      this.props.stateTab === 'activePrev' ? this.activeStateTabArrow('activePrev')
       : this.activeStateTabArrow('activeNext')
     } else {
       this.activeStateTabArrow('disabled')
-    }
-  }
-
-  activeStateTabArrow (state) {
-    // set active for tab arrow
-    if (state === 'activeNext') {
-      document.getElementById('next').classList.remove('slick-disabled')
-      document.getElementById('prev').classList.add('slick-disabled')
-    } else if (state === 'activePrev') {
-      document.getElementById('next').classList.add('slick-disabled')
-      document.getElementById('prev').classList.remove('slick-disabled')
-    } else {
-      document.getElementById('next').classList.add('slick-disabled')
-      document.getElementById('prev').classList.add('slick-disabled')
     }
   }
 
@@ -110,9 +93,7 @@ class Tabs extends Component {
     let inner = window.innerWidth
     const slideTrackEl = document.querySelector('#loggedin-tab #slick-track')
     const vpWidth = Math.max(document.documentElement.clientWidth, inner || 0)
-
-    let widthTabs = 0
-    widthTabs = document.getElementById('slick-track').offsetWidth
+    let widthTabs = document.getElementById('slick-track').offsetWidth || 0
     if (direction === 'next') {
       this.activeStateTabArrow('activePrev')
       this.detectScroll()
@@ -133,6 +114,20 @@ class Tabs extends Component {
     } else {
       document.getElementById('next').classList.remove('mini')
       document.getElementById('prev').classList.remove('mini')
+    }
+  }
+
+  activeStateTabArrow (state) {
+    // set active for tab arrow
+    if (state === 'activeNext') {
+      document.getElementById('next').classList.remove('slick-disabled')
+      document.getElementById('prev').classList.add('slick-disabled')
+    } else if (state === 'activePrev') {
+      document.getElementById('next').classList.add('slick-disabled')
+      document.getElementById('prev').classList.remove('slick-disabled')
+    } else {
+      document.getElementById('next').classList.add('slick-disabled')
+      document.getElementById('prev').classList.add('slick-disabled')
     }
   }
 

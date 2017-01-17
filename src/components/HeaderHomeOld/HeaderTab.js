@@ -10,6 +10,7 @@ class HeaderTab extends Component {
   constructor (props) {
     super(props)
     this._savePosition = this._savePosition.bind(this)
+    this.checkActiveScroll = this.checkActiveScroll.bind(this)
   }
 
   static propTypes = {
@@ -21,8 +22,37 @@ class HeaderTab extends Component {
     updateScrollPosition: React.PropTypes.func
   }
 
+  state = {
+    activeTab: ''
+  }
+
   static contextTypes = {
     router: PropTypes.object
+  }
+
+  componentDidMount () {
+    this.checkActiveScroll()
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.checkActiveScroll()
+  }
+
+  checkActiveScroll () {
+    const rangeScroll = 80
+    let inner = window.innerWidth
+    const vpWidth = Math.max(document.documentElement.clientWidth, inner || 0)
+    const activeEle = document.querySelector('#slick-track .tab__active')
+    let offPage = (vpWidth - rangeScroll) < activeEle.offsetLeft
+    if (offPage) {
+      let widthTabs = document.getElementById('slick-track').offsetWidth
+      const slideTrackEl = document.querySelector('#loggedin-tab #slick-track')
+      const maxTranslateX = -1 * (widthTabs - vpWidth)
+      slideTrackEl.style.transform = `translate3d(${maxTranslateX}px, 0px, 0px)`
+      this.setState({
+        activeTab: 'activePrev'
+      })
+    }
   }
 
   _savePosition (val, query = null) {
@@ -58,7 +88,9 @@ class HeaderTab extends Component {
     const wlCN = this.props.activeTab === 'wishlist'
 
     return (
-      <Tabs userIsLoggedIn={this.props.userIsLoggedIn} headerState={this.props.headerState}>
+      <Tabs userIsLoggedIn={this.props.userIsLoggedIn}
+        stateTab={this.state.activeTab}
+        headerState={this.props.headerState}>
         <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/', { h: 3 })} />
         { this.props.userIsLoggedIn ? <Tab label='Feed' url={`${HOSTNAME}/?view=feed_preview`} /> : '' }
         { this.props.userIsLoggedIn ? <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
