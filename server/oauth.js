@@ -95,11 +95,11 @@ module.exports = {
 
               let redir = req.session.beforeLogin || `${GlobalConfig['Hostname']}/?view=feed_preview`
               if (req.session.beforeLogin) {
-                if (req.session.beforeLogin === '/' || req.session.beforeLogin === '/?h=3') {
-                  redir = `${GlobalConfig['Hostname']}/?view=feed_preview`
-                }
-
                 req.session.beforeLogin = undefined
+              }
+
+              if (req.session.beforeLogin === '/' || req.session.beforeLogin === '/?h=3') {
+                redir = `${GlobalConfig['Hostname']}/?view=feed_preview`
               }
 
               return res.redirect(redir)
