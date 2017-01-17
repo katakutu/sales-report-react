@@ -6,6 +6,7 @@ export const REPLACE_WISHLISTS = 'REPLACE_WISHLISTS'
 export const CLEAR_WISHLISTS = 'CLEAR_WISHLISTS'
 export const DEACTIVATE_WISHLIST = 'DEACTIVATE_WISHLIST'
 export const ACTIVATE_WISHLIST = 'ACTIVATE_WISHLIST'
+export const UPDATE_TOTAL_WISHLIST = 'UPDATE_TOTAL_WISHLIST'
 
 // ------------------------------------
 // Actions
@@ -45,8 +46,20 @@ export function activateWishlist (productID) {
   }
 }
 
+export function updateTotalWishlist (count) {
+  return {
+    type: UPDATE_TOTAL_WISHLIST,
+    payload: count
+  }
+}
+
 export const actions = {
-  addWishlist, replaceWishlists, clearWishlists
+  activateWishlist,
+  addWishlist,
+  clearWishlists,
+  deactivateWishlist,
+  replaceWishlists,
+  updateTotalWishlist
 }
 
 // ------------------------------------
@@ -88,6 +101,9 @@ const ACTION_HANDLERS = {
     })
 
     return Object.assign({}, state, { wishlists: newData })
+  },
+  [UPDATE_TOTAL_WISHLIST]: (state, action) => {
+    return Object.assign({}, state, { totalWishlist: action.payload })
   }
 }
 
@@ -95,7 +111,8 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
-  wishlists: []
+  wishlists: [],
+  totalWishlist: 0
 }
 export default function wishlistReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]

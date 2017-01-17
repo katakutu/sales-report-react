@@ -8,7 +8,8 @@ import queries from './../../../queries'
 import {
   addWishlist,
   clearWishlists,
-  replaceWishlists
+  replaceWishlists,
+  updateTotalWishlist
 } from '../module'
 
 import WishlistEmpty from './WishlistEmpty'
@@ -26,6 +27,7 @@ class WishList extends Component {
     page: PropTypes.number,
     query: PropTypes.string,
     replaceWishlists: PropTypes.func,
+    updateTotalWishlist: PropTypes.func,
     userID: PropTypes.number,
     wishlists: PropTypes.arrayOf(PropTypes.object)
   }
@@ -47,6 +49,9 @@ class WishList extends Component {
       } else if (nextProps.query !== '') {
         this.props.replaceWishlists(gqlData)
       }
+
+      const totalData = nextProps['data']['wishlist'] && nextProps['data']['wishlist']['total_data']
+      this.props.updateTotalWishlist(totalData || 0)
     }
   }
 
@@ -140,7 +145,7 @@ class WishList extends Component {
   }
 }
 
-const mapDispatchToProps = { addWishlist, clearWishlists, replaceWishlists }
+const mapDispatchToProps = { addWishlist, clearWishlists, replaceWishlists, updateTotalWishlist }
 const mapStateToProps = (state) => {
   return {
     wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists

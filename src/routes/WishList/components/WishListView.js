@@ -14,8 +14,11 @@ class WishlistView extends Component {
   static propTypes = {
     data: React.PropTypes.object,
     lang: React.PropTypes.string,
+    totalWishlist: React.PropTypes.number,
     wishlists: React.PropTypes.arrayOf(React.PropTypes.object)
   }
+
+  static WISHLIST_PER_PAGE = 10
 
   state = {
     page: 1,
@@ -66,25 +69,39 @@ class WishlistView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='wishlist' />
         <div className='u-clearfix'>
-          <div className='wishlist__searchbar-holder'>
-            <i className='wishlist__icon wishlist__love-grey wishlist__set-love-grey' />
-            <input
-              type='text'
-              name='searchwishlist'
-              className='wishlist__searchbar'
-              placeholder='Cari wishlist kamu'
-              onChange={this.searchWishlist}
-              value={this.state.query} />
-            <span className='wishlist__count-item'>{ wlCount } item</span>
-          </div>
-          <WishList userID={parseInt(userInfo['id'])} query={this.state.query} page={this.state.page} count={10} />
+          {
+            this.props.totalWishlist > 0 &&
+            <div className='wishlist__searchbar-holder'>
+              <i className='wishlist__icon wishlist__love-grey wishlist__set-love-grey' />
+              <input
+                type='text'
+                name='searchwishlist'
+                className='wishlist__searchbar'
+                placeholder='Cari wishlist kamu'
+                onChange={this.searchWishlist}
+                value={this.state.query} />
+              <span className='wishlist__count-item'>{ this.props.totalWishlist } item</span>
+            </div>
+          }
+
+          {
+            wlCount > 0 &&
+            <p style={{ textAlign: 'center' }}>Menampilkan {wlCount} dari {this.props.totalWishlist}</p>
+          }
+
+          <WishList
+            userID={parseInt(userInfo['id'])}
+            query={this.state.query}
+            page={this.state.page}
+            count={WishlistView.WISHLIST_PER_PAGE} />
         </div>
 
         {
-          wlCount > 0 &&
-          <LoadMore onClick={this.viewMore}>
-            {lang[this.props.lang]['View More']}
-          </LoadMore>
+          ((wlCount > 0 && this.props.totalWishlist > wlCount && this.state.query === '') ||
+           (this.state.query !== '' && wlCount > WishlistView.WISHLIST_PER_PAGE)) &&
+           <LoadMore onClick={this.viewMore}>
+             {lang[this.props.lang]['View More']}
+           </LoadMore>
         }
       </div>
     )
@@ -94,6 +111,7 @@ class WishlistView extends Component {
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
+    totalWishlist: state['wishlist'] ? state['wishlist'].totalWishlist : state.totalWishlist,
     wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists
   }
 }
