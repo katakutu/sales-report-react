@@ -4,98 +4,17 @@ import { graphql } from 'react-apollo'
 
 import { HOSTNAME } from './../../../constants'
 import queries from './../../../queries'
-import mutations from './../../../mutations'
+
 import {
-  activateWishlist,
   addWishlist,
   clearWishlists,
-  deactivateWishlist,
   replaceWishlists
 } from '../module'
 
+import WishlistLove from './WishlistLove'
+import WishlistUnloved from './WishlistUnloved'
+
 import './WishListView.scss'
-
-class WishlistLove extends Component {
-  static propTypes = {
-    deactivateWishlist: PropTypes.func,
-    mutate: PropTypes.func.isRequired,
-    productID: PropTypes.number,
-    userID: PropTypes.number
-  }
-
-  constructor (props) {
-    super(props)
-
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  handleClick () {
-    const variables = {
-      variables: {
-        userID: this.props.userID,
-        productID: this.props.productID
-      }
-    }
-
-    this.props.mutate(variables).then(removeSuccess => {
-      if (removeSuccess) {
-        this.props.deactivateWishlist(this.props.productID)
-      }
-    })
-  }
-
-  render () {
-    return (
-      <button className='wishlist__button-wish' onClick={this.handleClick}>
-        <i className='wishlist__icon wishlist__love-full' />
-      </button>
-    )
-  }
-}
-
-const WishlistLoveQL = graphql(mutations.Wishlist.removeWishlist)(WishlistLove)
-const WishlistLoveQLR = connect(undefined, { deactivateWishlist })(WishlistLoveQL)
-
-class WishlistUnloved extends Component {
-  static propTypes = {
-    activateWishlist: PropTypes.func,
-    mutate: PropTypes.func.isRequired,
-    productID: PropTypes.number,
-    userID: PropTypes.number
-  }
-
-  constructor (props) {
-    super(props)
-
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  handleClick () {
-    const variables = {
-      variables: {
-        userID: this.props.userID,
-        productID: this.props.productID
-      }
-    }
-
-    this.props.mutate(variables).then(addSuccess => {
-      if (addSuccess) {
-        this.props.activateWishlist(this.props.productID)
-      }
-    })
-  }
-
-  render () {
-    return (
-      <button className='wishlist__button-wish' onClick={this.handleClick}>
-        <i className='wishlist__icon wishlist__love-empty' />
-      </button>
-    )
-  }
-}
-
-const WishlistUnlovedQL = graphql(mutations.Wishlist.addWishlist)(WishlistUnloved)
-const WishlistUnlovedQLR = connect(undefined, { activateWishlist })(WishlistUnlovedQL)
 
 class WishList extends Component {
   static propTypes = {
@@ -152,8 +71,8 @@ class WishList extends Component {
               <div className='wishlist__content-box'>
                 {
                   wishlist['isActive']
-                    ? <WishlistLoveQLR userID={this.props.userID} productID={parseInt(wishlist['id'])} />
-                    : <WishlistUnlovedQLR userID={this.props.userID} productID={parseInt(wishlist['id'])} />
+                    ? <WishlistLove userID={this.props.userID} productID={parseInt(wishlist['id'])} />
+                    : <WishlistUnloved userID={this.props.userID} productID={parseInt(wishlist['id'])} />
                 }
                 <a href={wishlist['url']}>
                   <img src={wishlist['image']} className='wishlist__img' alt='tokopedia' />
