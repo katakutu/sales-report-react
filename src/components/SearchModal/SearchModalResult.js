@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import Anime from 'react-anime'
 
 import 'whatwg-fetch'
 import { HOSTNAME, SITES } from '../../constants'
@@ -76,7 +75,6 @@ class SearchModalResult extends Component {
 
     return items.map((item, index) => {
       return (
-        <Anime opacity={[0, 1]} translateY={['1em', '0em']} delay={(e, i) => i * 500}>
           <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
             <a href='#' className='search-modal__item-action'><span /></a>
             <a className='search-modal__item-value'
@@ -90,7 +88,6 @@ class SearchModalResult extends Component {
                 }
             </a>
           </li>
-        </Anime>
       )
     })
   }
@@ -98,7 +95,6 @@ class SearchModalResult extends Component {
   _renderShopResult (items, key) {
     return items.map((item, index) => {
       return (
-        <Anime opacity={[0, 1]} translateY={['1em', '0em']} delay={(e, i) => i * 500}>
           <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
             <a href='#' className='search-modal__item-action'><span /></a>
             <a className='search-modal__item-value' href={`${HOSTNAME}${item.url}`}>
@@ -112,7 +108,6 @@ class SearchModalResult extends Component {
               { item.promoted && <span className='search-modal__item-label'>Promoted</span> }
             </a>
           </li>
-        </Anime>
       )
     })
   }
@@ -140,7 +135,6 @@ class SearchModalResult extends Component {
 
     return items.map((item, index) => {
       return (
-        <Anime opacity={[0, 1]} translateY={['1em', '0em']} delay={(e, i) => i * 500}>
           <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
             <a onClick={this._deleteKeywordFunction(item.keyword)} className='search-modal__item-action'>
               <span />
@@ -156,7 +150,6 @@ class SearchModalResult extends Component {
               }
             </a>
           </li>
-        </Anime>
       )
     })
   }
@@ -220,9 +213,6 @@ class SearchModalResult extends Component {
   }
 
   render () {
-    if (this.props.data.loading) {
-      return null
-    }
 
     return (
       <div className='clearfix'>
