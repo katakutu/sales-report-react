@@ -3,7 +3,7 @@ import CoreLayout from '../layouts/CoreLayout/CoreLayout'
 import Home from './Home'
 import HotListRoute from './HotList'
 import CategoryRoute from './Category'
-import WishlistRoute from './Wishlist'
+import WishlistRoute from './WishList'
 import NotFound from './NotFound'
 
 /*  Note: Instead of using JSX, we recommend using react-router
