@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import classNames from 'classnames'
+import BodyClassName from 'react-body-classname'
 import './DonationView.scss'
 
 class DonationSelectDrawer extends Component {
@@ -138,6 +139,8 @@ class DonationSelectDrawer extends Component {
           </div>
         </div>
         <div className='drawer__overlay'></div>
+
+        { this.state.open && <BodyClassName className='u-body-overflow-no-scroll' /> }
       </div>
     )
   }

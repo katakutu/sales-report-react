@@ -37,7 +37,7 @@ class DonationView extends Component {
 
     return(
       <div>
-        <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='' />
+        <HeaderHomeOld userInfo={userInfo} />
         <DonationPromo />
         <DonationSEO />
         <DonationLinks />
