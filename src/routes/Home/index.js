@@ -11,7 +11,7 @@ export default (store, ApolloExecutors) => {
           if (nextState.location.pathname === '/' &&
              !nextState.location.query.h &&
              isUserLoggedIn) {
-            window.location = `${HOSTNAME}/?view=feed_preview`
+            window.location = `/feed`
           }
 
           if (nextState.location.pathname === '/' &&
