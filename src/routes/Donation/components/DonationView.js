@@ -4,6 +4,9 @@ import { browserHistory } from 'react-router'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
 
+import DonationSEO from './DonationSEO'
+import DonationLinks from './DonationLinks'
+import DonationSelectDrawer from './DonationSelectDrawer'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import './DonationView.scss'
@@ -36,10 +39,11 @@ class DonationView extends Component {
     return(
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='' />
-        {/* Add components below here*/}
         <DonationPromo />
         <DonationOperator />
-
+        <DonationSEO />
+        <DonationLinks />
+        <DonationSelectDrawer />
       </div>
     )
   }
