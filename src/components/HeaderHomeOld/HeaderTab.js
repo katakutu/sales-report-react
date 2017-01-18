@@ -25,7 +25,7 @@ class HeaderTab extends Component {
     router: PropTypes.object
   }
 
-  _savePosition (val) {
+  _savePosition (val, query = null) {
     const { router } = this.context
     let currentKey = this.props.activeTab
     // get scrolled position
@@ -45,8 +45,10 @@ class HeaderTab extends Component {
     // update to store
     this.props.updateScrollPosition(updateState)
     // push location state
+    let queries = query && query
     router.push({
-      pathname: val
+      pathname: val,
+      query: queries
     })
   }
 
@@ -58,8 +60,8 @@ class HeaderTab extends Component {
 
     return (
       <Tabs userIsLoggedIn={this.props.userIsLoggedIn} headerState={this.props.headerState}>
-        <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/')} />
-        { this.props.userIsLoggedIn ? <Tab label='Feed' url={`${HOSTNAME}/?view=fehoted_preview`} /> : '' }
+        <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/', { h: 3 })} />
+        { this.props.userIsLoggedIn ? <Tab label='Feed' url={`${HOSTNAME}/?view=feed_preview`} /> : '' }
         <Tab isActive={flCN} label='Favorite' onClick={() => this._savePosition('/fave')} />
         <Tab isActive={hlCN} label='Hot List' onClick={() => this._savePosition('/hot')} />
         {

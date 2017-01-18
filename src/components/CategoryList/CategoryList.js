@@ -32,7 +32,7 @@ class CategoryList extends Component {
       const key = `${item['identifier']}-${parentIndex}-${index}`
       return (
         <div className='u-col u-col-6 category-list__content' key={key}>
-          <a href={item['url']}>
+          <a href={item['url']} onClick={this._gtmNotifyCategoryClicked(item)}>
             <div className='category-list__content-image'>
               <img src={item['imageURI']} alt={`Logo kategori ${item['name']}`} />
             </div>
