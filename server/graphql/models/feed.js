@@ -1,7 +1,13 @@
 const TopedAceAPI = require('./../../api-consumer/api/Search/TopedAceAPI')
 const TopedUserRecommendationAPI = require('./../../api-consumer/api/UserRecommendation/TopedUserRecommendation')
+const TopedMojitoAPI = require('./../../api-consumer/api/Search/TopedMojitoAPI')
 
 const EMPTY_FEED = {
+  total_data: 0,
+  items: []
+}
+
+const EMPTY_RECENT_VIEW = {
   total_data: 0,
   items: []
 }
@@ -61,7 +67,33 @@ function getRecommendations (userId, recommendationSource, recommendationSize) {
   })
 }
 
+function getRecentViews (userID) {
+  const api = new TopedMojitoAPI()
+
+  return api.getRecentView(userID).then(response => {
+    if (!response['data']) {
+      const raw = JSON.stringify(response)
+      console.error(`[Mojito][RecentView][GetRecentView]
+        RecentView API calls returns no usual data. Raw data: ${raw}`)
+
+      return EMPTY_RECENT_VIEW
+    }
+
+    return {
+      total_data: response['header']['total_data'],
+      items: response['data']['list']
+    }
+  })
+  .catch(err => {
+    console.error(`[Mojito][RecentView][GetRecentView]
+      RecentView API call faield. Cause: ${err.message}`)
+
+    return EMPTY_RECENT_VIEW
+  })
+}
+
 module.exports = {
   getFeeds,
-  getRecommendations
+  getRecommendations,
+  getRecentViews
 }

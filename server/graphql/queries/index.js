@@ -35,5 +35,6 @@ queries = Object.assign({}, queries, wallet)
 queries = Object.assign({}, queries, wishlist)
 queries = Object.assign({}, queries, feed.get_feed)
 queries = Object.assign({}, queries, feed.get_recommendation)
+queries = Object.assign({}, queries, feed.get_recent_view)
 
 module.exports = queries

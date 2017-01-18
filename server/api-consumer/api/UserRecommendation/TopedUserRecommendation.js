@@ -22,7 +22,7 @@ class TopedUserRecommendationAPI {
                                  .replace(':recommendation_size', recommendationSize)
 
     const url = URL.parse(endpoint)
-    console.log(url)
+
     return this.api.consume(url, 'GET', {})
   }
 }
