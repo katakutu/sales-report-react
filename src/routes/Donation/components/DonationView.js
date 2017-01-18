@@ -6,6 +6,7 @@ import queries from '../../../queries'
 
 import DonationSEO from './DonationSEO'
 import DonationLinks from './DonationLinks'
+import DonationSelectDrawer from './DonationSelectDrawer'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import './DonationView.scss'
@@ -38,6 +39,7 @@ class DonationView extends Component {
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='' />
         <DonationSEO />
         <DonationLinks />
+        <DonationSelectDrawer />
       </div>
     )
   }
