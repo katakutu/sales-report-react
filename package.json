@@ -216,7 +216,10 @@
     "start": {
       "command": "node bin/server",
       "env": {
-        "DEBUG": "app:*"
+        "DEBUG": "app:*",
+        "TOPED_LITE_APP_SECRET": "jwenerwfkj234jn",
+        "TOPED_LITE_CLIENT_ID": "1002",
+        "TOPED_LITE_SECRET_KEY": "823424116031b63005953231a97f8a340d647bbf412aba8cc3a429cb54ac"
       }
     },
     "test": {
