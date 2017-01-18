@@ -10,7 +10,6 @@ class HeaderTab extends Component {
   constructor (props) {
     super(props)
     this._savePosition = this._savePosition.bind(this)
-    this.checkActiveScroll = this.checkActiveScroll.bind(this)
   }
 
   static propTypes = {
@@ -19,7 +18,8 @@ class HeaderTab extends Component {
     headerState: React.PropTypes.string,
     userIsLoggedIn: React.PropTypes.bool,
     scrollHistory: React.PropTypes.object,
-    updateScrollPosition: React.PropTypes.func
+    updateScrollPosition: React.PropTypes.func,
+    checkActiveScroll: React.PropTypes.func
   }
 
   state = {
@@ -31,28 +31,9 @@ class HeaderTab extends Component {
   }
 
   componentDidMount () {
-    this.checkActiveScroll()
-  }
-
-  componentWillReceiveProps (nextProps) {
-    this.checkActiveScroll()
-  }
-
-  checkActiveScroll () {
-    const rangeScroll = 80
-    let inner = window.innerWidth
-    const vpWidth = Math.max(document.documentElement.clientWidth, inner || 0)
-    const activeEle = document.querySelector('#slick-track .tab__active')
-    let offPage = (vpWidth - rangeScroll) < activeEle.offsetLeft
-    if (offPage) {
-      let widthTabs = document.getElementById('slick-track').offsetWidth
-      const slideTrackEl = document.querySelector('#loggedin-tab #slick-track')
-      const maxTranslateX = -1 * (widthTabs - vpWidth)
-      slideTrackEl.style.transform = `translate3d(${maxTranslateX}px, 0px, 0px)`
-      this.setState({
-        activeTab: 'activePrev'
-      })
-    }
+    this.setState({
+      activeTab: this.props.activeTab
+    })
   }
 
   _savePosition (val, query = null) {
@@ -90,7 +71,8 @@ class HeaderTab extends Component {
     return (
       <Tabs userIsLoggedIn={this.props.userIsLoggedIn}
         stateTab={this.state.activeTab}
-        headerState={this.props.headerState}>
+        headerState={this.props.headerState}
+        checkActiveScroll={this.checkActiveScroll}>
         <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/', { h: 3 })} />
         { this.props.userIsLoggedIn ? <Tab label='Feed' url={`${HOSTNAME}/?view=feed_preview`} /> : '' }
         { this.props.userIsLoggedIn ? <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
