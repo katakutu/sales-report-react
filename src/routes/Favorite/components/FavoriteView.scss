@@ -57,7 +57,14 @@
         font-size: 0;
         margin:0 6px;
     }
-
+    @media screen and (max-width: 400px) {
+        .favorite__header{
+            min-height:100px !important;
+            .favorite__text{
+                width:100%;
+            }
+        }
+    }
     .favorite__header {
         min-height: 70px;
         .favorite__image {
@@ -74,11 +81,6 @@
             .favorite__city{
                 color: $color-black-disabled;
                 font-size:10pt;
-            }
-        }
-        @media screen and (max-width: 400px) {
-            .favorite__text{
-                width:100%;
             }
         }
     }
