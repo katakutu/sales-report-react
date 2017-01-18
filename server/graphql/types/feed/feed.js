@@ -11,6 +11,7 @@ const { GraphQLURL } = require('graphql-custom-types')
 
 const FeedBadgeType = require('./feed-badge')
 const FeedShopType = require('./feed-shop')
+const FeedLabelType = require('./feed-label')
 
 const FeedType = new GraphQLObjectType({
   name: 'Feed',
@@ -19,9 +20,10 @@ const FeedType = new GraphQLObjectType({
     name: { type: new GraphQLNonNull(GraphQLString) },
     url: { type: new GraphQLNonNull(GraphQLURL) },
     image: { type: new GraphQLNonNull(GraphQLURL) },
-    price: { type: new GraphQLNonNull(GraphQLInt) },
+    price: { type: new GraphQLNonNull(GraphQLString) },
     shop: { type: new GraphQLNonNull(FeedShopType) },
-    badges: { type: new GraphQLList(FeedBadgeType) }
+    badges: { type: new GraphQLList(FeedBadgeType) },
+    labels: { type: new GraphQLList(FeedLabelType) }
   }
 })
 

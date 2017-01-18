@@ -1,3 +1,3 @@
 const feed = require('./feed')
 
-module.exports = { feed }
+module.exports = feed

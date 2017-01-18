@@ -2,8 +2,9 @@ const {
   GraphQLInt,
   GraphQLString
 } = require('graphql')
-const { FeedsType } = require('../../types/feed')
-const { getFeeds } = require('../../models/feed')
+const { FeedsType } = require('../../types/feed/feed')
+const { RecommendationsType } = require('../../types/recommendation/recommendation')
+const { getFeeds, getRecommendations } = require('../../models/feed')
 
 const userFeedQuery = {
   type: FeedsType,
@@ -19,4 +20,19 @@ const userFeedQuery = {
   }
 }
 
-module.exports = userFeedQuery
+const userRecommendationQuery = {
+  type: RecommendationsType,
+  args: {
+    userId: { type: GraphQLInt },
+    recommendationSource: { type: GraphQLString },
+    recommendationSize: { type: GraphQLInt }
+  },
+  resolve: function (_, args) {
+    return getRecommendations(args.userId, args.recommendationSource, args.recommendationSize)
+  }
+}
+
+module.exports = {
+  'get_feed': { 'get_feed': userFeedQuery },
+  'get_recommendation': { 'get_recommendation': userRecommendationQuery }
+}

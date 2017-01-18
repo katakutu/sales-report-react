@@ -58,6 +58,9 @@ const PRODUCTION = {
   },
   Fave: {
     Hostname: 'https://ta.tokopedia.com'
+  },
+  Recommendation: {
+    Hostname: 'https://merlin.tokopedia.com'
   }
 }
 
@@ -118,6 +121,9 @@ const BETA = {
   },
   Fave: {
     Hostname: 'https://ta-staging.tokopedia.com'
+  },
+  Recommendation: {
+    Hostname: 'https://merlin-staging.tokopedia.com'
   }
 }
 
@@ -177,6 +183,9 @@ const TEST = {
   },
   Fave: {
     Hostname: 'https://ta-staging.tokopedia.com'
+  },
+  Recommendation: {
+    Hostname: 'https://merlin-staging.tokopedia.com'
   }
 }
 
@@ -237,6 +246,9 @@ const DEVELOPMENT = {
   },
   Fave: {
     Hostname: 'https://ta-staging.tokopedia.com'
+  },
+  Recommendation: {
+    Hostname: 'https://merlin-staging.tokopedia.com'
   }
 }
 

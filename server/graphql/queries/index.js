@@ -33,6 +33,7 @@ queries = Object.assign({}, queries, toppicks)
 queries = Object.assign({}, queries, user)
 queries = Object.assign({}, queries, wallet)
 queries = Object.assign({}, queries, wishlist)
-queries = Object.assign({}, queries, feed)
+queries = Object.assign({}, queries, feed.get_feed)
+queries = Object.assign({}, queries, feed.get_recommendation)
 
 module.exports = queries
