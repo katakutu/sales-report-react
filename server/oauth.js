@@ -98,7 +98,8 @@ module.exports = {
                 req.session.beforeLogin = undefined
               }
 
-              if (req.session.beforeLogin === '/' || req.session.beforeLogin === '/?h=3') {
+              if (req.session.beforeLogin === `${GlobalConfig['Hostname']}/` ||
+                  req.session.beforeLogin === `${GlobalConfig['Hostname']}/?h=3`) {
                 redir = `${GlobalConfig['Hostname']}/?view=feed_preview`
               }
 
