@@ -6,6 +6,7 @@ import Img from 'react-image-fallback'
 
 import ModuleSpinner from './../../../components/Loading/ModuleSpinner'
 
+import GTM from '../../../lib/utils/GTM'
 import lang from '../../../lib/utils/Lang'
 import loading from '../../../static/media/images/lite-loading.png'
 import greyLove from '../../WishList/assets/love-grey.png'
@@ -37,6 +38,12 @@ class Favorite extends Component {
     }
   }
 
+  _gtmNotifyItemClicked (item) {
+    return (event) => {
+      GTM.pushEvent('clickFavorite', 'Favorite', 'View', item.shop_name)
+    }
+  }
+
   render () {
     if (this.props.data.loading) {
       return <ModuleSpinner />
@@ -52,7 +59,7 @@ class Favorite extends Component {
             let name = item.shop_name.length > 12 ? item.shop_name.substr(0, 12) + '...' : item.shop_name
             let GM = item.is_gold === 'true' ? <Img src={goldMerchant} /> : ''
             return (
-              <div className='favorite__item u-col u-col-6' key={`favorite-${index}`}>
+              <div className='favorite__item u-col u-col-6' onClick={this._gtmNotifyItemClicked(item)} key={`favorite-${index}`}>
                 <div className='favorite__wrapper'>
                   <a aria-hidden='true' tabIndex='-1' href={item.shop_url2} className='favorite__click u-block' />
                   <div className='favorite__header'>

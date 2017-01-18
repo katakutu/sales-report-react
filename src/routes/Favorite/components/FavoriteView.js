@@ -55,7 +55,7 @@ class FavoriteView extends Component {
     return (
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='favorite' />
-        <div className='u-clearfix hotlist hotlist--single-page u-mt2'>
+        <div className='u-clearfix favorite favorite--single-page u-mt2'>
           <h1 className='favorite__section'>Promote</h1>
           <Favorite />
         </div>
