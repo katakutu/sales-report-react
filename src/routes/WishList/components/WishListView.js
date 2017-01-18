@@ -91,8 +91,9 @@ class WishlistView extends Component {
               onChange={this.searchWishlist}
               onKeyPress={this.updateFinalQuery}
               value={this.state.query} />
-            <span className='wishlist__count-item'>{this.props.totalWishlist} item</span>
           </div>
+
+          { this.state.finalQuery !== '' && <p className='wishlist__search-result'>{ wlCount } Hasil</p> }
 
           <WishList
             userID={parseInt(userInfo['id'])}
