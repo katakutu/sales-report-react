@@ -145,7 +145,7 @@ const TEST = {
   },
   Mojito: {
     Hostname: 'http://127.0.0.1/mojito',
-    OfficialStoreHostname: 'http://127.0.0.1/mojito',
+    OfficialStoreHostname: 'http://127.0.0.1/mojito-os',
     SecretKey: 'mojito_api_v1'
   },
   Notification: {
