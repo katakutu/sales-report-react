@@ -8,6 +8,7 @@ import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import './DonationView.scss'
 import lang from '../../../lib/utils/Lang'
+import DonationPromo from './DonationPromo'
 
 class DonationView extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class DonationView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='' />
         {/* Add components below here*/}
+        <DonationPromo />
 
       </div>
     )
