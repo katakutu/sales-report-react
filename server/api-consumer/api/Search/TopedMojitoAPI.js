@@ -2,6 +2,7 @@ const TopedAPI = require('../TopedAPI')
 const TopedHMACAPI = require('../TopedHMACAPI')
 const GlobalConfig = require('../../../GlobalConfig')
 const URL = require('url')
+const parseJSON = require('../../../helpers/parseJSON')
 
 const MOJITO_SERVICES = {
   Ticker: `${GlobalConfig.Mojito.Hostname}/api/v1/tickers`,
@@ -160,23 +161,13 @@ class TopedMojitoAPI {
 
   getRecentView (userID) {
     const endpoint = MOJITO_SERVICES.RecentView.replace(':id', userID)
-    const content = {
-      'user_id': userID,
-      'bypass_hmac': 1,
-      'bypass_hash': 1,
-      'device_id': 'b'
-    }
     const header = {
       'X-User-ID': userID,
       'X-Device': 'lite'
     }
-    return this.HMACApi.consumeJSON(URL.parse(endpoint), 'GET', header, content)
-                       .then(response => response.statusCode === 201)
-                       .catch(err => {
-                         console.error(`[Mojito][RecentView][Get] API call returning error: ${err}`)
 
-                         return false
-                       })
+    return this.HMACApi.consumeJSON(URL.parse(endpoint), 'GET', header)
+                       .then(response => parseJSON(response['body']))
   }
 }
 

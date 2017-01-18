@@ -20,6 +20,11 @@ const RecentViewType = new GraphQLObjectType({
     product_url: { type: new GraphQLNonNull(GraphQLURL) },
     product_image: { type: new GraphQLNonNull(GraphQLURL) },
     product_price: { type: new GraphQLNonNull(GraphQLString) },
+    shop_id: { type: new GraphQLNonNull(GraphQLID) },
+    shop_url: { type: new GraphQLNonNull(GraphQLString) },
+    shop_location: { type: new GraphQLNonNull(GraphQLString) },
+    shop_name: { type: new GraphQLNonNull(GraphQLString) },
+    shop_gold_status: { type: new GraphQLNonNull(GraphQLInt) },
     badges: { type: new GraphQLList(RecentViewBadgeType) },
     labels: { type: new GraphQLList(RecentViewLabelType) }
   }
