@@ -12,7 +12,7 @@ import NotFound from './NotFound'
 export const createRoutes = (store, ApolloExecutors) => ({
   path: '/',
   component: CoreLayout,
-  indexRoute: Home,
+  indexRoute: Home(store, ApolloExecutors),
   childRoutes: [
     HotListRoute(store),
     CategoryRoute(store),

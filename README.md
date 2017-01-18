@@ -24,9 +24,9 @@ you can start the site by running these commands:
 
 ```bash
 $ npm install                   # Install project dependencies
-$ export TOPED_LITE_APP_SECRET=<YOUR_APP_SECRET>
-$ export TOPED_LITE_CLIENT_ID=<YOUR_CLIENT_ID>
-$ export TOPED_LITE_SECRET_KEY=<YOUR_SECRET_KEY>
+$ export TOPED_LITE_APP_SECRET=<RANDOM_STRING>
+$ export TOPED_LITE_CLIENT_ID=1002
+$ export TOPED_LITE_SECRET_KEY=823424116031b63005953231a97f8a340d647bbf412aba8cc3a429cb54ac
 $ npm start                     # Compile and launch
 ```
 

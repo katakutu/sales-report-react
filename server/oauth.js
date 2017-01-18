@@ -66,13 +66,13 @@ module.exports = {
     // make sure returned state is the same, to prevent CSRF
     if (req.session.oauthState !== req.query.state) {
       // TODO: error message / redirect to special page?
-      return res.redirect('/')
+      return res.redirect('/?h=3')
     } else {
       oauth2.authorizationCode.getToken(options, (error, result) => {
         if (error) {
           // TODO: error message / redirect to special page?
           console.error('Access Token Error', error.message)
-          return res.redirect('/')
+          return res.redirect('/?h=3')
         }
 
         const token = oauth2.accessToken.create(result)
@@ -93,9 +93,14 @@ module.exports = {
               }
               res.cookie(GlobalConfig['Cookie']['SessionID'], sid, cookieOpt)
 
-              const redir = req.session.beforeLogin || `${GlobalConfig['Hostname']}/?view=feed_preview`
+              let redir = req.session.beforeLogin || `${GlobalConfig['Hostname']}/?view=feed_preview`
               if (req.session.beforeLogin) {
                 req.session.beforeLogin = undefined
+              }
+
+              if (req.session.beforeLogin === `${GlobalConfig['Hostname']}/` ||
+                  req.session.beforeLogin === `${GlobalConfig['Hostname']}/?h=3`) {
+                redir = `${GlobalConfig['Hostname']}/?view=feed_preview`
               }
 
               return res.redirect(redir)
@@ -104,7 +109,7 @@ module.exports = {
           .catch(error => {
             console.error(`Get User Info Error: ${error.message}`)
 
-            return res.redirect(`${GlobalConfig['Hostname']}/`)
+            return res.redirect(`${GlobalConfig['Hostname']}/?h=3`)
           })
       })
     }

@@ -6,7 +6,8 @@ const PRODUCTION = {
   },
   Hostname: 'https://m.tokopedia.com',
   Cookie: {
-    SessionID: '_SID_Tokopedia_'
+    SessionID: '_SID_Tokopedia_',
+    Domain: '.tokopedia.com'
   },
   Ace: {
     Hostname: 'http://ace.tokopedia.com'
@@ -70,7 +71,8 @@ const BETA = {
   },
   Hostname: 'https://m-beta.tokopedia.com',
   Cookie: {
-    SessionID: '_SID_Tokopedia_'
+    SessionID: '_SID_Tokopedia_',
+    Domain: '.tokopedia.com'
   },
   Ace: {
     Hostname: 'https://ace.tokopedia.com'
@@ -133,7 +135,8 @@ const TEST = {
   },
   Hostname: 'https://m-staging.tokopedia.com',
   Cookie: {
-    SessionID: '_SID_Tokopedia_Coba_'
+    SessionID: '_SID_Tokopedia_Coba_',
+    Domain: '.tokopedia.com'
   },
   Ace: {
     Hostname: 'https://ace-staging.tokopedia.com'
@@ -157,7 +160,7 @@ const TEST = {
   },
   Mojito: {
     Hostname: 'http://127.0.0.1/mojito',
-    OfficialStoreHostname: 'http://127.0.0.1/mojito',
+    OfficialStoreHostname: 'http://127.0.0.1/mojito-os',
     SecretKey: 'mojito_api_v1'
   },
   Notification: {
@@ -195,7 +198,8 @@ const DEVELOPMENT = {
   },
   Hostname: 'https://m-staging.tokopedia.com',
   Cookie: {
-    SessionID: '_SID_Tokopedia_'
+    SessionID: '_SID_Tokopedia_',
+    Domain: 'tokopedia.lite'
   },
   Ace: {
     Hostname: 'https://ace-staging.tokopedia.com'
@@ -203,7 +207,7 @@ const DEVELOPMENT = {
   Accounts: {
     Hostname: 'http://192.168.100.160:8009',
     HostnameLocal: 'http://192.168.100.160:8009',
-    Callback: 'http://localhost:3000/appauth/code'
+    Callback: 'http://tokopedia.lite:3000/appauth/code'
   },
   Hades: {
     'Hostname': 'https://hades-staging.tokopedia.com'
@@ -268,7 +272,6 @@ globalConfig['Accounts']['ClientID'] = process.env.TOPED_LITE_CLIENT_ID || '0001
 globalConfig['Accounts']['SecretKey'] = process.env.TOPED_LITE_SECRET_KEY || 'no-secret'
 globalConfig['Accounts']['AuthorizePath'] = '/authorize'
 globalConfig['Accounts']['TokenPath'] = '/token'
-globalConfig['Cookie']['Domain'] = '.tokopedia.com'
 globalConfig['Cookie']['MaxAge'] = 259200
 
 module.exports = globalConfig

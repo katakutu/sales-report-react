@@ -25,8 +25,8 @@
 
 .wishlist__set-love-grey {
     position: absolute;
-    top: 13px;
-    left: 11px;
+    top: 18px;
+    left: 15px;
 }
 
 .wishlist__count-item {
@@ -41,7 +41,7 @@
 .wishlist__contents {
     margin: 10px 0 5px;
     background-color: $color-white-primary;
-    height: 350px;
+    height: auto;
 }
 
 .wishlist__contents:nth-child(odd) {
@@ -75,6 +75,7 @@
 
 .wishlist__img {
     max-width: 100%;
+    margin-bottom: 7.4px;
     width: 100%;
     height: auto;
     border-radius: 3px;
@@ -169,6 +170,11 @@
     margin-left: 5px;
     color: $color-black-disabled;
     font-size: 11px;
+}
+
+.wishlist__search-result {
+    margin: 15px 0px 5px 15px;
+    color: $color-black-disabled;
 }
 
 .wishlist__label {
@@ -294,8 +300,8 @@
 
 .wishlist__icon {
     display: inline-block;
-    width: 34px;
-    height: 35px;
+    width: 27px;
+    height: 27px;
     vertical-align: middle;
     cursor: pointer;
 }
@@ -312,14 +318,14 @@
 .wishlist__love-full {
     background: url('../assets/love-full.png') transparent no-repeat;
     background-position: center center;
-    background-size: 26px 23px;
+    background-size: 17.6px 14.7px;
     cursor: pointer;
 }
 
 .wishlist__love-empty {
     background: url('../assets/love-grey.png') transparent no-repeat;
     background-position: center center;
-    background-size: 26px 23px;
+    background-size: 17.6px 14.7px;
     cursor: pointer;
 }
 
@@ -327,4 +333,8 @@
     background: url('../assets/love-grey.png') transparent no-repeat;
     background-position: center center;
     background-size: 14px 12px;
+}
+
+.wishlist__type-marketing {
+    margin: 5px auto;
 }

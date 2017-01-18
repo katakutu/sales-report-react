@@ -29,6 +29,7 @@ class WishList extends Component {
     page: PropTypes.number,
     query: PropTypes.string,
     replaceWishlists: PropTypes.func,
+    shouldRefetch: PropTypes.bool,
     updateTotalWishlist: PropTypes.func,
     userID: PropTypes.number,
     wishlists: PropTypes.arrayOf(PropTypes.object)
@@ -95,8 +96,14 @@ class WishList extends Component {
               <div className='wishlist__content-box'>
                 {
                   wishlist['isActive']
-                    ? <WishlistLove userID={this.props.userID} productID={parseInt(wishlist['id'])} />
-                    : <WishlistUnloved userID={this.props.userID} productID={parseInt(wishlist['id'])} />
+                    ? <WishlistLove
+                      userID={this.props.userID}
+                      productID={parseInt(wishlist['id'])}
+                      productName={wishlist['name']} />
+                    : <WishlistUnloved
+                      userID={this.props.userID}
+                      productID={parseInt(wishlist['id'])}
+                      productName={wishlist['name']} />
                 }
                 <a href={wishlist['url']}>
                   <img src={wishlist['image']} className='wishlist__img' alt='tokopedia' />
@@ -171,7 +178,9 @@ const mapStateToProps = (state) => {
 
 export default graphql(queries.WishlistQueries.getAll, {
   options: ({ userID, query, count, page }) => ({
-    variables: { userID, query, count, page }
+    variables: { userID, query, count, page },
+    forceFetch: true,
+    returnPartialData: true
   })
 }
 )(connect(mapStateToProps, mapDispatchToProps)(WishList))

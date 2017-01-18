@@ -18,14 +18,25 @@ class HeaderTab extends Component {
     headerState: React.PropTypes.string,
     userIsLoggedIn: React.PropTypes.bool,
     scrollHistory: React.PropTypes.object,
-    updateScrollPosition: React.PropTypes.func
+    updateScrollPosition: React.PropTypes.func,
+    checkActiveScroll: React.PropTypes.func
+  }
+
+  state = {
+    activeTab: ''
   }
 
   static contextTypes = {
     router: PropTypes.object
   }
 
-  _savePosition (val) {
+  componentDidMount () {
+    this.setState({
+      activeTab: this.props.activeTab
+    })
+  }
+
+  _savePosition (val, query = null) {
     const { router } = this.context
     let currentKey = this.props.activeTab
     // get scrolled position
@@ -45,8 +56,10 @@ class HeaderTab extends Component {
     // update to store
     this.props.updateScrollPosition(updateState)
     // push location state
+    let queries = query && query
     router.push({
-      pathname: val
+      pathname: val,
+      query: queries
     })
   }
 
@@ -56,9 +69,12 @@ class HeaderTab extends Component {
     const wlCN = this.props.activeTab === 'wishlist'
 
     return (
-      <Tabs userIsLoggedIn={this.props.userIsLoggedIn} headerState={this.props.headerState}>
-        <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/')} />
-        { this.props.userIsLoggedIn ? <Tab label='Feed' url={`${HOSTNAME}/?view=fehoted_preview`} /> : '' }
+      <Tabs userIsLoggedIn={this.props.userIsLoggedIn}
+        stateTab={this.state.activeTab}
+        headerState={this.props.headerState}
+        checkActiveScroll={this.checkActiveScroll}>
+        <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/', { h: 3 })} />
+        { this.props.userIsLoggedIn ? <Tab label='Feed' url={`${HOSTNAME}/?view=feed_preview`} /> : '' }
         { this.props.userIsLoggedIn ? <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
         <Tab isActive={hlCN} label='Hot List' onClick={() => this._savePosition('/hot')} />
         {
