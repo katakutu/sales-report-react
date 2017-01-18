@@ -5,6 +5,7 @@ import { graphql } from 'react-apollo'
 import queries from '../../../queries'
 
 import Favorite from './Favorite'
+import FavoriteNew from './FavoriteNew'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import './FavoriteView.scss'
@@ -56,8 +57,29 @@ class FavoriteView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='favorite' />
         <div className='u-clearfix favorite favorite--single-page u-mt2'>
+          <div className='favorite__searchbar-holder'>
+            <i className='favorite__icon favorite__love-grey favorite__set-love-grey' />
+            <input
+              type='text'
+              name='searchwishlist'
+              className='favorite__searchbar'
+              placeholder='Cari produk di wishlist' />
+          </div>
+
+          <div className='favorite__searchbar-holder'>
+            <i className='favorite__icon favorite__location-grey favorite__set-love-grey' />
+            <input
+              type='text'
+              name='searchwishlist'
+              className='favorite__searchbar'
+              placeholder='Pilih lokasi' />
+          </div>
+
           <h1 className='favorite__section'>Promote</h1>
           <Favorite />
+          <div className='u-clearfix'></div>
+          <h1 className='favorite__section'>Favorite Shops</h1>
+          <FavoriteNew />
         </div>
       </div>
     )

@@ -19,8 +19,73 @@
     display: block;
     margin: 5px auto;
 }
-
+.favorite__icon {
+    display: inline-block;
+    width: 27px;
+    height: 27px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.favorite__love-grey {
+    background: url('../../WishList/assets/love-grey.png') transparent no-repeat;
+    background-position: center center;
+    background-size: 14px 12px;
+}
+.favorite__location-grey {
+    background: url('../../WishList/assets/location.png') transparent no-repeat;
+    background-position: 45%;
+    background-size: 12px 15px;
+}
+.favorite__set-love-grey {
+    position: absolute;
+    top: 18px;
+    left: 15px;
+}
+.favorite__searchbar-holder {
+    position: relative;
+    padding: 10px 10px 0;
+}
+.favorite__searchbar{
+    padding: 10px 15px 10px 30px;
+    width: 100%;
+    height: 42px;
+    outline: none;
+    border: 1px solid $color-grey-2;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    color: $color-black-disabled;
+    font-size: 12px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+@media screen and (max-width: 400px) {
+    .favorite__header{
+        min-height:100px !important;
+        .favorite__text{
+            width:100%;
+        }
+    }
+    .favorite__wrapper {
+        &.new{
+            .favorite__header{
+                min-height:70px !important;
+                .favorite__text{
+                    width:auto;
+                }
+            }
+            .favorite__footer{
+                font-size:10pt;
+            }
+        }
+    }
+}
 .favorite__wrapper {
+    &.new{
+        max-width:100%;
+        .favorite__body{
+            min-height:auto;
+        }
+    }
     position: relative;
     padding: 10px;
     max-width: 210px;
@@ -56,14 +121,6 @@
         max-width: 50px;
         font-size: 0;
         margin:0 6px;
-    }
-    @media screen and (max-width: 400px) {
-        .favorite__header{
-            min-height:100px !important;
-            .favorite__text{
-                width:100%;
-            }
-        }
     }
     .favorite__header {
         min-height: 70px;
