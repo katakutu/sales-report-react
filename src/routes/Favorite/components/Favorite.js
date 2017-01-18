@@ -59,7 +59,9 @@ class Favorite extends Component {
             let name = item.shop_name.length > 12 ? item.shop_name.substr(0, 12) + '...' : item.shop_name
             let GM = item.is_gold === 'true' ? <Img src={goldMerchant} /> : ''
             return (
-              <div className='favorite__item u-col u-col-6' onClick={this._gtmNotifyItemClicked(item)} key={`favorite-${index}`}>
+              <div className='favorite__item u-col u-col-6' 
+              onClick={this._gtmNotifyItemClicked(item)} 
+              key={`favorite-${index}`}>
                 <div className='favorite__wrapper'>
                   <a aria-hidden='true' tabIndex='-1' href={item.shop_url2} className='favorite__click u-block' />
                   <div className='favorite__header'>
