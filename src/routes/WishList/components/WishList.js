@@ -161,7 +161,7 @@ class WishList extends Component {
                 </div>
                 <div className='wishlist__buy'>
                   <a href={buyLink} className='wishlist__button-buy'>
-                    {lang[this.props.lang]['Search in Wishlist']}
+                    {lang[this.props.lang]['Buy']}
                   </a>
                 </div>
               </div>
