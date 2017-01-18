@@ -68,8 +68,21 @@ class TopedHMACAPI {
       const contentString = JSON.stringify(content)
       const apiCallDate = new Date()
       const hashParams = querystring.stringify(content)
+
+      // exception to remove mojito from staging
+      // because on staging mojito's endpoint is
+      // set to be 127.0.0.1/mojito/
+      // which will mess up Pathname that's needed
+      // for HMAC Authentication.
+      //
+      // If this is changed one day, this will
+      // have to be changed too.
+      const mojito = 'mojito'
+      const tpn = url.pathname
+      const pn = tpn.indexOf(mojito) > 0 ? tpn.substr(tpn.indexOf(mojito) + mojito.length) : tpn
+
       const authHeader = HMACToped.generate(
-        this.apiKey, method, url.pathname, apiCallDate, hashParams, hashHeader, 'json'
+        this.apiKey, method, pn, apiCallDate, hashParams, hashHeader, 'json'
       )
       const header = Object.assign({
         'Authorization': authHeader,

@@ -302,7 +302,7 @@ class LoggedInMenu extends Component {
             readOnly
             hidden />
 
-          {walletSection }
+          { walletSection }
 
           <div className='drawer__menu bg__grey-4'>
             <a href={`${HOSTNAME}/lp.pl`}>
@@ -322,7 +322,7 @@ class LoggedInMenu extends Component {
             </a>
           </div>
           <div className='drawer__menu'>
-            <a href={`${HOSTNAME}/?view=wishlist_preview`}>
+            <a href={`${HOSTNAME}/wishlist`}>
               <img className='drawer__menu-icon' src={wishlistIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Wishlist</span>
             </a>

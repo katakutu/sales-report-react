@@ -194,7 +194,7 @@ const DEVELOPMENT = {
   Accounts: {
     Hostname: 'http://192.168.100.160:8009',
     HostnameLocal: 'http://192.168.100.160:8009',
-    Callback: 'http://localhost:3000/appauth/code'
+    Callback: 'http://tokopedia.lite:3000/appauth/code'
   },
   Hades: {
     'Hostname': 'https://hades-staging.tokopedia.com'
