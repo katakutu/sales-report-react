@@ -11,18 +11,19 @@ function getFavorite (context) {
       return Promise.resolve(DEFAULT_FAVE_DATA)
     }
     const api = new TopedFavoriteAPI()
-    
+
     return api.getFavorite(uid).then(response => {
       if (!response || !response['data']) {
         return Promise.resolve(DEFAULT_FAVE_DATA)
       }
       return response['data'].map(section => {
-        const imageProducts = section['shop'].image_product || []  
+        const imageProducts = section['shop'].image_product || []
         return {
           shop_id: section['shop'].id,
           shop_name: section['shop'].name,
           domain: section['shop'].domain,
           shop_url: section['shop'].uri,
+          shop_url2: section['shop_click_url'],
           is_gold: section['shop'].gold_shop,
           is_official: section['shop'].shop_is_official,
           location: section['shop'].location,
@@ -32,7 +33,7 @@ function getFavorite (context) {
             s_url: section['shop']['image_shop']['s_url'],
             xs_url: section['shop']['image_shop']['xs_url'],
             cover_ecs: section['shop']['image_shop']['cover_ecs'],
-            s_ecs: section['shop']['image_shop']['s_ecs'],  
+            s_ecs: section['shop']['image_shop']['s_ecs'],
             xs_ecs: section['shop']['image_shop']['xs_ecs']
           },
           products: imageProducts.map(row => {

@@ -311,6 +311,7 @@ query Query {
     domain
     shop_name
     shop_url
+    shop_url2
     location
     city
     is_gold

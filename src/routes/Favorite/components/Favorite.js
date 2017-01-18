@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import Img from 'react-image-fallback'
 
 import GTM from '../../../lib/utils/GTM'
+import lang from '../../../lib/utils/Lang'
 import loading from '../../../static/media/images/lite-loading.png'
 import greyLove from '../../WishList/assets/love-grey.png'
 import location from '../../WishList/assets/location.png'
@@ -11,7 +13,8 @@ import goldMerchant from '../../../components/HeaderHomeOld/assets/nav-gold-merc
 
 class Favorite extends Component {
   static propTypes = {
-    data: React.PropTypes.object
+    data: React.PropTypes.object,
+    lang: React.PropTypes.string
   }
 
   state = {
@@ -52,15 +55,16 @@ class Favorite extends Component {
       <div className='outside__wrapper'>
         {
           this.props.data.favorite.map((item, index) => {
-            let img0 = item.products.length != 0 ? item.products[0].img_url : loading;
-            let img1 = item.products.length != 0 ? item.products[1].img_url : loading;
-            let img2 = item.products.length != 0 ? item.products[2].img_url : loading;
-            let name = item.shop_name.length > 12 ? item.shop_name.substr(0,12)+'...' : item.shop_name;
-            let GM = item.is_gold == 'true' ? <Img src={goldMerchant}/> : '';
+            console.log(item)
+            let img0 = item.products.length !== 0 ? item.products[0].img_url : loading
+            let img1 = item.products.length !== 0 ? item.products[1].img_url : loading
+            let img2 = item.products.length !== 0 ? item.products[2].img_url : loading
+            let name = item.shop_name.length > 12 ? item.shop_name.substr(0, 12) + '...' : item.shop_name
+            let GM = item.is_gold === 'true' ? <Img src={goldMerchant} /> : ''
             return (
               <div className='favorite__item u-col u-col-6' key={`favorite-${index}`}>
                 <div className='favorite__wrapper'>
-                  <a aria-hidden='true' tabIndex='-1' href={item.shop_url} className='favorite__click u-block' />
+                  <a aria-hidden='true' tabIndex='-1' href={item.shop_url2} className='favorite__click u-block' />
                   <div className='favorite__header'>
                     <Img src={item.img_shop.xs_ecs}
                       initialImage={loading}
@@ -70,20 +74,24 @@ class Favorite extends Component {
                     <div className='u-col u-col-8 favorite__text'>
                       <div className='u-col u-col-12 favorite__title'>{ name }</div>
                       <div className='u-col u-col-10 favorite__city'>
-                        <img src={location} className='icon_location'/>{item.location}
+                        <Img src={location} className='icon_location' initialImage={loading} fallbackImage={loading} />
+                        {item.location}
                       </div>
                       <div className='u-col u-col-2 icon_gm'>{GM}</div>
                     </div>
                   </div>
                   <div className='favorite__body u-clearfix u-mtl'>
-                    <Img src={img0} initialImage={loading} fallbackImage={loading}/>
-                    <Img src={img1} initialImage={loading} fallbackImage={loading}/>
-                    <Img src={img2} initialImage={loading} fallbackImage={loading}/>
+                    <Img src={img0} initialImage={loading} fallbackImage={loading} />
+                    <Img src={img1} initialImage={loading} fallbackImage={loading} />
+                    <Img src={img2} initialImage={loading} fallbackImage={loading} />
                   </div>
                   <div className='favorite__footer u-clearfix u-mt1'>
                     <div className='u-clearfix'>
                       <div className='u-col u-col-12 u-truncate u-relative'>
-                        <a href="#"><img src={greyLove} className='icon_love'/>&nbsp;Favorite</a>
+                        <a href={item.shop_url2}>
+                          <Img src={greyLove} className='icon_love' initialImage={loading} fallbackImage={loading} />
+                          &nbsp;{ lang[this.props.lang]['Ikuti'] }
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -104,6 +112,7 @@ query Query {
     domain
     shop_name
     shop_url
+    shop_url2
     location
     city
     is_gold
@@ -124,10 +133,14 @@ query Query {
   }
 }
 `
-
+const mapStateToProps = (state) => {
+  return {
+    lang: state['app'] ? state['app'].lang : state.lang
+  }
+}
 export default graphql(FaveQuery, {
   options: ({ data }) => ({
     variables: { data },
     returnPartialData: true
   })
-})(Favorite)
+})(connect(mapStateToProps, undefined)(Favorite))

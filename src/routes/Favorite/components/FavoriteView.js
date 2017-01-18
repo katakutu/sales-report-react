@@ -8,7 +8,6 @@ import Favorite from './Favorite'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import './FavoriteView.scss'
-import lang from '../../../lib/utils/Lang'
 
 class FavoriteView extends Component {
   static propTypes = {
