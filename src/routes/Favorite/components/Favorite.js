@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import Img from 'react-image-fallback'
 
-import GTM from '../../../lib/utils/GTM'
+import ModuleSpinner from './../../../components/Loading/ModuleSpinner'
+
 import lang from '../../../lib/utils/Lang'
 import loading from '../../../static/media/images/lite-loading.png'
 import greyLove from '../../WishList/assets/love-grey.png'
@@ -13,49 +14,38 @@ import goldMerchant from '../../../components/HeaderHomeOld/assets/nav-gold-merc
 
 class Favorite extends Component {
   static propTypes = {
-    data: React.PropTypes.object,
+    data: PropTypes.object,
     lang: React.PropTypes.string
   }
 
   state = {
-    hotlists: []
-  }
-
-  constructor (props) {
-    super(props)
-
-    this._gtmNotifyItemClicked = this._gtmNotifyItemClicked.bind(this)
+    favorites: []
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps['data'] && !nextProps.data.loading) {
       // only add new urls that's not already there
-      const urls = this.state.hotlists.map(h => h['url'])
-      const data = nextProps['data']['hot_product_list'] && nextProps['data']['hot_product_list']['items']
+      const data = nextProps['data']['favorite'] && nextProps['data']['favorite']['items']
       const gqlData = data || []
       const newData = gqlData.filter(data => {
-        return urls.length === 0 ? true : !urls.includes(data['url'])
+        return true
       })
 
       this.setState({
-        hotlists: this.state.hotlists.concat(newData)
+        favorites: this.state.favorites.concat(newData)
       })
-    }
-  }
-
-  _gtmNotifyItemClicked (item) {
-    return (event) => {
-      GTM.pushEvent('clickHotlist', 'Hotlist', 'Click', item.title)
     }
   }
 
   render () {
-    //  onClick={this._gtmNotifyItemClicked(item)} key={`hotlist-${index}`}
+    if (this.props.data.loading) {
+      return <ModuleSpinner />
+    }
+
     return (
       <div className='outside__wrapper'>
         {
           this.props.data.favorite.map((item, index) => {
-            console.log(item)
             let img0 = item.products.length !== 0 ? item.products[0].img_url : loading
             let img1 = item.products.length !== 0 ? item.products[1].img_url : loading
             let img2 = item.products.length !== 0 ? item.products[2].img_url : loading
@@ -133,14 +123,12 @@ query Query {
   }
 }
 `
+
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang
   }
 }
 export default graphql(FaveQuery, {
-  options: ({ data }) => ({
-    variables: { data },
-    returnPartialData: true
-  })
+  options: { returnPartialData: true }
 })(connect(mapStateToProps, undefined)(Favorite))

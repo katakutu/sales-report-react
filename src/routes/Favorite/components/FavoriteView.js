@@ -57,7 +57,7 @@ class FavoriteView extends Component {
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='favorite' />
         <div className='u-clearfix hotlist hotlist--single-page u-mt2'>
           <h1 className='favorite__section'>Promote</h1>
-          <Favorite data={this.props.data.favorite} />
+          <Favorite />
         </div>
       </div>
     )
@@ -70,6 +70,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default graphql(queries.FaveQuery, {
+export default graphql(queries.UserDataQuery, {
   options: { returnPartialData: true }
 })(connect(mapStateToProps, undefined)(FavoriteView))

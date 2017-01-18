@@ -2,7 +2,7 @@ const TopedAPI = require('../TopedAPI')
 const GlobalConfig = require('../../../GlobalConfig')
 const URL = require('url')
 
-let params = `/promo/v1/display/shops?src=fav_shop&item=2&view_type=fav_shop&user_id=:user_id&device=mobile`
+const params = `/promo/v1/display/shops?src=fav_shop&item=2&view_type=fav_shop&user_id=:user_id&device=mobile`
 const FAVORITE_SERVICES = {
   GetShop: `${GlobalConfig.Fave.Hostname}` + params
 }

@@ -17,7 +17,7 @@ export const createRoutes = (store, ApolloExecutors) => ({
   childRoutes: [
     HotListRoute(store),
     CategoryRoute(store),
-    FavoriteRoute(store),
+    FavoriteRoute(store, ApolloExecutors),
     WishlistRoute(store, ApolloExecutors),
     {
       path: '*',
