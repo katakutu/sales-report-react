@@ -12,6 +12,7 @@ import SplashScreen from '../../../components/Loading/SplashScreen'
 import './DonationView.scss'
 import lang from '../../../lib/utils/Lang'
 import DonationPromo from './DonationPromo'
+import DonationOperator from './DonationOperator'
 
 class DonationView extends Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class DonationView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} />
         <DonationPromo />
+        <DonationOperator />
         <DonationSEO />
         <DonationLinks />
         <DonationSelectDrawer />

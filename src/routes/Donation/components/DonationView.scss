@@ -81,6 +81,30 @@
         }
     }
 }
+.operator__container {
+    box-sizing: border-box;
+    max-width: 960px;
+    background: $color-white-primary;
+
+    ul li {
+        display: inline-block;
+        margin: 0 5px;
+        border: 1px solid #DDD;
+
+        img {
+            width: 100%;
+            vertical-align: middle;
+            padding: 8px 5px;
+        }
+    }
+}
+
+@media(max-width:500px) {
+    .operator__container ul li {
+        margin-bottom: 15px;
+        width: 13%
+    }
+}
 
 .seo {
     background: $color-white-primary;

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { browserHistory, Link } from 'react-router'
 
 import CopyIcon from '../assets/icon-copy.png'
+/*import SurveyIconWebp from '../assets/icon-survey.png.webp'*/
 import SurveyIcon from '../assets/icon-survey.png'
 import './DonationView.scss'
 
@@ -78,8 +79,9 @@ class DonationPromo extends Component {
           </div>
         </div>
 
-        <div className='u-center u-mb2 u-py1 u-px2 survey__container'>
+        <div className='u-center u-p2 survey__container'>
           <picture>
+            {/*<source type='image/webp' src={SurveyIconWebp} />*/}
             <img src={SurveyIcon} alt='icon-survey' className='u-align-middle' />
             Saran Anda penting bagi kami.
           </picture>
