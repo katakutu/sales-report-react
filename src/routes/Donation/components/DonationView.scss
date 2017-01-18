@@ -24,3 +24,31 @@
         line-height: 20px;
     }
 }
+
+.links {
+    background: $color-white-primary;
+    padding: 15px;
+
+    .links__group {
+        margin-bottom: 30px;
+    }
+
+    .links__title {
+        font-size: 13px;
+        font-weight: 600;
+
+        a {
+            text-decoration: underline;
+        }
+    }
+
+    .links__list {
+        text-align: justify;
+    }
+
+    .links__a {
+        color: $color-green;
+        font-size: 13px;
+        line-height: 20px;
+    }
+}
