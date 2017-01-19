@@ -70,13 +70,7 @@ webpackConfig.plugins = [
   }),
   new SWPrecacheWebpackPlugin({
     cacheId: 'toped-lite-v1',
-    filename: 'service-worker.js',
-    handleFetch: true,
-    maximumFileSizeToCacheInBytes: 4194304,
-    runtimeCaching: [{
-      handler: 'cacheFirst',
-      urlPattern: /[.]js$/
-    }]
+    filename: 'service-worker.js'
   })
 ]
 
