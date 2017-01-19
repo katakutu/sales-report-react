@@ -99,7 +99,7 @@ class WishlistView extends Component {
               type='text'
               name='searchwishlist'
               className='wishlist__searchbar'
-              placeholder='Cari produk di wishlist'
+              placeholder={lang[this.props.lang]['Search in Wishlist']}
               onChange={this.searchWishlist}
               onKeyPress={this.updateFinalQuery}
               value={this.state.query} />
