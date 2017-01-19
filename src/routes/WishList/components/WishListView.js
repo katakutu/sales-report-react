@@ -112,7 +112,7 @@ class WishlistView extends Component {
           {
             this.state.finalQuery !== '' &&
               wlCount > 0 &&
-              <p className='wishlist__search-result'>{ wlCount } Hasil</p>
+              <p className='wishlist__search-result'>{ wlCount } {lang[this.props.lang]['Hasil']}</p>
           }
 
           <WishList
