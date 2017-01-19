@@ -56,3 +56,8 @@ select {
     font-family: "Open Sans", sans-serif;
     appearance: none;
 }
+
+[type=search] {
+    appearance: none;
+    outline-offset: 0;
+}

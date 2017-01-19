@@ -187,7 +187,7 @@ const DEVELOPMENT = {
   DataDog: {
     Hostname: 'localhost'
   },
-  Hostname: 'https://m-staging.tokopedia.com',
+  Hostname: 'http://tokopedia.lite:3000',
   Cookie: {
     SessionID: '_SID_Tokopedia_',
     Domain: 'tokopedia.lite'
