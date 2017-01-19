@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
 import homeIcon from './assets/nav-home-icon.png'
 import wishlistIcon from './assets/nav-wishlist-icon.png'
@@ -314,18 +315,18 @@ class LoggedInMenu extends Component {
             </a>
           </div>
           <div className='drawer__menu'>
-            <a href='/?h=3'>
+            <Link to='/?h=3' onClick={this.closeSidebar}>
               <img className='drawer__menu-icon' src={homeIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>
                 { lang[this.props.lang]['Home'] }
               </span>
-            </a>
+            </Link>
           </div>
           <div className='drawer__menu'>
-            <a href={`${HOSTNAME}/wishlist`}>
+            <Link to='/wishlist' onClick={this.closeSidebar}>
               <img className='drawer__menu-icon' src={wishlistIcon} alt='tokopedia' />
               <span className='drawer__menu-title u-inline-block'>Wishlist</span>
-            </a>
+            </Link>
           </div>
           <div className='drawer__menu'>
             <a onClick={this.handleInboxClicked}>

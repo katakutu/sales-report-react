@@ -220,6 +220,109 @@ query Query {
   }
 }
 `
+const FaveQuery = gql`
+query Query {
+  user{
+    id
+    isLoggedIn
+    shouldRedirect
+    profilePicture
+    name
+    email
+  }
+  shop{
+    shop_id
+    shop_url
+    domain
+    shop_name
+    shop_name_unfmt
+    shop_name_clean
+    is_gold
+    is_official
+    location
+    logo
+    shop_badge
+  }
+  points{
+    data{
+      attributes{
+        amount_formatted
+      }
+    }
+  }
+  saldo{
+    deposit_fmt
+  }
+  notifications{
+    status
+    data{
+      total_notif
+      total_cart
+      incr_notif
+      resolution
+      sales{
+        sales_new_order
+        sales_shipping_status
+        sales_shipping_confirm
+      }
+      inbox{
+        inbox_talk
+        inbox_ticket
+        inbox_review
+        inbox_friend
+        inbox_message
+        inbox_wishlist
+        inbox_reputation
+      }
+      purchase{
+        purchase_reorder
+        purchase_payment_conf
+        purchase_order_status
+        purchase_payment_confirm
+        purchase_delivery_confirm
+      }
+    }
+  }
+  wallet {
+    linked
+    balance
+    errors {
+      name
+      message
+    }
+  }
+  category {
+    categories {
+      items {
+        name
+        identifier
+        imageURI
+        url
+      }
+      name
+    }
+    errors {
+      name
+      message
+    }
+  }
+  favorite {
+    shop_id
+    domain
+    shop_name
+    shop_url
+    location
+    city
+    is_gold
+    is_official_store
+    products {
+      id
+      name
+      img_url
+    }
+  }
+}
+`
 
 const WishlistQueries = {
   getAll: gql`
@@ -270,5 +373,6 @@ export default {
   UserDataQuery: UserDataQuery,
   UserIsLoggedIn: UserIsLoggedIn,
   ApolloExecutors: ApolloExecutors,
-  WishlistQueries: WishlistQueries
+  WishlistQueries: WishlistQueries,
+  FaveQuery: FaveQuery
 }

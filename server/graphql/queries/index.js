@@ -1,4 +1,5 @@
 const category = require('./category')
+const favorite = require('./favorite')
 const hotlists = require('./hotlist')
 const notifications = require('./notifications')
 const officialStore = require('./official-store')
@@ -12,10 +13,12 @@ const toppicks = require('./toppicks')
 const user = require('./user')
 const wallet = require('./wallet')
 const wishlist = require('./wishlist')
+const feed = require('./feed')
 
 let queries = {}
 
 queries = Object.assign({}, queries, category)
+queries = Object.assign({}, queries, favorite)
 queries = Object.assign({}, queries, hotlists.hot_product_home)
 queries = Object.assign({}, queries, hotlists.hot_product_list)
 queries = Object.assign({}, queries, notifications)
@@ -30,5 +33,8 @@ queries = Object.assign({}, queries, toppicks)
 queries = Object.assign({}, queries, user)
 queries = Object.assign({}, queries, wallet)
 queries = Object.assign({}, queries, wishlist)
+queries = Object.assign({}, queries, feed.get_feed)
+queries = Object.assign({}, queries, feed.get_recommendation)
+queries = Object.assign({}, queries, feed.get_recent_view)
 
 module.exports = queries
