@@ -1,8 +1,6 @@
-const obcache = require('obcache')
 const TopedAPI = require('../TopedAPI')
 const TopedHMACAPI = require('../TopedHMACAPI')
 const GlobalConfig = require('../../../GlobalConfig')
-const redis = GlobalConfig.SessionRedis
 const URL = require('url')
 
 const MOJITO_SERVICES = {
@@ -16,12 +14,6 @@ const MOJITO_SERVICES = {
 }
 
 const MOJITO_HMAC_API_KEY = 'mojito_api_v1'
-const cacheOpts = {
-  max: 10000,
-  maxAge: 30 * 60 * 1000,
-  redis: redis,
-  id: 2
-}
 
 /**
  * A class that give us the ticker information in homepage.
@@ -34,26 +26,14 @@ class TopedMojitoAPI {
    * @memberOf TopedMojitoAPI
    */
   constructor () {
-    let api = new TopedAPI()
-
-    this.api = api
+    this.api = new TopedAPI()
     this.HMACApi = new TopedHMACAPI(MOJITO_HMAC_API_KEY)
-
-    // get category
-    let mojitoGetCategoryCache = obcache.debug.register(new obcache.Create(cacheOpts), 'mojitoGetCategory')
-    this.getCategoryWrapped = mojitoGetCategoryCache.wrap(function getCategory (cb) {
-      let url = URL.parse(MOJITO_SERVICES.Category)
-      api.consume(url, 'GET', {}, {}, cb)
-    })
   }
 
   getCategory () {
-    return new Promise((resolve, reject) => {
-      this.getCategoryWrapped((err, result) => {
-        if (err) reject(err)
-        else resolve(result)
-      })
-    })
+    let url = URL.parse(MOJITO_SERVICES.Category)
+
+    return this.api.consume(url, 'GET', {})
   }
 
   /**
@@ -179,10 +159,3 @@ class TopedMojitoAPI {
 }
 
 module.exports = TopedMojitoAPI
-
-if (require.main === module) {
-  let api = new TopedMojitoAPI()
-  api.getCategory()
-    .then(result => console.log(JSON.stringify(result)))
-    .catch(error => console.log(console.log(error)))
-}
