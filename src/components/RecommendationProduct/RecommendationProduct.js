@@ -53,7 +53,8 @@ class RecommendationProduct extends Component {
             <div className='recommendation-product__content-desc'>
               <div className='recommendation-product__content-title u-truncate'>{ item.title }</div>
               <div className='recommendation-product__content-startto'>
-                { lang[this.props.propLang]['Mulai dari'] } <span className='recommendation-product__content-price'>{ item.price_start_from }</span>
+                { lang[this.props.propLang]['Mulai dari'] }
+                <span className='recommendation-product__content-price'>{ item.price_start_from }</span>
               </div>
             </div>
           </a>
