@@ -105,7 +105,11 @@ class WishlistView extends Component {
               value={this.state.query} />
           </div>
 
-          { this.state.finalQuery !== '' && <p className='wishlist__search-result'>{ wlCount } Hasil</p> }
+          {
+            this.state.finalQuery !== '' &&
+              wlCount > 0 &&
+              <p className='wishlist__search-result'>{ wlCount } Hasil</p>
+          }
 
           <WishList
             userID={parseInt(userInfo['id'])}
