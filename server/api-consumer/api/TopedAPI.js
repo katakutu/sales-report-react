@@ -1,4 +1,5 @@
 const request = require('request-promise')
+const debug = require('debug')('TopedAPI')
 
 /* const obcache = require('obcache')
 const redis = require('../../GlobalConfig').SessionRedis
@@ -40,7 +41,7 @@ class TopedAPI {
    *
    * @memberOf TopedAPI
    */
-  consume (url, method, content, options = {}) {
+  consume (url, method, content, options = {}, cb) {
     let additionalOptions = (method === 'GET') ? {} : {
       method: method,
       body: JSON.stringify(content)
@@ -53,14 +54,16 @@ class TopedAPI {
       timeout: 5000
     }, additionalOptions, options)
 
-    return request(finalURL, finalOptions).then(response => this._processJSON(response))
+    debug(finalURL, finalOptions)
 
-    /* return new Promise((resolve, reject) => {
-      wrappedTopedFetch(finalURL, finalOptions, (err, response) => {
-        if (err) return reject(err)
-        resolve(this._processJSON(response))
+    if (typeof cb === 'function') {
+      request(finalURL, finalOptions, (error, response, body) => {
+        debug(error || body)
+        cb(error, this._processJSON(body))
       })
-    }) */
+    } else {
+      return request(finalURL, finalOptions).then(response => this._processJSON(response))
+    }
   }
 
   /**

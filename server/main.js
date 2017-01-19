@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const debug = require('debug')('app:server')
+const obcache = require('obcache')
 const webpack = require('webpack')
 const webpackConfig = require('../build/webpack.config')
 const config = require('../config')
@@ -59,6 +60,7 @@ app.get('/status', (req, res) => res.end('ok'))
 app.get('/login', oauth.login)
 app.get('/logout', oauth.logout)
 app.get('/appauth/code', oauth.redirect)
+app.get('/obcache', obcache.debug.view)
 
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement universal
