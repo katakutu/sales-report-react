@@ -6,6 +6,7 @@ import queries from '../../../queries'
 
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import DonationTab from './DonationTab'
+import DonationContent from './DonationContent'
 import DonationPromo from './DonationPromo'
 import DonationOperator from './DonationOperator'
 import DonationSEO from './DonationSEO'
@@ -41,6 +42,7 @@ class DonationView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} />
         <DonationTab />
+        <DonationContent />
         <DonationPromo />
         <DonationOperator />
         <DonationSEO />
