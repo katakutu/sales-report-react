@@ -2,8 +2,6 @@ const obcache = require('obcache')
 const TopedAPI = require('../TopedAPI')
 const TopedHMACAPI = require('../TopedHMACAPI')
 const GlobalConfig = require('../../../GlobalConfig')
-const redis = GlobalConfig.SessionRedis
-const cacheOpts = GlobalConfig.CacheOpts
 const URL = require('url')
 
 const MOJITO_SERVICES = {
@@ -35,7 +33,7 @@ class TopedMojitoAPI {
     this.HMACApi = new TopedHMACAPI(MOJITO_HMAC_API_KEY)
 
     // get category
-    let mojitoGetCategoryCache = obcache.debug.register(new obcache.Create(cacheOpts), 'mojitoGetCategory')
+    let mojitoGetCategoryCache = obcache.debug.register(new obcache.Create(GlobalConfig.CacheOpts), 'mojitoGetCategory')
     this.getCategoryWrapped = mojitoGetCategoryCache.wrap(function getCategory (cb) {
       let url = URL.parse(MOJITO_SERVICES.Category)
       api.consume(url, 'GET', {}, {}, cb)
