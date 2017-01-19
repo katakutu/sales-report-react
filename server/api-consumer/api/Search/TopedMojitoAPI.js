@@ -34,7 +34,7 @@ class TopedMojitoAPI {
 
     // get category
     let mojitoGetCategoryCache = obcache.debug.register(new obcache.Create(GlobalConfig.CacheOpts), 'mojitoGetCategory')
-    this.getCategoryWrapped = mojitoGetCategoryCache.wrap(function getCategory (cb) {
+    this.getCategoryWrapped = mojitoGetCategoryCache.wrap(function _getCategory (cb) {
       let url = URL.parse(MOJITO_SERVICES.Category)
       api.consume(url, 'GET', {}, {}, cb)
     })

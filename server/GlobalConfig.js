@@ -63,7 +63,7 @@ const PRODUCTION = {
     redis: {
       host: '192.168.17.190',
       port: 6379,
-      //twemproxy: true,
+      // twemproxy: true,
       no_ready_check: true
     },
     id: 2
@@ -132,7 +132,7 @@ const BETA = {
     redis: {
       host: '127.0.0.1',
       port: 6379,
-      //twemproxy: true,
+      // twemproxy: true,
       no_ready_check: true
     },
     id: 2
@@ -200,7 +200,7 @@ const TEST = {
     redis: {
       host: '127.0.0.1',
       port: 6379,
-      //twemproxy: true,
+      // twemproxy: true,
       no_ready_check: true
     },
     id: 2
@@ -269,7 +269,7 @@ const DEVELOPMENT = {
     redis: {
       host: '127.0.0.1',
       port: 6379,
-      //twemproxy: true,
+      // twemproxy: true,
       no_ready_check: true
     },
     id: 2
