@@ -3,7 +3,6 @@ const TopedAPI = require('../TopedAPI')
 const TopedHMACAPI = require('../TopedHMACAPI')
 const GlobalConfig = require('../../../GlobalConfig')
 const redis = GlobalConfig.SessionRedis
-const cacheOpts = GlobalConfig.CacheOpts
 const URL = require('url')
 
 const MOJITO_SERVICES = {
@@ -17,6 +16,12 @@ const MOJITO_SERVICES = {
 }
 
 const MOJITO_HMAC_API_KEY = 'mojito_api_v1'
+const cacheOpts = {
+  max: 10000,
+  maxAge: 30 * 60 * 1000,
+  redis: redis,
+  id: 2
+}
 
 /**
  * A class that give us the ticker information in homepage.

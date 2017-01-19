@@ -56,17 +56,6 @@ const PRODUCTION = {
   },
   Tome: {
     Hostname: 'http://tome.tokopedia.local'
-  },
-  CacheOpts: {
-    max: 10000,
-    maxAge: 30 * 60 * 1000,
-    redis: {
-      host: '192.168.17.190',
-      port: 6379,
-      //twemproxy: true,
-      no_ready_check: true
-    },
-    id: 2
   }
 }
 
@@ -125,17 +114,6 @@ const BETA = {
   },
   Tome: {
     Hostname: 'https://tome.tokopedia.com'
-  },
-  CacheOpts: {
-    max: 10000,
-    maxAge: 30 * 60 * 1000,
-    redis: {
-      host: '127.0.0.1',
-      port: 6379,
-      //twemproxy: true,
-      no_ready_check: true
-    },
-    id: 2
   }
 }
 
@@ -193,17 +171,6 @@ const TEST = {
   },
   Tome: {
     Hostname: 'https://tome-staging.tokopedia.com'
-  },
-  CacheOpts: {
-    max: 10000,
-    maxAge: 30 * 60 * 1000,
-    redis: {
-      host: '127.0.0.1',
-      port: 6379,
-      //twemproxy: true,
-      no_ready_check: true
-    },
-    id: 2
   }
 }
 
@@ -262,17 +229,6 @@ const DEVELOPMENT = {
   },
   Tome: {
     Hostname: 'https://tome-staging.tokopedia.com'
-  },
-  CacheOpts: {
-    max: 10000,
-    maxAge: 30 * 60 * 1000,
-    redis: {
-      host: '127.0.0.1',
-      port: 6379,
-      //twemproxy: true,
-      no_ready_check: true
-    },
-    id: 2
   }
 }
 
