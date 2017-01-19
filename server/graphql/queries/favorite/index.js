@@ -1,3 +1,3 @@
 const favorite = require('./favorite')
 
-module.exports = { favorite }
+module.exports = favorite

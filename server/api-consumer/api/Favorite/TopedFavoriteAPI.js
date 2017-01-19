@@ -4,7 +4,7 @@ const URL = require('url')
 
 const params = `/promo/v1/display/shops?src=fav_shop&item=2&view_type=fav_shop&user_id=:user_id&device=mobile`
 const FAVORITE_SERVICES = {
-  GetShop: `${GlobalConfig.Fave.Hostname}` + params
+  GetPromoteShop: `${GlobalConfig.Fave.Hostname}` + params
 }
 const DEFAULT_FAVE_DATA = {
   shop_id: 'ERROR FAIL',
@@ -22,9 +22,8 @@ class TopedFavoriteAPI {
     this.api = new TopedAPI()
   }
 
-  getFavorite (userID) {
-    let url = URL.parse(FAVORITE_SERVICES.GetShop.replace(':user_id', userID))
-
+  getPromote (userID) {
+    let url = URL.parse(FAVORITE_SERVICES.GetPromoteShop.replace(':user_id', userID))
     return this.api.consume(url, 'GET', {})
   }
 }

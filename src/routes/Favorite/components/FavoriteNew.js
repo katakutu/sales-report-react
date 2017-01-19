@@ -48,11 +48,10 @@ class Favorite extends Component {
     if (this.props.data.loading) {
       return <ModuleSpinner />
     }
-
     return (
       <div className='outside__wrapper'>
         {
-          this.props.data.favorite.map((item, index) => {
+          this.props.data.favorited.map((item, index) => {
             let img0 = item.products.length !== 0 ? item.products[0].img_url : loading
             let img1 = item.products.length !== 0 ? item.products[1].img_url : loading
             let img2 = item.products.length !== 0 ? item.products[2].img_url : loading
@@ -104,7 +103,7 @@ class Favorite extends Component {
 
 const FaveQuery = gql`
 query Query {
-  favorite {
+  favorited {
     shop_id
     domain
     shop_name

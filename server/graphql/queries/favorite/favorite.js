@@ -1,12 +1,23 @@
 const { Favorites } = require('../../types/favorite')
-const { getFavorite } = require('../../models/favorite')
+const { getPromoted, getFavorited } = require('../../models/favorite')
 
-const FaveQuery = {
+const PromotedQuery = {
   type: Favorites,
   args: {},
   resolve: function (_, args, context) {
-    return getFavorite(context)
+    return getPromoted(context)
   }
 }
 
-module.exports = FaveQuery
+const FavoritedQuery = {
+  type: Favorites,
+  args: {},
+  resolve: function (_, args, context) {
+    return getFavorited(context)
+  }
+}
+
+module.exports = {
+  'promoted': { 'promoted': PromotedQuery },
+  'favorited': { 'favorited': FavoritedQuery }
+}
