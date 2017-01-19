@@ -6,6 +6,7 @@ import Scroll from 'react-scroll'
 
 import { HOSTNAME } from './../../../constants'
 import queries from './../../../queries'
+import lang from '../../../lib/utils/Lang'
 import ArrayHelper from '../../../lib/utils/ArrayHelper'
 
 import {
@@ -28,6 +29,7 @@ class WishList extends Component {
     clearWishlists: PropTypes.func,
     count: PropTypes.number,
     data: PropTypes.object,
+    lang: PropTypes.string,
     page: PropTypes.number,
     query: PropTypes.string,
     replaceWishlists: PropTypes.func,
@@ -152,7 +154,9 @@ class WishList extends Component {
               </span>
             </div>
             <div className='wishlist__buy'>
-              <a href={buyLink} className='wishlist__button-buy'>Beli</a>
+              <a href={buyLink} className='wishlist__button-buy'>
+                {lang[this.props.lang]['Buy']}
+              </a>
             </div>
           </div>
         </div>
@@ -194,6 +198,7 @@ class WishList extends Component {
 const mapDispatchToProps = { addWishlist, clearWishlists, replaceWishlists, updateTotalWishlist }
 const mapStateToProps = (state) => {
   return {
+    lang: state['app'] ? state['app'].lang : state.lang,
     wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists
   }
 }
