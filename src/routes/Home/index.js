@@ -14,12 +14,6 @@ export default (store, ApolloExecutors) => {
             window.location = `${HOSTNAME}/?view=feed_preview`
           }
 
-          if (nextState.location.pathname === '/' &&
-             !nextState.location.query.h &&
-             !isUserLoggedIn) {
-            replace(`/?h=3`)
-          }
-
           return callback()
         })
         .catch(err => callback(err))
