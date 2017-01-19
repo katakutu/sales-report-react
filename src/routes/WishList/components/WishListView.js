@@ -104,8 +104,8 @@ class WishlistView extends Component {
         </div>
 
         {
-          ((wlCount > 0 && this.props.totalWishlist > wlCount && this.state.query === '') ||
-           (this.state.query !== '' && wlCount > WishlistView.WISHLIST_PER_PAGE)) &&
+          ((wlCount > 0 && this.props.totalWishlist > wlCount && this.state.finalQuery === '') ||
+           (this.state.finalQuery !== '' && wlCount > WishlistView.WISHLIST_PER_PAGE)) &&
            <LoadMore onClick={this.viewMore}>
              {lang[this.props.lang]['View More']}
            </LoadMore>
