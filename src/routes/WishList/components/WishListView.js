@@ -47,7 +47,8 @@ class WishlistView extends Component {
 
       this.setState({
         finalQuery: fq,
-        refetch: true
+        refetch: true,
+        page: 1
       })
 
       if (fq === '') {
