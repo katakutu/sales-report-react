@@ -59,7 +59,11 @@ class HotListView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='hotlist' />
         <div className='u-clearfix hotlist hotlist--single-page u-mt2'>
-          <TopAds />
+          <div className='hotlist__item'>
+            <div className='hotlist__wrapper'>
+              <TopAds />
+            </div>
+          </div>
           <HotList page={this.state.page} />
         </div>
         <LoadMore onClick={this.viewMore}>

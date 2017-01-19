@@ -102,7 +102,7 @@ class TopAds extends Component {
       tamp.push(<TopAdsProduct data={product} key={index} />)
     })
     return (
-      <div className='outside__wrapper'>
+      <div className='u-clearfix'>
         { tamp }
       </div>
     )
