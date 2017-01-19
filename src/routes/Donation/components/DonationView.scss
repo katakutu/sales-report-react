@@ -181,6 +181,11 @@
             background-color: $color-white-primary;
             border-radius: 9px;
             overflow: hidden;
+
+            @media screen and (min-width: 530px) {
+                position: static;
+                margin: 0 auto;
+            }
         }
 
         .modal__title {
@@ -210,8 +215,7 @@
         .modal__item {
             float: left;
             position: relative;
-            margin: -1px;
-            width: 33%;
+            width: 33.3%;
             height: 100px;
             border: 1px solid $color-grey-1;
 
