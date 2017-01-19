@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import deepEqual from 'deep-equal'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
+import Scroll from 'react-scroll'
 
 import { HOSTNAME } from './../../../constants'
 import queries from './../../../queries'
@@ -30,26 +31,11 @@ class WishList extends Component {
     page: PropTypes.number,
     query: PropTypes.string,
     replaceWishlists: PropTypes.func,
+    scrollPos: PropTypes.number,
     shouldRefetch: PropTypes.bool,
     updateTotalWishlist: PropTypes.func,
     userID: PropTypes.number,
     wishlists: PropTypes.arrayOf(PropTypes.object)
-  }
-
-  state = {
-    shouldScrollBottom: false
-  }
-
-  componentDidUpdate () {
-    if (this.state.shouldScrollBottom) {
-      // const node = this.getDOMNode();
-      // node.scrollTop = node.scrollHeight;
-    }
-  }
-
-  componentWillUpdate () {
-    // const node = this.getDOMNode();
-    // this.state.shouldScrollBottom = node.scrollTop + node.offsetHeight === node.scrollHeight;
   }
 
   componentWillReceiveProps (nextProps) {
@@ -181,6 +167,12 @@ class WishList extends Component {
     }
 
     const wishlists = this.props.wishlists
+
+    Scroll.animateScroll.scrollTo(this.props.scrollPos, {
+      duration: 0,
+      delay: 0,
+      smooth: false
+    })
 
     return (
       <div className='wishlist-container u-clearfix'>

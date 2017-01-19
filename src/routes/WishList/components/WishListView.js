@@ -24,7 +24,8 @@ class WishlistView extends Component {
     finalQuery: '',
     page: 1,
     query: '',
-    refetch: false
+    refetch: false,
+    scrollPos: 0
   }
 
   constructor (props) {
@@ -41,17 +42,28 @@ class WishlistView extends Component {
 
   updateFinalQuery (event) {
     if (event.key === 'Enter') {
+      const sp = (window.pageYOffset !== undefined)
+        ? window.pageYOffset
+        : (document.documentElement || document.body.parentNode || document.body).scrollTop
+
       this.setState({
         finalQuery: event.target.value,
-        refetch: true
+        refetch: true,
+        scrollPos: sp
       })
     }
   }
 
   viewMore (event) {
     event.preventDefault()
+    const sp = (window.pageYOffset !== undefined)
+      ? window.pageYOffset
+      : (document.documentElement || document.body.parentNode || document.body).scrollTop
 
-    this.setState({ page: this.state.page + 1 }, () => {
+    this.setState({
+      page: this.state.page + 1,
+      scrollPos: sp
+    }, () => {
       browserHistory.push({
         pathname: '/wishlist',
         query: { page: this.state.page }
@@ -100,6 +112,7 @@ class WishlistView extends Component {
             query={this.state.finalQuery}
             page={this.state.page}
             count={WishlistView.WISHLIST_PER_PAGE}
+            scrollPos={this.state.scrollPos}
             shouldRefetch={this.state.refetch} />
         </div>
 
