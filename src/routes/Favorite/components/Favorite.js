@@ -52,9 +52,9 @@ class Favorite extends Component {
       <div className='outside__wrapper'>
         {
           this.props.data.promoted.map((item, index) => {
-            let img0 = item.products.length !== 0 ? item.products[0].img_url : loading
-            let img1 = item.products.length !== 0 ? item.products[1].img_url : loading
-            let img2 = item.products.length !== 0 ? item.products[2].img_url : loading
+            let img0 = item.products.length !== 0 ? <Img src={item.products[0].img_url} initialImage={loading} fallbackImage={loading} /> : ''
+            let img1 = item.products.length !== 0 ? <Img src={item.products[1].img_url} initialImage={loading} fallbackImage={loading} /> : ''
+            let img2 = item.products.length !== 0 ? <Img src={item.products[2].img_url} initialImage={loading} fallbackImage={loading} /> : ''
             let name = item.shop_name.length > 12 ? item.shop_name.substr(0, 12) + '...' : item.shop_name
             let GM = item.is_gold === 'true' ? <Img src={goldMerchant} /> : ''
             return (
@@ -79,9 +79,9 @@ class Favorite extends Component {
                     </div>
                   </div>
                   <div className='favorite__body u-clearfix u-mtl'>
-                    <Img src={img0} initialImage={loading} fallbackImage={loading} />
-                    <Img src={img1} initialImage={loading} fallbackImage={loading} />
-                    <Img src={img2} initialImage={loading} fallbackImage={loading} />
+                    { img0 }
+                    { img1 }
+                    { img2 }
                   </div>
                   <div className='favorite__footer u-clearfix u-mt1'>
                     <div className='u-clearfix'>

@@ -76,7 +76,11 @@ class HeaderTab extends Component {
         checkActiveScroll={this.checkActiveScroll}>
         <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/', { h: 3 })} />
         { this.props.userIsLoggedIn ? <Tab label='Feed' url={`${HOSTNAME}/?view=feed_preview`} /> : '' }
-        <Tab isActive={flCN} label='Favorite' onClick={() => this._savePosition('/fave')} />
+        {
+          this.props.userIsLoggedIn
+          ? <Tab isActive={flCN} label='Favorite' onClick={() => this._savePosition('/fave')} />
+          : ''
+        }
         <Tab isActive={hlCN} label='Hot List' onClick={() => this._savePosition('/hot')} />
         {
           this.props.userIsLoggedIn
