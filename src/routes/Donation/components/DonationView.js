@@ -4,15 +4,16 @@ import { browserHistory } from 'react-router'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
 
+import HeaderHomeOld from '../../../components/HeaderHomeOld'
+import DonationTab from './DonationTab'
+import DonationPromo from './DonationPromo'
+import DonationOperator from './DonationOperator'
 import DonationSEO from './DonationSEO'
 import DonationLinks from './DonationLinks'
 import DonationSelectDrawer from './DonationSelectDrawer'
-import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import './DonationView.scss'
 import lang from '../../../lib/utils/Lang'
-import DonationPromo from './DonationPromo'
-import DonationOperator from './DonationOperator'
 
 class DonationView extends Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class DonationView extends Component {
     return(
       <div>
         <HeaderHomeOld userInfo={userInfo} />
+        <DonationTab />
         <DonationPromo />
         <DonationOperator />
         <DonationSEO />
