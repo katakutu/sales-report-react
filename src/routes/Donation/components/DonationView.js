@@ -11,6 +11,7 @@ import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import './DonationView.scss'
 import lang from '../../../lib/utils/Lang'
+import DonationContent from './DonationContent'
 import DonationPromo from './DonationPromo'
 import DonationOperator from './DonationOperator'
 
@@ -39,6 +40,7 @@ class DonationView extends Component {
     return(
       <div>
         <HeaderHomeOld userInfo={userInfo} />
+        <DonationContent />
         <DonationPromo />
         <DonationOperator />
         <DonationSEO />

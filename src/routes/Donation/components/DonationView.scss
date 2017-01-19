@@ -5,6 +5,162 @@
     color: $color-white-primary;
 }
 
+.error-input {
+   margin-top: 3px;
+   color: red;
+   font-weight: 400;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 400;
+    color: #888;
+}
+
+.form-group .form-select {
+    background: url(../assets/arrow-select.png) right 5px top 16px no-repeat;
+    background-size: 12px 6px;
+}
+
+.form-control {
+    display: block;
+    cursor: pointer;
+    font-size: 16px;
+    height: 36px;
+    color: #515151;
+    padding: 5px 6px;
+    width: 100%;
+    outline: 0;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #D3D3D3;
+    box-shadow: none;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+
+    &:focus {
+        border-bottom: 1px solid $color-green;
+        color: $color-green;
+    }
+}
+
+.icheckbox_square-green-med {
+    width: 16px;
+    height: 15px;
+    background-position: -178px -4px;
+    // display: inline-block;
+    // margin: 0;
+    // padding: 0;
+    // border: 0;
+    // vertical-align: middle;
+    // cursor: pointer;
+    // background: url(../assets/sprite-recharge-3.png) no-repeat transparent;
+    // background-size: 412px 299px;
+}
+
+.checkbox label {
+    min-height: 20px;
+    font-size: 12px;
+    font-weight: 400;
+    cursor: pointer;
+    color: #333;
+}
+
+.donasi__container {
+    border: 1px solid #ededed;
+    background: #FBFBFB;
+    box-shadow: none;
+    h1 {
+        font-size: 16px;
+        font-weight: 500;
+        margin-left: 35px;
+        letter-spacing: .05em;
+        line-height: 22px;
+        color: #333;
+    }
+
+    .donasi--lembaga {
+        padding-top: 20px;
+        margin-bottom: 20px;
+
+        .lembaga-tab-list {
+            margin-bottom: 10px;
+            padding: 0 40px;
+            label {
+                font-size: 13px;
+                font-weight: 400;
+                margin-bottom: 10px;
+                color: #515151;
+            }
+
+            li {
+                float: left;
+                width: 50%;
+                padding: 10px;
+            }
+
+            .lembaga-tab-logo {
+                border-radius: 3px;
+                border: 1px solid #E5E5E5;
+                background-color: #F4F4F4;
+                cursor: pointer;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                    opacity: .6;
+                    transition: all ease-in .5s;
+                    vertical-align: middle;
+                }
+
+                &:hover {
+                    border-color: $color-green;
+                    background-color: $color-white-primary;
+                }
+
+                &:hover > img {
+                    opacity: 1;
+                }
+
+                &.active {
+                    border-color: $color-green;
+                    background-color: $color-white-primary;
+                }
+
+                &.active > img {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .lembaga-tab-content {
+            padding: 0 50px;
+
+            .lembaga-content {
+                min-height: 105px;
+                padding: 20px;
+                border-radius: 3px;
+                border: 1px solid $color-green;
+                color: #4B4B4B;
+
+                &-text {
+                    line-height: 17px;
+                    color: #4B4B4B;
+                    a {
+                        font-size: 11px;
+                        color: $color-green;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    .donasi--nominal {
+        margin-bottom: 50px;
+        padding: 0 50px;
+    }
+}
+
 .promo__container {
     padding: 30px 15px;
     background: $color-white-primary;
