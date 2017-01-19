@@ -16,7 +16,7 @@ class WishlistEmpty extends Component {
     return (
       <div className='wishlist-container u-clearfix'>
         <h3 style={{ textAlign: 'center' }}>
-          {lang[this.props.lang]['emptyWishlist']}
+          {lang[this.props.lang]['Empty wishlist']}
         </h3>
         <Img src={emptyImage}
           initialImage={loading}
