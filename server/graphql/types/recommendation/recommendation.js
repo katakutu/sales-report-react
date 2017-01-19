@@ -20,7 +20,7 @@ const RecommendationType = new GraphQLObjectType({
     name: { type: new GraphQLNonNull(GraphQLString) },
     url: { type: new GraphQLNonNull(GraphQLURL) },
     image_url: { type: new GraphQLNonNull(GraphQLURL) },
-    price: { type: new GraphQLNonNull(GraphQLInt) },
+    price: { type: new GraphQLNonNull(GraphQLString) },
     shop: { type: new GraphQLNonNull(RecommendationShopType) },
     badges: { type: new GraphQLList(RecommendationBadgeType) },
     labels: { type: new GraphQLList(RecommendationLabelType) }
