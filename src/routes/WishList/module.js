@@ -7,6 +7,7 @@ export const CLEAR_WISHLISTS = 'CLEAR_WISHLISTS'
 export const DEACTIVATE_WISHLIST = 'DEACTIVATE_WISHLIST'
 export const ACTIVATE_WISHLIST = 'ACTIVATE_WISHLIST'
 export const UPDATE_TOTAL_WISHLIST = 'UPDATE_TOTAL_WISHLIST'
+export const SCROLL_POSITION = 'SCROLL_POSITION'
 
 // ------------------------------------
 // Actions
@@ -53,13 +54,21 @@ export function updateTotalWishlist (count) {
   }
 }
 
+export function updateScrollPosition (scrollPosition) {
+  return {
+    type: SCROLL_POSITION,
+    payload: scrollPosition
+  }
+}
+
 export const actions = {
   activateWishlist,
   addWishlist,
   clearWishlists,
   deactivateWishlist,
   replaceWishlists,
-  updateTotalWishlist
+  updateTotalWishlist,
+  updateScrollPosition
 }
 
 // ------------------------------------
@@ -104,6 +113,9 @@ const ACTION_HANDLERS = {
   },
   [UPDATE_TOTAL_WISHLIST]: (state, action) => {
     return Object.assign({}, state, { totalWishlist: action.payload })
+  },
+  [SCROLL_POSITION]: (state, action) => {
+    return Object.assign({}, state, { scrollPosition: action.payload })
   }
 }
 
@@ -112,7 +124,8 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 const initialState = {
   wishlists: [],
-  totalWishlist: 0
+  totalWishlist: 0,
+  scrollPosition: 0
 }
 export default function wishlistReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]

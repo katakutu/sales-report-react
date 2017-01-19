@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo'
 
 import mutations from './../../../mutations'
 import lang from '../../../lib/utils/Lang'
-import { deactivateWishlist } from '../module'
+import { deactivateWishlist, updateScrollPosition } from '../module'
 import { notificationDispatch } from './../../../store/app'
 
 import './WishListView.scss'
@@ -17,6 +17,7 @@ class WishlistLove extends Component {
     mutate: PropTypes.func.isRequired,
     productID: PropTypes.number,
     productName: PropTypes.string,
+    updateScrollPosition: PropTypes.func,
     userID: PropTypes.number
   }
 
@@ -58,6 +59,12 @@ class WishlistLove extends Component {
         })
       }
     })
+
+    const sp = (window.pageYOffset !== undefined)
+      ? window.pageYOffset
+      : (document.documentElement || document.body.parentNode || document.body).scrollTop
+
+    this.props.updateScrollPosition(sp)
   }
 
   render () {
@@ -76,7 +83,7 @@ const mapStateToProps = (state) => {
 }
 const WishlistLoveQL = graphql(mutations.Wishlist.removeWishlist)(WishlistLove)
 const WishlistLoveQLR = connect(mapStateToProps, {
-  deactivateWishlist, notificationDispatch
+  deactivateWishlist, notificationDispatch, updateScrollPosition
 })(WishlistLoveQL)
 
 export default WishlistLoveQLR

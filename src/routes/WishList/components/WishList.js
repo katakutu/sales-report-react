@@ -33,7 +33,7 @@ class WishList extends Component {
     page: PropTypes.number,
     query: PropTypes.string,
     replaceWishlists: PropTypes.func,
-    scrollPos: PropTypes.number,
+    scrollPosition: React.PropTypes.number,
     shouldRefetch: PropTypes.bool,
     updateTotalWishlist: PropTypes.func,
     userID: PropTypes.number,
@@ -172,7 +172,7 @@ class WishList extends Component {
 
     const wishlists = this.props.wishlists
 
-    Scroll.animateScroll.scrollTo(this.props.scrollPos, {
+    Scroll.animateScroll.scrollTo(this.props.scrollPosition, {
       duration: 0,
       delay: 0,
       smooth: false
@@ -199,6 +199,7 @@ const mapDispatchToProps = { addWishlist, clearWishlists, replaceWishlists, upda
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
+    scrollPosition: state['wishlist'] ? state['wishlist'].scrollPosition : state.scrollPosition,
     wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists
   }
 }

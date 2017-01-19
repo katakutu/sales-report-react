@@ -272,6 +272,9 @@ import Cookies from '../lib/utils/Cookies'
 const initialState = {
   searchQuery: '',
   searchModalIsOpen: false,
+  scrollHistory: {
+    home: { point: 0 }
+  },
   sidebar: {
     isOpen: false,
     inboxOpen: false,
