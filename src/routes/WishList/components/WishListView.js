@@ -110,9 +110,6 @@ class WishlistView extends Component {
              {lang[this.props.lang]['View More']}
            </LoadMore>
         }
-           <LoadMore onClick={this.viewMore}>
-             {lang[this.props.lang]['View More']}
-           </LoadMore>
       </div>
     )
   }
