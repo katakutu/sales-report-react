@@ -43,10 +43,18 @@ class WishlistView extends Component {
 
   updateFinalQuery (event) {
     if (event.key === 'Enter') {
+      const fq = event.target.value
+
       this.setState({
-        finalQuery: event.target.value,
+        finalQuery: fq,
         refetch: true
       })
+
+      if (fq === '') {
+        browserHistory.push({
+          pathname: '/wishlist'
+        })
+      }
     }
   }
 
