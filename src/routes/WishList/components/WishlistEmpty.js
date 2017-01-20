@@ -6,6 +6,7 @@ import emptyImage from '../assets/wishlist-empty.png'
 import loading from '../../../static/media/images/lite-loading.png'
 import lang from '../../../lib/utils/Lang'
 import TopAds from '../../../components/TopAds/TopAds'
+import { HOSTNAME } from '../../../constants'
 
 import './WishListView.scss'
 
@@ -69,8 +70,16 @@ class WishlistEmpty extends Component {
         <Img src={emptyImage}
           initialImage={loading}
           fallbackImage={loading}
-          className='u-fit u-block u-mx-auto'
+          className='u-block u-mx-auto wishlist__empty-img'
           alt='Tidak ada wishlist' />
+        <div className='wishlist__empty'>
+          {lang[this.props.lang]['Empty wishlist']}
+        </div>
+        <a href={`${HOSTNAME}/toppicks`} className='wishlist__btn-holder'>
+          <div className='wishlist__lets-search'>
+            Mulai cari produk
+          </div>
+        </a>
         <TopAds
           userID={this.props.userID}
           ep={this.state.ep}
@@ -81,6 +90,7 @@ class WishlistEmpty extends Component {
           stateModal={this.state.modalState}
           contentModal={this.state.modalContent}
           eventModal={this._eventModal} />
+
       </div>
     )
   }
