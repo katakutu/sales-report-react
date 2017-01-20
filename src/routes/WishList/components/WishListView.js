@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import WishList from './WishList'
-import WishListSearchEmpty from './WishListSearchEmpty'
 
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import LoadMore from '../../../components/LoadMore'
@@ -113,12 +112,13 @@ class WishlistView extends Component {
 
           {
             this.state.finalQuery !== '' &&
-            [(<div className='u-col u-col-6'>
-              <p className='wishlist__search-result'>{ wlCount } {lang[this.props.lang]['Hasil']}</p>
-            </div>),
+              [(<div className='u-col u-col-6'>
+                <p className='wishlist__search-result'>{ wlCount } {lang[this.props.lang]['Hasil']}</p>
+              </div>),
             (<div className='u-col u-col-6' onClick={this.resetSearch}>
               <span className='wishlist__reset-search'>Reset</span>
-            </div>)]
+            </div>),
+            (<div className='u-clearfix' />)]
           }
 
           <WishList
