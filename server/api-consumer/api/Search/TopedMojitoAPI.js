@@ -10,7 +10,7 @@ const MOJITO_SERVICES = {
   OfficialStores: `${GlobalConfig.Mojito.OfficialStoreHostname}/os/api/v1/brands/list?device=lite`,
   WishlistProducts: `${GlobalConfig.Mojito.Hostname}/v1.0.2/users/:user_id/wishlist/products?count=:count&page=:page`,
   WishlistModification: `${GlobalConfig.Mojito.Hostname}/v1/products/:product_id/wishlist`,
-  WishlsitSearch: `${GlobalConfig.Mojito.Hostname}/users/:user_id/wishlist/search/v2?q=:query`
+  WishlsitSearch: `${GlobalConfig.Mojito.Hostname}/users/:user_id/wishlist/search/v2?q=:query&count=:count&page=:page`
 }
 
 const MOJITO_HMAC_API_KEY = 'mojito_api_v1'
@@ -103,10 +103,12 @@ class TopedMojitoAPI {
     return this.api.consume(URL.parse(endpoint), 'GET', {})
   }
 
-  filterWishlist (userID, query = '') {
+  filterWishlist (userID, query = '', count = 10, page = 1) {
     const endpoint = MOJITO_SERVICES.WishlsitSearch
                                     .replace(':user_id', userID)
                                     .replace(':query', query)
+                                    .replace(':count', count)
+                                    .replace(':page', page)
 
     return this.api.consume(URL.parse(endpoint), 'GET', {})
   }
