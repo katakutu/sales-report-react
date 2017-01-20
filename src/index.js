@@ -55,23 +55,6 @@ if (!Array.prototype.findIndex) {
   })
 }
 
-// ========================================================
-// Initiate Wallet
-//
-// Globalfunction for GTM
-// ========================================================
-window.show_wallet_activation_button = function () {
-  const accountsClientHost = SITES['Accounts']
-  if (accountsClientHost) {
-    let btn = []
-    btn.push('<a href="' + accountsClientHost +
-    '/wallet/activation?v=2"><span class="drawer__menu-icon icon__svg icon__tokocash" alt="tokopedia" />' +
-    '<span class="drawer__menu-title u-inline-block">TokoCash</span>' +
-    '<span id="tokocash-activate-btn" class="drawer__activate-tokoCash">' +
-    'Activate TokoCash' + '</span>')
-    $('#tokocash-balance-container').html(btn.join(''))
-  }
-}
 // Array.includes Polyfill
 // This polyfill is needed specifically for hotlist support
 // in older browser (UC, Android Old Browser).
@@ -111,6 +94,24 @@ if (!Array.prototype.includes) {
       k++
     }
     return false
+  }
+}
+
+// ========================================================
+// Initiate Wallet
+//
+// Globalfunction for GTM
+// ========================================================
+window.show_wallet_activation_button = function () {
+  const accountsClientHost = SITES['Accounts']
+  if (accountsClientHost) {
+    let btn = []
+    btn.push('<a href="' + accountsClientHost +
+    '/wallet/activation?v=2"><span class="drawer__menu-icon icon__svg icon__tokocash" alt="tokopedia" />' +
+    '<span class="drawer__menu-title u-inline-block">TokoCash</span>' +
+    '<span id="tokocash-activate-btn" class="drawer__activate-tokoCash">' +
+    'Activate TokoCash' + '</span>')
+    $('#tokocash-balance-container').html(btn.join(''))
   }
 }
 
