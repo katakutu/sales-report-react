@@ -9,11 +9,19 @@ import PkpuLogo from '../assets/lembaga/pkpu.png'
 import YcabLogo from '../assets/lembaga/ycab1.png'
 
 class DonationContent extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
+      instantCheckout: false,
       activeContent: 'baznas'
     }
+  }
+
+  handleInstantCheckbox() {
+    this.setState({
+      instantCheckout: !this.state.instantCheckout
+    })
   }
 
   handleContentChange(name) {
@@ -129,11 +137,10 @@ class DonationContent extends Component {
               </div>
 
               <div className='donasi--buy'>
-                <div className='donasi__checkbox'>
-                  <label htmlFor='instant_checkout'>
-                    <div className='icheckbox_square-green-med'>
-                      <input type='checkbox' name='instant_checkout' id='instant_checkout' />
-                    </div>
+                <div className='donasi__checkbox checkbox'>
+                  <input type='checkbox' id='instant_checkout' checked={this.state.instantCheckout} />
+                  <label onClick={this.handleInstantCheckbox.bind(this)} >
+                    <span className='donasi-checkbox'></span>
                     Bayar instan
                   </label>
                 </div>

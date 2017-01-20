@@ -43,26 +43,38 @@
     }
 }
 
-.icheckbox_square-green-med {
-    width: 16px;
-    height: 15px;
-    background-position: -178px -4px;
-    // display: inline-block;
-    // margin: 0;
-    // padding: 0;
-    // border: 0;
-    // vertical-align: middle;
-    // cursor: pointer;
-    // background: url(../assets/sprite-recharge-3.png) no-repeat transparent;
-    // background-size: 412px 299px;
+.donasi__checkbox input[type=checkbox]:checked + label > span {
+    background: url(../assets/checkbox-checked.png) no-repeat transparent;
 }
 
-.checkbox label {
-    min-height: 20px;
-    font-size: 12px;
-    font-weight: 400;
-    cursor: pointer;
-    color: #333;
+.donasi__checkbox {
+    display: block;
+
+    label {
+        cursor: pointer;
+    }
+
+    input[type='checkbox'] {
+        display: none;
+
+        &:checked+label>span {
+            background: url(../assets/checkbox-checked.png) no-repeat transparent;
+            background-size: 15px 15px;
+        }
+    }
+
+    span {
+        display: inline-block;
+        margin-right: 3px;
+        width: 15px;
+        height: 15px;
+        vertical-align: middle;
+    }
+
+    .donasi-checkbox {
+        background: url(../assets/checkbox-empty.png) no-repeat transparent;
+        background-size: 15px 15px;
+    }
 }
 
 .tab {
@@ -404,6 +416,28 @@
     .donasi--nominal {
         margin-bottom: 50px;
         padding: 0 50px;
+
+        .donasi--buy {
+            @media screen and (max-width: 640px) {
+                float: none;
+                clear: both;
+            }
+
+            .donasi__checkbox {
+                position: relative;
+                display: block;
+                margin-bottom: 10px;
+
+                label {
+                    min-height: 20px;
+                    font-size: 12px;
+                    font-weight: 400;
+                    cursor: pointer;
+                    color: #333;
+                }
+
+            }
+        }
     }
 }
 
