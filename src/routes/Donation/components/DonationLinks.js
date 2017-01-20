@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import './DonationLinks.scss'
 
 export const DonationLinks = () => (
   <section className='dp-links__container'>
