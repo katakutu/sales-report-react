@@ -2,7 +2,6 @@
 
 .hotlist {
     margin-top: 15px;
-    margin-bottom: 10px;
 }
 
 .hotlist .text-header {
@@ -30,7 +29,6 @@
     img {
         max-width: 100%;
     }
-
 }
 
 .hotlist--single-page {
@@ -150,37 +148,82 @@
     }
 }
 
-.hotlist__item, .hotlist__image {
-    -webkit-animation: IMAGE-POP .30s; /* Safari 4+ */
-    -moz-animation:    IMAGE-POP .30s; /* Fx 5+ */
-    -o-animation:      IMAGE-POP .30s; /* Opera 12+ */
-    animation:         IMAGE-POP .30s; /* IE 10+, Fx 29+ */
+.hotlist__item,
+.hotlist__image {
+    -webkit-animation: IMAGE-POP 0.3s; /* Safari 4+ */
+    -moz-animation: IMAGE-POP 0.3s; /* Fx 5+ */
+    -o-animation: IMAGE-POP 0.3s; /* Opera 12+ */
+    animation: IMAGE-POP 0.3s; /* IE 10+, Fx 29+ */
 }
 
 @-webkit-keyframes IMAGE-POP {
-  0%   { opacity: 0; }
-  10%   { opacity: 0; }
-  75%   { opacity: 0.3;}
-  100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
+
 @-moz-keyframes IMAGE-POP {
-  0%   { opacity: 0; }
-  10%   { opacity: 0; }
-  75%   { opacity: 0.3;}
-  100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
-@-o-keyframes IMAGE-POP{
-  0%   { opacity: 0; }
-  10%   { opacity: 0; }
-  75%   { opacity: 0.3;}
-  100% { opacity: 1; }
+
+@-o-keyframes IMAGE-POP {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
+
 @keyframes IMAGE-POP {
-  0%   { opacity: 0; }
-  10%   { opacity: 0; }
-  75%   { opacity: 0.3;}
-  100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
-
-
-

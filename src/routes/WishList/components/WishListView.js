@@ -9,12 +9,14 @@ import queries from '../../../queries'
 import lang from '../../../lib/utils/Lang'
 
 import { graphql } from 'react-apollo'
+import { updateScrollPosition } from '../module'
 
 class WishlistView extends Component {
   static propTypes = {
     data: React.PropTypes.object,
     lang: React.PropTypes.string,
     totalWishlist: React.PropTypes.number,
+    updateScrollPosition: React.PropTypes.func,
     wishlists: React.PropTypes.arrayOf(React.PropTypes.object)
   }
 
@@ -41,17 +43,31 @@ class WishlistView extends Component {
 
   updateFinalQuery (event) {
     if (event.key === 'Enter') {
+      const fq = event.target.value
+
       this.setState({
-        finalQuery: event.target.value,
-        refetch: true
+        finalQuery: fq,
+        refetch: true,
+        page: 1
       })
+
+      if (fq === '') {
+        browserHistory.push({
+          pathname: '/wishlist'
+        })
+      }
     }
   }
 
   viewMore (event) {
     event.preventDefault()
+    const sp = (window.pageYOffset !== undefined)
+      ? window.pageYOffset
+      : (document.documentElement || document.body.parentNode || document.body).scrollTop
 
     this.setState({ page: this.state.page + 1 }, () => {
+      this.props.updateScrollPosition(sp)
+
       browserHistory.push({
         pathname: '/wishlist',
         query: { page: this.state.page }
@@ -87,13 +103,17 @@ class WishlistView extends Component {
               type='text'
               name='searchwishlist'
               className='wishlist__searchbar'
-              placeholder='Cari produk di wishlist'
+              placeholder={lang[this.props.lang]['Search in Wishlist']}
               onChange={this.searchWishlist}
               onKeyPress={this.updateFinalQuery}
               value={this.state.query} />
           </div>
 
-          { this.state.finalQuery !== '' && <p className='wishlist__search-result'>{ wlCount } Hasil</p> }
+          {
+            this.state.finalQuery !== '' &&
+              wlCount > 0 &&
+              <p className='wishlist__search-result'>{ wlCount } {lang[this.props.lang]['Hasil']}</p>
+          }
 
           <WishList
             userID={parseInt(userInfo['id'])}
@@ -104,8 +124,8 @@ class WishlistView extends Component {
         </div>
 
         {
-          ((wlCount > 0 && this.props.totalWishlist > wlCount && this.state.query === '') ||
-           (this.state.query !== '' && wlCount > WishlistView.WISHLIST_PER_PAGE)) &&
+          ((wlCount > 0 && this.props.totalWishlist > wlCount && this.state.finalQuery === '') ||
+           (this.state.finalQuery !== '' && wlCount > WishlistView.WISHLIST_PER_PAGE)) &&
            <LoadMore onClick={this.viewMore}>
              {lang[this.props.lang]['View More']}
            </LoadMore>
@@ -122,7 +142,8 @@ const mapStateToProps = (state) => {
     wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists
   }
 }
+const mapDispatchToProps = { updateScrollPosition }
 
 export default graphql(queries.UserDataQuery, {
   options: { returnPartialData: true }
-})(connect(mapStateToProps, undefined)(WishlistView))
+})(connect(mapStateToProps, mapDispatchToProps)(WishlistView))
