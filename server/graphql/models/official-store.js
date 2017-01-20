@@ -1,10 +1,9 @@
 const TopedMojitoAPI = require('./../../api-consumer/api/Search/TopedMojitoAPI')
+const api = new TopedMojitoAPI()
 
 const EMPTY_OFFICIAL_STORE = []
 
 function getOfficialStores () {
-  const api = new TopedMojitoAPI()
-
   return api.getOfficialStores().then(response => {
     if (!response['data']) {
       const raw = JSON.stringify(response)
