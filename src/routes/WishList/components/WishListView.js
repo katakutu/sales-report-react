@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import WishList from './WishList'
+
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import LoadMore from '../../../components/LoadMore'
 import queries from '../../../queries'
@@ -31,9 +32,17 @@ class WishlistView extends Component {
   constructor (props) {
     super(props)
 
+    this.resetSearch = this.resetSearch.bind(this)
     this.searchWishlist = this.searchWishlist.bind(this)
     this.updateFinalQuery = this.updateFinalQuery.bind(this)
     this.viewMore = this.viewMore.bind(this)
+  }
+
+  resetSearch () {
+    this.setState({ finalQuery: '', query: '' })
+    browserHistory.push({
+      pathname: '/wishlist'
+    })
   }
 
   searchWishlist (event) {
@@ -103,8 +112,13 @@ class WishlistView extends Component {
 
           {
             this.state.finalQuery !== '' &&
-              wlCount > 0 &&
-              <p className='wishlist__search-result'>{ wlCount } {lang[this.props.lang]['Hasil']}</p>
+              [(<div className='u-col u-col-6'>
+                <p className='wishlist__search-result'>{ wlCount } {lang[this.props.lang]['Hasil']}</p>
+              </div>),
+            (<div className='u-col u-col-6' onClick={this.resetSearch}>
+              <span className='wishlist__reset-search'>Reset</span>
+            </div>),
+            (<div className='u-clearfix' />)]
           }
 
           <WishList
