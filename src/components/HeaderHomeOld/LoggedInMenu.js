@@ -393,8 +393,8 @@ class LoggedInMenu extends Component {
                 </a>
               </li>
               <li>
-                <a href={`${HOSTNAME}/tx_order_list.pl?status=9`}>
-                  { lang[this.props.lang]['Confirm Payment'] } { purchaseDCNotif }
+                <a href={`${HOSTNAME}/tx_delivery_confirm.pl`}>
+                  { lang[this.props.lang]['Delivery Confirm'] } { purchaseDCNotif }
                 </a>
               </li>
               <li>

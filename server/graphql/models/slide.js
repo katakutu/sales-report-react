@@ -1,5 +1,6 @@
 const TopedMojitoAPI = require('./../../api-consumer/api/Search/TopedMojitoAPI')
 const common = require('./common')
+const api = new TopedMojitoAPI()
 
 const EMPTY_SLIDES = {
   meta: { total_data: 0 },
@@ -8,7 +9,6 @@ const EMPTY_SLIDES = {
 
 function getSlides (context) {
   const userID = common.getUserID(context)
-  const api = new TopedMojitoAPI()
 
   return userID.then(uid => {
     return api.getSlides(25, 2, 65535, 1, 0, uid || 0)
