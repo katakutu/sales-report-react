@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import WishList from './WishList'
+import WishListSearchEmpty from './WishListSearchEmpty'
+
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import LoadMore from '../../../components/LoadMore'
 import queries from '../../../queries'
