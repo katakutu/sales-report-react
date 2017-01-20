@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router'
-import './DonationView.scss'
 
 export const DonationLinks = () => (
   <section className='links'>

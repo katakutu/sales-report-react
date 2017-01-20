@@ -2,14 +2,13 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import classNames from 'classnames'
 import BodyClassName from 'react-body-classname'
-import './DonationView.scss'
 
 class DonationSelectDrawer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      open: true
+      open: false
     }
   }
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { browserHistory, Link } from 'react-router'
 
-import './DonationView.scss'
 import AsLogo from '../assets/operator/as.png'
 import AxisLogo from '../assets/operator/axis.png'
 import BoltLogo from '../assets/operator/bolt.png'

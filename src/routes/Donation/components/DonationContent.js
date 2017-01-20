@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { browserHistory, Link } from 'react-router'
 import classNames from 'classnames'
 
-import './DonationView.scss'
 import BaznasLogo from '../assets/lembaga/baznas1.png'
 import DompetDuafaLogo from '../assets/lembaga/dompet_duafa.png'
 import PkpuLogo from '../assets/lembaga/pkpu.png'
