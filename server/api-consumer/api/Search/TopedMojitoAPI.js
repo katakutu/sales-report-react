@@ -1,4 +1,3 @@
-const obcache = require('obcache')
 const TopedAPI = require('../TopedAPI')
 const TopedHMACAPI = require('../TopedHMACAPI')
 const GlobalConfig = require('../../../GlobalConfig')
@@ -27,26 +26,14 @@ class TopedMojitoAPI {
    * @memberOf TopedMojitoAPI
    */
   constructor () {
-    let api = new TopedAPI()
-
-    this.api = api
+    this.api = new TopedAPI()
     this.HMACApi = new TopedHMACAPI(MOJITO_HMAC_API_KEY)
-
-    // get category
-    let mojitoGetCategoryCache = obcache.debug.register(new obcache.Create(GlobalConfig.CacheOpts), 'mojitoGetCategory')
-    this.getCategoryWrapped = mojitoGetCategoryCache.wrap(function _getCategory (cb) {
-      let url = URL.parse(MOJITO_SERVICES.Category)
-      api.consume(url, 'GET', {}, {}, cb)
-    })
   }
 
   getCategory () {
-    return new Promise((resolve, reject) => {
-      this.getCategoryWrapped((err, result) => {
-        if (err) reject(err)
-        else resolve(result)
-      })
-    })
+    let url = URL.parse(MOJITO_SERVICES.Category)
+
+    return this.api.consume(url, 'GET', {})
   }
 
   /**
@@ -172,10 +159,3 @@ class TopedMojitoAPI {
 }
 
 module.exports = TopedMojitoAPI
-
-if (require.main === module) {
-  let api = new TopedMojitoAPI()
-  api.getCategory()
-    .then(result => console.log(JSON.stringify(result)))
-    .catch(error => console.log(console.log(error)))
-}
