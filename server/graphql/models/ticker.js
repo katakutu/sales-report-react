@@ -1,5 +1,6 @@
 const TopedMojitoAPI = require('./../../api-consumer/api/Search/TopedMojitoAPI')
 const common = require('./common')
+const api = new TopedMojitoAPI()
 
 const EMPTY_TICKER = {
   meta: { total_data: 0 },
@@ -8,7 +9,6 @@ const EMPTY_TICKER = {
 
 function getTicker (context) {
   const userID = common.getUserID(context)
-  const api = new TopedMojitoAPI()
 
   return userID.then(uid => {
     return api.getTickers(uid || 0, 50, 'mobile', 'data_source_filter')

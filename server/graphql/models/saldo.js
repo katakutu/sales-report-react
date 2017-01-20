@@ -3,6 +3,7 @@ const {
     DEFAULT_SALDO_DATA
 } = require('./../../api-consumer/api/Saldo/TopedSaldoAPI')
 const common = require('./common')
+const api = new TopedSaldoAPI()
 
 function getSaldo (context) {
   const userID = common.getUserID(context)
@@ -12,8 +13,6 @@ function getSaldo (context) {
           if (uid === 0) {
             return Promise.resolve(DEFAULT_SALDO_DATA)
           }
-
-          const api = new TopedSaldoAPI()
 
           return api.getDeposit(uid)
         })

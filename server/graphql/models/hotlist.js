@@ -1,4 +1,5 @@
 const TopedAceAPI = require('./../../api-consumer/api/Search/TopedAceAPI')
+const api = new TopedAceAPI()
 
 const HOTLIST_ERROR = {
   curr_page: 0,
@@ -8,8 +9,6 @@ const HOTLIST_ERROR = {
 }
 
 function getHotProductHome () {
-  const api = new TopedAceAPI()
-
   return api.getHotProductHome()
     .then(response => {
       return {
@@ -34,8 +33,6 @@ function getHotProductHome () {
 }
 
 function getHotProductList (page, perPage) {
-  const api = new TopedAceAPI()
-
   return api.getHotProductList(page, perPage)
     .then(response => {
       return {

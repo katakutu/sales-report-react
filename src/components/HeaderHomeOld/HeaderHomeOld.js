@@ -21,6 +21,7 @@ import OverlaySplash from './OverlaySplash'
 
 import { HOSTNAME } from '../../constants'
 import lang from '../../lib/utils/Lang'
+import GTM from '../../lib/utils/GTM'
 
 class HeaderHome extends Component {
   static propTypes = {
@@ -124,6 +125,15 @@ class HeaderHome extends Component {
       showSearch: this._shouldShowSearch(document.body.scrollTop)
     })
     this._scrollHistory()
+
+    if (this.props.userInfo && this.props.userInfo.id) {
+      GTM.pushObject({
+        'contactInfo': {
+          'userId': this.props.userInfo.id,
+          'userEmail': this.props.userInfo.email
+        }
+      })
+    }
   }
 
   componentWillReceiveProps (nextProps) {
