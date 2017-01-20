@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory, Link } from 'react-router'
 
+import './DonationPromo.scss'
 import CopyIcon from '../assets/icon-copy.png'
 import SurveyIcon from '../assets/icon-survey.png'
 
