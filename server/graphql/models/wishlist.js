@@ -1,4 +1,5 @@
 const TopedMojitoAPI = require('./../../api-consumer/api/Search/TopedMojitoAPI')
+const api = new TopedMojitoAPI()
 
 const EMPTY_WISHLIST = {
   has_next_page: false,
@@ -7,20 +8,14 @@ const EMPTY_WISHLIST = {
 }
 
 function removeWishlist (userID, productID) {
-  const api = new TopedMojitoAPI()
-
   return api.removeWishlist(userID, productID)
 }
 
 function addWishlist (userID, productID) {
-  const api = new TopedMojitoAPI()
-
   return api.addWishlist(userID, productID)
 }
 
 function getUserWishlist (userID, query, count, page) {
-  const api = new TopedMojitoAPI()
-
   return query === ''
     ? _getWishlist(api, userID, count, page)
     : _searchWishlist(api, userID, query, count, page)

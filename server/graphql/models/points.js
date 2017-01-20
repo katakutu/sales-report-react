@@ -3,6 +3,7 @@ const {
     DEFAULT_POINTS_DATA
 } = require('./../../api-consumer/api/Points/TopedPointsAPI')
 const common = require('./common')
+const api = new TopedPointsAPI()
 
 function getPoints (context) {
   const userID = common.getUserID(context)
@@ -12,8 +13,6 @@ function getPoints (context) {
           if (uid === 0) {
             return Promise.resolve(DEFAULT_POINTS_DATA)
           }
-
-          const api = new TopedPointsAPI()
 
           return api.getPoints(uid)
         })
