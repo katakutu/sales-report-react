@@ -86,8 +86,7 @@ class Favorite extends Component {
                   <div className='favorite__footer u-clearfix u-mt1 u-col u-col-4'>
                     <div className='u-col u-col-12 u-truncate u-relative'>
                       <a href={item.shop_url2}>
-                        <Img src={greyLove} className='icon_love' initialImage={loading} fallbackImage={loading} />
-                        { lang[this.props.lang]['Ikuti'] }
+                        &#10004;&nbsp;Favorited
                       </a>
                     </div>
                   </div>
