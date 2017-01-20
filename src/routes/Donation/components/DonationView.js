@@ -42,13 +42,11 @@ class DonationView extends Component {
         <HeaderHomeOld userInfo={userInfo} hideSearch />
         <DonationTab />
         <DonationContent />
-        {/*
         <DonationPromo />
         <DonationOperator />
         <DonationSEO />
         <DonationLinks />
         <DonationSelectDrawer />
-        */}
       </div>
     )
   }

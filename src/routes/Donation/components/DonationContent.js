@@ -35,11 +35,10 @@ class DonationContent extends Component {
       <div className='u-clearfix donasi-content'>
         <div className='donasi__container u-p0'>
           <form>
-            <h1 className='u-clearfix u-block u-mt3 u-mb0 u-left-align u-bold'>
+            <h1 className='u-clearfix u-block u-mt2 u-mb0 u-mx-auto u-left-align u-bold u-col-12'>
               Salurkan Donasi Untuk Berbagi Dengan Sesama
             </h1>
             <div className='donasi--lembaga'>
-
               <div className='lembaga-tab-list'>
                 <label className='u-inline-block'>Pilih Lembaga Donasi</label>
                 <div><small className='u-h5 error-input u-display-none u-inline-block ' id='error-client-number'>Anda belum memilih lembaga donasi</small></div>
@@ -66,7 +65,6 @@ class DonationContent extends Component {
                   </li>
                 </ul>
               </div>
-
               <div className='lembaga-tab-content'>
                 <div className={classNames('u-clearfix', 'u-relative', 'lembaga-content', {'u-hide': this.state.activeContent !== 'baznas'})}>
                   <div className='u-relative u-mb2 u-center lembaga-content-img'>
@@ -113,11 +111,8 @@ class DonationContent extends Component {
                   </div>
                 </div>
               </div>
-
             </div>
-
             <div className='donasi--nominal'>
-
               <div className='form-group nominal u-mb2 u-block'>
                 <label className='u-mb1'>Nominal</label>
                 <div className='donasi-select'>
@@ -132,7 +127,6 @@ class DonationContent extends Component {
                   </select>
                 </div>
               </div>
-
               <div className='donasi--buy'>
                 <div className='donasi__checkbox checkbox'>
                   <input type='checkbox' id='instant_checkout' checked={this.state.instantCheckout} />
@@ -142,9 +136,7 @@ class DonationContent extends Component {
                   </label>
                 </div>
               </div>
-
             </div>
-
           </form>
         </div>
       </div>
