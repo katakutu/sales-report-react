@@ -22,9 +22,6 @@ class DonationContent extends Component {
     })
   }
 
-  handleDropdownClick(e) {
-  }
-
   render() {
     return (
       <div className='u-clearfix donasi-content'>
@@ -116,7 +113,7 @@ class DonationContent extends Component {
               <div className='form-group nominal u-mb2 u-block'>
                 <label className='u-mb1'>Nominal</label>
                 <div class='donasi-select'>
-                  <select className='donasi-select form-control form-select' onClick={this.handleDropdownClick.bind(this)}>
+                  <select className='donasi-select form-control form-select'>
                     <option value='25000'>Rp 25.000</option>
                     <option value='50000'>Rp 50.000</option>
                     <option value='100000'>Rp 100.000</option>
