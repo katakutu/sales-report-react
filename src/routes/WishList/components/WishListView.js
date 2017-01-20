@@ -43,10 +43,19 @@ class WishlistView extends Component {
 
   updateFinalQuery (event) {
     if (event.key === 'Enter') {
+      const fq = event.target.value
+
       this.setState({
-        finalQuery: event.target.value,
-        refetch: true
+        finalQuery: fq,
+        refetch: true,
+        page: 1
       })
+
+      if (fq === '') {
+        browserHistory.push({
+          pathname: '/wishlist'
+        })
+      }
     }
   }
 
@@ -103,7 +112,7 @@ class WishlistView extends Component {
           {
             this.state.finalQuery !== '' &&
               wlCount > 0 &&
-              <p className='wishlist__search-result'>{ wlCount } Hasil</p>
+              <p className='wishlist__search-result'>{ wlCount } {lang[this.props.lang]['Hasil']}</p>
           }
 
           <WishList

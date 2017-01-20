@@ -16,7 +16,6 @@ import {
   updateTotalWishlist
 } from '../module'
 
-import ModuleSpinner from './../../../components/Loading/ModuleSpinner'
 import WishlistEmpty from './WishlistEmpty'
 import WishlistLove from './WishlistLove'
 import WishlistUnloved from './WishlistUnloved'
@@ -166,10 +165,6 @@ class WishList extends Component {
   }
 
   render () {
-    if (this.props.data.loading) {
-      return <ModuleSpinner />
-    }
-
     const wishlists = this.props.wishlists
 
     Scroll.animateScroll.scrollTo(this.props.scrollPosition, {
@@ -180,7 +175,7 @@ class WishList extends Component {
 
     return (
       <div className='wishlist-container u-clearfix'>
-        { wishlists.length === 0 && <WishlistEmpty /> }
+        { wishlists.length === 0 && !this.props.data.loading && <WishlistEmpty /> }
         { wishlists.length > 0 && ArrayHelper.chunk(wishlists, 2).map((wls, index) => {
           const key = `wishlist-cont-${index}`
 

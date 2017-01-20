@@ -39,7 +39,11 @@ function getUserInfo (context) {
           const loggedInSess = sessData && !isNaN(sessDataObj['admin_id'])
           const userID = loggedInSess ? sessDataObj['admin_id'] : null
 
-          return getDefaultLoginRedirect(userID, shouldRedir && sessionExists && loggedInSess)
+          if (userID) {
+            return getDefaultLoginRedirect(userID, shouldRedir && sessionExists && loggedInSess)
+          } else {
+            return DEFAULT_NOT_LOGGED_IN
+          }
         })
         .catch(error => {
           console.error(`Get user info error: ${error.message}`)

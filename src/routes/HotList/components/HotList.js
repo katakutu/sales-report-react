@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import Img from 'react-image-fallback'
 
 import GTM from '../../../lib/utils/GTM'
 
+import lang from '../../../lib/utils/Lang'
 import loading from '../../../static/media/images/lite-loading.png'
 
 class HotList extends Component {
   static propTypes = {
-    data: React.PropTypes.object
+    data: React.PropTypes.object,
+    lang: React.PropTypes.string
   }
 
   state = {
@@ -68,7 +71,7 @@ class HotList extends Component {
                       </div>
                       <div className='u-col u-col-7 u-right-align u-relative'>
                         <a aria-hidden='true' tabIndex='-1' href={item.url} className='hotlist__click u-block' />
-                        <small className='hotlist__start-from u-mr1'>Mulai dari:</small>
+                        <small className='hotlist__start-from u-mr1'>{ lang[this.props.lang]['Mulai dari'] }:</small>
                         <span className='hotlist__price u-bold'>{item.price_start_from}</span>&nbsp;&rsaquo;
                       </div>
                     </div>
@@ -98,10 +101,14 @@ query Query($page: Int!) {
   }
 }
 `
-
+const mapStateToProps = (state) => {
+  return {
+    lang: state['app'] ? state['app'].lang : state.lang
+  }
+}
 export default graphql(HotListQuery, {
   options: ({ page }) => ({
     variables: { page },
     returnPartialData: true
   })
-})(HotList)
+})(connect(mapStateToProps, undefined)(HotList))
