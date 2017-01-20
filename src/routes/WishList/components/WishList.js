@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import deepEqual from 'deep-equal'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
-import Scroll from 'react-scroll'
 
 import { HOSTNAME } from './../../../constants'
 import queries from './../../../queries'
@@ -13,6 +12,7 @@ import {
   addWishlist,
   clearWishlists,
   replaceWishlists,
+  updateHasNextPage,
   updateTotalWishlist
 } from '../module'
 
@@ -32,8 +32,8 @@ class WishList extends Component {
     page: PropTypes.number,
     query: PropTypes.string,
     replaceWishlists: PropTypes.func,
-    scrollPosition: React.PropTypes.number,
     shouldRefetch: PropTypes.bool,
+    updateHasNextPage: PropTypes.func,
     updateTotalWishlist: PropTypes.func,
     userID: PropTypes.number,
     wishlists: PropTypes.arrayOf(PropTypes.object)
@@ -69,10 +69,15 @@ class WishList extends Component {
 
         this.props.addWishlist(newData)
       } else if (nextProps.query !== '') {
-        this.props.replaceWishlists(gqlData)
+        if (nextProps.page > 1) {
+          this.props.addWishlist(newData)
+        } else {
+          this.props.replaceWishlists(gqlData)
+        }
       }
 
       const totalData = nextProps['data']['wishlist'] && nextProps['data']['wishlist']['total_data']
+      this.props.updateHasNextPage(nextProps['data']['wishlist']['has_next_page'] || false)
       this.props.updateTotalWishlist(totalData || 0)
     }
   }
@@ -167,12 +172,6 @@ class WishList extends Component {
   render () {
     const wishlists = this.props.wishlists
 
-    Scroll.animateScroll.scrollTo(this.props.scrollPosition, {
-      duration: 0,
-      delay: 0,
-      smooth: false
-    })
-
     return (
       <div className='wishlist-container u-clearfix'>
         { wishlists.length === 0 && !this.props.data.loading && <WishlistEmpty /> }
@@ -190,11 +189,16 @@ class WishList extends Component {
   }
 }
 
-const mapDispatchToProps = { addWishlist, clearWishlists, replaceWishlists, updateTotalWishlist }
+const mapDispatchToProps = {
+  addWishlist,
+  clearWishlists,
+  replaceWishlists,
+  updateHasNextPage,
+  updateTotalWishlist
+}
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
-    scrollPosition: state['wishlist'] ? state['wishlist'].scrollPosition : state.scrollPosition,
     wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists
   }
 }
