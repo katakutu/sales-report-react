@@ -174,7 +174,9 @@ class WishList extends Component {
 
     return (
       <div className='wishlist-container u-clearfix'>
-        { wishlists.length === 0 && !this.props.data.loading && <WishlistEmpty /> }
+        { wishlists.length === 0 && !this.props.data.loading && <WishlistEmpty
+          userID={this.props.userID}
+          /> }
         { wishlists.length > 0 && ArrayHelper.chunk(wishlists, 2).map((wls, index) => {
           const key = `wishlist-cont-${index}`
 

@@ -16,7 +16,7 @@ class TopAdsProduct extends Component {
     const badges = this.props.data['badges'] || []
 
     return (
-      <div className='u-col u-col-6 topads__contents' key={`topads-${this.props.key}`}>
+      <div className='u-col u-col-6 topads__contents' key={`top-ads-item-${this.props.key}`}>
         <div className='topads__content-box'>
           <a href={this.props.data['product_click_url']}>
             <img src={this.props.data['product']['image']['m_ecs']} className='topads__img' alt='tokopedia' />

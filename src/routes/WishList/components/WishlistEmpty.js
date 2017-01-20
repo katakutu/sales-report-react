@@ -11,7 +11,8 @@ import './WishListView.scss'
 
 class WishlistEmpty extends Component {
   static propTypes = {
-    lang: React.PropTypes.string
+    lang: React.PropTypes.string,
+    userID: React.PropTypes.number
   }
 
   constructor (props) {
@@ -21,6 +22,11 @@ class WishlistEmpty extends Component {
   }
 
   state = {
+    ep:'product',
+    src:'fav_product',
+    item:2,
+    page:1,
+    q:'',
     modalState: false,
     modalContent: {
       data: [
@@ -66,6 +72,12 @@ class WishlistEmpty extends Component {
           className='u-fit u-block u-mx-auto'
           alt='Tidak ada wishlist' />
         <TopAds
+          userID={this.props.userID}
+          ep={this.state.ep}
+          src={this.state.src}
+          item={this.state.item}
+          page={this.state.page}
+          q={this.state.q}
           stateModal={this.state.modalState}
           contentModal={this.state.modalContent}
           eventModal={this._eventModal} />

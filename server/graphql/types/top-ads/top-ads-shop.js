@@ -3,11 +3,13 @@ const {
   GraphQLBoolean,
   GraphQLNonNull,
   GraphQLObjectType,
-  GraphQLString
+  GraphQLString,
+  GraphQLList
 } = require('graphql')
 
 const { GraphQLURL } = require('graphql-custom-types')
 const TopAdsImageShopType = require('./top-ads-images-shop')
+const TopAdsShopProductType = require('./top-ads-shop-product')
 
 const TopAdsShopType = new GraphQLObjectType({
   name: 'TopAdslistShop',
@@ -18,6 +20,7 @@ const TopAdsShopType = new GraphQLObjectType({
     tagline: { type: GraphQLString },
     location: { type: new GraphQLNonNull(GraphQLString) },
     city: { type: new GraphQLNonNull(GraphQLString) },
+    image_product: { type: new GraphQLList(TopAdsShopProductType) },
     image_shop: { type: TopAdsImageShopType },
     gold_shop: { type: new GraphQLNonNull(GraphQLBoolean) },
     lucky_shop: { type: new GraphQLNonNull(GraphQLURL) },
