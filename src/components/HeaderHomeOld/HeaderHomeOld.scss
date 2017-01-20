@@ -6,6 +6,10 @@
     .is-tab-available & {
         height: 142px;
     }
+
+    .is-search-hidden & {
+        height: 55px;
+    }
 }
 
 .header {
@@ -171,7 +175,7 @@
     margin-top: -13px;
     background-color: $color-green;
 
-    
+
 }
 
 .tab-link {

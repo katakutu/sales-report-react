@@ -19,7 +19,6 @@ import lang from '../../../lib/utils/Lang'
 class DonationView extends Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
@@ -40,14 +39,16 @@ class DonationView extends Component {
 
     return(
       <div>
-        <HeaderHomeOld userInfo={userInfo} />
+        <HeaderHomeOld userInfo={userInfo} hideSearch />
         <DonationTab />
         <DonationContent />
+        {/*
         <DonationPromo />
         <DonationOperator />
         <DonationSEO />
         <DonationLinks />
         <DonationSelectDrawer />
+        */}
       </div>
     )
   }
