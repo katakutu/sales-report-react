@@ -143,8 +143,25 @@ class DonationContent extends Component {
                     <span className='donasi-checkbox'></span>
                     Bayar instan
                   </label>
+
+                  <div className='trigger-tooltip u-inline-block'>
+                    <i className='icon-info-alt'></i>
+                    <div className='tooltip-container'>
+                      <div className='tooltip-box'>
+                        <p className='u-m0'>
+                          Bayar dengan 1-klik menggunakan Saldo Tokopedia
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
+
+                <button className='u-block u-center donasi__btn btn--orange'>Salurkan Donasi</button>
+                <Link className='u-mx-auto u-mt2 u-block u-center u-h3'>Ingin daftar sebagai lembaga donasi?</Link>
               </div>
+
+              <div className='u-clearfix'></div>
 
             </div>
 
