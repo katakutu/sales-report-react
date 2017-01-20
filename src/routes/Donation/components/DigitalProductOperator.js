@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory, Link } from 'react-router'
 
-import './DonationOperator.scss'
+import './DigitalProductOperator.scss'
 import AsLogo from '../assets/operator/as.png'
 import AxisLogo from '../assets/operator/axis.png'
 import BoltLogo from '../assets/operator/bolt.png'
@@ -21,7 +21,7 @@ import SteamWalletLogo from '../assets/operator/steam_wallet.png'
 import TriLogo from '../assets/operator/tri.png'
 import XlLogo from '../assets/operator/xl.png'
 
-class DonationOperator extends Component {
+class DigitalProductOperator extends Component {
   render() {
     return (
       <div className='u-center u-py1 wrapper dp-operator__container'>
@@ -177,4 +177,4 @@ class DonationOperator extends Component {
   }
 }
 
-export default DonationOperator
+export default DigitalProductOperator

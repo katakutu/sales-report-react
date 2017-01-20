@@ -1,7 +1,7 @@
 import React from 'react'
-import './DonationSEO.scss'
+import './DigitalProductSEO.scss'
 
-export const DonationSEO = () => (
+export const DigitalProductSEO = () => (
   <section className='dp-seo__container'>
     <h1 className='dp-seo__title'>TopDonasiBebas - Berdonasi Lebih Mudah dan Cepat</h1>
     <p className='dp-seo__content'>
@@ -17,4 +17,4 @@ export const DonationSEO = () => (
   </section>
 )
 
-export default DonationSEO
+export default DigitalProductSEO

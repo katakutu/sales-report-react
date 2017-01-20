@@ -6,12 +6,12 @@ import queries from '../../../queries'
 
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import DigitalProductTab from './DigitalProductTab'
-import DonationContent from './DonationContent'
-import DonationPromo from './DonationPromo'
-import DonationOperator from './DonationOperator'
-import DonationSEO from './DonationSEO'
-import DonationLinks from './DonationLinks'
-import DonationSelectDrawer from './DonationSelectDrawer'
+import DigitalProductContent from './DigitalProductContent'
+import DigitalProductPromo from './DigitalProductPromo'
+import DigitalProductOperator from './DigitalProductOperator'
+import DigitalProductSEO from './DigitalProductSEO'
+import DigitalProductLinks from './DigitalProductLinks'
+import DigitalProductSelectDrawer from './DigitalProductSelectDrawer'
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import lang from '../../../lib/utils/Lang'
 
@@ -40,12 +40,12 @@ class DonationView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} hideSearch />
         <DigitalProductTab />
-        <DonationContent />
-        <DonationPromo />
-        <DonationOperator />
-        <DonationSEO />
-        <DonationLinks />
-        <DonationSelectDrawer />
+        <DigitalProductContent />
+        <DigitalProductPromo />
+        <DigitalProductOperator />
+        <DigitalProductSEO />
+        <DigitalProductLinks />
+        <DigitalProductSelectDrawer />
       </div>
     )
   }

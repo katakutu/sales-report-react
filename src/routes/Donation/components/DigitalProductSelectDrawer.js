@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import classNames from 'classnames'
 import BodyClassName from 'react-body-classname'
+import './DigitalProductSelectDrawer.scss'
 
-class DonationSelectDrawer extends Component {
+class DigitalProductSelectDrawer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      open: false
+      open: true
     }
   }
 
@@ -18,7 +19,7 @@ class DonationSelectDrawer extends Component {
 
   render() {
     return(
-      <div className={classNames('drawer--select', {'active': this.state.open})}>
+      <div className={classNames('dp-drawer--select', {'active': this.state.open})}>
         <div className="drawer__content">
           <div className='drawer__header'>
             Nominal
@@ -145,4 +146,4 @@ class DonationSelectDrawer extends Component {
   }
 }
 
-export default DonationSelectDrawer
+export default DigitalProductSelectDrawer

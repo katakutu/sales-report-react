@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { browserHistory, Link } from 'react-router'
 
-import './DonationPromo.scss'
+import './DigitalProductPromo.scss'
 import CopyIcon from '../assets/icon-copy.png'
 import SurveyIcon from '../assets/icon-survey.png'
 
-class DonationPromo extends Component {
+class DigitalProductPromo extends Component {
 
   componentDidMount() {
     $(document).on('click', '.dp-promo__btn, .dp-promo__code', function(e) {
@@ -94,4 +94,4 @@ class DonationPromo extends Component {
   }
 }
 
-export default DonationPromo
+export default DigitalProductPromo

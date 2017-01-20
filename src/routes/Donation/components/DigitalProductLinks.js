@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
-import './DonationLinks.scss'
+import './DigitalProductLinks.scss'
 
-export const DonationLinks = () => (
+export const DigitalProductLinks = () => (
   <section className='dp-links__container'>
     <div className='dp-links__group'>
       <p className='dp-links__title u-mt0'>Pulsa Online</p>
@@ -77,4 +77,4 @@ export const DonationLinks = () => (
   </section>
 )
 
-export default DonationLinks
+export default DigitalProductLinks
