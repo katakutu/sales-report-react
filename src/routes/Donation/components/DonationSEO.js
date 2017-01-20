@@ -1,5 +1,4 @@
 import React from 'react'
-import './DonationView.scss'
 
 export const DonationSEO = () => (
   <section className='dp-seo__container'>

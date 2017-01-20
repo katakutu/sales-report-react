@@ -3,7 +3,6 @@ import { browserHistory, Link } from 'react-router'
 
 import CopyIcon from '../assets/icon-copy.png'
 import SurveyIcon from '../assets/icon-survey.png'
-import './DonationView.scss'
 
 class DonationPromo extends Component {
 

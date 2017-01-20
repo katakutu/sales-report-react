@@ -5,7 +5,7 @@ import { graphql } from 'react-apollo'
 import queries from '../../../queries'
 
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
-import DonationTab from './DonationTab'
+import DigitalProductTab from './DigitalProductTab'
 import DonationContent from './DonationContent'
 import DonationPromo from './DonationPromo'
 import DonationOperator from './DonationOperator'
@@ -13,7 +13,6 @@ import DonationSEO from './DonationSEO'
 import DonationLinks from './DonationLinks'
 import DonationSelectDrawer from './DonationSelectDrawer'
 import SplashScreen from '../../../components/Loading/SplashScreen'
-import './DonationView.scss'
 import lang from '../../../lib/utils/Lang'
 
 class DonationView extends Component {
@@ -40,7 +39,7 @@ class DonationView extends Component {
     return(
       <div>
         <HeaderHomeOld userInfo={userInfo} hideSearch />
-        <DonationTab />
+        <DigitalProductTab />
         <DonationContent />
         <DonationPromo />
         <DonationOperator />
