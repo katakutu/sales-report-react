@@ -35,6 +35,7 @@ class HeaderHome extends Component {
     searchModalIsOpen: React.PropTypes.bool,
     sidebar: React.PropTypes.object,
     tabIsAvailable: React.PropTypes.bool,
+    hideSearch: React.PropTypes.bool,
     lang: React.PropTypes.string,
     updateScrollPosition: React.PropTypes.func,
     location: React.PropTypes.object,
@@ -90,6 +91,9 @@ class HeaderHome extends Component {
     let heightOffset = 111
     if (this.props.tabIsAvailable) {
       heightOffset = 142
+    }
+    if (this.props.hideSearch) {
+      heightOffset = 55
     }
 
     return scrollPos < heightOffset
@@ -248,7 +252,7 @@ class HeaderHome extends Component {
               </Link>
             </div>
 
-            { this.state.showSearch &&
+            { !this.props.hideSearch && this.state.showSearch &&
               <SearchInput injectClassName={finalSICN}
                 injectPlaceholder={lang[this.props.lang]['Search Products or Stores']}
                 showModal={this.state.showSearchModal} />
@@ -282,6 +286,7 @@ class HeaderHome extends Component {
 
         { this.props.sidebar.isOpen && <BodyClassName className='u-body-overflow-no-scroll' /> }
         { this.props.tabIsAvailable && <BodyClassName className='is-tab-available' /> }
+        { this.props.hideSearch && <BodyClassName className='is-search-hidden' /> }
       </div>
     )
   }

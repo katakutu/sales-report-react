@@ -120,7 +120,7 @@ class DonationContent extends Component {
 
               <div className='form-group nominal u-mb2 u-block'>
                 <label className='u-mb1'>Nominal</label>
-                <div class='donasi-select'>
+                <div className='donasi-select'>
                   <select className='donasi-select form-control form-select'>
                     <option value='25000'>Rp 25.000</option>
                     <option value='50000'>Rp 50.000</option>
