@@ -48,7 +48,11 @@ class CoreLayout extends Component {
   }
 
   renderNotifications () {
-    return this.props.notifications.map((notification, index) => {
+    const notifications = this.props.notifications.length > 0
+      ? [this.props.notifications[0]]
+      : []
+
+    return notifications.map((notification, index) => {
       let removeNotif = (id) => {
         return (event) => {
           this.props.notificationDismiss(id)

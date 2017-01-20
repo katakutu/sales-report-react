@@ -32,9 +32,12 @@ class HomeView extends Component {
   componentDidMount () {
     const pulsaWidget = document.querySelector('#widget-dmw')
     const pulsaWidgetContent = (pulsaWidget && pulsaWidget.textContent) || ''
-    if (window.recharge_init_category && pulsaWidgetContent === '') {
-      window.recharge_init_category()
-    }
+    // so when we load too fast, the window is already there
+    setTimeout(() => {
+      if (window.recharge_init_category && pulsaWidgetContent === '') {
+        window.recharge_init_category()
+      }
+    }, 250)
   }
 
   handleTabChange (index) {

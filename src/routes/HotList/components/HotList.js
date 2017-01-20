@@ -106,7 +106,6 @@ const mapStateToProps = (state) => {
     lang: state['app'] ? state['app'].lang : state.lang
   }
 }
-
 export default graphql(HotListQuery, {
   options: ({ page }) => ({
     variables: { page },
