@@ -3,10 +3,10 @@ const {
     DEFAULT_WALLET_DATA
 } = require('./../../api-consumer/api/Wallet/TopedWalletAPI')
 const GlobalConfig = require('./../../GlobalConfig')
+const api = new TopedWalletAPI()
 
 function getWallet (context) {
   const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
-  const api = new TopedWalletAPI()
 
   return api.getWalletBalance(
         context.read('Origin') || GlobalConfig['Hostname'],
