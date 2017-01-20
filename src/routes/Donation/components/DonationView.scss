@@ -552,17 +552,17 @@ a {
     }
 }
 
-.promo__container {
+.dp-promo__container {
     padding: 30px 15px;
     background: $color-white-primary;
 
-    .promo--label {
+    .dp-promo--title {
         font-size: 13px;
         color: $color-black-disabled;
     }
 
-    .promo__box-card {
-        .box-card__link {
+    .dp-promo__content {
+        .dp-promo__box {
             display: block;
             background: $color-grey-4;
             padding: 10px 15px;
@@ -576,51 +576,56 @@ a {
                 margin-bottom: 0;
             }
 
-            .box-card--content {
+            .dp-promo__text {
                 line-height: 20px;
                 color: $color-black-secondary;
                 font-weight: 700;
-            }
 
-            .box-card--voucher {
-                font-size: 12px;
-                color: $color-black-disabled;
+                &--sub {
+                    font-size: 12px;
+                    color: $color-black-disabled;
 
-                .voucher-code {
-                    color: $color-green;
-                    cursor: pointer;
-                }
+                    .dp-promo__code {
+                        color: $color-green;
+                        cursor: pointer;
 
-                button {
-                    background: transparent;
-                    border: none;
-                    padding: 0 3px;
-                    appearance: button;
-                    cursor: pointer;
-
-                    img {
-                        max-width: 16px;
+                        &::selection {
+                            background: $color-green;
+                            color: $color-white-primary;
+                        }
                     }
-                }
 
-                .voucher-code-alert {
-                    display: block;
-                    background: #F8EEBA;
-                    color: $color-black-secondary;
+                    .dp-promo__btn {
+                        background: transparent;
+                        border: none;
+                        padding: 0 3px;
+                        appearance: button;
+                        cursor: pointer;
+
+                        img {
+                            max-width: 16px;
+                        }
+                    }
+
+                    .dp-promo__alert {
+                        display: block;
+                        background: #F8EEBA;
+                        color: $color-black-secondary;
+                    }
                 }
             }
         }
     }
 }
 
-.survey__container {
+.dp-survey__container {
     font-size: 13px;
     color: $color-black-disabled;
     border: 1px solid #EDEDED;
     background: #FBFBFB;
     box-shadow: none;
 
-    .survey--link {
+    .dp-survey__link {
         color: $color-green;
 
         &:hover {
@@ -629,7 +634,7 @@ a {
     }
 }
 
-.operator__container {
+.dp-operator__container {
     box-sizing: border-box;
     max-width: 960px;
     background: $color-white-primary;
@@ -639,6 +644,11 @@ a {
         margin: 0 5px;
         border: 1px solid #DDD;
 
+        @media screen and (max-width: 500px) {
+            margin-bottom: 15px;
+            width: 13%;
+        }
+
         img {
             width: 100%;
             vertical-align: middle;
@@ -647,18 +657,11 @@ a {
     }
 }
 
-@media (max-width: 500px) {
-    .operator__container ul li {
-        margin-bottom: 15px;
-        width: 13%;
-    }
-}
-
-.seo {
+.dp-seo__container {
     background: $color-white-primary;
     padding: 15px;
 
-    .seo__title {
+    .dp-seo__title {
         color: $color-black-disabled;
         font-size: 16px;
         font-weight: normal;
@@ -673,34 +676,35 @@ a {
         }
     }
 
-    .seo__content {
+    .dp-seo__content {
         font-size: 13px;
         line-height: 20px;
     }
 }
 
-.links {
+.dp-links__container {
     background: $color-white-primary;
     padding: 15px;
 
-    .links__group {
+    .dp-links__group {
         margin-bottom: 30px;
     }
 
-    .links__title {
+    .dp-links__title {
         font-size: 13px;
         font-weight: 600;
 
         a {
+            color: inherit;
             text-decoration: underline;
         }
     }
 
-    .links__list {
+    .dp-links__list {
         text-align: justify;
     }
 
-    .links__a {
+    .dp-links__a {
         color: $color-green;
         font-size: 13px;
         line-height: 20px;

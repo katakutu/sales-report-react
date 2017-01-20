@@ -24,7 +24,7 @@ import XlLogo from '../assets/operator/xl.png'
 class DonationOperator extends Component {
   render() {
     return (
-      <div className='u-center u-py1 wrapper operator__container'>
+      <div className='u-center u-py1 wrapper dp-operator__container'>
         <ul className='u-list-style-none u-mb0 u-pl0'>
 
           <li>
