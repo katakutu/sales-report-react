@@ -9,14 +9,12 @@ import queries from '../../../queries'
 import lang from '../../../lib/utils/Lang'
 
 import { graphql } from 'react-apollo'
-import { updateScrollPosition } from '../module'
 
 class WishlistView extends Component {
   static propTypes = {
     data: React.PropTypes.object,
     lang: React.PropTypes.string,
     totalWishlist: React.PropTypes.number,
-    updateScrollPosition: React.PropTypes.func,
     wishlists: React.PropTypes.arrayOf(React.PropTypes.object)
   }
 
@@ -61,13 +59,8 @@ class WishlistView extends Component {
 
   viewMore (event) {
     event.preventDefault()
-    const sp = (window.pageYOffset !== undefined)
-      ? window.pageYOffset
-      : (document.documentElement || document.body.parentNode || document.body).scrollTop
 
     this.setState({ page: this.state.page + 1 }, () => {
-      this.props.updateScrollPosition(sp)
-
       browserHistory.push({
         pathname: '/wishlist',
         query: { page: this.state.page }
@@ -142,8 +135,7 @@ const mapStateToProps = (state) => {
     wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists
   }
 }
-const mapDispatchToProps = { updateScrollPosition }
 
 export default graphql(queries.UserDataQuery, {
   options: { returnPartialData: true }
-})(connect(mapStateToProps, mapDispatchToProps)(WishlistView))
+})(connect(mapStateToProps, undefined)(WishlistView))

@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import deepEqual from 'deep-equal'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
-import Scroll from 'react-scroll'
 
 import { HOSTNAME } from './../../../constants'
 import queries from './../../../queries'
@@ -32,7 +31,6 @@ class WishList extends Component {
     page: PropTypes.number,
     query: PropTypes.string,
     replaceWishlists: PropTypes.func,
-    scrollPosition: React.PropTypes.number,
     shouldRefetch: PropTypes.bool,
     updateTotalWishlist: PropTypes.func,
     userID: PropTypes.number,
@@ -167,12 +165,6 @@ class WishList extends Component {
   render () {
     const wishlists = this.props.wishlists
 
-    Scroll.animateScroll.scrollTo(this.props.scrollPosition, {
-      duration: 0,
-      delay: 0,
-      smooth: false
-    })
-
     return (
       <div className='wishlist-container u-clearfix'>
         { wishlists.length === 0 && !this.props.data.loading && <WishlistEmpty /> }
@@ -194,7 +186,6 @@ const mapDispatchToProps = { addWishlist, clearWishlists, replaceWishlists, upda
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
-    scrollPosition: state['wishlist'] ? state['wishlist'].scrollPosition : state.scrollPosition,
     wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists
   }
 }
