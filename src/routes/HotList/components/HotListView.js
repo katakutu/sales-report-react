@@ -10,7 +10,6 @@ import SplashScreen from '../../../components/Loading/SplashScreen'
 import LoadMore from '../../../components/LoadMore'
 import './HotListView.scss'
 import lang from '../../../lib/utils/Lang'
-import TopAds from '../../../components/TopAds'
 
 class HotListView extends Component {
   static propTypes = {
@@ -59,11 +58,6 @@ class HotListView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='hotlist' />
         <div className='u-clearfix hotlist hotlist--single-page u-mt2'>
-          <div className='hotlist__item'>
-            <div className='hotlist__wrapper'>
-              <TopAds />
-            </div>
-          </div>
           <HotList page={this.state.page} />
         </div>
         <LoadMore onClick={this.viewMore}>
