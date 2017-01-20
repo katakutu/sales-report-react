@@ -32,9 +32,17 @@ class WishlistView extends Component {
   constructor (props) {
     super(props)
 
+    this.resetSearch = this.resetSearch.bind(this)
     this.searchWishlist = this.searchWishlist.bind(this)
     this.updateFinalQuery = this.updateFinalQuery.bind(this)
     this.viewMore = this.viewMore.bind(this)
+  }
+
+  resetSearch () {
+    this.setState({ finalQuery: '', query: '' })
+    browserHistory.push({
+      pathname: '/wishlist'
+    })
   }
 
   searchWishlist (event) {
@@ -111,8 +119,12 @@ class WishlistView extends Component {
 
           {
             this.state.finalQuery !== '' &&
-              wlCount > 0 &&
+            [(<div className='u-col u-col-6'>
               <p className='wishlist__search-result'>{ wlCount } {lang[this.props.lang]['Hasil']}</p>
+            </div>),
+            (<div className='u-col u-col-6' onClick={this.resetSearch}>
+              <span className='wishlist__reset-search'>Reset</span>
+            </div>)]
           }
 
           <WishList

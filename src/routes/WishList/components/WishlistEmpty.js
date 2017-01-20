@@ -21,7 +21,6 @@ class WishlistEmpty extends Component {
           className='u-block u-mx-auto wishlist__empty-img'
           alt='Tidak ada wishlist' />
         <div className='wishlist__empty'>
-          {/* ganti tulisan dibawah ini jadi "Wishlist anda masih kosong" */}
           {lang[this.props.lang]['Empty wishlist']}
         </div>
         <div className='wishlist__btn-holder'>
