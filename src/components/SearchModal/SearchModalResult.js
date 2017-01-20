@@ -45,11 +45,6 @@ class SearchModalResult extends Component {
     })
   }
 
-  _renderEmptyResult (keyword) {
-    GTM.pushEvent('noSearchResult', 'No Search Result', 'No Result', keyword)
-    return null
-  }
-
   _itemType (filter) {
     let result = 'Search Autocomplete'
     switch (filter) {
@@ -176,7 +171,7 @@ class SearchModalResult extends Component {
     const resultData = filter === '' ? finalData : finalData.filter(filterFunc)
 
     return resultData.length <= 0
-      ? this._renderEmptyResult(this.props.query)
+      ? null
       : resultData.map((result, index) => {
         const key = `search-result-${filter}-${index}`
 
@@ -213,6 +208,11 @@ class SearchModalResult extends Component {
   }
 
   render () {
+    const data = this.props.data.search || []
+    if (data.length === 0) {
+      GTM.pushEvent('noSearchResult', 'No Search Result', 'No Result', this.props.query)
+    }
+
     return (
       <div className='clearfix'>
         { this.props.query === '' && this._renderResultList(this.props.data.search, 'recent_search', true) }
