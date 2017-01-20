@@ -61,7 +61,7 @@ class DonationTab extends Component {
 
   render() {
     return(
-      <nav className='tab u-clearfix'>
+      <nav className='digital__tab u-clearfix'>
         <ul className='tab__container'>
           <li className={classNames('tab__item', {'u-hide': !this.isTabShown('pulsa')})} onClick={this.handleTabChange.bind(this, 'pulsa')}>
             <Link className={classNames('tab__url', {'active': this.state.activeTab === 'pulsa' })}>
