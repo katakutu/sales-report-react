@@ -16,7 +16,7 @@ import {
   updateTotalWishlist
 } from '../module'
 
-import WishlistSearchEmpty from './WishlistSearchEmpty'
+import WishlistSearchEmpty from './WishListSearchEmpty'
 import WishlistEmpty from './WishlistEmpty'
 import WishlistLove from './WishlistLove'
 import WishlistUnloved from './WishlistUnloved'
