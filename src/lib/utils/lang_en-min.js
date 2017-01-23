@@ -92,7 +92,9 @@ const lang = {
     'Perawatan Bayi': 'Baby Care',
     'Pascabayar': 'Postpaid',
     'Hasil': 'Result',
-    'Delivery Confirm': 'Receive Confirmation'
+    'Delivery Confirm': 'Receive Confirmation',
+    'Search for Products': 'Search for Products',
+    'Out of Stock': 'Out of Stock'
 }
 
 module.exports = lang
