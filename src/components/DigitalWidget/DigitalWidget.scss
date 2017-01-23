@@ -1,0 +1,89 @@
+@import 'base';
+
+$height-header: 35px;
+
+.digital-product-widget {
+    margin: 0 auto;
+    padding: 17px 7px;
+    max-width: 430px;
+}
+
+.dpw-grid-1-4 {
+    width: 25%;
+}
+
+.dpw-grid-1-5 {
+    width: 20%;
+}
+
+.dpw-container {
+    background: $color-white-primary;
+    box-shadow: $box-shadow-normal;
+}
+
+.dpw-header {
+    padding: 0 33px 0 0;
+    height: $height-header;
+    position: relative;
+    border-bottom: 1px solid $color-border-dark;
+}
+
+.dpw-tab {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: block;
+    list-style: none;
+}
+
+.dpw-tab__item {
+    float: left;
+    width: 25%;
+    display: block;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+
+    &.active {
+        border-bottom: 2px solid $color-green;
+    }
+}
+
+.dpw-tab__link {
+    font-size: 14px;
+    font-weight: 500;
+    color: $color-black-secondary;
+    vertical-align: middle;
+    display: inline-block;
+
+    .active & {
+        color: $color-green;
+    }
+}
+
+.dpw-tab__normalizer {
+    display: inline-block;
+    vertical-align: middle;
+    height: $height-header - 2px;
+}
+
+.dpw-others__btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 33px;
+    height: $height-header - 1px;
+    background-color: $color-white-primary;
+    border-left: 1px solid $color-border-dark;
+}
+
+.dpw-others__icon {
+    background: url('./assets/others.png') transparent center center no-repeat;
+    width: 33px;
+    height: $height-header - 1px;
+    display: block;
+    background-size: 7px 18px;
+}
+
+.dpw-content {
+    padding: 11px;
+}

@@ -9,6 +9,7 @@ import Ticker from '../../../components/Ticker'
 import MoreInfo from '../../../components/MoreInfo'
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import Toppicks from '../../../components/Toppicks'
+import DigitalWidget from '../../../components/DigitalWidget'
 import RecommendationProduct from '../../../components/RecommendationProduct'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
@@ -82,7 +83,8 @@ class HomeView extends Component {
         <Ticker tickers={tickers} perTickDuration={5} />
         <Carousel images={slides} />
         <PromoSpacer />
-        <div id='widget-dmw' className='u-clearfix u-my2' /> { /* Pulsa widget container */ }
+        { /* <div id='widget-dmw' className='u-clearfix u-my2' /> Pulsa widget container */ }
+        <DigitalWidget />
         <CategoryList categories={categories} />
         { shouldShowToppicks && <Toppicks data={toppicks} /> }
         <RecommendationProduct data={hotlists} />
