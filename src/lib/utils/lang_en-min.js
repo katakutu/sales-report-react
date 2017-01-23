@@ -94,7 +94,8 @@ const lang = {
     'Hasil': 'Result',
     'Delivery Confirm': 'Receive Confirmation',
     'Search for Products': 'Search for Products',
-    'Out of Stock': 'Out of Stock'
+    'Out of Stock': 'Out of Stock',
+    'Clear': 'Clear'
 }
 
 module.exports = lang

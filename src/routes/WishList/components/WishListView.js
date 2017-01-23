@@ -129,7 +129,7 @@ class WishlistView extends Component {
                   <p className='wishlist__search-result'>{wlCount} {lang[this.props.lang]['Hasil']}</p>
                 </div>
                 <div className='u-col u-col-6 search-stats-detail' onClick={this.resetSearch}>
-                  <span className='wishlist__reset-search'>Reset</span>
+                  <span className='wishlist__reset-search'>{ lang[this.props.lang]['Clear'] }</span>
                 </div>
                 <div className='u-clearfix' />
               </div>

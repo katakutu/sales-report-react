@@ -94,7 +94,8 @@ const lang = {
     'Hasil': 'Hasil',
     'Delivery Confirm': 'Konfirmasi Penerimaan',
     'Search for Products': 'Mulai Cari Produk',
-    'Out of Stock': 'Stok Kosong'
+    'Out of Stock': 'Stok Kosong',
+    'Clear': 'Hapus'
 }
 
 module.exports = lang
