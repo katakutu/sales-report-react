@@ -98,8 +98,8 @@ class WishList extends Component {
           </a>
         </div>
       ) : (
-        <div className='wishlist__buy-disabled'>
-          <a href={buyLink} className='wishlist__button-buy'>
+        <div className='wishlist__buy'>
+          <a href={buyLink} className='wishlist__button-no-stock'>
             { lang[this.props.lang]['Out of Stock'] }
           </a>
         </div>
