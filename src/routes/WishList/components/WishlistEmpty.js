@@ -50,7 +50,7 @@ class WishlistEmpty extends Component {
           yang anda keluarkan.`
         }
       ],
-      link: 'https://m.tokopedia.com/iklan?campaign=topads&amp;source=fav_product&amp;medium=mobile',
+      link: 'https://m.tokopedia.com/iklan?campaign=topads&amp;source=wishlist&amp;medium=mobile',
       linkText: 'Baca selengkapnya'
     }
   }

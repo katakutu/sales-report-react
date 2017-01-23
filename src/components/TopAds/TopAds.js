@@ -4,6 +4,7 @@ import { graphql } from 'react-apollo'
 
 import queries from '../../queries'
 import './TopAds.scss'
+import iconInfo from './assets/icon-info.png'
 import TopAdsProduct from './TopAdsProduct'
 import Modal from '../Modal/Modal'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -48,9 +49,9 @@ class TopAds extends Component {
       <div>
         <div className='u-clearfix'>
           <div className='u-col u-col-12 topads__title__contents'>
-            <p>Promoted</p>
             <a onClick={() => this.props.eventModal(true)}>
-              <img src='https://ecs1.tokopedia.net/img/icon-information.png' alt='topads information' />
+              Promoted
+              <img src={iconInfo} alt='topads information' />
             </a>
           </div>
           { topads }

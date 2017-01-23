@@ -1,5 +1,6 @@
 const {
   GraphQLID,
+  GraphQLList,
   GraphQLBoolean,
   GraphQLNonNull,
   GraphQLObjectType,
@@ -8,6 +9,7 @@ const {
 
 const { GraphQLURL } = require('graphql-custom-types')
 const TopAdsImageType = require('./top-ads-images')
+const TopAdsLabelType = require('./top-ads-labels')
 
 const TopAdsProductType = new GraphQLObjectType({
   name: 'TopAdslistProduct',
@@ -24,7 +26,8 @@ const TopAdsProductType = new GraphQLObjectType({
     product_wholesale: { type: new GraphQLNonNull(GraphQLBoolean) },
     free_return: { type: new GraphQLNonNull(GraphQLURL) },
     product_cashback: { type: new GraphQLNonNull(GraphQLBoolean) },
-    product_cashback_rate: { type: new GraphQLNonNull(GraphQLString) }
+    product_cashback_rate: { type: new GraphQLNonNull(GraphQLString) },
+    labels:  { type: new GraphQLList(TopAdsLabelType) }
   }
 })
 

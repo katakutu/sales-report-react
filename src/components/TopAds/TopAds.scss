@@ -28,21 +28,25 @@
 .topads__title__contents {
     background-color: $color-white-primary;
     height: auto;
-    p {
-      margin: 5px 0;
-      font-size: 12px;
-      line-height: 16px;
-      color: rgba(0,0,0,.54);
-      padding:0 5px 0 10px;
-      display:inline-block;
-    }
+    padding: 5px 0;
     a {
-        display:inline-block;
-        padding-top: 4px;
+        margin: 0;
+        font-size: 12px;
         line-height: 16px;
+        color: rgba(0,0,0,.54);
+        padding:0 20px 0 10px;
+        display:inline-block;
+        line-height: 16px;
+        vertical-align: middle;
+        position: relative;
       img {
-        width: 11px;
-        height: 11px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-top: -7.5px;
+        width: 14px;
+        height: 14px;
+        display:inline-block;
       }
     }
 }

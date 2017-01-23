@@ -10,6 +10,7 @@ const {
 const { GraphQLURL } = require('graphql-custom-types')
 const TopAdsImageShopType = require('./top-ads-images-shop')
 const TopAdsShopProductType = require('./top-ads-shop-product')
+const TopAdsBadgesType = require('./top-ads-badges')
 
 const TopAdsShopType = new GraphQLObjectType({
   name: 'TopAdslistShop',
@@ -27,6 +28,7 @@ const TopAdsShopType = new GraphQLObjectType({
     shop_is_official: { type: GraphQLBoolean },
     owner_id: { type: GraphQLID },
     is_owner: { type: GraphQLBoolean },
+    badges: { type: new GraphQLList(TopAdsBadgesType) },
     uri: { type: new GraphQLNonNull(GraphQLURL) }
   }
 })

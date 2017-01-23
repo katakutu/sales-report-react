@@ -286,6 +286,10 @@ const TopAdsQueries = {
         free_return
         product_cashback
         product_cashback_rate
+        labels {
+          title
+          color
+        }
       }
       shop {
         id
@@ -308,6 +312,10 @@ const TopAdsQueries = {
         lucky_shop
         shop_is_official
         uri
+        badges {
+          title
+          image_url
+        }
       }
     }
     }
