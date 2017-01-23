@@ -1,6 +1,4 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
+import React, { Component, PropTypes } from 'react'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
 
@@ -9,18 +7,16 @@ import DigitalProductTab from './DigitalProductTab'
 import DigitalProductContent from './DigitalProductContent'
 import DigitalProductPromo from './DigitalProductPromo'
 import DigitalProductOperator from './DigitalProductOperator'
-import DigitalProductSEO from './DigitalProductSEO'
-import DigitalProductLinks from './DigitalProductLinks'
 import DigitalProductSelectDrawer from './DigitalProductSelectDrawer'
 import SplashScreen from '../../../components/Loading/SplashScreen'
-import lang from '../../../lib/utils/Lang'
 
 class DigitalView extends Component {
-  constructor(props) {
-    super(props);
+  static propTypes = {
+    data: PropTypes.object,
+    params: PropTypes.object
   }
 
-  render() {
+  render () {
     if (this.props.data.loading) {
       return (
         <SplashScreen />
@@ -35,28 +31,24 @@ class DigitalView extends Component {
       'shop': this.props.data.shop,
       'wallet': this.props.data.wallet
     })
+    const operatorList = this.props.data['recharge_operator'] ? this.props.data['recharge_operator'] : []
+    const productList = this.props.data['recharge_product'] ? this.props.data['recharge_product'] : []
+    const categoryList = this.props.data['recharge_category'] ? this.props.data['recharge_category'] : []
+    const bannerList = this.props.data['recharge_banner'] ? this.props.data['recharge_banner'] : []
 
-    return(
+    return (
       <div>
         <HeaderHomeOld userInfo={userInfo} hideSearch />
-        <DigitalProductTab />
-        <DigitalProductContent />
-        <DigitalProductPromo />
-        <DigitalProductOperator />
-        <DigitalProductSEO />
-        <DigitalProductLinks />
+        <DigitalProductTab categoryList={categoryList} />
+        <DigitalProductContent operatorList={operatorList} productList={productList} slug={this.props.params.slug} />
+        <DigitalProductPromo bannerList={bannerList} />
+        <DigitalProductOperator operatorList={operatorList} />
         <DigitalProductSelectDrawer />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    lang: state['app'] ? state['app'].lang : state.lang
-  }
-}
-
-export default graphql(queries.UserDataQuery, {
+export default graphql(queries.DigitalQuery, {
   options: { returnPartialData: true }
-})(connect(mapStateToProps, undefined)(DigitalView))
+})(DigitalView)

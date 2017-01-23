@@ -1,29 +1,30 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 import classNames from 'classnames'
 import BodyClassName from 'react-body-classname'
 import './DigitalProductSelectDrawer.scss'
 
 class DigitalProductSelectDrawer extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.state = {
-      open: true
+      open: false
     }
+
+    this.handleCloseButton = this.handleCloseButton.bind(this)
   }
 
-  handleCloseButton(e) {
-    this.setState({open: false});
+  handleCloseButton (e) {
+    this.setState({ open: false })
   }
 
-  render() {
-    return(
-      <div className={classNames('dp-drawer--select', {'active': this.state.open})}>
-        <div className="drawer__content">
+  render () {
+    return (
+      <div className={classNames('dp-drawer--select', { 'active': this.state.open })}>
+        <div className='drawer__content'>
           <div className='drawer__header'>
             Nominal
-            <span className='drawer__close' onClick={this.handleCloseButton.bind(this)}>×</span>
+            <span className='drawer__close' onClick={this.handleCloseButton}>×</span>
           </div>
           <div className='drawer__options'>
             <table className='drawer__table'>
@@ -39,8 +40,8 @@ class DigitalProductSelectDrawer extends Component {
                     </label>
                   </td>
                   <td className='table__radio'>
-                    <input name='donation-nominal' id='donation-25' type='radio' className='drawer__radio u-hide'/>
-                    <label htmlFor='donation-25' className='drawer__icon--radio'></label>
+                    <input name='donation-nominal' id='donation-25' type='radio' className='drawer__radio u-hide' />
+                    <label htmlFor='donation-25' className='drawer__icon--radio' />
                   </td>
                 </tr>
                 <tr>
@@ -55,8 +56,8 @@ class DigitalProductSelectDrawer extends Component {
                     </label>
                   </td>
                   <td className='table__radio'>
-                    <input name='donation-nominal' id='donation-50' type='radio' className='drawer__radio u-hide'/>
-                    <label htmlFor='donation-50' className='drawer__icon--radio'></label>
+                    <input name='donation-nominal' id='donation-50' type='radio' className='drawer__radio u-hide' />
+                    <label htmlFor='donation-50' className='drawer__icon--radio' />
                   </td>
                 </tr>
                 <tr>
@@ -70,8 +71,8 @@ class DigitalProductSelectDrawer extends Component {
                     </label>
                   </td>
                   <td className='table__radio'>
-                    <input name='donation-nominal' id='donation-100' type='radio' className='drawer__radio u-hide'/>
-                    <label htmlFor='donation-100' className='drawer__icon--radio'></label>
+                    <input name='donation-nominal' id='donation-100' type='radio' className='drawer__radio u-hide' />
+                    <label htmlFor='donation-100' className='drawer__icon--radio' />
                   </td>
                 </tr>
                 <tr>
@@ -85,8 +86,8 @@ class DigitalProductSelectDrawer extends Component {
                     </label>
                   </td>
                   <td className='table__radio'>
-                    <input name='donation-nominal' id='donation-200' type='radio' className='drawer__radio u-hide'/>
-                    <label htmlFor='donation-200' className='drawer__icon--radio'></label>
+                    <input name='donation-nominal' id='donation-200' type='radio' className='drawer__radio u-hide' />
+                    <label htmlFor='donation-200' className='drawer__icon--radio' />
                   </td>
                 </tr>
                 <tr>
@@ -100,8 +101,8 @@ class DigitalProductSelectDrawer extends Component {
                     </label>
                   </td>
                   <td className='table__radio'>
-                    <input name='donation-nominal' id='donation-300' type='radio' className='drawer__radio u-hide'/>
-                    <label htmlFor='donation-300' className='drawer__icon--radio'></label>
+                    <input name='donation-nominal' id='donation-300' type='radio' className='drawer__radio u-hide' />
+                    <label htmlFor='donation-300' className='drawer__icon--radio' />
                   </td>
                 </tr>
                 <tr>
@@ -115,8 +116,8 @@ class DigitalProductSelectDrawer extends Component {
                     </label>
                   </td>
                   <td className='table__radio'>
-                    <input name='donation-nominal' id='donation-500' type='radio' className='drawer__radio u-hide'/>
-                    <label htmlFor='donation-500' className='drawer__icon--radio'></label>
+                    <input name='donation-nominal' id='donation-500' type='radio' className='drawer__radio u-hide' />
+                    <label htmlFor='donation-500' className='drawer__icon--radio' />
                   </td>
                 </tr>
                 <tr>
@@ -130,15 +131,15 @@ class DigitalProductSelectDrawer extends Component {
                     </label>
                   </td>
                   <td className='table__radio'>
-                    <input name='donation-nominal' id='donation-1000' type='radio' className='drawer__radio u-hide'/>
-                    <label htmlFor='donation-1000' className='drawer__icon--radio'></label>
+                    <input name='donation-nominal' id='donation-1000' type='radio' className='drawer__radio u-hide' />
+                    <label htmlFor='donation-1000' className='drawer__icon--radio' />
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <div className='drawer__overlay'></div>
+        <div className='drawer__overlay' />
 
         { this.state.open && <BodyClassName className='u-body-overflow-no-scroll' /> }
       </div>

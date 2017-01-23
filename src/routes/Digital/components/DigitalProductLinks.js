@@ -21,12 +21,24 @@ export const DigitalProductLinks = () => (
     <div className='dp-links__group'>
       <p className='dp-links__title u-mt0'><Link to='https://pulsa.tokopedia.com/paket-data/'>Paket Internet</Link></p>
       <p className='dp-links__list'>
-        <Link to='https://pulsa.tokopedia.com/paket-internet-telkomsel/' className='dp-links__a'>Paket Data Telkomsel</Link> <span> • </span>
-        <Link to='https://pulsa.tokopedia.com/paket-internet-indosat/' className='dp-links__a'>Paket Data Indosat</Link> <span> • </span>
-        <Link to='https://pulsa.tokopedia.com/paket-internet-tri/' className='dp-links__a'>Paket Data Tri</Link> <span> • </span>
-        <Link to='https://pulsa.tokopedia.com/paket-internet-xl/' className='dp-links__a'>Paket Data XL</Link> <span> • </span>
-        <Link to='https://pulsa.tokopedia.com/paket-internet-axis/' className='dp-links__a'>Paket Data Axis</Link> <span> • </span>
-        <Link to='https://pulsa.tokopedia.com/paket-internet-bolt/' className='dp-links__a'>Paket Data Bolt</Link>
+        <Link to='https://pulsa.tokopedia.com/paket-internet-telkomsel/' className='dp-links__a'>
+          Paket Data Telkomsel
+        </Link> <span> • </span>
+        <Link to='https://pulsa.tokopedia.com/paket-internet-indosat/' className='dp-links__a'>
+          Paket Data Indosat
+        </Link> <span> • </span>
+        <Link to='https://pulsa.tokopedia.com/paket-internet-tri/' className='dp-links__a'>
+          Paket Data Tri
+        </Link> <span> • </span>
+        <Link to='https://pulsa.tokopedia.com/paket-internet-xl/' className='dp-links__a'>
+          Paket Data XL
+        </Link> <span> • </span>
+        <Link to='https://pulsa.tokopedia.com/paket-internet-axis/' className='dp-links__a'>
+          Paket Data Axis
+        </Link> <span> • </span>
+        <Link to='https://pulsa.tokopedia.com/paket-internet-bolt/' className='dp-links__a'>
+          Paket Data Bolt
+        </Link>
       </p>
     </div>
     <div className='dp-links__group'>
@@ -42,21 +54,31 @@ export const DigitalProductLinks = () => (
     <div className='dp-links__group'>
       <p className='dp-links__title u-mt0'><Link to='https://pulsa.tokopedia.com/bpjs/'>BPJS</Link></p>
       <p className='dp-links__list'>
-        <Link to='https://pulsa.tokopedia.com/bpjs-kesehatan/' className='dp-links__a'>BPJS Kesehatan</Link> <span> • </span>
-        <Link to='https://pulsa.tokopedia.com/bpjs-ketenagakerjaan/' className='dp-links__a'>BPJS Ketenagakerjaan</Link>
+        <Link to='https://pulsa.tokopedia.com/bpjs-kesehatan/' className='dp-links__a'>
+          BPJS Kesehatan
+        </Link> <span> • </span>
+        <Link to='https://pulsa.tokopedia.com/bpjs-ketenagakerjaan/' className='dp-links__a'>
+          BPJS Ketenagakerjaan
+        </Link>
       </p>
     </div>
     <div className='dp-links__group'>
       <p className='dp-links__title u-mt0'>Listrik</p>
       <p className='dp-links__list'>
-        <Link to='https://pulsa.tokopedia.com/token-listrik/' className='dp-links__a'>Token Listrik</Link> <span> • </span>
-        <Link to='https://pulsa.tokopedia.com/tagihan-listrik/' className='dp-links__a'>Bayar Tagihan Listrik</Link>
+        <Link to='https://pulsa.tokopedia.com/token-listrik/' className='dp-links__a'>
+          Token Listrik
+        </Link> <span> • </span>
+        <Link to='https://pulsa.tokopedia.com/tagihan-listrik/' className='dp-links__a'>
+          Bayar Tagihan Listrik
+        </Link>
       </p>
     </div>
     <div className='dp-links__group'>
       <p className='dp-links__title u-mt0'><Link to='https://pulsa.tokopedia.com/angsuran/'>Angsuran</Link></p>
       <p className='dp-links__list'>
-        <Link to='https://pulsa.tokopedia.com/kredit-mobil/' className='dp-links__a'>Kredit Mobil</Link> <span> • </span>
+        <Link to='https://pulsa.tokopedia.com/kredit-mobil/' className='dp-links__a'>
+          Kredit Mobil
+        </Link> <span> • </span>
         <Link to='https://pulsa.tokopedia.com/kredit-motor/' className='dp-links__a'>Kredit Motor</Link>
       </p>
     </div>

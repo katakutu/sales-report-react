@@ -56,6 +56,9 @@ const PRODUCTION = {
   },
   Tome: {
     Hostname: 'http://tome.tokopedia.local'
+  },
+  Recharge: {
+    Hostname: 'https://pulsa-api.tokopedia.com'
   }
 }
 
@@ -114,6 +117,9 @@ const BETA = {
   },
   Tome: {
     Hostname: 'https://tome.tokopedia.com'
+  },
+  Recharge: {
+    Hostname: 'https://pulsa-api.tokopedia.com'
   }
 }
 
@@ -171,6 +177,9 @@ const TEST = {
   },
   Tome: {
     Hostname: 'https://tome-staging.tokopedia.com'
+  },
+  Recharge: {
+    Hostname: 'https://pulsa-api-staging.tokopedia.com'
   }
 }
 
@@ -229,6 +238,9 @@ const DEVELOPMENT = {
   },
   Tome: {
     Hostname: 'https://tome-staging.tokopedia.com'
+  },
+  Recharge: {
+    Hostname: 'https://pulsa-api.tokopedia.com'
   }
 }
 

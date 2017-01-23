@@ -12,6 +12,10 @@ const toppicks = require('./toppicks')
 const user = require('./user')
 const wallet = require('./wallet')
 const wishlist = require('./wishlist')
+const rechargeOperator = require('./recharge/operator')
+const rechargeProduct = require('./recharge/product')
+const rechargeCategory = require('./recharge/category')
+const rechargeBanner = require('./recharge/banner')
 
 let queries = {}
 
@@ -30,5 +34,9 @@ queries = Object.assign({}, queries, toppicks)
 queries = Object.assign({}, queries, user)
 queries = Object.assign({}, queries, wallet)
 queries = Object.assign({}, queries, wishlist)
+queries = Object.assign({}, queries, rechargeOperator)
+queries = Object.assign({}, queries, rechargeProduct)
+queries = Object.assign({}, queries, rechargeCategory)
+queries = Object.assign({}, queries, rechargeBanner)
 
 module.exports = queries
