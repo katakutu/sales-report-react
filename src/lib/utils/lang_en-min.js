@@ -97,7 +97,7 @@ const lang = {
     'Out of Stock': 'Out of Stock',
     'Clear': 'Clear',
     'Wishlist Search Empty': 'No matching product found',
-    'See All Wishlists': 'See All Wishlists'
+    'See All Wishlists': 'Show All Products'
 }
 
 module.exports = lang

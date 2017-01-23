@@ -97,7 +97,7 @@ const lang = {
     'Out of Stock': 'Stok Kosong',
     'Clear': 'Hapus',
     'Wishlist Search Empty': 'Produk tidak ditemukan di wishlist',
-    'See All Wishlists': 'Lihat Semua Wishlist'
+    'See All Wishlists': 'Lihat Semua Produk'
 }
 
 module.exports = lang
