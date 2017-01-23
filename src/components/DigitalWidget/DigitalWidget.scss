@@ -102,5 +102,48 @@ $width-others-btn: 45px;
 }
 
 .dpw-content {
-    padding: 11px;
+    padding: 20px 15px;
+}
+
+// Form element
+
+.dpw-form-group {
+    margin-bottom: 18px;
+
+    &::before,
+    &::after {
+        display: table;
+        content: " ";
+    }
+
+    &::after {
+        clear: both;
+    }
+}
+
+.dpw-label {
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 0;
+    color: $color-black-disabled;
+}
+
+.dpw-input,
+.dpw-select {
+    padding: 10px 0;
+    border: 0;
+    display: block;
+    width: 100%;
+    appearance: none;
+    border-radius: 0;
+    font-size: 14px;
+    background-color: transparent;
+    border-bottom: 1px solid $color-border-dark;
+    color: $color-black-primary;
+
+    &:focus,
+    &:active {
+        border-color: $color-green;
+    }
 }

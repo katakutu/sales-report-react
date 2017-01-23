@@ -15,21 +15,21 @@ class Button extends Component {
   }
 
   render () {
-    switch(this.props.buttonType) {
+    switch (this.props.buttonType) {
       case 'link':
         return (
           <a className={classNames('btn', this.props.className)} onClick={this.props.onClick}>
             {this.props.children}
           </a>
         )
-        break;
       default:
         return (
-          <button className={classNames('btn', this.props.className)} onClick={this.props.onClick} type={this.props.buttonType}>
+          <button className={classNames('btn', this.props.className)}
+            onClick={this.props.onClick}
+            type={this.props.buttonType}>
             {this.props.children}
           </button>
         )
-        break;
     }
   }
 }
