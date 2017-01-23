@@ -1,6 +1,7 @@
 /* global $ */
 import React, { Component } from 'react'
 import './DigitalWidget.scss'
+import Button from '../../components/Button'
 import classNames from 'classnames'
 
 class DigitalWidget extends Component {
@@ -9,32 +10,43 @@ class DigitalWidget extends Component {
       <div className='digital-product-widget u-clearfix'>
         <div className='dpw-container u-clearfix'>
           <div className='dpw-header u-clearfix'>
-            <ul className='dpw-tab'>
+            <ul className='dpw-tab u-clearfix'>
               <li className='dpw-tab__item dpw-grid-1-4 active'>
-                <a className='dpw-tab__link' href='#'>Pulsa</a>
-                <i className='dpw-tab__normalizer'></i>
+                <a href='#' className='dpw-tab__link'>
+                  <label className='dpw-tab__label' href='#'>Pulsa</label>
+                  <i className='dpw-tab__normalizer'></i>
+                </a>
+              </li>
+              <li className='dpw-tab__item dpw-grid-1-4 smaller'>
+                <a href='#' className='dpw-tab__link'>
+                  <label className='dpw-tab__label' href='#'>Paket Data</label>
+                  <i className='dpw-tab__normalizer'></i>
+                </a>
               </li>
               <li className='dpw-tab__item dpw-grid-1-4'>
-                <a className='dpw-tab__link' href='#'>Data</a>
-                <i className='dpw-tab__normalizer'></i>
+                <a href='#' className='dpw-tab__link'>
+                  <label className='dpw-tab__label' href='#'>Saldo</label>
+                  <i className='dpw-tab__normalizer'></i>
+                </a>
               </li>
-              <li className='dpw-tab__item dpw-grid-1-4'>
-                <a className='dpw-tab__link' href='#'>Saldo</a>
-                <i className='dpw-tab__normalizer'></i>
-              </li>
-              <li className='dpw-tab__item dpw-grid-1-4'>
-                <a className='dpw-tab__link' href='#'>Listrik</a>
-                <i className='dpw-tab__normalizer'></i>
+              <li className='dpw-tab__item dpw-grid-1-4 smaller'>
+                <a href='#' className='dpw-tab__link'>
+                  <label className='dpw-tab__label' href='#'>Listrik PLN</label>
+                  <i className='dpw-tab__normalizer'></i>
+                </a>
               </li>
             </ul>
-            <div className='dpw-others__btn'>
+            <button className='dpw-others__btn'>
               <i className='dpw-others__icon'></i>
-            </div>
+            </button>
           </div>
-          <div className='dpw-content'>
+          <div className='dpw-content u-clearfix'>
             <form action='#'>
               <div className='dpw-form-group'>
-                Content goes here
+                <Button className={classNames('btn--orange', 'btn--block')}
+                  buttonType='submit'>
+                  Beli
+                </Button>
               </div>
             </form>
           </div>
