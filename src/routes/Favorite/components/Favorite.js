@@ -52,15 +52,18 @@ class Favorite extends Component {
       <div className='outside__wrapper'>
         {
           this.props.data.promoted.map((item, index) => {
-            let img0 = item.products.length !== 0 ? <Img src={item.products[0].img_url} initialImage={loading} fallbackImage={loading} /> : ''
-            let img1 = item.products.length !== 0 ? <Img src={item.products[1].img_url} initialImage={loading} fallbackImage={loading} /> : ''
-            let img2 = item.products.length !== 0 ? <Img src={item.products[2].img_url} initialImage={loading} fallbackImage={loading} /> : ''
+            let img0 = item.products.length !== 0
+            ? <Img src={item.products[0].img_url} initialImage={loading} fallbackImage={loading} /> : ''
+            let img1 = item.products.length !== 0
+            ? <Img src={item.products[1].img_url} initialImage={loading} fallbackImage={loading} /> : ''
+            let img2 = item.products.length !== 0
+            ? <Img src={item.products[2].img_url} initialImage={loading} fallbackImage={loading} /> : ''
             let name = item.shop_name.length > 12 ? item.shop_name.substr(0, 12) + '...' : item.shop_name
             let GM = item.is_gold === 'true' ? <Img src={goldMerchant} /> : ''
             return (
-              <div className='favorite__item u-col u-col-6' 
-              onClick={this._gtmNotifyItemClicked(item)} 
-              key={`favorite-${index}`}>
+              <div className='favorite__item u-col u-col-6'
+                onClick={this._gtmNotifyItemClicked(item)}
+                key={`favorite-${index}`}>
                 <div className='favorite__wrapper'>
                   <a aria-hidden='true' tabIndex='-1' href={item.shop_url2} className='favorite__click u-block' />
                   <div className='favorite__header'>

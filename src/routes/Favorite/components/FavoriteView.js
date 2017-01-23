@@ -77,7 +77,7 @@ class FavoriteView extends Component {
 
           <h1 className='favorite__section'>Promote</h1>
           <Favorite />
-          <div className='u-clearfix'></div>
+          <div className='u-clearfix' />
           <h1 className='favorite__section'>Favorite Shops</h1>
           <FavoriteNew />
         </div>

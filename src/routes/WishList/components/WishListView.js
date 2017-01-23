@@ -20,7 +20,7 @@ class WishlistView extends Component {
     wishlists: React.PropTypes.arrayOf(React.PropTypes.object)
   }
 
-  static WISHLIST_PER_PAGE = 10
+  static WISHLIST_PER_PAGE = 20
 
   state = {
     finalQuery: '',
@@ -112,13 +112,19 @@ class WishlistView extends Component {
 
           {
             this.state.finalQuery !== '' &&
-              [(<div className='u-col u-col-6'>
-                <p className='wishlist__search-result'>{ wlCount } {lang[this.props.lang]['Hasil']}</p>
-              </div>),
-            (<div className='u-col u-col-6' onClick={this.resetSearch}>
-              <span className='wishlist__reset-search'>Reset</span>
-            </div>),
-            (<div className='u-clearfix' />)]
+              [
+              (
+                <div className='u-col u-col-6'>
+                  <p className='wishlist__search-result'>{wlCount} {lang[this.props.lang]['Hasil']}</p>
+                </div>
+              ),
+              (
+                <div className='u-col u-col-6' onClick={this.resetSearch}>
+                  <span className='wishlist__reset-search'>Reset</span>
+                </div>
+              ),
+              (<div className='u-clearfix' />)
+              ]
           }
 
           <WishList

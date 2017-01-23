@@ -9,7 +9,7 @@ import ModuleSpinner from './../../../components/Loading/ModuleSpinner'
 import GTM from '../../../lib/utils/GTM'
 import lang from '../../../lib/utils/Lang'
 import loading from '../../../static/media/images/lite-loading.png'
-import greyLove from '../../WishList/assets/love-grey.png'
+// import greyLove from '../../WishList/assets/love-grey.png'
 import location from '../../WishList/assets/location.png'
 import goldMerchant from '../../../components/HeaderHomeOld/assets/nav-gold-merchant-logo.png'
 
@@ -52,15 +52,18 @@ class Favorite extends Component {
       <div className='outside__wrapper'>
         {
           this.props.data.favorited.map((item, index) => {
-            let img0 = item.products.length !== 0 ? <Img src={item.products[0].img_url} initialImage={loading} fallbackImage={loading} /> : ''
-            let img1 = item.products.length !== 0 ? <Img src={item.products[1].img_url} initialImage={loading} fallbackImage={loading} /> : ''
-            let img2 = item.products.length !== 0 ? <Img src={item.products[2].img_url} initialImage={loading} fallbackImage={loading} /> : ''
+            let img0 = item.products.length !== 0
+            ? <Img src={item.products[0].img_url} initialImage={loading} fallbackImage={loading} /> : ''
+            let img1 = item.products.length !== 0
+            ? <Img src={item.products[1].img_url} initialImage={loading} fallbackImage={loading} /> : ''
+            let img2 = item.products.length !== 0
+            ? <Img src={item.products[2].img_url} initialImage={loading} fallbackImage={loading} /> : ''
             let name = item.shop_name.length > 12 ? item.shop_name.substr(0, 12) + '...' : item.shop_name
             let GM = item.is_gold === 'true' ? <Img src={goldMerchant} /> : ''
             return (
-              <div className='favorite__item u-clearfix' 
-              onClick={this._gtmNotifyItemClicked(item)} 
-              key={`favorite-${index}`}>
+              <div className='favorite__item u-clearfix'
+                onClick={this._gtmNotifyItemClicked(item)}
+                key={`favorite-${index}`}>
                 <div className='favorite__wrapper new u-clearfix'>
                   <a aria-hidden='true' tabIndex='-1' href={item.shop_url2} className='favorite__click u-block' />
                   <div className='favorite__header'>
@@ -86,7 +89,7 @@ class Favorite extends Component {
                   <div className='favorite__footer u-clearfix u-mt1 u-col u-col-4'>
                     <div className='u-col u-col-12 u-truncate u-relative'>
                       <a href={item.shop_url2}>
-                        &#10004;&nbsp;Favorited
+                        &#10004;&nbsp;{ lang[this.props.lang]['Favorited btn'] }
                       </a>
                     </div>
                   </div>
