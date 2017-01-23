@@ -15,7 +15,7 @@ import DigitalProductSelectDrawer from './DigitalProductSelectDrawer'
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import lang from '../../../lib/utils/Lang'
 
-class DonationView extends Component {
+class DigitalView extends Component {
   constructor(props) {
     super(props);
   }
@@ -59,4 +59,4 @@ const mapStateToProps = (state) => {
 
 export default graphql(queries.UserDataQuery, {
   options: { returnPartialData: true }
-})(connect(mapStateToProps, undefined)(DonationView))
+})(connect(mapStateToProps, undefined)(DigitalView))
