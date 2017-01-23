@@ -91,6 +91,20 @@ class WishList extends Component {
       const labels = wishlist['labels'] || []
       const badges = wishlist['badges'] || []
 
+      const actionButton = wishlist['available'] ? (
+        <div className='wishlist__buy'>
+          <a href={buyLink} className='wishlist__button-buy'>
+            { lang[this.props.lang]['Buy'] }
+          </a>
+        </div>
+      ) : (
+        <div className='wishlist__buy'>
+          <a href={buyLink} className='wishlist__button-no-stock'>
+            { lang[this.props.lang]['Out of Stock'] }
+          </a>
+        </div>
+      )
+
       return (
         <div className='u-col u-col-6 wishlist__contents' key={`wishlist-${parentIndex}-${index}`}>
           <div className='wishlist__content-box'>
@@ -156,11 +170,8 @@ class WishList extends Component {
                   })
                 }
               </span>
-            </div>
-            <div className='wishlist__buy'>
-              <a href={buyLink} className='wishlist__button-buy'>
-                {lang[this.props.lang]['Buy']}
-              </a>
+
+              { actionButton }
             </div>
           </div>
         </div>

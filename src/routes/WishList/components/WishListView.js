@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
@@ -20,7 +21,7 @@ class WishlistView extends Component {
     wishlists: React.PropTypes.arrayOf(React.PropTypes.object)
   }
 
-  static WISHLIST_PER_PAGE = 10
+  static WISHLIST_PER_PAGE = 20
 
   state = {
     finalQuery: '',
@@ -94,8 +95,18 @@ class WishlistView extends Component {
 
     const wlCount = this.props.wishlists.length
 
+    const searchTransitionOptions = {
+      transitionName: 'searchTransition',
+      transitionAppear: true,
+      transitionAppearTimeout: 500,
+      transitionEnter: true,
+      transitionEnterTimeout: 500,
+      transitionLeave: true,
+      transitionLeaveTimeout: 500
+    }
+
     return (
-      <div>
+      <div id='wishlist-view-container'>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='wishlist' />
         <div className='u-clearfix'>
           <div className='wishlist__searchbar-holder'>
@@ -110,16 +121,20 @@ class WishlistView extends Component {
               value={this.state.query} />
           </div>
 
-          {
-            this.state.finalQuery !== '' &&
-              [(<div className='u-col u-col-6'>
-                <p className='wishlist__search-result'>{ wlCount } {lang[this.props.lang]['Hasil']}</p>
-              </div>),
-            (<div className='u-col u-col-6' onClick={this.resetSearch}>
-              <span className='wishlist__reset-search'>Reset</span>
-            </div>),
-            (<div className='u-clearfix' />)]
-          }
+          <ReactCSSTransitionGroup {...searchTransitionOptions}>
+            {
+              this.state.finalQuery !== '' &&
+              <div id='search-stats'>
+                <div className='u-col u-col-6 search-stats-detail'>
+                  <p className='wishlist__search-result'>{wlCount} {lang[this.props.lang]['Hasil']}</p>
+                </div>
+                <div className='u-col u-col-6 search-stats-detail' onClick={this.resetSearch}>
+                  <span className='wishlist__reset-search'>{ lang[this.props.lang]['Clear'] }</span>
+                </div>
+                <div className='u-clearfix' />
+              </div>
+            }
+          </ReactCSSTransitionGroup>
 
           <WishList
             userID={parseInt(userInfo['id'])}

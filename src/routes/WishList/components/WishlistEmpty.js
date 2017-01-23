@@ -73,11 +73,11 @@ class WishlistEmpty extends Component {
           className='u-block u-mx-auto wishlist__empty-img'
           alt='Tidak ada wishlist' />
         <div className='wishlist__empty'>
-          {lang[this.props.lang]['Empty wishlist']}
+          { lang[this.props.lang]['Empty wishlist'] }
         </div>
         <a href={`${HOSTNAME}/toppicks`} className='wishlist__btn-holder'>
           <div className='wishlist__lets-search'>
-            Mulai cari produk
+            { lang[this.props.lang]['Search for Products'] }
           </div>
         </a>
         <TopAds
