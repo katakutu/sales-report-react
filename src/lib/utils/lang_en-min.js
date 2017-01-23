@@ -95,7 +95,9 @@ const lang = {
     'Delivery Confirm': 'Receive Confirmation',
     'Search for Products': 'Search for Products',
     'Out of Stock': 'Out of Stock',
-    'Clear': 'Clear'
+    'Clear': 'Clear',
+    'Wishlist Search Empty': 'No matching product found',
+    'See All Wishlists': 'See All Wishlists'
 }
 
 module.exports = lang

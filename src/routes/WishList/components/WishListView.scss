@@ -285,13 +285,14 @@
 }
 
 .wishlist__btn-holder {
-    padding: 0 23%;
+    padding: 25px 0;
+    text-align: center;
 }
 
 .wishlist__btn-see-all {
     background-color: $color-green;
     color: $color-white-primary;
-    padding: 10px 0;
+    padding: 10px 15px;
     border-radius: 3px;
     text-align: center;
 }

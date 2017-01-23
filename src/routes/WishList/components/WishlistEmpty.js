@@ -13,6 +13,7 @@ class WishlistEmpty extends Component {
   static propTypes = {
     lang: React.PropTypes.string
   }
+
   render () {
     return (
       <div className='wishlist-container u-clearfix'>
