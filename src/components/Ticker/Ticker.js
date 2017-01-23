@@ -25,6 +25,13 @@ class Ticker extends Component {
 
   componentDidMount () {
     this.poolTickerRefresh()
+
+    if (this.props.tickers.length > 0) {
+      this.setState({
+        nextContentIndex: 1,
+        content: this.props.tickers[0]['message']
+      })
+    }
   }
 
   componentWillReceiveProps (nextProps) {
