@@ -70,11 +70,7 @@ webpackConfig.plugins = [
   }),
   new SWPrecacheWebpackPlugin({
     cacheId: 'toped-lite-v1',
-    filename: 'service-worker.js',
-    runtimeCaching: [{
-      urlPattern: /^https:\/\/ecs7\.tokopedia\.net\/assets-tokopedia-lite/,
-      handler: 'fastest'
-    }]
+    filename: 'service-worker.js'
   })
 ]
 
