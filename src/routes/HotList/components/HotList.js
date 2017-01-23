@@ -25,6 +25,12 @@ class HotList extends Component {
     this._gtmNotifyItemClicked = this._gtmNotifyItemClicked.bind(this)
   }
 
+  componentDidMount() {
+    setTimeout(()=>{
+      window.prerenderReady = true;
+    },5000);
+  }
+
   componentWillReceiveProps (nextProps) {
     if (nextProps['data'] && !nextProps.data.loading) {
       // only add new urls that's not already there
