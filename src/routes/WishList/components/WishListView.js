@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import WishList from './WishList'
+
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import LoadMore from '../../../components/LoadMore'
 import queries from '../../../queries'
@@ -13,12 +14,13 @@ import { graphql } from 'react-apollo'
 class WishlistView extends Component {
   static propTypes = {
     data: React.PropTypes.object,
+    hasNextPage: React.PropTypes.bool,
     lang: React.PropTypes.string,
     totalWishlist: React.PropTypes.number,
     wishlists: React.PropTypes.arrayOf(React.PropTypes.object)
   }
 
-  static WISHLIST_PER_PAGE = 10
+  static WISHLIST_PER_PAGE = 20
 
   state = {
     finalQuery: '',
@@ -30,9 +32,17 @@ class WishlistView extends Component {
   constructor (props) {
     super(props)
 
+    this.resetSearch = this.resetSearch.bind(this)
     this.searchWishlist = this.searchWishlist.bind(this)
     this.updateFinalQuery = this.updateFinalQuery.bind(this)
     this.viewMore = this.viewMore.bind(this)
+  }
+
+  resetSearch () {
+    this.setState({ finalQuery: '', query: '' })
+    browserHistory.push({
+      pathname: '/wishlist'
+    })
   }
 
   searchWishlist (event) {
@@ -41,9 +51,16 @@ class WishlistView extends Component {
 
   updateFinalQuery (event) {
     if (event.key === 'Enter') {
+      const fq = event.target.value
+
       this.setState({
-        finalQuery: event.target.value,
-        refetch: true
+        finalQuery: fq,
+        refetch: true,
+        page: 1
+      })
+
+      browserHistory.push({
+        pathname: '/wishlist'
       })
     }
   }
@@ -87,13 +104,28 @@ class WishlistView extends Component {
               type='text'
               name='searchwishlist'
               className='wishlist__searchbar'
-              placeholder='Cari produk di wishlist'
+              placeholder={lang[this.props.lang]['Search in Wishlist']}
               onChange={this.searchWishlist}
               onKeyPress={this.updateFinalQuery}
               value={this.state.query} />
           </div>
 
-          { this.state.finalQuery !== '' && <p className='wishlist__search-result'>{ wlCount } Hasil</p> }
+          {
+            this.state.finalQuery !== '' &&
+              [
+              (
+                <div className='u-col u-col-6'>
+                  <p className='wishlist__search-result'>{wlCount} {lang[this.props.lang]['Hasil']}</p>
+                </div>
+              ),
+              (
+                <div className='u-col u-col-6' onClick={this.resetSearch}>
+                  <span className='wishlist__reset-search'>Reset</span>
+                </div>
+              ),
+              (<div className='u-clearfix' />)
+              ]
+          }
 
           <WishList
             userID={parseInt(userInfo['id'])}
@@ -104,11 +136,10 @@ class WishlistView extends Component {
         </div>
 
         {
-          ((wlCount > 0 && this.props.totalWishlist > wlCount && this.state.query === '') ||
-           (this.state.query !== '' && wlCount > WishlistView.WISHLIST_PER_PAGE)) &&
-           <LoadMore onClick={this.viewMore}>
-             {lang[this.props.lang]['View More']}
-           </LoadMore>
+          this.props.hasNextPage &&
+          <LoadMore onClick={this.viewMore}>
+            {lang[this.props.lang]['View More']}
+          </LoadMore>
         }
       </div>
     )
@@ -118,6 +149,7 @@ class WishlistView extends Component {
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
+    hasNextPage: state['wishlist'] ? state['wishlist'].hasNextPage : state.hasNextPage,
     totalWishlist: state['wishlist'] ? state['wishlist'].totalWishlist : state.totalWishlist,
     wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists
   }

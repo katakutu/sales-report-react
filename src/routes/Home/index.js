@@ -14,12 +14,6 @@ export default (store, ApolloExecutors) => {
             window.location = `/feed`
           }
 
-          if (nextState.location.pathname === '/' &&
-             !nextState.location.query.h &&
-             !isUserLoggedIn) {
-            replace(`/?h=3`)
-          }
-
           return callback()
         })
         .catch(err => callback(err))

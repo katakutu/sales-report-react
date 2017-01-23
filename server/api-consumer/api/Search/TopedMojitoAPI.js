@@ -158,17 +158,6 @@ class TopedMojitoAPI {
                          return false
                        })
   }
-
-  getRecentView (userID) {
-    const endpoint = MOJITO_SERVICES.RecentView.replace(':id', userID)
-    const header = {
-      'X-User-ID': userID,
-      'X-Device': 'lite'
-    }
-
-    return this.HMACApi.consumeJSON(URL.parse(endpoint), 'GET', header)
-                       .then(response => parseJSON(response['body']))
-  }
 }
 
 module.exports = TopedMojitoAPI

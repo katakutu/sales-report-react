@@ -33,7 +33,6 @@ module.exports = {
 
     req.session.oauthState = state
     req.session.beforeLogin = req.headers.referer
-
     res.redirect(oauthAuthorizationURI(state) + '&theme=mobile')
   },
   logout: function (req, res, next) {
@@ -94,13 +93,13 @@ module.exports = {
               res.cookie(GlobalConfig['Cookie']['SessionID'], sid, cookieOpt)
 
               let redir = req.session.beforeLogin || `${GlobalConfig['Hostname']}/?view=feed_preview`
-              if (req.session.beforeLogin) {
-                req.session.beforeLogin = undefined
-              }
-
               if (req.session.beforeLogin === `${GlobalConfig['Hostname']}/` ||
                   req.session.beforeLogin === `${GlobalConfig['Hostname']}/?h=3`) {
                 redir = `${GlobalConfig['Hostname']}/?view=feed_preview`
+              }
+
+              if (req.session.beforeLogin) {
+                req.session.beforeLogin = undefined
               }
 
               return res.redirect(redir)

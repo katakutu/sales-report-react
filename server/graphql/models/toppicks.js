@@ -1,10 +1,9 @@
 const TopedAceAPI = require('./../../api-consumer/api/Search/TopedAceAPI')
+const api = new TopedAceAPI()
 
 const EMPTY_TOP_PICKS = []
 
 function getTopPicks () {
-  const api = new TopedAceAPI()
-
   return api.topPicks().then(response => {
     if (!response['data'] || !response['data']['groups']) {
       const raw = JSON.stringify(response)

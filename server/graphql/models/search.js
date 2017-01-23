@@ -1,4 +1,5 @@
 const TopedAceAPI = require('./../../api-consumer/api/Search/TopedAceAPI')
+const api = new TopedAceAPI()
 
 const EMPTY_SEARCH_RESULT = [
   {
@@ -17,8 +18,6 @@ const EMPTY_SEARCH_RESULT = [
 ]
 
 function universalSearch (userSearchID, query) {
-  let api = new TopedAceAPI()
-
   return api.universeSearch(query, userSearchID)
     .then(result => {
       const data = result['data'] || EMPTY_SEARCH_RESULT

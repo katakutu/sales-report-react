@@ -22,9 +22,9 @@ class SearchModalResult extends Component {
     const matches = input.match(regex) || []
 
     const key = Math.random().toString(36).substring(4, 3)
-    const segments = matches.map((segment, i) => React.DOM.strong({ key: `${segment}-${key}-${i}` }, segment))
+    const segments = matches.map((segment, i) => React.DOM.span({ key: `${segment}-${key}-${i}` }, segment))
     const replacements = splits.map((replacement, index) => {
-      return React.DOM.span({ key: `${replacement}-${key}-${index}` }, replacement)
+      return React.DOM.strong({ key: `${replacement}-${key}-${index}` }, replacement)
     })
 
     const createResult = (arr1, arr2) => {
@@ -43,11 +43,6 @@ class SearchModalResult extends Component {
     return string.replace(/\w\S*/g, txt => {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
     })
-  }
-
-  _renderEmptyResult (keyword) {
-    GTM.pushEvent('noSearchResult', 'No Search Result', 'No Result', keyword)
-    return null
   }
 
   _itemType (filter) {
@@ -176,7 +171,7 @@ class SearchModalResult extends Component {
     const resultData = filter === '' ? finalData : finalData.filter(filterFunc)
 
     return resultData.length <= 0
-      ? this._renderEmptyResult(this.props.query)
+      ? null
       : resultData.map((result, index) => {
         const key = `search-result-${filter}-${index}`
 
@@ -213,6 +208,11 @@ class SearchModalResult extends Component {
   }
 
   render () {
+    const data = this.props.data.search || []
+    if (data.length === 0) {
+      GTM.pushEvent('noSearchResult', 'No Search Result', 'No Result', this.props.query)
+    }
+
     return (
       <div className='clearfix'>
         { this.props.query === '' && this._renderResultList(this.props.data.search, 'recent_search', true) }

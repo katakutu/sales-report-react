@@ -12,7 +12,6 @@ import Toppicks from '../../../components/Toppicks'
 import RecommendationProduct from '../../../components/RecommendationProduct'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
-import GTM from '../../../lib/utils/GTM'
 
 class HomeView extends Component {
   static propTypes = {
@@ -32,9 +31,14 @@ class HomeView extends Component {
   componentDidMount () {
     const pulsaWidget = document.querySelector('#widget-dmw')
     const pulsaWidgetContent = (pulsaWidget && pulsaWidget.textContent) || ''
+
     if (window.recharge_init_category && pulsaWidgetContent === '') {
       window.recharge_init_category()
     }
+
+    // for GTM to consume
+    const event = new Event('HomePulsaWidgetReady')
+    document.dispatchEvent(event)
   }
 
   handleTabChange (index) {
@@ -67,15 +71,6 @@ class HomeView extends Component {
       'shop': this.props.data.shop,
       'wallet': this.props.data.wallet
     })
-
-    if (this.props.data.user && this.props.data.user.id) {
-      GTM.pushObject({
-        'contactInfo': {
-          'userId': this.props.data.user.id,
-          'userEmail': this.props.data.user.email
-        }
-      })
-    }
 
     const shouldShowToppicks = toppicks.length > 0 && toppicks[0]['toppicks'].length > 0
     const shouldShowOffStore = officialStores.length > 0

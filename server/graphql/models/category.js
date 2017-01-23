@@ -1,8 +1,7 @@
 const TopedMojitoAPI = require('./../../api-consumer/api/Search/TopedMojitoAPI')
+const api = new TopedMojitoAPI()
 
 function getMainPageCategories () {
-  const api = new TopedMojitoAPI()
-
   return api.getCategory()
     .then(response => {
       if (!response || !response['data']) {

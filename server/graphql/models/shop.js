@@ -3,6 +3,7 @@ const {
     DEFAULT_SHOP_DATA
 } = require('./../../api-consumer/api/Shop/TopedShopAPI')
 const common = require('./common')
+const api = new TopedShopAPI()
 
 function getShop (context) {
   const userID = common.getUserID(context)
@@ -12,8 +13,6 @@ function getShop (context) {
           if (uid === 0) {
             return Promise.resolve(DEFAULT_SHOP_DATA)
           }
-
-          const api = new TopedShopAPI()
 
           return api.getShop(uid)
         })

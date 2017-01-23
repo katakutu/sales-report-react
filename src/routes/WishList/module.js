@@ -7,6 +7,7 @@ export const CLEAR_WISHLISTS = 'CLEAR_WISHLISTS'
 export const DEACTIVATE_WISHLIST = 'DEACTIVATE_WISHLIST'
 export const ACTIVATE_WISHLIST = 'ACTIVATE_WISHLIST'
 export const UPDATE_TOTAL_WISHLIST = 'UPDATE_TOTAL_WISHLIST'
+export const UPDATE_NEXT_PAGE = 'UPDATE_NEXT_PAGE'
 
 // ------------------------------------
 // Actions
@@ -53,12 +54,20 @@ export function updateTotalWishlist (count) {
   }
 }
 
+export function updateHasNextPage (hasNextPage) {
+  return {
+    type: UPDATE_NEXT_PAGE,
+    payload: hasNextPage
+  }
+}
+
 export const actions = {
   activateWishlist,
   addWishlist,
   clearWishlists,
   deactivateWishlist,
   replaceWishlists,
+  updateHasNextPage,
   updateTotalWishlist
 }
 
@@ -104,6 +113,9 @@ const ACTION_HANDLERS = {
   },
   [UPDATE_TOTAL_WISHLIST]: (state, action) => {
     return Object.assign({}, state, { totalWishlist: action.payload })
+  },
+  [UPDATE_NEXT_PAGE]: (state, action) => {
+    return Object.assign({}, state, { hasNextPage: action.payload })
   }
 }
 
@@ -111,8 +123,9 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
-  wishlists: [],
-  totalWishlist: 0
+  hasNextPage: false,
+  totalWishlist: 0,
+  wishlists: []
 }
 export default function wishlistReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]

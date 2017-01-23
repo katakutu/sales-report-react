@@ -52,7 +52,7 @@ class CategoryList extends Component {
       return (
         <div className='category-list__holder u-clearfix' key={`cat-holder-${index}`}>
           <TextHeader textType={1}>
-            {category['name']}
+            {lang[this.props.lang][category['name']]}
           </TextHeader>
 
           {

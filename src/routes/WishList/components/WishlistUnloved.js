@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 
 import mutations from './../../../mutations'
+import lang from '../../../lib/utils/Lang'
 import { activateWishlist } from '../module'
 import { notificationDispatch } from './../../../store/app'
 
@@ -11,6 +12,7 @@ import './WishListView.scss'
 class WishlistUnloved extends Component {
   static propTypes = {
     activateWishlist: PropTypes.func,
+    lang: PropTypes.string,
     notificationDispatch: PropTypes.func,
     mutate: PropTypes.func.isRequired,
     productID: PropTypes.number,
@@ -34,20 +36,23 @@ class WishlistUnloved extends Component {
 
     this.props.mutate(variables).then(addSuccess => {
       if (addSuccess['data']['wishlist_add'] || false) {
+        const msg = lang[this.props.lang]['Add Wishlist Success']
+
         this.props.activateWishlist(this.props.productID)
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Wishlist',
-          text: `Barang ${this.props.productName} berhasil ditambahkan ke wishlist`,
+          text: msg.replace(':item', this.props.productName),
           timeout: 3000
         })
       } else {
+        const msg = lang[this.props.lang]['Add Wishlist Failed']
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Wishlist',
-          text: `Barang ${this.props.productName} gagal ditambahkan ke wishlist`,
+          text: msg.replace(':item', this.props.productName),
           timeout: 3000
         })
       }
@@ -63,8 +68,13 @@ class WishlistUnloved extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    lang: state['app'] ? state['app'].lang : state.lang
+  }
+}
 const WishlistUnlovedQL = graphql(mutations.Wishlist.addWishlist)(WishlistUnloved)
-const WishlistUnlovedQLR = connect(undefined, {
+const WishlistUnlovedQLR = connect(mapStateToProps, {
   activateWishlist, notificationDispatch
 })(WishlistUnlovedQL)
 
