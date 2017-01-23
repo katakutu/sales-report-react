@@ -25,10 +25,10 @@ class HotList extends Component {
     this._gtmNotifyItemClicked = this._gtmNotifyItemClicked.bind(this)
   }
 
-  componentDidMount() {
-    setTimeout(()=>{
-      window.prerenderReady = true;
-    },5000);
+  componentDidMount () {
+    setTimeout(() => {
+      window.prerenderReady = true
+    }, 5000)
   }
 
   componentWillReceiveProps (nextProps) {
