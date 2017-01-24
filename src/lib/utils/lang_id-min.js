@@ -78,7 +78,7 @@ const lang = {
     'Mulai dari': 'Mulai dari',
     'Kartu Kredit': 'Kartu Kredit',
     'Search in Wishlist': 'Cari produk di wishlist',
-    'Empty wishlist': 'Wishlist anda masih kosong',
+    'Empty wishlist': 'Wishlist Anda masih kosong',
     'Buy': 'Beli',
     'Add Wishlist Success': 'Anda baru menambahkan :item ke dalam wishlist.',
     'Add Wishlist Failed': ':item gagal ditambahkan ke wishlist',

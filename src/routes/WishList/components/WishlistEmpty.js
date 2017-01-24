@@ -21,7 +21,7 @@ class WishlistEmpty extends Component {
           initialImage={loading}
           fallbackImage={loading}
           className='u-block u-mx-auto wishlist__empty-img'
-          alt='Tidak ada wishlist' />
+          alt={lang[this.props.lang]['Empty wishlist']} />
         <div className='wishlist__empty'>
           { lang[this.props.lang]['Empty wishlist'] }
         </div>
