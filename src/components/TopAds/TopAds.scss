@@ -62,13 +62,13 @@
 }
 
 .topads__contents:nth-child(odd) {
-    border-right: 1px solid #EBEBEB;
+    border-left: 1px solid $color-white-primary;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
 }
 
 .topads__contents:nth-child(even) {
-    border-left: 1px solid $color-white-primary;
+    border-right: 1px solid #EBEBEB;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
 }
