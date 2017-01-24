@@ -9,6 +9,7 @@ import SplashScreen from '../../../components/Loading/SplashScreen'
 import LoadMore from '../../../components/LoadMore'
 import queries from '../../../queries'
 import lang from '../../../lib/utils/Lang'
+import { updateQuery } from '../module'
 
 import { graphql } from 'react-apollo'
 
@@ -17,14 +18,15 @@ class WishlistView extends Component {
     data: React.PropTypes.object,
     hasNextPage: React.PropTypes.bool,
     lang: React.PropTypes.string,
+    query: React.PropTypes.string,
     totalWishlist: React.PropTypes.number,
+    updateQuery: React.PropTypes.func,
     wishlists: React.PropTypes.arrayOf(React.PropTypes.object)
   }
 
   static WISHLIST_PER_PAGE = 20
 
   state = {
-    finalQuery: '',
     page: 1,
     query: '',
     refetch: false
@@ -40,7 +42,8 @@ class WishlistView extends Component {
   }
 
   resetSearch () {
-    this.setState({ finalQuery: '', query: '' })
+    this.setState({ query: '' })
+    this.props.updateQuery('')
     browserHistory.push({
       pathname: '/wishlist'
     })
@@ -54,8 +57,8 @@ class WishlistView extends Component {
     if (event.key === 'Enter') {
       const fq = event.target.value
 
+      this.props.updateQuery(fq)
       this.setState({
-        finalQuery: fq,
         refetch: true,
         page: 1
       })
@@ -75,6 +78,12 @@ class WishlistView extends Component {
         query: { page: this.state.page }
       })
     })
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.query === '') {
+      this.setState({ query: '' })
+    }
   }
 
   render () {
@@ -123,13 +132,15 @@ class WishlistView extends Component {
 
           <ReactCSSTransitionGroup {...searchTransitionOptions}>
             {
-              this.state.finalQuery !== '' &&
+              this.props.query !== '' &&
               <div id='search-stats'>
                 <div className='u-col u-col-6 search-stats-detail'>
                   <p className='wishlist__search-result'>{wlCount} {lang[this.props.lang]['Hasil']}</p>
                 </div>
-                <div className='u-col u-col-6 search-stats-detail' onClick={this.resetSearch}>
-                  <span className='wishlist__reset-search'>{ lang[this.props.lang]['Clear'] }</span>
+                <div className='u-col u-col-6 search-stats-detail'>
+                  <span className='wishlist__reset-search' onClick={this.resetSearch}>
+                    { lang[this.props.lang]['Clear'] }
+                  </span>
                 </div>
                 <div className='u-clearfix' />
               </div>
@@ -138,7 +149,7 @@ class WishlistView extends Component {
 
           <WishList
             userID={parseInt(userInfo['id'])}
-            query={this.state.finalQuery}
+            query={this.props.query}
             page={this.state.page}
             count={WishlistView.WISHLIST_PER_PAGE}
             shouldRefetch={this.state.refetch} />
@@ -155,15 +166,17 @@ class WishlistView extends Component {
   }
 }
 
+const mapDispatchToProps = { updateQuery }
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
     hasNextPage: state['wishlist'] ? state['wishlist'].hasNextPage : state.hasNextPage,
     totalWishlist: state['wishlist'] ? state['wishlist'].totalWishlist : state.totalWishlist,
-    wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists
+    wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists,
+    query: state['wishlist'] ? state['wishlist'].query : state.query
   }
 }
 
 export default graphql(queries.UserDataQuery, {
   options: { returnPartialData: true }
-})(connect(mapStateToProps, undefined)(WishlistView))
+})(connect(mapStateToProps, mapDispatchToProps)(WishlistView))

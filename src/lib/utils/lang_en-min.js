@@ -64,7 +64,7 @@ const lang = {
     'Ibu & Bayi': 'Mom & Baby',
     'Makanan & Minuman': 'Foods & Drinks',
     'Produk Lainnya': 'Others Product',
-    'View More': 'View More',
+    'View More': 'Load More',
     'Toko Saya': 'My Shop',
     'Mainan & Hobi': 'Toys & Hobby',
     'Fashion Pria': 'Men Fashion',
@@ -95,7 +95,9 @@ const lang = {
     'Delivery Confirm': 'Receive Confirmation',
     'Search for Products': 'Search for Products',
     'Out of Stock': 'Out of Stock',
-    'Clear': 'Clear'
+    'Clear': 'Clear',
+    'Wishlist Search Empty': 'No matching product found',
+    'See All Wishlists': 'Show All Products'
 }
 
 module.exports = lang

@@ -25,6 +25,13 @@ class Ticker extends Component {
 
   componentDidMount () {
     this.poolTickerRefresh()
+
+    if (this.props.tickers.length > 0) {
+      this.setState({
+        nextContentIndex: 1,
+        content: this.props.tickers[0]['message']
+      })
+    }
   }
 
   componentWillReceiveProps (nextProps) {
@@ -65,16 +72,13 @@ class Ticker extends Component {
   }
 
   render () {
-    let result = <div />
-    if (this.state.content !== '') {
-      result = (
-        <div className='ticker'>
-          <div className='ticker__container' dangerouslySetInnerHTML={{ __html: this.state.content }} />
-        </div>
-      )
-    }
+    const ts = this.state.content !== '' ? {} : { height: '0' }
 
-    return result
+    return (
+      <div className='ticker' style={ts}>
+        <div className='ticker__container' dangerouslySetInnerHTML={{ __html: this.state.content }} />
+      </div>
+    )
   }
 }
 

@@ -16,6 +16,7 @@ import {
   updateTotalWishlist
 } from '../module'
 
+import WishlistSearchEmpty from './WishListSearchEmpty'
 import WishlistEmpty from './WishlistEmpty'
 import WishlistLove from './WishlistLove'
 import WishlistUnloved from './WishlistUnloved'
@@ -182,10 +183,13 @@ class WishList extends Component {
 
   render () {
     const wishlists = this.props.wishlists
+    const isNoWishlist = wishlists.length === 0 && !this.props.data.loading && this.props.query === ''
+    const isEmptyResult = wishlists.length === 0 && !this.props.data.loading && this.props.query !== ''
 
     return (
       <div className='wishlist-container u-clearfix'>
-        { wishlists.length === 0 && !this.props.data.loading && <WishlistEmpty /> }
+        { isNoWishlist && <WishlistEmpty /> }
+        { isEmptyResult && <WishlistSearchEmpty /> }
         { wishlists.length > 0 && ArrayHelper.chunk(wishlists, 2).map((wls, index) => {
           const key = `wishlist-cont-${index}`
 

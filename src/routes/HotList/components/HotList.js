@@ -12,6 +12,7 @@ import loading from '../../../static/media/images/lite-loading.png'
 class HotList extends Component {
   static propTypes = {
     data: React.PropTypes.object,
+    location: React.PropTypes.object,
     lang: React.PropTypes.string
   }
 
@@ -48,6 +49,7 @@ class HotList extends Component {
   }
 
   render () {
+    let bot = this.props.location.query.bot
     return (
       <div>
         {
@@ -57,11 +59,15 @@ class HotList extends Component {
                 <div className='hotlist__wrapper'>
                   <a aria-hidden='true' tabIndex='-1' href={item.url} className='hotlist__click u-block' />
                   <div className='hotlist__image_holder'>
-                    <Img src={item.image_url}
-                      initialImage={loading}
-                      fallbackImage={loading}
-                      className='u-fit u-block u-mx-auto hotlist__image'
-                      alt={`${item.title} image`} />
+                    { bot ? (
+                      <img src={item.image_url} alt={`${item.title} image`} />
+                    ) : (
+                      <Img src={item.image_url}
+                        initialImage={loading}
+                        fallbackImage={loading}
+                        className='u-fit u-block u-mx-auto hotlist__image'
+                        alt={`${item.title} image`} />
+                    )}
                   </div>
                   <div className='hotlist__footer u-clearfix u-mt1'>
                     <div className='u-clearfix'>
