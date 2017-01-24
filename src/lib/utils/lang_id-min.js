@@ -78,7 +78,7 @@ const lang = {
     'Mulai dari': 'Mulai dari',
     'Kartu Kredit': 'Kartu Kredit',
     'Search in Wishlist': 'Cari produk di wishlist',
-    'Empty wishlist': 'Wishlist anda masih kosong',
+    'Empty wishlist': 'Wishlist Anda masih kosong',
     'Buy': 'Beli',
     'Add Wishlist Success': 'Anda baru menambahkan :item ke dalam wishlist.',
     'Add Wishlist Failed': ':item gagal ditambahkan ke wishlist',
@@ -95,7 +95,9 @@ const lang = {
     'Delivery Confirm': 'Konfirmasi Penerimaan',
     'Search for Products': 'Mulai Cari Produk',
     'Out of Stock': 'Stok Kosong',
-    'Clear': 'Hapus'
+    'Clear': 'Hapus',
+    'Wishlist Search Empty': 'Produk tidak ditemukan di wishlist',
+    'See All Wishlists': 'Lihat Semua Produk'
 }
 
 module.exports = lang

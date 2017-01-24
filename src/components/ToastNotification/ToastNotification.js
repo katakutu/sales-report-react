@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 import './ToastNotification.scss'
 
-const BOT_HEIGHT = 60 // bottom navigation height
+const BOT_HEIGHT = 0 // bottom navigation height
 
 class ToastNotification extends Component {
   static propTypes = {
@@ -56,7 +56,7 @@ class ToastNotification extends Component {
     const className = classnames('toast__container', this.props.className)
     const finalStyle = {
       animation: `notif ${this.props.timeout}ms`,
-      bottom: `${this.props.seqNo * BOT_HEIGHT + 5}px`,
+      bottom: `${this.props.seqNo * BOT_HEIGHT}px`,
       transition: `bottom ${this.props.timeout / 2}ms ease-in-out`
     }
 
