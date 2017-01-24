@@ -13,11 +13,11 @@ class TopAdsProduct extends Component {
     const badges = this.props.data['shop']['badges'] || []
     let stickerClass = 'icon-trumpet'
 
-    if (this.props.data['sticker_id'] === 1) {
+    if (parseInt(this.props.data['sticker_id']) === 1) {
       stickerClass = 'icon-fire'
-    } else if (this.props.data['sticker_id'] === 2) {
+    } else if (parseInt(this.props.data['sticker_id']) === 2) {
       stickerClass = 'icon-thumbsup'
-    } else if (this.props.data['sticker_id'] === 3) {
+    } else if (parseInt(this.props.data['sticker_id']) === 3) {
       stickerClass = 'icon-trumpet'
     }
 
