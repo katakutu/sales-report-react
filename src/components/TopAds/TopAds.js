@@ -38,7 +38,7 @@ class TopAds extends Component {
       const topadsdata = this.props.data.topads
       topadsdata.items.map((item, index) => {
         topadsdata.display === 'product' && topads.push(<TopAdsProduct key={`top-ads-item-${index}`} data={item} />)
-        topadsdata.display === 'shop' && topads.push(<TopAdsShop key={`top-ads-item-${index}`} data={item} />)
+        topadsdata.display === 'shop' && topads.push(<TopAdsShop key={`top-ads-shop-item-${index}`} data={item} />)
       })
     }
 

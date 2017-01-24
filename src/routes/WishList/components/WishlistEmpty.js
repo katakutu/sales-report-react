@@ -23,7 +23,7 @@ class WishlistEmpty extends Component {
   }
 
   state = {
-    ep:'product',
+    ep:'shop',
     src:'fav_product',
     item:2,
     page:1,
