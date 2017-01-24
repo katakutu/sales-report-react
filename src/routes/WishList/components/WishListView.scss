@@ -295,6 +295,8 @@
     padding: 10px 15px;
     border-radius: 3px;
     text-align: center;
+    width: 45%;
+    margin: 0 auto;
 }
 
 .wishlist__empty-img {
@@ -420,7 +422,6 @@
 
     .search-stats-detail {
         height: 36px;
-
         -webkit-transition: all 0.1s ease-in-out;
         -moz-transition: all 0.1s ease-in-out;
         transition: all 0.1s ease-in-out;
@@ -445,7 +446,6 @@
 
     .search-stats-detail {
         height: 0;
-
         -webkit-transition: all 0.1s ease-in-out;
         -moz-transition: all 0.1s ease-in-out;
         transition: all 0.1s ease-in-out;

@@ -1,5 +1,7 @@
 const TopedAceAPI = require('./../../api-consumer/api/Search/TopedAceAPI')
 const api = new TopedAceAPI()
+const GlobalConfig = require('../../GlobalConfig')
+const loading = GlobalConfig.CDN + 'media/images/lite-loading.png'
 
 const HOTLIST_ERROR = {
   curr_page: 0,
@@ -46,7 +48,8 @@ function getHotProductList (page, perPage) {
             data['img_uri_600'] ||
             data['img_square'] ||
             data['img_share'] ||
-            data['img_promo']
+            data['img_promo'] ||
+            loading
 
           return {
             title: data['title'],
