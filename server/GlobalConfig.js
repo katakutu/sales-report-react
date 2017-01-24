@@ -57,6 +57,9 @@ const PRODUCTION = {
   Tome: {
     Hostname: 'http://tome.tokopedia.local'
   },
+  Recharge: {
+    Hostname: 'https://pulsa-api.tokopedia.com'
+  },
   CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/',
   Fave: {
     Hostname: 'https://ta.tokopedia.com'
@@ -119,6 +122,9 @@ const BETA = {
   Tome: {
     Hostname: 'https://tome.tokopedia.com'
   },
+  Recharge: {
+    Hostname: 'https://pulsa-api.tokopedia.com'
+  },
   CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/beta/',
   Fave: {
     Hostname: 'https://ta-staging.tokopedia.com'
@@ -179,6 +185,9 @@ const TEST = {
   },
   Tome: {
     Hostname: 'https://tome-staging.tokopedia.com'
+  },
+  Recharge: {
+    Hostname: 'https://pulsa-api-staging.tokopedia.com'
   },
   CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/staging/',
   Fave: {
@@ -241,6 +250,9 @@ const DEVELOPMENT = {
   },
   Tome: {
     Hostname: 'https://tome-staging.tokopedia.com'
+  },
+  Recharge: {
+    Hostname: 'https://pulsa-api.tokopedia.com'
   },
   CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/staging/',
   Fave: {
