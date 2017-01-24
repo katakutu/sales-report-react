@@ -33,6 +33,7 @@
 
     .drawer__content {
         z-index: $z-index-1;
+        height: 100%;
     }
 
     .drawer__header {
@@ -48,6 +49,7 @@
 
     .drawer__options {
         background: $color-white-primary;
+        height: 100%;
     }
 
     .drawer__table {

@@ -45,7 +45,9 @@ function getProductList () {
           operator_id: section['relationships']['operator']['data']['id'],
           status: section['attributes']['status'],
           price_plain: section['attributes']['price_plain'],
-          desc: section['attributes']['desc']
+          desc: section['attributes']['desc'],
+          detail: section['attributes']['detail'],
+          price: section['attributes']['price']
         }
       })
     })

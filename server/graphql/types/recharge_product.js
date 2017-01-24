@@ -14,7 +14,9 @@ const RechargeProductType = new GraphQLObjectType({
     status: { type: new GraphQLNonNull(GraphQLInt) },
     operator_id: { type: new GraphQLNonNull(GraphQLInt) },
     price_plain: { type: new GraphQLNonNull(GraphQLInt) },
-    desc: { type: new GraphQLNonNull(GraphQLString) }
+    desc: { type: new GraphQLNonNull(GraphQLString) },
+    detail: { type: new GraphQLNonNull(GraphQLString) },
+    price: { type: new GraphQLNonNull(GraphQLString) }
   }
 })
 

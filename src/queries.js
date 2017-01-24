@@ -333,6 +333,8 @@ query {
     status
     price_plain
     desc
+    detail
+    price
   }
   recharge_category{
     id

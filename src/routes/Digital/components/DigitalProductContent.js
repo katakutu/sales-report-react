@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import classNames from 'classnames'
+import BodyClassName from 'react-body-classname'
 import './DigitalProductContent.scss'
+import './DigitalProductSelectDrawer.scss'
 import { SLUG } from './digitalconstants'
 import { SITES } from '../../../constants'
 
@@ -21,65 +23,91 @@ class DigitalProductContent extends Component {
     super(props)
     this.state = {
       instantCheckout: false,
-      operatorId: 0,
+      selectedOperator: {},
+      productName: '',
       productId: 0,
       activeCategory: SLUG[this.props.slug],
-      productList: []
+      productList: [],
+      open: false
     }
 
+    this.getProductById = this.getProductById.bind(this)
     this.renderOperator = this.renderOperator.bind(this)
+    this.renderProduct = this.renderProduct.bind(this)
     this.handleInstantCheckbox = this.handleInstantCheckbox.bind(this)
     this.handleContentChange = this.handleContentChange.bind(this)
-    this.handleSelectProduct = this.handleSelectProduct.bind(this)
+    this.handleOpenOverlay = this.handleOpenOverlay.bind(this)
+    this.handleCloseButton = this.handleCloseButton.bind(this)
+    this.handleProductSelect = this.handleProductSelect.bind(this)
   }
 
-  handleInstantCheckbox () {
-    this.setState({
-      instantCheckout: !this.state.instantCheckout
-    })
-  }
-
-  handleContentChange (operator) {
-    this.setState({
-      operatorId: operator.id
-    })
-
-    const products = this.state.productList
-    let defaultOption = '<option value=' + operator.default_product_id
-    defaultOption += ' disabled>Pilih Nominal Donasi</option>'
-    document.getElementsByClassName('nominal-select')[0].innerHTML = defaultOption
-    this.setState({ productId: operator.default_product_id })
-
-    for (let i = 0; i < products.length; i++) {
-      if (products[i].operator_id === operator.id) {
-        let selected = false
-        if (operator.default_product_id === products[i].id) {
-          selected = true
-        }
-        document.getElementsByClassName('nominal-select')[0].innerHTML += this.renderProduct(products[i], selected)
+  getProductById (id) {
+    for (let i = 0; i < this.state.productList.length; i++) {
+      if (this.state.productList[i].id === id) {
+        return this.state.productList[i]
       }
     }
   }
 
-  handleSelectProduct (event) {
-    this.setState({ productId: event.target.value })
-
-    return
+  handleInstantCheckbox () {
+    this.setState({ instantCheckout: !this.state.instantCheckout })
   }
 
-  renderProduct (data, selected) {
-    let html = '<option value=' + data.id
-    if (selected) {
-      html += ' selected '
+  handleContentChange (operator) {
+    this.setState({ selectedOperator: operator })
+    this.setState({ productId: operator.default_product_id })
+    this.setState({ productName: this.getProductById(operator.default_product_id).desc })
+  }
+
+  handleOpenOverlay (e) {
+    this.setState({ open: true })
+  }
+
+  handleCloseButton (e) {
+    this.setState({ open: false })
+  }
+
+  handleProductSelect (e) {
+    this.setState({ productId: e.target.value })
+    this.setState({ productName: this.getProductById(e.target.value).desc })
+    this.setState({ open: false })
+  }
+
+  renderProduct (data, index) {
+    let checkFlag = false
+    if (data.operator_id === this.state.selectedOperator.id) {
+      if (this.state.selectedOperator.default_product_id === data.id) {
+        checkFlag = true
+      }
+      return (
+        <tr>
+          <td className='table__product'>
+            <label htmlFor={data.id}>
+              <div className='product__name'>{data.desc}</div>
+              <div className='product__price'>
+                <div className='price u-mr1'>{data.price}</div>
+              </div>
+            </label>
+          </td>
+          <td className='table__radio'>
+            <input name='donation-nominal'
+              id={data.id}
+              type='radio'
+              className='drawer__radio u-hide'
+              value={data.id}
+              onChange={this.handleProductSelect}
+              defaultChecked={checkFlag} />
+            <label htmlFor={data.id} className='drawer__icon--radio' />
+          </td>
+        </tr>
+      )
     }
-    html += '>' + data.desc + '</option>'
-    return html
   }
 
   renderOperator (data, index) {
     return (
       <li onClick={() => this.handleContentChange(data)}>
-        <div className='dp-lembaga-tab-logo'>
+        <div className={classNames('dp-lembaga-tab-logo', { 'active': this.state.selectedOperator.id === data.id })}>
           <img src={data.image} alt='' />
         </div>
       </li>
@@ -121,7 +149,7 @@ class DigitalProductContent extends Component {
             <input
               type='hidden'
               name='operator_id'
-              value={this.state.operatorId} />
+              value={this.state.selectedOperator.id} />
             <input
               type='hidden'
               name='product_id'
@@ -144,7 +172,7 @@ class DigitalProductContent extends Component {
               <div className='dp-lembaga-tab-content'>
                 <div
                   className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
-                  { 'u-hide': this.state.operatorId !== 95 })}>
+                  { 'u-hide': this.state.selectedOperator.id !== 95 })}>
                   <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
                     <img src={BaznasLogo} alt='' className='u-align-middle' />
                   </div>
@@ -161,7 +189,7 @@ class DigitalProductContent extends Component {
                 </div>
                 <div
                   className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
-                  { 'u-hide': this.state.operatorId !== 98 })}>
+                  { 'u-hide': this.state.selectedOperator.id !== 98 })}>
                   <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
                     <img src={YcabLogo} alt='' className='u-align-middle' />
                   </div>
@@ -178,7 +206,7 @@ class DigitalProductContent extends Component {
                 </div>
                 <div
                   className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
-                  { 'u-hide': this.state.operatorId !== 97 })}>
+                  { 'u-hide': this.state.selectedOperator.id !== 97 })}>
                   <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
                     <img src={DompetDuafaLogo} alt='' className='u-align-middle' />
                   </div>
@@ -195,7 +223,7 @@ class DigitalProductContent extends Component {
                 </div>
                 <div
                   className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
-                  { 'u-hide': this.state.operatorId !== 99 })}>
+                  { 'u-hide': this.state.selectedOperator.id !== 99 })}>
                   <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
                     <img src={PkpuLogo} alt='' className='u-align-middle' />
                   </div>
@@ -213,14 +241,14 @@ class DigitalProductContent extends Component {
               </div>
             </div>
             <div className='dp--nominal'>
-              <div className={'form-group nominal u-mb2 u-block ' + (this.state.operatorId === 0 ? 'u-hide' : '')}>
+              <div className={'form-group nominal u-mb2 u-block ' + (this.state.productId === 0 ? 'u-hide' : '')}>
                 <label className='u-mb1'>Nominal</label>
                 <div className='dp-select'>
-                  <select
-                    className='dp-select form-control form-select nominal-select'
-                    onChange={this.handleSelectProduct}>
-                    <option value='0' disabled>Pilih Nominal Donasi</option>
-                  </select>
+                  <span
+                    className='dp-select form-control form-select nominal-select pt-12'
+                    onClick={this.handleOpenOverlay}>
+                    {this.state.productName}
+                  </span>
                 </div>
               </div>
               <div className='dp--buy'>
@@ -251,6 +279,24 @@ class DigitalProductContent extends Component {
               </div>
             </div>
           </form>
+        </div>
+        <div className={classNames('dp-drawer--select', { 'active': this.state.open })}>
+          <div className='drawer__content'>
+            <div className='drawer__header'>
+              Nominal
+              <span className='drawer__close' onClick={this.handleCloseButton}>×</span>
+            </div>
+            <div className='drawer__options'>
+              <table className='drawer__table'>
+                <tbody>
+                  {productList.map(this.renderProduct)}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className='drawer__overlay' />
+
+          { this.state.open && <BodyClassName className='u-body-overflow-no-scroll' /> }
         </div>
       </div>
     )
