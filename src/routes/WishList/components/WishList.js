@@ -78,7 +78,8 @@ class WishList extends Component {
       }
 
       const totalData = nextProps['data']['wishlist'] && nextProps['data']['wishlist']['total_data']
-      this.props.updateHasNextPage(nextProps['data']['wishlist']['has_next_page'] || false)
+      const hasNextPage = nextProps['data']['wishlist'] && nextProps['data']['wishlist']['has_next_page']
+      this.props.updateHasNextPage(hasNextPage || false)
       this.props.updateTotalWishlist(totalData || 0)
     }
   }
@@ -188,7 +189,7 @@ class WishList extends Component {
 
     return (
       <div className='wishlist-container u-clearfix'>
-        { isNoWishlist && <WishlistEmpty /> }
+        { isNoWishlist && <WishlistEmpty userID={this.props.userID} /> }
         { isEmptyResult && <WishlistSearchEmpty /> }
         { wishlists.length > 0 && ArrayHelper.chunk(wishlists, 2).map((wls, index) => {
           const key = `wishlist-cont-${index}`
@@ -214,15 +215,17 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
-    wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists
+    wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists,
+    query: state['wishlist'] ? state['wishlist'].query : state.query
   }
 }
 
-export default graphql(queries.WishlistQueries.getAll, {
+const WishListWithData = graphql(queries.WishlistQueries.getAll, {
   options: ({ userID, query, count, page }) => ({
     variables: { userID, query, count, page },
     forceFetch: true,
     returnPartialData: true
   })
-}
-)(connect(mapStateToProps, mapDispatchToProps)(WishList))
+})(WishList)
+
+export default connect(mapStateToProps, mapDispatchToProps)(WishListWithData)

@@ -254,6 +254,173 @@ const WishlistQueries = {
   `
 }
 
+const DigitalQuery = gql`
+query {
+  points{
+    data{
+      attributes{
+        amount_formatted
+      }
+    }
+  }
+  saldo{
+    deposit_fmt
+  }
+  notifications{
+    status
+    data{
+      total_notif
+      total_cart
+      incr_notif
+      resolution
+      sales{
+        sales_new_order
+        sales_shipping_status
+        sales_shipping_confirm
+      }
+      inbox{
+        inbox_talk
+        inbox_ticket
+        inbox_review
+        inbox_friend
+        inbox_message
+        inbox_wishlist
+        inbox_reputation
+      }
+      purchase{
+        purchase_reorder
+        purchase_payment_conf
+        purchase_order_status
+        purchase_payment_confirm
+        purchase_delivery_confirm
+      }
+    }
+  }
+  wallet {
+    linked
+    balance
+    errors {
+      name
+      message
+    }
+  }
+  shop{
+    shop_id
+    shop_url
+    domain
+    shop_name
+    shop_name_unfmt
+    shop_name_clean
+    is_gold
+    is_official
+    location
+    logo
+    shop_badge
+  }
+  recharge_operator{
+    id
+    name
+    weight
+    default_product_id
+    image
+    slug
+    show_product_list
+  }
+  recharge_product{
+    id
+    category_id
+    operator_id
+    status
+    price_plain
+    desc
+    detail
+    price
+  }
+  recharge_category{
+    id
+    name
+    slug
+    icon
+  }
+  recharge_banner{
+    id
+    image_url
+    redirect_url
+    subtitle
+    title
+  }
+}
+`
+
+const TopAdsQueries = {
+  getAll: gql`
+  query Query($userID: Int!, $ep: String!, $src: String!, $item: Int!, $page: Int!, $q: String!) {
+    topads(userID:$userID, ep: $ep, src: $src, item: $item, page: $page, q: $q){
+      total_data
+    display
+    items {
+      id
+      ad_ref_key
+      redirect
+      sticker_id
+      sticker_image
+      product_click_url
+      shop_click_url
+      product {
+        id
+        name
+        image {
+          m_ecs
+          s_ecs
+          xs_ecs
+        }
+        uri
+        relative_uri
+        price_format
+        count_talk_format
+        count_review_format
+        product_preorder
+        product_wholesale
+        free_return
+        product_cashback
+        product_cashback_rate
+        labels {
+          title
+          color
+        }
+      }
+      shop {
+        id
+        name
+        domain
+        tagline
+        location
+        city
+        image_product {
+          product_id
+          product_name
+          image_url
+        }
+        image_shop {
+          cover_ecs
+          s_ecs
+          xs_ecs
+        }
+        gold_shop
+        lucky_shop
+        shop_is_official
+        uri
+        badges {
+          title
+          image_url
+        }
+      }
+    }
+    }
+  }
+  `
+}
+
 const ApolloExecutors = (client) => {
   return {
     isUserLoggedIn: () => {
@@ -271,5 +438,7 @@ export default {
   UserDataQuery: UserDataQuery,
   UserIsLoggedIn: UserIsLoggedIn,
   ApolloExecutors: ApolloExecutors,
-  WishlistQueries: WishlistQueries
+  WishlistQueries: WishlistQueries,
+  DigitalQuery: DigitalQuery,
+  TopAdsQueries: TopAdsQueries
 }
