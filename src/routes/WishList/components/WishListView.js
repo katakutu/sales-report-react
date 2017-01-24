@@ -149,7 +149,6 @@ class WishlistView extends Component {
 
           <WishList
             userID={parseInt(userInfo['id'])}
-            query={this.props.query}
             page={this.state.page}
             count={WishlistView.WISHLIST_PER_PAGE}
             shouldRefetch={this.state.refetch} />

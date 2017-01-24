@@ -59,7 +59,8 @@ const PRODUCTION = {
   },
   Recharge: {
     Hostname: 'https://pulsa-api.tokopedia.com'
-  }
+  },
+  CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/'
 }
 
 const BETA = {
@@ -120,7 +121,8 @@ const BETA = {
   },
   Recharge: {
     Hostname: 'https://pulsa-api.tokopedia.com'
-  }
+  },
+  CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/beta/'
 }
 
 const TEST = {
@@ -180,7 +182,8 @@ const TEST = {
   },
   Recharge: {
     Hostname: 'https://pulsa-api-staging.tokopedia.com'
-  }
+  },
+  CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/staging/'
 }
 
 const DEVELOPMENT = {
@@ -241,7 +244,8 @@ const DEVELOPMENT = {
   },
   Recharge: {
     Hostname: 'https://pulsa-api.tokopedia.com'
-  }
+  },
+  CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/staging/'
 }
 
 let globalConfig = DEVELOPMENT
