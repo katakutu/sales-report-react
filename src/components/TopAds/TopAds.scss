@@ -39,25 +39,27 @@
     background-color: $color-white-primary;
     height: auto;
     padding: 5px 0;
+
     a {
         margin: 0;
         font-size: 12px;
         line-height: 16px;
-        color: rgba(0,0,0,.54);
+        color: rgba(0, 0, 0, 0.54);
         padding:0 20px 0 10px;
         display:inline-block;
         line-height: 16px;
         vertical-align: middle;
         position: relative;
-      img {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        margin-top: -7.5px;
-        width: 14px;
-        height: 14px;
-        display:inline-block;
-      }
+
+        img {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            margin-top: -7.5px;
+            width: 14px;
+            height: 14px;
+            display:inline-block;
+        }
     }
 }
 
@@ -88,6 +90,7 @@
 .topads__content-box {
     position: relative;
     padding: 5px 10px;
+
     a {
       display: block;
     }
@@ -116,7 +119,7 @@
     overflow: hidden;
     padding: 7px 0;
     height: 34px;
-    color: rgba(0,0,0,0.45);
+    color: rgba(0, 0, 0, 0.45);
     font-size: 12px;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -137,7 +140,7 @@
     margin: auto;
     max-width: 110px;
     padding: 7px 0;
-    border: 1px solid #dedede;
+    border: 1px solid #DEDEDE;
     border-radius: 3px;
     color: #999;
     text-align: center;
@@ -295,11 +298,11 @@
     line-height: 23px;
 }
 .topads__shop__badges {
-  display: inline-block;
-  width: 14.5px;
-  height: 14.5px;
-  margin-right: 4px;
-  vertical-align: text-bottom;
+    display: inline-block;
+    width: 14.5px;
+    height: 14.5px;
+    margin-right: 4px;
+    vertical-align: text-bottom;
 }
 
 .topads__img-badge {
@@ -395,6 +398,7 @@
     background-size: auto 14px;
     vertical-align: middle;
 }
+
 .icon-fire,
 .icon-thumbsup,
 .icon-trumpet {
@@ -407,6 +411,7 @@
       top: 50%;
       margin-top: -6px;
 }
+
 .icon-checked{
     position: absolute;
     margin: 0 -7px;
@@ -414,14 +419,17 @@
     height: 15px;
     background: url('../../routes/WishList/assets/sprite-150.png') 0px -48px;
 }
+
 .icon-fire {
     background: url('./assets/icon-api.png') transparent no-repeat;
     background-size: auto 12px;
 }
+
 .icon-thumbsup {
     background: url('./assets/icon-jempol.png') transparent no-repeat;
     background-size: auto 12px;
 }
+
 .icon-trumpet {
     background: url('./assets/icon-toa.png') transparent no-repeat;
     background-size: auto 12px;
