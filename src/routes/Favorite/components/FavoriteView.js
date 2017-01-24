@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
 
-import Favorite from './Favorite'
+// import Favorite from './Favorite'
 import FavoriteNew from './FavoriteNew'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import SplashScreen from '../../../components/Loading/SplashScreen'
@@ -92,9 +92,9 @@ class FavoriteView extends Component {
       'shop': this.props.data.shop,
       'wallet': this.props.data.wallet
     })
-    console.log("---------------------------------------------------------")
+    console.log('12---------------------------------------------------------')
     console.log(this.props.favorites)
-    console.log("---------------------------------------------------------")
+    console.log('12---------------------------------------------------------')
     // const flCount = this.props.favorites.length
 
     return (
@@ -107,7 +107,7 @@ class FavoriteView extends Component {
               type='text'
               name='searchwishlist'
               className='favorite__searchbar'
-              placeholder={ lang[this.props.lang]['Search Shop in Favorite'] } 
+              placeholder={lang[this.props.lang]['Search Shop in Favorite']}
               onChange={this.searchFavorite}
               onKeyPress={this.updateFinalQuery}
               value={this.state.query} />
@@ -119,7 +119,7 @@ class FavoriteView extends Component {
               type='text'
               name='searchwishlist'
               className='favorite__searchbar'
-              placeholder={ lang[this.props.lang]['Cari lokasi'] } />
+              placeholder={lang[this.props.lang]['Cari lokasi']} />
           </div>
           {
             this.state.finalQuery !== '' &&
@@ -137,14 +137,14 @@ class FavoriteView extends Component {
               (<div className='u-clearfix' />)
               ]
           }
-          
+
           <div className='u-clearfix' />
-          <FavoriteNew 
-          userID={parseInt(userInfo['id'])}
-          query={this.state.finalQuery}
-          page={this.state.page}
-          count={FavoriteView.FAVORITE_PER_PAGE}
-          shouldRefetch={this.state.refetch} />
+          <FavoriteNew
+            userID={parseInt(userInfo['id'])}
+            query={this.state.finalQuery}
+            page={this.state.page}
+            count={FavoriteView.FAVORITE_PER_PAGE}
+            shouldRefetch={this.state.refetch} />
           {
             this.props.hasNextPage &&
             <LoadMore onClick={this.viewMore}>

@@ -24,10 +24,10 @@ class TopedFavoriteAPI {
     this.api = new TopedAPI()
   }
 
-  getPromote (userID, page = 1, per_page = 10) {
+  getPromote (userID, page = 1, perPage = 10) {
     let url = URL.parse(FAVORITE_SERVICES.GetPromoteShop
                                          .replace(':user_id', userID)
-                                         .replace(':per_page', per_page)
+                                         .replace(':per_page', perPage)
                                          .replace(':page', page))
     return this.api.consume(url, 'GET', {})
   }

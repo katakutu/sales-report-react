@@ -13,7 +13,7 @@ export const UPDATE_QUERY = 'UPDATE_QUERY'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function addFavorite (newFavortes) {
+export function addFavorite (newFavorites) {
   return {
     type    : ADD_FAVORITES,
     payload : newFavorites
@@ -89,7 +89,7 @@ const ACTION_HANDLERS = {
     const newData = action.payload.filter(d => !oldData.includes(d['id'])).map(d => {
       return Object.assign({}, d, { isActive: true })
     })
-    console.log("msk module ADD_FAVORITES")
+    console.log('msk module ADD_FAVORITES')
     return Object.assign({}, state, { favorites: state.favorites.concat(newData) })
   },
   [CLEAR_FAVORITES]   : (state, action) => Object.assign({}, state, { favorites: [] }),

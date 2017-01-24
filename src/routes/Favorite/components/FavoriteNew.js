@@ -9,7 +9,6 @@ import { HOSTNAME } from './../../../constants'
 import ModuleSpinner from './../../../components/Loading/ModuleSpinner'
 
 import GTM from '../../../lib/utils/GTM'
-import lang from '../../../lib/utils/Lang'
 import loading from '../../../static/media/images/lite-loading.png'
 // import greyLove from '../../WishList/assets/love-grey.png'
 import location from '../../WishList/assets/location.png'
@@ -65,9 +64,10 @@ class Favorite extends Component {
 
     if (nextProps['data'] && !nextProps.data.loading && propsChanged) {
       // only add new urls that's not already there
+      // const ids = this.props.favorites.map(w => w['id'])
       const data = nextProps['data']['favorite'] && nextProps['data']['favorite']['items']
       const gqlData = data || []
-      
+
       const newData = gqlData.filter(d => !ids.includes(d['id']))
       if (nextProps.query === '' && newData.length > 0) {
         // if returning from search
@@ -76,14 +76,13 @@ class Favorite extends Component {
         }
         this.props.addFavorite(newData)
       } else if (nextProps.query !== '') {
-        
         if (nextProps.page > 1) {
           this.props.addFavorite(newData)
         } else {
           this.props.replaceFavorites(gqlData)
         }
       }
-      const totalData = nextProps['data']['favorite'] && nextProps['data']['favorite']['total_data']
+      // const totalData = nextProps['data']['favorite'] && nextProps['data']['favorite']['total_data']
       // this.props.updateHasNextPage(nextProps['data']['favorite']['has_next_page'] || false)
       // this.props.updateTotalFavorite(totalData || 0)
     }
@@ -96,16 +95,11 @@ class Favorite extends Component {
   }
 
   renderFavorites (favorites) {
-    {
-      console.log(favorites)
-      console.log(this.props.data)
-      console.log("===================")
-    }
     return (
       <div className='outside__wrapper'>
         {
           favorites.map((item, index) => {
-            const shop_url = `${HOSTNAME}/`+item.shop_name
+            const shopUrl = `${HOSTNAME}/` + item.shop_name
             let img0 = item.products.length !== 0
             ? <Img src={item.products[0].img_url} initialImage={loading} fallbackImage={loading} /> : ''
             let img1 = item.products.length !== 0
@@ -119,7 +113,7 @@ class Favorite extends Component {
                 onClick={this._gtmNotifyItemClicked(item)}
                 key={`favorite-${index}`}>
                 <div className='favorite__wrapper new u-clearfix'>
-                  <a aria-hidden='true' tabIndex='-1' href={shop_url} className='favorite__click u-block' />
+                  <a aria-hidden='true' tabIndex='-1' href={shopUrl} className='favorite__click u-block' />
                   <div className='favorite__header'>
                     <Img src={item.shop_pic}
                       initialImage={loading}
@@ -142,7 +136,7 @@ class Favorite extends Component {
                   </div>
                   <div className='favorite__footer u-clearfix u-mt1 u-col u-col-4'>
                     <div className='u-col u-col-12 u-truncate u-relative'>
-                    {
+                      {
                       favorites['isActive']
                         ? <Favorited
                           userID={this.props.userID}
@@ -171,7 +165,7 @@ class Favorite extends Component {
     const favorites = this.props.data.favorites
     const isNoFavorite = favorites.length === 0 && !this.props.data.loading && this.props.query === ''
     const isEmptyResult = favorites.length === 0 && !this.props.data.loading && this.props.query !== ''
-    
+
     return (
       <div className='favorite-container u-clearfix'>
         { isNoFavorite && <FavoriteEmpty /> }
