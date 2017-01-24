@@ -47,14 +47,16 @@ class TopAds extends Component {
     }
     return (
       <div>
-        <div className='u-clearfix'>
-          <div className='u-col u-col-12 topads__title__contents'>
-            <a onClick={() => this.props.eventModal(true)}>
-              Promoted
-              <img src={iconInfo} alt='topads information' />
-            </a>
+        <div className='topads__wrapper'>
+          <div className='u-clearfix topads__sub__wrapper'>
+            <div className='u-col u-col-12 topads__title__contents'>
+              <a onClick={() => this.props.eventModal(true)}>
+                Promoted
+                <img src={iconInfo} alt='topads information' />
+              </a>
+            </div>
+            { topads }
           </div>
-          { topads }
         </div>
         <ReactCSSTransitionGroup {...transitionOverlaySplashOptions}>
           { modal }
