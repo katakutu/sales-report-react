@@ -64,7 +64,7 @@ const lang = {
     'Ibu & Bayi': 'Mom & Baby',
     'Makanan & Minuman': 'Foods & Drinks',
     'Produk Lainnya': 'Others Product',
-    'View More': 'View More',
+    'View More': 'Load More',
     'Toko Saya': 'My Shop',
     'Mainan & Hobi': 'Toys & Hobby',
     'Fashion Pria': 'Men Fashion',
