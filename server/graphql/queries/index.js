@@ -12,6 +12,7 @@ const toppicks = require('./toppicks')
 const user = require('./user')
 const wallet = require('./wallet')
 const wishlist = require('./wishlist')
+const topads = require('./top-ads')
 
 let queries = {}
 
@@ -30,5 +31,6 @@ queries = Object.assign({}, queries, toppicks)
 queries = Object.assign({}, queries, user)
 queries = Object.assign({}, queries, wallet)
 queries = Object.assign({}, queries, wishlist)
+queries = Object.assign({}, queries, topads)
 
 module.exports = queries
