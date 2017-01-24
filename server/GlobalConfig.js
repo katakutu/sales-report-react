@@ -56,7 +56,8 @@ const PRODUCTION = {
   },
   Tome: {
     Hostname: 'http://tome.tokopedia.local'
-  }
+  },
+  CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/'
 }
 
 const BETA = {
@@ -114,7 +115,8 @@ const BETA = {
   },
   Tome: {
     Hostname: 'https://tome.tokopedia.com'
-  }
+  },
+  CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/beta/'
 }
 
 const TEST = {
@@ -171,7 +173,8 @@ const TEST = {
   },
   Tome: {
     Hostname: 'https://tome-staging.tokopedia.com'
-  }
+  },
+  CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/staging/'
 }
 
 const DEVELOPMENT = {
@@ -229,7 +232,8 @@ const DEVELOPMENT = {
   },
   Tome: {
     Hostname: 'https://tome-staging.tokopedia.com'
-  }
+  },
+  CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/staging/'
 }
 
 let globalConfig = DEVELOPMENT
