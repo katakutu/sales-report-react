@@ -1,9 +1,13 @@
+import { injectReducer } from '../../store/reducers'
+
 export default (store, ApolloExecutors) => ({
   path: '/fave',
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
       const Favorite = require('./components/FavoriteView').default
+      const reducer = require('./module').default
 
+      injectReducer(store, { key: 'favorite', reducer })
       cb(null, Favorite)
     }, 'fave')
   },

@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react'
+import deepEqual from 'deep-equal'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import Img from 'react-image-fallback'
+import { HOSTNAME } from './../../../constants'
 
 import ModuleSpinner from './../../../components/Loading/ModuleSpinner'
 
@@ -12,11 +14,33 @@ import loading from '../../../static/media/images/lite-loading.png'
 // import greyLove from '../../WishList/assets/love-grey.png'
 import location from '../../WishList/assets/location.png'
 import goldMerchant from '../../../components/HeaderHomeOld/assets/nav-gold-merchant-logo.png'
+import FavoriteSearchEmpty from './FavoriteSearchEmpty'
+import FavoriteEmpty from './FavoriteEmpty'
+import Favorited from './Favorited'
+import Unfavorited from './Unfavorited'
+import {
+  addFavorite,
+  clearFavorites,
+  replaceFavorites,
+  updateHasNextPage,
+  updateTotalFavorite
+} from '../module'
 
 class Favorite extends Component {
   static propTypes = {
+    addFavorite: PropTypes.func,
+    clearFavorites: PropTypes.func,
+    count: PropTypes.number,
     data: PropTypes.object,
-    lang: React.PropTypes.string
+    lang: React.PropTypes.string,
+    page: PropTypes.number,
+    query: PropTypes.string,
+    replaceFavorites: PropTypes.func,
+    shouldRefetch: PropTypes.bool,
+    updateHasNextPage: PropTypes.func,
+    updateTotalFavorite: PropTypes.func,
+    userID: PropTypes.number,
+    favorites: PropTypes.arrayOf(PropTypes.object)
   }
 
   state = {
@@ -24,17 +48,44 @@ class Favorite extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps['data'] && !nextProps.data.loading) {
+    // comparing only the relevant changes
+    const np = {
+      count: nextProps.count,
+      page: nextProps.page,
+      query: nextProps.query,
+      favorites: nextProps.favorites
+    }
+    const tp = {
+      count: this.props.count,
+      page: this.props.page,
+      query: this.props.query,
+      favorites: this.props.favorites
+    }
+    const propsChanged = deepEqual(np, tp)
+
+    if (nextProps['data'] && !nextProps.data.loading && propsChanged) {
       // only add new urls that's not already there
       const data = nextProps['data']['favorite'] && nextProps['data']['favorite']['items']
       const gqlData = data || []
-      const newData = gqlData.filter(data => {
-        return true
-      })
-
-      this.setState({
-        favorites: this.state.favorites.concat(newData)
-      })
+      
+      const newData = gqlData.filter(d => !ids.includes(d['id']))
+      if (nextProps.query === '' && newData.length > 0) {
+        // if returning from search
+        if (this.props.query !== '') {
+          this.props.clearFavorites()
+        }
+        this.props.addFavorite(newData)
+      } else if (nextProps.query !== '') {
+        
+        if (nextProps.page > 1) {
+          this.props.addFavorite(newData)
+        } else {
+          this.props.replaceFavorites(gqlData)
+        }
+      }
+      const totalData = nextProps['data']['favorite'] && nextProps['data']['favorite']['total_data']
+      // this.props.updateHasNextPage(nextProps['data']['favorite']['has_next_page'] || false)
+      // this.props.updateTotalFavorite(totalData || 0)
     }
   }
 
@@ -44,14 +95,17 @@ class Favorite extends Component {
     }
   }
 
-  render () {
-    if (this.props.data.loading) {
-      return <ModuleSpinner />
+  renderFavorites (favorites) {
+    {
+      console.log(favorites)
+      console.log(this.props.data)
+      console.log("===================")
     }
     return (
       <div className='outside__wrapper'>
         {
-          this.props.data.favorited.map((item, index) => {
+          favorites.map((item, index) => {
+            const shop_url = `${HOSTNAME}/`+item.shop_name
             let img0 = item.products.length !== 0
             ? <Img src={item.products[0].img_url} initialImage={loading} fallbackImage={loading} /> : ''
             let img1 = item.products.length !== 0
@@ -65,9 +119,9 @@ class Favorite extends Component {
                 onClick={this._gtmNotifyItemClicked(item)}
                 key={`favorite-${index}`}>
                 <div className='favorite__wrapper new u-clearfix'>
-                  <a aria-hidden='true' tabIndex='-1' href={item.shop_url2} className='favorite__click u-block' />
+                  <a aria-hidden='true' tabIndex='-1' href={shop_url} className='favorite__click u-block' />
                   <div className='favorite__header'>
-                    <Img src={item.img_shop.xs_ecs}
+                    <Img src={item.shop_pic}
                       initialImage={loading}
                       fallbackImage={loading}
                       className='u-col u-col-4 u-fit u-block u-mx-auto favorite__image'
@@ -88,9 +142,17 @@ class Favorite extends Component {
                   </div>
                   <div className='favorite__footer u-clearfix u-mt1 u-col u-col-4'>
                     <div className='u-col u-col-12 u-truncate u-relative'>
-                      <a href={item.shop_url2}>
-                        &#10004;&nbsp;{ lang[this.props.lang]['Favorited btn'] }
-                      </a>
+                    {
+                      favorites['isActive']
+                        ? <Favorited
+                          userID={this.props.userID}
+                          productID={parseInt(item['id'])}
+                          productName={item['name']} />
+                        : <Unfavorited
+                          userID={this.props.userID}
+                          productID={parseInt(item['id'])}
+                          productName={item['name']} />
+                    }
                     </div>
                   </div>
                 </div>
@@ -101,28 +163,37 @@ class Favorite extends Component {
       </div>
     )
   }
-}
 
+  render () {
+    if (this.props.data.loading) {
+      return <ModuleSpinner />
+    }
+    const favorites = this.props.data.favorites
+    const isNoFavorite = favorites.length === 0 && !this.props.data.loading && this.props.query === ''
+    const isEmptyResult = favorites.length === 0 && !this.props.data.loading && this.props.query !== ''
+    
+    return (
+      <div className='favorite-container u-clearfix'>
+        { isNoFavorite && <FavoriteEmpty /> }
+        { isEmptyResult && <FavoriteSearchEmpty /> }
+        { favorites.length > 0 && this.renderFavorites(favorites) }
+      </div>
+    )
+  }
+}
+// { favorites.length > 0 && this.renderFavorites() }
 const FaveQuery = gql`
-query Query {
-  favorited {
+query Query ($userID: Int!, $query: String!, $count: Int!, $page: Int!){
+  favorites (user_id:$userID, query: $query, count: $count, page: $page){
     shop_id
     domain
     shop_name
+    shop_pic
     shop_url
-    shop_url2
     location
-    city
     is_gold
     is_official
-    img_shop {
-      cover
-      s_url
-      xs_url
-      cover_ecs
-      s_ecs
-      xs_ecs
-    }
+    is_active
     products {
       id
       name
@@ -131,12 +202,23 @@ query Query {
   }
 }
 `
-
+const mapDispatchToProps = {
+  addFavorite,
+  clearFavorites,
+  replaceFavorites,
+  updateHasNextPage,
+  updateTotalFavorite
+}
 const mapStateToProps = (state) => {
   return {
-    lang: state['app'] ? state['app'].lang : state.lang
+    lang: state['app'] ? state['app'].lang : state.lang,
+    favorites: state['favorite'] ? state['favorite'].favorites : state.favorites
   }
 }
 export default graphql(FaveQuery, {
-  options: { returnPartialData: true }
-})(connect(mapStateToProps, undefined)(Favorite))
+  options: ({ userID, query, count, page }) => ({
+    variables: { userID, query, count, page },
+    forceFetch: true,
+    returnPartialData: true
+  })
+})(connect(mapStateToProps, mapDispatchToProps)(Favorite))

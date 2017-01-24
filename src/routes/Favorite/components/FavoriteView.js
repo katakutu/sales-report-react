@@ -8,22 +8,62 @@ import Favorite from './Favorite'
 import FavoriteNew from './FavoriteNew'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import SplashScreen from '../../../components/Loading/SplashScreen'
+import LoadMore from '../../../components/LoadMore'
+import lang from '../../../lib/utils/Lang'
 import './FavoriteView.scss'
 
 class FavoriteView extends Component {
   static propTypes = {
     data: React.PropTypes.object,
-    lang: React.PropTypes.string
+    hasNextPage: React.PropTypes.bool,
+    lang: React.PropTypes.string,
+    totalFavorite: React.PropTypes.number,
+    favorites: React.PropTypes.arrayOf(React.PropTypes.object)
   }
 
+  static FAVORITE_PER_PAGE = 10
+
   state = {
-    page: 1
+    finalQuery: '',
+    page: 1,
+    query: '',
+    refetch: false
   }
 
   constructor (props) {
     super(props)
 
     this.viewMore = this.viewMore.bind(this)
+    this.resetSearch = this.resetSearch.bind(this)
+    this.searchFavorite = this.searchFavorite.bind(this)
+    this.updateFinalQuery = this.updateFinalQuery.bind(this)
+  }
+
+  resetSearch () {
+    this.setState({ finalQuery: '', query: '' })
+    browserHistory.push({
+      pathname: '/fave'
+    })
+  }
+
+  searchFavorite (event) {
+    this.setState({ query: event.target.value })
+  }
+
+  updateFinalQuery (event) {
+    if (event.key === 'Enter') {
+      const fq = event.target.value
+
+      this.setState({
+        finalQuery: fq,
+        refetch: true,
+        page: 1
+      })
+
+      browserHistory.push({
+        pathname: '/fave'
+      })
+    }
   }
 
   viewMore (event) {
@@ -52,6 +92,10 @@ class FavoriteView extends Component {
       'shop': this.props.data.shop,
       'wallet': this.props.data.wallet
     })
+    console.log("---------------------------------------------------------")
+    console.log(this.props.favorites)
+    console.log("---------------------------------------------------------")
+    // const flCount = this.props.favorites.length
 
     return (
       <div>
@@ -63,7 +107,10 @@ class FavoriteView extends Component {
               type='text'
               name='searchwishlist'
               className='favorite__searchbar'
-              placeholder='Cari produk di wishlist' />
+              placeholder={ lang[this.props.lang]['Search Shop in Favorite'] } 
+              onChange={this.searchFavorite}
+              onKeyPress={this.updateFinalQuery}
+              value={this.state.query} />
           </div>
 
           <div className='favorite__searchbar-holder'>
@@ -72,14 +119,38 @@ class FavoriteView extends Component {
               type='text'
               name='searchwishlist'
               className='favorite__searchbar'
-              placeholder='Pilih lokasi' />
+              placeholder={ lang[this.props.lang]['Cari lokasi'] } />
           </div>
-
-          <h1 className='favorite__section'>Promote</h1>
-          <Favorite />
+          {
+            this.state.finalQuery !== '' &&
+              [
+              (
+                <div className='u-col u-col-6'>
+                  <p className='favorite__search-result'>{flCount} {lang[this.props.lang]['Hasil']}</p>
+                </div>
+              ),
+              (
+                <div className='u-col u-col-6' onClick={this.resetSearch}>
+                  <span className='favorite__reset-search'>Reset</span>
+                </div>
+              ),
+              (<div className='u-clearfix' />)
+              ]
+          }
+          
           <div className='u-clearfix' />
-          <h1 className='favorite__section'>Favorite Shops</h1>
-          <FavoriteNew />
+          <FavoriteNew 
+          userID={parseInt(userInfo['id'])}
+          query={this.state.finalQuery}
+          page={this.state.page}
+          count={FavoriteView.FAVORITE_PER_PAGE}
+          shouldRefetch={this.state.refetch} />
+          {
+            this.props.hasNextPage &&
+            <LoadMore onClick={this.viewMore}>
+              {lang[this.props.lang]['View More']}
+            </LoadMore>
+          }
         </div>
       </div>
     )
@@ -88,7 +159,10 @@ class FavoriteView extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    lang: state['app'] ? state['app'].lang : state.lang
+    lang: state['app'] ? state['app'].lang : state.lang,
+    hasNextPage: state['favorite'] ? state['favorite'].hasNextPage : state.hasNextPage,
+    totalWishlist: state['favorite'] ? state['favorite'].totalWishlist : state.totalFavorite,
+    favorites: state['favorite'] ? state['favorite'].favorites : state.favorites
   }
 }
 

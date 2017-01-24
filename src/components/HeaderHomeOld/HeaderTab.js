@@ -90,6 +90,7 @@ class HeaderTab extends Component {
           ? <Tab label='Wishlist' isActive={wlCN} onClick={() => this._savePosition('/wishlist')} />
           : ''
         }
+        { this.props.userIsLoggedIn ? <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
       </Tabs>
     )
   }

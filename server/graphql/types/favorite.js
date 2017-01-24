@@ -2,7 +2,8 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLList,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLBoolean
 } = require('graphql')
 
 const Products = new GraphQLObjectType({
@@ -14,34 +15,21 @@ const Products = new GraphQLObjectType({
   }
 })
 
-const Imgshop = new GraphQLObjectType({
-  name: 'img_shop',
-  fields: {
-    cover: { type: new GraphQLNonNull(GraphQLString) },
-    s_url: { type: new GraphQLNonNull(GraphQLString) },
-    xs_url: { type: new GraphQLNonNull(GraphQLString) },
-    cover_ecs: { type: new GraphQLNonNull(GraphQLString) },
-    s_ecs: { type: new GraphQLNonNull(GraphQLString) },
-    xs_ecs: { type: new GraphQLNonNull(GraphQLString) }
-  }
-})
-
 const Favorite = new GraphQLObjectType({
   name: 'Favorite',
   fields: {
     shop_id: { type: new GraphQLNonNull(GraphQLString) },
-    shop_url: { type: new GraphQLNonNull(GraphQLString) },
-    shop_url2: { type: new GraphQLNonNull(GraphQLString) },
+    shop_url: { type: GraphQLString },
     domain: { type: new GraphQLNonNull(GraphQLString) },
     shop_name: { type: new GraphQLNonNull(GraphQLString) },
+    shop_pic: { type: new GraphQLNonNull(GraphQLString) },
     is_gold: { type: new GraphQLNonNull(GraphQLString) },
     is_official: { type: new GraphQLNonNull(GraphQLString) },
+    is_active: { type: new GraphQLNonNull(GraphQLBoolean) },
     location: { type: new GraphQLNonNull(GraphQLString) },
-    city: { type: new GraphQLNonNull(GraphQLString) },
-    img_shop: { type: new GraphQLNonNull(Imgshop) },
     products: { type: new GraphQLList(Products) }
   }
 })
 const Favorites = new GraphQLList(Favorite)
 
-module.exports = { Favorites, Favorite, Imgshop, Products }
+module.exports = { Favorites, Favorite, Products }

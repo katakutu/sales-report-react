@@ -4,6 +4,20 @@ const {
 } = require('./../../api-consumer/api/Favorite/TopedFavoriteAPI')
 const common = require('./common')
 
+const EMPTY_FAVORITE = {
+  has_next_page: false,
+  items: [],
+  total_data: 0
+}
+
+function removeFavorite (userID, productID) {
+  return api.removeFavorite(userID, productID)
+}
+
+function addFavorite (userID, productID) {
+  return api.addFavorite(userID, productID)
+}
+
 function getPromoted (context) {
   const userID = common.getUserID(context)
   return userID.then(uid => {
@@ -17,25 +31,16 @@ function getPromoted (context) {
         return Promise.resolve(DEFAULT_FAVE_DATA)
       }
       return response['data'].map(section => {
-        const imageProducts = section['shop'].image_product || []
+        const imageProducts = section.image_product || []
         return {
-          shop_id: section['shop'].id,
-          shop_name: section['shop'].name,
-          domain: section['shop'].domain,
-          shop_url: section['shop'].uri,
-          shop_url2: section['shop_click_url'],
-          is_gold: section['shop'].gold_shop,
-          is_official: section['shop'].shop_is_official,
-          location: section['shop'].location,
-          city: section['shop'].city,
-          img_shop:  {
-            cover: section['shop']['image_shop']['cover'],
-            s_url: section['shop']['image_shop']['s_url'],
-            xs_url: section['shop']['image_shop']['xs_url'],
-            cover_ecs: section['shop']['image_shop']['cover_ecs'],
-            s_ecs: section['shop']['image_shop']['s_ecs'],
-            xs_ecs: section['shop']['image_shop']['xs_ecs']
-          },
+          shop_id: section.id,
+          shop_name: section.name,
+          domain: section.domain,
+          shop_url: section.uri,
+          shop_pic: section.shop_picture,
+          is_gold: section.is_gold_merchant,
+          is_official: section.is_official,
+          location: section.location,
           products: imageProducts.map(row => {
             return {
               id: row['product_id'],
@@ -56,38 +61,28 @@ function getPromoted (context) {
   })
 }
 
-function getFavorited (context) {
-  const userID = common.getUserID(context)
-  return userID.then(uid => {
-    if (uid === 0) {
+function getFavorited (userID, query, count, page) {
+    if (userID === 0) {
       return Promise.resolve(DEFAULT_FAVE_DATA)
     }
     const api = new TopedFavoriteAPI()
 
-    return api.getPromote(uid).then(response => {
+    return api.getPromote(userID).then(response => {
       if (!response || !response['data']) {
         return Promise.resolve(DEFAULT_FAVE_DATA)
       }
       return response['data'].map(section => {
-        const imageProducts = section['shop'].image_product || []
+        const imageProducts = section.image_product || []
         return {
-          shop_id: section['shop'].id,
-          shop_name: section['shop'].name,
-          domain: section['shop'].domain,
-          shop_url: section['shop'].uri,
-          shop_url2: section['shop_click_url'],
-          is_gold: section['shop'].gold_shop,
-          is_official: section['shop'].shop_is_official,
-          location: section['shop'].location,
-          city: section['shop'].city,
-          img_shop:  {
-            cover: section['shop']['image_shop']['cover'],
-            s_url: section['shop']['image_shop']['s_url'],
-            xs_url: section['shop']['image_shop']['xs_url'],
-            cover_ecs: section['shop']['image_shop']['cover_ecs'],
-            s_ecs: section['shop']['image_shop']['s_ecs'],
-            xs_ecs: section['shop']['image_shop']['xs_ecs']
-          },
+          shop_id: section.id,
+          shop_name: section.name,
+          domain: section.domain,
+          shop_url: section.uri,
+          shop_pic: section.shop_picture,
+          is_gold: section.is_gold_merchant,
+          is_official: section.is_official,
+          is_active: true,
+          location: section.location,
           products: imageProducts.map(row => {
             return {
               id: row['product_id'],
@@ -105,7 +100,6 @@ function getFavorited (context) {
           errors: [error.name, error.message]
         }
       })
-  })
 }
 
 module.exports = {

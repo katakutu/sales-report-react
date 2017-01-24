@@ -16,6 +16,7 @@ import {
   updateTotalWishlist
 } from '../module'
 
+import WishlistSearchEmpty from './WishListSearchEmpty'
 import WishlistEmpty from './WishlistEmpty'
 import WishlistLove from './WishlistLove'
 import WishlistUnloved from './WishlistUnloved'
@@ -54,7 +55,6 @@ class WishList extends Component {
       wishlists: this.props.wishlists
     }
     const propsChanged = deepEqual(np, tp)
-
     if (nextProps['data'] && !nextProps.data.loading && propsChanged) {
       const ids = this.props.wishlists.map(w => w['id'])
       const data = nextProps['data']['wishlist'] && nextProps['data']['wishlist']['items']
@@ -83,6 +83,7 @@ class WishList extends Component {
   }
 
   renderWishlists (wishlists, parentIndex) {
+    console.log(wishlists)
     return wishlists.map((wishlist, index) => {
       const currentPage = window.location.href
       const mainLink = `${HOSTNAME}/add-to-cart.pl`
@@ -90,6 +91,20 @@ class WishList extends Component {
 
       const labels = wishlist['labels'] || []
       const badges = wishlist['badges'] || []
+
+      const actionButton = wishlist['available'] ? (
+        <div className='wishlist__buy'>
+          <a href={buyLink} className='wishlist__button-buy'>
+            { lang[this.props.lang]['Buy'] }
+          </a>
+        </div>
+      ) : (
+        <div className='wishlist__buy'>
+          <a href={buyLink} className='wishlist__button-no-stock'>
+            { lang[this.props.lang]['Out of Stock'] }
+          </a>
+        </div>
+      )
 
       return (
         <div className='u-col u-col-6 wishlist__contents' key={`wishlist-${parentIndex}-${index}`}>
@@ -156,11 +171,8 @@ class WishList extends Component {
                   })
                 }
               </span>
-            </div>
-            <div className='wishlist__buy'>
-              <a href={buyLink} className='wishlist__button-buy'>
-                {lang[this.props.lang]['Buy']}
-              </a>
+
+              { actionButton }
             </div>
           </div>
         </div>
@@ -171,10 +183,13 @@ class WishList extends Component {
 
   render () {
     const wishlists = this.props.wishlists
+    const isNoWishlist = wishlists.length === 0 && !this.props.data.loading && this.props.query === ''
+    const isEmptyResult = wishlists.length === 0 && !this.props.data.loading && this.props.query !== ''
 
     return (
       <div className='wishlist-container u-clearfix'>
-        { wishlists.length === 0 && !this.props.data.loading && <WishlistEmpty /> }
+        { isNoWishlist && <WishlistEmpty /> }
+        { isEmptyResult && <WishlistSearchEmpty /> }
         { wishlists.length > 0 && ArrayHelper.chunk(wishlists, 2).map((wls, index) => {
           const key = `wishlist-cont-${index}`
 

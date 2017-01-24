@@ -504,9 +504,9 @@
 
 .sidebarEffect-enter-active {
     left: 0;
-    -webkit-transition: ease-in 0.3s all;
-    -moz-transition: ease-in 0.3s all;
-    transition: ease-in 0.3s all;
+    -webkit-transition: ease-out 0.25s all;
+    -moz-transition: ease-out 0.25s all;
+    transition: ease-out 0.25s all;
 }
 
 .sidebarEffect-leave {
@@ -515,20 +515,20 @@
 
 .sidebarEffect-leave-active {
     left: -284px;
-    -webkit-transition: ease-out 0.2s all;
-    -moz-transition: ease-out 0.2s all;
-    transition: ease-out 0.2s all;
+    -webkit-transition: ease-out 0.25s all;
+    -moz-transition: ease-out 0.25s all;
+    transition: ease-out 0.25s all;
 }
 
 .splashEffect-enter {
-    opacity: 0.1;
+    opacity: 0;
 }
 
 .splashEffect-enter-active {
     opacity: 1;
-    -webkit-transition: ease-in 0.2s all;
-    -moz-transition: ease-in 0.2s all;
-    transition: ease-in 0.2s all;
+    -webkit-transition: ease-out 0.25s all;
+    -moz-transition: ease-out 0.25s all;
+    transition: ease-out 0.25s all;
 }
 
 .splashEffect-leave {
@@ -536,10 +536,10 @@
 }
 
 .splashEffect-leave-active {
-    opacity: 0.1;
-    -webkit-transition: ease-out 0.3s all;
-    -moz-transition: ease-out 0.3s all;
-    transition: ease-out 0.3s all;
+    opacity: 0;
+    -webkit-transition: ease-out 0.25s all;
+    -moz-transition: ease-out 0.25s all;
+    transition: ease-out 0.25s all;
 }
 
 .mi-official {

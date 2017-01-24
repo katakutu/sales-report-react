@@ -67,7 +67,7 @@ class Favorite extends Component {
                 <div className='favorite__wrapper'>
                   <a aria-hidden='true' tabIndex='-1' href={item.shop_url2} className='favorite__click u-block' />
                   <div className='favorite__header'>
-                    <Img src={item.img_shop.xs_ecs}
+                    <Img src={item.shop_pic}
                       initialImage={loading}
                       fallbackImage={loading}
                       className='u-col u-col-4 u-fit u-block u-mx-auto favorite__image'
@@ -112,20 +112,11 @@ query Query {
     shop_id
     domain
     shop_name
+    shop_pic
     shop_url
-    shop_url2
     location
-    city
     is_gold
     is_official
-    img_shop {
-      cover
-      s_url
-      xs_url
-      cover_ecs
-      s_ecs
-      xs_ecs
-    }
     products {
       id
       name

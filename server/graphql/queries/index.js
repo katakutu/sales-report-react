@@ -18,7 +18,7 @@ let queries = {}
 
 queries = Object.assign({}, queries, category)
 queries = Object.assign({}, queries, favorite.promoted)
-queries = Object.assign({}, queries, favorite.favorited)
+queries = Object.assign({}, queries, favorite.favorites)
 queries = Object.assign({}, queries, hotlists.hot_product_home)
 queries = Object.assign({}, queries, hotlists.hot_product_list)
 queries = Object.assign({}, queries, notifications)

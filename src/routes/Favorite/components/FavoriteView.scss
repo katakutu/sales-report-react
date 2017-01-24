@@ -3,6 +3,9 @@
     max-width:440px;
     margin:auto;
 }
+.favorite-container{
+    padding-top:10px;
+}
 .favorite__section{
     font-weight: 500;
     font-size: 1.15em;
@@ -103,6 +106,7 @@
     }
     .icon_location{
         width:10px;
+        margin-bottom:-2px;
     }
     .icon_love{
         width:20px;
@@ -138,6 +142,7 @@
             .favorite__city{
                 color: $color-black-disabled;
                 font-size:10pt;
+                margin-top:2px;
             }
         }
     }
@@ -155,9 +160,20 @@
             max-width: 110px;
             padding: 7px 0;
             border: 1px solid #dedede;
-            border-radius: 5px;
+            border-radius: 3px;
             color: #999;
             text-align: center;
+            &.green{
+                background:$color-green;
+                color:#fff;
+            }
+        }
+        .icon-checked{
+            position: absolute;
+            margin: 0 -7px;
+            width: 15px;
+            height: 15px;
+            background: url(../../WishList/assets/sprite-150.png) 0px -48px;
         }
     }
 }

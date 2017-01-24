@@ -11,11 +11,11 @@ const lang = {
     'Cancelled Order': 'Cancelled Order',
     'Confirm Payment': 'Payment Confirmation',
     'Order Status': 'Order Status',
-    'Dispute List': 'Dispute List',
+    'Dispute List': 'Transaction List',
     'New Order': 'New Order',
-    'Confirm Shipment': 'Confirm Shipment',
-    'Product Shipping Status': 'Product Shipping Status',
-    'Transaction Status': 'Transaction Status',
+    'Confirm Shipment': 'Shipping Confirmation',
+    'Product Shipping Status': 'Shipping Status',
+    'Transaction Status': 'Transaction List',
     'Product List': 'Product List',
     'QUICK_GUIDE_SHOP_GOLD_TITLE_9': 'Shop Showcase',
     'Choose Language': 'Choose Language',
@@ -94,7 +94,15 @@ const lang = {
     'Hasil': 'Result',
     'Delivery Confirm': 'Receive Confirmation',
     'Favorite tab': 'Favorite',
-    'Favorited btn': 'Favorited'
+    'Favorited btn': 'Favorited',
+    'Unfavorited btn': 'Favorite',
+    'Search for Products': 'Search for Products',
+    'Out of Stock': 'Out of Stock',
+    'Clear': 'Clear',
+    'Wishlist Search Empty': 'No matching product found',
+    'See All Wishlists': 'See All Wishlists',
+    'Search Shop in Favorite': 'Search shops in favorite list',
+    'Cari lokasi': 'Search Location'
 }
 
 module.exports = lang
