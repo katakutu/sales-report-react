@@ -35,10 +35,16 @@ class HomeView extends Component {
     if (window.recharge_init_category && pulsaWidgetContent === '') {
       window.recharge_init_category()
     }
+  }
+
+  componentDidUpdate () {
+    const pulsaWidget = document.querySelector('#widget-dmw')
 
     // for GTM to consume
-    const event = new Event('HomePulsaWidgetReady')
-    document.dispatchEvent(event)
+    if (pulsaWidget && pulsaWidget.textContent === '') {
+      const event = new Event('HomePulsaWidgetReady')
+      document.dispatchEvent(event)
+    }
   }
 
   handleTabChange (index) {

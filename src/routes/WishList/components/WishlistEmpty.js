@@ -13,6 +13,7 @@ class WishlistEmpty extends Component {
   static propTypes = {
     lang: React.PropTypes.string
   }
+
   render () {
     return (
       <div className='wishlist-container u-clearfix'>
@@ -20,13 +21,13 @@ class WishlistEmpty extends Component {
           initialImage={loading}
           fallbackImage={loading}
           className='u-block u-mx-auto wishlist__empty-img'
-          alt='Tidak ada wishlist' />
+          alt={lang[this.props.lang]['Empty wishlist']} />
         <div className='wishlist__empty'>
-          {lang[this.props.lang]['Empty wishlist']}
+          { lang[this.props.lang]['Empty wishlist'] }
         </div>
         <a href={`${HOSTNAME}/toppicks`} className='wishlist__btn-holder'>
           <div className='wishlist__lets-search'>
-            Mulai cari produk
+            { lang[this.props.lang]['Search for Products'] }
           </div>
         </a>
       </div>

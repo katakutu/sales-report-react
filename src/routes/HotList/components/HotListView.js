@@ -14,6 +14,7 @@ import lang from '../../../lib/utils/Lang'
 class HotListView extends Component {
   static propTypes = {
     data: React.PropTypes.object,
+    location: React.PropTypes.object,
     lang: React.PropTypes.string
   }
 
@@ -58,7 +59,7 @@ class HotListView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='hotlist' />
         <div className='u-clearfix hotlist hotlist--single-page u-mt2'>
-          <HotList page={this.state.page} />
+          <HotList page={this.state.page} location={this.props.location} />
         </div>
         <LoadMore onClick={this.viewMore}>
           { lang[this.props.lang]['View More'] }
