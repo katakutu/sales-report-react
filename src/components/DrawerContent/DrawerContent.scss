@@ -1,0 +1,141 @@
+@import 'base';
+
+.drawer-content {
+    z-index: $z-index-max;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    bottom: 0;
+    width: 0;
+    height: 100%;
+    overflow-y: auto;
+
+    &.active {
+        left: 0;
+        width: 100%;
+
+        .drawer-content__overlay {
+            display: block;
+        }
+    }
+}
+
+.dc-wrapper {
+    height: 100%;
+    background-color: $color-white-primary;
+}
+
+.dc-overlay {
+    background: $color-black-secondary;
+    z-index: $z-index-behind-max;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 50%;
+}
+
+.dc-content {
+    z-index: $z-index-max;
+}
+
+.dc-header {
+    padding: 10px;
+    background: $color-green;
+    width: 100%;
+    height: 45px;
+    color: $color-white-primary;
+    font-size: 15px;
+    text-align: center;
+    line-height: 22px;
+}
+
+.dc-close {
+    position: absolute;
+    top: 7px;
+    left: 15px;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+// Content inside specifics
+
+.dc-list {
+    width: 100%;
+    border-collapse: collapse;
+
+    tr {
+        td {
+            padding: 12px 10px;
+            vertical-align: middle;
+            border-bottom: 1px solid $color-grey-1;
+        }
+    }
+}
+
+.dc-product {
+    width: 88%;
+}
+
+.dc-product__name {
+    font-size: 12px;
+    color: $color-black-secondary;
+    line-height: 22px;
+}
+
+.dc-product__desc {
+    margin: 0 0 3px;
+    color: $color-black-disabled;
+    font-size: 11px;
+    line-height: 18px;
+}
+
+.dc-price__container {
+    line-height: 22px;
+}
+
+.dc-product__price {
+    color: $color-black-primary;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.dc-price--normal {
+    display: inline-block;
+    font-weight: 600;
+}
+
+.dc-price--discount {
+    display: inline-block;
+    color: $color-red;
+    font-weight: 600;
+}
+
+.dc-price--strikethrough {
+    display: inline-block;
+    font-size: 11px;
+    text-decoration: line-through;
+}
+
+.dc-radio__container {
+    width: 12%;
+}
+
+.dc-radio__icon {
+    border: 1px solid $color-grey-3;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+}
+
+.dc-radio {
+    &:checked + .dc-radio__icon {
+        border: none;
+        background: url('./assets/checklist.svg') center no-repeat;
+        background-size: 10px;
+        background-color: $color-green;
+    }
+}
