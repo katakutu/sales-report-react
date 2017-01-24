@@ -210,6 +210,8 @@
     padding: 5px 0;
     color: $color-black-disabled;
     font-size: 11px;
+    position: relative;
+    padding-left: 17px;
 }
 
 .topads__shop-loc-badge {
@@ -323,6 +325,30 @@
     background: url('../../routes/WishList/assets/location.png') transparent no-repeat;
     background-size: auto 14px;
     vertical-align: middle;
+}
+.icon-fire,
+.icon-thumbsup,
+.icon-trumpet {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      vertical-align: middle;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      margin-top: -6px;
+}
+.icon-fire {
+    background: url('./assets/icon-api.png') transparent no-repeat;
+    background-size: auto 12px;
+}
+.icon-thumbsup {
+    background: url('./assets/icon-jempol.png') transparent no-repeat;
+    background-size: auto 12px;
+}
+.icon-trumpet {
+    background: url('./assets/icon-toa.png') transparent no-repeat;
+    background-size: auto 12px;
 }
 
 .topads__love-full {
