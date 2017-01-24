@@ -15,6 +15,7 @@ class TopAds extends Component {
     data: React.PropTypes.object,
     stateModal: React.PropTypes.bool,
     eventModal: React.PropTypes.func,
+    eventShopClick: React.PropTypes.func,
     contentModal: React.PropTypes.object,
     userID: React.PropTypes.number,
     ep: React.PropTypes.string,
@@ -37,8 +38,11 @@ class TopAds extends Component {
     if (this.props.data.topads && this.props.data.topads.items) {
       const topadsdata = this.props.data.topads
       topadsdata.items.map((item, index) => {
-        topadsdata.display === 'product' && topads.push(<TopAdsProduct key={`top-ads-item-${index}`} data={item} />)
-        topadsdata.display === 'shop' && topads.push(<TopAdsShop key={`top-ads-shop-item-${index}`} data={item} />)
+        topadsdata.display === 'product' && topads.push(<TopAdsProduct key={`top-ads-item-${index}`}
+          data={item} />)
+        topadsdata.display === 'shop' && topads.push(<TopAdsShop key={`top-ads-shop-item-${index}`}
+          data={item}
+          eventShopClick={this.props.eventShopClick} />)
       })
     }
 

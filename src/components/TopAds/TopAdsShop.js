@@ -4,11 +4,32 @@ import './TopAds.scss'
 class TopAdsShop extends Component {
   static propTypes = {
     data: React.PropTypes.object,
-    lang: React.PropTypes.string
+    shops: React.PropTypes.object,
+    lang: React.PropTypes.string,
+    eventShopClick: React.PropTypes.func
   }
 
   render () {
     const imageProduct = this.props.data['shop']['image_product'] || []
+    let shopFavButton = <a className='topads__shop__favorite-btn green'
+      onClick={() => this.props.eventShopClick(this.props.data['id'], this.props.data['ad_ref_key'], 'add')}>
+      +&nbsp;Favorite
+    </a>
+
+    if (this.props.shops) {
+      if (this.props.shops[this.props.data['id']]['state']) {
+        shopFavButton = <a className='topads__shop__favorite-btn'
+          onClick={() => this.props.eventShopClick(this.props.data['id'], this.props.data['ad_ref_key'], 'add')}>
+          <i className='icon-checked' />&nbsp;&nbsp;&nbsp;Favorited
+        </a>
+      } else {
+        shopFavButton = <a className='topads__shop__favorite-btn green'
+          onClick={() => this.props.eventShopClick(this.props.data['id'], this.props.data['ad_ref_key'], 'add')}>
+          +&nbsp;Favorite
+        </a>
+      }
+    }
+
     return (
       <div className='u-col u-col-6 topads__contents'>
         <div className='topads__content-box'>
@@ -32,11 +53,10 @@ class TopAdsShop extends Component {
               imageProduct.map((img, bi) => {
                 if (bi < 3) {
                   return (
-                    <div className='u-col u-col-4'>
+                    <div className='u-col u-col-4' key={`topads-shop-product-${bi}`}>
                       <img
                         alt={img['title']}
                         className='topads__img__shop__product'
-                        key={`topads-shop-product-${bi}`}
                         src={img['image_url']} />
                     </div>
                   )
@@ -44,9 +64,7 @@ class TopAdsShop extends Component {
               })
             }
           </div>
-          <a className='topads__shop__favorite-btn green' onClick={this.handleClick}>
-            +&nbsp;Favorite
-          </a>
+          { shopFavButton }
         </div>
       </div>
 

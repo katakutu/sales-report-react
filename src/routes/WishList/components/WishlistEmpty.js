@@ -20,6 +20,7 @@ class WishlistEmpty extends Component {
     super(props)
 
     this._eventModal = this._eventModal.bind(this)
+    this._topAdsEvent = this._topAdsEvent.bind(this)
   }
 
   state = {
@@ -61,6 +62,10 @@ class WishlistEmpty extends Component {
     })
   }
 
+  _topAdsEvent (id, ref, state) {
+    console.log(id)
+  }
+
   render () {
     return (
       <div className='u-clearfix'>
@@ -89,7 +94,9 @@ class WishlistEmpty extends Component {
           q={this.state.q}
           stateModal={this.state.modalState}
           contentModal={this.state.modalContent}
-          eventModal={this._eventModal} />
+          eventModal={this._eventModal}
+          eventShopClick={this._topAdsEvent}
+          />
 
       </div>
     )
