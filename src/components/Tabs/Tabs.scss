@@ -4,18 +4,21 @@
     position: relative;
     display: flex;
     background-color: $color-green;
-    width:100%;
+    width: 100%;
     overflow-x: hidden;
+
     &.logged-out {
-      width: 100%;
-      #slick-track {
-        min-width: 100% !important;
-      }
-      .tab__link {
-        width: 50%;
-        display: inline-block;
-        padding: 0 !important;
-      }
+        width: 100%;
+
+        #slick-track {
+            min-width: 100% !important;
+        }
+
+        .tab__link {
+            width: 50%;
+            display: inline-block;
+            padding: 0 !important;
+        }
     }
 }
 
@@ -50,12 +53,12 @@
     line-height: 40px;
     opacity: 0.54;
     cursor: pointer;
-    padding:11px 15px;
-    white-space:nowrap;
+    padding: 11px 15px;
+    white-space: nowrap;
 
     &.tab__active {
         opacity: 1;
-        border-bottom:2px solid #fff;
+        border-bottom: 2px solid #FFF;
     }
 
     a {
@@ -67,17 +70,19 @@
     display: none;
 }
 
-#loggedin-tab{
+#loggedin-tab {
     .slick-arrow {
         position: absolute;
         z-index: $z-index-3;
         display: block;
         width: 30px;
         height: 40px;
-        margin-top:50px;
-        &.mini{
-            margin-top:23px;
+        margin-top: 50px;
+
+        &.mini {
+            margin-top: 23px;
         }
+
         &::before {
             position: absolute;
             top: -1px;
@@ -107,6 +112,7 @@
         @media (max-width: 430px) {
             right: 0;
         }
+
         background: linear-gradient(-90deg, $color-green, rgba(66, 181, 73, 0.05)) !important;
 
         &::before {
@@ -120,18 +126,18 @@
     .slick-disabled::before {
         display: none;
     }
+
     #slick-track {
         opacity: 1;
-        transform: translate3d(0px, 0px, 0px);
+        transform: translate3d(0, 0, 0);
         min-width: auto;
-        // transition: -webkit-transform 500ms ease;
         transition: 0.4s ease-in-out;
     }
 }
 
 .slider {
-  width: 100%;
-  height: auto;
-  overflow-x: hidden;
-  padding-top: 5px;
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+    padding-top: 5px;
 }

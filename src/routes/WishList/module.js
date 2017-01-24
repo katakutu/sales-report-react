@@ -94,6 +94,10 @@ const ACTION_HANDLERS = {
   },
   [CLEAR_WISHLISTS]   : (state, action) => Object.assign({}, state, { wishlists: [] }),
   [REPLACE_WISHLISTS] : (state, action) => {
+    if (state.wishlists.length === 0 && action.payload.length === 0) {
+      return Object.assign({}, state)
+    }
+
     const newData = action.payload.map(d => Object.assign({}, d, { isActive: true }))
 
     return Object.assign({}, state, { wishlists: newData })

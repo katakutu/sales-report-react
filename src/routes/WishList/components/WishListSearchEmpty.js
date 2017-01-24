@@ -37,8 +37,8 @@ class WishListSearchEmpty extends Component {
           <div className='wishlist__product-not-found'>
             { lang[this.props.lang]['Wishlist Search Empty'] }
           </div>
-          <div className='wishlist__btn-holder' onClick={this.seeAllWishlist}>
-            <div className='wishlist__btn-see-all'>
+          <div className='wishlist__btn-holder'>
+            <div className='wishlist__btn-see-all' onClick={this.seeAllWishlist}>
               { lang[this.props.lang]['See All Wishlists'] }
             </div>
           </div>

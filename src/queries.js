@@ -254,6 +254,104 @@ const WishlistQueries = {
   `
 }
 
+const DigitalQuery = gql`
+query {
+  points{
+    data{
+      attributes{
+        amount_formatted
+      }
+    }
+  }
+  saldo{
+    deposit_fmt
+  }
+  notifications{
+    status
+    data{
+      total_notif
+      total_cart
+      incr_notif
+      resolution
+      sales{
+        sales_new_order
+        sales_shipping_status
+        sales_shipping_confirm
+      }
+      inbox{
+        inbox_talk
+        inbox_ticket
+        inbox_review
+        inbox_friend
+        inbox_message
+        inbox_wishlist
+        inbox_reputation
+      }
+      purchase{
+        purchase_reorder
+        purchase_payment_conf
+        purchase_order_status
+        purchase_payment_confirm
+        purchase_delivery_confirm
+      }
+    }
+  }
+  wallet {
+    linked
+    balance
+    errors {
+      name
+      message
+    }
+  }
+  shop{
+    shop_id
+    shop_url
+    domain
+    shop_name
+    shop_name_unfmt
+    shop_name_clean
+    is_gold
+    is_official
+    location
+    logo
+    shop_badge
+  }
+  recharge_operator{
+    id
+    name
+    weight
+    default_product_id
+    image
+    slug
+    show_product_list
+  }
+  recharge_product{
+    id
+    category_id
+    operator_id
+    status
+    price_plain
+    desc
+    detail
+    price
+  }
+  recharge_category{
+    id
+    name
+    slug
+    icon
+  }
+  recharge_banner{
+    id
+    image_url
+    redirect_url
+    subtitle
+    title
+  }
+}
+`
+
 const TopAdsQueries = {
   getAll: gql`
   query Query($userID: Int!, $ep: String!, $src: String!, $item: Int!, $page: Int!, $q: String!) {
@@ -341,5 +439,6 @@ export default {
   UserIsLoggedIn: UserIsLoggedIn,
   ApolloExecutors: ApolloExecutors,
   WishlistQueries: WishlistQueries,
+  DigitalQuery: DigitalQuery,
   TopAdsQueries: TopAdsQueries
 }
