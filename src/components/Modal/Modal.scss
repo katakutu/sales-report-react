@@ -1,0 +1,113 @@
+@import 'base';
+
+.close-promote {
+    position: absolute;
+    font-size: 30px;
+    color: $color-white-primary;
+    z-index: 1000;
+    right: 5px;
+    top: -4px;
+    padding: 5px;
+    cursor: pointer;
+}
+.promote-inform {
+    position: relative;
+    width: 80%;
+    height: 100%;
+    text-align: left;
+    margin: auto;
+    overflow-x: scroll;
+    .list-topads {
+        margin-top: 35px;
+        .popover-content {
+          min-width: 185px;
+          margin: 2px 0 0;
+          list-style: none;
+          background-color: $color-white-primary;
+          padding: 5px;
+          border: 1px solid #d9d9d9;
+          -webkit-border-radius: 0 0 2px 2px;
+          -moz-border-radius: 0 0 2px 2px;
+          border-radius: 0 0 2px 2px;
+          box-shadow: 2px 2px 0 $color-grey-1;
+          -webkit-box-shadow: 2px 2px 0 $color-grey-1;
+          -moz-box-shadow: 2px 2px 0 $color-grey-1;
+          -webkit-background-clip: padding-box;
+          -moz-background-clip: padding;
+          background-clip: padding-box;
+          p {
+            margin: 0;
+            line-height: 18px;
+            color: #666;
+            strong {
+              line-height: 26px;
+            }
+          }
+        }
+    }
+}
+.mb-0 {
+    margin-bottom: 0!important;
+}
+.mb-5 {
+    margin-bottom: 5px!important;
+}
+.mt-10 {
+    margin-top: 10px!important;
+}
+.fs-12 {
+    font-size: 12px!important;
+}
+.row-fluid {
+    width: 100%;
+    display: block;
+}
+.row-fluid:before, .row-fluid:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+Pseudo ::after element
+.row-fluid:after {
+    clear: both;
+}
+.row-fluid [class*=span]:first-child {
+    margin-left: 0;
+}
+.row-fluid .span2 {
+    width: 14.893617021276595%;
+    .w-50 {
+    width: 50px;
+    }
+    img {
+        height: auto;
+        vertical-align: middle;
+        border: 0;
+        max-width: 100%;
+        -ms-interpolation-mode: bicubic;
+    }
+}
+.row-fluid [class*=span] {
+    display: block;
+    width: 100%;
+    min-height: 35px;
+    margin-left: 2.127659574468085%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.text-left {
+    text-align: left!important;
+}
+.text-center {
+    text-align: center!important;
+}
+.new-btn-success {
+    border: 1px solid #4d9c46;
+    background-color: #4d9c46;
+    color:  $color-white-primary;
+    padding: 8px 15px;
+    text-align: center;
+    margin-top: 15px;
+    display: inherit;
+}
