@@ -154,20 +154,21 @@ class DigitalProductContent extends Component {
       {
         value: '50000',
         name: 'Rp 50.000'
-      },
+      }
     ]
     const radioButtons = [
       {
         id: 'bpjs-kesehatan',
+        name: 'bpjs',
         text: 'Kesehatan',
         checked: true
       },
       {
         id: 'bpjs-ketenagakerjaan',
+        name: 'bpjs',
         text: 'Ketenagakerjaan'
       }
     ]
-
     // Dummy stops here
 
     return (
@@ -189,8 +190,12 @@ class DigitalProductContent extends Component {
             <h1 className='u-clearfix u-block u-mt0 u-mb3 u-left-align u-col-12'>
               {this.props.title}
             </h1>
-            <DigitalProductRadioButtons buttons={radioButtons}/>
-            <DigitalProductSelectGroup label='Nominal' placeholder='Pilih Penyedia' options={selectOptions}/>
+            <DigitalProductRadioButtons buttons={radioButtons} />
+            <DigitalProductSelectGroup
+              label='Nomor Kepesertaan BPJS'
+              placeholder='Pilih Penyedia'
+              options={selectOptions}
+              tooltip='Nomor virtual account keluarga anda untuk BPJS Kesehatan/ Nomor KTP untuk BPJS Ketenagakerjaan' />
             {/* Commented for development purpose
             <div className='dp--lembaga'>
               <div className='dp-lembaga-tab-list'>

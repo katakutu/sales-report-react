@@ -11,6 +11,71 @@
     color: $color-black-secondary;
 }
 
+.dp-inputgroup__tooltip {
+    display: inline-block;
+    position: relative;
+    margin-left: 5px;
+    width: 16px;
+    height: 17px;
+    vertical-align: middle;
+
+    .dp-tooltip {
+        background: url(../assets/icon-info.png) center no-repeat;
+        background-size: 16px 17px;
+        display: inline-block;
+        width: 16px;
+        height: 17px;
+    }
+
+    .dp-tooltip__container {
+        position: absolute;
+        top: 10px;
+        left: -60px;
+        z-index: 1001;
+        padding: 15px 0;
+        width: 230px;
+        text-align: center;
+    }
+
+    .dp-tooltip__box {
+        display: none;
+        padding: 7px 11px;
+        border: 1px solid $color-grey-3;
+        border-radius: 3px;
+        background: $color-white-primary;
+
+        &::before {
+            position: absolute;
+            top: -3px;
+            left: 60px;
+            z-index: 0;
+            width: 0;
+            height: 0;
+            border: 8px solid transparent;
+            border-bottom: 10px solid $color-grey-3;
+            content: '';
+        }
+
+        &::after {
+            position: absolute;
+            top: -1px;
+            left: 60px;
+            z-index: 0;
+            width: 0;
+            height: 0;
+            border: 8px solid transparent;
+            border-bottom: 10px solid #fff;
+            content: '';
+        }
+    }
+
+    .dp-tooltip__text {
+        font-size: 13px;
+        color: $color-black-secondary;
+        line-height: 1.42857143;
+    }
+}
+
 .dp-inputgroup__select {
     padding: 5px 6px;
     border: 0;

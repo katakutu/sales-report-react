@@ -9,11 +9,8 @@ class DigitalProductSelectGroup extends Component {
     label: PropTypes.string,
     placeholder: PropTypes.string,
     value: PropTypes.string,
-    options: PropTypes.array
-  }
-
-  constructor (props) {
-    super(props)
+    options: PropTypes.array,
+    tooltip: PropTypes.string
   }
 
   render () {
@@ -30,9 +27,19 @@ class DigitalProductSelectGroup extends Component {
       return (
         <div className='dp-inputgroup'>
           <label className='dp-inputgroup__label u-mb1'>{this.props.label}</label>
+          <div className={classNames('dp-inputgroup__tooltip', { 'u-hide': !this.props.tooltip })}>
+            <i className='dp-tooltip' />
+            <div className='dp-tooltip__container'>
+              <div className='dp-tooltip__box'>
+                <p className='dp-tooltip__text u-my0'>
+                  {this.props.tooltip}
+                </p>
+              </div>
+            </div>
+          </div>
           <select className='dp-inputgroup__select' defaultValue=''>
             <option value='' disabled>{this.props.placeholder}</option>
-            {this.props.options.map(function(option, index) {
+            {this.props.options.map(function (option, index) {
               return (
                 <option key={index} value={option.value}>{option.name}</option>
               )
