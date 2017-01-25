@@ -268,7 +268,7 @@ class HeaderHome extends Component {
                 showModal={this.state.showSearchModal} />
             }
 
-            { !this.props.hideSearch && this.state.showSearch &&
+            { (!this.props.hideSearch && !this.state.showSearch) &&
               <div className='header__search'>
                 <button className='header__search-btn' onClick={this.showSearch}>
                   <span>Search</span>
