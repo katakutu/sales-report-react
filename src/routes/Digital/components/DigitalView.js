@@ -40,7 +40,7 @@ class DigitalView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} hideSearch />
         <DigitalProductTab categoryList={categoryList} />
-        <DigitalProductContent operatorList={operatorList} productList={productList} slug={this.props.params.slug} />
+        <DigitalProductContent operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Salurkan Donasi Untuk Berbagi Dengan Sesama' />
         <DigitalProductPromo bannerList={bannerList} />
         <DigitalProductOperator operatorList={operatorList} />
         <DigitalProductSelectDrawer />

@@ -16,7 +16,8 @@ class DigitalProductContent extends Component {
   static propTypes = {
     slug: PropTypes.string,
     productList: PropTypes.array,
-    operatorList: PropTypes.array
+    operatorList: PropTypes.array,
+    title: PropTypes.string
   }
 
   constructor (props) {
@@ -154,9 +155,10 @@ class DigitalProductContent extends Component {
               type='hidden'
               name='product_id'
               value={this.state.productId} />
-            <h1 className='u-clearfix u-block u-mt2 u-mb0 u-mx-auto u-left-align u-bold u-col-12'>
-              Salurkan Donasi Untuk Berbagi Dengan Sesama
+            <h1 className='u-clearfix u-block u-mt2 u-mb0 u-mx-auto u-left-align u-col-12'>
+              {this.props.title}
             </h1>
+            {/* Commented for development purpose
             <div className='dp--lembaga'>
               <div className='dp-lembaga-tab-list'>
                 <label className='u-inline-block'>Pilih Lembaga Donasi</label>
@@ -278,6 +280,7 @@ class DigitalProductContent extends Component {
                 <Link className='u-mx-auto u-mt2 u-block u-center u-h3'>Ingin daftar sebagai lembaga donasi?</Link>
               </div>
             </div>
+            */}
           </form>
         </div>
         <div className={classNames('dp-drawer--select', { 'active': this.state.open })}>
