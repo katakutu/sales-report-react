@@ -1,4 +1,5 @@
 const TopedAdsAPI = require('./../../api-consumer/api/TopAds/TopedAdsAPI')
+const GlobalConfig = require('./../../GlobalConfig')
 
 const EMPTY_TOPADS = {
   total_data: 0,
@@ -6,9 +7,10 @@ const EMPTY_TOPADS = {
   items: []
 }
 
-function getTopsAds (userID, ep, src, item, page, q) {
+function getTopsAds (userID, ep, src, item, page, q, context) {
+  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
   const api = new TopedAdsAPI()
-  return api.getTopAds(userID, ep, src, item, page, q).then(response => {
+  return api.getTopAds(userID, ep, src, item, page, q, sessID).then(response => {
     if (!response['data']) {
       const raw = JSON.stringify(response)
       console.error(`[TopAds][TopAds][Display] TopAds API calls returns no usual data. Raw data: ${raw}`)
