@@ -6,13 +6,13 @@
 }
 
 .topads__wrapper {
-  width: 100%;
-  background-color: #fff;
+    width: 100%;
+    background-color: #FFF;
 }
 
 .topads__sub__wrapper {
-  margin: 0 auto 10px;
-  max-width: 375px;
+    margin: 0 auto 10px;
+    max-width: 375px;
 }
 
 .topads__set-love-grey {
@@ -35,29 +35,31 @@
     background-color: $color-white-primary;
     height: auto;
 }
+
 .topads__title__contents {
     background-color: $color-white-primary;
     height: auto;
     padding: 5px 0;
+
     a {
         margin: 0;
         font-size: 12px;
-        line-height: 16px;
-        color: rgba(0,0,0,.54);
-        padding:0 20px 0 10px;
-        display:inline-block;
+        color: rgba(0, 0, 0, 0.54);
+        padding: 0 20px 0 10px;
+        display: inline-block;
         line-height: 16px;
         vertical-align: middle;
         position: relative;
-      img {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        margin-top: -7.5px;
-        width: 14px;
-        height: 14px;
-        display:inline-block;
-      }
+
+        img {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            margin-top: -7.5px;
+            width: 14px;
+            height: 14px;
+            display: inline-block;
+        }
     }
 }
 
@@ -88,8 +90,9 @@
 .topads__content-box {
     position: relative;
     padding: 5px 10px;
+
     a {
-      display: block;
+        display: block;
     }
 }
 
@@ -193,7 +196,7 @@
 }
 
 .topads__search-result {
-    margin: 15px 0px 5px 15px;
+    margin: 15px 0 5px 15px;
     color: $color-black-disabled;
 }
 
@@ -336,26 +339,30 @@
     background-size: auto 14px;
     vertical-align: middle;
 }
+
 .icon-fire,
 .icon-thumbsup,
 .icon-trumpet {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      vertical-align: middle;
-      position: absolute;
-      left: 0;
-      top: 50%;
-      margin-top: -6px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    vertical-align: middle;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -6px;
 }
+
 .icon-fire {
     background: url('./assets/icon-api.png') transparent no-repeat;
     background-size: auto 12px;
 }
+
 .icon-thumbsup {
     background: url('./assets/icon-jempol.png') transparent no-repeat;
     background-size: auto 12px;
 }
+
 .icon-trumpet {
     background: url('./assets/icon-toa.png') transparent no-repeat;
     background-size: auto 12px;
