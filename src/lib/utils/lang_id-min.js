@@ -92,7 +92,12 @@ const lang = {
     'Perawatan Bayi': 'Perawatan Bayi',
     'Pascabayar': 'Pascabayar',
     'Hasil': 'Hasil',
-    'Delivery Confirm': 'Konfirmasi Penerimaan'
+    'Delivery Confirm': 'Konfirmasi Penerimaan',
+    'TERAKHIR DILIHAT': 'TERAKHIR DILIHAT',
+    'INSPIRASI DARI MINAT ANDA' :'INSPIRASI DARI MINAT ANDA',
+    'INSPIRASI DARI WISHLIST' : 'INSPIRASI DARI WISHLIST',
+    'INSPIRASI DARI PEMBELIAN' : 'INSPIRASI DARI PEMBELIAN',
+    'PRODUCT FEED' : 'PRODUCT FEED'
 }
 
 module.exports = lang

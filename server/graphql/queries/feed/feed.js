@@ -24,12 +24,12 @@ const userFeedQuery = {
 const userRecommendationQuery = {
   type: RecommendationsType,
   args: {
-    userId: { type: GraphQLInt },
+    userID: { type: GraphQLInt },
     recommendationSource: { type: GraphQLString },
     recommendationSize: { type: GraphQLInt }
   },
   resolve: function (_, args) {
-    return getRecommendations(args.userId, args.recommendationSource, args.recommendationSize)
+    return getRecommendations(args.userID, args.recommendationSource, args.recommendationSize)
   }
 }
 

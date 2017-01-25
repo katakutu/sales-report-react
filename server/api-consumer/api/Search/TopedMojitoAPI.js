@@ -11,7 +11,7 @@ const MOJITO_SERVICES = {
   OfficialStores: `${GlobalConfig.Mojito.OfficialStoreHostname}/os/api/v1/brands/list?device=lite`,
   WishlistProducts: `${GlobalConfig.Mojito.Hostname}/v1.0.2/users/:user_id/wishlist/products?count=:count&page=:page`,
   WishlistModification: `${GlobalConfig.Mojito.Hostname}/v1/products/:product_id/wishlist`,
-  WishlsitSearch: `${GlobalConfig.Mojito.Hostname}/users/:user_id/wishlist/search/v2?q=:query`,
+  WishlsitSearch: `${GlobalConfig.Mojito.Hostname}/users/:user_id/wishlist/search/v2?q=:query&count=:count&page=:page`,
   RecentView: `${GlobalConfig.Mojito.Hostname}/users/:id/recentview/products/v1`
 }
 
@@ -105,10 +105,12 @@ class TopedMojitoAPI {
     return this.api.consume(URL.parse(endpoint), 'GET', {})
   }
 
-  filterWishlist (userID, query = '') {
+  filterWishlist (userID, query = '', count = 10, page = 1) {
     const endpoint = MOJITO_SERVICES.WishlsitSearch
                                     .replace(':user_id', userID)
                                     .replace(':query', query)
+                                    .replace(':count', count)
+                                    .replace(':page', page)
 
     return this.api.consume(URL.parse(endpoint), 'GET', {})
   }
@@ -157,6 +159,17 @@ class TopedMojitoAPI {
 
                          return false
                        })
+  }
+
+  getRecentView (userID) {
+    const endpoint = MOJITO_SERVICES.RecentView.replace(':id', userID)
+    const header = {
+      'X-User-ID': userID,
+      'X-Device': 'lite'
+    }
+
+    return this.HMACApi.consumeJSON(URL.parse(endpoint), 'GET', header)
+                       .then(response => parseJSON(response['body']))
   }
 }
 

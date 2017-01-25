@@ -15,9 +15,9 @@ class TopedUserRecommendationAPI {
   /**
    * Gather all recommendation from user
    */
-  getRecommendation (userId, recommendationSource, recommendationSize) {
+  getRecommendation (userID, recommendationSource, recommendationSize) {
     const endpoint = USER_RECOMMENDATION_SERVICES.Recommendation
-                                 .replace(':user_id', userId)
+                                 .replace(':user_id', userID)
                                  .replace(':recommendation_source', recommendationSource)
                                  .replace(':recommendation_size', recommendationSize)
 

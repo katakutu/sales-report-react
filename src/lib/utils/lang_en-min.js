@@ -92,7 +92,13 @@ const lang = {
     'Perawatan Bayi': 'Baby Care',
     'Pascabayar': 'Postpaid',
     'Hasil': 'Result',
-    'Delivery Confirm': 'Receive Confirmation'
+    'Delivery Confirm': 'Receive Confirmation',
+    'TERAKHIR DILIHAT': 'RECENTLY VIEWED',
+    'INSPIRASI DARI MINAT ANDA' :'RELATED TO ITEMS YOU\'VE VIEWED',
+    'INSPIRASI DARI WISHLIST' : 'INSPIRED BY YOUR WISHLIST',
+    'INSPIRASI DARI PEMBELIAN' : 'INSPIRED BY YOUR PURCHASED',
+    'PRODUCT FEED' : 'PRODUCT FEED'
+    
 }
 
 module.exports = lang

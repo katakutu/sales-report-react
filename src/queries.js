@@ -324,6 +324,94 @@ query Query {
 }
 `
 
+// const FeedQueries = gql`
+//    query Query($ob: Int!, $start: Int!, $rows: Int!, $shopId: String!, $uniquedId: String! ){
+//       get_feed(ob: $ob, start: $start, rows: $rows, shopId: $shopId, uniquedId: $uniquedId){
+//         total_data
+//         items {
+//           id
+//           name
+//           url
+//           image_url
+//           image_url_700
+//           price
+//           shop {
+//             id
+//             name
+//             url
+//             is_gold
+//             location
+//             city
+//             reputation
+//             clover
+//           }
+//           badges {
+//             title
+//             image_url
+//           }
+//           labels {
+//             title
+//             color
+//           }
+//         }
+//       }
+//     },
+//     get_recommendation(userID:$userID, recommendationSource: $recommendationSource, recommendationSize:$recommendationSize) {
+//           size_data
+//           source
+//           items {
+//             id
+//             name
+//             url
+//             image_url
+//             price
+//             shop {
+//               id
+//               name
+//               url
+//               is_gold
+//               location
+//               city
+//               reputation
+//               clover
+//             }
+//             badges {
+//               title
+//               image_url
+//             }
+//             labels {
+//               title
+//               color
+//             }
+//           }
+//         }
+//       },
+//       get_recent_view (userID: $userID) {
+//           items {
+//             product_id
+//             product_url
+//             product_name
+//             product_image
+//             product_price
+//             shop_id
+//             shop_url
+//             shop_name
+//             shop_location
+//             shop_gold_status
+//             badges {
+//               title
+//               image_url
+//             }
+//             labels {
+//               title
+//               color
+//             }
+//           }
+//        }
+//     }
+
+// `
+
 const FeedQuery = gql`
   query Query($ob: Int!, $start: Int!, $rows: Int!, $shopId: String!, $uniquedId: String! ){
       get_feed(ob: $ob, start: $start, rows: $rows, shopId: $shopId, uniquedId: $uniquedId){

@@ -41,10 +41,10 @@ function getFeeds (ob, rows, start, shopId, uniquedId) {
   })
 }
 
-function getRecommendations (userId, recommendationSource, recommendationSize) {
+function getRecommendations (userID, recommendationSource, recommendationSize) {
   const api = new TopedUserRecommendationAPI()
 
-  return api.getRecommendation(userId, recommendationSource, recommendationSize).then(response => {
+  return api.getRecommendation(userID, recommendationSource, recommendationSize).then(response => {
     if (!response['data']) {
       const raw = JSON.stringify(response)
       console.error(`[Merlin][Recommendation][GetRecommendation]
