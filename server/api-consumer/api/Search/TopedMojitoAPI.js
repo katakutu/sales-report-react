@@ -2,6 +2,7 @@ const TopedAPI = require('../TopedAPI')
 const TopedHMACAPI = require('../TopedHMACAPI')
 const GlobalConfig = require('../../../GlobalConfig')
 const URL = require('url')
+const parseJSON = require('../../../helpers/parseJSON')
 
 const MOJITO_SERVICES = {
   Ticker: `${GlobalConfig.Mojito.Hostname}/api/v1/tickers`,
@@ -10,7 +11,8 @@ const MOJITO_SERVICES = {
   OfficialStores: `${GlobalConfig.Mojito.OfficialStoreHostname}/os/api/v1/brands/list?device=lite`,
   WishlistProducts: `${GlobalConfig.Mojito.Hostname}/v1.0.2/users/:user_id/wishlist/products?count=:count&page=:page`,
   WishlistModification: `${GlobalConfig.Mojito.Hostname}/v1/products/:product_id/wishlist`,
-  WishlsitSearch: `${GlobalConfig.Mojito.Hostname}/users/:user_id/wishlist/search/v2?q=:query&count=:count&page=:page`
+  WishlsitSearch: `${GlobalConfig.Mojito.Hostname}/users/:user_id/wishlist/search/v2?q=:query&count=:count&page=:page`,
+  RecentView: `${GlobalConfig.Mojito.Hostname}/users/:id/recentview/products/v1`
 }
 
 const MOJITO_HMAC_API_KEY = 'mojito_api_v1'
@@ -157,6 +159,17 @@ class TopedMojitoAPI {
 
                          return false
                        })
+  }
+
+  getRecentView (userID) {
+    const endpoint = MOJITO_SERVICES.RecentView.replace(':id', userID)
+    const header = {
+      'X-User-ID': userID,
+      'X-Device': 'lite'
+    }
+
+    return this.HMACApi.consumeJSON(URL.parse(endpoint), 'GET', header)
+                       .then(response => parseJSON(response['body']))
   }
 }
 

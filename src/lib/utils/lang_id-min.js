@@ -97,7 +97,12 @@ const lang = {
     'Out of Stock': 'Stok Kosong',
     'Clear': 'Hapus',
     'Wishlist Search Empty': 'Produk tidak ditemukan di wishlist',
-    'See All Wishlists': 'Lihat Semua Produk'
+    'See All Wishlists': 'Lihat Semua Produk',
+    'TERAKHIR DILIHAT': 'TERAKHIR DILIHAT',
+    'INSPIRASI DARI MINAT ANDA' :'INSPIRASI DARI MINAT ANDA',
+    'INSPIRASI DARI WISHLIST' : 'INSPIRASI DARI WISHLIST',
+    'INSPIRASI DARI PEMBELIAN' : 'INSPIRASI DARI PEMBELIAN',
+    'PRODUCT FEED' : 'PRODUCT FEED'
 }
 
 module.exports = lang
