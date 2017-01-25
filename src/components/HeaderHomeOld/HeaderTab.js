@@ -4,7 +4,6 @@ import Tabs from '../Tabs/Tabs'
 import Tab from '../Tabs/Tab'
 import { appIsLoading, updateScrollPosition } from '../../store/app'
 import { HOSTNAME } from '../../constants'
-import lang from '../../lib/utils/Lang'
 
 class HeaderTab extends Component {
 
@@ -68,7 +67,6 @@ class HeaderTab extends Component {
   render () {
     const homeCN = this.props.activeTab === 'home'
     const hlCN = this.props.activeTab === 'hotlist'
-    const flCN = this.props.activeTab === 'favorite'
     const wlCN = this.props.activeTab === 'wishlist'
 
     return (
@@ -84,12 +82,7 @@ class HeaderTab extends Component {
           : ''
         }
         <Tab isActive={hlCN} label='Hot List' onClick={() => this._savePosition('/hot')} />
-        {
-          this.props.userIsLoggedIn
-          ? <Tab isActive={flCN} label={lang[this.props.lang]['Favorite tab']}
-            onClick={() => this._savePosition('/fave')} />
-            : ''
-        }
+        { this.props.userIsLoggedIn ? <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
       </Tabs>
     )
   }
