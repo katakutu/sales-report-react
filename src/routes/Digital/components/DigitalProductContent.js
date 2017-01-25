@@ -5,6 +5,7 @@ import BodyClassName from 'react-body-classname'
 import './DigitalProductContent.scss'
 import './DigitalProductSelectDrawer.scss'
 import DigitalProductSelectGroup from './DigitalProductSelectGroup'
+import DigitalProductRadioButtons from './DigitalProductRadioButtons'
 import { SLUG } from './digitalconstants'
 import { SITES } from '../../../constants'
 
@@ -140,6 +141,35 @@ class DigitalProductContent extends Component {
       }
     })
 
+    // Dummy data, remove when unneeded
+    const selectOptions = [
+      {
+        value: '10000',
+        name: 'Rp 10.000'
+      },
+      {
+        value: '25000',
+        name: 'Rp 25.000'
+      },
+      {
+        value: '50000',
+        name: 'Rp 50.000'
+      },
+    ]
+    const radioButtons = [
+      {
+        id: 'bpjs-kesehatan',
+        text: 'Kesehatan',
+        checked: true
+      },
+      {
+        id: 'bpjs-ketenagakerjaan',
+        text: 'Ketenagakerjaan'
+      }
+    ]
+
+    // Dummy stops here
+
     return (
       <div className='u-clearfix dp-content'>
         <div className='dp__container'>
@@ -159,7 +189,8 @@ class DigitalProductContent extends Component {
             <h1 className='u-clearfix u-block u-mt0 u-mb3 u-left-align u-col-12'>
               {this.props.title}
             </h1>
-            <DigitalProductSelectGroup label='Nominal' />
+            <DigitalProductRadioButtons buttons={radioButtons}/>
+            <DigitalProductSelectGroup label='Nominal' placeholder='Pilih Penyedia' options={selectOptions}/>
             {/* Commented for development purpose
             <div className='dp--lembaga'>
               <div className='dp-lembaga-tab-list'>
