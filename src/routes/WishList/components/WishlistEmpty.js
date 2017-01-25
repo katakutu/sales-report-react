@@ -93,7 +93,6 @@ class WishlistEmpty extends Component {
           stateModal={this.state.modalState}
           contentModal={TOPADS_PARAMS.modalContent}
           eventModal={this._eventModal} />
-
       </div>
     )
   }
