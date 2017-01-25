@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import BodyClassName from 'react-body-classname'
 import './DigitalProductContent.scss'
 import './DigitalProductSelectDrawer.scss'
+import DigitalProductSelectGroup from './DigitalProductSelectGroup'
 import { SLUG } from './digitalconstants'
 import { SITES } from '../../../constants'
 
@@ -141,7 +142,7 @@ class DigitalProductContent extends Component {
 
     return (
       <div className='u-clearfix dp-content'>
-        <div className='dp__container u-p0'>
+        <div className='dp__container'>
           <form method='GET' action={SITES['Pulsa']}>
             <input
               type='hidden'
@@ -155,9 +156,10 @@ class DigitalProductContent extends Component {
               type='hidden'
               name='product_id'
               value={this.state.productId} />
-            <h1 className='u-clearfix u-block u-mt2 u-mb0 u-mx-auto u-left-align u-col-12'>
+            <h1 className='u-clearfix u-block u-mt0 u-mb3 u-left-align u-col-12'>
               {this.props.title}
             </h1>
+            <DigitalProductSelectGroup label='Nominal' />
             {/* Commented for development purpose
             <div className='dp--lembaga'>
               <div className='dp-lembaga-tab-list'>
