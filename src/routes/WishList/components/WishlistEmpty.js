@@ -12,7 +12,7 @@ import './WishListView.scss'
 
 const TOPADS_PARAMS = {
   ep: 'product',
-  src: 'fav_product',
+  src:'wishlist',
   item: 2,
   page: 1,
   q: '',
