@@ -50,8 +50,8 @@ class DigitalWidget extends Component {
                 <Label htmlFor='no_telp'>Nomor Telepon</Label>
                 <div className='u-relative dpw-input--with-image'>
                   <TextInput id='no_telp'
-                  placeholder='Contoh 081234567890' />
-                  <img className="dpw-operator-image" src='https://ecs7.tokopedia.net/img/recharge/operator/xl_2.png' />
+                    placeholder='Contoh 081234567890' />
+                  <img className='dpw-operator-image' src='https://ecs7.tokopedia.net/img/recharge/operator/xl_2.png' />
                   <button className='dpw-input-clear'>Clear</button>
                 </div>
               </div>

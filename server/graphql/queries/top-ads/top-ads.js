@@ -15,8 +15,8 @@ const userTopAdsQuery = {
     page: { type: GraphQLInt },
     q: { type: GraphQLString }
   },
-  resolve: function (_, args) {
-    return getTopsAds(args.userID, args.ep, args.src, args.item, args.page, args.q)
+  resolve: function (_, args, context) {
+    return getTopsAds(args.userID, args.ep, args.src, args.item, args.page, args.q, context)
   }
 }
 
