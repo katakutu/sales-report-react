@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import deepEqual from 'deep-equal'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 
@@ -7,14 +8,9 @@ import { HOSTNAME } from './../../../constants'
 import queries from './../../../queries'
 import lang from '../../../lib/utils/Lang'
 import ArrayHelper from '../../../lib/utils/ArrayHelper'
+import LoadMore from '../../../components/LoadMore'
 
-import {
-  addWishlist,
-  clearWishlists,
-  replaceWishlists,
-  updateHasNextPage,
-  updateTotalWishlist
-} from '../module'
+import { replaceWishlists, updatePage, updateQuery } from '../module'
 
 import WishlistSearchEmpty from './WishListSearchEmpty'
 import WishlistEmpty from './WishlistEmpty'
@@ -23,65 +19,75 @@ import WishlistUnloved from './WishlistUnloved'
 
 import './WishListView.scss'
 
+const WISHLIST_PER_PAGE = 20
+
 class WishList extends Component {
   static propTypes = {
-    addWishlist: PropTypes.func,
-    clearWishlists: PropTypes.func,
     count: PropTypes.number,
-    data: PropTypes.object,
+    fetchMore: PropTypes.func,
     lang: PropTypes.string,
+    loading: PropTypes.bool,
     page: PropTypes.number,
     query: PropTypes.string,
     replaceWishlists: PropTypes.func,
-    shouldRefetch: PropTypes.bool,
-    updateHasNextPage: PropTypes.func,
-    updateTotalWishlist: PropTypes.func,
     userID: PropTypes.number,
-    wishlists: PropTypes.arrayOf(PropTypes.object)
+    updatePage: PropTypes.func,
+    updateQuery: PropTypes.func,
+    wishlist:  PropTypes.object, // object returned from graphql
+    wishlists: PropTypes.arrayOf(PropTypes.object) // our redux state that's actually calculated
   }
 
-  componentWillReceiveProps (nextProps) {
-    // comparing only the relevant changes
-    const np = {
-      count: nextProps.count,
-      page: nextProps.page,
-      query: nextProps.query,
-      wishlists: nextProps.wishlists
+  state = {
+    page: this.props.page,
+    query: this.props.query
+  }
+
+  constructor (props) {
+    super(props)
+
+    this.resetSearch = this.resetSearch.bind(this)
+    this.searchWishlist = this.searchWishlist.bind(this)
+    this.updateQuery = this.updateQuery.bind(this)
+    this.viewMore = this.viewMore.bind(this)
+  }
+
+  resetSearch () {
+    this.setState({
+      query: ''
+    }, () => {
+      this.props.updateQuery('')
+
+      browserHistory.push({
+        pathname: '/wishlist'
+      })
+    })
+  }
+
+  searchWishlist (event) {
+    if (event.key === 'Enter') {
+      this.props.updateQuery(this.state.query)
+      event.target.blur()
+
+      browserHistory.push({
+        pathname: '/wishlist'
+      })
     }
-    const tp = {
-      count: this.props.count,
-      page: this.props.page,
-      query: this.props.query,
-      wishlists: this.props.wishlists
-    }
-    const propsChanged = deepEqual(np, tp)
+  }
 
-    if (nextProps['data'] && !nextProps.data.loading && propsChanged) {
-      const ids = this.props.wishlists.map(w => w['id'])
-      const data = nextProps['data']['wishlist'] && nextProps['data']['wishlist']['items']
-      const gqlData = data || []
+  updateQuery (event) {
+    this.setState({ query: event.target.value })
+  }
 
-      const newData = gqlData.filter(d => !ids.includes(d['id']))
-      if (nextProps.query === '' && newData.length > 0) {
-        // if returning from search
-        if (this.props.query !== '') {
-          this.props.clearWishlists()
-        }
-
-        this.props.addWishlist(newData)
-      } else if (nextProps.query !== '') {
-        if (nextProps.page > 1) {
-          this.props.addWishlist(newData)
-        } else {
-          this.props.replaceWishlists(gqlData)
-        }
-      }
-
-      const totalData = nextProps['data']['wishlist'] && nextProps['data']['wishlist']['total_data']
-      const hasNextPage = nextProps['data']['wishlist'] && nextProps['data']['wishlist']['has_next_page']
-      this.props.updateHasNextPage(hasNextPage || false)
-      this.props.updateTotalWishlist(totalData || 0)
-    }
+  viewMore () {
+    this.setState({
+      page: this.state.page + 1
+    }, () => {
+      this.props.fetchMore(this.props.query, this.state.page)
+      browserHistory.push({
+        pathname: '/wishlist',
+        query: { page: this.state.page }
+      })
+    })
   }
 
   renderWishlists (wishlists, parentIndex) {
@@ -101,7 +107,7 @@ class WishList extends Component {
         </div>
       ) : (
         <div className='wishlist__buy'>
-          <a href={buyLink} className='wishlist__button-no-stock'>
+          <a disabled className='wishlist__button-no-stock'>
             { lang[this.props.lang]['Out of Stock'] }
           </a>
         </div>
@@ -182,50 +188,129 @@ class WishList extends Component {
     })
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (!nextProps.loading) {
+      const wl = nextProps.wishlist || { has_next_page: false, items: [], total_data: 0 }
+      const wishlists = wl.items || []
+      const newWishlists = wishlists.map(wl => Object.assign({}, wl, { isLoved: true }))
+
+      this.props.replaceWishlists(newWishlists)
+    }
+  }
+
   render () {
-    const wishlists = this.props.wishlists
-    const isNoWishlist = wishlists.length === 0 && !this.props.data.loading && this.props.query === ''
-    const isEmptyResult = wishlists.length === 0 && !this.props.data.loading && this.props.query !== ''
+    const wl = this.props.wishlist || { has_next_page: false, items: [], total_data: 0 }
+    const wishlists = this.props.wishlists || []
+    const isNoWishlist = wishlists.length === 0 && !this.props.loading && this.props.query === ''
+    const isEmptyResult = wishlists.length === 0 && !this.props.loading && this.props.query !== ''
+
+    const searchTransitionOptions = {
+      transitionName: 'searchTransition',
+      transitionAppear: true,
+      transitionAppearTimeout: 500,
+      transitionEnter: true,
+      transitionEnterTimeout: 500,
+      transitionLeave: true,
+      transitionLeaveTimeout: 500
+    }
 
     return (
-      <div className='wishlist-container u-clearfix'>
-        { isNoWishlist && <WishlistEmpty userID={this.props.userID} /> }
-        { isEmptyResult && <WishlistSearchEmpty /> }
-        { wishlists.length > 0 && ArrayHelper.chunk(wishlists, 2).map((wls, index) => {
-          const key = `wishlist-cont-${index}`
+      <div className='u-clearfix'>
+        <div className='wishlist__searchbar-holder'>
+          <i className='wishlist__icon wishlist__love-grey wishlist__set-love-grey' />
+          <input
+            type='text'
+            name='searchwishlist'
+            className='wishlist__searchbar'
+            placeholder={lang[this.props.lang]['Search in Wishlist']}
+            onChange={this.updateQuery}
+            onKeyPress={this.searchWishlist}
+            value={this.state.query} />
+        </div>
 
-          return (
-            <div className='u-clearfix' key={key}>
-              { this.renderWishlists(wls, index) }
-            </div>
-          )
-        })}
+        <ReactCSSTransitionGroup {...searchTransitionOptions}>
+          {
+              this.props.query !== '' &&
+              <div id='search-stats'>
+                <div className='u-col u-col-6 search-stats-detail'>
+                  <p className='wishlist__search-result'>{wishlists.length} {lang[this.props.lang]['Hasil']}</p>
+                </div>
+                <div className='u-col u-col-6 search-stats-detail'>
+                  <span className='wishlist__reset-search' onClick={this.resetSearch}>
+                    { lang[this.props.lang]['Clear'] }
+                  </span>
+                </div>
+                <div className='u-clearfix' />
+              </div>
+            }
+        </ReactCSSTransitionGroup>
+
+        <div className='wishlist-container u-clearfix'>
+          {isNoWishlist && <WishlistEmpty userID={this.props.userID} />}
+          {isEmptyResult && <WishlistSearchEmpty />}
+          {wishlists.length > 0 && ArrayHelper.chunk(wishlists, 2).map((wls, index) => {
+            const key = `wishlist-cont-${index}`
+
+            return (
+              <div className='u-clearfix' key={key}>
+                {this.renderWishlists(wls, index)}
+              </div>
+            )
+          })}
+        </div>
+
+        {
+          wl['has_next_page'] &&
+          <LoadMore onClick={this.viewMore}>
+            {lang[this.props.lang]['View More']}
+          </LoadMore>
+        }
       </div>
     )
   }
 }
 
 const mapDispatchToProps = {
-  addWishlist,
-  clearWishlists,
-  replaceWishlists,
-  updateHasNextPage,
-  updateTotalWishlist
+  replaceWishlists, updatePage, updateQuery
 }
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
-    wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists,
-    query: state['wishlist'] ? state['wishlist'].query : state.query
+    page: state['wishlist'] ? state['wishlist'].page : state.page,
+    query: state['wishlist'] ? state['wishlist'].query : state.query,
+    wishlists: state['wishlist'] ? state['wishlist'].wishlists : state.wishlists
   }
 }
 
 const WishListWithData = graphql(queries.WishlistQueries.getAll, {
-  options: ({ userID, query, count, page }) => ({
-    variables: { userID, query, count, page },
+  options: ({ userID, query, page }) => ({
+    variables: { userID, query, page, count: WISHLIST_PER_PAGE },
     forceFetch: true,
     returnPartialData: true
-  })
+  }),
+  props: ({ data: { loading, wishlist, fetchMore } }) => {
+    return {
+      loading,
+      wishlist,
+      fetchMore: (newQuery = '', nextPage = 1) => {
+        fetchMore({
+          variables: { page: nextPage, query: newQuery, count: WISHLIST_PER_PAGE },
+          updateQuery: (prev, { fetchMoreResult }) => {
+            if (!fetchMoreResult.data) { return prev }
+
+            const newWL = fetchMoreResult.data.wishlist
+            return Object.assign({}, prev, {
+              wishlist: Object.assign({}, prev.wishlist, {
+                has_next_page: newWL['has_next_page'],
+                total_data: newWL['total_data'],
+                items: prev.wishlist.items.concat(newWL.items)
+              })
+            })
+          }
+        })
+      }
+    }
+  }
 })(WishList)
 
 export default connect(mapStateToProps, mapDispatchToProps)(WishListWithData)

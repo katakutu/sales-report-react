@@ -36,7 +36,7 @@ const lang = {
     'Privacy Policy': 'Privacy Policy',
     'Contact Us': 'Contact Us',
     'Download Tokopedia Mobile Apps': 'Download Tokopedia Mobile Apps',
-    'Search Products or Stores': 'Search Products or Stores',
+    'Search Products or Stores': 'Search products or stores',
     'View All Promo': 'View All Promo',
     'Pulsa': 'Buy Recharge',
     'Saldo': 'Balance',
