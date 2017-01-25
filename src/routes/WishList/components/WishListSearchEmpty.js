@@ -53,6 +53,7 @@ class WishListSearchEmpty extends Component {
     super(props)
 
     this.seeAllWishlist = this.seeAllWishlist.bind(this)
+    this._eventModal = this._eventModal.bind(this)
   }
 
   state = {
