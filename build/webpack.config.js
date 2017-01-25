@@ -70,12 +70,7 @@ webpackConfig.plugins = [
   }),
   new SWPrecacheWebpackPlugin({
     cacheId: 'toped-lite-v1',
-    filename: 'service-worker.js',
-    dynamicUrlToDependencies: [
-      { '/': ['index.html'] },
-      { '/hot': ['index.html'] },
-      { '/wishlist': ['index.html'] }
-    ]
+    filename: 'service-worker.js'
   })
 ]
 
