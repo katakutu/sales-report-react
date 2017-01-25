@@ -69,10 +69,10 @@ function getFavorited (userID, query, count, page) {
     return response['data'].map(section => {
       const imageProducts = section.image_product || []
       return {
-        shop_id: section.id,
+        shop_id: section.shop_id,
         shop_name: section.name,
         domain: section.domain,
-        shop_url: section.uri,
+        shop_url: section.shop_url,
         shop_pic: section.shop_picture,
         is_gold: section.is_gold_merchant,
         is_official: section.is_official,
@@ -97,9 +97,20 @@ function getFavorited (userID, query, count, page) {
       })
 }
 
+function getShopID (userID) {
+  return getFavorited(userID, '', 50, 1)
+    .then(ud => ud || 0)
+    .catch(err => {
+      console.error(`[GraphQL][Favorite][GetFavoritedShop] Failed to combine shop ID. Error: ${err}`)
+
+      return 0
+    })
+}
+
 module.exports = {
   getPromoted: getPromoted,
   getFavorited: getFavorited,
   removeFavorite: removeFavorite,
-  addFavorite: addFavorite
+  addFavorite: addFavorite,
+  getShopID: getShopID
 }

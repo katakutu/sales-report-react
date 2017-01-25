@@ -13,7 +13,7 @@ class Inspiration extends Component {
     userID: PropTypes.number,
     title: PropTypes.string,
     recommendationSource: PropTypes.string,
-    	recommendationSize: PropTypes.number
+    recommendationSize: PropTypes.number
   }
 
   state = {
@@ -21,10 +21,10 @@ class Inspiration extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log('NEXTPROPs' + nextProps['data'])
+    // console.log('NEXTPROPs' + nextProps['data'])
     if (nextProps['data'] && !nextProps.data.loading) {
       const data = nextProps['data']['get_recommendation'] && nextProps['data']['get_recommendation']['items']
-      console.log(data)
+      // console.log(data)
       const gqlData = data || []
       const newData = gqlData.filter(data => {
         return true
@@ -35,26 +35,26 @@ class Inspiration extends Component {
     }
   }
 
-	 render () {
-   if (this.props.data.loading) {
-     return (
-       <div />
-     )
-   }
-   const isTitle = this.state.inspirations !== [] && this.state.inspirations.length > 0
-   return (
-     <div className='u-clearfix'>
-       { isTitle &&
-       <TextHeader textType={1} injectClassName='{ this.props.title }__title'>
-         { this.props.title }
-       </TextHeader>
-				}
-       <div className='mt-20 pb-20'>
-         <FeedCarousel images={this.state.inspirations} />
-       </div>
-     </div>
-   )
- }
+  render () {
+    if (this.props.data.loading) {
+      return (
+        <div />
+      )
+    }
+    const isTitle = this.state.inspirations !== [] && this.state.inspirations.length > 0
+    return (
+      <div className='u-clearfix'>
+        { isTitle &&
+          <TextHeader textType={1} injectClassName='{ this.props.title }__title'>
+            { this.props.title }
+          </TextHeader>
+        }
+        <div className='mt-20 pb-20'>
+          <FeedCarousel images={this.state.inspirations} />
+        </div>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -65,7 +65,7 @@ const mapStateToProps = (state) => {
 
 export default graphql(queries.RecommedationQuery, {
   options: ({ userID, recommendationSource, recommendationSize }) => ({
-	  variable: { userID, recommendationSource, recommendationSize },
-	  foreachfetch: true,
-	  returnPartialData: true })
+    variable: { userID, recommendationSource, recommendationSize },
+    foreachfetch: true,
+    returnPartialData: true })
 })(connect(mapStateToProps, undefined)(Inspiration))

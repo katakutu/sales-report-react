@@ -1,4 +1,5 @@
 const {
+  GraphQLID,
   GraphQLObjectType,
   GraphQLString,
   GraphQLList,
@@ -18,7 +19,7 @@ const Products = new GraphQLObjectType({
 const Favorite = new GraphQLObjectType({
   name: 'Favorite',
   fields: {
-    shop_id: { type: new GraphQLNonNull(GraphQLString) },
+    shop_id: { type: new GraphQLNonNull(GraphQLID) },
     shop_url: { type: GraphQLString },
     domain: { type: new GraphQLNonNull(GraphQLString) },
     shop_name: { type: new GraphQLNonNull(GraphQLString) },

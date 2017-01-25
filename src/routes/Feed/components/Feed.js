@@ -13,7 +13,6 @@ class Feed extends Component {
     ob: PropTypes.number,
     start: PropTypes.number,
     rows: PropTypes.number,
-    shopId: PropTypes.string,
     uniquiedId: PropTypes.string,
     userID: PropTypes.number,
     feeds: PropTypes.arrayOf(PropTypes.object),
@@ -43,16 +42,16 @@ class Feed extends Component {
               </a>
               <div className='product-list-price'> { item.price } </div>
               <div className='product-list-bedge plr-5'>
-              {
-                labels.map((label, li) => {
-                  let style = { backgrundColor: label['color'] }
-                  if (label['color'] === '#ffffff') {
-                    style = Object.assign(style, {
-                      border: '1px solid #bbb',
-                      color: '#606060'
-                    })
-                  }
-                  return (
+                {
+                  labels.map((label, li) => {
+                    let style = { backgrundColor: label['color'] }
+                    if (label['color'] === '#ffffff') {
+                      style = Object.assign(style, {
+                        border: '1px solid #bbb',
+                        color: '#606060'
+                      })
+                    }
+                    return (
                       <span
                         className='feed__label'
                         key={`feed-${index}-label-${li}`}
@@ -61,11 +60,11 @@ class Feed extends Component {
                       </span>
                     )
                   })
-							}
-              {
-								labels.length === 0 &&
-								<span className='feed__label' style={{ backgroundColor: '#ffffff' }}>&nbsp;</span>
-							}
+                }
+                {
+                  labels.length === 0 &&
+                  <span className='feed__label' style={{ backgroundColor: '#ffffff' }}>&nbsp;</span>
+                }
               </div>
               <div className='clearfix' />
               <div className='product-list-shop'>
@@ -81,19 +80,19 @@ class Feed extends Component {
                   </span>
                   <span className='product-shop-bedges pr-0 pull-right'>
                     {
-										badges.map((badge, bi) => {
-  return (
-    <img
-      alt={badge['title']}
-      title={badge['title']}
-      className='cursor-default inline-block va-middle space-badge'
-      key={`feed-${index}-badge-${bi}`}
-      src={badge['image_url']}
-      width='19'
-      height='19' />
-  )
-})
-									}
+                      badges.map((badge, bi) => {
+                        return (
+                          <img
+                            alt={badge['title']}
+                            title={badge['title']}
+                            className='cursor-default inline-block va-middle space-badge'
+                            key={`feed-${index}-badge-${bi}`}
+                            src={badge['image_url']}
+                            width='19'
+                            height='19' />
+                        )
+                      })
+                    }
                   </span>
                 </div>
               </div>
@@ -112,6 +111,7 @@ class Feed extends Component {
     }
 
     const feeds = this.props.data && this.props.data['get_feed'] ? this.props.data['get_feed']['items'] : []
+    console.log(this.props.data)
     return (
       <div className='u-clearfix feed-section'>
         <div className='row-fluid'>
@@ -144,8 +144,8 @@ const mapStateToProps = (state) => {
 }
 
 export default graphql(queries.FeedQuery, {
-  options: ({ ob, start, rows, shopId, uniquiedId }) => ({
-	  variable: { ob, start, rows, shopId, uniquiedId },
-	  foreachfetch: true,
-	  returnPartialData: true })
+  options: ({ ob, start, rows, userID, uniquiedId }) => ({
+    variable: { ob, start, rows, userID, uniquiedId },
+    foreachfetch: true,
+    returnPartialData: true })
 })(connect(mapStateToProps, undefined)(Feed))

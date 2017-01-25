@@ -22,7 +22,7 @@ const param = {
   recommendationSourceView: 'recentview',
   recommendationSourcePurchase: 'recentpurchase',
   recommendationSize: 12,
-  userID: 5480353
+  userID: 5481152
 }
 
 class FeedView extends Component {
@@ -74,29 +74,29 @@ class FeedView extends Component {
         <div className='mb20 tabs-container'>
           <div className='bg-f8 mb-20 border-bt-ef'>
             <RecentView
-            // userID={parseInt(userInfo['id'])}
+              userID={parseInt(userInfo['id'])}
               title={lang[this.props.lang]['TERAKHIR DILIHAT']}
-              userID={param.userID}
+              // userID={param.userID}
             />
 
             <Inspiration
-            // userID={parseInt(userInfo['id'])}
+              userID={parseInt(userInfo['id'])}
               title={lang[this.props.lang]['INSPIRASI DARI MINAT ANDA']}
-              userID={param.userID}
+              // userID={param.userID}
               recommendationSource={param.recommendationSourceView}
               recommendationSize={param.recommendationSize} />
 
             <Inspiration
-            // userID={parseInt(userInfo['id'])}
+              userID={parseInt(userInfo['id'])}
               title={lang[this.props.lang]['INSPIRASI DARI WISHLIST']}
-              userID={param.userID}
+              // userID={param.userID}
               recommendationSource={param.recommendationSourceWishlist}
               recommendationSize={param.recommendationSize} />
 
             <Inspiration
-            // userID={parseInt(userInfo['id'])}
+              userID={parseInt(userInfo['id'])}
               title={lang[this.props.lang]['INSPIRASI DARI PEMBELIAN']}
-              userID={param.userID}
+              // userID={param.userID}
               recommendationSource={param.recommendationSourcePurchase}
               recommendationSize={param.recommendationSize} />
           </div>
@@ -106,10 +106,10 @@ class FeedView extends Component {
               ob={param.ob}
               start={param.start}
               rows={this.state.rows}
-              shopId={param.shopId}
+              userID={param.userID}
               title={lang[this.props.lang]['PRODUCT FEED']}
-            // uniquedId ={ UserSearchID.generateUserIDMD5(parseInt(userInfo['id'])) } />
-              uniquedId={UserSearchID.generateUserIDMD5(param.userID)} />
+              // uniquedId={UserSearchID.generateUserIDMD5(param.userID)} />
+              uniquedId={UserSearchID.generateUserIDMD5(parseInt(userInfo['id']))} />
           </div>
 
           <LoadMore onClick={this.viewMore}>

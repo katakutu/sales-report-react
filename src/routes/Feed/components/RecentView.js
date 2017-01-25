@@ -12,11 +12,7 @@ class RecentView extends Component {
     data: PropTypes.object,
     lang: PropTypes.string,
     userID: PropTypes.number
-		// recentviews: PropTypes.arrayOf(PropTypes.object)
-  }
-
-  constructor (props) {
-    	super(props)
+    // recentviews: PropTypes.arrayOf(PropTypes.object)
   }
 
   state = {
@@ -43,13 +39,19 @@ class RecentView extends Component {
       )
     }
 
+    const recents = this.props.data && this.props.data['get_recent_view']
+    ? this.props.data['get_recent_view']['items'] : []
+    const isTitle = this.state.data !== [] && this.state.data.length > 0
+
     return (
       <div className=''>
-        <TextHeader textType={1} injectClassName='recent-view__title'>
-          { lang[this.props.lang]['TERAKHIR DILIHAT'] }
-        </TextHeader>
+        { isTitle &&
+          <TextHeader textType={1} injectClassName='recent-view__title'>
+            { lang[this.props.lang]['TERAKHIR DILIHAT'] }
+          </TextHeader>
+        }
         <div className='mt-20 mb-20'>
-          <FeedCarousel images={this.state.recentviews} />
+          <FeedCarousel images={recents} />
         </div>
       </div>
     )
@@ -64,7 +66,7 @@ const mapStateToProps = (state) => {
 
 export default graphql(queries.RecentViewQuery, {
   options: ({ userID }) => ({
-	  variable: { userID },
-	  foreachfetch: true,
-	  returnPartialData: true })
+    variable: { userID },
+    foreachfetch: true,
+    returnPartialData: true })
 })(connect(mapStateToProps, undefined)(RecentView))

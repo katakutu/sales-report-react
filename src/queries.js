@@ -222,8 +222,8 @@ query Query {
 `
 
 const FeedQuery = gql`
-  query Query($ob: Int!, $start: Int!, $rows: Int!, $shopId: String!, $uniquedId: String! ){
-      get_feed(ob: $ob, start: $start, rows: $rows, shopId: $shopId, uniquedId: $uniquedId){
+  query Query($ob: Int!, $start: Int!, $rows: Int!, $userID: Int!, $uniquedId: String! ){
+      get_feed(ob: $ob, start: $start, rows: $rows, userID: $userID, uniquedId: $uniquedId){
         total_data
         items {
           id
@@ -255,7 +255,8 @@ const FeedQuery = gql`
     }`
 const RecommedationQuery = gql`
     query Query($userID:Int!, $recommendationSource:String!, $recommendationSize:Int!){
-        get_recommendation(userID:$userID, recommendationSource: $recommendationSource, recommendationSize:$recommendationSize) {
+        get_recommendation(userID:$userID, recommendationSource: $recommendationSource,
+          recommendationSize:$recommendationSize) {
           size_data
           source
           items {
