@@ -4,7 +4,6 @@ import './TopAds.scss'
 class TopAdsProduct extends Component {
   static propTypes = {
     data: React.PropTypes.object,
-    key: React.PropTypes.number,
     lang: React.PropTypes.string
   }
 
@@ -43,7 +42,7 @@ class TopAdsProduct extends Component {
                 return (
                   <span
                     className='topads__label'
-                    key={`topads-${this.props.key}-label-${li}`}
+                    key={`topads-label-${li}`}
                     style={style}>
                     {label['title']}
                   </span>
@@ -72,7 +71,7 @@ class TopAdsProduct extends Component {
                     <img
                       alt={badge['title']}
                       className='topads__img-badge'
-                      key={`topads-${this.props.key}-badge-${bi}`}
+                      key={`topads-badge-${bi}`}
                       src={badge['image_url']} />
                   )
                 })
