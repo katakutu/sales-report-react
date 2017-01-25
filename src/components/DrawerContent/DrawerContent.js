@@ -23,7 +23,7 @@ class DrawerContent extends Component {
 
   render() {
     return(
-      <div className='drawer-content active'>
+      <div className={classNames('drawer-content', { 'active': this.state.open })}>
         <div className='dc-wrapper'>
           <div className="dc-content">
             <div className='dc-header'>
