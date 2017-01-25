@@ -97,7 +97,7 @@ const lang = {
     'Out of Stock': 'Out of Stock',
     'Clear': 'Clear',
     'Wishlist Search Empty': 'No matching product found',
-    'See All Wishlists': 'See All Products',
+    'See All Wishlists': 'See All Wishlists',
     'Search Shop in Favorite': 'Search shops in favorite list',
     'Cari lokasi': 'Search Location',
     'TERAKHIR DILIHAT': 'RECENTLY VIEWED',
