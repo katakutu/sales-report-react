@@ -36,7 +36,7 @@ const lang = {
     'Privacy Policy': 'Kebijakan Privasi',
     'Contact Us': 'Hubungi Kami',
     'Download Tokopedia Mobile Apps': 'Dapatkan Aplikasi Mobile Tokopedia',
-    'Search Products or Stores': 'Cari Produk atau Toko',
+    'Search Products or Stores': 'Cari produk atau toko',
     'View All Promo': 'Lihat Semua Promo',
     'Pulsa': 'Pulsa',
     'Saldo': 'Saldo',
