@@ -12,7 +12,7 @@ import './WishListView.scss'
 
 const TOPADS_PARAMS = {
   ep: 'product',
-  src: 'fav_product',
+  src:'wishlist',
   item: 2,
   page: 1,
   q: '',
@@ -93,7 +93,6 @@ class WishlistEmpty extends Component {
           stateModal={this.state.modalState}
           contentModal={TOPADS_PARAMS.modalContent}
           eventModal={this._eventModal} />
-
       </div>
     )
   }
