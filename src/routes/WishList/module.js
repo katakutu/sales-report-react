@@ -1,36 +1,21 @@
+import ArrayHelper from '../../lib/utils/ArrayHelper'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const ADD_WISHLISTS = 'ADD_WISHLISTS'
 export const REPLACE_WISHLISTS = 'REPLACE_WISHLISTS'
-export const CLEAR_WISHLISTS = 'CLEAR_WISHLISTS'
 export const DEACTIVATE_WISHLIST = 'DEACTIVATE_WISHLIST'
 export const ACTIVATE_WISHLIST = 'ACTIVATE_WISHLIST'
-export const UPDATE_TOTAL_WISHLIST = 'UPDATE_TOTAL_WISHLIST'
-export const UPDATE_NEXT_PAGE = 'UPDATE_NEXT_PAGE'
+export const UPDATE_PAGE = 'UPDATE_PAGE'
 export const UPDATE_QUERY = 'UPDATE_QUERY'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function addWishlist (newWishlists) {
-  return {
-    type    : ADD_WISHLISTS,
-    payload : newWishlists
-  }
-}
-
 export function replaceWishlists (newWishlists) {
   return {
     type    : REPLACE_WISHLISTS,
     payload : newWishlists
-  }
-}
-
-export function clearWishlists () {
-  return {
-    type: CLEAR_WISHLISTS,
-    payload: []
   }
 }
 
@@ -48,17 +33,10 @@ export function activateWishlist (productID) {
   }
 }
 
-export function updateTotalWishlist (count) {
+export function updatePage (page) {
   return {
-    type: UPDATE_TOTAL_WISHLIST,
-    payload: count
-  }
-}
-
-export function updateHasNextPage (hasNextPage) {
-  return {
-    type: UPDATE_NEXT_PAGE,
-    payload: hasNextPage
+    type: UPDATE_PAGE,
+    payload: page
   }
 }
 
@@ -71,12 +49,9 @@ export function updateQuery (query) {
 
 export const actions = {
   activateWishlist,
-  addWishlist,
-  clearWishlists,
   deactivateWishlist,
   replaceWishlists,
-  updateHasNextPage,
-  updateTotalWishlist,
+  updatePage,
   updateQuery
 }
 
@@ -84,17 +59,10 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [ADD_WISHLISTS]     : (state, action) => {
-    const oldData = state.wishlists.map(w => w['id'])
-    const newData = action.payload.filter(d => !oldData.includes(d['id'])).map(d => {
-      return Object.assign({}, d, { isActive: true })
-    })
-
-    return Object.assign({}, state, { wishlists: state.wishlists.concat(newData) })
-  },
-  [CLEAR_WISHLISTS]   : (state, action) => Object.assign({}, state, { wishlists: [] }),
   [REPLACE_WISHLISTS] : (state, action) => {
-    if (state.wishlists.length === 0 && action.payload.length === 0) {
+    const oldIDs = state.wishlists.map(wl => wl['id'])
+    const newIDs = action.payload.map(wl => wl['id'])
+    if (ArrayHelper.equals(oldIDs, newIDs)) {
       return Object.assign({}, state)
     }
 
@@ -124,11 +92,8 @@ const ACTION_HANDLERS = {
 
     return Object.assign({}, state, { wishlists: newData })
   },
-  [UPDATE_TOTAL_WISHLIST]: (state, action) => {
-    return Object.assign({}, state, { totalWishlist: action.payload })
-  },
-  [UPDATE_NEXT_PAGE]: (state, action) => {
-    return Object.assign({}, state, { hasNextPage: action.payload })
+  [UPDATE_PAGE]: (state, action) => {
+    return Object.assign({}, state, { page: action.payload })
   },
   [UPDATE_QUERY]: (state, action) => {
     return Object.assign({}, state, { query: action.payload })
@@ -139,9 +104,8 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
-  hasNextPage: false,
-  totalWishlist: 0,
   wishlists: [],
+  page: 1,
   query: ''
 }
 export default function wishlistReducer (state = initialState, action) {
