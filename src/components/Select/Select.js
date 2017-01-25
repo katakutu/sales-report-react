@@ -15,9 +15,14 @@ class Select extends Component {
 
   render () {
     return (
-      <select placeholder='Kemantapan' className='select'>
-        {this.props.children}
-      </select>
+      <div>
+        <select name='' id='' className='u-hide'>
+          {this.props.children}
+        </select>
+        <div className='select'>
+          Rp 25.000
+        </div>
+      </div>
     )
   }
 }
