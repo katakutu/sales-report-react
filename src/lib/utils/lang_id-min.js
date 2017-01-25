@@ -93,11 +93,16 @@ const lang = {
     'Pascabayar': 'Pascabayar',
     'Hasil': 'Hasil',
     'Delivery Confirm': 'Konfirmasi Penerimaan',
+    'Favorite tab': 'Favorit',
+    'Favorited btn': 'Favorit',
+    'Unfavorited btn': 'Favoritkan',
     'Search for Products': 'Mulai Cari Produk',
     'Out of Stock': 'Stok Kosong',
     'Clear': 'Hapus',
     'Wishlist Search Empty': 'Produk tidak ditemukan di wishlist',
-    'See All Wishlists': 'Lihat Semua Produk'
+    'See All Wishlists': 'Lihat Semua Wishlist',
+    'Search Shop in Favorite': 'Cari toko di daftar favorit',
+    'Cari lokasi': 'Cari Lokasi'
 }
 
 module.exports = lang

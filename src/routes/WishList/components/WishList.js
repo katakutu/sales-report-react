@@ -55,7 +55,6 @@ class WishList extends Component {
       wishlists: this.props.wishlists
     }
     const propsChanged = deepEqual(np, tp)
-
     if (nextProps['data'] && !nextProps.data.loading && propsChanged) {
       const ids = this.props.wishlists.map(w => w['id'])
       const data = nextProps['data']['wishlist'] && nextProps['data']['wishlist']['items']
@@ -85,6 +84,7 @@ class WishList extends Component {
   }
 
   renderWishlists (wishlists, parentIndex) {
+    console.log(wishlists)
     return wishlists.map((wishlist, index) => {
       const currentPage = window.location.href
       const mainLink = `${HOSTNAME}/add-to-cart.pl`

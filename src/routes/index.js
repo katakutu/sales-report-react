@@ -3,6 +3,7 @@ import CoreLayout from '../layouts/CoreLayout/CoreLayout'
 import Home from './Home'
 import HotListRoute from './HotList'
 import CategoryRoute from './Category'
+import FavoriteRoute from './Favorite'
 import WishlistRoute from './WishList'
 import DigitalRoute from './Digital'
 import NotFound from './NotFound'
@@ -17,6 +18,7 @@ export const createRoutes = (store, ApolloExecutors) => ({
   childRoutes: [
     HotListRoute(store),
     CategoryRoute(store),
+    FavoriteRoute(store, ApolloExecutors),
     WishlistRoute(store, ApolloExecutors),
     DigitalRoute(store),
     {

@@ -4,6 +4,7 @@ import Tabs from '../Tabs/Tabs'
 import Tab from '../Tabs/Tab'
 import { appIsLoading, updateScrollPosition } from '../../store/app'
 import { HOSTNAME } from '../../constants'
+import lang from '../../lib/utils/Lang'
 
 class HeaderTab extends Component {
 
@@ -19,7 +20,8 @@ class HeaderTab extends Component {
     userIsLoggedIn: React.PropTypes.bool,
     scrollHistory: React.PropTypes.object,
     updateScrollPosition: React.PropTypes.func,
-    checkActiveScroll: React.PropTypes.func
+    checkActiveScroll: React.PropTypes.func,
+    lang: React.PropTypes.string
   }
 
   state = {
@@ -66,6 +68,7 @@ class HeaderTab extends Component {
   render () {
     const homeCN = this.props.activeTab === 'home'
     const hlCN = this.props.activeTab === 'hotlist'
+    const flCN = this.props.activeTab === 'favorite'
     const wlCN = this.props.activeTab === 'wishlist'
 
     return (
@@ -81,7 +84,12 @@ class HeaderTab extends Component {
           : ''
         }
         <Tab isActive={hlCN} label='Hot List' onClick={() => this._savePosition('/hot')} />
-        { this.props.userIsLoggedIn ? <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
+        {
+          this.props.userIsLoggedIn
+          ? <Tab isActive={flCN} label={lang[this.props.lang]['Favorite tab']}
+            onClick={() => this._savePosition('/fave')} />
+            : ''
+        }
       </Tabs>
     )
   }
@@ -91,4 +99,9 @@ const mapDispatchToProps = {
   appIsLoading,
   updateScrollPosition
 }
-export default connect(undefined, mapDispatchToProps)(HeaderTab)
+const mapStateToProps = (state) => {
+  return {
+    lang: state['app'] ? state['app'].lang : state.lang
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderTab)
