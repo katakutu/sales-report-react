@@ -63,6 +63,9 @@ const PRODUCTION = {
   CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/',
   Fave: {
     Hostname: 'https://ta.tokopedia.com'
+  },
+  Recommendation: {
+    Hostname: 'https://merlin.tokopedia.com'
   }
 }
 
@@ -128,6 +131,9 @@ const BETA = {
   CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/beta/',
   Fave: {
     Hostname: 'https://ta-staging.tokopedia.com'
+  },
+  Recommendation: {
+    Hostname: 'https://merlin-staging.tokopedia.com'
   }
 }
 
@@ -192,6 +198,9 @@ const TEST = {
   CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/staging/',
   Fave: {
     Hostname: 'https://ta-staging.tokopedia.com'
+  },
+  Recommendation: {
+    Hostname: 'https://merlin-staging.tokopedia.com'
   }
 }
 
@@ -257,6 +266,9 @@ const DEVELOPMENT = {
   CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/staging/',
   Fave: {
     Hostname: 'https://ta-staging.tokopedia.com'
+  },
+  Recommendation: {
+    Hostname: 'https://merlin-staging.tokopedia.com'
   }
 }
 

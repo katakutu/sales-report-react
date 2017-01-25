@@ -102,7 +102,12 @@ const lang = {
     'Wishlist Search Empty': 'Produk tidak ditemukan di wishlist',
     'See All Wishlists': 'Lihat Semua Wishlist',
     'Search Shop in Favorite': 'Cari toko di daftar favorit',
-    'Cari lokasi': 'Cari Lokasi'
+    'Cari lokasi': 'Cari Lokasi',
+    'TERAKHIR DILIHAT': 'TERAKHIR DILIHAT',
+    'INSPIRASI DARI MINAT ANDA' :'INSPIRASI DARI MINAT ANDA',
+    'INSPIRASI DARI WISHLIST' : 'INSPIRASI DARI WISHLIST',
+    'INSPIRASI DARI PEMBELIAN' : 'INSPIRASI DARI PEMBELIAN',
+    'PRODUCT FEED' : 'PRODUCT FEED'
 }
 
 module.exports = lang

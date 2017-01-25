@@ -18,6 +18,7 @@ const rechargeOperator = require('./recharge/operator')
 const rechargeProduct = require('./recharge/product')
 const rechargeCategory = require('./recharge/category')
 const rechargeBanner = require('./recharge/banner')
+const feed = require('./feed')
 
 let queries = {}
 
@@ -43,5 +44,8 @@ queries = Object.assign({}, queries, rechargeOperator)
 queries = Object.assign({}, queries, rechargeProduct)
 queries = Object.assign({}, queries, rechargeCategory)
 queries = Object.assign({}, queries, rechargeBanner)
+queries = Object.assign({}, queries, feed.get_feed)
+queries = Object.assign({}, queries, feed.get_recommendation)
+queries = Object.assign({}, queries, feed.get_recent_view)
 
 module.exports = queries

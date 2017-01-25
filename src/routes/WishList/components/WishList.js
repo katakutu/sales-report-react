@@ -247,7 +247,7 @@ class WishList extends Component {
 
         <div className='wishlist-container u-clearfix'>
           {isNoWishlist && <WishlistEmpty userID={this.props.userID} />}
-          {isEmptyResult && <WishlistSearchEmpty />}
+          {isEmptyResult && <WishlistSearchEmpty userID={this.props.userID} />}
           {wishlists.length > 0 && ArrayHelper.chunk(wishlists, 2).map((wls, index) => {
             const key = `wishlist-cont-${index}`
 
