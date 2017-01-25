@@ -5,6 +5,8 @@ import BodyClassName from 'react-body-classname'
 import './DigitalProductContent.scss'
 import './DigitalProductSelectDrawer.scss'
 import DigitalProductSelectGroup from './DigitalProductSelectGroup'
+import DigitalProductInformationBox from './DigitalProductInformationBox'
+import DigitalProductPriceGroup from './DigitalProductPriceGroup'
 import { SLUG } from './digitalconstants'
 import { SITES } from '../../../constants'
 
@@ -140,6 +142,21 @@ class DigitalProductContent extends Component {
       }
     })
 
+    const information = [
+      {
+        text: '1. Pembayaran tagihan listrik tidak dapat dilakukan pada pukul 23.45-00.30 WIB sesuai dengan ketentuan PLN'
+      },
+      {
+        text: '2. Proses verifikasi pembayaran membutuhkan waktu maksimum 2x24 jam'
+      },
+      {
+        text: '3. Total tagihan yang tertera sudah termasuk denda (bila ada)'
+      },
+      {
+        text: '4. Biaya admin adalah Rp 2500 per tagihan / bulan'
+      }
+    ]
+
     return (
       <div className='u-clearfix dp-content'>
         <div className='dp__container'>
@@ -160,6 +177,10 @@ class DigitalProductContent extends Component {
               {this.props.title}
             </h1>
             <DigitalProductSelectGroup label='Nominal' />
+            <DigitalProductInformationBox isTokenListrik={true} content='Token Listrik: Seluruh pembelian Token Listrik pada pukul 23:00 - 00.59 WIB akan kami proses pada pukul 01.00 saat Server PLN aktif kembali' />
+            <DigitalProductInformationBox content={information} />
+            <DigitalProductPriceGroup isDiscount={true} price='Rp 15.000' oldPrice='Rp 16.000' />
+            <DigitalProductPriceGroup price='Rp 100.000' />
             {/* Commented for development purpose
             <div className='dp--lembaga'>
               <div className='dp-lembaga-tab-list'>
