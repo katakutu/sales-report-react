@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 import classNames from 'classnames'
 import BodyClassName from 'react-body-classname'
 import './DrawerContent.scss'
@@ -9,32 +8,34 @@ class DrawerContent extends Component {
     title: React.PropTypes.string
   }
 
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
+    this.handleCloseButton = this.handleCloseButton.bind(this)
     this.state = {
-      open: false
+      open: true
     }
   }
 
-  handleCloseButton(e) {
-    this.setState({open: false});
+  handleCloseButton (e) {
+    this.setState({ open: false })
   }
 
-  render() {
-    return(
+  render () {
+    return (
       <div className={classNames('drawer-content', { 'active': this.state.open })}>
         <div className='dc-wrapper'>
-          <div className="dc-content">
+          <div className='dc-content'>
             <div className='dc-header'>
               {this.props.title}
-              <span className='dc-close' onClick={this.handleCloseButton.bind(this)}>&lsaquo;</span>
+              <span className='dc-close' onClick={this.handleCloseButton}></span>
             </div>
             <div className='dc-body'>
 
               <table className='dc-list'>
                 <tbody>
 
+                  {/* loop goes here */}
                   <tr>
                     <td className='dc-product__container'>
                       <label htmlFor='item-1'>
@@ -46,8 +47,8 @@ class DrawerContent extends Component {
                       </label>
                     </td>
                     <td className='dc-radio__container'>
-                      <input name='input_product' id='item-1' type='radio' className='dc-radio u-hide'/>
-                      <label htmlFor='item-1' className='dc-radio__icon'></label>
+                      <input name='input_product' id='item-1' type='radio' className='dc-radio u-hide' />
+                      <label htmlFor='item-1' className='dc-radio__icon' />
                     </td>
                   </tr>
 
@@ -63,8 +64,8 @@ class DrawerContent extends Component {
                       </label>
                     </td>
                     <td className='dc-radio__container'>
-                      <input name='input_product' id='item-2' type='radio' className='dc-radio u-hide'/>
-                      <label htmlFor='item-2' className='dc-radio__icon'></label>
+                      <input name='input_product' id='item-2' type='radio' className='dc-radio u-hide' />
+                      <label htmlFor='item-2' className='dc-radio__icon' />
                     </td>
                   </tr>
 
@@ -74,7 +75,7 @@ class DrawerContent extends Component {
             </div>
           </div>
         </div>
-        <div className='dc-overlay'></div>
+        <div className='dc-overlay' />
 
         { this.state.open && <BodyClassName className='u-body-overflow-no-scroll' /> }
       </div>

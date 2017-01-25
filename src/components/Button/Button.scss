@@ -54,6 +54,14 @@
     }
 }
 
+.btn.disabled,
+.btn:disabled {
+    border-color: transparent;
+    background-color: $color-grey-disabled;
+    color: $color-grey-disabled-2;
+    cursor: not-allowed;
+}
+
 .btn--block {
     width: 100%;
     display: block;

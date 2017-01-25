@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import './Label.scss'
-import classNames from 'classnames'
 
 class Label extends Component {
   static propTypes = {
     children: React.PropTypes.node,
     className: React.PropTypes.string,
+    htmlFor: React.PropTypes.string,
     onClick: React.PropTypes.func
   }
 

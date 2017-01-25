@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Select.scss'
-import classNames from 'classnames'
 
 class Select extends Component {
   static propTypes = {

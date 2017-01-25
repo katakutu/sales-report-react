@@ -46,15 +46,39 @@ class DigitalWidget extends Component {
           </div>
           <div className='dpw-content u-clearfix'>
             <form action='#'>
-              <div className='dpw-form-group'>
+
+              <div className='dpw-selection'>
+
+                {/* loop goes here */}
+                <span>
+                  <input id='radio_1' name='product_selection' type='radio' className='dpw-radio' />
+                  <label htmlFor='radio_1'>
+                    <span />Token Listrik
+                  </label>
+                </span>
+
+                <span>
+                  <input id='radio_2' name='product_selection' type='radio' className='dpw-radio' />
+                  <label htmlFor='radio_2'>
+                    <span />Tagihan Listrik
+                  </label>
+                </span>
+
+              </div>
+
+              <div className='dpw-form-group is-error'>
                 <Label htmlFor='no_telp'>Nomor Telepon</Label>
                 <div className='u-relative dpw-input--with-image'>
                   <TextInput id='no_telp'
                     placeholder='Contoh 081234567890' />
+                  <div className='error-message'>
+                      Nomor harus di isi.
+                    </div>
                   <img className='dpw-operator-image' src='https://ecs7.tokopedia.net/img/recharge/operator/xl_2.png' />
                   <button className='dpw-input-clear'>Clear</button>
                 </div>
               </div>
+
               <div className='dpw-form-group'>
                 <Label htmlFor='nominal'>Nominal</Label>
                 <Select id='nominal'>
@@ -64,13 +88,17 @@ class DigitalWidget extends Component {
                   <option value=''>Rp 200.000</option>
                 </Select>
               </div>
+
               <div className='dpw-form-group'>
                 <Checkbox>Bayar Instan</Checkbox>
               </div>
+
               <Button className={classNames('btn--orange', 'btn--block')}
-                buttonType='submit'>
+                buttonType='submit'
+                disabled>
                 Beli
               </Button>
+
             </form>
           </div>
         </div>

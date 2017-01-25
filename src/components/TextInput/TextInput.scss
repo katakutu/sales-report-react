@@ -16,4 +16,8 @@
     &:active {
         border-color: $color-green;
     }
+
+    .is-error & {
+        border-color: $color-red;
+    }
 }

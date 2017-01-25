@@ -151,3 +151,47 @@ $width-others-btn: 45px;
     font-size: 0;
     cursor: pointer;
 }
+
+// selection checkbox
+
+.dpw-selection {
+    margin-bottom: 20px;
+}
+
+.dpw-radio {
+    display: none;
+}
+
+.dpw-radio + label span {
+    display: inline-block;
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    background-size: 20px 20px;
+}
+
+.dpw-radio + label span {
+    background-image: url('./assets/radio.svg');
+}
+
+.dpw-radio:checked + label span {
+    background-image: url('./assets/radio-checked.svg');
+}
+
+.dpw-radio + label {
+    margin-right: 15px;
+    font-size: 12px;
+    line-height: 20px;
+    color: $color-black-disabled;
+}
+
+// this block will be relocated soon
+
+.error-message {
+    color: $color-red;
+    font-size: 11px;
+    line-height: 1.5;
+    margin-top: 5px;
+}
