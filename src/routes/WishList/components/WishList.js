@@ -66,6 +66,7 @@ class WishList extends Component {
   searchWishlist (event) {
     if (event.key === 'Enter') {
       this.props.updateQuery(this.state.query)
+      event.target.blur()
 
       browserHistory.push({
         pathname: '/wishlist'
@@ -106,9 +107,9 @@ class WishList extends Component {
         </div>
       ) : (
         <div className='wishlist__buy'>
-          <button disabled className='wishlist__button-no-stock'>
+          <a disabled className='wishlist__button-no-stock'>
             { lang[this.props.lang]['Out of Stock'] }
-          </button>
+          </a>
         </div>
       )
 

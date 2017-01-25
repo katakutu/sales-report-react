@@ -41,7 +41,9 @@
 .wishlist__contents {
     margin: 10px 0 5px;
     background-color: $color-white-primary;
+    box-shadow: 1px 1px 2px 0 rgba(0,0,0,.1);
     height: auto;
+    min-height: 370px;
 }
 
 .wishlist__contents:nth-child(odd) {
