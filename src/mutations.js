@@ -13,6 +13,20 @@ const Wishlist = {
   `
 }
 
+const Favorite = {
+  removeFavorite: gql`
+    mutation removeFavorite($productID: Int!, $userID: Int!) {
+      favorite_remove(productID: $productID, userID: $userID)
+    }
+  `,
+  addFavorite: gql`
+    mutation addFavorite($productID: Int!, $userID: Int!) {
+      favorite_add(productID: $productID, userID: $userID)
+    }
+  `
+}
+
 export default {
-  Wishlist: Wishlist
+  Wishlist: Wishlist,
+  Favorite: Favorite
 }

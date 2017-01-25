@@ -19,7 +19,8 @@ class HeaderTab extends Component {
     userIsLoggedIn: React.PropTypes.bool,
     scrollHistory: React.PropTypes.object,
     updateScrollPosition: React.PropTypes.func,
-    checkActiveScroll: React.PropTypes.func
+    checkActiveScroll: React.PropTypes.func,
+    lang: React.PropTypes.string
   }
 
   state = {
@@ -96,4 +97,9 @@ const mapDispatchToProps = {
   appIsLoading,
   updateScrollPosition
 }
-export default connect(undefined, mapDispatchToProps)(HeaderTab)
+const mapStateToProps = (state) => {
+  return {
+    lang: state['app'] ? state['app'].lang : state.lang
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderTab)

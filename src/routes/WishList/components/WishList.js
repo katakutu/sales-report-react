@@ -41,7 +41,6 @@ class WishList extends Component {
     page: this.props.page,
     query: this.props.query
   }
-
   constructor (props) {
     super(props)
 
@@ -91,6 +90,7 @@ class WishList extends Component {
   }
 
   renderWishlists (wishlists, parentIndex) {
+    console.log(wishlists)
     return wishlists.map((wishlist, index) => {
       const currentPage = window.location.href
       const mainLink = `${HOSTNAME}/add-to-cart.pl`
