@@ -68,7 +68,8 @@ class Favorite extends Component {
       const data = nextProps['data']['favorite'] && nextProps['data']['favorite']['items']
       const gqlData = data || []
 
-      const newData = gqlData.filter(d => !ids.includes(d['id']))
+      // const newData = gqlData.filter(d => !ids.includes(d['id']))
+      const newData = []
       if (nextProps.query === '' && newData.length > 0) {
         // if returning from search
         if (this.props.query !== '') {
