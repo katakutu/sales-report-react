@@ -1,28 +1,11 @@
 import React, { Component, PropTypes } from 'react'
-// import '../../../components/Carousel/slick.scss'
-// import '../../../components/Carousel/slick-theme.scss'
-import Slider from 'react-slick'
 import Swiper from 'swiper-r'
 import CarouselPlaceholder from '../../../components/Carousel/assets/carousel-placeholder.jpg'
 import './FeedView.scss'
 
-// const settings = {
-//   autoplay: false,
-//   pauseOnFocus: true,
-//   pauseOnHover: true,
-//   dots: false,
-//   arrows: false,
-//   infinite: false,
-//   speed: 300,
-//   slidesToShow: 3,
-//   // slidesToScroll: 1,
-//   draggable: true,
-//   variableWidth: true
-// }
 const settings = {
   slidesPerView: 'auto',
   paginationClickable: true,
-  // uniqueNavElements:false,
   freeMode: true,
   speed: 300,
   spaceBetween: 0,
@@ -62,15 +45,23 @@ class FeedCarousel extends Component {
           <div className='product-list-bedges plr-5 u-truncate'>
             {
 								labels.map((label, li) => {
-  return (
-    <span
-      className='feed__label'
-      key={`feed-${index}-label-${li}`}
-      className={`product-tag-${label['title']}`}>
-      { label['title'] }
-    </span>
-  )
-})
+                let style = { backgroundColor: label['color'] }
+                  if (label['color'] === '#ffffff') {
+                    style = Object.assign(style, {
+                      border: '1px solid #bbb',
+                      color: '#606060'
+                    })
+                  }
+
+                return (
+                  <span
+                    className='feed__label'
+                    key={`feed-${index}-label-${li}`}
+                    style={style}>
+                    { label['title'] }
+                  </span>
+                )
+              })
 							}
             {
 								labels.length === 0 &&
@@ -121,11 +112,9 @@ class FeedCarousel extends Component {
 
     return (
       <div className='product-list-container slide-container'>
-        <div className='fluid'>
-          <Swiper {...settings}>
+          <Swiper swiperConfig={settings}>
             { swipers }
           </Swiper>
-        </div>
       </div>
     )
   }
