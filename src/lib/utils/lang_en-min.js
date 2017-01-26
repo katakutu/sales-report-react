@@ -93,11 +93,21 @@ const lang = {
     'Pascabayar': 'Postpaid',
     'Hasil': 'Result',
     'Delivery Confirm': 'Receive Confirmation',
+    'Favorite tab': 'Favorite',
+    'Favorited btn': 'Favorited',
+    'Unfavorited btn': 'Favorite',
     'Search for Products': 'Search for Products',
     'Out of Stock': 'Out of Stock',
     'Clear': 'Clear',
     'Wishlist Search Empty': 'No matching product found',
-    'See All Wishlists': 'Show All Products'
+    'See All Wishlists': 'See All Wishlists',
+    'Search Shop in Favorite': 'Search shops in favorite list',
+    'Cari lokasi': 'Search Location',
+    'TERAKHIR DILIHAT': 'RECENTLY VIEWED',
+    'INSPIRASI DARI MINAT ANDA' :'RELATED TO ITEMS YOU\'VE VIEWED',
+    'INSPIRASI DARI WISHLIST' : 'INSPIRED BY YOUR WISHLIST',
+    'INSPIRASI DARI PEMBELIAN' : 'INSPIRED BY YOUR PURCHASED',
+    'PRODUCT FEED' : 'PRODUCT FEED'
 }
 
 module.exports = lang

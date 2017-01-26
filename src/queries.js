@@ -221,6 +221,99 @@ query Query {
 }
 `
 
+const FeedQuery = gql`
+  query Query($ob: Int!, $page: Int!, $rows: Int!, $userID: Int!, $uniqueID: String! ){
+      get_feed(ob: $ob, page: $page, rows: $rows, userID: $userID, uniqueID: $uniqueID){
+        total_data
+        has_next_page
+        items {
+          id
+          name
+          url
+          image_url
+          image_url_700
+          price
+          shop {
+            id
+            name
+            url
+            is_gold
+            location
+            city
+            reputation
+            clover
+          }
+          badges {
+            title
+            image_url
+          }
+          labels {
+            title
+            color
+          }
+        }
+      }
+    }`
+const RecommedationQuery = gql`
+    query Query($userID:Int!, $recommendationSource:String!, $recommendationSize:Int!){
+        get_recommendation(userID:$userID, recommendationSource: $recommendationSource,
+          recommendationSize:$recommendationSize) {
+          size_data
+          source
+          items {
+            id
+            name
+            url
+            image_url
+            price
+            shop {
+              id
+              name
+              url
+              is_gold
+              location
+              city
+              reputation
+              clover
+            }
+            badges {
+              title
+              image_url
+            }
+            labels {
+              title
+              color
+            }
+          }
+        }
+      }`
+
+const RecentViewQuery = gql`
+    query Query($userID: Int!){
+      get_recent_view (userID: $userID) {
+          items {
+            product_id
+            product_url
+            product_name
+            product_image
+            product_price
+            shop_id
+            shop_url
+            shop_name
+            shop_location
+            shop_gold_status
+            badges {
+              title
+              image_url
+            }
+            labels {
+              title
+              color
+            }
+          }
+       }
+    }`
+
 const WishlistQueries = {
   getAll: gql`
   query Query($userID: Int!, $query: String!, $count: Int!, $page: Int!) {
@@ -440,5 +533,8 @@ export default {
   ApolloExecutors: ApolloExecutors,
   WishlistQueries: WishlistQueries,
   DigitalQuery: DigitalQuery,
-  TopAdsQueries: TopAdsQueries
+  TopAdsQueries: TopAdsQueries,
+  FeedQuery: FeedQuery,
+  RecommedationQuery: RecommedationQuery,
+  RecentViewQuery: RecentViewQuery
 }

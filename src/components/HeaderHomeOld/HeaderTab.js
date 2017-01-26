@@ -19,7 +19,8 @@ class HeaderTab extends Component {
     userIsLoggedIn: React.PropTypes.bool,
     scrollHistory: React.PropTypes.object,
     updateScrollPosition: React.PropTypes.func,
-    checkActiveScroll: React.PropTypes.func
+    checkActiveScroll: React.PropTypes.func,
+    lang: React.PropTypes.string
   }
 
   state = {
@@ -67,6 +68,7 @@ class HeaderTab extends Component {
     const homeCN = this.props.activeTab === 'home'
     const hlCN = this.props.activeTab === 'hotlist'
     const wlCN = this.props.activeTab === 'wishlist'
+    const feedCN = this.props.activeTab === 'feed'
 
     return (
       <Tabs userIsLoggedIn={this.props.userIsLoggedIn}
@@ -74,7 +76,11 @@ class HeaderTab extends Component {
         headerState={this.props.headerState}
         checkActiveScroll={this.checkActiveScroll}>
         <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/', { h: 3 })} />
-        { this.props.userIsLoggedIn ? <Tab label='Feed' url={`${HOSTNAME}/?view=feed_preview`} /> : '' }
+        { 
+          this.props.userIsLoggedIn 
+          ? <Tab label='Feed' isActive={feedCN} onClick={() => this._savePosition('/feed')} /> 
+          : '' 
+        }
         {
           this.props.userIsLoggedIn
           ? <Tab label='Wishlist' isActive={wlCN} onClick={() => this._savePosition('/wishlist')} />
@@ -91,4 +97,9 @@ const mapDispatchToProps = {
   appIsLoading,
   updateScrollPosition
 }
-export default connect(undefined, mapDispatchToProps)(HeaderTab)
+const mapStateToProps = (state) => {
+  return {
+    lang: state['app'] ? state['app'].lang : state.lang
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderTab)
