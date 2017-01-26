@@ -11,6 +11,7 @@ class DigitalProductInputGroup extends Component {
     label: PropTypes.string,
     placeholder: PropTypes.string,
     tooltip: PropTypes.string,
+    value: PropTypes.string,
     items: PropTypes.array
   }
 
@@ -18,26 +19,33 @@ class DigitalProductInputGroup extends Component {
     super(props)
 
     this.state = {
-      value: '',
-      items: this.props.items
+      value: this.props.value,
+      items: this.props.items,
+      showAll: true
     }
 
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this)
+    this.onSuggestionSelected = this.onSuggestionSelected.bind(this)
   }
 
   onInputChange = (event, { newValue }) => {
     this.setState({
-      value: newValue
+      value: newValue,
+      showAll: false
     })
   }
 
   getItems (value) {
-    return value.length === 0 ? this.props.items : this.props.items.filter(this.filterSuggestion, value)
+    if (this.state.showAll) {
+      return this.props.items
+    } else {
+      return value.length === 0 ? this.props.items : this.props.items.filter(this.filterSuggestion, value)
+    }
   }
 
   filterSuggestion (item) {
-    return item.text.toLowerCase().slice(0, this.length) === this
+    return item.text.toLowerCase().slice(0, this.length) === this.toLowerCase()
   }
 
   onSuggestionsFetchRequested ({ value }) {
@@ -49,6 +57,13 @@ class DigitalProductInputGroup extends Component {
   onSuggestionsClearRequested () {
     this.setState({
       items: this.props.items
+    })
+  }
+
+  onSuggestionSelected (e) {
+    e.target.blur()
+    this.setState({
+      showAll: true
     })
   }
 
@@ -69,7 +84,8 @@ class DigitalProductInputGroup extends Component {
       const inputProps = {
         placeholder: this.props.placeholder,
         value: this.state.value,
-        onChange: this.onInputChange
+        onChange: this.onInputChange,
+        className: 'dp-inputgroup__textbox dp-inputgroup__textbox--compact'
       }
 
       return (
@@ -91,7 +107,9 @@ class DigitalProductInputGroup extends Component {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             getSuggestionValue={this.getSuggestionValue}
             renderSuggestion={this.renderSuggestion}
+            onSuggestionSelected={this.onSuggestionSelected}
             alwaysRenderSuggestions
+            focusInputOnSuggestionClick={false}
             inputProps={inputProps} />
         </div>
       )

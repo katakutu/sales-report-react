@@ -182,6 +182,27 @@ class DigitalProductContent extends Component {
       },
       {
         text: 'Garena'
+      },
+      {
+        text: 'Gemscool'
+      },
+      {
+        text: 'Lyto'
+      },
+      {
+        text: 'Megaxus'
+      },
+      {
+        text: 'iTunes'
+      },
+      {
+        text: 'DOTA 2'
+      },
+      {
+        text: 'Battlenet'
+      },
+      {
+        text: 'Ayodance'
       }
     ]
 
@@ -225,6 +246,7 @@ class DigitalProductContent extends Component {
               useAutoSuggest
               label='Jenis Voucher'
               placeholder='Pilih Voucher'
+              value='Steam Wallet'
               items={productSuggestion} />
             <DigitalProductSelectGroup
               label='Nomor Kepesertaan BPJS'
