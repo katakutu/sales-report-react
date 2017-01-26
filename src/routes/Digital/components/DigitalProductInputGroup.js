@@ -37,6 +37,7 @@ class DigitalProductInputGroup extends Component {
   }
 
   getItems (value) {
+    console.log('showAll = ' + this.state.showAll)
     if (this.state.showAll) {
       return this.props.items
     } else {
@@ -50,8 +51,7 @@ class DigitalProductInputGroup extends Component {
 
   onSuggestionsFetchRequested ({ value }) {
     this.setState({
-      items: this.getItems(value),
-      showAll: true
+      items: this.getItems(value)
     })
   }
 
