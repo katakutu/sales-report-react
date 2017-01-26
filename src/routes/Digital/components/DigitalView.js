@@ -7,6 +7,8 @@ import DigitalProductTab from './DigitalProductTab'
 import DigitalProductContentPulsa from './DigitalProductContentPulsa'
 import DigitalProductContentPaketData from './DigitalProductContentPaketData'
 import DigitalProductContent from './DigitalProductContent'
+import DigitalProductContentMultifinance from './DigitalProductContentMultifinance'
+import DigitalProductContentPostpaid from './DigitalProductContentPostpaid'
 import DigitalProductPromo from './DigitalProductPromo'
 import DigitalProductOperator from './DigitalProductOperator'
 import DigitalProductSelectDrawer from './DigitalProductSelectDrawer'
@@ -42,9 +44,11 @@ class DigitalView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} hideSearch />
         <DigitalProductTab categoryList={categoryList} />
-        {/*<DigitalProductContentPulsa operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Pulsa' />*/}
-        <DigitalProductContentPaketData operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Paket Data' />
-        {/*<DigitalProductContent operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Salurkan Donasi Untuk Berbagi Dengan Sesama' />*/}
+        {/* <DigitalProductContent operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Salurkan Donasi Untuk Berbagi Dengan Sesama' /> */}
+        {/* <DigitalProductContentMultifinance operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar angsuran kredit kamu di Tokopedia' /> */}
+        {/*<DigitalProductContentPostpaid operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar Tagihan Pascabayar' />*/}
+        <DigitalProductContentPulsa operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Pulsa' />
+        {/*<DigitalProductContentPaketData operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Paket Data' />*/}
         <DigitalProductPromo bannerList={bannerList} />
         <DigitalProductOperator operatorList={operatorList} />
         <DigitalProductSelectDrawer />

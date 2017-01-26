@@ -42,8 +42,17 @@ class HomeView extends Component {
 
     // for GTM to consume
     if (pulsaWidget && pulsaWidget.textContent === '') {
-      const event = new Event('HomePulsaWidgetReady')
-      document.dispatchEvent(event)
+      try {
+        const event = new Event('HomePulsaWidgetReady')
+        document.dispatchEvent(event)
+      } catch (e) {
+        console.error(e)
+
+        const oldEvent = document.createEvent('Event')
+        oldEvent.initEvent('HomePulsaWidgetReady', true, true)
+
+        document.dispatchEvent(oldEvent)
+      }
     }
   }
 

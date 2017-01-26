@@ -208,11 +208,6 @@ class SearchModalResult extends Component {
   }
 
   render () {
-    const data = this.props.data.search || []
-    if (data.length === 0) {
-      GTM.pushEvent('noSearchResult', 'No Search Result', 'No Result', this.props.query)
-    }
-
     return (
       <div className='clearfix'>
         { this.props.query === '' && this._renderResultList(this.props.data.search, 'recent_search', true) }

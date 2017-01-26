@@ -70,7 +70,13 @@ webpackConfig.plugins = [
   }),
   new SWPrecacheWebpackPlugin({
     cacheId: 'toped-lite-v1',
-    filename: 'service-worker.js'
+    filename: 'service-worker.js',
+    navigateFallback: 'index.html',
+    navigateFallbackWhitelist: [
+      /\/\?h=3/,
+      /\/hot/,
+      /\/wishlist/
+    ]
   })
 ]
 
