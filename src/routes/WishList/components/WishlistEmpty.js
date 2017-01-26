@@ -52,6 +52,7 @@ class WishlistEmpty extends Component {
     super(props)
 
     this._eventModal = this._eventModal.bind(this)
+    this._topAdsEvent = this._topAdsEvent.bind(this)
   }
 
   state = {
@@ -62,6 +63,10 @@ class WishlistEmpty extends Component {
     this.setState({
       modalState: state
     })
+  }
+
+  _topAdsEvent (id, ref, state) {
+    console.log(id)
   }
 
   render () {
@@ -89,7 +94,9 @@ class WishlistEmpty extends Component {
           q={TOPADS_PARAMS.q}
           stateModal={this.state.modalState}
           contentModal={TOPADS_PARAMS.modalContent}
-          eventModal={this._eventModal} />
+          eventModal={this._eventModal}
+          eventShopClick={this._topAdsEvent}
+          />
       </div>
     )
   }

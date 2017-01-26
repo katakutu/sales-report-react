@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { graphql } from 'react-apollo'
 
-import queries from '../../queries'
 import './TopAds.scss'
 import iconInfo from './assets/icon-info.png'
 import TopAdsProduct from './TopAdsProduct'
@@ -10,19 +8,12 @@ import TopAdsShop from './TopAdsShop'
 import Modal from '../Modal/Modal'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-class TopAds extends Component {
+class TopAdsIntegrate extends Component {
   static propTypes = {
     data: React.PropTypes.object,
     stateModal: React.PropTypes.bool,
     eventModal: React.PropTypes.func,
-    eventShopClick: React.PropTypes.func,
-    contentModal: React.PropTypes.object,
-    userID: React.PropTypes.number,
-    ep: React.PropTypes.string,
-    src: React.PropTypes.string,
-    item: React.PropTypes.number,
-    page: React.PropTypes.number,
-    q: React.PropTypes.string
+    contentModal: React.PropTypes.object
   }
 
   render () {
@@ -35,14 +26,11 @@ class TopAds extends Component {
       transitionLeaveTimeout: 500
     }
 
-    if (this.props.data.topads && this.props.data.topads.items) {
-      const topadsdata = this.props.data.topads
+    if (this.props.data && this.props.data.items) {
+      const topadsdata = this.props.data
       topadsdata.items.map((item, index) => {
-        topadsdata.display === 'product' && topads.push(<TopAdsProduct key={`top-ads-item-${index}`}
-          data={item} />)
-        topadsdata.display === 'shop' && topads.push(<TopAdsShop key={`top-ads-shop-item-${index}`}
-          data={item}
-          eventShopClick={this.props.eventShopClick} />)
+        topadsdata.display === 'product' && topads.push(<TopAdsProduct key={`top-ads-item-${index}`} data={item} />)
+        topadsdata.display === 'shop' && topads.push(<TopAdsShop key={`top-ads-shop-item-${index}`} data={item} />)
       })
     }
 
@@ -72,17 +60,4 @@ class TopAds extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    lang: state['app'] ? state['app'].lang : state.lang,
-    topads: state['app'] ? state['app'].topads : state.topads
-  }
-}
-export default graphql(queries.TopAdsQueries.getAll, {
-  options: ({ userID, ep, src, item, page, q }) => ({
-    variables: { userID, ep, src, item, page, q },
-    forceFetch: true,
-    returnPartialData: true
-  })
-}
-)(connect(mapStateToProps, undefined)(TopAds))
+export default (connect(undefined, undefined)(TopAdsIntegrate))
