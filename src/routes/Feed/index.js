@@ -1,9 +1,12 @@
+import { injectReducer } from '../../store/reducers'
 export default (store, ApolloExecutors) => ({
   path : '/feed',
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
       const Feed = require('./components/FeedView').default
+      const reducer = require('./module').default
 
+      injectReducer(store, { key: 'feed', reducer })
       cb(null, Feed)
     }, 'feed')
   },

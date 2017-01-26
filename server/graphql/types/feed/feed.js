@@ -4,7 +4,8 @@ const {
   GraphQLNonNull,
   GraphQLInt,
   GraphQLObjectType,
-  GraphQLString
+  GraphQLString,
+  GraphQLBoolean
 } = require('graphql')
 
 const { GraphQLURL } = require('graphql-custom-types')
@@ -31,6 +32,7 @@ const FeedType = new GraphQLObjectType({
 const FeedsType = new GraphQLObjectType({
   name: 'Feeds',
   fields: {
+    has_next_page: { type: new GraphQLNonNull(GraphQLBoolean) },
     total_data: { type: new GraphQLNonNull(GraphQLInt) },
     items: { type: new GraphQLList(FeedType) }
   }
