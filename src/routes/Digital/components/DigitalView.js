@@ -9,6 +9,7 @@ import DigitalProductContentMultifinance from './DigitalProductContentMultifinan
 import DigitalProductContentPostpaid from './DigitalProductContentPostpaid'
 import DigitalProductContentGame from './DigitalProductContentGame'
 import DigitalProductContentBPJS from './DigitalProductContentBPJS'
+import DigitalProductContentPLN from './DigitalProductContentPLN'
 import DigitalProductPromo from './DigitalProductPromo'
 import DigitalProductOperator from './DigitalProductOperator'
 import DigitalProductSelectDrawer from './DigitalProductSelectDrawer'
@@ -48,7 +49,8 @@ class DigitalView extends Component {
         {/* <DigitalProductContentMultifinance operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar angsuran kredit kamu di Tokopedia' /> */}
         {/* <DigitalProductContentPostpaid operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar Tagihan Pascabayar' /> */}
         {/*<DigitalProductContentGame operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Voucher Game' />*/}
-        <DigitalProductContentBPJS operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar BPJS Kesehatan dan Ketenagakerjaan Kamu Disini' />
+        {/*<DigitalProductContentBPJS operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar BPJS Kesehatan dan Ketenagakerjaan Kamu Disini' />*/}
+        <DigitalProductContentPLN operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Token atau Bayar Tagihan Listrik' />
         <DigitalProductPromo bannerList={bannerList} />
         <DigitalProductOperator operatorList={operatorList} />
         <DigitalProductSelectDrawer />

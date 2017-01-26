@@ -17,7 +17,7 @@ import DompetDuafaLogo from '../assets/lembaga/dompet_duafa.png'
 import PkpuLogo from '../assets/lembaga/pkpu.png'
 import YcabLogo from '../assets/lembaga/ycab1.png'
 
-class DigitalProductContent extends Component {
+class DigitalProductContentBPJS extends Component {
   static propTypes = {
     slug: PropTypes.string,
     productList: PropTypes.array,
@@ -145,20 +145,6 @@ class DigitalProductContent extends Component {
     })
 
     // Dummy data, remove when unneeded
-    const selectOptions = [
-      {
-        value: '10000',
-        name: 'Rp 10.000'
-      },
-      {
-        value: '25000',
-        name: 'Rp 25.000'
-      },
-      {
-        value: '50000',
-        name: 'Rp 50.000'
-      }
-    ]
     const radioButtons = [
       {
         id: 'bpjs-kesehatan',
@@ -230,4 +216,4 @@ class DigitalProductContent extends Component {
   }
 }
 
-export default DigitalProductContent
+export default DigitalProductContentBPJS

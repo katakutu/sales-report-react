@@ -17,7 +17,7 @@ import DompetDuafaLogo from '../assets/lembaga/dompet_duafa.png'
 import PkpuLogo from '../assets/lembaga/pkpu.png'
 import YcabLogo from '../assets/lembaga/ycab1.png'
 
-class DigitalProductContentGame extends Component {
+class DigitalProductContentPLN extends Component {
   static propTypes = {
     slug: PropTypes.string,
     productList: PropTypes.array,
@@ -145,33 +145,17 @@ class DigitalProductContentGame extends Component {
     })
 
     // Dummy data, remove when unneeded
-    const productSuggestion = [
+    const radioButtons = [
       {
-        text: 'Steam Wallet'
+        id: 'pln-token',
+        name: 'pln',
+        text: 'Token Listrik',
+        checked: true
       },
       {
-        text: 'Google Play'
-      },
-      {
-        text: 'Garena'
-      },
-      {
-        text: 'Gemscool'
-      },
-      {
-        text: 'Lyto'
-      },
-      {
-        text: 'Megaxus'
-      },
-      {
-        text: 'iTunes'
-      },
-      {
-        text: 'DOTA 2'
-      },
-      {
-        text: 'Battlenet'
+        id: 'pln-tagihan',
+        name: 'pln',
+        text: 'Tagihan Listrik'
       }
     ]
     // Dummy stops here
@@ -195,41 +179,20 @@ class DigitalProductContentGame extends Component {
             <h1 className='u-clearfix u-block u-mt0 u-mb3 u-left-align u-col-12'>
               {this.props.title}
             </h1>
+            <DigitalProductRadioButtons buttons={radioButtons} />
             <DigitalProductInputGroup
-              useAutoSuggest
-              label='Jenis Voucher'
-              placeholder='Pilih Jenis Voucher'
-              value='Steam Wallet'
-              items={productSuggestion} />
+              label='No. Meter/ID Pel.'
+              placeholder='Contoh 1122334455'
+              tooltip='No. Meter atau Id Pelanggan adalah nomor yang tertera pada kartu pelanggan' />
             <DigitalProductSelectGroup
               useDrawer
               label='Nominal'
               placeholder='Pilih Nominal' />
-            <DigitalProductInformationBox isTokenListrik content='Voucher Google Play (USD) hanya dapat diredeem dengan akun region U.S.' />
-            <DigitalProductPriceGroup isDiscount price='Rp 15.000' oldPrice='Rp 16.000' />
-            <div className='dp--buy'>
-              <div className='dp__checkbox checkbox'>
-                <input
-                  type='checkbox'
-                  name='instant_checkout'
-                  id='instant_checkout'
-                  checked={this.state.instantCheckout}
-                  value={this.state.instantCheckout ? '1' : '0'} />
-                <label onClick={this.handleInstantCheckbox} >
-                  <span className='dp-checkbox' />
-                  Bayar instan
-                </label>
-                <div className='trigger-tooltip u-inline-block'>
-                  <i className='icon-info-alt' />
-                  <div className='tooltip-container'>
-                    <div className='tooltip-box'>
-                      <p className='u-m0'>
-                        Bayar dengan 1-klik menggunakan Saldo Tokopedia
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <DigitalProductInformationBox
+              isTokenListrik
+              content='Token Listrik: Seluruh pembelian Token Listrik pada pukul 23:00 - 00.59 WIB akan kami proses pada pukul 01.00 saat Server PLN aktif kembali' />
+            <DigitalProductPriceGroup price='Rp 102.500' />
+            <div className='u-pt1'>
               <button type='submit' className='u-block u-center dp__btn btn--orange u-bold'>Beli</button>
             </div>
           </form>
@@ -257,4 +220,4 @@ class DigitalProductContentGame extends Component {
   }
 }
 
-export default DigitalProductContentGame
+export default DigitalProductContentPLN
