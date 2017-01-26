@@ -1,22 +1,32 @@
 import React, { Component, PropTypes } from 'react'
-import '../../../components/Carousel/slick.scss'
-import '../../../components/Carousel/slick-theme.scss'
+// import '../../../components/Carousel/slick.scss'
+// import '../../../components/Carousel/slick-theme.scss'
 import Slider from 'react-slick'
+import Swiper from 'swiper-r'
 import CarouselPlaceholder from '../../../components/Carousel/assets/carousel-placeholder.jpg'
 import './FeedView.scss'
 
+// const settings = {
+//   autoplay: false,
+//   pauseOnFocus: true,
+//   pauseOnHover: true,
+//   dots: false,
+//   arrows: false,
+//   infinite: false,
+//   speed: 300,
+//   slidesToShow: 3,
+//   // slidesToScroll: 1,
+//   draggable: true,
+//   variableWidth: true
+// }
 const settings = {
-  autoplay: false,
-  pauseOnFocus: true,
-  pauseOnHover: true,
-  dots: false,
-  arrows: false,
-  infinite: false,
+  slidesPerView: 'auto',
+  paginationClickable: true,
+  // uniqueNavElements:false,
+  freeMode: true,
   speed: 300,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  draggable: true,
-  variableWidth: true
+  spaceBetween: 0,
+  shortSwipes: true
 }
 
 class FeedCarousel extends Component {
@@ -110,10 +120,12 @@ class FeedCarousel extends Component {
       : this._createCarouselItems(placeholder, 0)
 
     return (
-      <div className='product-list-container'>
-        <Slider {...settings}>
-          { swipers }
-        </Slider>
+      <div className='product-list-container slide-container'>
+        <div className='fluid'>
+          <Swiper {...settings}>
+            { swipers }
+          </Swiper>
+        </div>
       </div>
     )
   }

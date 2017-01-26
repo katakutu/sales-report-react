@@ -22,6 +22,7 @@ const param = {
   recommendationSourceView: 'recentview',
   recommendationSourcePurchase: 'recentpurchase',
   recommendationSize: 12,
+  uniquedId: 'd4b262eb606449c77e5251f2c53acceb',
   userID: 5481152
 }
 
@@ -74,9 +75,9 @@ class FeedView extends Component {
         <div className='mb20 tabs-container'>
           <div className='bg-f8 mb-20 border-bt-ef'>
             <RecentView
-              userID={parseInt(userInfo['id'])}
+              // userID={parseInt(userInfo['id'])}
               title={lang[this.props.lang]['TERAKHIR DILIHAT']}
-              // userID={param.userID}
+              userID={param.userID}
             />
 
             <Inspiration
@@ -108,6 +109,7 @@ class FeedView extends Component {
               rows={param.rows}
               userID={param.userID}
               title={lang[this.props.lang]['PRODUCT FEED']}
+              uniquedId={param.uniquedId}
               // uniquedId={UserSearchID.generateUserIDMD5(param.userID)} />
               uniquedId={UserSearchID.generateUserIDMD5(parseInt(userInfo['id']))} />
           </div>

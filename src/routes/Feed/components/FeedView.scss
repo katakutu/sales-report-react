@@ -77,6 +77,11 @@
     padding: 0 0 0 10px;
 }
 
+.slick-track {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 .feed-spacer {
     position: relative;
     margin-bottom: 7px;
@@ -193,6 +198,26 @@
     overflow: hidden;
     max-height: 200px;
 }
+
+.fluid {
+    -webkit-flex: 1 auto;
+    -moz-flex: 1 auto;
+    -ms-flex: 1 auto;
+    flex: 1 auto;
+}
+.product-list-container.slide-container {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: -ms-flex;
+    display: flex;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+
 
 .product-list-container li,
 .shop-list-container li {
@@ -365,7 +390,7 @@
     height: auto;
 }
 .home-rvp-container .swiper-slide {
-    max-width: 140px!important;
+    max-width: 140px !important;
     padding: 0 5px;
 }
 .home-rvp-container .swiper-slide .product-shop-bedges img {
@@ -480,5 +505,48 @@ div {
     clear: both;
 }
 
+.swiper-container {
+        max-width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+        margin: 0 auto;
+        position: relative;
+    }
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    max-width: 200px!important;
+    padding: 0 5px;
+    
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-container-horizontal>.swiper-scrollbar {
+    opacity: 0;
+}
+
+.counter-section {
+    max-width: 100%;
+    position: relative;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    display: none;
+    opacity: 0
+}
 
 
