@@ -129,8 +129,6 @@ class Feed extends Component {
     }
 
     const feeds = this.state.feeds
-    console.log('feedsss......')
-    console.log(feeds)
 
     return (
       <div className='u-clearfix feed-section'>

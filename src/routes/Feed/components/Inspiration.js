@@ -41,8 +41,6 @@ class Inspiration extends Component {
         <div />
       )
     }
-    console.log('inspiration state')
-    console.log(this.state.inspiration)
     const isTitle = this.state.inspirations !== [] && this.state.inspirations.length > 0
     return (
       <div className='u-clearfix'>
