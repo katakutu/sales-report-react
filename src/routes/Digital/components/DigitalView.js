@@ -4,6 +4,8 @@ import queries from '../../../queries'
 
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import DigitalProductTab from './DigitalProductTab'
+import DigitalProductContentPulsa from './DigitalProductContentPulsa'
+import DigitalProductContentPaketData from './DigitalProductContentPaketData'
 import DigitalProductContent from './DigitalProductContent'
 import DigitalProductPromo from './DigitalProductPromo'
 import DigitalProductOperator from './DigitalProductOperator'
@@ -40,7 +42,9 @@ class DigitalView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} hideSearch />
         <DigitalProductTab categoryList={categoryList} />
-        <DigitalProductContent operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Salurkan Donasi Untuk Berbagi Dengan Sesama' />
+        {/*<DigitalProductContentPulsa operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Pulsa' />*/}
+        <DigitalProductContentPaketData operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Paket Data' />
+        {/*<DigitalProductContent operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Salurkan Donasi Untuk Berbagi Dengan Sesama' />*/}
         <DigitalProductPromo bannerList={bannerList} />
         <DigitalProductOperator operatorList={operatorList} />
         <DigitalProductSelectDrawer />
