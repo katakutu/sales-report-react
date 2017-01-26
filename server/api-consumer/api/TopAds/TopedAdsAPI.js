@@ -20,7 +20,7 @@ class TopedAdsAPI {
     this.api = new TopedAPI()
   }
 
-  getTopAds (userID, ep = '', src = '', item = 2, page = 1, q = '') {
+  getTopAds (userID, ep = '', src = '', item = 2, page = 1, q = '', sessID) {
     const endpoint = TOPADS_SERVICES.Display
                                     .replace(':ep', ep)
                                     .replace(':src', src)
@@ -29,6 +29,7 @@ class TopedAdsAPI {
                                     .replace(':q', q)
     let header = {
       'X-Tkpd-UserId': userID,
+      'X-Tkpd-SessionId': sessID,
       'X-Device': 'mobile'
     }
     return this.api.consume(URL.parse(endpoint), 'GET', {}, {

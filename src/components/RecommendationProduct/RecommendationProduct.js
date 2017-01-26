@@ -29,8 +29,17 @@ class RecommendationProduct extends Component {
 
   componentDidMount () {
     // for GTM to consume
-    const event = new Event('HomeCategoryLoaded')
-    document.dispatchEvent(event)
+    try {
+      const event = new Event('HomeCategoryLoaded')
+      document.dispatchEvent(event)
+    } catch (e) {
+      console.error(e)
+
+      const oldEvent = document.createEvent('Event')
+      oldEvent.initEvent('HomeCategoryLoaded', true, true)
+
+      document.dispatchEvent(oldEvent)
+    }
   }
 
   _gtmNotifyAllHotlistsClicked () {
