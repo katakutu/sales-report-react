@@ -12,12 +12,12 @@ const userFeedQuery = {
   args: {
     ob: { type: GraphQLInt },
     rows: { type: GraphQLInt },
-    start: { type: GraphQLInt },
+    page: { type: GraphQLInt },
     userID: { type: GraphQLInt },
-    uniquedId: { type: GraphQLString }
+    uniqueID: { type: GraphQLString }
   },
   resolve: function (_, args) {
-    return getFeeds(args.ob, args.rows, args.start, args.userID, args.uniquedId)
+    return getFeeds(args.ob, args.rows, args.page, args.userID, args.uniqueID)
   }
 }
 

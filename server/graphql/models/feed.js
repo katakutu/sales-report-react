@@ -4,6 +4,7 @@ const TopedMojitoAPI = require('./../../api-consumer/api/Search/TopedMojitoAPI')
 const favorite = require('./favorite')
 
 const EMPTY_FEED = {
+  has_next_page: false,
   total_data: 0,
   items: []
 }
@@ -40,8 +41,9 @@ function getFeeds (ob, rows, start, userID, uniquedId) {
 
               return EMPTY_FEED
             }
-
+            let nextpage = (response['header']['total_data'] > (rows * (start + 1)))
             return {
+              has_next_page: nextpage,
               total_data: response['header']['total_data'],
               items: response['data']['products']
             }

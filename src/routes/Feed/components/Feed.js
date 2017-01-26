@@ -1,44 +1,63 @@
 import React, { Component, PropTypes } from 'react'
 import { graphql } from 'react-apollo'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 import queries from './../../../queries'
 import TextHeader from '../../../components/TextHeader'
 import ArrayHelper from '../../../lib/utils/ArrayHelper'
+import LoadMore from '../../../components/LoadMore'
+import lang from '../../../lib/utils/Lang'
+import { replaceFeeds, updatePage, updateQuery } from '../module'
 
 class Feed extends Component {
 
   static propTypes = {
     data: PropTypes.object,
+    title: PropTypes.string,
     lang: PropTypes.string,
     ob: PropTypes.number,
-    start: PropTypes.number,
-    rows: PropTypes.number,
-    uniquiedId: PropTypes.string,
+    page: PropTypes.number,
+    uniqueID: PropTypes.string,
     userID: PropTypes.number,
-    feeds: PropTypes.arrayOf(PropTypes.object),
-    title: PropTypes.string
+    fetchMore: PropTypes.func,
+    replaceFeeds: PropTypes.func,
+    updatePage: PropTypes.func,
+    updateQuery: PropTypes.func,
+    get_feed:  PropTypes.object, // object returned from graphql
+    feeds: PropTypes.arrayOf(PropTypes.object) // our redux state that's actually calculated
   }
 
   state = {
-    page: 0,
-    feeds: []
+    page: this.props.page
+  }
+
+  constructor (props) {
+    super(props)
+
+    this.viewMore = this.viewMore.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps['start'] !== this.state.page) {
-      if (nextProps['data'] && nextProps['data']['get_feed']) {
-        const data = nextProps['data']['get_feed']['items']
-        // console.log(data)
-        const gqlData = data || []
-        const newData = gqlData.filter(data => {
-          return true
-        })
-        this.setState({
-          page: nextProps['start'],
-          feeds: this.state.feeds.concat(newData)
-        })
-      }
+    if (!nextProps.loading) {
+      const fd = nextProps.get_feed || { has_next_page: false, items: [], total_data: 0 }
+      const feeds = fd.items || []
+      const newFeeds = feeds.map(fd => Object.assign({}, fd))
+
+      this.props.replaceFeeds(newFeeds)
     }
+  }
+
+  viewMore () {
+    console.log(this.state.page)
+    this.setState({
+      page: this.state.page + 1
+    }, () => {
+      this.props.fetchMore(this.state.page)
+      browserHistory.push({
+        pathname: '/feed',
+        query: { page: this.state.page }
+      })
+    })
   }
 
   __renderFeed (feeds, parentindex) {
@@ -122,14 +141,8 @@ class Feed extends Component {
   }
 
   render () {
-    if (this.props.data.loading) {
-      return (
-        <div />
-      )
-    }
-
-    const feeds = this.state.feeds
-
+    const feeds = this.props.feeds || []
+    const fd = this.props.get_feed || { has_next_page: false, items: [], total_data: 0 }
     return (
       <div className='u-clearfix feed-section'>
         <div className='row-fluid'>
@@ -137,7 +150,6 @@ class Feed extends Component {
             { this.props.title }
           </TextHeader>
           <ul className='product-list-container pl-5 pr-5'>
-            { feeds.length === 0 && !this.props.data.loading }
             { feeds.length > 0 && ArrayHelper.chunk(feeds, 2).map((feed, index) => {
               const key = `feed-cont-${index}`
               return (
@@ -148,6 +160,12 @@ class Feed extends Component {
             })}
           </ul>
         </div>
+        {
+          fd['has_next_page'] &&
+          <LoadMore onClick={this.viewMore}>
+            {lang[this.props.lang]['View More']}
+          </LoadMore>
+        }
       </div>
     )
   }
@@ -157,13 +175,45 @@ class Feed extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    lang: state['app'] ? state['app'].lang : state.lang
+    lang: state['app'] ? state['app'].lang : state.lang,
+    page: state['feed'] ? state['feed'].page : state.page,
+    query: state['feed'] ? state['feed'].query : state.query,
+    feeds: state['feed'] ? state['feed'].feeds : state.feeds
   }
 }
 
-export default graphql(queries.FeedQuery, {
-  options: ({ ob, start, rows, userID, uniquiedId }) => ({
-    variable: { ob, start, rows, userID, uniquiedId },
-    foreachfetch: true,
-    returnPartialData: true })
-})(connect(mapStateToProps, undefined)(Feed))
+const mapDispatchToProps = {
+  replaceFeeds, updatePage, updateQuery
+}
+
+const FeedWithData = graphql(queries.FeedQuery, {
+  options: ({ ob, page, rows, userID, uniqueID }) => ({
+    variables: { ob, page, rows, userID, uniqueID },
+    forceFetch: true,
+    returnPartialData: true
+  }),
+  props: ({ data: { loading, get_feed, fetchMore } }) => {
+    return {
+      loading,
+      get_feed,
+      fetchMore: (nextPage = 1) => {
+        fetchMore({
+          variables: { page: nextPage },
+          updateQuery: (prev, { fetchMoreResult }) => {
+            if (!fetchMoreResult.data) { return prev }
+            const newFD = fetchMoreResult.data.get_feed
+            return Object.assign({}, prev, {
+              get_feed: Object.assign({}, prev.get_feed, {
+                has_next_page: newFD['has_next_page'],
+                total_data: newFD['total_data'],
+                items: prev.get_feed.items.concat(newFD.items)
+              })
+            })
+          }
+        })
+      }
+    }
+  }
+})(Feed)
+
+export default connect(mapStateToProps, mapDispatchToProps)(FeedWithData)

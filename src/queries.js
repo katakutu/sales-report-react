@@ -222,9 +222,10 @@ query Query {
 `
 
 const FeedQuery = gql`
-  query Query($ob: Int!, $start: Int!, $rows: Int!, $userID: Int!, $uniquedId: String! ){
-      get_feed(ob: $ob, start: $start, rows: $rows, userID: $userID, uniquedId: $uniquedId){
+  query Query($ob: Int!, $page: Int!, $rows: Int!, $userID: Int!, $uniqueID: String! ){
+      get_feed(ob: $ob, page: $page, rows: $rows, userID: $userID, uniqueID: $uniqueID){
         total_data
+        has_next_page
         items {
           id
           name
