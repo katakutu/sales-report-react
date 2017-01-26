@@ -222,6 +222,7 @@ class DigitalProductContent extends Component {
             </h1>
             <DigitalProductRadioButtons buttons={radioButtons} />
             <DigitalProductInputGroup
+              useAutoSuggest
               label='Jenis Voucher'
               placeholder='Pilih Voucher'
               items={productSuggestion} />

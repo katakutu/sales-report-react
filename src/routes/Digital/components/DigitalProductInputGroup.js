@@ -20,6 +20,9 @@ class DigitalProductInputGroup extends Component {
       value: '',
       items: this.props.items
     }
+
+    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
+    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this)
   }
 
   onInputChange = (event, { newValue }) => {
@@ -29,11 +32,11 @@ class DigitalProductInputGroup extends Component {
   }
 
   getItems (value) {
-    return value.length === 0 ? this.props.items : this.state.items.filter(this.filterSuggestion(value))
+    return value.length === 0 ? this.props.items : this.props.items.filter(this.filterSuggestion, value)
   }
 
-  filterSuggestion (value) {
-    return this.text.toLowerCase().slice(0, value.length) === value
+  filterSuggestion (item) {
+    return item.text.toLowerCase().slice(0, this.length) === this
   }
 
   onSuggestionsFetchRequested ({ value }) {
@@ -44,7 +47,7 @@ class DigitalProductInputGroup extends Component {
 
   onSuggestionsClearRequested () {
     this.setState({
-      items: []
+      items: this.props.items
     })
   }
 
@@ -53,9 +56,11 @@ class DigitalProductInputGroup extends Component {
   }
 
   renderSuggestion (suggestion) {
-    <div>
-      {suggestion.text}
-    </div>
+    return (
+      <div>
+        {suggestion.text}
+      </div>
+    )
   }
 
   render () {
@@ -81,12 +86,12 @@ class DigitalProductInputGroup extends Component {
           </div>
           <Autosuggest
             suggestions={this.state.items}
-            onSuggestionsFetchRequested={() => this.onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={() => this.onSuggestionsClearRequested}
-            getSuggestionValue={() => this.getSuggestionValue}
-            renderSuggestion={() => this.renderSuggestion}
-            inputProps={inputProps}
-          />
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            getSuggestionValue={this.getSuggestionValue}
+            renderSuggestion={this.renderSuggestion}
+            alwaysRenderSuggestions
+            inputProps={inputProps} />
         </div>
       )
     } else {
