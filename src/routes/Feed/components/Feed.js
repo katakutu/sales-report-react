@@ -20,7 +20,25 @@ class Feed extends Component {
   }
 
   state = {
+    page: 0,
     feeds: []
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps['start'] !== this.state.page) {
+      if (nextProps['data'] && nextProps['data']['get_feed']) {
+        const data = nextProps['data']['get_feed']['items']
+        // console.log(data)
+        const gqlData = data || []
+        const newData = gqlData.filter(data => {
+          return true
+        })
+        this.setState({
+          page: nextProps['start'],
+          feeds: this.state.feeds.concat(newData)
+        })
+      }
+    }
   }
 
   __renderFeed (feeds, parentindex) {
@@ -110,8 +128,8 @@ class Feed extends Component {
       )
     }
 
-    const feeds = this.props.data && this.props.data['get_feed'] ? this.props.data['get_feed']['items'] : []
-    console.log(this.props.data)
+    const feeds = this.state.feeds
+
     return (
       <div className='u-clearfix feed-section'>
         <div className='row-fluid'>

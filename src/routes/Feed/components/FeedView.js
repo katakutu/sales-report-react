@@ -16,7 +16,7 @@ import { graphql } from 'react-apollo'
 
 const param = {
   ob: 2,
-  start: 1,
+  rows: 12,
   shopId: '478592,124630',
   recommendationSourceWishlist: 'wishlist',
   recommendationSourceView: 'recentview',
@@ -32,7 +32,7 @@ class FeedView extends Component {
   }
 
   state = {
-    rows: 12
+    page: 1
   }
 
   constructor (props) {
@@ -44,10 +44,10 @@ class FeedView extends Component {
   viewMore (event) {
     event.preventDefault()
 
-    this.setState({ rows: this.state.rows + 12 }, () => {
+    this.setState({ page: this.state.page + 1 }, () => {
       browserHistory.push({
         pathname: '/feed',
-        query: { rows: this.state.rows }
+        query: { page: this.state.page + 1 }
       })
     })
   }
@@ -58,7 +58,7 @@ class FeedView extends Component {
         <SplashScreen />
       )
     }
-
+    console.log(this.state.page)
     const user = this.props.data.user || {}
     const userInfo = Object.assign(user, {
       'deposit': this.props.data.saldo,
@@ -104,8 +104,8 @@ class FeedView extends Component {
           <div className='bg-f8 mb-20 border-tp-ef'>
             <Feed
               ob={param.ob}
-              start={param.start}
-              rows={this.state.rows}
+              start={this.state.page}
+              rows={param.rows}
               userID={param.userID}
               title={lang[this.props.lang]['PRODUCT FEED']}
               // uniquedId={UserSearchID.generateUserIDMD5(param.userID)} />

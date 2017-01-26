@@ -41,8 +41,7 @@ class RecentView extends Component {
 
     const recents = this.props.data && this.props.data['get_recent_view']
     ? this.props.data['get_recent_view']['items'] : []
-    const isTitle = this.state.data !== [] && this.state.data.length > 0
-
+    const isTitle = this.state.recentviews !== [] && this.state.recentviews.length > 0
     return (
       <div className=''>
         { isTitle &&
