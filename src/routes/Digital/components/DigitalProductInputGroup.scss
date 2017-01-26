@@ -77,5 +77,50 @@
 }
 
 .dp-inputgroup__textbox {
+    height: 44px;
+    width: 100%;
+    font-size: 23px;
+    padding: 5px 6px;
+    border: none;
+    border-bottom: 1px solid $color-grey-2;
+    border-radius: 0;
+    box-shadow: none;
+    display: block;
+    background-color: inherit;
+    color: $color-black-secondary;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 
+    &:focus {
+        border-bottom: 1px solid $color-green;
+        color: $color-green;
+        box-shadow: none;
+    }
+
+    &::placeholder {
+        font-size: 16px;
+        font-weight: 400;
+    }
+}
+
+.dp-inputgroup__logo {
+    position: absolute;
+    top: 34px;
+    right: 25px;
+    max-height: 25px;
+}
+
+.dp-inputgroup__close {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    z-index: 999;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #C1C1C1;
+    color: $color-white-primary;
+    text-align: center;
+    font-size: 20px;
+    line-height: 20px;
+    cursor: pointer;
 }

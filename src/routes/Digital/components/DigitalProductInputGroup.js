@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import Autosuggest from 'react-autosuggest'
 import './DigitalProductInputGroup.scss'
+import LogoSimpati from '../assets/operator/simpati.png'
 
 class DigitalProductInputGroup extends Component {
 
@@ -96,7 +97,7 @@ class DigitalProductInputGroup extends Component {
       )
     } else {
       return (
-        <div className='dp-inputgroup'>
+        <div className='dp-inputgroup u-relative'>
           <label className='dp-inputgroup__label u-mb1'>{this.props.label}</label>
           <div className={classNames('dp-inputgroup__tooltip', { 'u-hide': !this.props.tooltip })}>
             <i className='dp-tooltip' />
@@ -109,6 +110,10 @@ class DigitalProductInputGroup extends Component {
             </div>
           </div>
           <input type='text' className='dp-inputgroup__textbox' placeholder={this.props.placeholder} />
+          <picture>
+            <img src={LogoSimpati} alt='Logo Simpati' className='dp-inputgroup__logo' />
+          </picture>
+          <i className='dp-inputgroup__close'>×</i>
         </div>
       )
     }
