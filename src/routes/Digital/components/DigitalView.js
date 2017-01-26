@@ -4,6 +4,8 @@ import queries from '../../../queries'
 
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import DigitalProductTab from './DigitalProductTab'
+import DigitalProductContentPulsa from './DigitalProductContentPulsa'
+import DigitalProductContentPaketData from './DigitalProductContentPaketData'
 import DigitalProductContent from './DigitalProductContent'
 import DigitalProductContentMultifinance from './DigitalProductContentMultifinance'
 import DigitalProductContentPostpaid from './DigitalProductContentPostpaid'
@@ -46,11 +48,14 @@ class DigitalView extends Component {
         <HeaderHomeOld userInfo={userInfo} hideSearch />
         <DigitalProductTab categoryList={categoryList} />
         {/* <DigitalProductContent operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Salurkan Donasi Untuk Berbagi Dengan Sesama' /> */}
-        {/* <DigitalProductContentMultifinance operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar angsuran kredit kamu di Tokopedia' /> */}
-        {/* <DigitalProductContentPostpaid operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar Tagihan Pascabayar' /> */}
-        {/*<DigitalProductContentGame operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Voucher Game' />*/}
-        {/*<DigitalProductContentBPJS operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar BPJS Kesehatan dan Ketenagakerjaan Kamu Disini' />*/}
+        {/* <DigitalProductContentPulsa operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Pulsa' /> */}
+        {/*<DigitalProductContentPaketData operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Paket Data' />*/}
         <DigitalProductContentPLN operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Token atau Bayar Tagihan Listrik' />
+        {/*<DigitalProductContentBPJS operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar BPJS Kesehatan dan Ketenagakerjaan Kamu Disini' />*/}
+        {/*<DigitalProductContentGame operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Voucher Game' />*/}
+        {/* <DigitalProductContentPostpaid operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar Tagihan Pascabayar' /> */}
+        {/* <DigitalProductContentMultifinance operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar angsuran kredit kamu di Tokopedia' /> */}
+
         <DigitalProductPromo bannerList={bannerList} />
         <DigitalProductOperator operatorList={operatorList} />
         <DigitalProductSelectDrawer />
