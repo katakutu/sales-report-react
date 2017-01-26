@@ -50,7 +50,8 @@ class DigitalProductInputGroup extends Component {
 
   onSuggestionsFetchRequested ({ value }) {
     this.setState({
-      items: this.getItems(value)
+      items: this.getItems(value),
+      showAll: true
     })
   }
 
@@ -65,6 +66,10 @@ class DigitalProductInputGroup extends Component {
     this.setState({
       showAll: true
     })
+  }
+
+  shouldRenderSuggestions () {
+    return true
   }
 
   getSuggestionValue (suggestion) {
@@ -108,7 +113,7 @@ class DigitalProductInputGroup extends Component {
             getSuggestionValue={this.getSuggestionValue}
             renderSuggestion={this.renderSuggestion}
             onSuggestionSelected={this.onSuggestionSelected}
-            alwaysRenderSuggestions
+            shouldRenderSuggestions={this.shouldRenderSuggestions}
             focusInputOnSuggestionClick={false}
             inputProps={inputProps} />
         </div>

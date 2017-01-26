@@ -202,6 +202,9 @@ class DigitalProductContent extends Component {
         text: 'Battlenet'
       },
       {
+        text: 'League of Legends'
+      },
+      {
         text: 'Ayodance'
       }
     ]
