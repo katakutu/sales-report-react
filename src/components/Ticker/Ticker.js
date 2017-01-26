@@ -10,6 +10,7 @@ class Ticker extends Component {
   state = {
     nextContentIndex: 0,
     content: '',
+    tickerType: 'warning',
     // initial value that will get refreshed right away
     refreshInterval: this.props.perTickDuration * 1000
   }
@@ -76,7 +77,7 @@ class Ticker extends Component {
 
     return (
       <div className='ticker' style={ts}>
-        <div className='ticker__container' dangerouslySetInnerHTML={{ __html: this.state.content }} />
+        <div className={'ticker__container ticker--' + this.state.tickerType } dangerouslySetInnerHTML={{ __html: this.state.content }} />
       </div>
     )
   }

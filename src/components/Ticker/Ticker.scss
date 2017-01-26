@@ -3,10 +3,10 @@
 .ticker {
     overflow-y: hidden;
     height: 4.857142857rem;
-    background-color: $color-tint;
     color: $color-black-disabled;
     text-align: center;
     line-height: 4.857142857rem;
+    padding: 0 7px;
 }
 
 .ticker__container {
@@ -31,3 +31,16 @@
     -moz-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
 }
+
+.ticker--info {
+    border: 1px solid $color-green-soft;
+    border-left-width: 3px;
+    border-radius: 3px;
+}
+
+.ticker--warning {
+    border: 1px solid $color-yellow-soft;
+    border-left-width: 3px;
+    border-radius: 3px;
+}
+
