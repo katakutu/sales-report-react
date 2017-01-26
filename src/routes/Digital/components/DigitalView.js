@@ -7,6 +7,7 @@ import DigitalProductTab from './DigitalProductTab'
 import DigitalProductContent from './DigitalProductContent'
 import DigitalProductContentMultifinance from './DigitalProductContentMultifinance'
 import DigitalProductContentPostpaid from './DigitalProductContentPostpaid'
+import DigitalProductContentGame from './DigitalProductContentGame'
 import DigitalProductPromo from './DigitalProductPromo'
 import DigitalProductOperator from './DigitalProductOperator'
 import DigitalProductSelectDrawer from './DigitalProductSelectDrawer'
@@ -44,7 +45,8 @@ class DigitalView extends Component {
         <DigitalProductTab categoryList={categoryList} />
         {/* <DigitalProductContent operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Salurkan Donasi Untuk Berbagi Dengan Sesama' /> */}
         {/* <DigitalProductContentMultifinance operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar angsuran kredit kamu di Tokopedia' /> */}
-        <DigitalProductContentPostpaid operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar Tagihan Pascabayar' />
+        {/* <DigitalProductContentPostpaid operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar Tagihan Pascabayar' /> */}
+        <DigitalProductContentGame operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Voucher Game' />
         <DigitalProductPromo bannerList={bannerList} />
         <DigitalProductOperator operatorList={operatorList} />
         <DigitalProductSelectDrawer />
