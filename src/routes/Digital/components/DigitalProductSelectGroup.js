@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
-import './DigitalProductSelectGroup.scss'
+import './DigitalProductInputGroup.scss'
 
 class DigitalProductSelectGroup extends Component {
 

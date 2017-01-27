@@ -4,7 +4,7 @@ import './DigitalProductInformationBox.scss'
 class DigitalProductInformationBox extends Component {
 
   static propTypes = {
-    isTokenListrik: PropTypes.bool,
+    isList: PropTypes.bool,
     content: PropTypes.string,
     withTitle: PropTypes.bool,
     title: PropTypes.string,
@@ -18,7 +18,7 @@ class DigitalProductInformationBox extends Component {
   }
 
   render () {
-    if (this.props.isTokenListrik) {
+    if (!this.props.isList) {
       return (
         <div className={'dp-informationbox u-mb1 u-border-box dp-informationbox--' + this.props.boxType}>
           <p className='dp-informationbox__title u-h4'>{this.props.title}</p>

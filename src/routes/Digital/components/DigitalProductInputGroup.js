@@ -19,7 +19,7 @@ class DigitalProductInputGroup extends Component {
     super(props)
 
     this.state = {
-      value: this.props.value,
+      value: this.props.value || '',
       items: this.props.items,
       showAll: true
     }
