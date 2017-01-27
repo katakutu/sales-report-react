@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import './DigitalProductRadioButtons.scss'
+import './RadioButtons.scss'
 
-class DigitalProductRadioButtons extends Component {
+class RadioButtons extends Component {
 
   static propTypes = {
     buttons: PropTypes.array
@@ -26,4 +26,4 @@ class DigitalProductRadioButtons extends Component {
   }
 }
 
-export default DigitalProductRadioButtons
+export default RadioButtons
