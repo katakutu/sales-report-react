@@ -18,8 +18,7 @@ class DigitalProductInformationBox extends Component {
   }
 
   render () {
-
-    if(this.props.isTokenListrik) {
+    if (this.props.isTokenListrik) {
       return (
         <div className={'dp-informationbox u-mb1 u-border-box dp-informationbox--' + this.props.boxType}>
           <p className='dp-informationbox__title u-h4'>{this.props.title}</p>

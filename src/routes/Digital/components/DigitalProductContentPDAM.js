@@ -161,37 +161,10 @@ class DigitalProductContentPDAM extends Component {
 
     const productSuggestion = [
       {
-        text: 'Steam Wallet'
+        text: 'AETRA JAKARTA'
       },
       {
-        text: 'Google Play'
-      },
-      {
-        text: 'Garena'
-      },
-      {
-        text: 'Gemscool'
-      },
-      {
-        text: 'Lyto'
-      },
-      {
-        text: 'Megaxus'
-      },
-      {
-        text: 'iTunes'
-      },
-      {
-        text: 'DOTA 2'
-      },
-      {
-        text: 'Battlenet'
-      },
-      {
-        text: 'League of Legends'
-      },
-      {
-        text: 'Ayodance'
+        text: 'PALYJA JAKARTA'
       }
     ]
     // Dummy stops here
@@ -219,12 +192,13 @@ class DigitalProductContentPDAM extends Component {
               useAutoSuggest
               label='Wilayah'
               placeholder='Pilih Wilayah'
-              tooltip='Nomor virtual account keluarga anda untuk BPJS Kesehatan/ Nomor KTP untuk BPJS Ketenagakerjaan'
-              items={productSuggestion}/>
+              value='AETRA JAKARTA'
+              tooltip='Isi wilayah Anda'
+              items={productSuggestion} />
             <DigitalProductInputGroup
               label='Nomor Pelanggan'
-              placeholder='Contoh 0000001291029761'
-              tooltip='Nomor virtual account keluarga anda untuk BPJS Kesehatan/ Nomor KTP untuk BPJS Ketenagakerjaan' />
+              placeholder='Contoh 123456789'
+              tooltip='Nomor pelanggan atau Nomor sambungan Anda' />
             <div className='u-pt1'>
               <button type='submit' className='u-block u-center dp__btn btn--orange u-bold'>Bayar</button>
             </div>

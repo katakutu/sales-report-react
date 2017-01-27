@@ -10,7 +10,6 @@ class DigitalProductPriceGroup extends Component {
   }
 
   render () {
-
     if (!this.props.isDiscount) {
       return (
         <div className='dp-pricegroup u-block u-clearfix form-group'>
