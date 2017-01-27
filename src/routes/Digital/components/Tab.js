@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import classNames from 'classnames'
 import BodyClassName from 'react-body-classname'
-import './DigitalProductTab.scss'
+import './Tab.scss'
 import { SITES } from '../../../constants'
 
-class DigitalProductTab extends Component {
+class Tab extends Component {
   static propTypes = {
     categoryList: PropTypes.array
   }
@@ -132,4 +132,4 @@ class DigitalProductTab extends Component {
   }
 }
 
-export default DigitalProductTab
+export default Tab

@@ -114,28 +114,6 @@
     }
 }
 
-.dp-inputgroup__select {
-    padding: 5px 6px;
-    border: 0;
-    background: url(../assets/arrow-select.png) no-repeat top 16px right 5px;
-    display: block;
-    width: 100%;
-    border-radius: 0;
-    border-bottom: 1px solid $color-grey-disabled;
-    box-shadow: none;
-    appearance: none;
-    line-height: 1.42857143;
-    background-size: 12px 6px;
-    font-size: 16px;
-    height: 36px;
-    color: $color-black-primary;
-
-    &:active, &:focus {
-        color: $color-green;
-        border-color: $color-green;
-    }
-}
-
 .dp-inputgroup__logo {
     position: absolute;
     top: 34px;

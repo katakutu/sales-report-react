@@ -28,7 +28,7 @@ class DigitalProductSelectGroup extends Component {
               </div>
             </div>
           </div>
-          <div className='dp-inputgroup__select'>
+          <div className='dp-selectgroup'>
             <span>{this.props.value ? this.props.value : this.props.placeholder}</span>
           </div>
         </div>
@@ -47,7 +47,7 @@ class DigitalProductSelectGroup extends Component {
               </div>
             </div>
           </div>
-          <select className='dp-inputgroup__select' defaultValue=''>
+          <select className='dp-selectgroup' defaultValue=''>
             <option value='' disabled>{this.props.placeholder}</option>
             {this.props.options.map(function (option, index) {
               return (

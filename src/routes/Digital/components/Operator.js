@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 
-import './DigitalProductOperator.scss'
+import './Operator.scss'
 import { SITES } from '../../../constants'
 
-class DigitalProductOperator extends Component {
+class Operator extends Component {
   static propTypes = {
     operatorList: PropTypes.array
   }
@@ -36,4 +36,4 @@ class DigitalProductOperator extends Component {
   }
 }
 
-export default DigitalProductOperator
+export default Operator

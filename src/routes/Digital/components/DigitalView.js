@@ -3,21 +3,11 @@ import { graphql } from 'react-apollo'
 import queries from '../../../queries'
 
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
-import DigitalProductTab from './DigitalProductTab'
-import DigitalProductPromo from './DigitalProductPromo'
-import DigitalProductOperator from './DigitalProductOperator'
-import DigitalProductSelectDrawer from './DigitalProductSelectDrawer'
+import Tab from './Tab'
+import Content from './Content'
+import Promo from './Promo'
+import Operator from './Operator'
 
-import DigitalProductContentPulsa from './products/DigitalProductContentPulsa'
-import DigitalProductContentPaketData from './products/DigitalProductContentPaketData'
-import DigitalProductContent from './products/DigitalProductContent'
-import DigitalProductContentMultifinance from './products/DigitalProductContentMultifinance'
-import DigitalProductContentPostpaid from './products/DigitalProductContentPostpaid'
-import DigitalProductContentSaldo from './products/DigitalProductContentSaldo'
-import DigitalProductContentGame from './products/DigitalProductContentGame'
-import DigitalProductContentBPJS from './products/DigitalProductContentBPJS'
-import DigitalProductContentPDAM from './products/DigitalProductContentPDAM'
-import DigitalProductContentPLN from './products/DigitalProductContentPLN'
 import SplashScreen from '../../../components/Loading/SplashScreen'
 
 class DigitalView extends Component {
@@ -49,16 +39,15 @@ class DigitalView extends Component {
     return (
       <div>
         <HeaderHomeOld userInfo={userInfo} hideSearch />
-        <DigitalProductTab categoryList={categoryList} />
-        <DigitalProductContent
+        <Tab categoryList={categoryList} />
+        <Content
           operatorList={operatorList}
           productList={productList}
           slug={this.props.params.slug}
           tab='air' />
 
-        <DigitalProductPromo bannerList={bannerList} />
-        <DigitalProductOperator operatorList={operatorList} />
-        <DigitalProductSelectDrawer />
+        <Promo bannerList={bannerList} />
+        <Operator operatorList={operatorList} />
       </div>
     )
   }
