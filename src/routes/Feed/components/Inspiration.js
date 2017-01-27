@@ -13,7 +13,8 @@ class Inspiration extends Component {
     userID: PropTypes.number,
     title: PropTypes.string,
     recommendationSource: PropTypes.string,
-    recommendationSize: PropTypes.number
+    recommendationSize: PropTypes.number,
+    inspiration: PropTypes.object
   }
 
   state = {
@@ -21,10 +22,8 @@ class Inspiration extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    // console.log('NEXTPROPs' + nextProps['data'])
     if (nextProps['data'] && !nextProps.data.loading) {
       const data = nextProps['data']['get_recommendation'] && nextProps['data']['get_recommendation']['items']
-      // console.log(data)
       const gqlData = data || []
       const newData = gqlData.filter(data => {
         return true
@@ -41,6 +40,7 @@ class Inspiration extends Component {
         <div />
       )
     }
+    let inspiration = this.props.data['get_recommendation'] ? this.props.data['get_recommendation']['items'] : []
     const isTitle = this.state.inspirations !== [] && this.state.inspirations.length > 0
     return (
       <div className='u-clearfix'>
@@ -50,7 +50,7 @@ class Inspiration extends Component {
           </TextHeader>
         }
         <div className='mt-20 pb-20'>
-          <FeedCarousel images={this.state.inspirations} />
+          <FeedCarousel images={inspiration} />
         </div>
       </div>
     )

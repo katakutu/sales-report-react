@@ -133,13 +133,13 @@ class Feed extends Component {
             </figure>
             <div className='product-list-desc'>
               <a aria-hidden='true' tabIndex='-1' href={item.url} className=''>
-                <span className='product-list-name pl-5 u-truncate'> { item.name } </span>
+                <div className='product-list-name pl-5 u-truncate'> { item.name } </div>
               </a>
               <div className='product-list-price'> { item.price } </div>
-              <div className='product-list-bedge plr-5'>
+              <div className='product-list-bedge pl-5'>
                 {
                   labels.map((label, li) => {
-                    let style = { backgrundColor: label['color'] }
+                    let style = { backgroundColor: label['color'] }
                     if (label['color'] === '#ffffff') {
                       style = Object.assign(style, {
                         border: '1px solid #bbb',

@@ -1,22 +1,15 @@
 import React, { Component, PropTypes } from 'react'
-import '../../../components/Carousel/slick.scss'
-import '../../../components/Carousel/slick-theme.scss'
-import Slider from 'react-slick'
+import Swiper from 'swiper-r'
 import CarouselPlaceholder from '../../../components/Carousel/assets/carousel-placeholder.jpg'
 import './FeedView.scss'
 
 const settings = {
-  autoplay: false,
-  pauseOnFocus: true,
-  pauseOnHover: true,
-  dots: false,
-  arrows: false,
-  infinite: false,
+  slidesPerView: 'auto',
+  paginationClickable: true,
+  freeMode: true,
   speed: 300,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  draggable: true,
-  variableWidth: true
+  spaceBetween: 0,
+  shortSwipes: true
 }
 
 class FeedCarousel extends Component {
@@ -52,15 +45,23 @@ class FeedCarousel extends Component {
           <div className='product-list-bedges plr-5 u-truncate'>
             {
 								labels.map((label, li) => {
-  return (
-    <span
-      className='feed__label'
-      key={`feed-${index}-label-${li}`}
-      className={`product-tag-${label['title']}`}>
-      { label['title'] }
-    </span>
-  )
-})
+                let style = { backgroundColor: label['color'] }
+                  if (label['color'] === '#ffffff') {
+                    style = Object.assign(style, {
+                      border: '1px solid #bbb',
+                      color: '#606060'
+                    })
+                  }
+
+                return (
+                  <span
+                    className='feed__label'
+                    key={`feed-${index}-label-${li}`}
+                    style={style}>
+                    { label['title'] }
+                  </span>
+                )
+              })
 							}
             {
 								labels.length === 0 &&
@@ -110,10 +111,10 @@ class FeedCarousel extends Component {
       : this._createCarouselItems(placeholder, 0)
 
     return (
-      <div className='product-list-container'>
-        <Slider {...settings}>
-          { swipers }
-        </Slider>
+      <div className='product-list-container slide-container'>
+          <Swiper swiperConfig={settings}>
+            { swipers }
+          </Swiper>
       </div>
     )
   }
