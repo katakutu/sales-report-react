@@ -9,6 +9,7 @@ import TopAdsIntegrate from '../../../components/TopAds/TopAdsIntegrate'
 import ArrayHelper from '../../../lib/utils/ArrayHelper'
 import LoadMore from '../../../components/LoadMore'
 import lang from '../../../lib/utils/Lang'
+import FeedEmpty from './FeedEmpty'
 import { replaceFeeds, updatePage, updateQuery } from '../module'
 
 const MODAL_PARAMS = {
@@ -61,7 +62,8 @@ class Feed extends Component {
     item: React.PropTypes.number,
     q: React.PropTypes.string,
     topAdsReudyx: PropTypes.object,
-    topads: PropTypes.object
+    topads: PropTypes.object,
+    loading: PropTypes.bool
   }
 
   state = {
@@ -94,7 +96,7 @@ class Feed extends Component {
       ]
       // combine 2 data
       let payload = [...oldData, ...newData]
-      this.props.replaceFeeds(payload)
+      feeds.length !== 0 && this.props.replaceFeeds(payload)
     }
   }
 
@@ -201,8 +203,9 @@ class Feed extends Component {
   render () {
     const feeds = this.props.feeds || []
     const fd = this.props.get_feed || { has_next_page: false, items: [], total_data: 0 }
-    const searchTransitionOptions = {
-      transitionName: 'searchTransition',
+    const isNoFeed = feeds.length === 0 && !this.props.loading
+    const feedTransitionOptions = {
+      transitionName: 'feedTransition',
       transitionAppear: true,
       transitionAppearTimeout: 500,
       transitionEnter: true,
@@ -215,13 +218,14 @@ class Feed extends Component {
       <div className='u-clearfix feed-section'>
         <div className='row-fluid'>
           {
-            feeds.length > 0 &&
+            feeds.length > 0 && this.props.loading &&
               <TextHeader textType={2}>
                 { this.props.title }
               </TextHeader>
           }
           <ul className='product-list-container pl-5 pr-5'>
-            <ReactCSSTransitionGroup {...searchTransitionOptions}>
+            {isNoFeed && <FeedEmpty userID={this.props.userID} title={this.props.title} />}
+            <ReactCSSTransitionGroup {...feedTransitionOptions}>
               {
                 feeds.length > 0 && feeds.map((feed, index) => {
                   const key = `topads-cont-${index}`
