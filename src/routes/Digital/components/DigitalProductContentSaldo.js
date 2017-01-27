@@ -196,9 +196,13 @@ class DigitalProductContentSaldo extends Component {
             <div className='u-pt1'>
               <button type='submit' className='u-block u-center dp__btn btn--orange u-bold'>Beli</button>
             </div>
-            <a href='https://pulsa.tokopedia.com/gift-card' id='giftcard-link' class='u-mx-auto u-center u-mt2 u-h3 u-block' target='__blank'>
-              Punya Gift Card Tokopedia?
-            </a>
+
+            <div className='u-clearfix u-center'>
+              <a href='https://pulsa.tokopedia.com/gift-card' id='giftcard-link' className='dp-link u-mx-auto u-center u-mt2 u-h3 u-block' target='__blank'>
+                Punya Gift Card Tokopedia?
+              </a>
+            </div>
+
           </form>
         </div>
         <div className={classNames('dp-drawer--select', { 'active': this.state.open })}>
