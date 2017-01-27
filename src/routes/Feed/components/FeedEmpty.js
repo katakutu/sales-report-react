@@ -4,7 +4,7 @@ import Img from 'react-image-fallback'
 
 import lang from '../../../lib/utils/Lang'
 import TopAds from '../../../components/TopAds/TopAds'
-import emptyImage from '../../WishList/assets/wishlist-empty.png'
+import emptyImage from '../assets/feed-empty.png'
 import loading from '../../../static/media/images/lite-loading.png'
 import TextHeader from '../../../components/TextHeader'
 import { HOSTNAME } from '../../../constants'
