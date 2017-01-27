@@ -19,7 +19,7 @@ import WishlistUnloved from './WishlistUnloved'
 
 import './WishListView.scss'
 
-const WISHLIST_PER_PAGE = 2
+const WISHLIST_PER_PAGE = 20
 
 class WishList extends Component {
   static propTypes = {
