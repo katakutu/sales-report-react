@@ -128,7 +128,7 @@
 
     .drawer__radio {
         &:checked + .drawer__icon--radio {
-            background: url(../assets/checklist.svg) center no-repeat;
+            background: url(../../assets/checklist.svg) center no-repeat;
             background-size: 10px;
             background-color: $color-green;
             border: none;
