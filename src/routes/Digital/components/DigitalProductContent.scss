@@ -303,3 +303,13 @@
 .pt-12 {
     padding-top: 12px !important;
 }
+
+// Error form message
+
+.dp-error {
+    margin-top: 5px;
+    color: $color-red;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1;
+}

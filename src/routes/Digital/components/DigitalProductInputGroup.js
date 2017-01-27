@@ -136,7 +136,12 @@ class DigitalProductInputGroup extends Component {
           <picture>
             <img src={LogoSimpati} alt='Logo Simpati' className='dp-inputgroup__logo' />
           </picture>
-          <i className='dp-inputgroup__close'>×</i>
+          <i className='dp-inputgroup__close'>&times;</i>
+          <div className='dp-error__container u-clearfix'>
+            <div className='dp-error'>
+              Nomor yang Anda masukkan belum didukung saat ini
+            </div>
+          </div>
         </div>
       )
     }
