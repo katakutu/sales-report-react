@@ -22,7 +22,8 @@ class DigitalProductContent extends Component {
     slug: PropTypes.string,
     productList: PropTypes.array,
     operatorList: PropTypes.array,
-    title: PropTypes.string
+    title: PropTypes.string,
+    tab: PropTypes.string
   }
 
   constructor (props) {
@@ -244,6 +245,7 @@ class DigitalProductContent extends Component {
             <h1 className='u-clearfix u-block u-mt0 u-mb3 u-left-align u-col-12'>
               {this.props.title}
             </h1>
+            {/*
             <DigitalProductRadioButtons buttons={radioButtons} />
             <DigitalProductInputGroup
               useAutoSuggest
@@ -266,6 +268,7 @@ class DigitalProductContent extends Component {
             <DigitalProductInformationBox content={information} />
             <DigitalProductPriceGroup isDiscount price='Rp 15.000' oldPrice='Rp 16.000' />
             <DigitalProductPriceGroup price='Rp 100.000' />
+            */}
             {/* Commented for development purpose
             <div className='dp--lembaga'>
               <div className='dp-lembaga-tab-list'>
