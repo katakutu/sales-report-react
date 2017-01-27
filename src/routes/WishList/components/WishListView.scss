@@ -279,8 +279,12 @@
 }
 
 .wishlist__btn-holder {
-    padding: 25px 0;
+    padding: 0;
     text-align: center;
+
+    a {
+        display: inline-block;
+    }
 }
 
 .wishlist__lets-search,
