@@ -1,29 +1,34 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
-import { DCONTENT } from '../../digitalcontents'
-import InputGroup from '../parts/InputGroup'
 import SelectGroup from '../parts/SelectGroup'
-import InformationBox from '../parts/InformationBox'
-import PriceGroup from '../parts/PriceGroup'
+import InputGroup from '../parts/InputGroup'
 import BuyButtonGroup from '../parts/BuyButtonGroup'
 
 class Game extends Component {
+
+  static propTypes = {
+    products: PropTypes.array,
+    note: PropTypes.string
+  }
+
   render () {
-    <div>
-      <InputGroup
-        useAutoSuggest
-        label='Jenis Voucher'
-        placeholder='Pilih Jenis Voucher'
-        value='Steam Wallet'
-        items={DCONTENT[tab].products} />
-      <SelectGroup
-        useDrawer
-        label='Nominal'
-        placeholder='Pilih Nominal' />
-      <InformationBox content={DCONTENT[tab].note} />
-      <PriceGroup isDiscount price='Rp 15.000' oldPrice='Rp 16.000' />
-      <BuyButtonGroup hasInstant buttonText='Beli' />
-    </div>
+    return (
+      <div>
+        <InputGroup
+          useAutoSuggest
+          label='Jenis Voucher'
+          placeholder='Pilih Jenis Voucher'
+          value='Steam Wallet'
+          items={this.props.products} />
+        <SelectGroup
+          useDrawer
+          label='Nominal'
+          placeholder='Pilih Nominal' />
+        <InformationBox content={this.props.note} />
+        <PriceGroup isDiscount price='Rp 15.000' oldPrice='Rp 16.000' />
+        <BuyButtonGroup hasInstant buttonText='Beli' />
+      </div>
+    )
   }
 }
 

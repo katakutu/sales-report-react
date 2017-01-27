@@ -1,4 +1,4 @@
-import React { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import classNames from 'classnames'
 import BodyClassName from 'react-body-classname'
@@ -11,7 +11,7 @@ class Donasi extends Component {
     filteredOperator: PropTypes.array
   }
 
-  render {
+  render () {
     const productList = this.props.productList
     const operatorList = this.props.operatorList
     const filteredOperator = this.props.filteredOperator
