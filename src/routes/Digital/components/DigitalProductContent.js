@@ -197,7 +197,14 @@ class DigitalProductContent extends Component {
         )
       case 'saldo':
         return (
-          <div />
+          <div>
+            <DigitalProductSelectGroup
+              useDrawer
+              label='Top Up'
+              placeholder='Pilih Nominal' />
+            <DigitalProductPriceGroup price='Rp 100.000' />
+            <DigitalProductBuyButtonGroup buttonText='Beli' link='' linkText='Punya Gift Card Tokopedia?' />
+          </div>
         )
       case 'tokocash':
         return (
@@ -276,7 +283,14 @@ class DigitalProductContent extends Component {
         )
       case 'telephone':
         return (
-          <div />
+          <div>
+            <DigitalProductInputGroup
+              label='Nomor telepon Anda'
+              placeholder='Contoh: 0211234567'
+              tooltip='Masukkan kode wilayah dan nomor telepon Anda'
+            />
+            <DigitalProductBuyButtonGroup buttonText='Beli' />
+          </div>
         )
     }
   }

@@ -39,6 +39,9 @@ let content = {
     ],
     note: 'Token Listrik: Seluruh pembelian Token Listrik pada pukul 23:00 - 00.59 WIB akan kami proses pada pukul 01.00 saat Server PLN aktif kembali'
   },
+  saldo: {
+    title: 'Isi saldo untuk berbelanja di Tokopedia'
+  },
   'game': {
     title: 'Beli Voucher Game',
     note: 'Voucher Google Play (USD) hanya dapat diredeem dengan akun region U.S.',
@@ -142,6 +145,9 @@ let content = {
         name: 'Mega Central Finance'
       }
     ]
+  },
+  'telephone': {
+    title: 'Bayar tagihan telepon rumah Anda di Tokopedia'
   }
 }
 
