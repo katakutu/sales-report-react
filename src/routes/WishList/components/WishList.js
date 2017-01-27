@@ -41,7 +41,6 @@ class WishList extends Component {
     page: this.props.page,
     query: this.props.query
   }
-
   constructor (props) {
     super(props)
 

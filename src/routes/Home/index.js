@@ -1,5 +1,4 @@
 import HomeView from './components/HomeView'
-import { HOSTNAME } from './../../constants'
 
 // Sync route definition
 export default (store, ApolloExecutors) => {
@@ -11,7 +10,7 @@ export default (store, ApolloExecutors) => {
           if (nextState.location.pathname === '/' &&
              !nextState.location.query.h &&
              isUserLoggedIn) {
-            window.location = `${HOSTNAME}/?view=feed_preview`
+            window.location = `/feed`
           }
 
           return callback()
