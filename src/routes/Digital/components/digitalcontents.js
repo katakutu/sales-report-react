@@ -37,7 +37,21 @@ let content = {
         text: 'Tagihan Listrik'
       }
     ],
-    note: 'Token Listrik: Seluruh pembelian Token Listrik pada pukul 23:00 - 00.59 WIB akan kami proses pada pukul 01.00 saat Server PLN aktif kembali'
+    note: 'Token Listrik: Seluruh pembelian Token Listrik pada pukul 23:00 - 00.59 WIB akan kami proses pada pukul 01.00 saat Server PLN aktif kembali',
+    note2: [
+      {
+        text: '1. Pembayaran tagihan listrik tidak dapat dilakukan pada pukul 23.45-00.30 WIB sesuai dengan ketentuan PLN'
+      },
+      {
+        text: '2. Proses verifikasi pembayaran membutuhkan waktu maksimum 2x24 jam'
+      },
+      {
+        text: '3. Total tagihan yang tertera sudah termasuk denda (bila ada)'
+      },
+      {
+        text: '4. Biaya admin adalah Rp 2500 per tagihan / bulan'
+      }
+    ]
   },
   saldo: {
     title: 'Isi saldo untuk berbelanja di Tokopedia'
@@ -93,6 +107,31 @@ let content = {
       {
         value: '4',
         name: 'Indihome'
+      }
+    ]
+  },
+  'donasi': {
+    title: 'Salurkan Donasi Untuk Berbagi Dengan Sesama',
+    options: [
+      {
+        value: '1',
+        name: 'Rp 25.000'
+      },
+      {
+        value: '2',
+        name: 'Rp 50.000'
+      },
+      {
+        value: '3',
+        name: 'Rp 100.000'
+      },
+      {
+        value: '4',
+        name: 'Rp 200.000'
+      },
+      {
+        value: '5',
+        name: 'Rp 300.000'
       }
     ]
   },

@@ -47,14 +47,11 @@ class DigitalView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} hideSearch />
         <DigitalProductTab categoryList={categoryList} />
-        <DigitalProductContent operatorList={operatorList} productList={productList} slug={this.props.params.slug} tab='tvkabel' />
-        {/* <DigitalProductContentPulsa operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Pulsa' /> */}
-        {/* <DigitalProductContentPaketData operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Paket Data' /> */}
-        {/* <DigitalProductContentPLN operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Token atau Bayar Tagihan Listrik' /> */}
-        {/* <DigitalProductContentBPJS operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar BPJS Kesehatan dan Ketenagakerjaan Kamu Disini' /> */}
-        {/* <DigitalProductContentGame operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Beli Voucher Game' /> */}
-        {/* <DigitalProductContentPostpaid operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar Tagihan Pascabayar' /> */}
-        {/* <DigitalProductContentMultifinance operatorList={operatorList} productList={productList} slug={this.props.params.slug} title='Bayar angsuran kredit kamu di Tokopedia' /> */}
+        <DigitalProductContent
+          operatorList={operatorList}
+          productList={productList}
+          slug={this.props.params.slug}
+          tab='pulsa' />
 
         <DigitalProductPromo bannerList={bannerList} />
         <DigitalProductOperator operatorList={operatorList} />
