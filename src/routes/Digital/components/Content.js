@@ -7,6 +7,11 @@ import { SLUG } from '../digitalconstants'
 import { SITES } from '../../../constants'
 import { DCONTENT } from '../digitalcontents'
 
+import Donasi from './products/Donasi'
+import Saldo from './products/Saldo'
+import Multifinance from './products/Multifinance'
+import Telephone from './products/Telephone'
+
 import BaznasLogo from '../assets/lembaga/baznas1.png'
 import DompetDuafaLogo from '../assets/lembaga/dompet_duafa.png'
 import PkpuLogo from '../assets/lembaga/pkpu.png'
@@ -198,98 +203,27 @@ class Content extends Component {
         )
       case 'game':
         return (
-          <div>
-            <InputGroup
-              useAutoSuggest
-              label='Jenis Voucher'
-              placeholder='Pilih Jenis Voucher'
-              value='Steam Wallet'
-              items={DCONTENT[tab].products} />
-            <SelectGroup
-              useDrawer
-              label='Nominal'
-              placeholder='Pilih Nominal' />
-            <InformationBox content={DCONTENT[tab].note} />
-            <PriceGroup isDiscount price='Rp 15.000' oldPrice='Rp 16.000' />
-            <BuyButtonGroup hasInstant buttonText='Beli' />
-          </div>
+          <Game products={DCONTENT[tab].products} note={DCONTENT[tab].note}/>
         )
       case 'air':
         return (
-          <div>
-            <InputGroup
-              useAutoSuggest
-              label='Wilayah'
-              placeholder='Pilih Wilayah'
-              value='AETRA JAKARTA'
-              tooltip='Isi wilayah Anda'
-              items={DCONTENT[tab].products} />
-            <InputGroup
-              label='Nomor Pelanggan'
-              placeholder='Contoh 123456789'
-              tooltip='Nomor pelanggan atau Nomor sambungan Anda' />
-            <BuyButtonGroup buttonText='Bayar' />
-          </div>
+          <Air products={DCONTENT[tab].products} />
         )
-      case 'tvkabel':
+      case 'tv-kabel':
         return (
-          <div>
-            <SelectGroup
-              label='Layanan TV Kabel'
-              placeholder='Pilih Layanan TV Kabel'
-              options={DCONTENT[tab].options} />
-            <InputGroup
-              label='Nomor Pelanggan TV Kabel'
-              placeholder='Contoh 1230123123'
-              tooltip='Nomor Pelanggan Anda'
-            />
-            <BuyButtonGroup buttonText='Beli' />
-          </div>
-        )
-      case 'donasi':
-        return (
-          <div />
+          <Tvkabel options={DCONTENT[tab].options} />
         )
       case 'postpaid':
         return (
-          <div>
-            <SelectGroup
-              label='Operator'
-              placeholder='Pilih Operator'
-              options={DCONTENT[tab].options} />
-            <InputGroup
-              label='Nomor Telepon'
-              placeholder='Contoh 081234567890'
-              tooltip='Nomor Telepon Anda'
-            />
-            <BuyButtonGroup buttonText='Beli' />
-          </div>
+          <Postpaid options={DCONTENT[tab].options} />
         )
       case 'multifinance':
         return (
-          <div>
-            <SelectGroup
-              label='Penyedia Pinjaman'
-              placeholder='Pilih Penyedia Pinjaman'
-              options={DCONTENT[tab].options} />
-            <InputGroup
-              label='Nomor Kontrak'
-              placeholder='Masukkan Nomor Kontrak'
-              tooltip='Nomor kontrak adalah nomor Anda'
-            />
-            <BuyButtonGroup buttonText='Beli' />
-          </div>
+          <Multifinance options={DCONTENT[tab].options} />
         )
       case 'telephone':
         return (
-          <div>
-            <InputGroup
-              label='Nomor telepon Anda'
-              placeholder='Contoh: 0211234567'
-              tooltip='Masukkan kode wilayah dan nomor telepon Anda'
-            />
-            <BuyButtonGroup buttonText='Beli' />
-          </div>
+          <Telephone />
         )
     }
   }
