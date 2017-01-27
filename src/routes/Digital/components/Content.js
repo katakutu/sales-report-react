@@ -120,73 +120,19 @@ class Content extends Component {
     switch (tab) {
       case 'pulsa':
         return (
-          <div>
-            <InputGroup
-              label='Nomor Telepon'
-              placeholder='Contoh 081234567890'
-              tooltip='Nomor ponsel atau modem Anda' />
-            <SelectGroup
-              useDrawer
-              label='Nominal'
-              placeholder='Pilih Nominal' />
-            <PriceGroup price='Rp 100.000' />
-            <BuyButtonGroup
-              hasInstant
-              buttonText='Beli'
-              link=''
-              linkText='Punya tagihan pascabayar?' />
-          </div>
+          <Pulsa />
         )
-      case 'data':
+      case 'paket-data':
         return (
-          <div>
-            <InputGroup
-              label='Nomor Telepon'
-              placeholder='Contoh 081234567890'
-              tooltip='Nomor ponsel atau modem Anda' />
-            <SelectGroup
-              useDrawer
-              label='Nominal'
-              placeholder='Pilih Nominal' />
-            <InformationBox
-              content={DCONTENT[tab].note} />
-            <PriceGroup price='Rp 100.000' />
-            <BuyButtonGroup
-              hasInstant
-              buttonText='Beli' />
-          </div>
+          <PaketData />
         )
       case 'bpjs':
         return (
-          <div>
-            <RadioButtons buttons={DCONTENT[tab].radio} />
-            <InputGroup
-              label='Nomor Kepesertaan BPJS'
-              placeholder='Contoh 0000001291029761'
-              tooltip='Nomor virtual account keluarga anda untuk BPJS Kesehatan/ Nomor KTP untuk BPJS Ketenagakerjaan' />
-            <SelectGroup
-              useDrawer
-              label='Bayar Hingga'
-              placeholder='Pilih Bulan' />
-            <BuyButtonGroup buttonText='Bayar' />
-          </div>
+          <BPJS />
         )
       case 'pln':
         return (
-          <div>
-            <RadioButtons buttons={DCONTENT[tab].radio} />
-            <InputGroup
-              label='No. Meter/ID Pel.'
-              placeholder='Contoh 1122334455'
-              tooltip='No. Meter atau Id Pelanggan adalah nomor yang tertera pada kartu pelanggan' />
-            <SelectGroup
-              useDrawer
-              label='Nominal'
-              placeholder='Pilih Nominal' />
-            <InformationBox content={DCONTENT[tab].note} />
-            <PriceGroup price='Rp 102.500' />
-            <BuyButtonGroup buttonText='Bayar' />
-          </div>
+          <PLN />
         )
       case 'saldo':
         return (
@@ -194,42 +140,17 @@ class Content extends Component {
         )
       case 'tokocash':
         return (
-          <div />
+          <div>
+            Tokocash
+          </div>
         )
       case 'game':
         return (
-          <div>
-            <InputGroup
-              useAutoSuggest
-              label='Jenis Voucher'
-              placeholder='Pilih Jenis Voucher'
-              value='Steam Wallet'
-              items={DCONTENT[tab].products} />
-            <SelectGroup
-              useDrawer
-              label='Nominal'
-              placeholder='Pilih Nominal' />
-            <InformationBox content={DCONTENT[tab].note} />
-            <PriceGroup isDiscount price='Rp 15.000' oldPrice='Rp 16.000' />
-            <BuyButtonGroup hasInstant buttonText='Beli' />
-          </div>
+          <Game />
         )
       case 'air':
         return (
-          <div>
-            <InputGroup
-              useAutoSuggest
-              label='Wilayah'
-              placeholder='Pilih Wilayah'
-              value='AETRA JAKARTA'
-              tooltip='Isi wilayah Anda'
-              items={DCONTENT[tab].products} />
-            <InputGroup
-              label='Nomor Pelanggan'
-              placeholder='Contoh 123456789'
-              tooltip='Nomor pelanggan atau Nomor sambungan Anda' />
-            <BuyButtonGroup buttonText='Bayar' />
-          </div>
+          <Air />
         )
       case 'tvkabel':
         return (
