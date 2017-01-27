@@ -10,15 +10,6 @@ class TopAdsProduct extends Component {
   render () {
     const labels = this.props.data['product']['labels'] || []
     const badges = this.props.data['shop']['badges'] || []
-    let stickerClass = 'icon-trumpet'
-
-    if (parseInt(this.props.data['sticker_id']) === 1) {
-      stickerClass = 'icon-fire'
-    } else if (parseInt(this.props.data['sticker_id']) === 2) {
-      stickerClass = 'icon-thumbsup'
-    } else if (parseInt(this.props.data['sticker_id']) === 3) {
-      stickerClass = 'icon-trumpet'
-    }
 
     return (
       <div className='u-col u-col-6 topads__contents'>
@@ -56,7 +47,6 @@ class TopAdsProduct extends Component {
           </div>
           <a href={this.props.data['shop_click_url']}>
             <div className='topads__shop-name u-truncate'>
-              <i className={stickerClass} />
               {this.props.data['shop']['name']}
             </div>
           </a>

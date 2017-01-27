@@ -222,7 +222,8 @@ query Query {
 `
 
 const FeedQuery = gql`
-  query Query($ob: Int!, $page: Int!, $rows: Int!, $userID: Int!, $uniqueID: String! ){
+  query Query($ob: Int!, $page: Int!, $rows: Int!, $userID: Int!, $uniqueID: String!,
+    $ep: String!, $src: String!, $item: Int!, $q: String! ){
       get_feed(ob: $ob, page: $page, rows: $rows, userID: $userID, uniqueID: $uniqueID){
         total_data
         has_next_page
@@ -252,6 +253,68 @@ const FeedQuery = gql`
             color
           }
         }
+      }
+      topads(userID:$userID, ep: $ep, src: $src, item: $item, page: $page, q: $q){
+        total_data
+      display
+      items {
+        id
+        ad_ref_key
+        redirect
+        sticker_id
+        sticker_image
+        product_click_url
+        shop_click_url
+        product {
+          id
+          name
+          image {
+            m_ecs
+            s_ecs
+            xs_ecs
+          }
+          uri
+          relative_uri
+          price_format
+          count_talk_format
+          count_review_format
+          product_preorder
+          product_wholesale
+          free_return
+          product_cashback
+          product_cashback_rate
+          labels {
+            title
+            color
+          }
+        }
+        shop {
+          id
+          name
+          domain
+          tagline
+          location
+          city
+          image_product {
+            product_id
+            product_name
+            image_url
+          }
+          image_shop {
+            cover_ecs
+            s_ecs
+            xs_ecs
+          }
+          gold_shop
+          lucky_shop
+          shop_is_official
+          uri
+          badges {
+            title
+            image_url
+          }
+        }
+      }
       }
     }`
 const RecommedationQuery = gql`

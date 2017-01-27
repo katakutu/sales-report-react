@@ -12,8 +12,8 @@ export const UPDATE_QUERY = 'UPDATE_QUERY'
 // ------------------------------------
 export function replaceFeeds (newFeeds) {
   return {
-    type    : REPLACE_FEEDS,
-    payload : newFeeds
+    type: REPLACE_FEEDS,
+    payload: newFeeds
   }
 }
 
@@ -41,15 +41,17 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [REPLACE_FEEDS] : (state, action) => {
-    const oldIDs = state.feeds.map(fd => fd['id'])
-    const newIDs = action.payload.map(fd => fd['id'])
-    if (ArrayHelper.equals(oldIDs, newIDs)) {
+    const oldIDs = state.feeds.map(fd => {
+      return fd['kind'] === 'feed' && fd['items'].map(c => (c['id']))
+    })
+    const newIDs = action.payload.map(ta => {
+      return ta['kind'] === 'feed' && ta['items'].map(x => (x['id']))
+    })
+    if (ArrayHelper.equals2DFeed(oldIDs, newIDs)) {
       return Object.assign({}, state)
     }
 
-    const newData = action.payload.map(d => Object.assign({}, d, { isActive: true }))
-
-    return Object.assign({}, state, { feeds: newData })
+    return Object.assign({}, state, { feeds: action.payload })
   },
   [UPDATE_PAGE]: (state, action) => {
     return Object.assign({}, state, { page: action.payload })

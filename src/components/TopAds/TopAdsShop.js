@@ -5,30 +5,11 @@ class TopAdsShop extends Component {
   static propTypes = {
     data: React.PropTypes.object,
     shops: React.PropTypes.object,
-    lang: React.PropTypes.string,
-    eventShopClick: React.PropTypes.func
+    lang: React.PropTypes.string
   }
 
   render () {
     const imageProduct = this.props.data['shop']['image_product'] || []
-    let shopFavButton = <a className='topads__shop__favorite-btn green'
-      onClick={() => this.props.eventShopClick(this.props.data['id'], this.props.data['ad_ref_key'], 'add')}>
-      +&nbsp;Favorite
-    </a>
-
-    if (this.props.shops) {
-      if (this.props.shops[this.props.data['id']]['state']) {
-        shopFavButton = <a className='topads__shop__favorite-btn'
-          onClick={() => this.props.eventShopClick(this.props.data['id'], this.props.data['ad_ref_key'], 'add')}>
-          <i className='icon-checked' />&nbsp;&nbsp;&nbsp;Favorited
-        </a>
-      } else {
-        shopFavButton = <a className='topads__shop__favorite-btn green'
-          onClick={() => this.props.eventShopClick(this.props.data['id'], this.props.data['ad_ref_key'], 'add')}>
-          +&nbsp;Favorite
-        </a>
-      }
-    }
 
     return (
       <div className='u-col u-col-6 topads__contents'>
@@ -64,7 +45,9 @@ class TopAdsShop extends Component {
               })
             }
           </div>
-          { shopFavButton }
+          <a className='topads__shop__favorite-btn green' href={this.props.data['shop_click_url']}>
+            +&nbsp;Favorite
+          </a>
         </div>
       </div>
 

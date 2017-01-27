@@ -2,17 +2,16 @@
 
 .topads-container {
     padding: 0 0 10px;
-    max-width: 430px;
 }
 
 .topads__wrapper {
     width: 100%;
     background-color: #FFF;
+    margin-bottom: 10px;
 }
 
 .topads__sub__wrapper {
     margin: 0 auto 10px;
-    max-width: 375px;
 }
 
 .topads__set-love-grey {
@@ -160,6 +159,7 @@
     font-size: 14px;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    font-weight: 600;
 
     &.center {
         text-align: center;
@@ -168,6 +168,7 @@
     &.shop {
         -webkit-line-clamp: 1 !important;
         height: 23px !important;
+        font-weight: 400 !important;
     }
 }
 
@@ -279,7 +280,6 @@
     color: $color-black-disabled;
     font-size: 11px;
     position: relative;
-    padding-left: 17px;
 }
 
 .topads__shop-loc-badge {
@@ -422,21 +422,6 @@
     width: 15px;
     height: 15px;
     background: url('../../routes/WishList/assets/sprite-150.png') 0 -48px;
-}
-
-.icon-fire {
-    background: url('./assets/icon-api.png') transparent no-repeat;
-    background-size: auto 12px;
-}
-
-.icon-thumbsup {
-    background: url('./assets/icon-jempol.png') transparent no-repeat;
-    background-size: auto 12px;
-}
-
-.icon-trumpet {
-    background: url('./assets/icon-toa.png') transparent no-repeat;
-    background-size: auto 12px;
 }
 
 .topads__love-full {

@@ -19,6 +19,20 @@ const ArrayHelper = {
     }
 
     return true
+  },
+  equals2DFeed: (arr1, arr2) => {
+    if (arr1.length !== arr2.length) {
+      return false
+    }
+    for (var i = arr1.length; i--;) {
+      for (var x = arr1[i].length; x--;) {
+        if (arr1[i][1][x] !== arr2[i][1][x]) {
+          return false
+        }
+      }
+    }
+
+    return true
   }
 }
 

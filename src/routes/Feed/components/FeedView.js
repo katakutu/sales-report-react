@@ -21,10 +21,27 @@ const param = {
   recommendationSize: 12
 }
 
+const TOPADS_PARAMS = {
+  ep: '',
+  src:'fav_product',
+  item: 2,
+  q: ''
+}
+
 class FeedView extends Component {
   static propTypes = {
     data: PropTypes.object,
     lang: PropTypes.string
+  }
+
+  state = {
+    modalState: false
+  }
+
+  _eventModal (state) {
+    this.setState({
+      modalState: state
+    })
   }
 
   render () {
@@ -79,7 +96,12 @@ class FeedView extends Component {
               start={param.rows}
               userID={parseInt(userInfo['id'])}
               title={lang[this.props.lang]['PRODUCT FEED']}
-              uniqueID={UserSearchID.generateUserIDMD5(parseInt(userInfo['id']))} />
+              uniqueID={UserSearchID.generateUserIDMD5(parseInt(userInfo['id']))}
+              ep={TOPADS_PARAMS.ep}
+              src={TOPADS_PARAMS.src}
+              item={TOPADS_PARAMS.item}
+              q={TOPADS_PARAMS.q}
+              />
           </div>
         </div>
       </div>
