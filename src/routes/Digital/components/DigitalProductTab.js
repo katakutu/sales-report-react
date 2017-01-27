@@ -5,7 +5,7 @@ import BodyClassName from 'react-body-classname'
 import './DigitalProductTab.scss'
 import { SITES } from '../../../constants'
 
-class DonationTab extends Component {
+class DigitalProductTab extends Component {
   static propTypes = {
     categoryList: PropTypes.array
   }
@@ -74,7 +74,8 @@ class DonationTab extends Component {
     return (
       <li
         className={classNames('dp-modal__item', { 'u-hide': !this.isItemInModal(data.icon) })}
-        onClick={() => this.handleTabChange(data.icon)}>
+        onClick={() => this.handleTabChange(data.icon)}
+        key={index}>
         <a
           href={SITES['Pulsa'] + '/' + data.slug}
           className={classNames('dp-tab__url', 'u-mt2', { 'active': this.state.activeTab === data.icon })}>
@@ -89,7 +90,8 @@ class DonationTab extends Component {
     return (
       <li
         className={classNames('dp-tab__item', { 'u-hide': !this.isTabShown(data.icon) })}
-        onClick={() => this.handleTabChange(data.icon)}>
+        onClick={() => this.handleTabChange(data.icon)}
+        key={index}>
         <a
           href={SITES['Pulsa'] + '/' + data.slug}
           className={classNames('dp-tab__url', { 'active': this.state.activeTab === data.icon })}>
@@ -130,4 +132,4 @@ class DonationTab extends Component {
   }
 }
 
-export default DonationTab
+export default DigitalProductTab

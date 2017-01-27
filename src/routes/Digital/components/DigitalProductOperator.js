@@ -12,7 +12,7 @@ class DigitalProductOperator extends Component {
     const validImage = data.image.match(/\.(jpeg|jpg|gif|png)$/)
     if (data.show_product_list && data.slug !== '' && data.image !== '' && validImage) {
       return (
-        <li>
+        <li key={index}>
           <a href={SITES['Pulsa'] + '/' + data.slug}>
             <picture>
               <img src={data.image} alt={data.name} title={data.name} />
