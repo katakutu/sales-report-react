@@ -49,10 +49,13 @@ class BuyButtonGroup extends Component {
             </div>
           </div>
         </div>
-        <button type='submit' className='u-block u-center dp__btn btn--orange u-bold'>{this.props.buttonText}</button>
+        <button type='submit'
+          className='u-block u-center dp__btn btn--orange u-bold'>{this.props.buttonText}</button>
         <Link
           to={this.props.link}
-          className={classNames('u-mx-auto', 'u-mt2', 'u-block', 'u-center', 'u-h3', { 'u-hide': !this.props.linkText })}>
+          className={classNames('u-mx-auto',
+            'u-mt2', 'u-block', 'u-center', 'u-h3',
+            { 'u-hide': !this.props.linkText })}>
           {this.props.linkText}
         </Link>
       </div>

@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react'
 
 import SelectGroup from '../parts/SelectGroup'
 import InputGroup from '../parts/InputGroup'
+import InformationBox from '../parts/InformationBox'
+import PriceGroup from '../parts/PriceGroup'
 import BuyButtonGroup from '../parts/BuyButtonGroup'
 
 class Game extends Component {

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 
 import InputGroup from '../parts/InputGroup'
 import BuyButtonGroup from '../parts/BuyButtonGroup'

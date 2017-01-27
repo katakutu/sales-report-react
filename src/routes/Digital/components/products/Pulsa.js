@@ -7,22 +7,24 @@ import BuyButtonGroup from '../parts/BuyButtonGroup'
 
 class Pulsa extends Component {
   render () {
-    <div>
-      <InputGroup
-        label='Nomor Telepon'
-        placeholder='Contoh 081234567890'
-        tooltip='Nomor ponsel atau modem Anda' />
-      <SelectGroup
-        useDrawer
-        label='Nominal'
-        placeholder='Pilih Nominal' />
-      <PriceGroup price='Rp 100.000' />
-      <BuyButtonGroup
-        hasInstant
-        buttonText='Beli'
-        link=''
-        linkText='Punya tagihan pascabayar?' />
-    </div>
+    return (
+      <div>
+        <InputGroup
+          label='Nomor Telepon'
+          placeholder='Contoh 081234567890'
+          tooltip='Nomor ponsel atau modem Anda' />
+        <SelectGroup
+          useDrawer
+          label='Nominal'
+          placeholder='Pilih Nominal' />
+        <PriceGroup price='Rp 100.000' />
+        <BuyButtonGroup
+          hasInstant
+          buttonText='Beli'
+          link=''
+          linkText='Punya tagihan pascabayar?' />
+      </div>
+    )
   }
 }
 
