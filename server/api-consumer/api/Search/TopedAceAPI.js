@@ -15,7 +15,9 @@ const ACE_SERVICES = {
   SearchShop: `${GlobalConfig.Ace.Hostname}/search/v1/shop`,
   SpellCheck: `${GlobalConfig.Ace.Hostname}/v1/products/spellcheck`,
   TopPicks: `${GlobalConfig.Ace.Hostname}/hoth/toppicks/widget?random=true&device=mobile&source=home`,
-  Universe: `${GlobalConfig.Ace.Hostname}/universe/v2`
+  Universe: `${GlobalConfig.Ace.Hostname}/universe/v2`,
+  Feed: `${GlobalConfig.Ace.Hostname}/search/product/v3?source=feed&device=mobile&unique_id=:unique_id
+  &shop_id=:shop_id&rows=:rows&start=:start&ob=:ob&`
 }
 
 class TopedAceAPI {
@@ -158,6 +160,21 @@ class TopedAceAPI {
     const endpoint = ACE_SERVICES.HotListPage
                                  .replace(':page', page)
                                  .replace(':per_page', perPage)
+
+    const url = URL.parse(endpoint)
+
+    return this.api.consume(url, 'GET', {
+      'headers': { 'X-Device': 'lite' }
+    })
+  }
+
+  getFeed (ob = 2, rows = 12, start = 1, shopId, uniquedId) {
+    const endpoint = ACE_SERVICES.Feed
+                                 .replace(':start', start)
+                                 .replace(':rows', rows)
+                                 .replace(':ob', ob)
+                                 .replace(':shop_id', shopId)
+                                 .replace(':unique_id', uniquedId)
 
     const url = URL.parse(endpoint)
 

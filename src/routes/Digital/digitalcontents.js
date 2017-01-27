@@ -2,7 +2,7 @@ let content = {
   'pulsa': {
     title: 'Beli Pulsa'
   },
-  'data': {
+  'paket-data': {
     title: 'Beli Paket Data',
     note: 'Harga Kuota 360MB - 600MB (sesuai zona terkait). Lihat detailnya di sini.'
   },
@@ -53,7 +53,7 @@ let content = {
       }
     ]
   },
-  saldo: {
+  'saldo': {
     title: 'Isi saldo untuk berbelanja di Tokopedia'
   },
   'game': {
@@ -91,7 +91,7 @@ let content = {
   },
   'air': {
     title: 'Bayar Tagihan Air',
-    'products': [
+    products: [
       {
         text: 'AETRA JAKARTA'
       },
@@ -100,7 +100,7 @@ let content = {
       }
     ]
   },
-  'tvkabel': {
+  'tv-kabel': {
     title: 'Bayar TV Kabel kamu di Tokopedia',
     options: [
       {

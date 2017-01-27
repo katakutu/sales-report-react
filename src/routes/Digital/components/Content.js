@@ -11,11 +11,13 @@ import Air from './products/Air'
 import BPJS from './products/BPJS'
 import Game from './products/Game'
 import Pulsa from './products/Pulsa'
+import PLN from './products/PLN'
 import PaketData from './products/PaketData'
-import Donasi from './products/Donasi'
 import Saldo from './products/Saldo'
 import Multifinance from './products/Multifinance'
 import Telephone from './products/Telephone'
+import Tvkabel from './products/Tvkabel'
+import Postpaid from './products/Postpaid'
 
 import BaznasLogo from '../assets/lembaga/baznas1.png'
 import DompetDuafaLogo from '../assets/lembaga/dompet_duafa.png'
@@ -134,15 +136,15 @@ class Content extends Component {
         )
       case 'paket-data':
         return (
-          <PaketData />
+          <PaketData note={DCONTENT[tab].note} />
         )
       case 'bpjs':
         return (
-          <BPJS />
+          <BPJS radio={DCONTENT[tab].radio} />
         )
       case 'pln':
         return (
-          <PLN />
+          <PLN radio={DCONTENT[tab].radio} note={DCONTENT[tab].note} />
         )
       case 'saldo':
         return (
@@ -156,7 +158,7 @@ class Content extends Component {
         )
       case 'game':
         return (
-          <Game products={DCONTENT[tab].products} note={DCONTENT[tab].note}/>
+          <Game products={DCONTENT[tab].products} note={DCONTENT[tab].note} />
         )
       case 'air':
         return (
@@ -250,7 +252,167 @@ class Content extends Component {
       )
     } else {
       return (
-        <Donasi productList={productList} operatorList={operatorList} filteredOperator={filteredOperator} />
+        <div className='u-clearfix dp-content'>
+          <div className='dp__container'>
+            <form method='GET' action={SITES['Pulsa']}>
+              <input
+                type='hidden'
+                value='init_data'
+                name='action' />
+              <input
+                type='hidden'
+                name='operator_id'
+                value={this.state.selectedOperator.id} />
+              <input
+                type='hidden'
+                name='product_id'
+                value={this.state.productId} />
+              <h1 className='u-clearfix u-block u-mt0 u-mb3 u-left-align u-col-12'>
+                {DCONTENT[this.props.tab].title}
+              </h1>
+              <div className='dp--lembaga'>
+                <div className='dp-lembaga-tab-list'>
+                  <label className='u-inline-block'>Pilih Lembaga Donasi</label>
+                  <div>
+                    <small className='u-h5 error-input u-display-none u-inline-block ' id='error-client-number'>
+                      Anda belum memilih lembaga donasi
+                    </small>
+                  </div>
+                  <ul className='u-clearfix u-mt0 u-mb0 u-pl0 u-list-style-none dp-lembaga-logo-list'>
+                    {filteredOperator.map(this.renderOperator)}
+                  </ul>
+                </div>
+                <div className='dp-lembaga-tab-content'>
+                  <div
+                    className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
+                    { 'u-hide': this.state.selectedOperator.id !== 95 })}>
+                    <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
+                      <img src={BaznasLogo} alt='' className='u-align-middle' />
+                    </div>
+                    <div className='dp-lembaga-content-text'>
+                      <p className='u-h5 u-mt0 u-mb2'>
+                        Badan Amil Zakat Nasional (BAZNAS) merupakan lembaga yang di bentuk pemerintah
+                        melalui KEPPRES No. 8 Tahun 2001 yang memiliki fungsi penghimpunan dan penyaluran
+                        zakat, infak, dan sedekah (ZIS) sesuai undang-undang nomor 23 tahun 2011 tentang
+                        pengelolaan zakat.
+                      </p>
+                      <p className='u-h5 u-mt0 u-mb0'>
+                        <a href='http://www.baznas.go.id/'>Lihat selengkapnya ›</a>
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
+                    { 'u-hide': this.state.selectedOperator.id !== 98 })}>
+                    <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
+                      <img src={YcabLogo} alt='' className='u-align-middle' />
+                    </div>
+                    <div className='dp-lembaga-content-text'>
+                      <p className='u-h5 u-mt0 u-mb2'>
+                        YCAB Foundation (Yayasan Cinta Anak Bangsa) adalah sebuah organisasi
+                        non-profit yang berfokus pada menciptakan kemandirian bagi anak muda melalui
+                        pendidikan, pemberdayaan ekonomi dan promosi gaya hidup sehat.
+                      </p>
+                      <p className='u-h5 u-mt0 u-mb0'>
+                        <a href='http://www.ycabfoundation.org/'>Lihat selengkapnya ›</a>
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
+                    { 'u-hide': this.state.selectedOperator.id !== 97 })}>
+                    <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
+                      <img src={DompetDuafaLogo} alt='' className='u-align-middle' />
+                    </div>
+                    <div className='dp-lembaga-content-text'>
+                      <p className='u-h5 u-mt0 u-mb2'>
+                        Dompet Dhuafa adalah Lembaga Nirlaba milik masyarakat yang berkhidmat mengangkat harkat sosial
+                        kemanusiaan dengan mendayagunakan Zakat, Infak, Sedekah dan Wakaf (ZISWAF) serta dana sosial
+                        lainnya baik dari individu, kelompok maupun perusahaan.
+                      </p>
+                      <p className='u-h5 u-mt0 u-mb0'>
+                        <a href='http://www.dompetdhuafa.org/'>Lihat selengkapnya ›</a>
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
+                    { 'u-hide': this.state.selectedOperator.id !== 99 })}>
+                    <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
+                      <img src={PkpuLogo} alt='' className='u-align-middle' />
+                    </div>
+                    <div className='dp-lembaga-content-text'>
+                      <p className='u-h5 u-mt0 u-mb2'>
+                        PKPU adalah sebuah badan hukum berbentuk yayasan yang bersifat sosial dan kemanusiaan dan
+                        menjalankan kegiatan usahanya dalam bidang pengelolaan dana CSR dan dp-donasi tidak mengikat
+                        lainnya.
+                      </p>
+                      <p className='u-h5 u-mt0 u-mb0'>
+                        <a href='http://www.pkpu.or.id/'>Lihat selengkapnya ›</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='dp--nominal'>
+                <div className={'form-group nominal u-mb2 u-block ' + (this.state.productId === 0 ? 'u-hide' : '')}>
+                  <label className='u-mb1'>Nominal</label>
+                  <div className='dp-select'>
+                    <span
+                      className='dp-select form-control form-select nominal-select pt-12'
+                      onClick={this.handleOpenOverlay}>
+                      {this.state.productName}
+                    </span>
+                  </div>
+                </div>
+                <div className='dp--buy'>
+                  <div className='dp__checkbox checkbox'>
+                    <input
+                      type='checkbox'
+                      name='instant_checkout'
+                      id='instant_checkout'
+                      checked={this.state.instantCheckout}
+                      value={this.state.instantCheckout ? '1' : '0'} />
+                    <label onClick={this.handleInstantCheckbox} >
+                      <span className='dp-checkbox' />
+                      Bayar instan
+                    </label>
+                    <div className='trigger-tooltip u-inline-block'>
+                      <i className='icon-info-alt' />
+                      <div className='tooltip-container'>
+                        <div className='tooltip-box'>
+                          <p className='u-m0'>
+                            Bayar dengan 1-klik menggunakan Saldo Tokopedia
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button type='submit' className='u-block u-center dp__btn btn--orange'>Salurkan Donasi</button>
+                  <Link className='u-mx-auto u-mt2 u-block u-center u-h3'>Ingin daftar sebagai lembaga donasi?</Link>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div className={classNames('dp-drawer--select', { 'active': this.state.open })}>
+            <div className='drawer__content'>
+              <div className='drawer__header'>
+                Nominal
+                <span className='drawer__close' onClick={this.handleCloseButton}>×</span>
+              </div>
+              <div className='drawer__options'>
+                <table className='drawer__table'>
+                  <tbody>
+                    {productList.map(this.renderProduct)}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div className='drawer__overlay' />
+
+            { this.state.open && <BodyClassName className='u-body-overflow-no-scroll' /> }
+          </div>
+        </div>
       )
     }
   }
