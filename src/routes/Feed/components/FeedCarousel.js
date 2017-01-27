@@ -24,8 +24,8 @@ class FeedCarousel extends Component {
   }
 
   _createCarouselItems (item, index) {
-		 const labels = item.labels || []
-		 const badges = item.badges || []
+    const labels = item.labels || []
+    const badges = item.badges || []
 
     return (
       <div className='product-list-wrapper' key={`rec-${index}`}>
@@ -41,17 +41,19 @@ class FeedCarousel extends Component {
           <a aria-hidden='true' tabIndex='-1' href={item.product_url ? item.product_url : item.url} className=''>
             <span className='product-list-name pl-5 u-truncate'> { item.name ? item.name : item.product_name} </span>
           </a>
-          <div className='product-list-price u-truncate'> { item.product_price ? item.product_price : item.price } </div>
+          <div className='product-list-price u-truncate'>
+            { item.product_price ? item.product_price : item.price }
+          </div>
           <div className='product-list-bedges plr-5 u-truncate'>
             {
-								labels.map((label, li) => {
+              labels.map((label, li) => {
                 let style = { backgroundColor: label['color'] }
-                  if (label['color'] === '#ffffff') {
-                    style = Object.assign(style, {
-                      border: '1px solid #bbb',
-                      color: '#606060'
-                    })
-                  }
+                if (label['color'] === '#ffffff') {
+                  style = Object.assign(style, {
+                    border: '1px solid #bbb',
+                    color: '#606060'
+                  })
+                }
 
                 return (
                   <span
@@ -62,17 +64,19 @@ class FeedCarousel extends Component {
                   </span>
                 )
               })
-							}
+            }
             {
-								labels.length === 0 &&
-								<span className='feed__label' style={{ backgroundColor: '#ffffff' }}>&nbsp;</span>
-							}
+              labels.length === 0 &&
+              <span className='feed__label' style={{ backgroundColor: '#ffffff' }}>&nbsp;</span>
+            }
           </div>
           <div className='clearfix' />
           <div className='product-list-shop'>
             <div>
               <span className='u-truncate'>
-                <a href='#' className='feed__shop-name u-truncate'>{ item.shop_name ? item.shop_name : item.shop.name }</a>
+                <a href='#' className='feed__shop-name u-truncate'>
+                  { item.shop_name ? item.shop_name : item.shop.name }
+                </a>
               </span>
             </div>
             <div className='row-fluid'>
@@ -112,9 +116,9 @@ class FeedCarousel extends Component {
 
     return (
       <div className='product-list-container slide-container'>
-          <Swiper swiperConfig={settings}>
-            { swipers }
-          </Swiper>
+        <Swiper swiperConfig={settings}>
+          { swipers }
+        </Swiper>
       </div>
     )
   }

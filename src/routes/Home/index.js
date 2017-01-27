@@ -1,5 +1,4 @@
 import HomeView from './components/HomeView'
-import { HOSTNAME } from './../../constants'
 
 // Sync route definition
 export default (store, ApolloExecutors) => {
