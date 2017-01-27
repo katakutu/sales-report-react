@@ -3,8 +3,8 @@ import HomeView from './components/HomeView'
 // Sync route definition
 export default (store, ApolloExecutors) => {
   return {
-    component: HomeView,
-    onEnter: (nextState, replace, callback) => {
+    component: HomeView
+    /* onEnter: (nextState, replace, callback) => {
       return ApolloExecutors.isUserLoggedIn()
         .then(isUserLoggedIn => {
           if (nextState.location.pathname === '/' &&
@@ -16,6 +16,6 @@ export default (store, ApolloExecutors) => {
           return callback()
         })
         .catch(err => callback(err))
-    }
+    } */
   }
 }
