@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import classNames from 'classnames'
-import './DigitalProductBuyButtonGroup.scss'
+import './BuyButtonGroup.scss'
 
-class DigitalProductBuyButtonGroup extends Component {
+class BuyButtonGroup extends Component {
 
   static propTypes = {
     hasInstant: PropTypes.bool,
@@ -60,4 +60,4 @@ class DigitalProductBuyButtonGroup extends Component {
   }
 }
 
-export default DigitalProductBuyButtonGroup
+export default BuyButtonGroup

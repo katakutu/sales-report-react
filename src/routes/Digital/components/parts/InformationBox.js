@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import './DigitalProductInformationBox.scss'
+import './InformationBox.scss'
 
-class DigitalProductInformationBox extends Component {
+class InformationBox extends Component {
 
   static propTypes = {
     isList: PropTypes.bool,
@@ -40,4 +40,4 @@ class DigitalProductInformationBox extends Component {
   }
 }
 
-export default DigitalProductInformationBox
+export default InformationBox

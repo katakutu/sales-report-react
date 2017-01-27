@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import './DigitalProductPriceGroup.scss'
+import './PriceGroup.scss'
 
-class DigitalProductPriceGroup extends Component {
+class PriceGroup extends Component {
 
   static propTypes = {
     isDiscount: PropTypes.bool,
@@ -33,4 +33,4 @@ class DigitalProductPriceGroup extends Component {
   }
 }
 
-export default DigitalProductPriceGroup
+export default PriceGroup

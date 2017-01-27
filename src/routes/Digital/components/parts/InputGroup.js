@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import Autosuggest from 'react-autosuggest'
-import './DigitalProductInputGroup.scss'
-import LogoSimpati from '../assets/operator/simpati.png'
+import './InputGroup.scss'
+import LogoSimpati from '../../assets/operator/simpati.png'
 
-class DigitalProductInputGroup extends Component {
+class InputGroup extends Component {
 
   static propTypes = {
     useAutoSuggest: PropTypes.bool,
@@ -148,4 +148,4 @@ class DigitalProductInputGroup extends Component {
   }
 }
 
-export default DigitalProductInputGroup
+export default InputGroup

@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
-import './DigitalProductInputGroup.scss'
+import './InputGroup.scss'
 
-class DigitalProductSelectGroup extends Component {
+class SelectGroup extends Component {
 
   static propTypes = {
     useDrawer: PropTypes.bool,
@@ -61,4 +61,4 @@ class DigitalProductSelectGroup extends Component {
   }
 }
 
-export default DigitalProductSelectGroup
+export default SelectGroup

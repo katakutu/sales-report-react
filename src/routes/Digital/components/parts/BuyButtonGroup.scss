@@ -46,7 +46,7 @@
 }
 
 .dp-checkbox input[type=checkbox]:checked + label > span {
-    background: url(../assets/checkbox-checked.png) no-repeat transparent;
+    background: url(../../assets/checkbox-checked.png) no-repeat transparent;
 }
 
 .dp__checkbox {
@@ -60,7 +60,7 @@
         display: none;
 
         &:checked + label > span {
-            background: url(../assets/checkbox-checked.png) no-repeat transparent;
+            background: url(../../assets/checkbox-checked.png) no-repeat transparent;
             background-size: 15px 15px;
         }
     }
@@ -74,7 +74,7 @@
     }
 
     .dp-checkbox {
-        background: url(../assets/checkbox-empty.png) no-repeat transparent;
+        background: url(../../assets/checkbox-empty.png) no-repeat transparent;
         background-size: 15px 15px;
     }
 }
@@ -83,7 +83,7 @@
     position: relative;
     display: inline-block;
     cursor: pointer;
-    background: url(../assets/icon-info.png);
+    background: url(../../assets/icon-info.png);
     background-size: 16px 17px;
     height: 16px;
     width: 17px;
