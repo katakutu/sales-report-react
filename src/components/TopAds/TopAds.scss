@@ -2,17 +2,16 @@
 
 .topads-container {
     padding: 0 0 10px;
-    max-width: 430px;
 }
 
 .topads__wrapper {
     width: 100%;
     background-color: #FFF;
+    margin-bottom: 10px;
 }
 
 .topads__sub__wrapper {
     margin: 0 auto 10px;
-    max-width: 375px;
 }
 
 .topads__set-love-grey {
@@ -105,6 +104,52 @@
     vertical-align: middle;
 }
 
+.topads__shop__img {
+    max-width: 50px;
+    width: 100%;
+    margin: 8px auto;
+    display: inherit;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+
+.topads__shop__tagline {
+    display: -webkit-box;
+    overflow: hidden;
+    padding: 7px 0;
+    height: 34px;
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 12px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-align: center;
+}
+
+.topads__img__shop__product {
+    width: 100%;
+    padding: 5px;
+    border-radius: 6px;
+    vertical-align: middle;
+}
+
+.topads__shop__favorite-btn {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin: auto;
+    padding: 12px 0;
+    border: 1px solid #DEDEDE;
+    border-radius: 3px;
+    color: #999;
+    text-align: center;
+    font-size: 12px;
+
+    &.green {
+        background: $color-green;
+        color: #FFF;
+    }
+}
+
 .topads__title {
     display: -webkit-box;
     overflow: hidden;
@@ -114,6 +159,17 @@
     font-size: 14px;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    font-weight: 600;
+
+    &.center {
+        text-align: center;
+    }
+
+    &.shop {
+        -webkit-line-clamp: 1 !important;
+        height: 23px !important;
+        font-weight: 400 !important;
+    }
 }
 
 @-moz-document url-prefix() {
@@ -224,7 +280,6 @@
     color: $color-black-disabled;
     font-size: 11px;
     position: relative;
-    padding-left: 17px;
 }
 
 .topads__shop-loc-badge {
@@ -243,7 +298,15 @@
     top: 0;
     right: 0;
     max-width: 65px;
-    line-height: 23px;
+    line-height: 16px;
+}
+
+.topads__shop__badges {
+    display: inline-block;
+    width: 14.5px;
+    height: 14.5px;
+    margin-right: 4px;
+    vertical-align: text-bottom;
 }
 
 .topads__img-badge {
@@ -353,19 +416,12 @@
     margin-top: -6px;
 }
 
-.icon-fire {
-    background: url('./assets/icon-api.png') transparent no-repeat;
-    background-size: auto 12px;
-}
-
-.icon-thumbsup {
-    background: url('./assets/icon-jempol.png') transparent no-repeat;
-    background-size: auto 12px;
-}
-
-.icon-trumpet {
-    background: url('./assets/icon-toa.png') transparent no-repeat;
-    background-size: auto 12px;
+.icon-checked {
+    position: absolute;
+    margin: 0 -7px;
+    width: 15px;
+    height: 15px;
+    background: url('../../routes/WishList/assets/sprite-150.png') 0 -48px;
 }
 
 .topads__love-full {
