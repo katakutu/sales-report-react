@@ -19,7 +19,7 @@ import WishlistUnloved from './WishlistUnloved'
 
 import './WishListView.scss'
 
-const WISHLIST_PER_PAGE = 20
+const WISHLIST_PER_PAGE = 2
 
 class WishList extends Component {
   static propTypes = {
@@ -52,7 +52,8 @@ class WishList extends Component {
 
   resetSearch () {
     this.setState({
-      query: ''
+      query: '',
+      page: 1
     }, () => {
       this.props.updateQuery('')
 
@@ -66,6 +67,10 @@ class WishList extends Component {
     if (event.key === 'Enter') {
       this.props.updateQuery(this.state.query)
       event.target.blur()
+
+      if (this.state.query === '') {
+        this.setState({ page: 1 })
+      }
 
       browserHistory.push({
         pathname: '/wishlist'
@@ -90,7 +95,6 @@ class WishList extends Component {
   }
 
   renderWishlists (wishlists, parentIndex) {
-    console.log(wishlists)
     return wishlists.map((wishlist, index) => {
       const currentPage = window.location.href
       const mainLink = `${HOSTNAME}/add-to-cart.pl`
