@@ -9,8 +9,10 @@ import DigitalProductInputGroup from './DigitalProductInputGroup'
 import DigitalProductRadioButtons from './DigitalProductRadioButtons'
 import DigitalProductInformationBox from './DigitalProductInformationBox'
 import DigitalProductPriceGroup from './DigitalProductPriceGroup'
+import DigitalProductBuyButtonGroup from './DigitalProductBuyButtonGroup'
 import { SLUG } from './digitalconstants'
 import { SITES } from '../../../constants'
+import { DCONTENT } from './digitalcontents'
 
 import BaznasLogo from '../assets/lembaga/baznas1.png'
 import DompetDuafaLogo from '../assets/lembaga/dompet_duafa.png'
@@ -121,6 +123,164 @@ class DigitalProductContent extends Component {
     )
   }
 
+  renderTabContent (tab) {
+    switch (tab) {
+      case 'pulsa':
+        return (
+          <div>
+            <DigitalProductInputGroup
+              label='Nomor Telepon'
+              placeholder='Contoh 081234567890'
+              tooltip='Nomor ponsel atau modem Anda' />
+            <DigitalProductSelectGroup
+              useDrawer
+              label='Nominal'
+              placeholder='Pilih Nominal' />
+            <DigitalProductPriceGroup price='Rp 100.000' />
+            <DigitalProductBuyButtonGroup
+              hasInstant
+              buttonText='Beli'
+              link=''
+              linkText='Punya tagihan pascabayar?' />
+          </div>
+        )
+      case 'data':
+        return (
+          <div>
+            <DigitalProductInputGroup
+              label='Nomor Telepon'
+              placeholder='Contoh 081234567890'
+              tooltip='Nomor ponsel atau modem Anda' />
+            <DigitalProductSelectGroup
+              useDrawer
+              label='Nominal'
+              placeholder='Pilih Nominal' />
+            <DigitalProductInformationBox
+              content={DCONTENT[tab].note} />
+            <DigitalProductPriceGroup price='Rp 100.000' />
+            <DigitalProductBuyButtonGroup
+              hasInstant
+              buttonText='Beli' />
+          </div>
+        )
+      case 'bpjs':
+        return (
+          <div>
+            <DigitalProductRadioButtons buttons={DCONTENT[tab].radio} />
+            <DigitalProductInputGroup
+              label='Nomor Kepesertaan BPJS'
+              placeholder='Contoh 0000001291029761'
+              tooltip='Nomor virtual account keluarga anda untuk BPJS Kesehatan/ Nomor KTP untuk BPJS Ketenagakerjaan' />
+            <DigitalProductSelectGroup
+              useDrawer
+              label='Bayar Hingga'
+              placeholder='Pilih Bulan' />
+            <DigitalProductBuyButtonGroup buttonText='Bayar' />
+          </div>
+        )
+      case 'pln':
+        return (
+          <div>
+            <DigitalProductRadioButtons buttons={DCONTENT[tab].radio} />
+            <DigitalProductInputGroup
+              label='No. Meter/ID Pel.'
+              placeholder='Contoh 1122334455'
+              tooltip='No. Meter atau Id Pelanggan adalah nomor yang tertera pada kartu pelanggan' />
+            <DigitalProductSelectGroup
+              useDrawer
+              label='Nominal'
+              placeholder='Pilih Nominal' />
+            <DigitalProductInformationBox content={DCONTENT[tab].note} />
+            <DigitalProductPriceGroup price='Rp 102.500' />
+            <DigitalProductBuyButtonGroup buttonText='Bayar' />
+          </div>
+        )
+      case 'saldo':
+        return (
+          <div />
+        )
+      case 'tokocash':
+        return (
+          <div />
+        )
+      case 'game':
+        return (
+          <div>
+            <DigitalProductInputGroup
+              useAutoSuggest
+              label='Jenis Voucher'
+              placeholder='Pilih Jenis Voucher'
+              value='Steam Wallet'
+              items={DCONTENT[tab].products} />
+            <DigitalProductSelectGroup
+              useDrawer
+              label='Nominal'
+              placeholder='Pilih Nominal' />
+            <DigitalProductInformationBox content={DCONTENT[tab].note} />
+            <DigitalProductPriceGroup isDiscount price='Rp 15.000' oldPrice='Rp 16.000' />
+            <DigitalProductBuyButtonGroup hasInstant buttonText='Beli' />
+          </div>
+        )
+      case 'air':
+        return (
+          <div />
+        )
+      case 'tvkabel':
+        return (
+          <div>
+            <DigitalProductSelectGroup
+              label='Layanan TV Kabel'
+              placeholder='Pilih Layanan TV Kabel'
+              options={DCONTENT[tab].options} />
+            <DigitalProductInputGroup
+              label='Nomor Pelanggan TV Kabel'
+              placeholder='Contoh 1230123123'
+              tooltip='Nomor Pelanggan Anda'
+            />
+            <DigitalProductBuyButtonGroup buttonText='Beli' />
+          </div>
+        )
+      case 'donasi':
+        return (
+          <div />
+        )
+      case 'postpaid':
+        return (
+          <div>
+            <DigitalProductSelectGroup
+              label='Operator'
+              placeholder='Pilih Operator'
+              options={DCONTENT[tab].options} />
+            <DigitalProductInputGroup
+              label='Nomor Telepon'
+              placeholder='Contoh 081234567890'
+              tooltip='Nomor Telepon Anda'
+            />
+            <DigitalProductBuyButtonGroup buttonText='Beli' />
+          </div>
+        )
+      case 'multifinance':
+        return (
+          <div>
+            <DigitalProductSelectGroup
+              label='Penyedia Pinjaman'
+              placeholder='Pilih Penyedia Pinjaman'
+              options={DCONTENT[tab].options} />
+            <DigitalProductInputGroup
+              label='Nomor Kontrak'
+              placeholder='Masukkan Nomor Kontrak'
+              tooltip='Nomor kontrak adalah nomor Anda'
+            />
+            <DigitalProductBuyButtonGroup buttonText='Beli' />
+          </div>
+        )
+      case 'telephone':
+        return (
+          <div />
+        )
+    }
+  }
+
   render () {
     const productList = []
     const operatorList = []
@@ -146,70 +306,6 @@ class DigitalProductContent extends Component {
     })
 
     // Dummy data, remove when unneeded
-    const selectOptions = [
-      {
-        value: '10000',
-        name: 'Rp 10.000'
-      },
-      {
-        value: '25000',
-        name: 'Rp 25.000'
-      },
-      {
-        value: '50000',
-        name: 'Rp 50.000'
-      }
-    ]
-    const radioButtons = [
-      {
-        id: 'bpjs-kesehatan',
-        name: 'bpjs',
-        text: 'Kesehatan',
-        checked: true
-      },
-      {
-        id: 'bpjs-ketenagakerjaan',
-        name: 'bpjs',
-        text: 'Ketenagakerjaan'
-      }
-    ]
-
-    const productSuggestion = [
-      {
-        text: 'Steam Wallet'
-      },
-      {
-        text: 'Google Play'
-      },
-      {
-        text: 'Garena'
-      },
-      {
-        text: 'Gemscool'
-      },
-      {
-        text: 'Lyto'
-      },
-      {
-        text: 'Megaxus'
-      },
-      {
-        text: 'iTunes'
-      },
-      {
-        text: 'DOTA 2'
-      },
-      {
-        text: 'Battlenet'
-      },
-      {
-        text: 'League of Legends'
-      },
-      {
-        text: 'Ayodance'
-      }
-    ]
-
     const information = [
       {
         text: '1. Pembayaran tagihan listrik tidak dapat dilakukan pada pukul 23.45-00.30 WIB sesuai dengan ketentuan PLN'
@@ -243,155 +339,9 @@ class DigitalProductContent extends Component {
               name='product_id'
               value={this.state.productId} />
             <h1 className='u-clearfix u-block u-mt0 u-mb3 u-left-align u-col-12'>
-              {this.props.title}
+              {DCONTENT[this.props.tab].title}
             </h1>
-            {/*
-            <DigitalProductRadioButtons buttons={radioButtons} />
-            <DigitalProductInputGroup
-              useAutoSuggest
-              label='Jenis Voucher'
-              placeholder='Pilih Voucher'
-              value='Steam Wallet'
-              items={productSuggestion} />
-            <DigitalProductSelectGroup
-              label='Nomor Kepesertaan BPJS'
-              placeholder='Pilih Penyedia'
-              options={selectOptions}
-              tooltip='Nomor virtual account keluarga anda untuk BPJS Kesehatan/ Nomor KTP untuk BPJS Ketenagakerjaan' />
-            <DigitalProductSelectGroup
-              useDrawer
-              label='Nominal'
-              placeholder='Pilih Nominal' />
-            <DigitalProductInformationBox
-              isTokenListrik
-              content='Token Listrik: Seluruh pembelian Token Listrik pada pukul 23:00 - 00.59 WIB akan kami proses pada pukul 01.00 saat Server PLN aktif kembali' />
-            <DigitalProductInformationBox content={information} />
-            <DigitalProductPriceGroup isDiscount price='Rp 15.000' oldPrice='Rp 16.000' />
-            <DigitalProductPriceGroup price='Rp 100.000' />
-            */}
-            {/* Commented for development purpose
-            <div className='dp--lembaga'>
-              <div className='dp-lembaga-tab-list'>
-                <label className='u-inline-block'>Pilih Lembaga Donasi</label>
-                <div>
-                  <small className='u-h5 error-input u-display-none u-inline-block ' id='error-client-number'>
-                    Anda belum memilih lembaga donasi
-                  </small>
-                </div>
-                <ul className='u-clearfix u-mt0 u-mb0 u-pl0 u-list-style-none dp-lembaga-logo-list'>
-                  {filteredOperator.map(this.renderOperator)}
-                </ul>
-              </div>
-              <div className='dp-lembaga-tab-content'>
-                <div
-                  className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
-                  { 'u-hide': this.state.selectedOperator.id !== 95 })}>
-                  <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
-                    <img src={BaznasLogo} alt='' className='u-align-middle' />
-                  </div>
-                  <div className='dp-lembaga-content-text'>
-                    <p className='u-h5 u-mt0 u-mb2'>
-                      Badan Amil Zakat Nasional (BAZNAS) merupakan lembaga yang di bentuk pemerintah melalui KEPPRES
-                      No. 8 Tahun 2001 yang memiliki fungsi penghimpunan dan penyaluran zakat, infak, dan sedekah (ZIS)
-                      sesuai undang-undang nomor 23 tahun 2011 tentang pengelolaan zakat.
-                    </p>
-                    <p className='u-h5 u-mt0 u-mb0'>
-                      <a href='http://www.baznas.go.id/'>Lihat selengkapnya ›</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
-                  { 'u-hide': this.state.selectedOperator.id !== 98 })}>
-                  <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
-                    <img src={YcabLogo} alt='' className='u-align-middle' />
-                  </div>
-                  <div className='dp-lembaga-content-text'>
-                    <p className='u-h5 u-mt0 u-mb2'>
-                      YCAB Foundation (Yayasan Cinta Anak Bangsa) adalah sebuah organisasi non-profit yang berfokus pada
-                      menciptakan kemandirian bagi anak muda melalui pendidikan, pemberdayaan ekonomi dan promosi gaya
-                      hidup sehat.
-                    </p>
-                    <p className='u-h5 u-mt0 u-mb0'>
-                      <a href='http://www.ycabfoundation.org/'>Lihat selengkapnya ›</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
-                  { 'u-hide': this.state.selectedOperator.id !== 97 })}>
-                  <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
-                    <img src={DompetDuafaLogo} alt='' className='u-align-middle' />
-                  </div>
-                  <div className='dp-lembaga-content-text'>
-                    <p className='u-h5 u-mt0 u-mb2'>
-                      Dompet Dhuafa adalah Lembaga Nirlaba milik masyarakat yang berkhidmat mengangkat harkat sosial
-                      kemanusiaan dengan mendayagunakan Zakat, Infak, Sedekah dan Wakaf (ZISWAF) serta dana sosial
-                      lainnya baik dari individu, kelompok maupun perusahaan.
-                    </p>
-                    <p className='u-h5 u-mt0 u-mb0'>
-                      <a href='http://www.dompetdhuafa.org/'>Lihat selengkapnya ›</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
-                  { 'u-hide': this.state.selectedOperator.id !== 99 })}>
-                  <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
-                    <img src={PkpuLogo} alt='' className='u-align-middle' />
-                  </div>
-                  <div className='dp-lembaga-content-text'>
-                    <p className='u-h5 u-mt0 u-mb2'>
-                      PKPU adalah sebuah badan hukum berbentuk yayasan yang bersifat sosial dan kemanusiaan dan
-                      menjalankan kegiatan usahanya dalam bidang pengelolaan dana CSR dan dp-donasi tidak mengikat
-                      lainnya.
-                    </p>
-                    <p className='u-h5 u-mt0 u-mb0'>
-                      <a href='http://www.pkpu.or.id/'>Lihat selengkapnya ›</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='dp--nominal'>
-              <div className={'form-group nominal u-mb2 u-block ' + (this.state.productId === 0 ? 'u-hide' : '')}>
-                <label className='u-mb1'>Nominal</label>
-                <div className='dp-select'>
-                  <span
-                    className='dp-select form-control form-select nominal-select pt-12'
-                    onClick={this.handleOpenOverlay}>
-                    {this.state.productName}
-                  </span>
-                </div>
-              </div>
-              <div className='dp--buy'>
-                <div className='dp__checkbox checkbox'>
-                  <input
-                    type='checkbox'
-                    name='instant_checkout'
-                    id='instant_checkout'
-                    checked={this.state.instantCheckout}
-                    value={this.state.instantCheckout ? '1' : '0'} />
-                  <label onClick={this.handleInstantCheckbox} >
-                    <span className='dp-checkbox' />
-                    Bayar instan
-                  </label>
-                  <div className='trigger-tooltip u-inline-block'>
-                    <i className='icon-info-alt' />
-                    <div className='tooltip-container'>
-                      <div className='tooltip-box'>
-                        <p className='u-m0'>
-                          Bayar dengan 1-klik menggunakan Saldo Tokopedia
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <button type='submit' className='u-block u-center dp__btn btn--orange'>Salurkan Donasi</button>
-                <Link className='u-mx-auto u-mt2 u-block u-center u-h3'>Ingin daftar sebagai lembaga donasi?</Link>
-              </div>
-            </div>
-            */}
+            {this.renderTabContent(this.props.tab)}
           </form>
         </div>
         <div className={classNames('dp-drawer--select', { 'active': this.state.open })}>
@@ -413,6 +363,132 @@ class DigitalProductContent extends Component {
           { this.state.open && <BodyClassName className='u-body-overflow-no-scroll' /> }
         </div>
       </div>
+    )
+
+    return (
+      {/* Commented for development purpose
+      <div className='dp--lembaga'>
+        <div className='dp-lembaga-tab-list'>
+          <label className='u-inline-block'>Pilih Lembaga Donasi</label>
+          <div>
+            <small className='u-h5 error-input u-display-none u-inline-block ' id='error-client-number'>
+              Anda belum memilih lembaga donasi
+            </small>
+          </div>
+          <ul className='u-clearfix u-mt0 u-mb0 u-pl0 u-list-style-none dp-lembaga-logo-list'>
+            {filteredOperator.map(this.renderOperator)}
+          </ul>
+        </div>
+        <div className='dp-lembaga-tab-content'>
+          <div
+            className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
+            { 'u-hide': this.state.selectedOperator.id !== 95 })}>
+            <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
+              <img src={BaznasLogo} alt='' className='u-align-middle' />
+            </div>
+            <div className='dp-lembaga-content-text'>
+              <p className='u-h5 u-mt0 u-mb2'>
+                Badan Amil Zakat Nasional (BAZNAS) merupakan lembaga yang di bentuk pemerintah melalui KEPPRES
+                No. 8 Tahun 2001 yang memiliki fungsi penghimpunan dan penyaluran zakat, infak, dan sedekah (ZIS)
+                sesuai undang-undang nomor 23 tahun 2011 tentang pengelolaan zakat.
+              </p>
+              <p className='u-h5 u-mt0 u-mb0'>
+                <a href='http://www.baznas.go.id/'>Lihat selengkapnya ›</a>
+              </p>
+            </div>
+          </div>
+          <div
+            className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
+            { 'u-hide': this.state.selectedOperator.id !== 98 })}>
+            <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
+              <img src={YcabLogo} alt='' className='u-align-middle' />
+            </div>
+            <div className='dp-lembaga-content-text'>
+              <p className='u-h5 u-mt0 u-mb2'>
+                YCAB Foundation (Yayasan Cinta Anak Bangsa) adalah sebuah organisasi non-profit yang berfokus pada
+                menciptakan kemandirian bagi anak muda melalui pendidikan, pemberdayaan ekonomi dan promosi gaya
+                hidup sehat.
+              </p>
+              <p className='u-h5 u-mt0 u-mb0'>
+                <a href='http://www.ycabfoundation.org/'>Lihat selengkapnya ›</a>
+              </p>
+            </div>
+          </div>
+          <div
+            className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
+            { 'u-hide': this.state.selectedOperator.id !== 97 })}>
+            <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
+              <img src={DompetDuafaLogo} alt='' className='u-align-middle' />
+            </div>
+            <div className='dp-lembaga-content-text'>
+              <p className='u-h5 u-mt0 u-mb2'>
+                Dompet Dhuafa adalah Lembaga Nirlaba milik masyarakat yang berkhidmat mengangkat harkat sosial
+                kemanusiaan dengan mendayagunakan Zakat, Infak, Sedekah dan Wakaf (ZISWAF) serta dana sosial
+                lainnya baik dari individu, kelompok maupun perusahaan.
+              </p>
+              <p className='u-h5 u-mt0 u-mb0'>
+                <a href='http://www.dompetdhuafa.org/'>Lihat selengkapnya ›</a>
+              </p>
+            </div>
+          </div>
+          <div
+            className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
+            { 'u-hide': this.state.selectedOperator.id !== 99 })}>
+            <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
+              <img src={PkpuLogo} alt='' className='u-align-middle' />
+            </div>
+            <div className='dp-lembaga-content-text'>
+              <p className='u-h5 u-mt0 u-mb2'>
+                PKPU adalah sebuah badan hukum berbentuk yayasan yang bersifat sosial dan kemanusiaan dan
+                menjalankan kegiatan usahanya dalam bidang pengelolaan dana CSR dan dp-donasi tidak mengikat
+                lainnya.
+              </p>
+              <p className='u-h5 u-mt0 u-mb0'>
+                <a href='http://www.pkpu.or.id/'>Lihat selengkapnya ›</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className='dp--nominal'>
+        <div className={'form-group nominal u-mb2 u-block ' + (this.state.productId === 0 ? 'u-hide' : '')}>
+          <label className='u-mb1'>Nominal</label>
+          <div className='dp-select'>
+            <span
+              className='dp-select form-control form-select nominal-select pt-12'
+              onClick={this.handleOpenOverlay}>
+              {this.state.productName}
+            </span>
+          </div>
+        </div>
+        <div className='dp--buy'>
+          <div className='dp__checkbox checkbox'>
+            <input
+              type='checkbox'
+              name='instant_checkout'
+              id='instant_checkout'
+              checked={this.state.instantCheckout}
+              value={this.state.instantCheckout ? '1' : '0'} />
+            <label onClick={this.handleInstantCheckbox} >
+              <span className='dp-checkbox' />
+              Bayar instan
+            </label>
+            <div className='trigger-tooltip u-inline-block'>
+              <i className='icon-info-alt' />
+              <div className='tooltip-container'>
+                <div className='tooltip-box'>
+                  <p className='u-m0'>
+                    Bayar dengan 1-klik menggunakan Saldo Tokopedia
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type='submit' className='u-block u-center dp__btn btn--orange'>Salurkan Donasi</button>
+          <Link className='u-mx-auto u-mt2 u-block u-center u-h3'>Ingin daftar sebagai lembaga donasi?</Link>
+        </div>
+      </div>
+      */}
     )
   }
 }

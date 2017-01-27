@@ -28,6 +28,7 @@
     }
 
     .dp-tooltip__container {
+        display: none;
         padding: 15px 0;
         position: absolute;
         top: 10px;
@@ -41,7 +42,6 @@
         padding: 7px 11px;
         border: 1px solid $color-grey-3;
         background: $color-white-primary;
-        display: none;
         border-radius: 3px;
 
         &::before {
@@ -66,6 +66,13 @@
             height: 0;
             border-bottom: 10px solid #fff;
             content: '';
+        }
+    }
+
+    &:focus, &:hover {
+
+        .dp-tooltip__container {
+            display: block;
         }
     }
 
@@ -104,12 +111,28 @@
     &--compact {
         height: 36px;
         font-size: 18px;
+    }
+}
 
-        &:focus {
+.dp-inputgroup__select {
+    padding: 5px 6px;
+    border: 0;
+    background: url(../assets/arrow-select.png) no-repeat top 16px right 5px;
+    display: block;
+    width: 100%;
+    border-radius: 0;
+    border-bottom: 1px solid $color-grey-disabled;
+    box-shadow: none;
+    appearance: none;
+    line-height: 1.42857143;
+    background-size: 12px 6px;
+    font-size: 16px;
+    height: 36px;
+    color: $color-black-primary;
 
-            &+.react-autosuggest__suggestions-container>.react-autosuggest__suggestions-list {
-            }
-        }
+    &:active, &:focus {
+        color: $color-green;
+        border-color: $color-green;
     }
 }
 
