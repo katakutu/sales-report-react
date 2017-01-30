@@ -412,6 +412,14 @@ const WishlistQueries = {
 
 const DigitalQuery = gql`
 query {
+  user{
+    id
+    isLoggedIn
+    shouldRedirect
+    profilePicture
+    name
+    email
+  }
   points{
     data{
       attributes{

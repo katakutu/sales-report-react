@@ -80,7 +80,7 @@ class DigitalProductContent extends Component {
         checkFlag = true
       }
       return (
-        <tr>
+        <tr key={`digital-product-${data.id}`}>
           <td className='table__product'>
             <label htmlFor={data.id}>
               <div className='product__name'>{data.desc}</div>
@@ -106,7 +106,7 @@ class DigitalProductContent extends Component {
 
   renderOperator (data, index) {
     return (
-      <li onClick={() => this.handleContentChange(data)}>
+      <li onClick={() => this.handleContentChange(data)} key={`digital-operator-${data.id}`}>
         <div className={classNames('dp-lembaga-tab-logo', { 'active': this.state.selectedOperator.id === data.id })}>
           <img src={data.image} alt='' />
         </div>
