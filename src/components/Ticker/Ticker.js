@@ -78,7 +78,8 @@ class Ticker extends Component {
   render () {
     let style = {}
     this.state.content !== '' ? Object.assign(style, {}) : Object.assign(style, { height: '0' })
-    this.state.color && Object.assign(style, { backgroundColor: this.state.color })
+    this.state.color === '' ? Object.assign(style, { backgroundColor: '#FAFDCD' })
+    : Object.assign(style, { backgroundColor: this.state.color })
 
     return (
       <div className='ticker' style={style}>
