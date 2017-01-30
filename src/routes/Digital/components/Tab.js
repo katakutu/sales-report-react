@@ -90,7 +90,7 @@ class Tab extends Component {
       <li
         className={classNames('dp-modal__item', { 'u-hide': !this.isItemInModal(data.icon) })}
         onClick={() => this.handleTabChange(data.icon)}
-        key={index}>
+        key={`digital-other-category-${data.name}`}>
         <a
           className={classNames('dp-tab__url', 'u-mt2', { 'active': this.state.activeTab === data.icon })}>
           <i className={'dp-tab__icon dp-tab__icon--' + data.icon} />
@@ -105,7 +105,7 @@ class Tab extends Component {
       <li
         className={classNames('dp-tab__item', { 'u-hide': !this.isTabShown(data.icon) })}
         onClick={() => this.handleTabChange(data.icon)}
-        key={index}>
+        key={`digital-category-${data.id}`}>
         <a
           className={classNames('dp-tab__url', { 'active': this.state.activeTab === data.icon })}>
           <i className={'dp-tab__icon dp-tab__icon--' + data.icon} />

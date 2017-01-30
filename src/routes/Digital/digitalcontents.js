@@ -37,6 +37,7 @@ let content = {
         text: 'Tagihan Listrik'
       }
     ],
+    /* eslint-disable max-len */
     note: 'Token Listrik: Seluruh pembelian Token Listrik pada pukul 23:00 - 00.59 WIB akan kami proses pada pukul 01.00 saat Server PLN aktif kembali',
     note2: [
       {
@@ -52,6 +53,7 @@ let content = {
         text: '4. Biaya admin adalah Rp 2500 per tagihan / bulan'
       }
     ]
+    /* eslint-enable max-len */
   },
   'saldo': {
     title: 'Isi saldo untuk berbelanja di Tokopedia'

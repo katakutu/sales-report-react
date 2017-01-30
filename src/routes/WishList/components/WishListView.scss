@@ -254,7 +254,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    padding: 3px 2px 0;
+    padding: 2px;
     border: 0;
     border-radius: 50%;
     background: $color-white-primary;
@@ -298,6 +298,7 @@
     text-align: center;
     width: 200px;
     margin: 0 auto;
+    display: inline-block;
 }
 
 .wishlist__empty-img {
