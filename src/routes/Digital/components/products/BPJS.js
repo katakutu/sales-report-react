@@ -7,7 +7,8 @@ import BuyButtonGroup from '../parts/BuyButtonGroup'
 
 class BPJS extends Component {
   static propTypes = {
-    radio: PropTypes.array
+    radio: PropTypes.array,
+    openDrawer: PropTypes.func
   }
 
   render () {
@@ -21,7 +22,8 @@ class BPJS extends Component {
         <SelectGroup
           useDrawer
           label='Bayar Hingga'
-          placeholder='Pilih Bulan' />
+          placeholder='Pilih Bulan'
+          openDrawer={this.props.openDrawer} />
         <BuyButtonGroup buttonText='Bayar' />
       </div>
     )
