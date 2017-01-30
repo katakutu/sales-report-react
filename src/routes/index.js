@@ -6,6 +6,7 @@ import CategoryRoute from './Category'
 import WishlistRoute from './WishList'
 import DigitalRoute from './Digital'
 import FeedRoute from './Feed'
+import FaveRoute from './Favorite'
 import NotFound from './NotFound'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -20,6 +21,7 @@ export const createRoutes = (store, ApolloExecutors) => ({
     CategoryRoute(store),
     WishlistRoute(store, ApolloExecutors),
     DigitalRoute(store),
+    FaveRoute(store, ApolloExecutors),
     FeedRoute(store, ApolloExecutors),
     {
       path: '*',

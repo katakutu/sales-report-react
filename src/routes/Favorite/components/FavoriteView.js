@@ -95,7 +95,7 @@ class FavoriteView extends Component {
     console.log('12---------------------------------------------------------')
     console.log(this.props.favorites)
     console.log('12---------------------------------------------------------')
-    const flCount = this.props.favorites.length
+    // const flCount = this.props.favorites.length
 
     return (
       <div>
