@@ -133,7 +133,7 @@ class WishList extends Component {
 
       return (
         <div className='u-col u-col-6 wishlist__contents' key={`wishlist-${parentIndex}-${index}`}>
-          <div className='wishlist__content-box'>
+          <div className='wishlist__content-box wishlist__item'>
             {
               wishlist['isActive']
                 ? <WishlistLove
