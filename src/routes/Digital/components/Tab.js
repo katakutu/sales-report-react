@@ -75,7 +75,7 @@ class Tab extends Component {
       <li
         className={classNames('dp-modal__item', { 'u-hide': !this.isItemInModal(data.icon) })}
         onClick={() => this.handleTabChange(data.icon)}
-        key={index}>
+        key={`digital-other-category-${data.name}`}>
         <a
           href={SITES['Pulsa'] + '/' + data.slug}
           className={classNames('dp-tab__url', 'u-mt2', { 'active': this.state.activeTab === data.icon })}>
@@ -91,7 +91,11 @@ class Tab extends Component {
       <li
         className={classNames('dp-tab__item', { 'u-hide': !this.isTabShown(data.icon) })}
         onClick={() => this.handleTabChange(data.icon)}
+<<<<<<< HEAD:src/routes/Digital/components/Tab.js
         key={index}>
+=======
+        key={`digital-category-${data.id}`}>
+>>>>>>> upstream/master:src/routes/Digital/components/DigitalProductTab.js
         <a
           href={SITES['Pulsa'] + '/' + data.slug}
           className={classNames('dp-tab__url', { 'active': this.state.activeTab === data.icon })}>
