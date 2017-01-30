@@ -10,6 +10,7 @@ class Ticker extends Component {
   state = {
     nextContentIndex: 0,
     content: '',
+    color: '',
     // initial value that will get refreshed right away
     refreshInterval: this.props.perTickDuration * 1000
   }
@@ -29,7 +30,8 @@ class Ticker extends Component {
     if (this.props.tickers.length > 0) {
       this.setState({
         nextContentIndex: 1,
-        content: this.props.tickers[0]['message']
+        content: this.props.tickers[0]['message'],
+        color: this.props.tickers[0]['color']
       })
     }
   }
@@ -40,6 +42,7 @@ class Ticker extends Component {
       this.setState({
         nextContentIndex: 1,
         content: nextProps.tickers[0]['message'],
+        color: nextProps.tickers[0]['color'],
         refreshInterval: nextRefresh
       })
     }
@@ -66,16 +69,19 @@ class Ticker extends Component {
       this.setState({
         nextContentIndex: contentIndex + 1,
         content: this.props.tickers[contentIndex]['message'],
+        color: this.props.tickers[contentIndex]['color'],
         refreshInterval: nextRefresh
       })
     }
   }
 
   render () {
-    const ts = this.state.content !== '' ? {} : { height: '0' }
+    let style = {}
+    this.state.content !== '' ? Object.assign(style, {}) : Object.assign(style, { height: '0' })
+    this.state.color && Object.assign(style, { backgroundColor: this.state.color })
 
     return (
-      <div className='ticker' style={ts}>
+      <div className='ticker' style={style}>
         <div className='ticker__container' dangerouslySetInnerHTML={{ __html: this.state.content }} />
       </div>
     )

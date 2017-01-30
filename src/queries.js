@@ -102,6 +102,7 @@ query Query {
       id
       title
       message
+      color
     }
   }
   slides{
