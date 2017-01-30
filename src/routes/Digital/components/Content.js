@@ -132,7 +132,7 @@ class Content extends Component {
     switch (tab) {
       case 'pulsa':
         return (
-          <Pulsa />
+          <Pulsa openDrawer={(e) => this.handleOpenOverlay(e)} />
         )
       case 'paket-data':
         return (

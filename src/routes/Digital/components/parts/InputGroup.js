@@ -163,7 +163,7 @@ class InputGroup extends Component {
             onChange={(e) => this.handleInputChange(e)}
             value={this.state.value} />
           <picture className={this.state.showPicture ? '' : 'u-hide'}>
-            <img src={LogoSimpati} alt='Logo Simpati' className='dp-inputgroup__logo' />
+            <img src={LogoSimpati} alt='Logo' className='dp-inputgroup__logo' />
           </picture>
           <i
             className={classNames('dp-inputgroup__close', { 'u-hide': !this.state.showClearButton })}
