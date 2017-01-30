@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 import InputGroup from '../parts/InputGroup'
 import SelectGroup from '../parts/SelectGroup'
@@ -6,6 +6,10 @@ import PriceGroup from '../parts/PriceGroup'
 import BuyButtonGroup from '../parts/BuyButtonGroup'
 
 class Pulsa extends Component {
+  static propTypes = {
+    openDrawer: PropTypes.func
+  }
+
   render () {
     return (
       <div>
@@ -16,7 +20,8 @@ class Pulsa extends Component {
         <SelectGroup
           useDrawer
           label='Nominal'
-          placeholder='Pilih Nominal' />
+          placeholder='Pilih Nominal'
+          openDrawer={this.props.openDrawer} />
         <PriceGroup price='Rp 100.000' />
         <BuyButtonGroup
           hasInstant

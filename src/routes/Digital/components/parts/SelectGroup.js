@@ -10,7 +10,8 @@ class SelectGroup extends Component {
     placeholder: PropTypes.string,
     value: PropTypes.string,
     options: PropTypes.array,
-    tooltip: PropTypes.string
+    tooltip: PropTypes.string,
+    openDrawer: PropTypes.func
   }
 
   render () {
@@ -28,7 +29,7 @@ class SelectGroup extends Component {
               </div>
             </div>
           </div>
-          <div className='dp-inputgroup__select'>
+          <div className='dp-inputgroup__select' onClick={this.props.openDrawer}>
             <span>{this.props.value ? this.props.value : this.props.placeholder}</span>
           </div>
         </div>

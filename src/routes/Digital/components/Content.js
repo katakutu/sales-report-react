@@ -133,7 +133,7 @@ class Content extends Component {
     switch (tab) {
       case 'pulsa':
         return (
-          <Pulsa />
+          <Pulsa openDrawer={(e) => this.handleOpenOverlay(e)} />
         )
       case 'paket-data':
         return (
@@ -399,7 +399,7 @@ class Content extends Component {
             <div className='drawer__content'>
               <div className='drawer__header'>
                 Nominal
-                <span className='drawer__close' onClick={this.handleCloseButton}>×</span>
+                <span className='drawer__close' onClick={this.handleCloseButton}>&times;</span>
               </div>
               <div className='drawer__options'>
                 <table className='drawer__table'>

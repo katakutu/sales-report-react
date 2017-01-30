@@ -44,7 +44,7 @@ class DigitalView extends Component {
           operatorList={operatorList}
           productList={productList}
           slug={this.props.params.slug}
-          tab='donasi' />
+          tab='pulsa' />
 
         <Promo bannerList={bannerList} />
         <Operator operatorList={operatorList} />
