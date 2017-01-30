@@ -13,7 +13,8 @@ class TopAdsShop extends Component {
     const imageProduct = this.props.data['shop']['image_product'] || []
 
     return (
-      <ImpressionTracker url={this.props.data['product']['image_shop']['s_url']}>
+      <ImpressionTracker url={this.props.data['product']['image_shop']['s_url']}
+        urlMatch={this.props.data['product']['image_shop']['s_ecs']}>
         <div className='u-col u-col-6 topads__contents'>
           <div className='topads__content-box'>
             <a href={this.props.data['shop_click_url']}>
