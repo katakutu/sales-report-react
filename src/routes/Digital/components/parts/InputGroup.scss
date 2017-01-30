@@ -64,13 +64,13 @@
             z-index: 0;
             width: 0;
             height: 0;
-            border-bottom: 10px solid #fff;
+            border-bottom: 10px solid #FFF;
             content: '';
         }
     }
 
-    &:focus, &:hover {
-
+    &:focus,
+    &:hover {
         .dp-tooltip__container {
             display: block;
         }
@@ -94,7 +94,7 @@
     display: block;
     background-color: inherit;
     color: $color-black-secondary;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     letter-spacing: 0.4px;
 
     &:focus {

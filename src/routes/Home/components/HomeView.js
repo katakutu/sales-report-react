@@ -46,7 +46,7 @@ class HomeView extends Component {
         const event = new Event('HomePulsaWidgetReady')
         document.dispatchEvent(event)
       } catch (e) {
-        console.error(e)
+        console.log('Old browser not supporting Custom Event. Falling back.')
 
         const oldEvent = document.createEvent('Event')
         oldEvent.initEvent('HomePulsaWidgetReady', true, true)

@@ -7,6 +7,7 @@ import { graphql } from 'react-apollo'
 import { HOSTNAME } from './../../../constants'
 import queries from './../../../queries'
 import lang from '../../../lib/utils/Lang'
+import GTM from '../../../lib/utils/GTM'
 import ArrayHelper from '../../../lib/utils/ArrayHelper'
 import LoadMore from '../../../components/LoadMore'
 
@@ -41,13 +42,26 @@ class WishList extends Component {
     page: this.props.page,
     query: this.props.query
   }
+
   constructor (props) {
     super(props)
 
+    this._gtmNotifyBuyButtonClicked = this._gtmNotifyBuyButtonClicked.bind(this)
+    this._gtmNotifyWishlistClicked = this._gtmNotifyWishlistClicked.bind(this)
     this.resetSearch = this.resetSearch.bind(this)
     this.searchWishlist = this.searchWishlist.bind(this)
     this.updateQuery = this.updateQuery.bind(this)
     this.viewMore = this.viewMore.bind(this)
+  }
+
+  _gtmNotifyBuyButtonClicked () {
+    GTM.pushEvent('clickWishlist', 'Wishlist', 'Buy', 'Buy')
+  }
+
+  _gtmNotifyWishlistClicked (wishlist) {
+    return (event) => {
+      GTM.pushEvent('clickWishlist', 'Wishlist', 'View', wishlist['name'])
+    }
   }
 
   resetSearch () {
@@ -105,7 +119,7 @@ class WishList extends Component {
 
       const actionButton = wishlist['available'] ? (
         <div className='wishlist__buy'>
-          <a href={buyLink} className='wishlist__button-buy'>
+          <a href={buyLink} className='wishlist__button-buy' onClick={this._gtmNotifyBuyButtonClicked}>
             { lang[this.props.lang]['Buy'] }
           </a>
         </div>
@@ -131,7 +145,7 @@ class WishList extends Component {
                   productID={parseInt(wishlist['id'])}
                   productName={wishlist['name']} />
             }
-            <a href={wishlist['url']}>
+            <a href={wishlist['url']} onClick={this._gtmNotifyWishlistClicked(wishlist)}>
               <img src={wishlist['image']} className='wishlist__img' alt='tokopedia' />
               <div className='wishlist__title'>{wishlist['name']}</div>
             </a>
