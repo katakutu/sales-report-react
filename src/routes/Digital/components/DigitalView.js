@@ -16,6 +16,20 @@ class DigitalView extends Component {
     params: PropTypes.object
   }
 
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      activeTab: 'donasi'
+    }
+
+    this.changeTab = this.changeTab.bind(this)
+  }
+
+  changeTab (name) {
+    this.setState({ activeTab: name })
+  }
+
   render () {
     if (this.props.data.loading) {
       return (
@@ -39,12 +53,12 @@ class DigitalView extends Component {
     return (
       <div>
         <HeaderHomeOld userInfo={userInfo} hideSearch />
-        <Tab categoryList={categoryList} />
+        <Tab categoryList={categoryList} activeTab={this.state.activeTab} changeTab={this.changeTab} />
         <Content
           operatorList={operatorList}
           productList={productList}
           slug={this.props.params.slug}
-          tab='game' />
+          tab={this.state.activeTab} />
 
         <Promo bannerList={bannerList} />
         <Operator operatorList={operatorList} />

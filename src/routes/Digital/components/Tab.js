@@ -7,15 +7,28 @@ import { SITES } from '../../../constants'
 
 class Tab extends Component {
   static propTypes = {
-    categoryList: PropTypes.array
+    categoryList: PropTypes.array,
+    activeTab: PropTypes.string,
+    changeTab: PropTypes.func
   }
 
   constructor (props) {
     super(props)
 
+    let shownTabs = ['pulsa', 'paket-data']
+    if (this.props.activeTab) {
+      if (shownTabs.indexOf(this.props.activeTab) < 0) {
+        shownTabs.push(this.props.activeTab)
+      } else {
+        shownTabs.push('donasi') // item ketiga yang ingin dimunculkan di tab
+      }
+    } else {
+      shownTabs.push('donasi') // item ketiga yang ingin dimunculkan di tab
+    }
+
     this.state = {
-      activeTab: 'donasi',
-      shownTabs: ['pulsa', 'paket-data', 'donasi'],
+      activeTab: this.props.activeTab ? this.props.activeTab : 'donasi',
+      shownTabs: shownTabs,
       modalOpened: false
     }
 
@@ -68,6 +81,8 @@ class Tab extends Component {
       this.state.shownTabs.pop()
       this.state.shownTabs.push(name)
     }
+
+    this.props.changeTab(name)
   }
 
   renderOtherCategory (data, index) {
@@ -77,7 +92,6 @@ class Tab extends Component {
         onClick={() => this.handleTabChange(data.icon)}
         key={index}>
         <a
-          href={SITES['Pulsa'] + '/' + data.slug}
           className={classNames('dp-tab__url', 'u-mt2', { 'active': this.state.activeTab === data.icon })}>
           <i className={'dp-tab__icon dp-tab__icon--' + data.icon} />
           <div className='dp-tab__name'>{data.name}</div>
@@ -93,7 +107,6 @@ class Tab extends Component {
         onClick={() => this.handleTabChange(data.icon)}
         key={index}>
         <a
-          href={SITES['Pulsa'] + '/' + data.slug}
           className={classNames('dp-tab__url', { 'active': this.state.activeTab === data.icon })}>
           <i className={'dp-tab__icon dp-tab__icon--' + data.icon} />
           <div className='dp-tab__name'>{data.name}</div>
