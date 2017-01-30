@@ -12,7 +12,8 @@ class InputGroup extends Component {
     placeholder: PropTypes.string,
     tooltip: PropTypes.string,
     value: PropTypes.string,
-    items: PropTypes.array
+    items: PropTypes.array,
+    showPicture: PropTypes.bool
   }
 
   constructor (props) {
@@ -21,7 +22,9 @@ class InputGroup extends Component {
     this.state = {
       value: this.props.value || '',
       items: this.props.items,
-      showAll: true
+      showAll: true,
+      showPicture: this.props.showPicture || false,
+      showClearButton: false
     }
 
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
@@ -37,7 +40,6 @@ class InputGroup extends Component {
   }
 
   getItems (value) {
-    console.log('showAll = ' + this.state.showAll)
     if (this.state.showAll) {
       return this.props.items
     } else {
@@ -82,6 +84,28 @@ class InputGroup extends Component {
         {suggestion.text}
       </div>
     )
+  }
+
+  handleInputChange (e) {
+    this.setState({
+      value: e.target.value
+    })
+
+    if (e.target.value.length > 0) {
+      this.setState({
+        showClearButton: true
+      })
+    } else {
+      this.setState({
+        showClearButton: false
+      })
+    }
+  }
+
+  handleClearButton (e) {
+    this.setState({
+      value: ''
+    })
   }
 
   render () {
@@ -132,11 +156,18 @@ class InputGroup extends Component {
               </div>
             </div>
           </div>
-          <input type='text' className='dp-inputgroup__textbox' placeholder={this.props.placeholder} />
-          <picture>
+          <input
+            type='text'
+            className='dp-inputgroup__textbox'
+            placeholder={this.props.placeholder}
+            onChange={(e) => this.handleInputChange(e)}
+            value={this.state.value} />
+          <picture className={this.state.showPicture ? '' : 'u-hide'}>
             <img src={LogoSimpati} alt='Logo Simpati' className='dp-inputgroup__logo' />
           </picture>
-          <i className='dp-inputgroup__close'>&times;</i>
+          <i
+            className={classNames('dp-inputgroup__close', { 'u-hide': !this.state.showClearButton })}
+            onClick={(e) => this.handleClearButton(e)}>&times;</i>
           <div className='dp-error__container u-clearfix'>
             <div className='dp-error'>
               Nomor yang Anda masukkan belum didukung saat ini
