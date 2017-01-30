@@ -91,11 +91,7 @@ class Tab extends Component {
       <li
         className={classNames('dp-tab__item', { 'u-hide': !this.isTabShown(data.icon) })}
         onClick={() => this.handleTabChange(data.icon)}
-<<<<<<< HEAD:src/routes/Digital/components/Tab.js
-        key={index}>
-=======
         key={`digital-category-${data.id}`}>
->>>>>>> upstream/master:src/routes/Digital/components/DigitalProductTab.js
         <a
           href={SITES['Pulsa'] + '/' + data.slug}
           className={classNames('dp-tab__url', { 'active': this.state.activeTab === data.icon })}>

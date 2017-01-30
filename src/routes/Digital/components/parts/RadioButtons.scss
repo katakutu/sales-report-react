@@ -3,8 +3,7 @@
 .dp-radio {
     display: inline-block;
 
-    input[type=radio]:checked+.dp-radio__label {
-
+    input[type=radio]:checked + .dp-radio__label {
         .dp-radio__icon {
             background-image: url('data:image/svg+xml;charset=utf-8;base64,IDxzdmcgYmFzZVByb2ZpbGU9J3RpbnknIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDI1IDI1Jz48cGF0aCBmaWxsPScjNDJCNTQ5JyBkPSdNMTIuNCAyNC43QzUuNyAyNC43LjMgMTkuMy4zIDEyLjYuMyA2IDUuNy41IDEyLjQuNSAxOSAuNSAyNC41IDYgMjQuNSAxMi42YzAgNi43LTUuNSAxMi4xLTEyLjEgMTIuMXptMC0yMy4yYy02LjEgMC0xMS4xIDUtMTEuMSAxMS4xczUgMTEuMSAxMS4xIDExLjEgMTEuMS01IDExLjEtMTEuMS01LTExLjEtMTEuMS0xMS4xeicvPjxjaXJjbGUgZmlsbD0nIzQyQjU0OScgY3g9JzEyLjUnIGN5PScxMi43JyByPSc3LjQnLz48L3N2Zz4=');
         }
