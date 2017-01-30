@@ -92,10 +92,10 @@ module.exports = {
               }
               res.cookie(GlobalConfig['Cookie']['SessionID'], sid, cookieOpt)
 
-              let redir = req.session.beforeLogin || `${GlobalConfig['Hostname']}/feed`
+              let redir = req.session.beforeLogin || `${GlobalConfig['Hostname']}/?view=feed_preview`
               if (req.session.beforeLogin === `${GlobalConfig['Hostname']}/` ||
                   req.session.beforeLogin === `${GlobalConfig['Hostname']}/?h=3`) {
-                redir = `${GlobalConfig['Hostname']}/feed`
+                redir = `${GlobalConfig['Hostname']}/?view=feed_preview`
               }
 
               if (req.session.beforeLogin) {
