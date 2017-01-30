@@ -3,11 +3,11 @@ import { graphql } from 'react-apollo'
 import queries from '../../../queries'
 
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
-import DigitalProductTab from './DigitalProductTab'
-import DigitalProductContent from './DigitalProductContent'
-import DigitalProductPromo from './DigitalProductPromo'
-import DigitalProductOperator from './DigitalProductOperator'
-import DigitalProductSelectDrawer from './DigitalProductSelectDrawer'
+import Tab from './Tab'
+import Content from './Content'
+import Promo from './Promo'
+import Operator from './Operator'
+
 import SplashScreen from '../../../components/Loading/SplashScreen'
 
 class DigitalView extends Component {
@@ -39,11 +39,15 @@ class DigitalView extends Component {
     return (
       <div>
         <HeaderHomeOld userInfo={userInfo} hideSearch />
-        <DigitalProductTab categoryList={categoryList} />
-        <DigitalProductContent operatorList={operatorList} productList={productList} slug={this.props.params.slug} />
-        <DigitalProductPromo bannerList={bannerList} />
-        <DigitalProductOperator operatorList={operatorList} />
-        <DigitalProductSelectDrawer />
+        <Tab categoryList={categoryList} />
+        <Content
+          operatorList={operatorList}
+          productList={productList}
+          slug={this.props.params.slug}
+          tab='donasi' />
+
+        <Promo bannerList={bannerList} />
+        <Operator operatorList={operatorList} />
       </div>
     )
   }

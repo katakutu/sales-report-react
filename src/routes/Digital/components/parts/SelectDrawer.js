@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import BodyClassName from 'react-body-classname'
-import './DigitalProductSelectDrawer.scss'
+import './SelectDrawer.scss'
 
-class DigitalProductSelectDrawer extends Component {
+class SelectDrawer extends Component {
   constructor (props) {
     super(props)
 
@@ -147,4 +147,4 @@ class DigitalProductSelectDrawer extends Component {
   }
 }
 
-export default DigitalProductSelectDrawer
+export default SelectDrawer

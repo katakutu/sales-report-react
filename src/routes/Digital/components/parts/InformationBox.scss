@@ -1,0 +1,43 @@
+@import 'base';
+
+$border-color-box-green: #BDF3B6;
+$background-color-box-green: #EBFDEA;
+$title-color-green: #6EC65B;
+
+$border-color-box-blue: #BCE8F1;
+$background-color-box-blue: #D9EDF7;
+$title-color-blue: #31708F;
+
+.dp-informationbox {
+    padding: 12px;
+    border: 1px solid $border-color-box-green;
+    background: $background-color-box-green;
+
+    &--tint {
+        border-color: darken(#FFECB3, 20%);
+        background-color: #FFECB3;
+    }
+
+    &--blue {
+        border-color: $border-color-box-blue;
+        background-color: $background-color-box-blue;
+    }
+}
+
+.dp-informationbox__title {
+    margin: 0 0 5px;
+    color: $title-color-green;
+
+    .dp-informationbox--tint & {
+        color: #606060;
+    }
+
+    .dp-informationbox--blue & {
+        color: $title-color-blue;
+    }
+}
+
+.dp-informationbox__content {
+    color: $color-black-primary;
+    line-height: 1.5;
+}

@@ -1,0 +1,204 @@
+@import 'base';
+
+.dp-inputgroup {
+    margin-bottom: 15px;
+}
+
+.dp-inputgroup__label {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 400;
+    color: $color-black-secondary;
+}
+
+.dp-inputgroup__tooltip {
+    display: inline-block;
+    position: relative;
+    margin-left: 5px;
+    width: 16px;
+    height: 17px;
+    vertical-align: middle;
+
+    .dp-tooltip {
+        background: url(../../assets/icon-info.png) center no-repeat;
+        background-size: 16px 17px;
+        display: inline-block;
+        width: 16px;
+        height: 17px;
+    }
+
+    .dp-tooltip__container {
+        display: none;
+        padding: 15px 0;
+        position: absolute;
+        top: 10px;
+        left: -60px;
+        z-index: $z-index-2;
+        width: 230px;
+        text-align: center;
+    }
+
+    .dp-tooltip__box {
+        padding: 7px 11px;
+        border: 1px solid $color-grey-3;
+        background: $color-white-primary;
+        border-radius: 3px;
+
+        &::before {
+            border: 8px solid transparent;
+            position: absolute;
+            top: -3px;
+            left: 60px;
+            z-index: 0;
+            width: 0;
+            height: 0;
+            border-bottom: 10px solid $color-grey-3;
+            content: '';
+        }
+
+        &::after {
+            border: 8px solid transparent;
+            position: absolute;
+            top: -1px;
+            left: 60px;
+            z-index: 0;
+            width: 0;
+            height: 0;
+            border-bottom: 10px solid #fff;
+            content: '';
+        }
+    }
+
+    &:focus, &:hover {
+
+        .dp-tooltip__container {
+            display: block;
+        }
+    }
+
+    .dp-tooltip__text {
+        font-size: 13px;
+        color: $color-black-secondary;
+        line-height: 1.42857143;
+    }
+}
+
+.dp-inputgroup__textbox {
+    padding: 5px 6px;
+    border: none;
+    height: 44px;
+    width: 100%;
+    font-size: 23px;
+    border-bottom: 1px solid $color-grey-2;
+    border-radius: 0;
+    display: block;
+    background-color: inherit;
+    color: $color-black-secondary;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    letter-spacing: 0.4px;
+
+    &:focus {
+        border-bottom: 1px solid $color-green;
+        color: $color-green;
+    }
+
+    &::placeholder {
+        font-size: 16px;
+        font-weight: 400;
+        color: #BBB;
+    }
+
+    &--compact {
+        height: 36px;
+        font-size: 18px;
+    }
+}
+
+.dp-inputgroup__logo {
+    position: absolute;
+    top: 34px;
+    right: 25px;
+    max-height: 25px;
+}
+
+.dp-inputgroup__close {
+    background: #C1C1C1;
+    position: absolute;
+    top: 35px;
+    right: 0;
+    z-index: 999;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: $color-white-primary;
+    text-align: center;
+    font-size: 20px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.react-autosuggest__suggestions-container {
+    width: 100%;
+    position: relative;
+    z-index: $z-index-3;
+}
+
+.react-autosuggest__suggestions-list {
+    margin: 0;
+    border: 1px solid $color-grey-2;
+    background-color: $color-white-primary;
+    border-top: none;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    max-height: 300px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    list-style-type: none;
+    padding-left: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &:active {
+        display: block;
+    }
+}
+
+.react-autosuggest__suggestion {
+    padding: 3px 10px;
+    color: $color-black-primary;
+    line-height: 26px;
+    font-size: 14px;
+    letter-spacing: 0.6px;
+    cursor: pointer;
+
+    &--focused {
+        background-color: $color-orange;
+        color: $color-white-primary;
+    }
+}
+
+.dp-inputgroup__select {
+    padding: 5px 6px;
+    border: 0;
+    background: url('../../assets/arrow-select.png') no-repeat top 16px right 5px;
+    display: block;
+    width: 100%;
+    border-radius: 0;
+    border-bottom: 1px solid $color-grey-disabled;
+    box-shadow: none;
+    appearance: none;
+    line-height: 1.42857143;
+    background-size: 12px 6px;
+    font-size: 16px;
+    height: 36px;
+    color: $color-black-primary;
+
+    &:active,
+    &:focus {
+        color: $color-green;
+        border-color: $color-green;
+    }
+}
+
