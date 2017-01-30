@@ -136,19 +136,19 @@ class Content extends Component {
         )
       case 'paket-data':
         return (
-          <PaketData note={DCONTENT[tab].note} />
+          <PaketData note={DCONTENT[tab].note} openDrawer={(e) => this.handleOpenOverlay(e)} />
         )
       case 'bpjs':
         return (
-          <BPJS radio={DCONTENT[tab].radio} />
+          <BPJS radio={DCONTENT[tab].radio} openDrawer={(e) => this.handleOpenOverlay(e)} />
         )
       case 'pln':
         return (
-          <PLN radio={DCONTENT[tab].radio} note={DCONTENT[tab].note} />
+          <PLN radio={DCONTENT[tab].radio} note={DCONTENT[tab].note} openDrawer={(e) => this.handleOpenOverlay(e)} />
         )
       case 'saldo':
         return (
-          <Saldo />
+          <Saldo openDrawer={(e) => this.handleOpenOverlay(e)} />
         )
       case 'tokocash':
         return (
@@ -158,7 +158,10 @@ class Content extends Component {
         )
       case 'game':
         return (
-          <Game products={DCONTENT[tab].products} note={DCONTENT[tab].note} />
+          <Game
+            products={DCONTENT[tab].products}
+            note={DCONTENT[tab].note}
+            openDrawer={(e) => this.handleOpenOverlay(e)} />
         )
       case 'air':
         return (

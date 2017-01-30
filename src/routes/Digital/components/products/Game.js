@@ -10,7 +10,8 @@ class Game extends Component {
 
   static propTypes = {
     products: PropTypes.array,
-    note: PropTypes.string
+    note: PropTypes.string,
+    openDrawer: PropTypes.func
   }
 
   render () {
@@ -25,7 +26,8 @@ class Game extends Component {
         <SelectGroup
           useDrawer
           label='Nominal'
-          placeholder='Pilih Nominal' />
+          placeholder='Pilih Nominal'
+          openDrawer={this.props.openDrawer} />
         <InformationBox content={this.props.note} />
         <PriceGroup isDiscount price='Rp 15.000' oldPrice='Rp 16.000' />
         <BuyButtonGroup hasInstant buttonText='Beli' />

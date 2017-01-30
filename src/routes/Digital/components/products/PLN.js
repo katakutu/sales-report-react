@@ -10,7 +10,8 @@ import BuyButtonGroup from '../parts/BuyButtonGroup'
 class PLN extends Component {
   static propTypes = {
     radio: PropTypes.array,
-    note: PropTypes.string
+    note: PropTypes.string,
+    openDrawer: PropTypes.func
   }
 
   render () {
@@ -24,7 +25,8 @@ class PLN extends Component {
         <SelectGroup
           useDrawer
           label='Nominal'
-          placeholder='Pilih Nominal' />
+          placeholder='Pilih Nominal'
+          openDrawer={this.props.openDrawer} />
         <InformationBox content={this.props.note} />
         <PriceGroup price='Rp 102.500' />
         <BuyButtonGroup buttonText='Bayar' />
