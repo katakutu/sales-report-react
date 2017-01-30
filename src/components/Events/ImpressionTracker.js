@@ -22,7 +22,7 @@ class ImpressionTracker extends Component {
 
   sendImpression (url, urlMatch) {
     if (url !== urlMatch) {
-      fetch(`${url}&render=false`, { method: 'GET' })
+      fetch(`${url}&render=false`, { method: 'GET', credentials: 'include' })
         .then(response => {
           this.setState({
             active: false
