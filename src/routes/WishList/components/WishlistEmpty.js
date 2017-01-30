@@ -57,7 +57,7 @@ class WishlistEmpty extends Component {
             content: lang[this.props.lang]['Topads Modal Section 3 Content']
           }
         ],
-        link: 'https://m.tokopedia.com/iklan?campaign=topads&amp;source=wishlist&amp;medium=mobile',
+        link: 'https://m.tokopedia.com/iklan?campaign=topads&source=wishlist&medium=mobile',
         linkText: lang[this.props.lang]['Topads Modal Button']
       }
     }
