@@ -109,6 +109,13 @@ const lang = {
     'INSPIRASI DARI PEMBELIAN' : 'INSPIRED BY YOUR PURCHASED',
     'PRODUCT FEED' : 'PRODUCT FEED',
     'Feed Empty': 'Your Feed is empty',
+    'Topads Modal Section 1 Title': 'Increase Sales',
+    'Topads Modal Section 1 Content': 'Your shop and products are more visible for Tokopedia users.',
+    'Topads Modal Section 2 Title': 'Right on Target',
+    'Topads Modal Section 2 Content': 'TopAds helps you in reaching the right target market, through product searching, and product category.',
+    'Topads Modal Section 3 Title': 'Effective & Efficient',
+    'Topads Modal Section 3 Content': 'With top ads, the results is worth your investment.',
+    'Topads Modal Button': 'Read more'
 }
 
 module.exports = lang

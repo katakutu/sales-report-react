@@ -272,6 +272,9 @@ const FeedQuery = gql`
             m_ecs
             s_ecs
             xs_ecs
+            s_url
+            m_url
+            xs_url
           }
           uri
           relative_uri
@@ -304,6 +307,8 @@ const FeedQuery = gql`
             cover_ecs
             s_ecs
             xs_ecs
+            s_url
+            xs_url
           }
           gold_shop
           lucky_shop
@@ -529,6 +534,9 @@ const TopAdsQueries = {
           m_ecs
           s_ecs
           xs_ecs
+          s_url
+          m_url
+          xs_url
         }
         uri
         relative_uri
@@ -561,6 +569,8 @@ const TopAdsQueries = {
           cover_ecs
           s_ecs
           xs_ecs
+          s_url
+          xs_url
         }
         gold_shop
         lucky_shop
