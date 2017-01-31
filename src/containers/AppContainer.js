@@ -1,20 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { browserHistory, Router } from 'react-router'
 import { Provider } from 'react-redux'
-import ReactGA from 'react-ga'
-import { GA_PROPERTY_ID } from '../constants'
-
-ReactGA.initialize(GA_PROPERTY_ID)
 
 class AppContainer extends Component {
   static propTypes = {
     routes : PropTypes.object.isRequired,
     store  : PropTypes.object.isRequired
-  }
-
-  logPageView () {
-    ReactGA.set({ page: window.location.pathname })
-    ReactGA.pageview(window.location.pathname)
   }
 
   componentDidMount () {
@@ -28,7 +19,7 @@ class AppContainer extends Component {
     return (
       <Provider store={store}>
         <div>
-          <Router history={browserHistory} children={routes} onUpdate={this.logPageView} />
+          <Router history={browserHistory} children={routes} />
         </div>
       </Provider>
     )
