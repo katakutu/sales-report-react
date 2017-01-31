@@ -76,7 +76,7 @@ class Ticker extends Component {
   }
 
   render () {
-    const ts = this.state.content !== '' ? {} : { height: '0' }
+    const ts = this.state.content !== '' ? {} : { display: 'none' }
     const cl = this.state.color === '' ? {} : { borderColor: this.state.color }
 
     return (
