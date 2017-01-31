@@ -15,8 +15,7 @@ class Unfavorited extends Component {
     lang: PropTypes.string,
     notificationDispatch: PropTypes.func,
     mutate: PropTypes.func.isRequired,
-    productID: PropTypes.number,
-    productName: PropTypes.string,
+    shopID: PropTypes.number,
     userID: PropTypes.number
   }
 
@@ -30,7 +29,7 @@ class Unfavorited extends Component {
     const variables = {
       variables: {
         userID: this.props.userID,
-        productID: this.props.productID
+        shopID: this.props.shopID
       }
     }
 
@@ -38,7 +37,7 @@ class Unfavorited extends Component {
       if (addSuccess['data']['favorite_add'] || false) {
         const msg = lang[this.props.lang]['Add Favorite Success']
 
-        this.props.activateFavorite(this.props.productID)
+        this.props.activateFavorite(this.props.shopID)
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,

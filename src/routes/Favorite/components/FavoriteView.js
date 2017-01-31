@@ -92,9 +92,6 @@ class FavoriteView extends Component {
       'shop': this.props.data.shop,
       'wallet': this.props.data.wallet
     })
-    console.log('12---------------------------------------------------------')
-    console.log(this.props.favorites)
-    console.log('12---------------------------------------------------------')
     // const flCount = this.props.favorites.length
 
     return (

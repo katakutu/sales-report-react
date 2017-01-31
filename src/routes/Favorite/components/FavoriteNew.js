@@ -100,6 +100,7 @@ class Favorite extends Component {
       <div className='outside__wrapper'>
         {
           favorites.map((item, index) => {
+            // console.log(item);
             const shopUrl = `${HOSTNAME}/` + item.shop_name
             let img0 = item.products.length !== 0
             ? <Img src={item.products[0].img_url} initialImage={loading} fallbackImage={loading} /> : ''
@@ -141,13 +142,13 @@ class Favorite extends Component {
                       favorites['isActive']
                         ? <Favorited
                           userID={this.props.userID}
-                          productID={parseInt(item['id'])}
-                          productName={item['name']} />
+                          shopID={parseInt(item['shop_id'])}
+                          shopName={parseInt(item['shop_name'])} />
                         : <Unfavorited
                           userID={this.props.userID}
-                          productID={parseInt(item['id'])}
-                          productName={item['name']} />
-                    }
+                          shopID={parseInt(item['shop_id'])}
+                          shopName={parseInt(item['shop_name'])} />
+                      }
                     </div>
                   </div>
                 </div>
@@ -164,6 +165,13 @@ class Favorite extends Component {
       return <ModuleSpinner />
     }
     const favorites = this.props.data.favorites
+    if(favorites === undefined || favorites === null){ 
+      return (
+        <div className='favorite-container u-clearfix'>
+          <FavoriteEmpty />
+        </div>  
+      )
+    }
     const isNoFavorite = favorites.length === 0 && !this.props.data.loading && this.props.query === ''
     const isEmptyResult = favorites.length === 0 && !this.props.data.loading && this.props.query !== ''
 

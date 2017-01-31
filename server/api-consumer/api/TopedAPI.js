@@ -52,7 +52,7 @@ class TopedAPI {
     let finalOptions = Object.assign({
       timeout: 5000
     }, additionalOptions, options)
-
+    
     return request(finalURL, finalOptions).then(response => this._processJSON(response))
 
     /* return new Promise((resolve, reject) => {

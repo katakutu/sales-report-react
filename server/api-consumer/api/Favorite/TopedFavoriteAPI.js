@@ -5,7 +5,7 @@ const URL = require('url')
 const params = `/v1/web-service/fav_shop/list?user_id=:user_id&per_page=:per_page&p=:page`
 const FAVORITE_SERVICES = {
   GetPromoteShop: `${GlobalConfig.Tome.Hostname}` + params,
-  FavoriteModification: `${GlobalConfig.Tome.Hostname}` + `/shop/favorite-shop`
+  FavoriteModification: `${GlobalConfig.WS.Hostname}` + `/v4/action/favorite-shop/fav_shop.pl`
 }
 const DEFAULT_FAVE_DATA = {
   shop_id: 'ERROR FAIL',
@@ -31,50 +31,48 @@ class TopedFavoriteAPI {
                                          .replace(':page', page))
     return this.api.consume(url, 'GET', {})
   }
-  removeFavorite (userID, productID) {
-    const endpoint = FAVORITE_SERVICES.FavoriteModification
+  removeFavorite (userID, shopID, adKey) {
+    const url = URL.parse(FAVORITE_SERVICES.FavoriteModification)
     const content = {
       'user_id': userID,
-      'product_id': productID,
-      'bypass_hmac': 1,
-      'bypass_hash': 1,
-      'device_id': 'b'
+      'shop_id': shopID,
+      'ad_key': adKey,
+      'src': 'fav_shop'
     }
     const header = {
       'X-User-ID': userID,
       'X-Device': 'lite'
     }
+    return this.api.consume(url, 'POST', content)
+    // return this.HMACApi.consumeJSON(URL.parse(endpoint), 'DELETE', header, content)
+    //                    .then(response => response.statusCode === 204)
+    //                    .catch(err => {
+    //                      console.error(`[Favorite][Favorite][Delete] API call returning error: ${err}`)
 
-    return this.HMACApi.consumeJSON(URL.parse(endpoint), 'DELETE', header, content)
-                       .then(response => response.statusCode === 204)
-                       .catch(err => {
-                         console.error(`[Favorite][Favorite][Delete] API call returning error: ${err}`)
-
-                         return false
-                       })
+    //                      return false
+    //                    })
   }
 
-  addFavorite (userID, productID) {
-    const endpoint = FAVORITE_SERVICES.FavoriteModification.replace(':product_id', productID)
+  addFavorite (userID, shopID, adKey) {
+    const url = URL.parse(FAVORITE_SERVICES.FavoriteModification)
     const content = {
       'user_id': userID,
-      'product_id': productID,
-      'bypass_hmac': 1,
-      'bypass_hash': 1,
-      'device_id': 'b'
+      'shop_id': shopID,
+      'ad_key': adKey,
+      'src': 'fav_shop'
     }
     const header = {
       'X-User-ID': userID,
       'X-Device': 'lite'
     }
+    return this.api.consume(url, 'POST', content)
+    // return this.HMACApi.consumeJSON(URL.parse(endpoint), 'POST', header, content)
+    //                    .then(response => response.statusCode === 201)
+    //                    .catch(err => {
+    //                      console.error(`[Tome][Favorite][Add] API call returning error: ${err}`)
 
-    return this.HMACApi.consumeJSON(URL.parse(endpoint), 'POST', header, content)
-                       .then(response => response.statusCode === 201)
-                       .catch(err => {
-                         console.error(`[Tome][Favorite][Add] API call returning error: ${err}`)
-
-                         return false
-                       })
+    //                      return false
+    //                    })
   }
 }
 

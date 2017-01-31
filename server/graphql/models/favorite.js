@@ -5,12 +5,12 @@ const {
 const common = require('./common')
 const api = new TopedFavoriteAPI()
 
-function removeFavorite (userID, productID) {
-  return api.removeFavorite(userID, productID)
+function removeFavorite (userID, shopID) {
+  return api.removeFavorite(userID, shopID)
 }
 
-function addFavorite (userID, productID) {
-  return api.addFavorite(userID, productID)
+function addFavorite (userID, shopID, adKey) {
+  return api.addFavorite(userID, shopID, adKey)
 }
 
 function getPromoted (context) {

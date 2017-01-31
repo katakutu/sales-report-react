@@ -15,8 +15,7 @@ class Favorited extends Component {
     lang: PropTypes.string,
     notificationDispatch: PropTypes.func,
     mutate: PropTypes.func.isRequired,
-    productID: PropTypes.number,
-    productName: PropTypes.string,
+    shopID: PropTypes.number,
     userID: PropTypes.number
   }
 
@@ -30,7 +29,7 @@ class Favorited extends Component {
     const variables = {
       variables: {
         userID: this.props.userID,
-        productID: this.props.productID
+        shopID: this.props.shopID
       }
     }
 
@@ -38,12 +37,12 @@ class Favorited extends Component {
       if (removeSuccess['data']['favorite_remove'] || false) {
         const msg = lang[this.props.lang]['Remove Favorite Success']
 
-        this.props.deactivateFavorite(this.props.productID)
+        this.props.deactivateFavorite(this.props.shopID)
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Favorite',
-          text: msg.replace(':item', this.props.productName),
+          text: msg.replace(':item', this.props.shopName),
           timeout: 3000
         })
       } else {
