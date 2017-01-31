@@ -77,7 +77,10 @@ class Ticker extends Component {
 
     return (
       <div className='ticker' style={ts}>
-        <div className={'ticker__container ticker--' + this.state.tickerType } dangerouslySetInnerHTML={{ __html: this.state.content }} />
+        <div
+          className={'ticker__container ticker--' + this.state.tickerType}
+          dangerouslySetInnerHTML={{ __html: this.state.content }}
+        />
       </div>
     )
   }

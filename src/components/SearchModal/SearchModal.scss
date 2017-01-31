@@ -26,14 +26,14 @@
     left: 0;
     z-index: $z-index-max;
     margin-bottom: 2px;
-    padding: 10px 10px 0;
+    padding: 10px 0;
     width: 100%;
     background-color: $color-white-primary;
 }
 
 .search-modal__form {
     position: relative;
-    padding-left: 40px;
+    padding-left: 46px;
 }
 
 .search-modal__result-empty {
@@ -62,7 +62,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 40px;
+    left: 50px;
     margin: auto;
     display: block;
     width: 18px;
@@ -76,10 +76,10 @@
     top: 0;
     bottom: 0;
     margin: auto;
-    right: 0;
+    right: 18px;
     display: block;
-    width: 32px;
-    height: 32px;
+    width: 16px;
+    height: 16px;
     background: url('./assets/search-modal-delete@2x.png') transparent no-repeat;
     background-position: center center;
     background-size: 16px 16px;
@@ -156,7 +156,7 @@
 
 .search-modal__item-value {
     display: block;
-    padding: 5px 5px 5px 0;
+    padding: 8px 8px 8px 0;
     width: 100%;
     color: $color-black-secondary;
     font-size: 14px;
@@ -305,6 +305,10 @@
         height: 13px;
         background: url('./assets/search-modal-icon-copy-to-top.png') transparent no-repeat;
         background-size: 13px 13px;
+    }
+
+    .search-modal__item-value {
+        padding: 5px 5px 5px 0;
     }
 }
 

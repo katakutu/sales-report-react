@@ -7,6 +7,9 @@ import './SearchModal.scss'
 import { clearSearchQuery, updateSearchQuery } from '../../store/app'
 import lang from '../../lib/utils/Lang'
 
+import Tabs from '../Tabs/Tabs'
+import Tab from '../Tabs/Tab'
+
 class SearchModal extends Component {
   static propTypes = {
     clearSearchQuery: React.PropTypes.func,
@@ -15,7 +18,9 @@ class SearchModal extends Component {
     injectPlaceholder: React.PropTypes.string,
     updateSearchQuery: React.PropTypes.func,
     userSearchID: React.PropTypes.string,
-    searchQuery: React.PropTypes.string
+    searchQuery: React.PropTypes.string,
+    inverse: React.PropTypes.bool,
+    isActive: React.PropTypes.bool
   }
 
   constructor (props) {
@@ -63,14 +68,11 @@ class SearchModal extends Component {
             { this.props.searchQuery !== '' && <span className='search-input__clear'
               onClick={this.clearText} /> }
           </form>
-          <ul className='search-modal__tabs-holder u-clearfix'>
-            <li className='search-modal__tabs'>
-              <a href="#semua" className="active" aria-controls="semua" role="tab" data-toggle="tab">Semua</a>
-            </li>
-            <li className='search-modal__tabs'>
-              <a href="#toko" aria-controls="toko" role="tab" data-toggle="tab">Toko</a>
-            </li>
-          </ul>
+
+          <Tabs inverse>
+            <Tab isActive label='Semua' />
+            <Tab label='Toko' />
+          </Tabs>
         </div>
 
         <SearchModalResult query={this.props.searchQuery} userSearchID={this.props.userSearchID} />

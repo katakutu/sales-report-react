@@ -22,18 +22,27 @@
     }
 }
 
+.tab__search-modal {
+    margin: 0 -10px;
+    padding-top: 5px;
+}
+
 .tab__inverted {
     .tab {
-        border-bottom: 1px solid rgba($color-black-primary, 0.12);
+        border-bottom: 1px solid $color-grey-disabled;
         background-color: $color-white-primary;
         box-shadow: none;
     }
 
     .tab__link {
-        color: rgba($color-black-primary, 0.38);
+        color: $color-grey-disabled-3;
+        font-size: 14px;
+        text-transform: none;
 
         &.tab__active {
             color: $color-green;
+            border-bottom: 3px solid $color-green;
+            font-weight: 600;
         }
     }
 
@@ -43,7 +52,7 @@
 }
 
 .tab__link {
-    border-bottom: 2px solid transparent;
+    border-bottom: 3px solid transparent;
     color: $color-white-primary;
     text-align: center;
     text-decoration: none;
@@ -58,7 +67,7 @@
 
     &.tab__active {
         opacity: 1;
-        border-bottom: 2px solid #FFF;
+        border-bottom: 3px solid #FFF;
     }
 
     a {
@@ -139,5 +148,5 @@
     width: 100%;
     height: auto;
     overflow-x: hidden;
-    padding-top: 5px;
+    padding-top: 8px;
 }

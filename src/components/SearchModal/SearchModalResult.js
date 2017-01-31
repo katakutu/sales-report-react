@@ -72,7 +72,7 @@ class SearchModalResult extends Component {
       return (
         <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
           <a href='#' className='search-modal__item-action'><span /></a>
-          <a className='search-modal__item-value'
+          <a className='search-modal__item-value u-truncate'
             href={`${HOSTNAME}${item.url}`}
             onClick={_gtmNotifyClick(item.keyword)}>
             <i className='search-modal__icon' />
