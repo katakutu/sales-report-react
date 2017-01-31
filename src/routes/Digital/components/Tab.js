@@ -4,6 +4,9 @@ import classNames from 'classnames'
 import BodyClassName from 'react-body-classname'
 import './Tab.scss'
 
+import { SLUG } from '../digitalconstants'
+import { SITES } from '../../../constants'
+
 class Tab extends Component {
   static propTypes = {
     categoryList: PropTypes.array,
@@ -72,25 +75,30 @@ class Tab extends Component {
     })
   }
 
-  handleTabChange (name) {
-    this.setState({
-      activeTab: name,
-      modalOpened: false
-    })
-
-    if (this.state.shownTabs.indexOf(name) < 0) {
-      this.state.shownTabs.pop()
-      this.state.shownTabs.push(name)
+  handleTabChange (data) {
+    if (!SLUG[data.icon]) {
+      window.location = SITES['Pulsa'] + '/' + data.slug
     }
+    else {
+      this.setState({
+        activeTab: data.icon,
+        modalOpened: false
+      })
 
-    this.props.changeTab(name)
+      if (this.state.shownTabs.indexOf(data.icon) < 0) {
+        this.state.shownTabs.pop()
+        this.state.shownTabs.push(data.icon)
+      }
+
+      this.props.changeTab(data.icon)
+    }   
   }
 
   renderOtherCategory (data, index) {
     return (
       <li
         className={classNames('dp-modal__item', { 'u-hide': !this.isItemInModal(data.icon) })}
-        onClick={() => this.handleTabChange(data.icon)}
+        onClick={() => this.handleTabChange(data)}
         key={`digital-other-category-${data.name}`}>
         <a
           className={classNames('dp-tab__url', 'u-mt2', { 'active': this.state.activeTab === data.icon })}>
@@ -105,7 +113,7 @@ class Tab extends Component {
     return (
       <li
         className={classNames('dp-tab__item', { 'u-hide': !this.isTabShown(data.icon) })}
-        onClick={() => this.handleTabChange(data.icon)}
+        onClick={() => this.handleTabChange(data)}
         key={`digital-category-${data.id}`}>
         <a
           className={classNames('dp-tab__url', { 'active': this.state.activeTab === data.icon })}>
