@@ -261,7 +261,7 @@ const DEVELOPMENT = {
     Hostname: 'https://tome-staging.tokopedia.com'
   },
   Recharge: {
-    Hostname: 'https://pulsa-api.tokopedia.com'
+    Hostname: 'https://pulsa-api-staging.tokopedia.com'
   },
   CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/staging/',
   Fave: {

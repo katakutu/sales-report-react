@@ -20,7 +20,7 @@ class DigitalView extends Component {
     super(props)
 
     this.state = {
-      activeTab: 'donasi'
+      activeTab: this.props.params.slug
     }
 
     this.changeTab = this.changeTab.bind(this)

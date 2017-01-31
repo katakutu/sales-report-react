@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
 import classNames from 'classnames'
 import './BuyButtonGroup.scss'
 
@@ -51,13 +50,13 @@ class BuyButtonGroup extends Component {
         </div>
         <button type='submit'
           className='u-block u-center dp__btn btn--orange u-bold'>{this.props.buttonText}</button>
-        <Link
-          to={this.props.link}
+        <a
+          href={this.props.link}
           className={classNames('u-mx-auto',
             'u-mt2', 'u-block', 'u-center', 'u-h3',
             { 'u-hide': !this.props.linkText })}>
           {this.props.linkText}
-        </Link>
+        </a>
       </div>
     )
   }

@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 import classNames from 'classnames'
 import BodyClassName from 'react-body-classname'
 import './Tab.scss'
-import { SITES } from '../../../constants'
 
 class Tab extends Component {
   static propTypes = {
