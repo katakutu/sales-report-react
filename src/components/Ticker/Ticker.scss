@@ -32,6 +32,12 @@
     transition: all 0.5s ease-in-out;
 }
 
+.ticker--general {
+    border: 1px solid;
+    border-left-width: 3px;
+    border-radius: 3px;
+}
+
 .ticker--info {
     border: 1px solid $color-green-soft;
     border-left-width: 3px;
@@ -43,4 +49,3 @@
     border-left-width: 3px;
     border-radius: 3px;
 }
-

@@ -77,14 +77,13 @@ class Ticker extends Component {
   }
 
   render () {
-    let style = {}
-    this.state.content !== '' ? Object.assign(style, {}) : Object.assign(style, { height: '0' })
-    this.state.color === '' ? Object.assign(style, { backgroundColor: '#FAFDCD' })
-    : Object.assign(style, { backgroundColor: this.state.color })
+    const ts = this.state.content !== '' ? {} : { height: '0' }
+    const cl = this.state.color === '' ? {} : { borderColor: this.state.color }
 
     return (
-      <div className='ticker' style={style}>
-        <div className={'ticker__container ticker--' + this.state.tickerType } dangerouslySetInnerHTML={{ __html: this.state.content }} />
+      <div className='ticker' style={ts}>
+        <div style={cl} className={'ticker__container ticker--general'}
+          dangerouslySetInnerHTML={{ __html: this.state.content }} />
       </div>
     )
   }
