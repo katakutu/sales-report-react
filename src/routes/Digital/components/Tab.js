@@ -14,19 +14,21 @@ class Tab extends Component {
   constructor (props) {
     super(props)
 
-    let shownTabs = ['pulsa', 'paket-data']
+    let shownTabs = []
+    shownTabs.push(props.categoryList[0].icon)
+    shownTabs.push(props.categoryList[1].icon)
     if (this.props.activeTab) {
       if (shownTabs.indexOf(this.props.activeTab) < 0) {
         shownTabs.push(this.props.activeTab)
       } else {
-        shownTabs.push('donasi') // item ketiga yang ingin dimunculkan di tab
+        shownTabs.push(this.props.categoryList[2].icon) // item ketiga yang ingin dimunculkan di tab
       }
     } else {
-      shownTabs.push('donasi') // item ketiga yang ingin dimunculkan di tab
+      shownTabs.push(this.props.categoryList[2].icon) // item ketiga yang ingin dimunculkan di tab
     }
 
     this.state = {
-      activeTab: this.props.activeTab ? this.props.activeTab : 'donasi',
+      activeTab: this.props.activeTab ? this.props.activeTab : 'pulsa',
       shownTabs: shownTabs,
       modalOpened: false
     }

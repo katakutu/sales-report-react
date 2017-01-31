@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
+import { SLUG } from '../digitalconstants'
+import { SITES } from '../../../constants'
 
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import Tab from './Tab'
@@ -35,6 +37,10 @@ class DigitalView extends Component {
       return (
         <SplashScreen />
       )
+    }
+
+    if (!SLUG[this.props.params.slug]) {
+      window.location = SITES['Pulsa'] + '/' + this.props.params.slug
     }
 
     const user = this.props.data.user || {}
