@@ -77,10 +77,11 @@ class SearchModalResult extends Component {
             onClick={_gtmNotifyClick(item.keyword)}>
             <i className='search-modal__icon' />
             {
-                  this.props.query === ''
-                    ? item.keyword
-                    : this._boldKeyword(item.keyword, this.props.query)
-                }
+              this.props.query === ''
+                ? item.keyword
+                : this._boldKeyword(item.keyword, this.props.query)
+            }
+            <div className='search-modal__result-in-category'>di Semua Kategori</div>
           </a>
         </li>
       )
@@ -94,9 +95,9 @@ class SearchModalResult extends Component {
           <a href='#' className='search-modal__item-action'><span /></a>
           <a className='search-modal__item-value' href={`${HOSTNAME}${item.url}`}>
             <img src={item.imageURI} alt={`${item.keyword} Store Logo`} />
-            { item.official && <span className='search-modal__item-label'></span> }
-            { item.promoted && <span className='search-modal__item-label'></span> }
-            <hr className='search-modal__shop-name-line'  />
+            { item.official && <span className='search-modal__item-label' /> }
+            { item.promoted && <span className='search-modal__item-label' /> }
+            <hr className='search-modal__shop-name-line' />
             <i className='search-modal__icon' />
             <span className='search-modal__keyword-result u-truncate'>
               {
