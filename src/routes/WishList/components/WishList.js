@@ -235,7 +235,7 @@ class WishList extends Component {
         <div className='wishlist__searchbar-holder'>
           <i className='wishlist__icon wishlist__love-grey wishlist__set-love-grey' />
           <input
-            type='text'
+            type='search'
             name='searchwishlist'
             className='wishlist__searchbar'
             placeholder={lang[this.props.lang]['Search in Wishlist']}
