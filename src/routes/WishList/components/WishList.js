@@ -82,12 +82,10 @@ class WishList extends Component {
       this.props.updateQuery(this.state.query)
       event.target.blur()
 
-      if (this.state.query === '') {
-        this.setState({ page: 1 })
-      }
-
-      browserHistory.push({
-        pathname: '/wishlist'
+      this.setState({ page: 1 }, () => {
+        browserHistory.push({
+          pathname: '/wishlist'
+        })
       })
     }
   }
