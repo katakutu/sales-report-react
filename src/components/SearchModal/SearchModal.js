@@ -63,6 +63,14 @@ class SearchModal extends Component {
             { this.props.searchQuery !== '' && <span className='search-input__clear'
               onClick={this.clearText} /> }
           </form>
+          <ul className='search-modal__tabs-holder u-clearfix'>
+            <li className='search-modal__tabs'>
+              <a href="#semua" className="active" aria-controls="semua" role="tab" data-toggle="tab">Semua</a>
+            </li>
+            <li className='search-modal__tabs'>
+              <a href="#toko" aria-controls="toko" role="tab" data-toggle="tab">Toko</a>
+            </li>
+          </ul>
         </div>
 
         <SearchModalResult query={this.props.searchQuery} userSearchID={this.props.userSearchID} />

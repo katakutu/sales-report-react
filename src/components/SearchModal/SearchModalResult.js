@@ -94,13 +94,17 @@ class SearchModalResult extends Component {
           <a href='#' className='search-modal__item-action'><span /></a>
           <a className='search-modal__item-value' href={`${HOSTNAME}${item.url}`}>
             <img src={item.imageURI} alt={`${item.keyword} Store Logo`} />
-            {
+            { item.official && <span className='search-modal__item-label'></span> }
+            { item.promoted && <span className='search-modal__item-label'></span> }
+            <hr className='search-modal__shop-name-line'  />
+            <i className='search-modal__icon' />
+            <span className='search-modal__keyword-result u-truncate'>
+              {
                 this.props.query === ''
                 ? item.keyword
                 : this._boldKeyword(item.keyword, this.props.query)
               }
-            { item.official && <span className='search-modal__item-label'>Official Store</span> }
-            { item.promoted && <span className='search-modal__item-label'>Promoted</span> }
+            </span>
           </a>
         </li>
       )
@@ -164,7 +168,7 @@ class SearchModalResult extends Component {
     const finalData = data || []
     const filterFunc = i => i['id'].toLowerCase() === filter.toLowerCase()
 
-    const mainClassName = `u-clearfix search-modal__result-container search-modal__result--${filter}`
+    const mainClassName = `u-clearfix u-mb1 search-modal__result-container search-modal__result--${filter}`
     const title = this._sentenceCase(filter.split('_').join(' '))
     const finalTitle = title === 'Recent Search' ? 'History' : title
 
@@ -209,7 +213,7 @@ class SearchModalResult extends Component {
 
   render () {
     return (
-      <div className='clearfix'>
+      <div className='clearfix u-mt3'>
         { this.props.query === '' && this._renderResultList(this.props.data.search, 'recent_search', true) }
         { this.props.query === '' && this._renderResultList(this.props.data.search, 'popular_search', true) }
         { this.props.query !== '' && this._renderResultList(this.props.data.search, 'autocomplete', false) }
