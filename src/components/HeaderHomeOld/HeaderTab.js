@@ -67,6 +67,7 @@ class HeaderTab extends Component {
     const homeCN = this.props.activeTab === 'home'
     const hlCN = this.props.activeTab === 'hotlist'
     const wlCN = this.props.activeTab === 'wishlist'
+    const fdCN = this.props.activeTab === 'feed'
 
     return (
       <Tabs userIsLoggedIn={this.props.userIsLoggedIn}
@@ -74,7 +75,11 @@ class HeaderTab extends Component {
         headerState={this.props.headerState}
         checkActiveScroll={this.checkActiveScroll}>
         <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/', { h: 3 })} />
-        { this.props.userIsLoggedIn ? <Tab label='Feed' url={`${HOSTNAME}/?view=feed_preview`} /> : '' }
+        {
+          this.props.userIsLoggedIn
+          ? <Tab label='Feed' isActive={fdCN} onClick={() => this._savePosition('/feed')} />
+          : ''
+        }
         {
           this.props.userIsLoggedIn
           ? <Tab label='Wishlist' isActive={wlCN} onClick={() => this._savePosition('/wishlist')} />
