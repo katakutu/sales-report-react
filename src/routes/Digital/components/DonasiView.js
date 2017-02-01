@@ -40,8 +40,8 @@ class DonasiView extends Component {
     }
 
     if (!SLUG[this.state.activeTab]) {
-      return
       window.location = SITES['Pulsa'] + '/' + this.state.activeTab
+      return
     }
 
     const user = this.props.data.user || {}
