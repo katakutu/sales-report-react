@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Cookies from '../../lib/utils/Cookies'
 import './Ticker.scss'
 
 class Ticker extends Component {
@@ -20,19 +21,24 @@ class Ticker extends Component {
 
     this.refreshTickers = this.refreshTickers.bind(this)
     this.poolTickerRefresh = this.poolTickerRefresh.bind(this)
+    this.loadTicker = this.loadTicker.bind(this)
+    this.closeTicker = this.closeTicker.bind(this)
 
     this._intervalID = null
   }
 
   componentDidMount () {
-    this.poolTickerRefresh()
-
-    if (this.props.tickers.length > 0) {
-      this.setState({
-        nextContentIndex: 1,
-        content: this.props.tickers[0]['message'],
-        color: this.props.tickers[0]['color']
-      })
+    const cookies = Cookies.hasItem('ticker')
+    if (!cookies) {
+      this.loadTicker()
+    } else {
+      let now = new Date()
+      let date = new Date(Cookies.getItem('ticker'))
+      let result = (date.getTime() - now.getTime())
+      let that = this
+      setTimeout(function () {
+        that.loadTicker()
+      }, result)
     }
   }
 
@@ -53,6 +59,50 @@ class Ticker extends Component {
       clearInterval(this._intervalID)
       this._intervalID = null
     }
+  }
+
+  loadTicker () {
+    this.poolTickerRefresh()
+
+    if (this.props.tickers.length > 0) {
+      this.setState({
+        nextContentIndex: 1,
+        content: this.props.tickers[0]['message'],
+        color: this.props.tickers[0]['color']
+      })
+    }
+  }
+
+  closeTicker () {
+    // 5 minute
+    const rangeTime = (5 * 60 * 1000)
+    let domain = location.hostname
+    if (window.location.href.indexOf('ndvl') > -1) {
+      domain = /(\..*\.ndvl)/.exec(location.hostname)[1]
+    } else if (window.location.href.indexOf('localhost') > -1) {
+      domain = /(localhost)/.exec(location.hostname)[1]
+    } else if (window.location.href.indexOf('ndvl') < 0) {
+      domain = /(\..*\.com)/.exec(location.hostname) &&
+        /(\..*\.com)/.exec(location.hostname)[1] ||
+        location.hostname
+    }
+
+    let date = new Date()
+    date.setTime(date.getTime() + rangeTime)
+
+    Cookies.setItem('ticker', date, date, '/', domain, false)
+    clearInterval(this._intervalID)
+    this.setState({
+      nextContentIndex: 0,
+      content: '',
+      color: '',
+      refreshInterval: ''
+    })
+
+    let that = this
+    setTimeout(function () {
+      that.loadTicker()
+    }, rangeTime)
   }
 
   poolTickerRefresh () {
@@ -81,8 +131,10 @@ class Ticker extends Component {
 
     return (
       <div className='ticker' style={ts}>
-        <div style={cl} className={'ticker__container ticker--general'}
-          dangerouslySetInnerHTML={{ __html: this.state.content }} />
+        <div style={cl} className={'ticker__container ticker--general'}>
+          <span dangerouslySetInnerHTML={{ __html: this.state.content }} />
+          <a className='ticker__close' onClick={this.closeTicker} />
+        </div>
       </div>
     )
   }
