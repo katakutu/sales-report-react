@@ -387,6 +387,7 @@ const WishlistQueries = {
   getAll: gql`
   query Query($userID: Int!, $query: String!, $count: Int!, $page: Int!) {
     wishlist(user_id:$userID, query: $query, count: $count, page: $page){
+      count
       has_next_page
       total_data
       items{

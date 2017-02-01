@@ -62,7 +62,7 @@ const PRODUCTION = {
   },
   CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/',
   Fave: {
-    Hostname: 'https://ta.tokopedia.com'
+    Hostname: 'http://ta.tokopedia.local'
   },
   Recommendation: {
     Hostname: 'https://merlin.tokopedia.com'
