@@ -32,7 +32,7 @@ class Ticker extends Component {
     if (!cookies) {
       this.loadTicker()
     } else {
-      let now = new Date()
+      const now = new Date()
       let date = new Date(Cookies.getItem('ticker'))
       let result = (date.getTime() - now.getTime())
       let that = this
@@ -87,7 +87,7 @@ class Ticker extends Component {
         location.hostname
     }
 
-    let date = new Date()
+    const date = new Date()
     date.setTime(date.getTime() + rangeTime)
 
     Cookies.setItem('ticker', date, date, '/', domain, false)
