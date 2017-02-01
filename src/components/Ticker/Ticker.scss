@@ -3,19 +3,26 @@
 .ticker {
     overflow-y: hidden;
     height: 4.857142857rem;
-    background-color: $color-tint;
     color: $color-black-disabled;
     text-align: center;
     line-height: 4.857142857rem;
+    padding: 10px 7px 0;
+    display: table;
+    width: 100%;
 }
 
 .ticker__container {
-    display: inline-block;
-    padding: 0.714285714rem;
+    display: table-cell;
+    text-align: center;
     vertical-align: middle;
+    padding: 0 25px 0 0.714285714rem;
     word-break: break-word;
     font-size: 0.785714286rem;
     line-height: 1.5;
+    width: 100%;
+    height: 52px;
+    position: relative;
+    background-color: $color-white-primary;
 
     * {
         display: inline;
@@ -30,4 +37,34 @@
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
+}
+
+.ticker__close {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 10;
+    background: url('./assets/icon-right-grey-copy.svg') transparent no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+}
+
+.ticker--general {
+    border: 1px solid;
+    border-left-width: 3px;
+    border-radius: 3px;
+}
+
+.ticker--info {
+    border: 1px solid $color-green-soft;
+    border-left-width: 3px;
+    border-radius: 3px;
+}
+
+.ticker--warning {
+    border: 1px solid $color-yellow-soft;
+    border-left-width: 3px;
+    border-radius: 3px;
 }

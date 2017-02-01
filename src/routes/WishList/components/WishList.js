@@ -82,12 +82,10 @@ class WishList extends Component {
       this.props.updateQuery(this.state.query)
       event.target.blur()
 
-      if (this.state.query === '') {
-        this.setState({ page: 1 })
-      }
-
-      browserHistory.push({
-        pathname: '/wishlist'
+      this.setState({ page: 1 }, () => {
+        browserHistory.push({
+          pathname: '/wishlist'
+        })
       })
     }
   }
@@ -133,7 +131,7 @@ class WishList extends Component {
 
       return (
         <div className='u-col u-col-6 wishlist__contents' key={`wishlist-${parentIndex}-${index}`}>
-          <div className='wishlist__content-box'>
+          <div className='wishlist__content-box wishlist__item'>
             {
               wishlist['isActive']
                 ? <WishlistLove
@@ -208,16 +206,17 @@ class WishList extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (!nextProps.loading) {
-      const wl = nextProps.wishlist || { has_next_page: false, items: [], total_data: 0 }
+      const wl = nextProps.wishlist || { count: 0, has_next_page: false, items: [], total_data: 0 }
       const wishlists = wl.items || []
       const newWishlists = wishlists.map(wl => Object.assign({}, wl, { isLoved: true }))
 
       this.props.replaceWishlists(newWishlists)
+      this.setState({ query: nextProps.query })
     }
   }
 
   render () {
-    const wl = this.props.wishlist || { has_next_page: false, items: [], total_data: 0 }
+    const wl = this.props.wishlist || { count: 0, has_next_page: false, items: [], total_data: 0 }
     const wishlists = this.props.wishlists || []
     const isNoWishlist = wishlists.length === 0 && !this.props.loading && this.props.query === ''
     const isEmptyResult = wishlists.length === 0 && !this.props.loading && this.props.query !== ''
@@ -237,7 +236,7 @@ class WishList extends Component {
         <div className='wishlist__searchbar-holder'>
           <i className='wishlist__icon wishlist__love-grey wishlist__set-love-grey' />
           <input
-            type='text'
+            type='search'
             name='searchwishlist'
             className='wishlist__searchbar'
             placeholder={lang[this.props.lang]['Search in Wishlist']}
@@ -251,7 +250,9 @@ class WishList extends Component {
               this.props.query !== '' &&
               <div id='search-stats'>
                 <div className='u-col u-col-6 search-stats-detail'>
-                  <p className='wishlist__search-result'>{wishlists.length} {lang[this.props.lang]['Hasil']}</p>
+                  <p className='wishlist__search-result'>
+                    { wl['total_data'] || wishlists.length } {lang[this.props.lang]['Hasil']}
+                  </p>
                 </div>
                 <div className='u-col u-col-6 search-stats-detail'>
                   <span className='wishlist__reset-search' onClick={this.resetSearch}>
@@ -319,6 +320,7 @@ const WishListWithData = graphql(queries.WishlistQueries.getAll, {
             const newWL = fetchMoreResult.data.wishlist
             return Object.assign({}, prev, {
               wishlist: Object.assign({}, prev.wishlist, {
+                count: newWL['count'],
                 has_next_page: newWL['has_next_page'],
                 total_data: newWL['total_data'],
                 items: prev.wishlist.items.concat(newWL.items)

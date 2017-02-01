@@ -9,6 +9,7 @@ import BaznasLogo from '../../assets/lembaga/baznas1.png'
 import DompetDuafaLogo from '../../assets/lembaga/dompet_duafa.png'
 import PkpuLogo from '../../assets/lembaga/pkpu.png'
 import YcabLogo from '../../assets/lembaga/ycab1.png'
+import RumahZakatLogo from '../../assets/lembaga/rz.png'
 
 class Donasi extends Component {
   static propTypes = {
@@ -201,6 +202,24 @@ class Donasi extends Component {
                 </p>
                 <p className='u-h5 u-mt0 u-mb0'>
                   <a href='http://www.pkpu.or.id/'>Lihat selengkapnya ›</a>
+                </p>
+              </div>
+            </div>
+            <div
+              className={classNames('u-clearfix', 'u-relative', 'dp-lembaga-content',
+              { 'u-hide': this.state.selectedOperator.id !== 141 })}>
+              <div className='u-relative u-mb2 u-center dp-lembaga-content-img'>
+                <img src={RumahZakatLogo} alt='' className='u-align-middle' />
+              </div>
+              <div className='dp-lembaga-content-text'>
+                <p className='u-h5 u-mt0 u-mb2'>
+                  Rumah Zakat (RZ) adalah lembaga filantropi yang mengelola zakat, infak, sedekah, serta dana sosial
+                  lainnya melalui program-program pemberdayaan masyarakat. Program pemberdayaan direalisasikan melalui
+                  empat rumpun utama yaitu Senyum Juara (pendidikan), Senyum Sehat (kesehatan), Senyum Mandiri
+                  (pemberdayaan ekonomi), serta Senyum Lestari (inisiatif kelestarian lingkungan).
+                </p>
+                <p className='u-h5 u-mt0 u-mb0'>
+                  <a href='https://www.rumahzakat.org'>Lihat selengkapnya ›</a>
                 </p>
               </div>
             </div>

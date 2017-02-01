@@ -4,6 +4,7 @@ import Home from './Home'
 import HotListRoute from './HotList'
 import CategoryRoute from './Category'
 import WishlistRoute from './WishList'
+import FeedRoute from './Feed'
 import DigitalDonasiRoute from './Digital/Donasi'
 import NotFound from './NotFound'
 
@@ -18,6 +19,7 @@ export const createRoutes = (store, ApolloExecutors) => ({
     HotListRoute(store),
     CategoryRoute(store),
     WishlistRoute(store, ApolloExecutors),
+    FeedRoute(store, ApolloExecutors),
     DigitalDonasiRoute(store),
     {
       path: '*',
