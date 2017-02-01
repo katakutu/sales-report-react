@@ -39,7 +39,8 @@ class Favorite extends Component {
     updateHasNextPage: PropTypes.func,
     updateTotalFavorite: PropTypes.func,
     userID: PropTypes.number,
-    favorites: PropTypes.arrayOf(PropTypes.object)
+    favorite:  PropTypes.object, // object returned from graphql
+    favorites: PropTypes.arrayOf(PropTypes.object) // our redux state that's actually calculated
   }
 
   state = {
@@ -164,7 +165,7 @@ class Favorite extends Component {
     if (this.props.data.loading) {
       return <ModuleSpinner />
     }
-    const favorites = this.props.data.favorites
+    const favorites = this.props.data.favorite
     if(favorites === undefined || favorites === null){ 
       return (
         <div className='favorite-container u-clearfix'>
@@ -184,10 +185,10 @@ class Favorite extends Component {
     )
   }
 }
-// { favorites.length > 0 && this.renderFavorites() }
+
 const FaveQuery = gql`
-query Query ($userID: Int!, $query: String!, $count: Int!, $page: Int!){
-  favorites (user_id:$userID, query: $query, count: $count, page: $page){
+query Query ($userID: Int!, $page: Int!, $count: Int!, $shop: String){
+  favorite (user_id:$userID, page: $page, count: $count, shop: $shop){
     shop_id
     domain
     shop_name
@@ -215,12 +216,12 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
-    favorites: state['favorite'] ? state['favorite'].favorites : state.favorites
+    favorite: state['favorite'] ? state['favorite'].favorite : state.favorite
   }
 }
 export default graphql(FaveQuery, {
-  options: ({ userID, query, count, page }) => ({
-    variables: { userID, query, count, page },
+  options: ({ userID, count, page, shop }) => ({
+    variables: { userID, count, page, shop },
     forceFetch: true,
     returnPartialData: true
   })

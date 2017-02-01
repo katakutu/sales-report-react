@@ -21,7 +21,7 @@ function getPromoted (context) {
     }
     const api = new TopedFavoriteAPI()
 
-    return api.getPromote(uid).then(response => {
+    return api.getFavorite(uid).then(response => {
       if (!response || !response['data']) {
         return Promise.resolve(DEFAULT_FAVE_DATA)
       }
@@ -56,13 +56,12 @@ function getPromoted (context) {
   })
 }
 
-function getFavorited (userID, query, count, page) {
+function getFavorited (userID, count, page, shop) {
   if (userID === 0) {
     return Promise.resolve(DEFAULT_FAVE_DATA)
   }
   const api = new TopedFavoriteAPI()
-
-  return api.getPromote(userID).then(response => {
+  return api.getFavorite(userID, count, page, shop).then(response => {
     if (!response || !response['data']) {
       return Promise.resolve(DEFAULT_FAVE_DATA)
     }

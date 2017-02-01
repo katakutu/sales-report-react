@@ -2,9 +2,9 @@ const TopedAPI = require('../TopedAPI')
 const GlobalConfig = require('../../../GlobalConfig')
 const URL = require('url')
 
-const params = `/v1/web-service/fav_shop/list?user_id=:user_id&per_page=:per_page&p=:page`
+const params = `/v1/web-service/fav_shop/list?user_id=:user_id&per_page=:per_page&p=:page&shop_name=:shop`
 const FAVORITE_SERVICES = {
-  GetPromoteShop: `${GlobalConfig.Tome.Hostname}` + params,
+  GetFaveShop: `${GlobalConfig.Tome.Hostname}` + params,
   FavoriteModification: `${GlobalConfig.WS.Hostname}` + `/v4/action/favorite-shop/fav_shop.pl`
 }
 const DEFAULT_FAVE_DATA = {
@@ -24,11 +24,12 @@ class TopedFavoriteAPI {
     this.api = new TopedAPI()
   }
 
-  getPromote (userID, page = 1, perPage = 10) {
-    let url = URL.parse(FAVORITE_SERVICES.GetPromoteShop
+  getFavorite (userID, perPage = 10, page = 1, shopName="") {
+    let url = URL.parse(FAVORITE_SERVICES.GetFaveShop
                                          .replace(':user_id', userID)
                                          .replace(':per_page', perPage)
-                                         .replace(':page', page))
+                                         .replace(':page', page)
+                                         .replace(':shop', shopName))
     return this.api.consume(url, 'GET', {})
   }
   removeFavorite (userID, shopID, adKey) {
