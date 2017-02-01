@@ -78,8 +78,7 @@ class Tab extends Component {
   handleTabChange (data) {
     if (!SLUG[data.icon]) {
       window.location = SITES['Pulsa'] + '/' + data.slug
-    }
-    else {
+    } else {
       this.setState({
         activeTab: data.icon,
         modalOpened: false
@@ -91,7 +90,7 @@ class Tab extends Component {
       }
 
       this.props.changeTab(data.icon)
-    }   
+    }
   }
 
   renderOtherCategory (data, index) {
