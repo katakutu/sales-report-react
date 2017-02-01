@@ -12,7 +12,7 @@ import Operator from './Operator'
 
 import SplashScreen from '../../../components/Loading/SplashScreen'
 
-class DigitalView extends Component {
+class DonasiView extends Component {
   static propTypes = {
     data: PropTypes.object,
     params: PropTypes.object
@@ -22,7 +22,7 @@ class DigitalView extends Component {
     super(props)
 
     this.state = {
-      activeTab: this.props.params.slug
+      activeTab: 'donasi'
     }
 
     this.changeTab = this.changeTab.bind(this)
@@ -39,8 +39,9 @@ class DigitalView extends Component {
       )
     }
 
-    if (!SLUG[this.props.params.slug]) {
-      window.location = SITES['Pulsa'] + '/' + this.props.params.slug
+    if (!SLUG[this.state.activeTab]) {
+      return
+      window.location = SITES['Pulsa'] + '/' + this.state.activeTab
     }
 
     const user = this.props.data.user || {}
@@ -75,4 +76,4 @@ class DigitalView extends Component {
 
 export default graphql(queries.DigitalQuery, {
   options: { returnPartialData: true }
-})(DigitalView)
+})(DonasiView)
