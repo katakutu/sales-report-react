@@ -9,6 +9,7 @@ export default (store, ApolloExecutors) => {
         .then(isUserLoggedIn => {
           if (nextState.location.pathname === '/' &&
              !nextState.location.query.h &&
+             nextState.location.query.view !== 'feed_preview' &&
              isUserLoggedIn) {
             window.location = `/?view=feed_preview`
           }
