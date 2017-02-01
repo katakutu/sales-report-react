@@ -39,25 +39,24 @@ class HeaderTab extends Component {
 
   _savePosition (val, query = null) {
     const { router } = this.context
-    let currentKey = this.props.activeTab
+    const currentKey = this.props.activeTab
     // get scrolled position
-    let scrollPosition = (window.pageYOffset !== undefined) ? window.pageYOffset
+    const scrollPosition = (window.pageYOffset !== undefined) ? window.pageYOffset
     : (document.documentElement || document.body.parentNode || document.body).scrollTop
     // update scroll history
     let updateState = {}
-    let currentState = this.props.scrollHistory
+    const currentState = this.props.scrollHistory
     // check available
     if (currentState) {
       // update state
-      currentState[currentKey] = { point: scrollPosition }
-      updateState = currentState
+      updateState = Object.assign({}, currentState, { [currentKey]: { point: scrollPosition } })
     } else {
       updateState[currentKey] = { point: scrollPosition }
     }
     // update to store
     this.props.updateScrollPosition(updateState)
     // push location state
-    let queries = query && query
+    const queries = query && query
     router.push({
       pathname: val,
       query: queries
@@ -68,7 +67,7 @@ class HeaderTab extends Component {
     const homeCN = this.props.activeTab === 'home'
     const hlCN = this.props.activeTab === 'hotlist'
     const wlCN = this.props.activeTab === 'wishlist'
-    const feedCN = this.props.activeTab === 'feed'
+    const fdCN = this.props.activeTab === 'feed'
 
     return (
       <Tabs userIsLoggedIn={this.props.userIsLoggedIn}
@@ -78,7 +77,7 @@ class HeaderTab extends Component {
         <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/', { h: 3 })} />
         {
           this.props.userIsLoggedIn
-          ? <Tab label='Feed' isActive={feedCN} onClick={() => this._savePosition('/feed')} />
+          ? <Tab label='Feed' isActive={fdCN} onClick={() => this._savePosition('/feed')} />
           : ''
         }
         {

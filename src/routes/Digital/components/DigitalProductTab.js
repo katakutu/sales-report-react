@@ -74,7 +74,8 @@ class DonationTab extends Component {
     return (
       <li
         className={classNames('dp-modal__item', { 'u-hide': !this.isItemInModal(data.icon) })}
-        onClick={() => this.handleTabChange(data.icon)}>
+        onClick={() => this.handleTabChange(data.icon)}
+        key={`digital-other-category-${data.name}`}>
         <a
           href={SITES['Pulsa'] + '/' + data.slug}
           className={classNames('dp-tab__url', 'u-mt2', { 'active': this.state.activeTab === data.icon })}>
@@ -89,7 +90,8 @@ class DonationTab extends Component {
     return (
       <li
         className={classNames('dp-tab__item', { 'u-hide': !this.isTabShown(data.icon) })}
-        onClick={() => this.handleTabChange(data.icon)}>
+        onClick={() => this.handleTabChange(data.icon)}
+        key={`digital-category-${data.id}`}>
         <a
           href={SITES['Pulsa'] + '/' + data.slug}
           className={classNames('dp-tab__url', { 'active': this.state.activeTab === data.icon })}>

@@ -80,11 +80,13 @@ class FeedEmpty extends Component {
         <div className='feed__empty'>
           { lang[this.props.lang]['Feed Empty'] }
         </div>
-        <a href={`${HOSTNAME}/fav-shop.pl?view=1`} className='feed__btn-holder'>
-          <div className='feed__lets-search'>
-            { lang[this.props.lang]['Search for Products'] }
-          </div>
-        </a>
+        <div className='feed__btn-holder'>
+          <a href={`${HOSTNAME}/fav-shop.pl?view=1`}>
+            <div className='feed__lets-search'>
+              { lang[this.props.lang]['Search for Products'] }
+            </div>
+          </a>
+        </div>
         <TopAds
           userID={this.props.userID}
           ep={TOPADS_PARAMS.ep}

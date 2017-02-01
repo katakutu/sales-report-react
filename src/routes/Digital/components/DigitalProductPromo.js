@@ -48,7 +48,10 @@ class DigitalProductPromo extends Component {
     }
 
     return (
-      <a href={data.redirect_url} className='u-clearfix u-rounded u-mb2 dp-promo__box'>
+      <a
+        href={data.redirect_url}
+        className='u-clearfix u-rounded u-mb2 dp-promo__box'
+        key={`digital-banner-${data.id}`}>
         <div className='u-mb1 dp-promo__text'>
           {data.title}
         </div>
