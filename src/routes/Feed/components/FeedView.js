@@ -25,7 +25,7 @@ const param = {
 const TOPADS_PARAMS = {
   ep: '',
   src:'fav_product',
-  item: 2,
+  item: 4,
   q: ''
 }
 
@@ -95,7 +95,7 @@ class FeedView extends Component {
             <Feed
               ob={param.ob}
               rows={param.rows}
-              start={param.rows}
+              start={1}
               userID={parseInt(userInfo['id'])}
               title={lang[this.props.lang]['PRODUCT FEED']}
               uniqueID={UserSearchID.generateUserIDMD5(parseInt(userInfo['id']))}

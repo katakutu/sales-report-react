@@ -43,7 +43,6 @@
     background-color: $color-white-primary;
     box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
     height: auto;
-    min-height: 370px;
 }
 
 .wishlist__item {
@@ -55,14 +54,10 @@
 
 .wishlist__contents:nth-child(odd) {
     border-right: 1px solid #EBEBEB;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
 }
 
 .wishlist__contents:nth-child(even) {
     border-left: 1px solid $color-white-primary;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
 }
 
 .wishlist__contents-holder {
@@ -524,4 +519,3 @@
         opacity: 1;
     }
 }
-

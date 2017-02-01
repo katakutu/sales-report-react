@@ -47,6 +47,7 @@ class Feed extends Component {
     lang: PropTypes.string,
     ob: PropTypes.number,
     page: PropTypes.number,
+    start: PropTypes.number,
     uniqueID: PropTypes.string,
     userID: PropTypes.number,
     fetchMore: PropTypes.func,
@@ -68,7 +69,8 @@ class Feed extends Component {
 
   state = {
     modalState: false,
-    page: this.props.page
+    page: this.props.page,
+    start: this.props.start
   }
 
   constructor (props) {
@@ -110,9 +112,10 @@ class Feed extends Component {
   viewMore () {
     this.setState({
       modalState: this.state.modalState,
-      page: this.state.page + 1
+      page: this.state.page + 1,
+      start: this.state.page % 2 !== 0 ? this.state.start : this.state.start + 1
     }, () => {
-      this.props.fetchMore(this.state.page)
+      this.props.fetchMore(this.state.page, this.state.start)
       browserHistory.push({
         pathname: '/feed',
         query: { page: this.state.page }
@@ -201,6 +204,10 @@ class Feed extends Component {
   }
 
   render () {
+    console.log('-------------------')
+    console.log(this.state.page)
+    console.log(this.state.start)
+    console.log('-------------------')
     const feeds = this.props.feeds || []
     const fd = this.props.get_feed || { has_next_page: false, items: [], total_data: 0 }
     const isNoFeed = feeds.length === 0 && !this.props.loading
@@ -281,8 +288,8 @@ const mapDispatchToProps = {
 }
 
 const FeedWithData = graphql(queries.FeedQuery, {
-  options: ({ ob, page, rows, userID, uniqueID, ep, src, item, q }) => ({
-    variables: { ob, page, rows, userID, uniqueID, ep, src, item, q },
+  options: ({ ob, page, rows, userID, uniqueID, ep, src, item, q, start }) => ({
+    variables: { ob, page, rows, userID, uniqueID, ep, src, item, q, start },
     forceFetch: true,
     returnPartialData: true
   }),
@@ -291,9 +298,9 @@ const FeedWithData = graphql(queries.FeedQuery, {
       loading,
       get_feed,
       topads,
-      fetchMore: (nextPage = 1) => {
+      fetchMore: (nextPage = 1, nextStart = 1) => {
         fetchMore({
-          variables: { page: nextPage },
+          variables: { page: nextPage, start: nextStart },
           updateQuery: (prev, { fetchMoreResult }) => {
             if (!fetchMoreResult.data) { return prev }
             const newFD = fetchMoreResult.data.get_feed
