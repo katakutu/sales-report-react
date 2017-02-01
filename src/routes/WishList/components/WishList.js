@@ -251,7 +251,7 @@ class WishList extends Component {
               <div id='search-stats'>
                 <div className='u-col u-col-6 search-stats-detail'>
                   <p className='wishlist__search-result'>
-                    { wl['count'] || wishlists.length } {lang[this.props.lang]['Hasil']}
+                    { wl['total_data'] || wishlists.length } {lang[this.props.lang]['Hasil']}
                   </p>
                 </div>
                 <div className='u-col u-col-6 search-stats-detail'>
