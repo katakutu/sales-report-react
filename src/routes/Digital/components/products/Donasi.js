@@ -105,6 +105,12 @@ class Donasi extends Component {
       )
     }
   }
+  
+  componentDidUpdate() {
+    if(this.state.open) {
+      window.scrollTo(0, 0)
+    }
+  }
 
   render () {
     return (
