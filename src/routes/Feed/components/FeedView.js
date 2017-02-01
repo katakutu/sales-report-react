@@ -9,6 +9,7 @@ import './FeedView.scss'
 import queries from '../../../queries'
 import lang from '../../../lib/utils/Lang'
 import UserSearchID from '../../../lib/utils/UserSearchID'
+import Ticker from '../../../components/Ticker'
 
 import { graphql } from 'react-apollo'
 
@@ -50,7 +51,7 @@ class FeedView extends Component {
         <SplashScreen />
       )
     }
-
+    const tickers = this.props.data.ticker ? this.props.data.ticker.tickers : []
     const user = this.props.data.user || {}
     const userInfo = Object.assign(user, {
       'deposit': this.props.data.saldo,
@@ -65,6 +66,7 @@ class FeedView extends Component {
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='feed' />
         <div className='mb20 tabs-container'>
           <div className='bg-f8 mb-20 border-bt-ef'>
+            <Ticker tickers={tickers} perTickDuration={5} />
             <RecentView
               userID={parseInt(userInfo['id'])}
               title={lang[this.props.lang]['TERAKHIR DILIHAT']}

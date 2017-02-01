@@ -218,6 +218,16 @@ query Query {
       message
     }
   }
+  ticker{
+    meta {
+      total_data
+    }
+    tickers{
+      id
+      title
+      message
+    }
+  }
 }
 `
 
