@@ -33,7 +33,7 @@ function _searchWishlist (api, userID, query, count, page) {
     return {
       has_next_page: !!response['pagination'],
       items: response['data'],
-      total_data: response['header']['total_data']
+      total_data: response['header']['counter'] || response['header']['total_data'] || 0
     }
   })
   .catch(err => {
@@ -55,7 +55,7 @@ function _getWishlist (api, userID, count, page) {
     return {
       has_next_page: !!response['pagination'],
       items: response['data'],
-      total_data: response['header']['total_data']
+      total_data: response['header']['counter'] || response['header']['total_data'] || 0
     }
   })
     .catch(err => {

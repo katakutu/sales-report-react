@@ -211,6 +211,7 @@ class WishList extends Component {
       const newWishlists = wishlists.map(wl => Object.assign({}, wl, { isLoved: true }))
 
       this.props.replaceWishlists(newWishlists)
+      this.setState({ query: nextProps.query })
     }
   }
 
