@@ -12,33 +12,6 @@ import lang from '../../../lib/utils/Lang'
 import FeedEmpty from './FeedEmpty'
 import { replaceFeeds, updatePage, updateQuery } from '../module'
 
-const MODAL_PARAMS = {
-  modalContent: {
-    data: [
-      {
-        icon: 'https://ecs1.tokopedia.net/img/ads_microsite/stat.png',
-        title: 'Tingkatkan penjualan',
-        content: `Toko dan produk anda akan lebih mudah
-          ditemukan oleh pengunjung Tokopedia.`
-      },
-      {
-        icon: 'https://ecs1.tokopedia.net/img/ads_microsite/jangkau.png',
-        title: 'Menjangkau dengan tepat',
-        content: `TopAds membantu Anda menjangkau calon pembeli yang sesuai, melalui
-          pencarian produk dan penelusuran kategori produk.`
-      },
-      {
-        icon: 'https://ecs1.tokopedia.net/img/ads_microsite/efektif.png',
-        title: 'Efektif dan Efisien',
-        content: `Dengan TopAds, hasil yang anda harapkan sesuai dengan biaya
-          yang anda keluarkan.`
-      }
-    ],
-    link: 'https://m.tokopedia.com/iklan?campaign=topads&amp;source=wishlist&amp;medium=mobile',
-    linkText: 'Baca selengkapnya'
-  }
-}
-
 class Feed extends Component {
 
   static propTypes = {
@@ -96,9 +69,21 @@ class Feed extends Component {
         { kind: 'topads', display: ta['display'], items: newTopAds },
         { kind: 'feed', items: newFeeds }
       ]
-      // combine 2 data
-      let payload = [...oldData, ...newData]
-      feeds.length !== 0 && this.props.replaceFeeds(payload)
+      // check new data already there
+      if (feeds.length !== 0) {
+        // check if new data same to old data
+        const oldIDs = oldData.map(fd => {
+          return fd['kind'] === 'feed' && fd['items'].map(c => (c['id']))
+        })
+        const newIDs = newData.map(ta => {
+          return ta['kind'] === 'feed' && ta['items'].map(x => (x['id']))
+        })
+        if (ArrayHelper.notEquals(oldIDs.length > 0 ? oldIDs[1] : oldIDs, newIDs[1])) {
+          // update new data with old one
+          let payload = [...oldData, ...newData]
+          this.props.replaceFeeds(payload)
+        }
+      }
     }
   }
 
@@ -204,10 +189,6 @@ class Feed extends Component {
   }
 
   render () {
-    console.log('-------------------')
-    console.log(this.state.page)
-    console.log(this.state.start)
-    console.log('-------------------')
     const feeds = this.props.feeds || []
     const fd = this.props.get_feed || { has_next_page: false, items: [], total_data: 0 }
     const isNoFeed = feeds.length === 0 && !this.props.loading
@@ -219,6 +200,30 @@ class Feed extends Component {
       transitionEnterTimeout: 500,
       transitionLeave: true,
       transitionLeaveTimeout: 500
+    }
+
+    const MODAL_PARAMS = {
+      modalContent: {
+        data: [
+          {
+            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/stat.png',
+            title: lang[this.props.lang]['Topads Modal Section 1 Title'],
+            content: lang[this.props.lang]['Topads Modal Section 1 Content']
+          },
+          {
+            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/jangkau.png',
+            title: lang[this.props.lang]['Topads Modal Section 2 Title'],
+            content: lang[this.props.lang]['Topads Modal Section 2 Content']
+          },
+          {
+            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/efektif.png',
+            title: lang[this.props.lang]['Topads Modal Section 3 Title'],
+            content: lang[this.props.lang]['Topads Modal Section 3 Content']
+          }
+        ],
+        link: 'https://m.tokopedia.com/iklan?campaign=topads&source=feed&medium=mobile',
+        linkText: lang[this.props.lang]['Topads Modal Button']
+      }
     }
 
     return (
@@ -250,6 +255,7 @@ class Feed extends Component {
                       <div className='row-fluid' key={key} >
                         <TopAdsIntegrate
                           dataAds={feed}
+                          start={this.state.page}
                           stateModal={this.state.modalState}
                           contentModal={MODAL_PARAMS.modalContent}
                           eventModal={this._eventModal}

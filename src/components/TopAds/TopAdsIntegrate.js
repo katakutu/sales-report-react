@@ -12,6 +12,7 @@ class TopAdsIntegrate extends Component {
   static propTypes = {
     dataAds: React.PropTypes.object,
     stateModal: React.PropTypes.bool,
+    start: React.PropTypes.number,
     eventModal: React.PropTypes.func,
     contentModal: React.PropTypes.object
   }
@@ -28,9 +29,29 @@ class TopAdsIntegrate extends Component {
 
     if (this.props.dataAds && this.props.dataAds.items) {
       const topadsdata = this.props.dataAds
+      const that = this
+
       topadsdata.items.map((item, index) => {
-        topadsdata.display === 'product' && topads.push(<TopAdsProduct key={`top-ads-item-${index}`} data={item} />)
-        topadsdata.display === 'shop' && topads.push(<TopAdsShop key={`top-ads-shop-item-${index}`} data={item} />)
+        if (that.props.start || that.props.start !== 0 || that.props.start !== '') {
+          if (that.props.start % 2 !== 0) {
+            if (index < 2) {
+              topadsdata.display === 'product' && topads.push(<TopAdsProduct
+                key={`top-ads-item-${index}`} data={item} />)
+              topadsdata.display === 'shop' && topads.push(<TopAdsShop
+                key={`top-ads-shop-item-${index}`} data={item} />)
+            }
+          } else {
+            if (index > 1) {
+              topadsdata.display === 'product' && topads.push(<TopAdsProduct
+                key={`top-ads-item-${index}`} data={item} />)
+              topadsdata.display === 'shop' && topads.push(<TopAdsShop
+                key={`top-ads-shop-item-${index}`} data={item} />)
+            }
+          }
+        } else {
+          topadsdata.display === 'product' && topads.push(<TopAdsProduct key={`top-ads-item-${index}`} data={item} />)
+          topadsdata.display === 'shop' && topads.push(<TopAdsShop key={`top-ads-shop-item-${index}`} data={item} />)
+        }
       })
     }
 
