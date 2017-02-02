@@ -75,7 +75,7 @@ class Ticker extends Component {
 
   closeTicker () {
     // 5 minute
-    const rangeTime = (3 * 1000)
+    const rangeTime = (5 * 60 * 1000)
     let domain = location.hostname
     if (window.location.href.indexOf('ndvl') > -1) {
       domain = /(\..*\.ndvl)/.exec(location.hostname)[1]

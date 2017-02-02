@@ -77,19 +77,19 @@
 }
 
 .ticker__hidden {
-  height: 0 !important;
-  padding: 0 !important;
-  -webkit-transition: all 0.3s ease-in-out, padding 1ms;
-  -moz-transition: all 0.3s ease-in-out, padding 1ms;
-  transition: all 0.3s ease-in-out, padding 1ms;
-  
-  .ticker__container,
-  .ticker--general {
     height: 0 !important;
-    border: none !important;
+    padding: 0 !important;
+    -webkit-transition: all 0.3s ease-in-out, padding 1ms;
+    -moz-transition: all 0.3s ease-in-out, padding 1ms;
+    transition: all 0.3s ease-in-out, padding 1ms;
 
-    .ticker__close {
-      display: none;
+    .ticker__container,
+    .ticker--general {
+        height: 0 !important;
+        border: none !important;
+
+        .ticker__close {
+            display: none;
+        }
     }
-  }
 }
