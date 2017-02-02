@@ -97,6 +97,7 @@ class Game extends Component {
   render () {
     let itemsName = []
     let informationBox = null
+    let priceGroup = null
 
     for (let i = 0; i < this.props.filteredOperator.length; i++) {
       let itemName = {}
@@ -109,6 +110,16 @@ class Game extends Component {
       informationBox = <InformationBox content={this.state.selectedProduct.detail} />
     } else {
       informationBox = null
+    }
+
+    if (this.state.selectedProduct.promo_price) {
+      priceGroup =
+      <PriceGroup
+        isDiscount
+        price={this.state.selectedProduct.promo_price}
+        oldPrice={this.state.selectedProduct.price} />
+    } else {
+      priceGroup = <PriceGroup isDiscount price={this.state.selectedProduct.price}  />
     }
 
     return (
@@ -133,7 +144,7 @@ class Game extends Component {
           </div>
         </div>
         { informationBox }
-        <PriceGroup isDiscount price={this.state.selectedProduct.price} />
+        { priceGroup }
         <BuyButtonGroup hasInstant buttonText='Beli' />
         <SelectDrawer
           open={this.state.open}
