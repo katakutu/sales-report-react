@@ -38,7 +38,6 @@ class InputGroup extends Component {
       value: newValue,
       showAll: false
     })
-    this.props.onSuggestionSelected(newValue)
   }
 
   getItems (value) {
@@ -65,11 +64,13 @@ class InputGroup extends Component {
     })
   }
 
-  onSuggestionSelected (e) {
+  onSuggestionSelected (e, { suggestionValue }) {
+    console.log(suggestionValue)
     e.target.blur()
     this.setState({
       showAll: true
     })
+    this.props.onSuggestionSelected(suggestionValue)
   }
 
   shouldRenderSuggestions () {
