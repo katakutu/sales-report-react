@@ -1,5 +1,5 @@
 export default (store) => ({
-  path : '/d/:slug',
+  path : '/donasi-online',
   /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {
     /*  Webpack - use 'require.ensure' to create a split point
@@ -7,12 +7,12 @@ export default (store) => ({
     require.ensure([], (require) => {
       /*  Webpack - use require callback to define
           dependencies for bundling   */
-      const Digital = require('./components/DigitalView').default
+      const Donasi = require('../components/DonasiView').default
 
       /*  Return getComponent   */
-      cb(null, Digital)
+      cb(null, Donasi)
 
     /* Webpack named bundle   */
-    }, 'digital')
+    }, 'donasi')
   }
 })

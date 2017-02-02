@@ -2,20 +2,37 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import classNames from 'classnames'
 import BodyClassName from 'react-body-classname'
-import './DigitalProductTab.scss'
+import './Tab.scss'
+
+import { SLUG } from '../digitalconstants'
 import { SITES } from '../../../constants'
 
-class DonationTab extends Component {
+class Tab extends Component {
   static propTypes = {
-    categoryList: PropTypes.array
+    categoryList: PropTypes.array,
+    activeTab: PropTypes.string,
+    changeTab: PropTypes.func
   }
 
   constructor (props) {
     super(props)
 
+    let shownTabs = []
+    shownTabs.push(props.categoryList[0].icon)
+    shownTabs.push(props.categoryList[1].icon)
+    if (this.props.activeTab) {
+      if (shownTabs.indexOf(this.props.activeTab) < 0) {
+        shownTabs.push(this.props.activeTab)
+      } else {
+        shownTabs.push(this.props.categoryList[2].icon) // item ketiga yang ingin dimunculkan di tab
+      }
+    } else {
+      shownTabs.push(this.props.categoryList[2].icon) // item ketiga yang ingin dimunculkan di tab
+    }
+
     this.state = {
-      activeTab: 'donasi',
-      shownTabs: ['pulsa', 'paket-data', 'donasi'],
+      activeTab: this.props.activeTab ? this.props.activeTab : 'pulsa',
+      shownTabs: shownTabs,
       modalOpened: false
     }
 
@@ -58,15 +75,21 @@ class DonationTab extends Component {
     })
   }
 
-  handleTabChange (name) {
-    this.setState({
-      activeTab: name,
-      modalOpened: false
-    })
+  handleTabChange (data) {
+    if (!SLUG[data.icon]) {
+      window.location = SITES['Pulsa'] + '/' + data.slug
+    } else {
+      this.setState({
+        activeTab: data.icon,
+        modalOpened: false
+      })
 
-    if (this.state.shownTabs.indexOf(name) < 0) {
-      this.state.shownTabs.pop()
-      this.state.shownTabs.push(name)
+      if (this.state.shownTabs.indexOf(data.icon) < 0) {
+        this.state.shownTabs.pop()
+        this.state.shownTabs.push(data.icon)
+      }
+
+      this.props.changeTab(data.icon)
     }
   }
 
@@ -74,10 +97,9 @@ class DonationTab extends Component {
     return (
       <li
         className={classNames('dp-modal__item', { 'u-hide': !this.isItemInModal(data.icon) })}
-        onClick={() => this.handleTabChange(data.icon)}
+        onClick={() => this.handleTabChange(data)}
         key={`digital-other-category-${data.name}`}>
         <a
-          href={SITES['Pulsa'] + '/' + data.slug}
           className={classNames('dp-tab__url', 'u-mt2', { 'active': this.state.activeTab === data.icon })}>
           <i className={'dp-tab__icon dp-tab__icon--' + data.icon} />
           <div className='dp-tab__name'>{data.name}</div>
@@ -90,10 +112,9 @@ class DonationTab extends Component {
     return (
       <li
         className={classNames('dp-tab__item', { 'u-hide': !this.isTabShown(data.icon) })}
-        onClick={() => this.handleTabChange(data.icon)}
+        onClick={() => this.handleTabChange(data)}
         key={`digital-category-${data.id}`}>
         <a
-          href={SITES['Pulsa'] + '/' + data.slug}
           className={classNames('dp-tab__url', { 'active': this.state.activeTab === data.icon })}>
           <i className={'dp-tab__icon dp-tab__icon--' + data.icon} />
           <div className='dp-tab__name'>{data.name}</div>
@@ -132,4 +153,4 @@ class DonationTab extends Component {
   }
 }
 
-export default DonationTab
+export default Tab
