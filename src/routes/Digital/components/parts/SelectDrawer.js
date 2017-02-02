@@ -9,7 +9,8 @@ class SelectDrawer extends Component {
     handleProductSelect: PropTypes.func,
     handleCloseButton: PropTypes.func,
     open: PropTypes.bool,
-    productList: PropTypes.array
+    productList: PropTypes.array,
+    productId: PropTypes.number
   }
 
   constructor (props) {
@@ -21,7 +22,7 @@ class SelectDrawer extends Component {
   renderProduct (data, index) {
     let checkFlag = false
     if (data.operator_id === this.props.selectedOperator.id) {
-      if (this.props.selectedOperator.default_product_id === data.id) {
+      if (this.props.productId === data.id) {
         checkFlag = true
       }
       return (

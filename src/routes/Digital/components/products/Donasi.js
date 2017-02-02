@@ -24,8 +24,7 @@ class Donasi extends Component {
     super(props)
     this.state = {
       selectedOperator: {},
-      productName: '',
-      productId: 0,
+      selectedProduct: {},
       open: false
     }
 
@@ -45,14 +44,33 @@ class Donasi extends Component {
     }
   }
 
+  getDefaultProduct (operator) {
+    let temporaryProduct = {}
+    for (let i = 0; i < this.props.productList.length; i++) {
+      if (this.props.productList[i].id === operator.default_product_id) {
+        return this.props.productList[i]
+      }
+      if (this.props.productList[i].operator_id === operator.id) {
+        temporaryProduct = this.props.productList[i]
+      }
+    }
+    return temporaryProduct
+  }
+
   handleCloseButton (e) {
     this.setState({ open: false })
   }
 
   handleContentChange (operator) {
+    let defaultProductId = operator.default_product_id
+    let defaultProduct = {}
+    if (defaultProductId === 0) {
+      defaultProduct = this.getDefaultProduct(operator)
+    } else {
+      defaultProduct = this.getProductById(defaultProductId)
+    }
     this.setState({ selectedOperator: operator })
-    this.setState({ productId: operator.default_product_id }, this.props.handleProductSelected)
-    this.setState({ productName: this.getProductById(operator.default_product_id).desc })
+    this.setState({ selectedProduct: defaultProduct })
   }
 
   handleOpenOverlay (e) {
@@ -60,8 +78,8 @@ class Donasi extends Component {
   }
 
   handleProductSelect (e) {
-    this.setState({ productId: e.target.value })
-    this.setState({ productName: this.getProductById(e.target.value).desc })
+    let defaultProduct = this.getProductById(e.target.value)
+    this.setState({ selectedProduct: defaultProduct })
     this.setState({ open: false })
   }
 
@@ -75,39 +93,8 @@ class Donasi extends Component {
     )
   }
 
-  renderProduct (data, index) {
-    let checkFlag = false
-    if (data.operator_id === this.state.selectedOperator.id) {
-      if (this.state.selectedOperator.default_product_id === data.id) {
-        checkFlag = true
-      }
-      return (
-        <tr key={index}>
-          <td className='table__product'>
-            <label htmlFor={data.id}>
-              <div className='product__name'>{data.desc}</div>
-              <div className='product__price'>
-                <div className='price u-mr1'>{data.price}</div>
-              </div>
-            </label>
-          </td>
-          <td className='table__radio'>
-            <input name='donation-nominal'
-              id={data.id}
-              type='radio'
-              className='drawer__radio u-hide'
-              value={data.id}
-              onChange={this.handleProductSelect}
-              defaultChecked={checkFlag} />
-            <label htmlFor={data.id} className='drawer__icon--radio' />
-          </td>
-        </tr>
-      )
-    }
-  }
-  
-  componentDidUpdate() {
-    if(this.state.open) {
+  componentDidUpdate () {
+    if (this.state.open) {
       window.scrollTo(0, 0)
     }
   }
@@ -126,7 +113,7 @@ class Donasi extends Component {
         <input
           type='hidden'
           name='product_id'
-          value={this.state.productId} />
+          value={this.state.selectedProduct.id} />
         <div className='dp--lembaga'>
           <div className='dp-lembaga-tab-list'>
             <label className='u-inline-block'>Pilih Lembaga Donasi</label>
@@ -232,13 +219,15 @@ class Donasi extends Component {
           </div>
         </div>
         <div className='dp--nominal'>
-          <div className={'form-group nominal u-mb2 u-block ' + (this.state.productId === 0 ? 'u-hide' : '')}>
+          <div
+            className={'form-group nominal u-mb2 u-block ' +
+            (this.state.selectedProduct.id === undefined ? 'u-hide' : '')}>
             <label className='u-mb1'>Nominal</label>
             <div className='dp-select'>
               <span
                 className='dp-select form-control form-select nominal-select pt-12'
                 onClick={this.handleOpenOverlay}>
-                {this.state.productName}
+                {this.state.selectedProduct.desc}
               </span>
             </div>
           </div>
@@ -254,7 +243,8 @@ class Donasi extends Component {
           handleCloseButton={this.handleCloseButton}
           handleProductSelect={this.handleProductSelect}
           productList={this.props.productList}
-          selectedOperator={this.state.selectedOperator} />
+          selectedOperator={this.state.selectedOperator}
+          productId={this.state.selectedProduct.id} />
       </div>
     )
   }

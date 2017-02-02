@@ -6,6 +6,7 @@ import CategoryRoute from './Category'
 import WishlistRoute from './WishList'
 import FeedRoute from './Feed'
 import DigitalDonasiRoute from './Digital/Donasi'
+import DigitalGameRoute from './Digital/Game'
 import NotFound from './NotFound'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -21,6 +22,7 @@ export const createRoutes = (store, ApolloExecutors) => ({
     WishlistRoute(store, ApolloExecutors),
     FeedRoute(store, ApolloExecutors),
     DigitalDonasiRoute(store),
+    DigitalGameRoute(store),
     {
       path: '*',
       component: NotFound
