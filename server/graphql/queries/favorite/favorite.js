@@ -3,7 +3,7 @@ const {
   GraphQLString
 } = require('graphql')
 const { Favorites } = require('../../types/favorite')
-const { getPromoted, getFavorited } = require('../../models/favorite')
+const { getPromoted, getFavorited, getCSRF } = require('../../models/favorite')
 
 const FavoritedQuery = {
   type: Favorites,
@@ -14,7 +14,10 @@ const FavoritedQuery = {
     count: { type: GraphQLInt },
     shop: { type: GraphQLString }
   },
-  resolve: function (_, args) {
+  resolve: function (_, args, context) {
+    console.log("=======================================")
+    console.log(getCSRF(context))
+    console.log("=======================================")
     return getFavorited(args.user_id, args.count, args.page, args.shop)
   }
 }

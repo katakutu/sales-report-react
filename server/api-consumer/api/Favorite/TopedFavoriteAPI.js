@@ -5,7 +5,8 @@ const URL = require('url')
 const params = `/v1/web-service/fav_shop/list?user_id=:user_id&per_page=:per_page&p=:page&shop_name=:shop`
 const FAVORITE_SERVICES = {
   GetFaveShop: `${GlobalConfig.Tome.Hostname}` + params,
-  FavoriteModification: `${GlobalConfig.WS.Hostname}` + `/v4/action/favorite-shop/fav_shop.pl`
+  FavoriteModification: `${GlobalConfig.WS.Hostname}` + `/v4/action/favorite-shop/fav_shop.pl`,
+  GetCSRFToken: `${GlobalConfig.Tome.Hostname}` + `/v1/user/token`
 }
 const DEFAULT_FAVE_DATA = {
   shop_id: 'ERROR FAIL',
@@ -31,6 +32,16 @@ class TopedFavoriteAPI {
                                          .replace(':page', page)
                                          .replace(':shop', shopName))
     return this.api.consume(url, 'GET', {})
+  }
+  getCSRFToken (userID, sessID) {
+    const sidCookie = `${GlobalConfig['Cookie']['SessionID']}=${sessID};`
+    let url = URL.parse(FAVORITE_SERVICES.GetCSRFToken)
+    const headers = {
+      'Cookie': sidCookie
+    }
+    return this.api.consume(url, 'GET', { userID },{
+      headers: headers
+    })
   }
   removeFavorite (userID, shopID, adKey) {
     const url = URL.parse(FAVORITE_SERVICES.FavoriteModification)
