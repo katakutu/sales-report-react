@@ -32,7 +32,9 @@ class SelectDrawer extends Component {
               <div className='product__name'>{data.desc}</div>
               <div className='product__price'>
                 <div className={'price u-mr1 ' + (data.promo_price ? '' : 'u-hide')}>{data.promo_price}</div>
-                <div className={'price u-mr1 ' + (data.promo_price ? 'price--discount price--strikethrough' : '')}>{data.price}</div>
+                <div className={'price u-mr1 ' + (data.promo_price ? 'price--discount price--strikethrough' : '')}>
+                  {data.price}
+                </div>
               </div>
             </label>
           </td>

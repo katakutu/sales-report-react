@@ -114,12 +114,12 @@ class Game extends Component {
 
     if (this.state.selectedProduct.promo_price) {
       priceGroup =
-      <PriceGroup
-        isDiscount
-        price={this.state.selectedProduct.promo_price}
-        oldPrice={this.state.selectedProduct.price} />
+        <PriceGroup
+          isDiscount
+          price={this.state.selectedProduct.promo_price}
+          oldPrice={this.state.selectedProduct.price} />
     } else {
-      priceGroup = <PriceGroup isDiscount price={this.state.selectedProduct.price}  />
+      priceGroup = <PriceGroup isDiscount price={this.state.selectedProduct.price} />
     }
 
     return (
