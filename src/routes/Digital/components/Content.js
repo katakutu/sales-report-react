@@ -20,7 +20,6 @@ import Donasi from './products/Donasi'
 
 class Content extends Component {
   static propTypes = {
-    slug: PropTypes.string,
     productList: PropTypes.array,
     operatorList: PropTypes.array,
     title: PropTypes.string,
@@ -79,9 +78,10 @@ class Content extends Component {
       case 'game':
         return (
           <Game
-            products={DCONTENT[tab].products}
-            note={DCONTENT[tab].note}
-            openDrawer={(e) => this.handleOpenOverlay(e)} />
+            productList={productList}
+            filteredOperator={filteredOperator}
+            handleProductSelected={this.handleProductSelected}
+            showError={this.state.showError} />
         )
       case 'air':
         return (
