@@ -17,6 +17,7 @@ import WishlistSearchEmpty from './WishListSearchEmpty'
 import WishlistEmpty from './WishlistEmpty'
 import WishlistLove from './WishlistLove'
 import WishlistUnloved from './WishlistUnloved'
+import WishlistTrash from './WishlistTrash'
 
 import './WishListView.scss'
 
@@ -115,14 +116,19 @@ class WishList extends Component {
       const labels = wishlist['labels'] || []
       const badges = wishlist['badges'] || []
 
+      const trash = (
+        <WishlistTrash userID={this.props.userID} productID={parseInt(wishlist['id'])} productName={wishlist['name']} />
+      )
       const actionButton = wishlist['available'] ? (
         <div className='wishlist__buy'>
+          { trash }
           <a href={buyLink} className='wishlist__button-buy' onClick={this._gtmNotifyBuyButtonClicked}>
             { lang[this.props.lang]['Buy'] }
           </a>
         </div>
       ) : (
         <div className='wishlist__buy'>
+          { trash }
           <a disabled className='wishlist__button-no-stock'>
             { lang[this.props.lang]['Out of Stock'] }
           </a>
