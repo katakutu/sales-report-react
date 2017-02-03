@@ -17,11 +17,10 @@ import goldMerchant from '../../../components/HeaderHomeOld/assets/nav-gold-merc
 import FavoriteSearchEmpty from './FavoriteSearchEmpty'
 import FavoriteEmpty from './FavoriteEmpty'
 import Favorited from './Favorited'
+import LoadMore from '../../../components/LoadMore'
 import Unfavorited from './Unfavorited'
 import lang from '../../../lib/utils/Lang'
 import { replaceFavorites, updatePage, updateQuery } from '../module'
-
-const FAVORITE_PER_PAGE = 10
 
 class Favorite extends Component {
   static propTypes = {
@@ -35,11 +34,16 @@ class Favorite extends Component {
     query: PropTypes.string,
     replaceFavorites: PropTypes.func,
     shouldRefetch: PropTypes.bool,
+    hasNextPage: PropTypes.bool,
     updatePage: PropTypes.func,
     updateQuery: PropTypes.func,
     userID: PropTypes.number,
     favorite:  PropTypes.object, // object returned from graphql
-    favorites: PropTypes.arrayOf(PropTypes.object) // our redux state that's actually calculated
+    favorites: PropTypes.arrayOf(PropTypes.object), // our redux state that's actually calculated
+    ep: React.PropTypes.string,
+    src: React.PropTypes.string,
+    item: React.PropTypes.number,
+    q: React.PropTypes.string
   }
 
   state = {
@@ -69,7 +73,7 @@ class Favorite extends Component {
   }
 
   updateFinalQuery (event) {
-    if (event.key === 'Enter') {  
+    if (event.key === 'Enter') {
       this.props.updateQuery(this.state.query)
       event.target.blur()
 
@@ -94,7 +98,6 @@ class Favorite extends Component {
       })
     })
   }
-
 
   componentWillReceiveProps (nextProps) {
     // comparing only the relevant changes
@@ -193,7 +196,7 @@ class Favorite extends Component {
                           userID={this.props.userID}
                           shopID={parseInt(item['shop_id'])}
                           shopName={parseInt(item['shop_name'])}
-                          nekot={this.props.data.favorite.token}/>
+                          nekot={this.props.data.favorite.token} />
                         : <Unfavorited
                           userID={this.props.userID}
                           shopID={parseInt(item['shop_id'])}
@@ -201,7 +204,7 @@ class Favorite extends Component {
                           nekot={this.props.data.favorite.token} />
                       }
                     </div>
-                    <div className='u-clearfix'></div>
+                    <div className='u-clearfix' />
                   </div>
                 </div>
               </div>
@@ -217,11 +220,11 @@ class Favorite extends Component {
       return <ModuleSpinner />
     }
     const favorites = this.props.data.favorite.data
-    if(favorites === undefined || favorites === null){ 
+    if (favorites === undefined || favorites === null) {
       return (
         <div className='favorite-container u-clearfix'>
           <FavoriteEmpty />
-        </div>  
+        </div>
       )
     }
     const isNoFavorite = favorites.length === 0 && !this.props.data.loading && this.props.query === ''
@@ -229,56 +232,56 @@ class Favorite extends Component {
     let flCount = favorites.length
     return (
       <div className='u-clearfix favorite favorite--single-page u-mt2'>
-          <div className='favorite__searchbar-holder'>
-            <i className='favorite__icon favorite__love-grey favorite__set-love-grey' />
-            <input
-              type='text'
-              name='searchwishlist'
-              className='favorite__searchbar'
-              placeholder={lang[this.props.lang]['Search Shop in Favorite']}
-              onChange={this.searchFavorite}
-              onKeyPress={this.updateFinalQuery}
-              value={this.state.query} />
-          </div>
-
-          <div className='favorite__searchbar-holder'>
-            <i className='favorite__icon favorite__location-grey favorite__set-love-grey' />
-            <input
-              type='text'
-              name='searchwishlist'
-              className='favorite__searchbar'
-              placeholder={lang[this.props.lang]['Cari lokasi']} />
-          </div>
-          {
-            this.state.finalQuery !== '' &&
-              [
-              (
-                <div className='u-col u-col-6'>
-                  <p className='favorite__search-result'>{flCount} {lang[this.props.lang]['Hasil']}</p>
-                </div>
-              ),
-              (
-                <div className='u-col u-col-6' onClick={this.resetSearch}>
-                  <span className='favorite__reset-search'>Reset</span>
-                </div>
-              ),
-              (<div className='u-clearfix' />)
-              ]
-          }
-
-          <div className='u-clearfix' />
-          <div className='favorite-container u-clearfix'>
-            { isNoFavorite && <FavoriteEmpty /> }
-            { isEmptyResult && <FavoriteSearchEmpty /> }
-            { favorites.length > 0 && this.renderFavorites(favorites) }
-          </div>
-          {
-            this.props.hasNextPage &&
-            <LoadMore onClick={this.viewMore}>
-              {lang[this.props.lang]['View More']}
-            </LoadMore>
-          }
+        <div className='favorite__searchbar-holder'>
+          <i className='favorite__icon favorite__love-grey favorite__set-love-grey' />
+          <input
+            type='text'
+            name='searchwishlist'
+            className='favorite__searchbar'
+            placeholder={lang[this.props.lang]['Search Shop in Favorite']}
+            onChange={this.searchFavorite}
+            onKeyPress={this.updateFinalQuery}
+            value={this.state.query} />
         </div>
+
+        <div className='favorite__searchbar-holder'>
+          <i className='favorite__icon favorite__location-grey favorite__set-love-grey' />
+          <input
+            type='text'
+            name='searchwishlist'
+            className='favorite__searchbar'
+            placeholder={lang[this.props.lang]['Cari lokasi']} />
+        </div>
+        {
+          this.state.finalQuery !== '' &&
+            [
+            (
+              <div className='u-col u-col-6'>
+                <p className='favorite__search-result'>{flCount} {lang[this.props.lang]['Hasil']}</p>
+              </div>
+            ),
+            (
+              <div className='u-col u-col-6' onClick={this.resetSearch}>
+                <span className='favorite__reset-search'>Reset</span>
+              </div>
+            ),
+            (<div className='u-clearfix' />)
+            ]
+        }
+
+        <div className='u-clearfix' />
+        <div className='favorite-container u-clearfix'>
+          { isNoFavorite && <FavoriteEmpty /> }
+          { isEmptyResult && <FavoriteSearchEmpty /> }
+          { favorites.length > 0 && this.renderFavorites(favorites) }
+        </div>
+        {
+          this.props.hasNextPage &&
+          <LoadMore onClick={this.viewMore}>
+            {lang[this.props.lang]['View More']}
+          </LoadMore>
+        }
+      </div>
     )
   }
 }
@@ -312,45 +315,47 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => {
   return {
     lang: state['app'] ? state['app'].lang : state.lang,
+    page: state['favorite'] ? state['favorite'].page : state.page,
+    query: state['favorite'] ? state['favorite'].query : state.query,
     favorite: state['favorite'] ? state['favorite'].favorite : state.favorite
   }
 }
-// const FavoriteWithData = graphql(FaveQuery, {
-//   options: ({ userID, count, page, shop }) => ({
-//     variables: { userID, count: FAVORITE_PER_PAGE, page, shop },
-//     forceFetch: true,
-//     returnPartialData: true
-//   }),
-//   props: ({ data: { loading, favorite, fetchMore } }) => {
-//     return {
-//       loading,
-//       favorite,
-//       fetchMore: (newQuery = '', nextPage = 1) => {
-//         fetchMore({
-//           variables: { page: nextPage, query: newQuery, count: FAVORITE_PER_PAGE },
-//           updateQuery: (prev, { fetchMoreResult }) => {
-//             if (!fetchMoreResult.data) { return prev }
-
-//             const newWL = fetchMoreResult.data.favorite
-//             return Object.assign({}, prev, {
-//               favorite: Object.assign({}, prev.favorite, {
-//                 has_next_page: newWL['has_next_page'],
-//                 total_data: newWL['total_data'],
-//                 items: prev.wishlist.items.concat(newWL.items)
-//               })
-//             })
-//           }
-//         })
-//       }
-//     }
-//   }
-// })(Favorite)
-
-// export default connect(mapStateToProps, mapDispatchToProps)(FavoriteWithData)
-export default graphql(FaveQuery, {
+const FavoriteWithData = graphql(FaveQuery, {
   options: ({ userID, count, page, shop }) => ({
     variables: { userID, count, page, shop },
     forceFetch: true,
     returnPartialData: true
-  })
-})(connect(mapStateToProps, mapDispatchToProps)(Favorite))
+  }),
+  props: ({ data: { loading, favorite, fetchMore } }) => {
+    return {
+      loading,
+      favorite,
+      fetchMore: (newQuery = '', nextPage = 1) => {
+        fetchMore({
+          variables: { page: nextPage, query: newQuery },
+          updateQuery: (prev, { fetchMoreResult }) => {
+            if (!fetchMoreResult.data) { return prev }
+
+            const newWL = fetchMoreResult.data.favorite
+            return Object.assign({}, prev, {
+              favorite: Object.assign({}, prev.favorite, {
+                has_next_page: newWL['has_next_page'],
+                total_data: newWL['total_data'],
+                items: newWL.items
+              })
+            })
+          }
+        })
+      }
+    }
+  }
+})(Favorite)
+
+export default connect(mapStateToProps, mapDispatchToProps)(FavoriteWithData)
+// export default graphql(FaveQuery, {
+//   options: ({ userID, count, page, shop }) => ({
+//     variables: { userID, count, page, shop },
+//     forceFetch: true,
+//     returnPartialData: true
+//   })
+// })(connect(mapStateToProps, mapDispatchToProps)(Favorite))

@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
-
-// import Favorite from './Favorite'
 import FavoriteNew from './FavoriteNew'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import SplashScreen from '../../../components/Loading/SplashScreen'
-import LoadMore from '../../../components/LoadMore'
-import lang from '../../../lib/utils/Lang'
 import './FavoriteView.scss'
+
+const TOPADS_PARAMS = {
+  ep: 'shop',
+  src:'fav_product',
+  item: 4,
+  q: ''
+}
 
 class FavoriteView extends Component {
   static propTypes = {
@@ -30,9 +32,6 @@ class FavoriteView extends Component {
     refetch: false
   }
 
-  
-
-  
   render () {
     if (this.props.data.loading) {
       return (
@@ -52,12 +51,16 @@ class FavoriteView extends Component {
     return (
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='favorite' />
-          <FavoriteNew
-            userID={parseInt(userInfo['id'])}
-            query={this.state.finalQuery}
-            page={this.state.page}
-            count={FavoriteView.FAVORITE_PER_PAGE}
-            shouldRefetch={this.state.refetch} />
+        <FavoriteNew
+          userID={parseInt(userInfo['id'])}
+          query={this.state.finalQuery}
+          page={this.state.page}
+          count={FavoriteView.FAVORITE_PER_PAGE}
+          shouldRefetch={this.state.refetch}
+          ep={TOPADS_PARAMS.ep}
+          src={TOPADS_PARAMS.src}
+          item={TOPADS_PARAMS.item}
+          q={TOPADS_PARAMS.q} />
       </div>
     )
   }
