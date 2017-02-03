@@ -111,7 +111,8 @@ class Favorite extends Component {
       // get from graphql favorite
       const fv = nextProps.favorite || { has_next_page: false, items: [], total_data: 0 }
       const favorites = fv.data || []
-      const newFavorites = favorites.map(fd => Object.assign({}, fd))
+      const newFavorites = favorites.map(fd => Object.assign({}, fd, { is_active: true }))
+
       // get from graphql topads
       const ta = nextProps.topads || { display: '', items: [], total_data: 0 }
       const topAds = ta.items || []
@@ -189,16 +190,16 @@ class Favorite extends Component {
                     </div>
                     <div className='u-col u-col-4 u-truncate u-relative btn'>
                       {
-                      favorites['isActive']
+                      item['is_active']
                         ? <Favorited
                           userID={this.props.userID}
                           shopID={parseInt(item['shop_id'])}
-                          shopName={parseInt(item['shop_name'])}
+                          shopName={item['shop_name']}
                           nekot={this.props.favorite.token} />
                         : <Unfavorited
                           userID={this.props.userID}
                           shopID={parseInt(item['shop_id'])}
-                          shopName={parseInt(item['shop_name'])}
+                          shopName={item['shop_name']}
                           nekot={this.props.favorite.token} />
                       }
                     </div>
@@ -324,7 +325,6 @@ $ep: String!, $src: String!, $item: Int!, $q: String!, $query: String!)
       location
       is_gold
       is_official
-      is_active
       products {
         id
         name

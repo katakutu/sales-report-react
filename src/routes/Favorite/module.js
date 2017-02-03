@@ -74,23 +74,29 @@ const ACTION_HANDLERS = {
     return Object.assign({}, state, { favorites: action.payload })
   },
   [ACTIVATE_FAVORITE]: (state, action) => {
-    const newData = state.favorites.map(w => {
-      if (parseInt(w['id']) === action.payload) {
-        return Object.assign({}, w, { isActive: true })
-      } else {
-        return w
-      }
+    const newData = state.favorites.map(f => {
+      const newF = f.items.map(fave => {
+        if (parseInt(fave['shop_id']) === action.payload) {
+          return Object.assign({}, fave, { is_active: true })
+        } else {
+          return fave
+        }
+      })
+      return Object.assign({}, f, { items: newF })
     })
 
     return Object.assign({}, state, { favorites: newData })
   },
   [DEACTIVATE_FAVORITE]: (state, action) => {
-    const newData = state.favorites.map(w => {
-      if (parseInt(w['id']) === action.payload) {
-        return Object.assign({}, w, { isActive: false })
-      } else {
-        return w
-      }
+    const newData = state.favorites.map(f => {
+      const newF = f.items.map(fave => {
+        if (parseInt(fave['shop_id']) === action.payload) {
+          return Object.assign({}, fave, { is_active: false })
+        } else {
+          return fave
+        }
+      })
+      return Object.assign({}, f, { items: newF })
     })
 
     return Object.assign({}, state, { favorites: newData })

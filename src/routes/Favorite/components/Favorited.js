@@ -37,7 +37,7 @@ class Favorited extends Component {
     
     this.props.mutate(variables).then(removeSuccess => {
       if (removeSuccess['data']['favorite_remove'] || false) {
-        const msg = lang[this.props.lang]['Add Favorite Success']
+        const msg = lang[this.props.lang]['Remove Favorite Success']
 
         this.props.deactivateFavorite(this.props.shopID)
         this.props.notificationDispatch({
@@ -48,7 +48,7 @@ class Favorited extends Component {
           timeout: 1500
         })
       } else {
-        const msg = lang[this.props.lang]['Add Favorite Failed']
+        const msg = lang[this.props.lang]['Remove Favorite Failed']
 
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
@@ -63,8 +63,8 @@ class Favorited extends Component {
 
   render () {
     return (
-      <a className='green' onClick={this.handleClick()}>
-        +&nbsp;{ lang[this.props.lang]['Unfavorited btn'] }
+      <a onClick={this.handleClick}>
+        <i className='icon-checked' />&nbsp;&nbsp;&nbsp;{ lang[this.props.lang]['Favorited btn'] }
       </a>
     )
   }
@@ -75,7 +75,7 @@ const mapStateToProps = (state) => {
     lang: state['app'] ? state['app'].lang : state.lang
   }
 }
-const FavoritedQL = graphql(mutations.Favorite.addFavorite)(Favorited)
+const FavoritedQL = graphql(mutations.Favorite.removeFavorite)(Favorited)
 const FavoritedQLR = connect(mapStateToProps, {
   deactivateFavorite, notificationDispatch
 })(FavoritedQL)

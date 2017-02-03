@@ -48,7 +48,6 @@ function getFavorited (userID, count, page, shop, context) {
             shop_pic: section.shop_picture,
             is_gold: section.is_gold_merchant,
             is_official: section.is_official,
-            is_active: true,
             location: section.location,
             products: imageProducts.map(row => {
               return {

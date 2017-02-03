@@ -26,7 +26,6 @@ const Favorite = new GraphQLObjectType({
     shop_pic: { type: new GraphQLNonNull(GraphQLString) },
     is_gold: { type: new GraphQLNonNull(GraphQLString) },
     is_official: { type: new GraphQLNonNull(GraphQLString) },
-    is_active: { type: new GraphQLNonNull(GraphQLBoolean) },
     location: { type: new GraphQLNonNull(GraphQLString) },
     products: { type: new GraphQLList(Products) }
   }
