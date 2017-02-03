@@ -15,7 +15,7 @@ import { graphql } from 'react-apollo'
 
 const param = {
   ob: 2,
-  rows: 12,
+  rows: 20,
   recommendationSourceWishlist: 'wishlist',
   recommendationSourceView: 'recentview',
   recommendationSourcePurchase: 'recentpurchase',
@@ -25,7 +25,7 @@ const param = {
 const TOPADS_PARAMS = {
   ep: '',
   src:'fav_product',
-  item: 4,
+  item: 2,
   q: ''
 }
 
@@ -33,16 +33,6 @@ class FeedView extends Component {
   static propTypes = {
     data: PropTypes.object,
     lang: PropTypes.string
-  }
-
-  state = {
-    modalState: false
-  }
-
-  _eventModal (state) {
-    this.setState({
-      modalState: state
-    })
   }
 
   render () {
@@ -95,7 +85,6 @@ class FeedView extends Component {
             <Feed
               ob={param.ob}
               rows={param.rows}
-              start={1}
               userID={parseInt(userInfo['id'])}
               title={lang[this.props.lang]['PRODUCT FEED']}
               uniqueID={UserSearchID.generateUserIDMD5(parseInt(userInfo['id']))}
