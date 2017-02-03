@@ -3,13 +3,13 @@ import classnames from 'classnames'
 import './Tabs.scss'
 import Tab from './Tab.js'
 import TabContent from './TabContent'
-import OnTouch from './OnTouch'
 
 class Tabs extends Component {
   static propTypes = {
     children: React.PropTypes.node,
     className: React.PropTypes.string,
     stateTab: React.PropTypes.string,
+    id: React.PropTypes.string,
     index: React.PropTypes.number,
     inverse: React.PropTypes.bool,
     userIsLoggedIn: React.PropTypes.bool,
@@ -22,39 +22,51 @@ class Tabs extends Component {
     inverse: false
   }
 
+  static DIRECTION_LEFT = 'Left'
+  static DIRECTION_RIGHT = 'Right'
+  static DIRECTION_NEUTRAL = 'L'
+
+  static INITIAL_TOUCH_STATE = {
+    pageX: 0,
+    direction: Tabs.DIRECTION_NEUTRAL
+  }
+
   state = {
-    pointer: {},
-    arrow: {}
+    arrow: {},
+    translateXPos: 0,
+    touch: {
+      direction: Tabs.DIRECTION_NEUTRAL,
+      length: 0,
+      pageX: 0
+    }
   }
 
   constructor (props) {
     super(props)
 
-    this.handleHeaderClick = this.handleHeaderClick.bind(this)
+    this._getTouchXDirection = this._getTouchXDirection.bind(this)
+    this._getTouchXLength = this._getTouchXLength.bind(this)
+
+    this.handleNavTouch = this.handleNavTouch.bind(this)
+    this.handleNavTouchEnd = this.handleNavTouchEnd.bind(this)
+    this.handleNavTouchStart = this.handleNavTouchStart.bind(this)
     this.handleResize = this.handleResize.bind(this)
     this.initNavigationNode = this.initNavigationNode.bind(this)
     this.parseChildren = this.parseChildren.bind(this)
     this.renderContents = this.renderContents.bind(this)
     this.renderHeaders = this.renderHeaders.bind(this)
-    this.detectScroll = this.detectScroll.bind(this)
-    this.loadTouch = this.loadTouch.bind(this)
-    this.activeStateTabArrow = this.activeStateTabArrow.bind(this)
-    this.checkScrollTab = this.checkScrollTab.bind(this)
+    this.scrollLeft = this.scrollLeft.bind(this)
+    this.scrollNavigation = this.scrollNavigation.bind(this)
+    this.scrollRight = this.scrollRight.bind(this)
+    this.updateArrows = this.updateArrows.bind(this)
+
+    this.navigationNode = null
+    this.resizeTimeout = null
   }
 
   componentDidMount () {
-    window.addEventListener('load', this.loadTouch())
     window.addEventListener('resize', this.handleResize)
-    window.addEventListener('scroll', this.detectScroll)
-    if (!this.props.userIsLoggedIn) {
-      let state = this.checkScrollTab()
-      this.updateScroll(state)
-    }
-  }
-
-  componentWillReceiveProps (nextProps) {
-    this.detectScroll()
-    this.checkActiveScroll()
+    this.handleResize()
   }
 
   componentWillUnmount () {
@@ -64,135 +76,70 @@ class Tabs extends Component {
     }
   }
 
-  componentDidUpdate (props) {
-    window.addEventListener('load', this.loadTouch())
-    let state = this.checkScrollTab()
-    this.updateScroll(state)
-    this.checkActiveScroll()
+  _getTouchXLength (touch) {
+    return Math.abs(touch.pageX - this.state.touch.pageX)
   }
 
-  initConstWidth () {
-    // initial for get width screen and tabs
-    let inner = window.innerWidth
-    const vpWidth = Math.max(document.documentElement.clientWidth, inner || 0)
-    let widthTabs = document.getElementById('slick-track').offsetWidth
-    return { vpWidth: vpWidth, widthTabs: widthTabs }
+  _getTouchXDirection (touch) {
+    return touch.pageX < this.state.touch.pageX ? Tabs.DIRECTION_LEFT : Tabs.DIRECTION_RIGHT
   }
 
-  checkActiveScroll () {
-    // checkin active tabs
-    let widths = this.initConstWidth()
-    const activeEle = document.querySelector('#slick-track .tab__active')
-    const rangeScroll = 70
-    if (activeEle) {
-      let offPage = (widths.vpWidth - rangeScroll) < activeEle.offsetLeft
-      if (offPage) {
-        const slideTrackEl = document.querySelector('#loggedin-tab #slick-track')
-        const maxTranslateX = -1 * (widths.widthTabs - widths.vpWidth)
-        slideTrackEl.style.transform = `translate3d(${maxTranslateX}px, 0px, 0px)`
-        this.activeStateTabArrow('activePrev')
+  handleNavTouchStart (event) {
+    if (event.touches.length !== 1) {
+      return
+    }
+
+    this.setState({
+      touch: {
+        direction: this.state.touch.direction,
+        length: this.state.touch.length,
+        pageX: event.touches[0].pageX
       }
-    }
-  }
-
-  checkScrollTab () {
-    // check if scroll tab is more than screen
-    let widths = this.initConstWidth()
-    return widths.widthTabs > widths.vpWidth
-  }
-
-  updateScroll (state) {
-    if (state) {
-      // check for state tab arrow
-      this.props.stateTab === 'activePrev' ? this.activeStateTabArrow('activePrev')
-      : this.activeStateTabArrow('activeNext')
-    } else {
-      this.activeStateTabArrow('disabled')
-    }
-  }
-
-  generateAfterChange (direction) {
-    // generate after click the arrow
-    let widths = this.initConstWidth()
-    const slideTrackEl = document.querySelector('#loggedin-tab #slick-track')
-    if (direction === 'next') {
-      this.activeStateTabArrow('activePrev')
-      this.detectScroll()
-      const maxTranslateX = -1 * (widths.widthTabs - widths.vpWidth)
-      slideTrackEl.style.transform = `translate3d(${maxTranslateX}px, 0px, 0px)`
-    } else if (direction === 'prev') {
-      this.activeStateTabArrow('activeNext')
-      this.detectScroll()
-      slideTrackEl.style.transform = `translate3d(0px, 0px, 0px)`
-    }
-  }
-
-  detectScroll () {
-    // set mini to scrolled down header
-    const header = document.getElementsByTagName('header')[0].className
-    if (header.indexOf('transform') >= 0) {
-      document.getElementById('next').classList.add('mini')
-      document.getElementById('prev').classList.add('mini')
-    } else {
-      document.getElementById('next').classList.remove('mini')
-      document.getElementById('prev').classList.remove('mini')
-    }
-  }
-
-  activeStateTabArrow (state) {
-    // set active for tab arrow
-    if (state === 'activeNext') {
-      document.getElementById('next').classList.remove('slick-disabled')
-      document.getElementById('prev').classList.add('slick-disabled')
-    } else if (state === 'activePrev') {
-      document.getElementById('next').classList.add('slick-disabled')
-      document.getElementById('prev').classList.remove('slick-disabled')
-    } else {
-      document.getElementById('next').classList.add('slick-disabled')
-      document.getElementById('prev').classList.add('slick-disabled')
-    }
-  }
-
-  loadTouch () {
-    let axis = 0 // define global for axis touch
-    let velo = 0.8 // define velocity for speed tab
-    let range = 50 // define range for bounche
-    let ele = document.getElementById('slick-track')
-    let widths = this.initConstWidth()
-    const maxTranslateX = -1 * (widths.widthTabs - widths.vpWidth)
-    const slideTrackEl = document.querySelector('#loggedin-tab #slick-track')
-    const arrowState = this.checkScrollTab()
-    const that = this
-    OnTouch.load(ele, function (evt, dir, phase, swipetype, distance) {
-      // check prediction of distance swipe in available range
-      if (axis + (distance * velo) <= (0 + range) &&
-      axis + (distance * velo) >= (maxTranslateX - range) && phase === 'move') {
-        axis = axis + (distance * velo)
-        slideTrackEl.style.transform = `translate3d(${axis}px,
-          0px, 0px)`
-      }
-      if (phase === 'end') {
-        // put back on track range for bounching effect
-        let tamp
-        if (axis >= 0) {
-          tamp = 0
-          arrowState ? that.activeStateTabArrow('activeNext') : ''
-        } else if (axis <= maxTranslateX) {
-          tamp = maxTranslateX
-          arrowState ? that.activeStateTabArrow('activePrev') : ''
-        }
-        slideTrackEl.style.transform = `translate3d(${tamp}px,
-          0px, 0px)`
-      }
-      // arrowState ? that.detectScroll() : ''
     })
   }
 
-  handleHeaderClick (event) {
-    const index = parseInt(event.currentTarget.id)
-    if (this.props.onChange) {
-      this.props.onChange(index)
+  handleNavTouch (event) {
+    if (event.touches.length !== 1 || !this.state.touch.direction) {
+      return
     }
+
+    const touch = event.touches[0]
+    const dir = this._getTouchXDirection(touch)
+    const length = this._getTouchXLength(touch)
+
+    const maxLeftMove = -1 * (this.navigationNode.clientWidth - window.innerWidth)
+    const dirLength = dir === Tabs.DIRECTION_LEFT ? length * -1 : length
+
+    let finalLength = dirLength > 0 ? 0 : dirLength
+    if (dir === Tabs.DIRECTION_LEFT && dirLength < maxLeftMove) {
+      finalLength = maxLeftMove
+    }
+
+    // direction changed
+    if (this.state.touch.direction !== dir) {
+      this.setState({
+        touch: {
+          direction: dir,
+          length: finalLength,
+          pageX: touch.pageX
+        }
+      })
+
+      event.preventDefault()
+      return 
+    }
+
+    this.setState({
+      touch: {
+        direction: this.state.touch.direction,
+        length: finalLength,
+        pageX: this.state.touch.pageX
+      }
+    })
+  }
+
+  handleNavTouchEnd () {
+    this.updateArrows()
   }
 
   handleResize () {
@@ -200,6 +147,10 @@ class Tabs extends Component {
       clearTimeout(this.resizeTimeout)
       this.resizeTimeout = null
     }
+
+    this.resizeTimeout = setTimeout(() => {
+      this.updateArrows()
+    }, 100)
   }
 
   initNavigationNode (node) {
@@ -251,34 +202,99 @@ class Tabs extends Component {
     return contentElements.filter((item, index) => (this.props.index === index))
   }
 
+  scrollLeft () { this.scrollNavigation(1) }
+
+  scrollNavigation (factor) {
+    const oldScrollLeft = this.state.touch.length
+    const newScrollLeft = factor * (this.navigationNode.clientWidth - window.innerWidth)
+    this.setState({
+      touch: {
+        direction: this.state.touch.direction,
+        length: newScrollLeft > 0 ? 0 : newScrollLeft,
+        pageX: this.state.touch.pageX
+      }
+    }, () => {
+      if (newScrollLeft !== oldScrollLeft) {
+        this.updateArrows();
+      }
+    })
+  }
+
+  scrollRight () { this.scrollNavigation(-1) }
+
+  updateArrows () {
+    const index = this.navigationNode.children.length - 1
+
+    if (index >= 0) {
+      const nav = this.navigationNode.getBoundingClientRect()
+      const last = this.navigationNode.children[index].getBoundingClientRect()
+
+      this.setState({
+        arrow: {
+          left: this.state.touch.length < 0,
+          right: this.state.touch.length === 0 && (nav.right - 5) < last.right
+        }
+      })
+    }
+  }
+
   render () {
     const { headers, contents } = this.parseChildren()
     const _className = classnames(this.props.className, {
       'tab__inverted': this.props.inverse
     })
     const _classTab = this.props.userIsLoggedIn ? 'tab' : 'tab logged-out'
+    const id = this.props.id || 'loggedin-tab'
+
+    const hasRightArrow = this.state.arrow.right
+    const hasLeftArrow = this.state.arrow.left
+
+    const translateX = this.state.touch.length
+    const finalTransform = translateX > 0 ? 0 : translateX
+    const scrollStyle = {
+      'transform': `translateX(${finalTransform}px)`
+    }
 
     return (
-      <div className={_className} id='loggedin-tab'>
-        <button type='button'
-          onClick={() => this.generateAfterChange('prev')}
-          id='prev'
-          className='slick-arrow slick-prev slick-disabled'>
-         Previous
-        </button>
-        <button type='button'
-          onClick={() => this.generateAfterChange('next')}
-          id='next'
-          className='slick-arrow slick-next'>
-         Next
-        </button>
+      <div className={_className} id={id}>
+        { hasLeftArrow &&
+          <button
+            type='button'
+            id='prev'
+            className='slick-arrow slick-prev'
+            onClick={this.scrollLeft}>
+            Previous
+          </button>
+        }
+
         <div className='slider'>
-          <nav ref={this.initNavigationNode} className={_classTab}>
-            <span id='slick-track'>
+          <nav
+            className={_classTab}
+            onTouchStart={this.handleNavTouchStart}
+            onTouchMove={this.handleNavTouch}
+            onTouchEnd={this.handleNavTouchEnd}>
+            <span
+              id='slick-track'
+              style={scrollStyle}
+              ref={this.initNavigationNode}
+              onTouchStart={this.handleNavTouchStart}
+              onTouchMove={this.handleNavTouch}
+              onTouchEnd={this.handleNavTouchEnd}>
               {this.renderHeaders(headers)}
             </span>
           </nav>
         </div>
+
+        { hasRightArrow &&
+          <button
+            type='button'
+            id='next'
+            className='slick-arrow slick-next'
+            onClick={this.scrollRight}>
+            Next
+          </button>
+        }
+
         {this.renderContents(contents)}
       </div>
     )
