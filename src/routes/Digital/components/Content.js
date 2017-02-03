@@ -20,7 +20,6 @@ import Donasi from './products/Donasi'
 
 class Content extends Component {
   static propTypes = {
-    slug: PropTypes.string,
     productList: PropTypes.array,
     operatorList: PropTypes.array,
     title: PropTypes.string,

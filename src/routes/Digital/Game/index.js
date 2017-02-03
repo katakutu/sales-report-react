@@ -1,5 +1,7 @@
+import { DURL } from '../digitalconstants'
+
 export default (store) => ({
-  path : '/voucher-game',
+  path : DURL['game'],
   /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {
     /*  Webpack - use 'require.ensure' to create a split point
@@ -7,7 +9,7 @@ export default (store) => ({
     require.ensure([], (require) => {
       /*  Webpack - use require callback to define
           dependencies for bundling   */
-      const Game = require('../components/GameView').default
+      const Game = require('../components/DigitalView').default
 
       /*  Return getComponent   */
       cb(null, Game)

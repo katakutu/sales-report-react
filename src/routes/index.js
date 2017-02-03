@@ -5,8 +5,7 @@ import HotListRoute from './HotList'
 import CategoryRoute from './Category'
 import WishlistRoute from './WishList'
 import FeedRoute from './Feed'
-import DigitalDonasiRoute from './Digital/Donasi'
-import DigitalGameRoute from './Digital/Game'
+import { DDonasiRoute, DGameRoute } from './Digital'
 import NotFound from './NotFound'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -21,8 +20,8 @@ export const createRoutes = (store, ApolloExecutors) => ({
     CategoryRoute(store),
     WishlistRoute(store, ApolloExecutors),
     FeedRoute(store, ApolloExecutors),
-    DigitalDonasiRoute(store),
-    DigitalGameRoute(store),
+    DDonasiRoute(store),
+    DGameRoute(store),
     {
       path: '*',
       component: NotFound
