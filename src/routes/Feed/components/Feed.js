@@ -40,7 +40,6 @@ class Feed extends Component {
   }
 
   state = {
-    modalState: false,
     page: this.props.page
   }
 
@@ -251,8 +250,8 @@ const mapDispatchToProps = {
 }
 
 const FeedWithData = graphql(queries.FeedQuery, {
-  options: ({ ob, page, rows, userID, uniqueID, ep, src, item, q, start }) => ({
-    variables: { ob, page, rows, userID, uniqueID, ep, src, item, q, start },
+  options: ({ ob, page, rows, userID, uniqueID, ep, src, item, q }) => ({
+    variables: { ob, page, rows, userID, uniqueID, ep, src, item, q },
     forceFetch: true,
     returnPartialData: true
   }),

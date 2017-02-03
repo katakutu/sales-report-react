@@ -3,7 +3,6 @@ const {
   DEFAULT_FAVE_DATA
 } = require('./../../api-consumer/api/Favorite/TopedFavoriteAPI')
 const GlobalConfig = require('./../../GlobalConfig')
-const common = require('./common')
 const api = new TopedFavoriteAPI()
 
 function removeFavorite (userID, shopID, token) {
@@ -14,27 +13,30 @@ function addFavorite (userID, shopID, token) {
   return api.addFavorite(userID, shopID, token)
 }
 
-function getCSRF(context){
-  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || '_dYLTryTevwOUqXt6PBwlJpqwJX3QJuyedd_EKQ_OA6QR-WdvjDYCKY8EzCB1IjMpNu9TPm4444ZokXkPxk_bUlcloSzm1a37V40X5CxUvwj5lOSkMOt37x3vxh_evUD'
+function getCSRF (context) {
+  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] ||
+  '_dYLTryTevwOUqXt6PBwlJpqwJX3QJuyedd_EKQ_OA6QR-WdvjDYCKY8EzCB1IjMpNu9' +
+  'TPm4444ZokXkPxk_bUlcloSzm1a37V40X5CxUvwj5lOSkMOt37x3vxh_evUD'
   return api.getCSRFToken(
       context.read('Origin') || GlobalConfig['Hostname'],
       sessID
   ).catch(error => {
     console.error(`[GraphQL][Models][Wallet] Error getting wallet data: ${error}`)
-    return Promise.resolve(DEFAULT_WALLET_DATA)
+    return Promise.resolve(DEFAULT_FAVE_DATA)
   })
 }
 function getFavorited (userID, count, page, shop, context) {
   if (userID === 0) {
     return Promise.resolve(DEFAULT_FAVE_DATA)
   }
-  
+
   return api.getFavorite(userID, count, page, shop).then(response => {
     if (!response || !response['data']) {
       return Promise.resolve(DEFAULT_FAVE_DATA)
     }
     return getCSRF(context).then(csrf => {
       return {
+        has_next_page: !!response['pagination'],
         token: csrf['data'],
         data: response['data'].map(section => {
           const imageProducts = section.shop_product || []
@@ -58,7 +60,7 @@ function getFavorited (userID, count, page, shop, context) {
           }
         })
       }
-    });
+    })
   })
   .catch(error => {
     return {

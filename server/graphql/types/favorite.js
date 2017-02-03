@@ -35,6 +35,7 @@ const Favorite = new GraphQLObjectType({
 const Favorites = new GraphQLObjectType({
   name: 'Favorites',
   fields: {
+    has_next_page: { type: new GraphQLNonNull(GraphQLBoolean) },
     token: { type: GraphQLString },
     data: { type: new GraphQLList(Favorite) }
   }

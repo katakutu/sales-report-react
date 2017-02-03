@@ -9,21 +9,18 @@ import './FavoriteView.scss'
 
 const TOPADS_PARAMS = {
   ep: 'shop',
-  src:'fav_product',
-  item: 4,
+  src:'fav_shop',
+  item: 2,
   q: ''
 }
 
 class FavoriteView extends Component {
   static propTypes = {
     data: React.PropTypes.object,
-    hasNextPage: React.PropTypes.bool,
-    lang: React.PropTypes.string,
-    totalFavorite: React.PropTypes.number,
-    favorites: React.PropTypes.arrayOf(React.PropTypes.object)
+    lang: React.PropTypes.string
   }
 
-  static FAVORITE_PER_PAGE = 10
+  static FAVORITE_PER_PAGE = 3
 
   state = {
     finalQuery: '',
@@ -52,11 +49,9 @@ class FavoriteView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='favorite' />
         <FavoriteNew
-          userID={parseInt(userInfo['id'])}
-          query={this.state.finalQuery}
-          page={this.state.page}
+          userID={5481152}
           count={FavoriteView.FAVORITE_PER_PAGE}
-          shouldRefetch={this.state.refetch}
+          shop={''}
           ep={TOPADS_PARAMS.ep}
           src={TOPADS_PARAMS.src}
           item={TOPADS_PARAMS.item}
@@ -68,10 +63,7 @@ class FavoriteView extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    lang: state['app'] ? state['app'].lang : state.lang,
-    hasNextPage: state['favorite'] ? state['favorite'].hasNextPage : state.hasNextPage,
-    totalWishlist: state['favorite'] ? state['favorite'].totalWishlist : state.totalFavorite,
-    favorites: state['favorite'] ? state['favorite'].favorites : state.favorites
+    lang: state['app'] ? state['app'].lang : state.lang
   }
 }
 
