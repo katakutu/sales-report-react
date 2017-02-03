@@ -80,7 +80,7 @@ class Feed extends Component {
         })
         if (ArrayHelper.notEquals(oldIDs.length > 0 ? oldIDs[1] : oldIDs, newIDs[1])) {
           // update new data with old one
-          let payload = [...oldData, ...newData]
+          const payload = [...oldData, ...newData]
           this.props.replaceFeeds(payload)
         }
       }

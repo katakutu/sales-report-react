@@ -34,8 +34,8 @@ class Ticker extends Component {
       this.loadTicker()
     } else {
       const now = new Date()
-      let date = new Date(Cookies.getItem('ticker'))
-      let result = (date.getTime() - now.getTime())
+      const date = new Date(Cookies.getItem('ticker'))
+      const result = (date.getTime() - now.getTime())
       setTimeout(function () {
         that.loadTicker()
       }, result)
