@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
-import { SLUG, DURL } from '../digitalconstants'
-import { SITES } from '../../../constants'
+import { DURL } from '../digitalconstants'
 
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import Tab from './Tab'
@@ -12,7 +11,7 @@ import Operator from './Operator'
 
 import SplashScreen from '../../../components/Loading/SplashScreen'
 
-class DonasiView extends Component {
+class DigitalView extends Component {
   static propTypes = {
     data: PropTypes.object,
     params: PropTypes.object,
@@ -38,11 +37,6 @@ class DonasiView extends Component {
       return (
         <SplashScreen />
       )
-    }
-
-    if (!SLUG[this.state.activeTab]) {
-      window.location = SITES['Pulsa'] + '/' + this.state.activeTab
-      return
     }
 
     const user = this.props.data.user || {}
@@ -76,4 +70,4 @@ class DonasiView extends Component {
 
 export default graphql(queries.DigitalQuery, {
   options: { returnPartialData: true }
-})(DonasiView)
+})(DigitalView)
