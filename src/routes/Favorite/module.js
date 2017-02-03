@@ -1,3 +1,4 @@
+import ArrayHelper from '../../lib/utils/ArrayHelper'
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -60,9 +61,17 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [REPLACE_FAVORITES] : (state, action) => {
-    const newData = action.payload.map(d => Object.assign({}, d, { isActive: true }))
+    const oldIDs = state.favorites.map(fd => {
+      return fd['kind'] === 'favorites' && fd['items'].map(c => (c['shop_id']))
+    })
+    const newIDs = action.payload.map(ta => {
+      return ta['kind'] === 'favorites' && ta['items'].map(x => (x['shop_id']))
+    })
+    if (ArrayHelper.equals2DFeed(oldIDs, newIDs)) {
+      return Object.assign({}, state)
+    }
 
-    return Object.assign({}, state, { favorites: newData })
+    return Object.assign({}, state, { favorites: action.payload })
   },
   [ACTIVATE_FAVORITE]: (state, action) => {
     const newData = state.favorites.map(w => {

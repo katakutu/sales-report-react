@@ -17,23 +17,6 @@ class WishListSearchEmpty extends Component {
     userID: React.PropTypes.number
   }
 
-  constructor (props) {
-    super(props)
-
-    this.seeAllWishlist = this.seeAllWishlist.bind(this)
-    this._eventModal = this._eventModal.bind(this)
-  }
-
-  state = {
-    modalState: false
-  }
-
-  _eventModal (state) {
-    this.setState({
-      modalState: state
-    })
-  }
-
   seeAllWishlist () {
     this.props.updateQuery('')
   }
@@ -44,28 +27,7 @@ class WishListSearchEmpty extends Component {
       src:'wishlist',
       item: 2,
       page: 1,
-      q: '',
-      modalContent: {
-        data: [
-          {
-            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/stat.png',
-            title: lang[this.props.lang]['Topads Modal Section 1 Title'],
-            content: lang[this.props.lang]['Topads Modal Section 1 Content']
-          },
-          {
-            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/jangkau.png',
-            title: lang[this.props.lang]['Topads Modal Section 2 Title'],
-            content: lang[this.props.lang]['Topads Modal Section 2 Content']
-          },
-          {
-            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/efektif.png',
-            title: lang[this.props.lang]['Topads Modal Section 3 Title'],
-            content: lang[this.props.lang]['Topads Modal Section 3 Content']
-          }
-        ],
-        link: 'https://m.tokopedia.com/iklan?campaign=topads&source=wishlist&medium=mobile',
-        linkText: lang[this.props.lang]['Topads Modal Button']
-      }
+      q: ''
     }
 
     return (
@@ -89,10 +51,7 @@ class WishListSearchEmpty extends Component {
           src={TOPADS_PARAMS.src}
           item={TOPADS_PARAMS.item}
           page={TOPADS_PARAMS.page}
-          q={TOPADS_PARAMS.q}
-          stateModal={this.state.modalState}
-          contentModal={TOPADS_PARAMS.modalContent}
-          eventModal={this._eventModal} />
+          q={TOPADS_PARAMS.q} />
       </div>
     )
   }

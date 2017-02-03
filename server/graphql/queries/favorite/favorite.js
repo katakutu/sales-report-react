@@ -20,5 +20,5 @@ const FavoritedQuery = {
 }
 
 module.exports = {
-  favorite: FavoritedQuery 
+  favorite: FavoritedQuery
 }

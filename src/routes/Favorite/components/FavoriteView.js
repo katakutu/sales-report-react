@@ -1,24 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
-
-// import Favorite from './Favorite'
 import FavoriteNew from './FavoriteNew'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import SplashScreen from '../../../components/Loading/SplashScreen'
-import LoadMore from '../../../components/LoadMore'
-import lang from '../../../lib/utils/Lang'
 import './FavoriteView.scss'
+
+const TOPADS_PARAMS = {
+  ep: 'shop',
+  src:'fav_shop',
+  item: 2,
+  q: ''
+}
 
 class FavoriteView extends Component {
   static propTypes = {
     data: React.PropTypes.object,
-    hasNextPage: React.PropTypes.bool,
-    lang: React.PropTypes.string,
-    totalFavorite: React.PropTypes.number,
-    favorites: React.PropTypes.arrayOf(React.PropTypes.object)
+    lang: React.PropTypes.string
   }
 
   static FAVORITE_PER_PAGE = 10
@@ -30,9 +29,6 @@ class FavoriteView extends Component {
     refetch: false
   }
 
-  
-
-  
   render () {
     if (this.props.data.loading) {
       return (
@@ -48,16 +44,18 @@ class FavoriteView extends Component {
       'shop': this.props.data.shop,
       'wallet': this.props.data.wallet
     })
-
+    
     return (
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='favorite' />
-          <FavoriteNew
-            userID={parseInt(userInfo['id'])}
-            query={this.state.finalQuery}
-            page={this.state.page}
-            count={FavoriteView.FAVORITE_PER_PAGE}
-            shouldRefetch={this.state.refetch} />
+        <FavoriteNew
+          userID={this.props.data.user.id}
+          count={FavoriteView.FAVORITE_PER_PAGE}
+          shop={''}
+          ep={TOPADS_PARAMS.ep}
+          src={TOPADS_PARAMS.src}
+          item={TOPADS_PARAMS.item}
+          q={TOPADS_PARAMS.q} />
       </div>
     )
   }
@@ -65,10 +63,7 @@ class FavoriteView extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    lang: state['app'] ? state['app'].lang : state.lang,
-    hasNextPage: state['favorite'] ? state['favorite'].hasNextPage : state.hasNextPage,
-    totalWishlist: state['favorite'] ? state['favorite'].totalWishlist : state.totalFavorite,
-    favorites: state['favorite'] ? state['favorite'].favorites : state.favorites
+    lang: state['app'] ? state['app'].lang : state.lang
   }
 }
 

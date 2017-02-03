@@ -67,7 +67,7 @@ class Unfavorited extends Component {
 
   render () {
     return (
-      <a href='#' onClick={this.handleClick}>
+      <a onClick={this.handleClick}>
         <i className='icon-checked' />&nbsp;&nbsp;&nbsp;{ lang[this.props.lang]['Favorited btn'] }
       </a>
     )

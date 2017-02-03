@@ -45,7 +45,7 @@ class Favorited extends Component {
           active: true,
           label: 'Favorite',
           text: msg.replace(':item', this.props.shopName),
-          timeout: 3000
+          timeout: 1500
         })
       } else {
         const msg = lang[this.props.lang]['Add Favorite Failed']
@@ -55,7 +55,7 @@ class Favorited extends Component {
           active: true,
           label: 'Favorite',
           text: msg.replace(':item', this.props.shopName),
-          timeout: 3000
+          timeout: 1500
         })
       }
     })
@@ -63,7 +63,7 @@ class Favorited extends Component {
 
   render () {
     return (
-      <a href='#' className='green' onClick={this.handleClick()}>
+      <a className='green' onClick={this.handleClick()}>
         +&nbsp;{ lang[this.props.lang]['Unfavorited btn'] }
       </a>
     )

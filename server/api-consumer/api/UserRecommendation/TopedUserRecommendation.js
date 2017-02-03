@@ -2,9 +2,10 @@ const TopedAPI = require('../TopedAPI')
 const GlobalConfig = require('../../../GlobalConfig')
 const URL = require('url')
 
+const param = '?device=mobile&source=skipper&user_id=:user_id&recommendation_source=:recommendation_source' +
+'&recommendation_size=:recommendation_size'
 const USER_RECOMMENDATION_SERVICES = {
-  Recommendation: `${GlobalConfig.Recommendation.Hostname}/r3/v2/user/recommendation?device=mobile&source=skipper
-&user_id=:user_id&recommendation_source=:recommendation_source&recommendation_size=:recommendation_size`
+  Recommendation: `${GlobalConfig.Recommendation.Hostname}/r3/v2/user/recommendation${param}`
 }
 
 class TopedUserRecommendationAPI {
