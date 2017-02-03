@@ -2,7 +2,7 @@ const TopedAPI = require('../TopedAPI')
 const GlobalConfig = require('../../../GlobalConfig')
 const URL = require('url')
 
-let param = 'ep=:ep&src=:src&item=:item&page=:page&q=:q&user_id=:user_id&device=mobile'
+const param = 'ep=:ep&src=:src&item=:item&page=:page&q=:q&user_id=:user_id&device=mobile'
 const TOPADS_SERVICES = {
   Display: `${GlobalConfig.Fave.Hostname}/promo/v1.1/display/ads?${param}`
 }

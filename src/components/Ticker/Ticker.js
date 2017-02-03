@@ -28,7 +28,7 @@ class Ticker extends Component {
   }
 
   componentDidMount () {
-    let that = this
+    const that = this
     const cookies = Cookies.hasItem('ticker')
     if (!cookies) {
       this.loadTicker()
@@ -99,7 +99,7 @@ class Ticker extends Component {
       refreshInterval: this.props.perTickDuration * 1000
     })
 
-    let that = this
+    const that = this
     setTimeout(function () {
       that.loadTicker()
     }, rangeTime)
