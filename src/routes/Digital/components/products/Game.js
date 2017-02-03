@@ -128,7 +128,7 @@ class Game extends Component {
           useAutoSuggest
           label='Jenis Voucher'
           placeholder='Pilih Jenis Voucher'
-          value={itemsName[0].text}
+          value={itemsName[0] ? itemsName[0].text : ''}
           items={itemsName}
           onSuggestionSelected={this.handleSuggestionSelected} />
         <div className='dp--nominal'>

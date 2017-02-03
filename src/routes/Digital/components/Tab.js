@@ -18,16 +18,18 @@ class Tab extends Component {
     super(props)
 
     let shownTabs = []
-    shownTabs.push(props.categoryList[0].icon)
-    shownTabs.push(props.categoryList[1].icon)
+    shownTabs.push(props.categoryList[0] ? props.categoryList[0].icon : '')
+    shownTabs.push(props.categoryList[1] ? props.categoryList[1].icon : '')
     if (this.props.activeTab) {
       if (shownTabs.indexOf(this.props.activeTab) < 0) {
         shownTabs.push(this.props.activeTab)
       } else {
-        shownTabs.push(this.props.categoryList[2].icon) // item ketiga yang ingin dimunculkan di tab
+        // item ketiga yang ingin dimunculkan di tab
+        shownTabs.push(this.props.categoryList[2] ? props.categoryList[2].icon : '')
       }
     } else {
-      shownTabs.push(this.props.categoryList[2].icon) // item ketiga yang ingin dimunculkan di tab
+      // item ketiga yang ingin dimunculkan di tab
+      shownTabs.push(this.props.categoryList[2].icon ? props.categoryList[0].icon : '')
     }
 
     this.state = {
