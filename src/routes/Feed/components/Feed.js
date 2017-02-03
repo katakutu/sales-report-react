@@ -12,33 +12,6 @@ import lang from '../../../lib/utils/Lang'
 import FeedEmpty from './FeedEmpty'
 import { replaceFeeds, updatePage, updateQuery } from '../module'
 
-const MODAL_PARAMS = {
-  modalContent: {
-    data: [
-      {
-        icon: 'https://ecs1.tokopedia.net/img/ads_microsite/stat.png',
-        title: 'Tingkatkan penjualan',
-        content: `Toko dan produk anda akan lebih mudah
-          ditemukan oleh pengunjung Tokopedia.`
-      },
-      {
-        icon: 'https://ecs1.tokopedia.net/img/ads_microsite/jangkau.png',
-        title: 'Menjangkau dengan tepat',
-        content: `TopAds membantu Anda menjangkau calon pembeli yang sesuai, melalui
-          pencarian produk dan penelusuran kategori produk.`
-      },
-      {
-        icon: 'https://ecs1.tokopedia.net/img/ads_microsite/efektif.png',
-        title: 'Efektif dan Efisien',
-        content: `Dengan TopAds, hasil yang anda harapkan sesuai dengan biaya
-          yang anda keluarkan.`
-      }
-    ],
-    link: 'https://m.tokopedia.com/iklan?campaign=topads&amp;source=wishlist&amp;medium=mobile',
-    linkText: 'Baca selengkapnya'
-  }
-}
-
 class Feed extends Component {
 
   static propTypes = {
@@ -47,6 +20,7 @@ class Feed extends Component {
     lang: PropTypes.string,
     ob: PropTypes.number,
     page: PropTypes.number,
+    start: PropTypes.number,
     uniqueID: PropTypes.string,
     userID: PropTypes.number,
     fetchMore: PropTypes.func,
@@ -68,7 +42,8 @@ class Feed extends Component {
 
   state = {
     modalState: false,
-    page: this.props.page
+    page: this.props.page,
+    start: this.props.start
   }
 
   constructor (props) {
@@ -94,9 +69,21 @@ class Feed extends Component {
         { kind: 'topads', display: ta['display'], items: newTopAds },
         { kind: 'feed', items: newFeeds }
       ]
-      // combine 2 data
-      let payload = [...oldData, ...newData]
-      feeds.length !== 0 && this.props.replaceFeeds(payload)
+      // check new data already there
+      if (feeds.length !== 0) {
+        // check if new data same to old data
+        const oldIDs = oldData.map(fd => {
+          return fd['kind'] === 'feed' && fd['items'].map(c => (c['id']))
+        })
+        const newIDs = newData.map(ta => {
+          return ta['kind'] === 'feed' && ta['items'].map(x => (x['id']))
+        })
+        if (ArrayHelper.notEquals(oldIDs.length > 0 ? oldIDs[1] : oldIDs, newIDs[1])) {
+          // update new data with old one
+          const payload = [...oldData, ...newData]
+          this.props.replaceFeeds(payload)
+        }
+      }
     }
   }
 
@@ -110,9 +97,10 @@ class Feed extends Component {
   viewMore () {
     this.setState({
       modalState: this.state.modalState,
-      page: this.state.page + 1
+      page: this.state.page + 1,
+      start: this.state.page % 2 !== 0 ? this.state.start : this.state.start + 1
     }, () => {
-      this.props.fetchMore(this.state.page)
+      this.props.fetchMore(this.state.page, this.state.start)
       browserHistory.push({
         pathname: '/feed',
         query: { page: this.state.page }
@@ -214,6 +202,30 @@ class Feed extends Component {
       transitionLeaveTimeout: 500
     }
 
+    const MODAL_PARAMS = {
+      modalContent: {
+        data: [
+          {
+            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/stat.png',
+            title: lang[this.props.lang]['Topads Modal Section 1 Title'],
+            content: lang[this.props.lang]['Topads Modal Section 1 Content']
+          },
+          {
+            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/jangkau.png',
+            title: lang[this.props.lang]['Topads Modal Section 2 Title'],
+            content: lang[this.props.lang]['Topads Modal Section 2 Content']
+          },
+          {
+            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/efektif.png',
+            title: lang[this.props.lang]['Topads Modal Section 3 Title'],
+            content: lang[this.props.lang]['Topads Modal Section 3 Content']
+          }
+        ],
+        link: 'https://m.tokopedia.com/iklan?campaign=topads&source=feed&medium=mobile',
+        linkText: lang[this.props.lang]['Topads Modal Button']
+      }
+    }
+
     return (
       <div className='u-clearfix feed-section'>
         <div className='row-fluid'>
@@ -243,6 +255,7 @@ class Feed extends Component {
                       <div className='row-fluid' key={key} >
                         <TopAdsIntegrate
                           dataAds={feed}
+                          start={this.state.page}
                           stateModal={this.state.modalState}
                           contentModal={MODAL_PARAMS.modalContent}
                           eventModal={this._eventModal}
@@ -281,8 +294,8 @@ const mapDispatchToProps = {
 }
 
 const FeedWithData = graphql(queries.FeedQuery, {
-  options: ({ ob, page, rows, userID, uniqueID, ep, src, item, q }) => ({
-    variables: { ob, page, rows, userID, uniqueID, ep, src, item, q },
+  options: ({ ob, page, rows, userID, uniqueID, ep, src, item, q, start }) => ({
+    variables: { ob, page, rows, userID, uniqueID, ep, src, item, q, start },
     forceFetch: true,
     returnPartialData: true
   }),
@@ -291,9 +304,9 @@ const FeedWithData = graphql(queries.FeedQuery, {
       loading,
       get_feed,
       topads,
-      fetchMore: (nextPage = 1) => {
+      fetchMore: (nextPage = 1, nextStart = 1) => {
         fetchMore({
-          variables: { page: nextPage },
+          variables: { page: nextPage, start: nextStart },
           updateQuery: (prev, { fetchMoreResult }) => {
             if (!fetchMoreResult.data) { return prev }
             const newFD = fetchMoreResult.data.get_feed

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Img from 'react-image-fallback'
 
-import emptyImage from '../assets/wishlist-empty.png'
+import emptyImage from '../assets/search-wishlist-empty.png'
 import loading from '../../../static/media/images/lite-loading.png'
 import './WishListView.scss'
 
@@ -73,16 +73,14 @@ class WishListSearchEmpty extends Component {
         <Img src={emptyImage}
           initialImage={loading}
           fallbackImage={loading}
-          className='u-block u-mx-auto wishlist__empty-img'
+          className='u-block u-mx-auto wishlist__search__empty-img'
           alt='Tidak ada wishlist' />
-        <div className='wishlist__not-found-holder'>
-          <div className='wishlist__product-not-found'>
-            { lang[this.props.lang]['Wishlist Search Empty'] }
-          </div>
-          <div className='wishlist__btn-holder'>
-            <div className='wishlist__btn-see-all' onClick={this.seeAllWishlist}>
-              { lang[this.props.lang]['See All Wishlists'] }
-            </div>
+        <div className='wishlist__empty'>
+          { lang[this.props.lang]['Wishlist Search Empty'] }
+        </div>
+        <div className='wishlist__btn-holder'>
+          <div className='wishlist__btn-see-all' onClick={this.seeAllWishlist}>
+            { lang[this.props.lang]['See All Wishlists'] }
           </div>
         </div>
         <TopAds
