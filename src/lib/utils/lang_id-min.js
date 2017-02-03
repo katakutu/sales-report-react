@@ -93,11 +93,29 @@ const lang = {
     'Pascabayar': 'Pascabayar',
     'Hasil': 'Hasil',
     'Delivery Confirm': 'Konfirmasi Penerimaan',
+    'Favorite tab': 'Favorit',
+    'Favorited btn': 'Favorit',
+    'Unfavorited btn': 'Favoritkan',
     'Search for Products': 'Mulai Cari Produk',
     'Out of Stock': 'Stok Kosong',
     'Clear': 'Hapus',
     'Wishlist Search Empty': 'Produk tidak ditemukan di wishlist',
-    'See All Wishlists': 'Lihat Semua Produk'
+    'See All Wishlists': 'Lihat Semua Wishlist',
+    'Search Shop in Favorite': 'Cari toko di daftar favorit',
+    'Cari lokasi': 'Cari Lokasi',
+    'TERAKHIR DILIHAT': 'TERAKHIR DILIHAT',
+    'INSPIRASI DARI MINAT ANDA' :'INSPIRASI DARI MINAT ANDA',
+    'INSPIRASI DARI WISHLIST' : 'INSPIRASI DARI WISHLIST',
+    'INSPIRASI DARI PEMBELIAN' : 'INSPIRASI DARI PEMBELIAN',
+    'PRODUCT FEED' : 'PRODUCT FEED',
+    'Feed Empty' : 'Feed Anda masih kosong',
+    'Topads Modal Section 1 Title': 'Tingkatkan penjualan',
+    'Topads Modal Section 1 Content': 'Toko dan produk anda akan lebih mudah ditemukan oleh pengunjung Tokopedia.',
+    'Topads Modal Section 2 Title': 'Menjangkau dengan tepat',
+    'Topads Modal Section 2 Content': 'TopAds membantu Anda menjangkau calon pembeli yang sesuai, melalui pencarian produk dan penelusuran kategori produk.',
+    'Topads Modal Section 3 Title': 'Efektif dan Efisien',
+    'Topads Modal Section 3 Content': 'Dengan TopAds, hasil yang anda harapkan sesuai dengan biaya yang anda keluarkan.',
+    'Topads Modal Button': 'Baca selengkapnya'
 }
 
 module.exports = lang

@@ -93,11 +93,29 @@ const lang = {
     'Pascabayar': 'Postpaid',
     'Hasil': 'Result',
     'Delivery Confirm': 'Receive Confirmation',
+    'Favorite tab': 'Favorite',
+    'Favorited btn': 'Favorited',
+    'Unfavorited btn': 'Favorite',
     'Search for Products': 'Search for Products',
     'Out of Stock': 'Out of Stock',
     'Clear': 'Clear',
     'Wishlist Search Empty': 'No matching product found',
-    'See All Wishlists': 'Show All Products'
+    'See All Wishlists': 'See All Wishlists',
+    'Search Shop in Favorite': 'Search shops in favorite list',
+    'Cari lokasi': 'Search Location',
+    'TERAKHIR DILIHAT': 'RECENTLY VIEWED',
+    'INSPIRASI DARI MINAT ANDA' :'RELATED TO ITEMS YOU\'VE VIEWED',
+    'INSPIRASI DARI WISHLIST' : 'INSPIRED BY YOUR WISHLIST',
+    'INSPIRASI DARI PEMBELIAN' : 'INSPIRED BY YOUR PURCHASED',
+    'PRODUCT FEED' : 'PRODUCT FEED',
+    'Feed Empty': 'Your Feed is empty',
+    'Topads Modal Section 1 Title': 'Increase Sales',
+    'Topads Modal Section 1 Content': 'Your shop and products are more visible for Tokopedia users.',
+    'Topads Modal Section 2 Title': 'Right on Target',
+    'Topads Modal Section 2 Content': 'TopAds helps you in reaching the right target market, through product searching, and product category.',
+    'Topads Modal Section 3 Title': 'Effective & Efficient',
+    'Topads Modal Section 3 Content': 'With TopAds, the results is worth your investment.',
+    'Topads Modal Button': 'Read more'
 }
 
 module.exports = lang

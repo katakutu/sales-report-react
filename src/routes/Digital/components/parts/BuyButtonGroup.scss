@@ -1,0 +1,151 @@
+@import 'base';
+
+.dp--buy {
+    margin-top: 20px;
+
+    @media screen and (max-width: 640px) {
+        float: none;
+        clear: both;
+    }
+
+    a {
+        color: $color-green;
+        font-size: 13px;
+        font-weight: lighter;
+    }
+}
+
+.dp__checkbox {
+    position: relative;
+    display: block;
+    margin-bottom: 10px;
+
+    label {
+        min-height: 20px;
+        font-size: 12px;
+        font-weight: 400;
+        cursor: pointer;
+        color: #333;
+    }
+}
+
+.dp__btn {
+    width: 100%;
+    margin-bottom: 5px;
+    border: 0;
+    border-radius: 2px;
+    line-height: 2.5em;
+    font-size: 16px;
+    color: $color-white-primary;
+    appearance: none;
+    cursor: pointer;
+}
+
+.btn--orange {
+    background: $color-orange;
+}
+
+.dp-checkbox input[type=checkbox]:checked + label > span {
+    background: url(../../assets/checkbox-checked.png) no-repeat transparent;
+}
+
+.dp__checkbox {
+    display: block;
+
+    label {
+        cursor: pointer;
+    }
+
+    input[type='checkbox'] {
+        display: none;
+
+        &:checked + label > span {
+            background: url(../../assets/checkbox-checked.png) no-repeat transparent;
+            background-size: 15px 15px;
+        }
+    }
+
+    span {
+        display: inline-block;
+        margin-right: 3px;
+        width: 15px;
+        height: 15px;
+        vertical-align: middle;
+    }
+
+    .dp-checkbox {
+        background: url(../../assets/checkbox-empty.png) no-repeat transparent;
+        background-size: 15px 15px;
+    }
+}
+
+.trigger-tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    background: url(../../assets/icon-info.png);
+    background-size: 16px 17px;
+    height: 16px;
+    width: 17px;
+    margin-left: 3px;
+    vertical-align: middle;
+}
+
+.trigger-tooltip:hover .tooltip-container,
+.trigger-tooltip:focus .tooltip-container {
+    display: block;
+}
+
+.trigger-tooltip .icon-info-alt {
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+.tooltip-container {
+    position: absolute;
+    top: 13px;
+    left: -100px;
+    z-index: 1001;
+    display: none;
+    padding: 15px 0;
+    max-width: 230px;
+    width: 230px;
+    text-align: center;
+}
+
+.tooltip-box {
+    display: block;
+    padding: 7px 11px;
+    border: 1px solid #AAA;
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 2px 1px 0 0 rgba(124, 120, 119, 0.3);
+}
+
+.tooltip-container.open {
+    display: block;
+}
+
+.tooltip-box::before {
+    position: absolute;
+    top: -3px;
+    left: 103px;
+    z-index: 0;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-bottom: 10px solid #AAA;
+    content: '';
+}
+
+.tooltip-box::after {
+    position: absolute;
+    top: -1px;
+    left: 103px;
+    z-index: 0;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-bottom: 10px solid white;
+    content: '';
+}

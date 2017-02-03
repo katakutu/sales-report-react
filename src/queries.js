@@ -102,6 +102,7 @@ query Query {
       id
       title
       message
+      color
     }
   }
   slides{
@@ -221,10 +222,172 @@ query Query {
 }
 `
 
+const FeedQuery = gql`
+  query Query($ob: Int!, $page: Int!, $rows: Int!, $userID: Int!, $uniqueID: String!,
+    $ep: String!, $src: String!, $item: Int!, $q: String! ){
+      get_feed(ob: $ob, page: $page, rows: $rows, userID: $userID, uniqueID: $uniqueID){
+        total_data
+        has_next_page
+        items {
+          id
+          name
+          url
+          image_url
+          image_url_700
+          price
+          shop {
+            id
+            name
+            url
+            is_gold
+            location
+            city
+            reputation
+            clover
+          }
+          badges {
+            title
+            image_url
+          }
+          labels {
+            title
+            color
+          }
+        }
+      }
+      topads(userID:$userID, ep: $ep, src: $src, item: $item, page: $page, q: $q){
+        total_data
+      display
+      items {
+        id
+        ad_ref_key
+        redirect
+        sticker_id
+        sticker_image
+        product_click_url
+        shop_click_url
+        product {
+          id
+          name
+          image {
+            m_ecs
+            s_ecs
+            xs_ecs
+            s_url
+            m_url
+            xs_url
+          }
+          uri
+          relative_uri
+          price_format
+          count_talk_format
+          count_review_format
+          product_preorder
+          product_wholesale
+          free_return
+          product_cashback
+          product_cashback_rate
+          labels {
+            title
+            color
+          }
+        }
+        shop {
+          id
+          name
+          domain
+          tagline
+          location
+          city
+          image_product {
+            product_id
+            product_name
+            image_url
+          }
+          image_shop {
+            cover_ecs
+            s_ecs
+            xs_ecs
+            s_url
+            xs_url
+          }
+          gold_shop
+          lucky_shop
+          shop_is_official
+          uri
+          badges {
+            title
+            image_url
+          }
+        }
+      }
+      }
+    }`
+const RecommedationQuery = gql`
+    query Query($userID:Int!, $recommendationSource:String!, $recommendationSize:Int!){
+        get_recommendation(userID:$userID, recommendationSource: $recommendationSource,
+          recommendationSize:$recommendationSize) {
+          size_data
+          source
+          items {
+            id
+            name
+            url
+            image_url
+            price
+            shop {
+              id
+              name
+              url
+              is_gold
+              location
+              city
+              reputation
+              clover
+            }
+            badges {
+              title
+              image_url
+            }
+            labels {
+              title
+              color
+            }
+          }
+        }
+      }`
+
+const RecentViewQuery = gql`
+    query Query($userID: Int!){
+      get_recent_view (userID: $userID) {
+          items {
+            product_id
+            product_url
+            product_name
+            product_image
+            product_price
+            shop_id
+            shop_url
+            shop_name
+            shop_location
+            shop_gold_status
+            badges {
+              title
+              image_url
+            }
+            labels {
+              title
+              color
+            }
+          }
+       }
+    }`
+
 const WishlistQueries = {
   getAll: gql`
   query Query($userID: Int!, $query: String!, $count: Int!, $page: Int!) {
     wishlist(user_id:$userID, query: $query, count: $count, page: $page){
+      count
       has_next_page
       total_data
       items{
@@ -256,6 +419,14 @@ const WishlistQueries = {
 
 const DigitalQuery = gql`
 query {
+  user{
+    id
+    isLoggedIn
+    shouldRedirect
+    profilePicture
+    name
+    email
+  }
   points{
     data{
       attributes{
@@ -373,6 +544,9 @@ const TopAdsQueries = {
           m_ecs
           s_ecs
           xs_ecs
+          s_url
+          m_url
+          xs_url
         }
         uri
         relative_uri
@@ -405,6 +579,8 @@ const TopAdsQueries = {
           cover_ecs
           s_ecs
           xs_ecs
+          s_url
+          xs_url
         }
         gold_shop
         lucky_shop
@@ -440,5 +616,8 @@ export default {
   ApolloExecutors: ApolloExecutors,
   WishlistQueries: WishlistQueries,
   DigitalQuery: DigitalQuery,
-  TopAdsQueries: TopAdsQueries
+  TopAdsQueries: TopAdsQueries,
+  FeedQuery: FeedQuery,
+  RecommedationQuery: RecommedationQuery,
+  RecentViewQuery: RecentViewQuery
 }
