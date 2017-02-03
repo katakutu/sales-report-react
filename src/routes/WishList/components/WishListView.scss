@@ -237,6 +237,7 @@
 .wishlist__img-badge {
     padding: 0 5px 0 0;
     height: 16px;
+    width: 16px;
 }
 
 .wishlist__img-badge:last-child {
@@ -285,6 +286,7 @@
 
 .wishlist__button-trash {
     background: url('../assets/trash.png') transparent no-repeat;
+    background-size: 25px;
     border: 0;
     display: inline-block;
     margin-right: 10px;

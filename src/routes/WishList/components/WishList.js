@@ -211,12 +211,17 @@ class WishList extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (!nextProps.loading) {
+    if (!nextProps.loading && this.props.loading !== nextProps.loading) {
       const wl = nextProps.wishlist || { count: 0, has_next_page: false, items: [], total_data: 0 }
       const wishlists = wl.items || []
       const newWishlists = wishlists.map(wl => Object.assign({}, wl, { isLoved: true }))
 
       this.props.replaceWishlists(newWishlists)
+      this.setState({ query: nextProps.query })
+    }
+
+    if (this.props.loading === nextProps.loading && ArrayHelper.notEquals(this.props.wishlists, nextProps.wishlists)) {
+      this.props.replaceWishlists(nextProps.wishlists)
       this.setState({ query: nextProps.query })
     }
   }
