@@ -15,10 +15,7 @@ const FavoritedQuery = {
     shop: { type: GraphQLString }
   },
   resolve: function (_, args, context) {
-    console.log("=======================================")
-    console.log(getCSRF(context))
-    console.log("=======================================")
-    return getFavorited(args.user_id, args.count, args.page, args.shop)
+    return getFavorited(args.user_id, args.count, args.page, args.shop, context)
   }
 }
 

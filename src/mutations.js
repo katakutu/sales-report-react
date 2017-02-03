@@ -15,13 +15,13 @@ const Wishlist = {
 
 const Favorite = {
   removeFavorite: gql`
-    mutation removeFavorite($shopID: Int!, $userID: Int!) {
-      favorite_remove(shopID: $shopID, userID: $userID)
+    mutation removeFavorite($shopID: Int!, $userID: Int!, $token: String!) {
+      favorite_remove(shopID: $shopID, userID: $userID, token: $token)
     }
   `,
   addFavorite: gql`
-    mutation addFavorite($shopID: Int!, $userID: Int!) {
-      favorite_add(shopID: $shopID, userID: $userID)
+    mutation addFavorite($shopID: Int!, $userID: Int!, $token: String!) {
+      favorite_add(shopID: $shopID, userID: $userID, token: $token)
     }
   `
 }

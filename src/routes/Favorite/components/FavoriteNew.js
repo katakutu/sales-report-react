@@ -192,11 +192,13 @@ class Favorite extends Component {
                         ? <Favorited
                           userID={this.props.userID}
                           shopID={parseInt(item['shop_id'])}
-                          shopName={parseInt(item['shop_name'])} />
+                          shopName={parseInt(item['shop_name'])}
+                          nekot={this.props.data.favorite.token}/>
                         : <Unfavorited
                           userID={this.props.userID}
                           shopID={parseInt(item['shop_id'])}
-                          shopName={parseInt(item['shop_name'])} />
+                          shopName={parseInt(item['shop_name'])}
+                          nekot={this.props.data.favorite.token} />
                       }
                     </div>
                     <div className='u-clearfix'></div>
@@ -214,7 +216,7 @@ class Favorite extends Component {
     if (this.props.data.loading) {
       return <ModuleSpinner />
     }
-    const favorites = this.props.data.favorite
+    const favorites = this.props.data.favorite.data
     if(favorites === undefined || favorites === null){ 
       return (
         <div className='favorite-container u-clearfix'>
@@ -284,19 +286,22 @@ class Favorite extends Component {
 const FaveQuery = gql`
 query Query ($userID: Int!, $page: Int!, $count: Int!, $shop: String){
   favorite (user_id:$userID, page: $page, count: $count, shop: $shop){
-    shop_id
-    domain
-    shop_name
-    shop_pic
-    shop_url
-    location
-    is_gold
-    is_official
-    is_active
-    products {
-      id
-      name
-      img_url
+    token
+    data{
+      shop_id
+      domain
+      shop_name
+      shop_pic
+      shop_url
+      location
+      is_gold
+      is_official
+      is_active
+      products {
+        id
+        name
+        img_url
+      }
     }
   }
 }

@@ -16,7 +16,8 @@ class Unfavorited extends Component {
     notificationDispatch: PropTypes.func,
     mutate: PropTypes.func.isRequired,
     shopID: PropTypes.number,
-    userID: PropTypes.number
+    userID: PropTypes.number,
+    nekot: PropTypes.string
   }
 
   constructor (props) {
@@ -29,11 +30,17 @@ class Unfavorited extends Component {
     const variables = {
       variables: {
         userID: this.props.userID,
-        shopID: this.props.shopID
+        shopID: this.props.shopID,
+        token: this.props.nekot
       }
     }
-
+    console.log(this.props.nekot)
+    console.log(this.props.userID)
+    console.log(this.props.shopID)
     this.props.mutate(variables).then(addSuccess => {
+      console.log("----------------------")
+      console.log(addSuccess)
+
       if (addSuccess['data']['favorite_add'] || false) {
         const msg = lang[this.props.lang]['Add Favorite Success']
 
@@ -72,7 +79,7 @@ const mapStateToProps = (state) => {
     lang: state['app'] ? state['app'].lang : state.lang
   }
 }
-const UnfavoritedQL = graphql(mutations.Favorite.addFavorite)(Unfavorited)
+const UnfavoritedQL = graphql(mutations.Favorite.removeFavorite)(Unfavorited)
 const UnfavoritedQLR = connect(mapStateToProps, {
   activateFavorite, notificationDispatch
 })(UnfavoritedQL)

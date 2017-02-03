@@ -31,6 +31,12 @@ const Favorite = new GraphQLObjectType({
     products: { type: new GraphQLList(Products) }
   }
 })
-const Favorites = new GraphQLList(Favorite)
 
+const Favorites = new GraphQLObjectType({
+  name: 'Favorites',
+  fields: {
+    token: { type: GraphQLString },
+    data: { type: new GraphQLList(Favorite) }
+  }
+})
 module.exports = { Favorites, Favorite, Products }

@@ -16,7 +16,8 @@ class Favorited extends Component {
     notificationDispatch: PropTypes.func,
     mutate: PropTypes.func.isRequired,
     shopID: PropTypes.number,
-    userID: PropTypes.number
+    userID: PropTypes.number,
+    nekot: PropTypes.string
   }
 
   constructor (props) {
@@ -32,7 +33,7 @@ class Favorited extends Component {
         shopID: this.props.shopID
       }
     }
-
+    
     this.props.mutate(variables).then(removeSuccess => {
       if (removeSuccess['data']['favorite_remove'] || false) {
         const msg = lang[this.props.lang]['Remove Favorite Success']
@@ -61,7 +62,7 @@ class Favorited extends Component {
 
   render () {
     return (
-      <a href='#' className='green' onClick={this.handleClick}>
+      <a href='#' className='green' onClick={this.handleClick()}>
         +&nbsp;{ lang[this.props.lang]['Unfavorited btn'] }
       </a>
     )
@@ -73,7 +74,7 @@ const mapStateToProps = (state) => {
     lang: state['app'] ? state['app'].lang : state.lang
   }
 }
-const FavoritedQL = graphql(mutations.Favorite.removeFavorite)(Favorited)
+const FavoritedQL = graphql(mutations.Favorite.addFavorite)(Favorited)
 const FavoritedQLR = connect(mapStateToProps, {
   deactivateFavorite, notificationDispatch
 })(FavoritedQL)

@@ -6,114 +6,66 @@ const GlobalConfig = require('./../../GlobalConfig')
 const common = require('./common')
 const api = new TopedFavoriteAPI()
 
-function removeFavorite (userID, shopID) {
-  return api.removeFavorite(userID, shopID)
+function removeFavorite (userID, shopID, token) {
+  return api.removeFavorite(userID, shopID, token)
 }
 
-function addFavorite (userID, shopID, adKey) {
-  return api.addFavorite(userID, shopID, adKey)
+function addFavorite (userID, shopID, token) {
+  return api.addFavorite(userID, shopID, token)
 }
 
-// function getPromoted (context) {
-//   const userID = common.getUserID(context)
-//   return userID.then(uid => {
-//     if (uid === 0) {
-//       return Promise.resolve(DEFAULT_FAVE_DATA)
-//     }
-//     const api = new TopedFavoriteAPI()
-
-//     return api.getFavorite(uid).then(response => {
-//       if (!response || !response['data']) {
-//         return Promise.resolve(DEFAULT_FAVE_DATA)
-//       }
-//       return response['data'].map(section => {
-//         const imageProducts = section.image_product || []
-//         return {
-//           shop_id: section.id,
-//           shop_name: section.name,
-//           domain: section.domain,
-//           shop_url: section.uri,
-//           shop_pic: section.shop_picture,
-//           is_gold: section.is_gold_merchant,
-//           is_official: section.is_official,
-//           location: section.location,
-//           products: imageProducts.map(row => {
-//             return {
-//               id: row['product_id'],
-//               name: row['product_name'],
-//               img_url: row['image_url']
-//             }
-//           })
-//         }
-//       })
-//     }
-//     )
-//       .catch(error => {
-//         return {
-//           favorite: Promise.resolve(DEFAULT_FAVE_DATA),
-//           errors: [error.name, error.message]
-//         }
-//       })
-//   })
-// }
 function getCSRF(context){
-  const userID = common.getUserID(context)
-  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
-  return userID.then(uid => {
-    if (uid === 0) {
-      console.log("error GetCSRF in models/favorite.js line 62")
-      // return Promise.resolve(DEFAULT_FAVE_DATA)
-    }
-    return api.getCSRFToken(uid, sessID).then(response => {
-      console.log("------------------------------------------------")
-      console.log(response)
-      console.log("------------------------------------------------")
-    })
-      .catch(error => {
-        return {
-          favorite: Promise.resolve(DEFAULT_FAVE_DATA),
-          errors: [error.name, error.message]
-        }
-      })
+  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || '_dYLTryTevwOUqXt6PBwlJpqwJX3QJuyedd_EKQ_OA6QR-WdvjDYCKY8EzCB1IjMpNu9TPm4444ZokXkPxk_bUlcloSzm1a37V40X5CxUvwj5lOSkMOt37x3vxh_evUD'
+  return api.getCSRFToken(
+      context.read('Origin') || GlobalConfig['Hostname'],
+      sessID
+  ).catch(error => {
+    console.error(`[GraphQL][Models][Wallet] Error getting wallet data: ${error}`)
+    return Promise.resolve(DEFAULT_WALLET_DATA)
   })
 }
-function getFavorited (userID, count, page, shop) {
+function getFavorited (userID, count, page, shop, context) {
   if (userID === 0) {
     return Promise.resolve(DEFAULT_FAVE_DATA)
   }
+  
   return api.getFavorite(userID, count, page, shop).then(response => {
     if (!response || !response['data']) {
       return Promise.resolve(DEFAULT_FAVE_DATA)
     }
-    return response['data'].map(section => {
-      const imageProducts = section.shop_product || []
+    return getCSRF(context).then(csrf => {
       return {
-        shop_id: section.shop_id,
-        shop_name: section.name,
-        domain: section.domain,
-        shop_url: section.shop_url,
-        shop_pic: section.shop_picture,
-        is_gold: section.is_gold_merchant,
-        is_official: section.is_official,
-        is_active: true,
-        location: section.location,
-        products: imageProducts.map(row => {
+        token: csrf['data'],
+        data: response['data'].map(section => {
+          const imageProducts = section.shop_product || []
           return {
-            id: row['product_id'],
-            name: row['product_name'],
-            img_url: row['image_url']
+            shop_id: section.shop_id,
+            shop_name: section.name,
+            domain: section.domain,
+            shop_url: section.shop_url,
+            shop_pic: section.shop_picture,
+            is_gold: section.is_gold_merchant,
+            is_official: section.is_official,
+            is_active: true,
+            location: section.location,
+            products: imageProducts.map(row => {
+              return {
+                id: row['product_id'],
+                name: row['product_name'],
+                img_url: row['image_url']
+              }
+            })
           }
         })
       }
-    })
-  }
-    )
-      .catch(error => {
-        return {
-          favorite: Promise.resolve(DEFAULT_FAVE_DATA),
-          errors: [error.name, error.message]
-        }
-      })
+    });
+  })
+  .catch(error => {
+    return {
+      favorite: Promise.resolve(DEFAULT_FAVE_DATA),
+      errors: [error.name, error.message]
+    }
+  })
 }
 
 function getShopID (userID) {

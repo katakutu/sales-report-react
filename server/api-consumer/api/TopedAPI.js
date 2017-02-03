@@ -48,7 +48,8 @@ class TopedAPI {
 
     let finalURL = (method === 'POST') ? url.format()
             : this._formatGetURL(url, content)
-
+    console.log(finalURL)
+    console.log("===================================")
     let finalOptions = Object.assign({
       timeout: 5000
     }, additionalOptions, options)

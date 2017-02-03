@@ -33,15 +33,15 @@ class TopedFavoriteAPI {
                                          .replace(':shop', shopName))
     return this.api.consume(url, 'GET', {})
   }
-  getCSRFToken (userID, sessID) {
+  getCSRFToken (origin, sessID) {
     const sidCookie = `${GlobalConfig['Cookie']['SessionID']}=${sessID};`
     let url = URL.parse(FAVORITE_SERVICES.GetCSRFToken)
     const headers = {
-      'Cookie': sidCookie
+      'Cookie': sidCookie,
+      'Origin': origin
     }
-    return this.api.consume(url, 'GET', { userID },{
-      headers: headers
-    })
+    const opt = { headers: headers }
+    return this.api.consume(url, 'GET', {}, opt)
   }
   removeFavorite (userID, shopID, adKey) {
     const url = URL.parse(FAVORITE_SERVICES.FavoriteModification)
