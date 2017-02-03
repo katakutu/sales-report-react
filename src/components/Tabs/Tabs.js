@@ -6,6 +6,7 @@ import TabContent from './TabContent'
 
 class Tabs extends Component {
   static propTypes = {
+    arrowOff: React.PropTypes.bool,
     children: React.PropTypes.node,
     className: React.PropTypes.string,
     stateTab: React.PropTypes.string,
@@ -18,6 +19,7 @@ class Tabs extends Component {
   }
 
   static defaultProps = {
+    arrowOff: false,
     index: 0,
     inverse: false
   }
@@ -235,7 +237,7 @@ class Tabs extends Component {
   updateArrows () {
     const index = this.navigationNode.children.length - 1
 
-    if (index >= 0) {
+    if (index >= 0 && this.navigationNode.children.length > 2) {
       const nav = this.navigationNode.getBoundingClientRect()
       const last = this.navigationNode.children[index].getBoundingClientRect()
 
@@ -251,7 +253,8 @@ class Tabs extends Component {
   render () {
     const { headers, contents } = this.parseChildren()
     const _className = classnames(this.props.className, {
-      'tab__inverted': this.props.inverse
+      'tab__inverted': this.props.inverse,
+      'tabs': true
     })
     const _classTab = this.props.userIsLoggedIn ? 'tab' : 'tab logged-out'
     const id = this.props.id || 'loggedin-tab'
@@ -267,7 +270,7 @@ class Tabs extends Component {
 
     return (
       <div className={_className} id={id}>
-        { hasLeftArrow &&
+        { !this.props.arrowOff && hasLeftArrow &&
           <button
             type='button'
             id='prev'
@@ -284,7 +287,7 @@ class Tabs extends Component {
             onTouchMove={this.handleNavTouch}
             onTouchEnd={this.handleNavTouchEnd}>
             <span
-              id='slick-track'
+              className='slick-track'
               style={scrollStyle}
               ref={this.initNavigationNode}
               onTouchStart={this.handleNavTouchStart}
@@ -295,7 +298,7 @@ class Tabs extends Component {
           </nav>
         </div>
 
-        { hasRightArrow &&
+        { !this.props.arrowOff && hasRightArrow &&
           <button
             type='button'
             id='next'

@@ -227,6 +227,7 @@ class SearchModalResult extends Component {
   render () {
     return (
       <Tabs
+        arrowOff
         className='clearfix'
         id='search-tab'
         inverse
@@ -236,10 +237,12 @@ class SearchModalResult extends Component {
           { this.props.query === '' && this._renderResultList(this.props.data.search, 'recent_search', true) }
           { this.props.query === '' && this._renderResultList(this.props.data.search, 'popular_search', true) }
           { this.props.query !== '' && this._renderResultList(this.props.data.search, 'autocomplete', false) }
-          { this.props.query !== '' && this._renderResultList(this.props.data.search, 'hotlist', false) }
         </Tab>
         <Tab isActive={this.state.activeTabIndex === 1} label='Toko'>
           { this._renderResultList(this.props.data.search, 'shop', true) }
+        </Tab>
+        <Tab isActive={this.state.activeTabIndex === 2} label='Hotlist'>
+          { this.props.query !== '' && this._renderResultList(this.props.data.search, 'hotlist', false) }
         </Tab>
       </Tabs>
     )
