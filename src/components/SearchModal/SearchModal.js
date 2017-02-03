@@ -7,9 +7,6 @@ import './SearchModal.scss'
 import { clearSearchQuery, updateSearchQuery } from '../../store/app'
 import lang from '../../lib/utils/Lang'
 
-import Tabs from '../Tabs/Tabs'
-import Tab from '../Tabs/Tab'
-
 class SearchModal extends Component {
   static propTypes = {
     clearSearchQuery: React.PropTypes.func,
@@ -18,9 +15,7 @@ class SearchModal extends Component {
     injectPlaceholder: React.PropTypes.string,
     updateSearchQuery: React.PropTypes.func,
     userSearchID: React.PropTypes.string,
-    searchQuery: React.PropTypes.string,
-    inverse: React.PropTypes.bool,
-    isActive: React.PropTypes.bool
+    searchQuery: React.PropTypes.string
   }
 
   constructor (props) {
@@ -68,11 +63,6 @@ class SearchModal extends Component {
             { this.props.searchQuery !== '' && <span className='search-input__clear'
               onClick={this.clearText} /> }
           </form>
-
-          <Tabs inverse>
-            <Tab isActive label='Semua' />
-            <Tab label='Toko' />
-          </Tabs>
         </div>
 
         <SearchModalResult query={this.props.searchQuery} userSearchID={this.props.userSearchID} />

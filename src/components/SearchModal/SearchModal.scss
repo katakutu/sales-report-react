@@ -380,6 +380,11 @@
     }
 }
 
+#search-tab {
+    position: relative;
+    top: -2px;
+}
+
 @-webkit-keyframes MODAL-POP {
     0% { opacity: 0; }
     100% { opacity: 1; }

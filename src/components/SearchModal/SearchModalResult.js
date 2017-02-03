@@ -8,6 +8,9 @@ import { HOSTNAME, SITES } from '../../constants'
 import lang from '../../lib/utils/Lang'
 import GTM from '../../lib/utils/GTM'
 
+import Tabs from '../Tabs/Tabs'
+import Tab from '../Tabs/Tab'
+
 class SearchModalResult extends Component {
   static propTypes = {
     data: React.PropTypes.object,
@@ -16,15 +19,19 @@ class SearchModalResult extends Component {
     query: React.PropTypes.string
   }
 
+  state = {
+    activeTabIndex: 0
+  }
+
   _boldKeyword (input, keyword) {
     const regex = new RegExp(keyword, 'ig')
     const splits = input.split(regex) || []
     const matches = input.match(regex) || []
 
     const key = Math.random().toString(36).substring(4, 3)
-    const segments = matches.map((segment, i) => React.DOM.span({ key: `${segment}-${key}-${i}` }, segment))
+    const segments = matches.map((segment, i) => React.DOM.strong({ key: `${segment}-${key}-${i}` }, segment))
     const replacements = splits.map((replacement, index) => {
-      return React.DOM.strong({ key: `${replacement}-${key}-${index}` }, replacement)
+      return React.DOM.span({ key: `${replacement}-${key}-${index}` }, replacement)
     })
 
     const createResult = (arr1, arr2) => {
@@ -206,21 +213,35 @@ class SearchModalResult extends Component {
       })
   }
 
+  _handleTabChange (index) {
+    this.setState({ activeTabIndex: index })
+  }
+
   constructor (props) {
     super(props)
 
     this._deleteAllHistory = this._deleteAllHistory.bind(this)
+    this._handleTabChange = this._handleTabChange.bind(this)
   }
 
   render () {
     return (
-      <div className='clearfix u-mt3'>
-        { this.props.query === '' && this._renderResultList(this.props.data.search, 'recent_search', true) }
-        { this.props.query === '' && this._renderResultList(this.props.data.search, 'popular_search', true) }
-        { this.props.query !== '' && this._renderResultList(this.props.data.search, 'autocomplete', false) }
-        { this.props.query !== '' && this._renderResultList(this.props.data.search, 'shop', true) }
-        { this.props.query !== '' && this._renderResultList(this.props.data.search, 'hotlist', true) }
-      </div>
+      <Tabs
+        className='clearfix'
+        id='search-tab'
+        inverse
+        index={this.state.activeTabIndex}
+        onChange={this._handleTabChange}>
+        <Tab isActive={this.state.activeTabIndex === 0} label='Semua'>
+          { this.props.query === '' && this._renderResultList(this.props.data.search, 'recent_search', true) }
+          { this.props.query === '' && this._renderResultList(this.props.data.search, 'popular_search', true) }
+          { this.props.query !== '' && this._renderResultList(this.props.data.search, 'autocomplete', false) }
+          { this.props.query !== '' && this._renderResultList(this.props.data.search, 'hotlist', false) }
+        </Tab>
+        <Tab isActive={this.state.activeTabIndex === 1} label='Toko'>
+          { this._renderResultList(this.props.data.search, 'shop', true) }
+        </Tab>
+      </Tabs>
     )
   }
 }

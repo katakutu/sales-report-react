@@ -51,7 +51,10 @@ class Tabs extends Component {
     this.handleNavTouchEnd = this.handleNavTouchEnd.bind(this)
     this.handleNavTouchStart = this.handleNavTouchStart.bind(this)
     this.handleResize = this.handleResize.bind(this)
+    this.handleHeaderClick = this.handleHeaderClick.bind(this)
+
     this.initNavigationNode = this.initNavigationNode.bind(this)
+
     this.parseChildren = this.parseChildren.bind(this)
     this.renderContents = this.renderContents.bind(this)
     this.renderHeaders = this.renderHeaders.bind(this)
@@ -151,6 +154,13 @@ class Tabs extends Component {
     this.resizeTimeout = setTimeout(() => {
       this.updateArrows()
     }, 100)
+  }
+
+  handleHeaderClick(event) {
+    const index = parseInt(event.currentTarget.id)
+    if (this.props.onChange) {
+      this.props.onChange(index)
+    }
   }
 
   initNavigationNode (node) {
