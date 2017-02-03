@@ -29,6 +29,7 @@ class Favorite extends Component {
     clearFavorites: PropTypes.func,
     count: PropTypes.number,
     fetchMore: PropTypes.func,
+    loading: PropTypes.bool,
     data: PropTypes.object,
     lang: React.PropTypes.string,
     page: PropTypes.number,
@@ -97,47 +98,16 @@ class Favorite extends Component {
 
 
   componentWillReceiveProps (nextProps) {
-    // comparing only the relevant changes
-    const np = {
-      count: nextProps.count,
-      page: nextProps.page,
-      query: nextProps.query,
-      favorites: nextProps.favorites
-    }
-    const tp = {
-      count: this.props.count,
-      page: this.props.page,
-      query: this.props.query,
-      favorites: this.props.favorites
-    }
-    const propsChanged = deepEqual(np, tp)
+    if (!nextProps.loading) {
+      const fv = nextProps.favorite || { count: 0, has_next_page: false, items: [], total_data: 0 }
+      const favorites = fv.items || []
+      const newFavorites = favorites.map(fv => Object.assign({},fv, { isLoved: true }))
 
-    if (nextProps['data'] && !nextProps.data.loading && propsChanged) {
-      // only add new urls that's not already there
-      // const ids = this.props.favorites.map(w => w['id'])
-      const data = nextProps['data']['favorite'] && nextProps['data']['favorite']['items']
-      const gqlData = data || []
-
-      // const newData = gqlData.filter(d => !ids.includes(d['id']))
-      const newData = []
-      if (nextProps.query === '' && newData.length > 0) {
-        // if returning from search
-        if (this.props.query !== '') {
-          this.props.clearFavorites()
-        }
-        this.props.addFavorite(newData)
-      } else if (nextProps.query !== '') {
-        if (nextProps.page > 1) {
-          this.props.addFavorite(newData)
-        } else {
-          this.props.replaceFavorites(gqlData)
-        }
-      }
-      // const totalData = nextProps['data']['favorite'] && nextProps['data']['favorite']['total_data']
-      // this.props.updateHasNextPage(nextProps['data']['favorite']['has_next_page'] || false)
-      // this.props.updateTotalFavorite(totalData || 0)
+      this.props.replaceFavorites(newFavorites)
+      this.setState({ query: nextProps.query })
     }
   }
+
 
   _gtmNotifyItemClicked (item) {
     return (event) => {
@@ -213,6 +183,7 @@ class Favorite extends Component {
   }
 
   render () {
+    console.log(this.props.data)
     if (this.props.data.loading) {
       return <ModuleSpinner />
     }
@@ -250,20 +221,20 @@ class Favorite extends Component {
               placeholder={lang[this.props.lang]['Cari lokasi']} />
           </div>
           {
-            this.state.finalQuery !== '' &&
-              [
-              (
-                <div className='u-col u-col-6'>
-                  <p className='favorite__search-result'>{flCount} {lang[this.props.lang]['Hasil']}</p>
-                </div>
-              ),
-              (
-                <div className='u-col u-col-6' onClick={this.resetSearch}>
-                  <span className='favorite__reset-search'>Reset</span>
-                </div>
-              ),
-              (<div className='u-clearfix' />)
-              ]
+            // this.state.finalQuery !== '' &&
+            //   [
+            //   (
+            //     <div className='u-col u-col-6'>
+            //       <p className='favorite__search-result'>{flCount} {lang[this.props.lang]['Hasil']}</p>
+            //     </div>
+            //   ),
+            //   (
+            //     <div className='u-col u-col-6' onClick={this.resetSearch}>
+            //       <span className='favorite__reset-search'>Reset</span>
+            //     </div>
+            //   ),
+            //   (<div className='u-clearfix' />)
+            //   ]
           }
 
           <div className='u-clearfix' />
@@ -315,42 +286,41 @@ const mapStateToProps = (state) => {
     favorite: state['favorite'] ? state['favorite'].favorite : state.favorite
   }
 }
-// const FavoriteWithData = graphql(FaveQuery, {
-//   options: ({ userID, count, page, shop }) => ({
-//     variables: { userID, count: FAVORITE_PER_PAGE, page, shop },
-//     forceFetch: true,
-//     returnPartialData: true
-//   }),
-//   props: ({ data: { loading, favorite, fetchMore } }) => {
-//     return {
-//       loading,
-//       favorite,
-//       fetchMore: (newQuery = '', nextPage = 1) => {
-//         fetchMore({
-//           variables: { page: nextPage, query: newQuery, count: FAVORITE_PER_PAGE },
-//           updateQuery: (prev, { fetchMoreResult }) => {
-//             if (!fetchMoreResult.data) { return prev }
-
-//             const newWL = fetchMoreResult.data.favorite
-//             return Object.assign({}, prev, {
-//               favorite: Object.assign({}, prev.favorite, {
-//                 has_next_page: newWL['has_next_page'],
-//                 total_data: newWL['total_data'],
-//                 items: prev.wishlist.items.concat(newWL.items)
-//               })
-//             })
-//           }
-//         })
-//       }
-//     }
-//   }
-// })(Favorite)
-
-// export default connect(mapStateToProps, mapDispatchToProps)(FavoriteWithData)
-export default graphql(FaveQuery, {
+const FavoriteWithData = graphql(FaveQuery, {
   options: ({ userID, count, page, shop }) => ({
-    variables: { userID, count, page, shop },
+    variables: { userID, count: FAVORITE_PER_PAGE, page, shop },
     forceFetch: true,
     returnPartialData: true
-  })
-})(connect(mapStateToProps, mapDispatchToProps)(Favorite))
+  }),
+  props: ({ data: { loading, favorite, fetchMore } }) => {
+    return {
+      loading,
+      favorite,
+      fetchMore: (newQuery = '', nextPage = 1) => {
+        fetchMore({
+          variables: { query: newQuery, page: nextPage },
+          updateQuery: (prev, { fetchMoreResult }) => {
+            if (!fetchMoreResult.data) { return prev }
+            const newFV = fetchMoreResult.data.favorite
+            return Object.assign({}, prev, {
+              favorite: Object.assign({}, prev.get_feed, {
+                has_next_page: newFV['has_next_page'],
+                total_data: newFV['total_data'],
+                items: newFV.items
+              })
+            })
+          }
+        })
+      }
+    }
+  }
+})(Favorite)
+
+export default (connect(mapStateToProps, mapDispatchToProps)(FavoriteWithData))
+// export default graphql(FaveQuery, {
+//   options: ({ userID, count, page, shop }) => ({
+//     variables: { userID, count, page, shop },
+//     forceFetch: true,
+//     returnPartialData: true
+//   })
+// })(connect(mapStateToProps, mapDispatchToProps)(Favorite))

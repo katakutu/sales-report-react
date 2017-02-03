@@ -5,7 +5,7 @@ const URL = require('url')
 const params = `/v1/web-service/fav_shop/list?user_id=:user_id&per_page=:per_page&p=:page&shop_name=:shop`
 const FAVORITE_SERVICES = {
   GetFaveShop: `${GlobalConfig.Tome.Hostname}` + params,
-  FavoriteModification: `${GlobalConfig.WS.Hostname}` + `/v4/action/favorite-shop/fav_shop.pl`,
+  FavoriteModification: `${GlobalConfig.Tome.Hostname}` + `/shop/favorite-shop`, 
   GetCSRFToken: `${GlobalConfig.Tome.Hostname}` + `/v1/user/token`
 }
 const DEFAULT_FAVE_DATA = {
@@ -55,8 +55,9 @@ class TopedFavoriteAPI {
       'X-User-ID': userID,
       'X-Device': 'lite'
     }
+    
     return this.api.consume(url, 'POST', content)
-    // return this.HMACApi.consumeJSON(URL.parse(endpoint), 'DELETE', header, content)
+    // return this.HMACApi.consumeJSON(URL.parse(url), 'DELETE', header, content)
     //                    .then(response => response.statusCode === 204)
     //                    .catch(err => {
     //                      console.error(`[Favorite][Favorite][Delete] API call returning error: ${err}`)
@@ -78,7 +79,7 @@ class TopedFavoriteAPI {
       'X-Device': 'lite'
     }
     return this.api.consume(url, 'POST', content)
-    // return this.HMACApi.consumeJSON(URL.parse(endpoint), 'POST', header, content)
+    // return this.HMACApi.consumeJSON(URL.parse(url), 'POST', header, content)
     //                    .then(response => response.statusCode === 201)
     //                    .catch(err => {
     //                      console.error(`[Tome][Favorite][Add] API call returning error: ${err}`)

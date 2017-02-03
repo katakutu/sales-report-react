@@ -20,7 +20,6 @@ export const createRoutes = (store, ApolloExecutors) => ({
     HotListRoute(store),
     CategoryRoute(store),
     WishlistRoute(store, ApolloExecutors),
-    DigitalRoute(store),
     FaveRoute(store, ApolloExecutors),
     FeedRoute(store, ApolloExecutors),
     DDonasiRoute(store),

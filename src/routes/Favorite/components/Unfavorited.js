@@ -16,6 +16,7 @@ class Unfavorited extends Component {
     notificationDispatch: PropTypes.func,
     mutate: PropTypes.func.isRequired,
     shopID: PropTypes.number,
+    shopName: PropTypes.string,
     userID: PropTypes.number,
     nekot: PropTypes.string
   }
@@ -34,32 +35,31 @@ class Unfavorited extends Component {
         token: this.props.nekot
       }
     }
-    console.log(this.props.nekot)
-    console.log(this.props.userID)
-    console.log(this.props.shopID)
+
     this.props.mutate(variables).then(addSuccess => {
       console.log("----------------------")
       console.log(addSuccess)
 
-      if (addSuccess['data']['favorite_add'] || false) {
-        const msg = lang[this.props.lang]['Add Favorite Success']
+      if (addSuccess['data']['favorite_remove'] || false) {
+        const msg = lang[this.props.lang]['Remove Favorite Success']
 
         this.props.activateFavorite(this.props.shopID)
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Favorite',
-          text: msg.replace(':item', this.props.productName),
-          timeout: 3000
+          text: msg.replace(':item', this.props.shopName),
+          timeout: 1500
         })
       } else {
-        const msg = lang[this.props.lang]['Add Favorite Failed']
+        const msg = lang[this.props.lang]['Remove Favorite Failed']
+        
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Favorite',
-          text: msg.replace(':item', this.props.productName),
-          timeout: 3000
+          text: msg.replace(':item', this.props.shopName),
+          timeout: 1500
         })
       }
     })

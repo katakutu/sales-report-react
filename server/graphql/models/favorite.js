@@ -35,6 +35,7 @@ function getFavorited (userID, count, page, shop, context) {
     }
     return getCSRF(context).then(csrf => {
       return {
+        has_next_page: !!response['pagination'],
         token: csrf['data'],
         data: response['data'].map(section => {
           const imageProducts = section.shop_product || []

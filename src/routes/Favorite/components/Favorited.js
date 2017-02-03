@@ -30,13 +30,14 @@ class Favorited extends Component {
     const variables = {
       variables: {
         userID: this.props.userID,
-        shopID: this.props.shopID
+        shopID: this.props.shopID,
+        token: this.props.nekot
       }
     }
     
     this.props.mutate(variables).then(removeSuccess => {
       if (removeSuccess['data']['favorite_remove'] || false) {
-        const msg = lang[this.props.lang]['Remove Favorite Success']
+        const msg = lang[this.props.lang]['Add Favorite Success']
 
         this.props.deactivateFavorite(this.props.shopID)
         this.props.notificationDispatch({
@@ -47,13 +48,13 @@ class Favorited extends Component {
           timeout: 3000
         })
       } else {
-        const msg = lang[this.props.lang]['Remove Favorite Failed']
+        const msg = lang[this.props.lang]['Add Favorite Failed']
 
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Favorite',
-          text: msg.replace(':item', this.props.productName),
+          text: msg.replace(':item', this.props.shopName),
           timeout: 3000
         })
       }
