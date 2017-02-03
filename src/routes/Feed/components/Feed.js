@@ -230,7 +230,7 @@ class Feed extends Component {
       <div className='u-clearfix feed-section'>
         <div className='row-fluid'>
           {
-            feeds.length > 0 && this.props.loading &&
+            feeds.length > 0 && !this.props.loading &&
               <TextHeader textType={2}>
                 { this.props.title }
               </TextHeader>
