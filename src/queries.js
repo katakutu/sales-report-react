@@ -102,6 +102,7 @@ query Query {
       id
       title
       message
+      color
     }
   }
   slides{
@@ -218,12 +219,23 @@ query Query {
       message
     }
   }
+  ticker{
+    meta {
+      total_data
+    }
+    tickers{
+      id
+      title
+      message
+      color
+    }
+  }
 }
 `
 
 const FeedQuery = gql`
   query Query($ob: Int!, $page: Int!, $rows: Int!, $userID: Int!, $uniqueID: String!,
-    $ep: String!, $src: String!, $item: Int!, $q: String! ){
+    $ep: String!, $src: String!, $item: Int!, $q: String!, $start: Int! ){
       get_feed(ob: $ob, page: $page, rows: $rows, userID: $userID, uniqueID: $uniqueID){
         total_data
         has_next_page
@@ -254,7 +266,7 @@ const FeedQuery = gql`
           }
         }
       }
-      topads(userID:$userID, ep: $ep, src: $src, item: $item, page: $page, q: $q){
+      topads(userID:$userID, ep: $ep, src: $src, item: $item, page: $start, q: $q){
         total_data
       display
       items {
@@ -272,6 +284,9 @@ const FeedQuery = gql`
             m_ecs
             s_ecs
             xs_ecs
+            s_url
+            m_url
+            xs_url
           }
           uri
           relative_uri
@@ -304,6 +319,8 @@ const FeedQuery = gql`
             cover_ecs
             s_ecs
             xs_ecs
+            s_url
+            xs_url
           }
           gold_shop
           lucky_shop
@@ -381,6 +398,7 @@ const WishlistQueries = {
   getAll: gql`
   query Query($userID: Int!, $query: String!, $count: Int!, $page: Int!) {
     wishlist(user_id:$userID, query: $query, count: $count, page: $page){
+      count
       has_next_page
       total_data
       items{
@@ -412,6 +430,14 @@ const WishlistQueries = {
 
 const DigitalQuery = gql`
 query {
+  user{
+    id
+    isLoggedIn
+    shouldRedirect
+    profilePicture
+    name
+    email
+  }
   points{
     data{
       attributes{
@@ -491,6 +517,7 @@ query {
     desc
     detail
     price
+    promo_price
   }
   recharge_category{
     id
@@ -529,6 +556,9 @@ const TopAdsQueries = {
           m_ecs
           s_ecs
           xs_ecs
+          s_url
+          m_url
+          xs_url
         }
         uri
         relative_uri
@@ -561,6 +591,8 @@ const TopAdsQueries = {
           cover_ecs
           s_ecs
           xs_ecs
+          s_url
+          xs_url
         }
         gold_shop
         lucky_shop

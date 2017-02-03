@@ -7,7 +7,8 @@ const PRODUCTION = {
   Hostname: 'https://m.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_',
-    Domain: '.tokopedia.com'
+    Domain: '.tokopedia.com',
+    LoginFlag: 'l'
   },
   Ace: {
     Hostname: 'http://ace.tokopedia.com'
@@ -62,7 +63,7 @@ const PRODUCTION = {
   },
   CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/',
   Fave: {
-    Hostname: 'https://ta.tokopedia.com'
+    Hostname: 'http://ta.tokopedia.local'
   },
   Recommendation: {
     Hostname: 'https://merlin.tokopedia.com'
@@ -76,7 +77,8 @@ const BETA = {
   Hostname: 'https://m-beta.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_',
-    Domain: '.tokopedia.com'
+    Domain: '.tokopedia.com',
+    LoginFlag: 'l'
   },
   Ace: {
     Hostname: 'https://ace.tokopedia.com'
@@ -144,7 +146,8 @@ const TEST = {
   Hostname: 'https://m-staging.tokopedia.com',
   Cookie: {
     SessionID: '_SID_Tokopedia_Coba_',
-    Domain: '.tokopedia.com'
+    Domain: '.tokopedia.com',
+    LoginFlag: 'l_coba'
   },
   Ace: {
     Hostname: 'https://ace-staging.tokopedia.com'
@@ -211,7 +214,8 @@ const DEVELOPMENT = {
   Hostname: 'http://tokopedia.lite:3000',
   Cookie: {
     SessionID: '_SID_Tokopedia_',
-    Domain: 'tokopedia.lite'
+    Domain: 'tokopedia.lite',
+    LoginFlag: 'l_coba'
   },
   Ace: {
     Hostname: 'https://ace-staging.tokopedia.com'
@@ -261,7 +265,7 @@ const DEVELOPMENT = {
     Hostname: 'https://tome-staging.tokopedia.com'
   },
   Recharge: {
-    Hostname: 'https://pulsa-api.tokopedia.com'
+    Hostname: 'https://pulsa-api-staging.tokopedia.com'
   },
   CDN: 'https://ecs7.tokopedia.net/assets-tokopedia-lite/staging/',
   Fave: {

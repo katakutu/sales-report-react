@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import Scroll from 'react-scroll'
 import {
   updateUserLoginStatus,
+  updateScrollPosition,
   updateSearchModalStatus,
   updateSidebarStatus,
   storeUserData,
@@ -100,10 +101,10 @@ class HeaderHome extends Component {
     return scrollPos < heightOffset
   }
 
-  _scrollHistory () {
+  _scrollHistory (scrollData) {
     let scroll = Scroll.animateScroll
     let currentKey = this.props.activeTab
-    let currentState = this.props.scrollHistory
+    let currentState = scrollData || this.props.scrollHistory
     if (currentState) {
       if (currentState[currentKey]) {
         scroll.scrollTo(currentState[currentKey].point, {
@@ -145,6 +146,8 @@ class HeaderHome extends Component {
 
       this._updateUserState(userIsLoggedIn, userShouldRedirect, nextUI)
     }
+
+    this._scrollHistory(nextProps)
   }
 
   componentWillUnmount () {
@@ -162,9 +165,17 @@ class HeaderHome extends Component {
   }
 
   openSidebarMenu () {
+    // update scroll position
+    const currentScrollHistory = this.props.scrollHistory
+    if (currentScrollHistory) {
+      const scrollPosition = (window.pageYOffset !== undefined) ? window.pageYOffset
+        : (document.documentElement || document.body.parentNode || document.body).scrollTop
+      const newScrollHist = Object.assign({}, currentScrollHistory, { home: { point: scrollPosition } })
+
+      this.props.updateScrollPosition(newScrollHist)
+    }
+
     this.props.updateSidebarStatus(true)
-    Scroll.animateScroll.scrollToTop({ smooth: false, duration: 0 })
-    this.setState({ showSearch: true })
   }
 
   checkActive (val) {
@@ -303,6 +314,7 @@ class HeaderHome extends Component {
 }
 
 const mapDispatchToProps = {
+  updateScrollPosition,
   updateUserLoginStatus,
   updateSearchModalStatus,
   updateSidebarStatus,

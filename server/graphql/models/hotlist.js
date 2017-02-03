@@ -46,9 +46,6 @@ function getHotProductList (page, perPage) {
             data['img_uri'] ||
             data['img_uri_250'] ||
             data['img_uri_600'] ||
-            data['img_square'] ||
-            data['img_share'] ||
-            data['img_promo'] ||
             loading
 
           return {

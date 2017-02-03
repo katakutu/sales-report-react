@@ -47,7 +47,8 @@ function getProductList () {
           price_plain: section['attributes']['price_plain'],
           desc: section['attributes']['desc'],
           detail: section['attributes']['detail'],
-          price: section['attributes']['price']
+          price: section['attributes']['price'],
+          promo_price: section['attributes']['promo'] ? section['attributes']['promo']['new_price'] : null
         }
       })
     })

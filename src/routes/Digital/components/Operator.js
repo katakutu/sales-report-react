@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 
-import './DigitalProductOperator.scss'
+import './Operator.scss'
 import { SITES } from '../../../constants'
 
-class DigitalProductOperator extends Component {
+class Operator extends Component {
   static propTypes = {
     operatorList: PropTypes.array
   }
@@ -12,7 +12,7 @@ class DigitalProductOperator extends Component {
     const validImage = data.image.match(/\.(jpeg|jpg|gif|png)$/)
     if (data.show_product_list && data.slug !== '' && data.image !== '' && validImage) {
       return (
-        <li>
+        <li key={`digital-operator-${data.id}`}>
           <a href={SITES['Pulsa'] + '/' + data.slug}>
             <picture>
               <img src={data.image} alt={data.name} title={data.name} />
@@ -36,4 +36,4 @@ class DigitalProductOperator extends Component {
   }
 }
 
-export default DigitalProductOperator
+export default Operator

@@ -21,6 +21,22 @@
     font-size: 13px;
     -webkit-appearance: none;
     appearance: none;
+
+    &::-webkit-input-placeholder {
+        color: rgba(0, 0, 0, 0.38);
+    }
+
+    &::-moz-placeholder {
+        color: rgba(0, 0, 0, 0.38);
+    }
+
+    &:-ms-input-placeholder {
+        color: rgba(0, 0, 0, 0.38);
+    }
+
+    &:-moz-placeholder {
+        color: rgba(0, 0, 0, 0.38);
+    }
 }
 
 .wishlist__set-love-grey {
@@ -43,19 +59,21 @@
     background-color: $color-white-primary;
     box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
     height: auto;
-    min-height: 370px;
+}
+
+.wishlist__item {
+    -webkit-animation: IMAGE-POP 0.3s; /* Safari 4+ */
+    -moz-animation: IMAGE-POP 0.3s; /* Fx 5+ */
+    -o-animation: IMAGE-POP 0.3s; /* Opera 12+ */
+    animation: IMAGE-POP 0.3s; /* IE 10+, Fx 29+ */
 }
 
 .wishlist__contents:nth-child(odd) {
     border-right: 1px solid #EBEBEB;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
 }
 
 .wishlist__contents:nth-child(even) {
     border-left: 1px solid $color-white-primary;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
 }
 
 .wishlist__contents-holder {
@@ -83,6 +101,7 @@
     height: 33px;
     color: $color-black-secondary;
     font-size: 13px;
+    font-weight: 600;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
@@ -298,11 +317,17 @@
     text-align: center;
     width: 200px;
     margin: 0 auto;
+    display: inline-block;
 }
 
 .wishlist__empty-img {
     margin-top: 20px;
     max-width: 170px;
+}
+
+.wishlist__search__empty-img {
+    margin-top: 20px;
+    max-width: 90px;
 }
 
 .wishlist__empty {
@@ -441,5 +466,77 @@
         -webkit-transition: all 0.1s ease-in-out;
         -moz-transition: all 0.1s ease-in-out;
         transition: all 0.1s ease-in-out;
+    }
+}
+
+@-webkit-keyframes IMAGE-POP {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes IMAGE-POP {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes IMAGE-POP {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes IMAGE-POP {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
     }
 }

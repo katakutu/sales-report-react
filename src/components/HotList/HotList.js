@@ -56,8 +56,17 @@ class HotList extends Component {
 
   componentDidMount () {
     // for GTM to consume
-    const event = new Event('HomeCategoryLoaded')
-    document.dispatchEvent(event)
+    try {
+      const event = new Event('HomeCategoryLoaded')
+      document.dispatchEvent(event)
+    } catch (e) {
+      console.log('Old browser not supporting Custom Event. Falling back.')
+
+      const oldEvent = document.createEvent('Event')
+      oldEvent.initEvent('HomeCategoryLoaded', true, true)
+
+      document.dispatchEvent(oldEvent)
+    }
   }
 
   _gtmNotifyAllHotlistsClicked () {
