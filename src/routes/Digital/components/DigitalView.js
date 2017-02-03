@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
-import { SLUG } from '../digitalconstants'
+import { SLUG, DURL } from '../digitalconstants'
 import { SITES } from '../../../constants'
 
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
@@ -15,14 +15,15 @@ import SplashScreen from '../../../components/Loading/SplashScreen'
 class DonasiView extends Component {
   static propTypes = {
     data: PropTypes.object,
-    params: PropTypes.object
+    params: PropTypes.object,
+    location: PropTypes.object
   }
 
   constructor (props) {
     super(props)
 
     this.state = {
-      activeTab: 'donasi'
+      activeTab: DURL[this.props.location.pathname]
     }
 
     this.changeTab = this.changeTab.bind(this)
@@ -64,7 +65,6 @@ class DonasiView extends Component {
         <Content
           operatorList={operatorList}
           productList={productList}
-          slug={this.props.params.slug}
           tab={this.state.activeTab} />
 
         <Promo bannerList={bannerList} />

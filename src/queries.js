@@ -517,6 +517,7 @@ query {
     desc
     detail
     price
+    promo_price
   }
   recharge_category{
     id

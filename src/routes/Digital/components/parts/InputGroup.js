@@ -13,7 +13,8 @@ class InputGroup extends Component {
     tooltip: PropTypes.string,
     value: PropTypes.string,
     items: PropTypes.array,
-    showPicture: PropTypes.bool
+    showPicture: PropTypes.bool,
+    onSuggestionSelected: PropTypes.func
   }
 
   constructor (props) {
@@ -63,11 +64,13 @@ class InputGroup extends Component {
     })
   }
 
-  onSuggestionSelected (e) {
+  onSuggestionSelected (e, { suggestionValue }) {
+    console.log(suggestionValue)
     e.target.blur()
     this.setState({
       showAll: true
     })
+    this.props.onSuggestionSelected(suggestionValue)
   }
 
   shouldRenderSuggestions () {
