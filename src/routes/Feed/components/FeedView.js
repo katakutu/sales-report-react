@@ -13,9 +13,9 @@ import Ticker from '../../../components/Ticker'
 
 import { graphql } from 'react-apollo'
 
-const param = {
+const FEED_PARAMS = {
   ob: 2,
-  rows: 12,
+  rows: 20,
   recommendationSourceWishlist: 'wishlist',
   recommendationSourceView: 'recentview',
   recommendationSourcePurchase: 'recentpurchase',
@@ -25,7 +25,7 @@ const param = {
 const TOPADS_PARAMS = {
   ep: '',
   src:'fav_product',
-  item: 4,
+  item: 2,
   q: ''
 }
 
@@ -33,16 +33,6 @@ class FeedView extends Component {
   static propTypes = {
     data: PropTypes.object,
     lang: PropTypes.string
-  }
-
-  state = {
-    modalState: false
-  }
-
-  _eventModal (state) {
-    this.setState({
-      modalState: state
-    })
   }
 
   render () {
@@ -75,27 +65,26 @@ class FeedView extends Component {
             <Inspiration
               userID={parseInt(userInfo['id'])}
               title={lang[this.props.lang]['INSPIRASI DARI MINAT ANDA']}
-              recommendationSource={param.recommendationSourceView}
-              recommendationSize={param.recommendationSize} />
+              recommendationSource={FEED_PARAMS.recommendationSourceView}
+              recommendationSize={FEED_PARAMS.recommendationSize} />
 
             <Inspiration
               userID={parseInt(userInfo['id'])}
               title={lang[this.props.lang]['INSPIRASI DARI WISHLIST']}
-              recommendationSource={param.recommendationSourceWishlist}
-              recommendationSize={param.recommendationSize} />
+              recommendationSource={FEED_PARAMS.recommendationSourceWishlist}
+              recommendationSize={FEED_PARAMS.recommendationSize} />
 
             <Inspiration
               userID={parseInt(userInfo['id'])}
               title={lang[this.props.lang]['INSPIRASI DARI PEMBELIAN']}
-              recommendationSource={param.recommendationSourcePurchase}
-              recommendationSize={param.recommendationSize} />
+              recommendationSource={FEED_PARAMS.recommendationSourcePurchase}
+              recommendationSize={FEED_PARAMS.recommendationSize} />
           </div>
 
           <div className='bg-f8 mb-20 border-tp-ef'>
             <Feed
-              ob={param.ob}
-              rows={param.rows}
-              start={1}
+              ob={FEED_PARAMS.ob}
+              rows={FEED_PARAMS.rows}
               userID={parseInt(userInfo['id'])}
               title={lang[this.props.lang]['PRODUCT FEED']}
               uniqueID={UserSearchID.generateUserIDMD5(parseInt(userInfo['id']))}
