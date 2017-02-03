@@ -247,6 +247,7 @@
     margin-right: -5px;
     margin-left: -5px;
     padding: 5px 5px 0;
+    width: 100%;
 }
 
 .wishlist__button-buy {
@@ -258,6 +259,18 @@
     text-align: center;
     font-weight: 600;
     width: 80%;
+
+    @media (max-width: 400px) {
+        width: 75%;
+    }
+
+    @media (max-width: 375px) {
+        width: 72.5%;
+    }
+
+    @media (max-width: 350px) {
+        width: 70%;
+    }
 }
 
 .wishlist__button-no-stock {
@@ -276,6 +289,10 @@
     display: inline-block;
     margin-right: 10px;
     width: 25px;
+
+    @media (max-width: 400px) {
+        margin-right: 12.5px;
+    }
 }
 
 .wishlist__button-wish {
