@@ -219,12 +219,23 @@ query Query {
       message
     }
   }
+  ticker{
+    meta {
+      total_data
+    }
+    tickers{
+      id
+      title
+      message
+      color
+    }
+  }
 }
 `
 
 const FeedQuery = gql`
   query Query($ob: Int!, $page: Int!, $rows: Int!, $userID: Int!, $uniqueID: String!,
-    $ep: String!, $src: String!, $item: Int!, $q: String! ){
+    $ep: String!, $src: String!, $item: Int!, $q: String!, $start: Int! ){
       get_feed(ob: $ob, page: $page, rows: $rows, userID: $userID, uniqueID: $uniqueID){
         total_data
         has_next_page
@@ -255,7 +266,7 @@ const FeedQuery = gql`
           }
         }
       }
-      topads(userID:$userID, ep: $ep, src: $src, item: $item, page: $page, q: $q){
+      topads(userID:$userID, ep: $ep, src: $src, item: $item, page: $start, q: $q){
         total_data
       display
       items {

@@ -28,14 +28,14 @@ class Ticker extends Component {
   }
 
   componentDidMount () {
+    const that = this
     const cookies = Cookies.hasItem('ticker')
     if (!cookies) {
       this.loadTicker()
     } else {
       const now = new Date()
-      let date = new Date(Cookies.getItem('ticker'))
-      let result = (date.getTime() - now.getTime())
-      let that = this
+      const date = new Date(Cookies.getItem('ticker'))
+      const result = (date.getTime() - now.getTime())
       setTimeout(function () {
         that.loadTicker()
       }, result)
@@ -96,10 +96,10 @@ class Ticker extends Component {
       nextContentIndex: 0,
       content: '',
       color: '',
-      refreshInterval: ''
+      refreshInterval: this.props.perTickDuration * 1000
     })
 
-    let that = this
+    const that = this
     setTimeout(function () {
       that.loadTicker()
     }, rangeTime)
@@ -126,12 +126,12 @@ class Ticker extends Component {
   }
 
   render () {
-    const ts = this.state.content !== '' ? {} : { display: 'none' }
-    const cl = this.state.color === '' ? {} : { borderColor: this.state.color }
+    const tickerCN = this.state.content !== '' ? 'ticker ticer__active' : 'ticker ticker__hidden'
+    const ts = this.state.color !== '' ? { borderColor: this.state.color } : {}
 
     return (
-      <div className='ticker' style={ts}>
-        <div style={cl} className={'ticker__container ticker--general'}>
+      <div className={tickerCN}>
+        <div className={'ticker__container ticker--general'} style={ts}>
           <span dangerouslySetInnerHTML={{ __html: this.state.content }} />
           <a className='ticker__close' onClick={this.closeTicker} />
         </div>

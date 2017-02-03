@@ -4,6 +4,7 @@ import Tabs from '../Tabs/Tabs'
 import Tab from '../Tabs/Tab'
 import { appIsLoading, updateScrollPosition } from '../../store/app'
 import { HOSTNAME } from '../../constants'
+import lang from '../../lib/utils/Lang'
 
 class HeaderTab extends Component {
 
@@ -86,7 +87,8 @@ class HeaderTab extends Component {
           : ''
         }
         <Tab isActive={hlCN} label='Hot List' onClick={() => this._savePosition('/hot')} />
-        { this.props.userIsLoggedIn ? <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
+        { this.props.userIsLoggedIn ? <Tab label={lang[this.props.lang]['Favorite tab']}
+          url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
       </Tabs>
     )
   }
