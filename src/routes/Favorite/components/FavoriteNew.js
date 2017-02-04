@@ -48,8 +48,7 @@ class Favorite extends Component {
     item: React.PropTypes.number,
     q: React.PropTypes.string,
     topAdsReudyx: PropTypes.object,
-    topads: PropTypes.object,
-    loading: PropTypes.bool
+    topads: PropTypes.object
   }
 
   state = {
@@ -111,7 +110,7 @@ class Favorite extends Component {
       // get from graphql favorite
       const fv = nextProps.favorite || { has_next_page: false, items: [], total_data: 0 }
       const favorites = fv.data || []
-      const newFavorites = favorites.map(fd => Object.assign({}, fd, { is_active: true }))
+      const newFavorites = favorites.map(fv => Object.assign({}, fv, { is_active: true }))
 
       // get from graphql topads
       const ta = nextProps.topads || { display: '', items: [], total_data: 0 }
@@ -233,7 +232,6 @@ class Favorite extends Component {
     const favorites = this.props.favorites || []
     const isNoFavorite = favorites.length === 0 && !this.props.loading && this.props.query === ''
     const isEmptyResult = favorites.length === 0 && !this.props.loading && this.props.query !== ''
-    let flCount = favorites.length
     return (
       <div className='u-clearfix favorite favorite--single-page u-mt2'>
         <div className='favorite__searchbar-holder'>
@@ -248,15 +246,14 @@ class Favorite extends Component {
             value={this.state.query} />
         </div>
 
-
-        <div className='favorite__searchbar-holder'>
+        {/* <div className='favorite__searchbar-holder'>
           <i className='favorite__icon favorite__location-grey favorite__set-love-grey' />
           <input
             type='text'
             name='searchwishlist'
             className='favorite__searchbar'
             placeholder={lang[this.props.lang]['Cari lokasi']} />
-        </div>
+        </div> */}
         {
           // this.state.finalQuery !== '' &&
           //   [

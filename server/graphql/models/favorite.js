@@ -14,9 +14,9 @@ function addFavorite (userID, shopID, token) {
 }
 
 function getCSRF (context) {
-  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] ||
-  '_dYLTryTevwOUqXt6PBwlJpqwJX3QJuyedd_EKQ_OA6QR-WdvjDYCKY8EzCB1IjMpNu9' +
-  'TPm4444ZokXkPxk_bUlcloSzm1a37V40X5CxUvwj5lOSkMOt37x3vxh_evUD'
+  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
+  // '_dYLTryTevwOUqXt6PBwlJpqwJX3QJuyedd_EKQ_OA6QR-WdvjDYCKY8EzCB1IjMpNu9' +
+  // 'TPm4444ZokXkPxk_bUlcloSzm1a37V40X5CxUvwj5lOSkMOt37x3vxh_evUD'
   return api.getCSRFToken(
       context.read('Origin') || GlobalConfig['Hostname'],
       sessID

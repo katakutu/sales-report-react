@@ -16,6 +16,7 @@ class Favorited extends Component {
     notificationDispatch: PropTypes.func,
     mutate: PropTypes.func.isRequired,
     shopID: PropTypes.number,
+    shopName: PropTypes.string,
     userID: PropTypes.number,
     nekot: PropTypes.string
   }
@@ -34,7 +35,7 @@ class Favorited extends Component {
         token: this.props.nekot
       }
     }
-    
+
     this.props.mutate(variables).then(removeSuccess => {
       if (removeSuccess['data']['favorite_remove'] || false) {
         const msg = lang[this.props.lang]['Remove Favorite Success']

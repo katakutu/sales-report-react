@@ -5,7 +5,7 @@ const URL = require('url')
 const params = `/v1/web-service/fav_shop/list?user_id=:user_id&per_page=:per_page&p=:page&shop_name=:shop`
 const FAVORITE_SERVICES = {
   GetFaveShop: `${GlobalConfig.Tome.Hostname}` + params,
-  FavoriteModification: `${GlobalConfig.Tome.Hostname}` + `/shop/favorite-shop`, 
+  FavoriteModification: `${GlobalConfig.Tome.Hostname}` + `/shop/favorite-shop`,
   GetCSRFToken: `${GlobalConfig.Tome.Hostname}` + `/v1/user/token`
 }
 const DEFAULT_FAVE_DATA = {
@@ -25,7 +25,7 @@ class TopedFavoriteAPI {
     this.api = new TopedAPI()
   }
 
-  getFavorite (userID, perPage = 10, page = 1, shopName="") {
+  getFavorite (userID, perPage = 10, page = 1, shopName = '') {
     let url = URL.parse(FAVORITE_SERVICES.GetFaveShop
                                          .replace(':user_id', userID)
                                          .replace(':per_page', perPage)
@@ -51,19 +51,8 @@ class TopedFavoriteAPI {
       'ad_key': adKey,
       'src': 'fav_shop'
     }
-    const header = {
-      'X-User-ID': userID,
-      'X-Device': 'lite'
-    }
-    
-    return this.api.consume(url, 'POST', content)
-    // return this.HMACApi.consumeJSON(URL.parse(url), 'DELETE', header, content)
-    //                    .then(response => response.statusCode === 204)
-    //                    .catch(err => {
-    //                      console.error(`[Favorite][Favorite][Delete] API call returning error: ${err}`)
 
-    //                      return false
-    //                    })
+    return this.api.consume(url, 'POST', content)
   }
 
   addFavorite (userID, shopID, adKey) {
@@ -74,18 +63,7 @@ class TopedFavoriteAPI {
       'ad_key': adKey,
       'src': 'fav_shop'
     }
-    const header = {
-      'X-User-ID': userID,
-      'X-Device': 'lite'
-    }
     return this.api.consume(url, 'POST', content)
-    // return this.HMACApi.consumeJSON(URL.parse(url), 'POST', header, content)
-    //                    .then(response => response.statusCode === 201)
-    //                    .catch(err => {
-    //                      console.error(`[Tome][Favorite][Add] API call returning error: ${err}`)
-
-    //                      return false
-    //                    })
   }
 }
 

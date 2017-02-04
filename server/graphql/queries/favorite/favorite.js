@@ -3,7 +3,7 @@ const {
   GraphQLString
 } = require('graphql')
 const { Favorites } = require('../../types/favorite')
-const { getPromoted, getFavorited } = require('../../models/favorite')
+const { getFavorited } = require('../../models/favorite')
 
 const FavoritedQuery = {
   type: Favorites,
