@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './TextInput.scss'
-import classNames from 'classnames'
 
 class TextInput extends Component {
   static propTypes = {
@@ -25,7 +24,7 @@ class TextInput extends Component {
 
   render () {
     return (
-      <input type='text'
+      <input
         id={this.props.id}
         name={this.props.name}
         className='text-input'
