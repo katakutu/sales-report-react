@@ -78,7 +78,7 @@ class HeaderTab extends Component {
         <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/', { h: 3 })} />
         {
           this.props.userIsLoggedIn
-          ? <Tab label='Feed' isActive={fdCN} onClick={() => this._savePosition('/feed')} />
+          ? <Tab label='Feed' isActive={fdCN} url={`${HOSTNAME}/?view=feed_preview`} />
           : ''
         }
         {
@@ -89,6 +89,9 @@ class HeaderTab extends Component {
         <Tab isActive={hlCN} label='Hot List' onClick={() => this._savePosition('/hot')} />
         { this.props.userIsLoggedIn ? <Tab label={lang[this.props.lang]['Favorite tab']}
           url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
+        <Tab isActive={false} label='Warm List' />
+        <Tab isActive={false} label='Cold List' />
+        <Tab isActive={false} label='NoFeel List' />
       </Tabs>
     )
   }
