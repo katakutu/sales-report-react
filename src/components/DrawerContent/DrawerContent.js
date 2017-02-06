@@ -5,25 +5,70 @@ import './DrawerContent.scss'
 
 class DrawerContent extends Component {
   static propTypes = {
-    title: React.PropTypes.string
+    title: React.PropTypes.string,
+    open: React.PropTypes.bool,
+    handlePruductDrawer: React.PropTypes.func,
+    handleProuductChange: React.PropTypes.func,
+    productList: React.PropTypes.array
   }
 
   constructor (props) {
     super(props)
 
     this.handleCloseButton = this.handleCloseButton.bind(this)
+    this.handleProduct = this.handleProduct.bind(this)
+    this.renderProductList = this.renderProductList.bind(this)
     this.state = {
-      open: true
+      open: this.props.open
     }
+  }
+
+  handleProduct (data, index) {
+    this.props.handleProuductChange(data)
   }
 
   handleCloseButton (e) {
     this.setState({ open: false })
+    this.props.handlePruductDrawer()
+  }
+
+  renderProductList (data, index) {
+    let productPricePromo;
+    let productPrice;
+    if (this.props.selectedOperator.id != data.operator_id) {
+      return
+    }
+    else if (this.props.selectedOperator.show_price) {
+      if (data.promo == null) {
+        productPrice = <div className='dc-price--normal u-mr1'>{ data.price }</div>
+      } else {
+        productPricePromo = <div className='dc-price--discount u-mr1'>{ data.promo.new_price }</div>
+        productPrice = <div className='dc-price--strikethrough u-mr1'>{ data.price }</div>
+      }
+    }
+    return (
+      <tr onClick={() => this.handleProduct(data)}>
+        <td className='dc-product__container'>
+          <label htmlFor={'item-', data.id}>
+            <div className='dc-product__name'>{ data.desc }</div>
+            <p className={classNames('dc-product__desc', {'u-hide' : data.detail == ""})}>{ data.detail }</p>
+            <div className={classNames('dc-product__price', { 'u-hide': !this.props.selectedOperator.show_price })}>
+            { productPricePromo }
+            { productPrice }
+            </div>
+          </label>
+        </td>
+        <td className='dc-radio__container'>
+          <input name='input_product' id={'item-', data.id} type='radio' className='dc-radio u-hide' />
+          <label htmlFor={'item-', data.id} className='dc-radio__icon' />
+        </td>
+      </tr>
+    )
   }
 
   render () {
     return (
-      <div className={classNames('drawer-content', { 'active': this.state.open })}>
+      <div className={classNames('drawer-content', { 'active': this.props.open })}>
         <div className='dc-wrapper'>
           <div className='dc-content'>
             <div className='dc-header'>
@@ -34,41 +79,7 @@ class DrawerContent extends Component {
 
               <table className='dc-list'>
                 <tbody>
-
-                  {/* loop goes here */}
-                  <tr>
-                    <td className='dc-product__container'>
-                      <label htmlFor='item-1'>
-                        <div className='dc-product__name'>Rp 25.000</div>
-                        <p className='dc-product__desc'>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <div className='dc-product__price'>
-                          <div className='dc-price--normal u-mr1'>Rp 25.000</div>
-                        </div>
-                      </label>
-                    </td>
-                    <td className='dc-radio__container'>
-                      <input name='input_product' id='item-1' type='radio' className='dc-radio u-hide' />
-                      <label htmlFor='item-1' className='dc-radio__icon' />
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td className='dc-product__container'>
-                      <label htmlFor='item-2'>
-                        <div className='dc-product__name'>Rp 50.000</div>
-                        <p className='dc-product__desc'>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <div className='dc-product__price'>
-                          <div className='dc-price--discount u-mr1'>Rp 49.000</div>
-                          <div className='dc-price--strikethrough u-mr1'>Rp 50.000</div>
-                        </div>
-                      </label>
-                    </td>
-                    <td className='dc-radio__container'>
-                      <input name='input_product' id='item-2' type='radio' className='dc-radio u-hide' />
-                      <label htmlFor='item-2' className='dc-radio__icon' />
-                    </td>
-                  </tr>
-
+                  {this.props.productList.map(this.renderProductList)}
                 </tbody>
               </table>
 
@@ -77,7 +88,7 @@ class DrawerContent extends Component {
         </div>
         <div className='dc-overlay' />
 
-        { this.state.open && <BodyClassName className='u-body-overflow-no-scroll' /> }
+        { this.props.open && <BodyClassName className='u-body-overflow-no-scroll' /> }
       </div>
     )
   }

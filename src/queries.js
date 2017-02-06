@@ -324,7 +324,12 @@ query {
     default_product_id
     image
     slug
+    minimum_length
+    maximum_length
     show_product_list
+    show_product
+    product_text
+    show_price
   }
   recharge_product{
     id
@@ -335,12 +340,32 @@ query {
     desc
     detail
     price
+    promo {
+      bonus_text
+      new_price
+    }
   }
   recharge_category{
     id
     name
     slug
     icon
+    validate_prefix
+    instant_checkout_available
+    default_operator_id
+    client_number {
+      is_shown
+      text
+      help
+      placeholder
+      operator_style
+    }
+    show_operator
+    operator_label
+  }
+  recharge_prefix{
+    id
+    prefix
   }
   recharge_banner{
     id

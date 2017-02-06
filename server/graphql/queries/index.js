@@ -16,6 +16,7 @@ const topads = require('./top-ads')
 const rechargeOperator = require('./recharge/operator')
 const rechargeProduct = require('./recharge/product')
 const rechargeCategory = require('./recharge/category')
+const rechargePrefix = require('./recharge/prefix')
 const rechargeBanner = require('./recharge/banner')
 
 let queries = {}
@@ -39,6 +40,7 @@ queries = Object.assign({}, queries, topads)
 queries = Object.assign({}, queries, rechargeOperator)
 queries = Object.assign({}, queries, rechargeProduct)
 queries = Object.assign({}, queries, rechargeCategory)
+queries = Object.assign({}, queries, rechargePrefix)
 queries = Object.assign({}, queries, rechargeBanner)
 
 module.exports = queries

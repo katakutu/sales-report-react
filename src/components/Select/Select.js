@@ -6,7 +6,8 @@ class Select extends Component {
     children: React.PropTypes.node,
     className: React.PropTypes.string,
     id: React.PropTypes.string,
-    onClick: React.PropTypes.func
+    onClick: React.PropTypes.func,
+    product: React.PropTypes.object
   }
 
   static defaultProps = {
@@ -14,13 +15,14 @@ class Select extends Component {
   }
 
   render () {
+    let productDesc = this.props.product.desc ? this.props.product.desc : "Pilih"
     return (
       <div>
         <select name='' id={this.props.id} className='u-hide'>
           {this.props.children}
         </select>
-        <div className='select'>
-          Rp 25.000
+        <div className='select' onClick={this.props.onClick}>
+          {productDesc}
         </div>
       </div>
     )

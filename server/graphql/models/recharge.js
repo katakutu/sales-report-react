@@ -19,7 +19,12 @@ function getOperatorList () {
           default_product_id: section['attributes']['default_product_id'],
           image: section['attributes']['image'],
           slug: section['attributes']['slug'],
-          show_product_list: section['attributes']['rule']['show_product_list_page']
+          minimum_length: section['attributes']['minimum_length'],
+          maximum_length: section['attributes']['maximum_length'],
+          show_product_list: section['attributes']['rule']['show_product_list_page'],
+          show_product: section['attributes']['rule']['show_product'],
+          product_text: section['attributes']['rule']['product_text'],
+          show_price: section['attributes']['rule']['show_price'],
         }
       })
     })
@@ -47,7 +52,8 @@ function getProductList () {
           price_plain: section['attributes']['price_plain'],
           desc: section['attributes']['desc'],
           detail: section['attributes']['detail'],
-          price: section['attributes']['price']
+          price: section['attributes']['price'],
+          promo: section['attributes']['promo']
         }
       })
     })
@@ -71,12 +77,40 @@ function getCategoryList () {
           id: section['id'],
           name: section['attributes']['name'],
           slug: section['attributes']['slug'],
-          icon: section['attributes']['icon']
+          icon: section['attributes']['icon'],
+          validate_prefix: section['attributes']['validate_prefix'],
+          instant_checkout_available: section['attributes']['instant_checkout_available'],
+          default_operator_id: section['attributes']['default_operator_id'],
+          client_number: section['attributes']['client_number'],
+          show_operator: section['attributes']['show_operator'],
+          operator_label: section['attributes']['operator_label']
         }
       })
     })
     .catch(error => {
       console.error(`Error getting recharge category list: ${error.message}`)
+      return RECHARGE_ERROR
+    })
+}
+
+function getPrefixList () {
+  const api = new RechargeAPI()
+
+  return api.getPrefixList()
+    .then(response => {
+      if (!response || !response['data']) {
+        return RECHARGE_ERROR
+      }
+
+      return response['data'].map(section => {
+        return {
+          id: section['operator_id'],
+          prefix: section['prefix']
+        }
+      })
+    })
+    .catch(error => {
+      console.error(`Error getting recharge prefix list: ${error.message}`)
       return RECHARGE_ERROR
     })
 }
@@ -110,5 +144,6 @@ module.exports = {
   getOperatorList: getOperatorList,
   getProductList: getProductList,
   getCategoryList: getCategoryList,
+  getPrefixList: getPrefixList,
   getBannerList: getBannerList
 }
