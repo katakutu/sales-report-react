@@ -25,7 +25,7 @@ class TopedFavoriteAPI {
     this.api = new TopedAPI()
   }
 
-  getFavorite (userID, perPage = 10, page = 1, shopName="") {
+  getFavorite (userID, perPage = 10, page = 1, shopName = '') {
     let url = URL.parse(FAVORITE_SERVICES.GetFaveShop
                                          .replace(':user_id', userID)
                                          .replace(':per_page', perPage)
@@ -51,10 +51,10 @@ class TopedFavoriteAPI {
       'ad_key': adKey,
       'src': 'fav_shop'
     }
-    const header = {
-      'X-User-ID': userID,
-      'X-Device': 'lite'
-    }
+    // const header = {
+    //   'X-User-ID': userID,
+    //   'X-Device': 'lite'
+    // }
     return this.api.consume(url, 'POST', content)
     // return this.HMACApi.consumeJSON(URL.parse(endpoint), 'DELETE', header, content)
     //                    .then(response => response.statusCode === 204)
@@ -73,10 +73,10 @@ class TopedFavoriteAPI {
       'ad_key': adKey,
       'src': 'fav_shop'
     }
-    const header = {
-      'X-User-ID': userID,
-      'X-Device': 'lite'
-    }
+    // const header = {
+    //   'X-User-ID': userID,
+    //   'X-Device': 'lite'
+    // }
     return this.api.consume(url, 'POST', content)
     // return this.HMACApi.consumeJSON(URL.parse(endpoint), 'POST', header, content)
     //                    .then(response => response.statusCode === 201)
