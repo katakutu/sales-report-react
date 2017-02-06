@@ -17,7 +17,9 @@ class Favorited extends Component {
     mutate: PropTypes.func.isRequired,
     shopID: PropTypes.number,
     userID: PropTypes.number,
-    nekot: PropTypes.string
+    nekot: PropTypes.string,
+    productName: PropTypes.string,
+    shopName: PropTypes.string
   }
 
   constructor (props) {
@@ -33,7 +35,7 @@ class Favorited extends Component {
         shopID: this.props.shopID
       }
     }
-    
+
     this.props.mutate(variables).then(removeSuccess => {
       if (removeSuccess['data']['favorite_remove'] || false) {
         const msg = lang[this.props.lang]['Remove Favorite Success']

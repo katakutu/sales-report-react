@@ -287,7 +287,9 @@ class Favorite extends Component {
               } else if (favorite['kind'] === 'topads') {
                 return (
                   <div className='row-fluid' key={key2} >
-                    <TopAdsIntegrate dataAds={favorite} />
+                    <TopAdsIntegrate
+                      source={'favorite'}
+                      dataAds={favorite} />
                   </div>
                 )
               }

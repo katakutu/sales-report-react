@@ -75,6 +75,16 @@
     border-bottom-right-radius: 3px;
 }
 
+.topads__shops__contents {
+    margin: 0;
+    background-color: $color-white-primary;
+    height: auto;
+}
+
+.topads__shops__contents:nth-child(even) {
+    border-bottom: 1px solid #EBEBEB;
+}
+
 .topads__contents-holder {
     margin: 10px 0;
 }
@@ -115,14 +125,18 @@
     font-size: 12px;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    text-align: center;
+    white-space: normal;
 }
 
 .topads__img__shop__product {
     width: 100%;
     padding: 5px;
-    border-radius: 6px;
+    border-radius: 3px;
     vertical-align: middle;
+
+    &.small {
+      padding:1.5px 3px !important;
+    }
 }
 
 .topads__shop__favorite-btn {
@@ -136,6 +150,12 @@
     color: #999;
     text-align: center;
     font-size: 12px;
+
+    &.small {
+      width: auto !important;
+      padding: 12px 15px;
+      float: right;
+    }
 
     &.green {
         background: $color-green;
@@ -156,6 +176,10 @@
 
     &.center {
         text-align: center;
+    }
+
+    &.small {
+        padding: 7px 0 !important;
     }
 
     &.shop {

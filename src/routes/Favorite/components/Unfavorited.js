@@ -17,7 +17,8 @@ class Unfavorited extends Component {
     mutate: PropTypes.func.isRequired,
     shopID: PropTypes.number,
     userID: PropTypes.number,
-    nekot: PropTypes.string
+    nekot: PropTypes.string,
+    productName: PropTypes.string
   }
 
   constructor (props) {
@@ -38,9 +39,6 @@ class Unfavorited extends Component {
     console.log(this.props.userID)
     console.log(this.props.shopID)
     this.props.mutate(variables).then(addSuccess => {
-      console.log("----------------------")
-      console.log(addSuccess)
-
       if (addSuccess['data']['favorite_add'] || false) {
         const msg = lang[this.props.lang]['Add Favorite Success']
 
