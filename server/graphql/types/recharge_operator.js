@@ -16,7 +16,12 @@ const RechargeOperatorType = new GraphQLObjectType({
     default_product_id: { type: new GraphQLNonNull(GraphQLInt) },
     image: { type: new GraphQLNonNull(GraphQLString) },
     slug: { type: new GraphQLNonNull(GraphQLString) },
-    show_product_list: { type: new GraphQLNonNull(GraphQLBoolean) }
+    minimum_length: { type: new GraphQLNonNull(GraphQLInt) },
+    maximum_length: { type: new GraphQLNonNull(GraphQLInt) },
+    show_product_list: { type: new GraphQLNonNull(GraphQLBoolean) },
+    show_product: { type: new GraphQLNonNull(GraphQLBoolean) },
+    product_text: { type: new GraphQLNonNull(GraphQLString) },
+    show_price: { type: new GraphQLNonNull(GraphQLBoolean) }
   }
 })
 
