@@ -39,6 +39,7 @@ const WishlistType = new GraphQLObjectType({
 const WishlistsType = new GraphQLObjectType({
   name: 'Wishlists',
   fields: {
+    count: { type: GraphQLInt },
     has_next_page: { type: new GraphQLNonNull(GraphQLBoolean) },
     items: { type: new GraphQLList(WishlistType) },
     total_data: { type: new GraphQLNonNull(GraphQLInt) }
