@@ -7,13 +7,15 @@ class Checkbox extends Component {
     className: React.PropTypes.string,
     name: React.PropTypes.string,
     id: React.PropTypes.string,
-    onClick: React.PropTypes.func
+    onClick: React.PropTypes.func,
+    isChecked: React.PropTypes.bool
   }
 
   static defaultProps = {
     className: '',
     id: '',
-    name: ''
+    name: '',
+    isChecked: false
   }
 
   render () {
@@ -21,7 +23,7 @@ class Checkbox extends Component {
       <div>
         <input type='checkbox' id={this.props.id} 
         className='checkbox' onClick={this.props.onClick} 
-        name={this.props.name} 
+        name={this.props.name} checked={this.props.isChecked}
         value='1'/>
         <label htmlFor='instant' className='checkbox__label'>
           {this.props.children}

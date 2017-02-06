@@ -10,13 +10,17 @@ class TextInput extends Component {
     name: React.PropTypes.string,
     placeholder: React.PropTypes.string,
     onClick: React.PropTypes.func,
-    onChange: React.PropTypes.func
+    onChange: React.PropTypes.func,
+    value: React.PropTypes.string,
+    type: React.PropTypes.string
   }
 
   static defaultProps = {
     className: '',
     id: '',
-    name: ''
+    name: '',
+    value: '',
+    type: 'text'
   }
 
   render () {
@@ -25,8 +29,10 @@ class TextInput extends Component {
         id={this.props.id}
         name={this.props.name}
         className='text-input'
-        placeholder={this.props.placeholder} 
-        onChange={this.props.onChange}/>
+        placeholder={this.props.placeholder}
+        value={this.props.value}
+        onChange={this.props.onChange}
+        type={this.props.type}/>
     )
   }
 }
