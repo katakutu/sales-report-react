@@ -1,0 +1,78 @@
+@import 'base';
+
+.btn {
+    padding: 15px 32px;
+    border: 2px solid $color-border-dark;
+    border-radius: 3px;
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: $color-black-primary;
+
+    &:focus,
+    &:active {
+        background-color: $color-border-dark;
+    }
+}
+
+.btn--orange {
+    border-color: $color-orange;
+    background-color: $color-orange;
+    color: $color-white-primary;
+
+    &:hover {
+        border-color: darken($color-orange, 10%);
+        background-color: darken($color-orange, 10%);
+    }
+
+    &:focus,
+    &:active {
+        border-color: lighten($color-orange, 10%);
+        background-color: lighten($color-orange, 10%);
+    }
+}
+
+.btn--green {
+    border-color: $color-green;
+    background-color: $color-green;
+    color: $color-white-primary;
+
+    &:hover {
+        border-color: darken($color-green, 10%);
+        background-color: darken($color-green, 10%);
+    }
+
+    &:focus,
+    &:active {
+        border-color: lighten($color-green, 10%);
+        background-color: lighten($color-green, 10%);
+    }
+}
+
+.btn.disabled,
+.btn:disabled {
+    border-color: transparent;
+    background-color: $color-grey-disabled;
+    color: $color-grey-disabled-2;
+    cursor: not-allowed;
+}
+
+.btn--block {
+    width: 100%;
+    display: block;
+
+    &::before,
+    &::after {
+        display: table;
+        content: " ";
+    }
+
+    &::after {
+        clear: both;
+    }
+}

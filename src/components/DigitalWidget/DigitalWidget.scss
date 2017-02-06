@@ -1,0 +1,197 @@
+@import 'base';
+
+$height-header: 50px;
+$width-others-btn: 45px;
+
+.digital-product-widget {
+    margin: 0 auto;
+    padding: 17px 7px;
+    max-width: 430px;
+}
+
+.dpw-grid-1-4 {
+    width: 25%;
+}
+
+.dpw-grid-1-5 {
+    width: 20%;
+}
+
+.dpw-container {
+    background: $color-white-primary;
+    box-shadow: $box-shadow-normal;
+}
+
+.dpw-header {
+    padding: 0 $width-others-btn 0 0;
+    height: $height-header;
+    position: relative;
+    border-bottom: 1px solid $color-border-dark;
+}
+
+.dpw-tab {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: block;
+    list-style: none;
+}
+
+.dpw-tab__item {
+    padding: 0 5px;
+    float: left;
+    width: 25%;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+
+    &.active {
+        border-bottom: 2px solid $color-green;
+    }
+}
+
+.dpw-tab__link {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.dpw-tab__label {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+    word-break: break-word;
+    color: $color-black-secondary;
+    vertical-align: middle;
+    display: inline-block;
+
+    .dpw-tab__item.active & {
+        color: $color-green;
+    }
+
+    .dpw-tab__item.smaller & {
+        font-size: 11px;
+    }
+}
+
+.dpw-tab__normalizer {
+    display: inline-block;
+    vertical-align: middle;
+    height: $height-header - 2px;
+}
+
+.dpw-others__btn {
+    padding: 0;
+    border: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: $width-others-btn;
+    height: $height-header - 1px;
+    background-color: $color-white-primary;
+    border-left: 1px solid $color-border-dark;
+}
+
+.dpw-others__icon {
+    background: url('./assets/others.png') transparent center center no-repeat;
+    width: $width-others-btn;
+    height: $height-header - 1px;
+    display: block;
+    background-size: 7px 18px;
+}
+
+.dpw-content {
+    padding: 20px 15px;
+}
+
+// Form element
+
+.dpw-form-group {
+    margin-bottom: 18px;
+
+    &::before,
+    &::after {
+        display: table;
+        content: " ";
+    }
+
+    &::after {
+        clear: both;
+    }
+}
+
+.dpw-input--with-image {
+    position: relative;
+
+    input {
+        padding-right: 60px;
+    }
+}
+
+.dpw-operator-image {
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    height: 20px;
+    max-width: 50px;
+}
+
+.dpw-input-clear {
+    border: 0;
+    background: url('./assets/input-clear.png') transparent no-repeat;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    background-position: center center;
+    background-size: 15px 15px;
+    text-indent: -99999px;
+    font-size: 0;
+    cursor: pointer;
+}
+
+// selection checkbox
+
+.dpw-selection {
+    margin-bottom: 20px;
+}
+
+.dpw-radio {
+    display: none;
+}
+
+.dpw-radio + label span {
+    display: inline-block;
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    background-size: 20px 20px;
+}
+
+.dpw-radio + label span {
+    background-image: url('./assets/radio.svg');
+}
+
+.dpw-radio:checked + label span {
+    background-image: url('./assets/radio-checked.svg');
+}
+
+.dpw-radio + label {
+    margin-right: 15px;
+    font-size: 12px;
+    line-height: 20px;
+    color: $color-black-disabled;
+}
+
+// this block will be relocated soon
+
+.error-message {
+    color: $color-red;
+    font-size: 11px;
+    line-height: 1.5;
+    margin-top: 5px;
+}

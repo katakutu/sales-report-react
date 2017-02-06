@@ -6,6 +6,7 @@ const PULSA_SERVICES = {
   OperatorList: `${GlobalConfig.Recharge.Hostname}/v1.1/operator/list`,
   ProductList: `${GlobalConfig.Recharge.Hostname}/v1.1/product/list?device_id=4`,
   CategoryList: `${GlobalConfig.Recharge.Hostname}/v1.1/category/list?device_id=4`,
+  PrefixList: `${GlobalConfig.Recharge.Hostname}/prefix/list`,
   BannerList: `${GlobalConfig.Recharge.Hostname}/v1.1/banner/list?device_id=4`
 }
 
@@ -44,6 +45,10 @@ class RechargeAPI {
   }
   getCategoryList () {
     let url = URL.parse(PULSA_SERVICES.CategoryList)
+    return this.api.consume(url, 'GET', {})
+  }
+  getPrefixList () {
+    let url = URL.parse(PULSA_SERVICES.PrefixList)
     return this.api.consume(url, 'GET', {})
   }
   getBannerList () {
