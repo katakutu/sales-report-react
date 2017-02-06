@@ -18,6 +18,7 @@ class DigitalWidgetView extends Component {
 
     this.state = {
       openDrawer: false,
+      openDrawerMenu: false,
       errorMessage: {
         errClientNumber : '',
         errSelectedProduct : ''
@@ -40,6 +41,7 @@ class DigitalWidgetView extends Component {
     this.handleOperatorChange = this.handleOperatorChange.bind(this)
     this.handleProuductChange = this.handleProuductChange.bind(this)
     this.handlePruductDrawer = this.handlePruductDrawer.bind(this)
+    this.handleMenuDrawer = this.handleMenuDrawer.bind(this)
     this.handleNumberChange = this.handleNumberChange.bind(this)
     this.handleInstanCheckout = this.handleInstanCheckout.bind(this)
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
@@ -145,6 +147,12 @@ class DigitalWidgetView extends Component {
   handlePruductDrawer () {
     this.setState({
       openDrawer: !this.state.openDrawer
+    })
+  }
+
+  handleMenuDrawer () {
+    this.setState({
+      openDrawerMenu: !this.state.openDrawerMenu
     })
   }
 
@@ -345,7 +353,8 @@ class DigitalWidgetView extends Component {
             <ul className='dpw-tab u-clearfix'>
               { this.props.categoryList.map(this.renderCategory) }
             </ul>
-            <button className='dpw-others__btn'>
+            <button className='dpw-others__btn'
+                onClick={this.handleMenuDrawer}>
               <i className='dpw-others__icon' />
             </button>
           </div>
@@ -398,6 +407,16 @@ class DigitalWidgetView extends Component {
           handleProuductChange={this.handleProuductChange}
           open={this.state.openDrawer}
           handlePruductDrawer={this.handlePruductDrawer} />
+
+        <DrawerContent
+          isMenu
+          title='Produk'
+          selectedOperator={this.state.selectedOperator}
+          productList={this.state.productList}
+          productId={this.state.selectedProduct.id}
+          handleProuductChange={this.handleProuductChange}
+          open={this.state.openDrawerMenu}
+          handlePruductDrawer={this.handleMenuDrawer} />
       </div>
     )
   }
