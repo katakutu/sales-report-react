@@ -21,10 +21,10 @@ class Checkbox extends Component {
   render () {
     return (
       <div>
-        <input type='checkbox' id={this.props.id} 
-        className='checkbox' onClick={this.props.onClick} 
-        name={this.props.name} checked={this.props.isChecked}
-        value='1'/>
+        <input type='checkbox' id={this.props.id}
+          className='checkbox' onClick={this.props.onClick}
+          name={this.props.name} checked={this.props.isChecked}
+          value='1' />
         <label htmlFor='instant' className='checkbox__label'>
           {this.props.children}
         </label>

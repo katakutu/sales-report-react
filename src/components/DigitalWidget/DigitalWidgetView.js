@@ -7,7 +7,6 @@ import Select from '../../components/Select'
 import Label from '../../components/Label'
 import DrawerContent from '../../components/DrawerContent'
 import classNames from 'classnames'
-import { SITES } from '../../constants'
 
 class DigitalWidgetView extends Component {
   static propTypes = {
@@ -78,7 +77,7 @@ class DigitalWidgetView extends Component {
         instantCheckout: false
       })
     }
-    if (data.id != this.state.selectedCategory) {
+    if (data.id !== this.state.selectedCategory) {
       this.renderDataContent(data)
     }
   }
@@ -90,9 +89,9 @@ class DigitalWidgetView extends Component {
 
     var iter = 0
     this.state.productList.map((product, index) => {
-      if (product.operator_id == data.id) {
+      if (product.operator_id === data.id) {
         iter++
-        if (iter == 3 ) {
+        if (iter === 3) {
           this.handleProuductChange(product)
           return
         }
@@ -101,7 +100,7 @@ class DigitalWidgetView extends Component {
   }
 
   handleProuductChange (data) {
-    if (data.id != this.state.selectedProduct.id) {
+    if (data.id !== this.state.selectedProduct.id) {
       this.setState({
         selectedProduct: data,
         openDrawer: false
@@ -116,13 +115,13 @@ class DigitalWidgetView extends Component {
       }
     })
 
-    if (client_number.length > 3) {      
+    if (client_number.length > 3) {
       client_number = client_number.substring(0, 4)
-      for(var i in this.props.prefixList){
+      for (var i in this.props.prefixList) {
         var ok = false
-        if(client_number.indexOf(this.props.prefixList[i].prefix)==0) {
+        if (client_number.indexOf(this.props.prefixList[i].prefix) === 0) {
           for (var j in this.state.filteredOperator) {
-            if (this.state.filteredOperator[j].id == this.props.prefixList[i].id) {
+            if (this.state.filteredOperator[j].id === this.props.prefixList[i].id) {
               this.setState({
                 selectedOperator: this.state.filteredOperator[j]
               })
@@ -150,14 +149,14 @@ class DigitalWidgetView extends Component {
   }
 
   handleNumberChange (e) {
-    var client_number = e.target.value.replace(/(\+|\b)62/, "0")
+    var client_number = e.target.value.replace(/(\+|\b)62/, '0')
     this.setState({
       clientNumber: client_number
     })
     this.handlePrefixChange(client_number)
   }
 
-  handleClearButton() {
+  handleClearButton () {
     this.setState({
       clientNumber: ''
     })
@@ -166,12 +165,12 @@ class DigitalWidgetView extends Component {
 
   handleInstanCheckout () {
     if (this.state.instantCheckout) {
-      this.setState({ 
+      this.setState({
         textButton : 'Beli',
         instantCheckout : !this.state.instantCheckout
       })
     } else {
-      this.setState({ 
+      this.setState({
         textButton : 'Bayar',
         instantCheckout : !this.state.instantCheckout
       })
@@ -179,26 +178,32 @@ class DigitalWidgetView extends Component {
   }
 
   handleFormSubmit (e) {
-    if (this.state.selectedCategory.client_number.is_shown && this.state.clientNumber == '') {
+    if (this.state.selectedCategory.client_number.is_shown && this.state.clientNumber === '') {
       this.setState({
-          errorMessage: { errClientNumber : this.handleFormMessage('ERROR_EMPTY_NUMBER') }
-        })
+        errorMessage: { errClientNumber : this.handleFormMessage('ERROR_EMPTY_NUMBER') }
+      })
     } else if (!this.state.selectedOperator.id) {
       this.setState({
         errorMessage: { errClientNumber : this.handleFormMessage('ERROR_NO_OPERATOR') }
       })
     } else if (this.state.selectedCategory.client_number.is_shown) {
-      if (this.state.clientNumber == '') {
+      if (this.state.clientNumber === '') {
         this.setState({
           errorMessage: { errClientNumber : this.handleFormMessage('ERROR_EMPTY_NUMBER') }
         })
       } else if (this.state.clientNumber.length < this.state.selectedOperator.minimum_length) {
         this.setState({
-          errorMessage: { errClientNumber : this.handleFormMessage('ERROR_MIN_NUMBER', this.state.selectedOperator.minimum_length) }
-        }) 
+          errorMessage: {
+            errClientNumber : this.handleFormMessage('ERROR_MIN_NUMBER',
+              this.state.selectedOperator.minimum_length)
+          }
+        })
       } else if (this.state.clientNumber.length > this.state.selectedOperator.maximum_length) {
         this.setState({
-          errorMessage: { errClientNumber : this.handleFormMessage('ERROR_MAX_NUMBER', this.state.selectedOperator.maximum_length) }
+          errorMessage: {
+            errClientNumber : this.handleFormMessage('ERROR_MAX_NUMBER',
+              this.state.selectedOperator.maximum_length)
+          }
         })
       } else {
         this.setState({
@@ -209,7 +214,7 @@ class DigitalWidgetView extends Component {
       }
     }
 
-    e.preventDefault();
+    e.preventDefault()
   }
 
   handleFormMessage (msg, digit) {
@@ -217,23 +222,23 @@ class DigitalWidgetView extends Component {
       'LOADING'         : 'Memuat',
       'LOADING_2'       : 'Memuat...',
       'ERROR_EMPTY_NUMBER' : 'Nomor harus diisi',
-      'ERROR_MIN_NUMBER' : 'Nomor terlalu pendek, minimal '+ digit +' karakter',
-      'ERROR_MAX_NUMBER' : 'Nomor terlalu panjang, maksimal '+ digit +' karakter',
+      'ERROR_MIN_NUMBER' : 'Nomor terlalu pendek, minimal ' + digit + ' karakter',
+      'ERROR_MAX_NUMBER' : 'Nomor terlalu panjang, maksimal ' + digit + ' karakter',
       'ERROR_NO_OPERATOR' : 'Nomor yang Anda masukkan belum didukung saat ini',
       'ERROR_DIGIT_NUMBER' : 'Nomor hanya boleh mengandung angka',
       'ERROR_EMPTY_OPERATOR' : 'Nomor tidak valid',
       'ERROR_EMPTY_OPERATOR_FINANCE' : 'Penyedia finansial harus dipilih',
-      'ERROR_EMPTY_PRODUCT' : 'Nominal harus dipilih', 
-      'OUT_OF_STOCK' : 'Stok kosong',
+      'ERROR_EMPTY_PRODUCT' : 'Nominal harus dipilih',
+      'OUT_OF_STOCK' : 'Stok kosong'
     }
 
     return RLang[msg]
   }
 
-  renderCategory(data, index) {
+  renderCategory (data, index) {
     return (
       <li className={classNames('dpw-tab__item dpw-grid-1-4', { 'u-hide': !this.isItemInModal(index) }, { 'active': this.isActiveCategory(data.id) })}
-      onClick={() => this.handleTabChange(data)}>
+        onClick={() => this.handleTabChange(data)}>
         <a className='dpw-tab__link'>
           <label className='dpw-tab__label' href='#'>{data.name}</label>
           <i className='dpw-tab__normalizer' />
@@ -242,54 +247,54 @@ class DigitalWidgetView extends Component {
     )
   }
 
-  renderOperator(data, index) {
-    var isChecked = data.id == this.state.selectedOperator.id ? true : false
+  renderOperator (data, index) {
+    var isChecked = data.id === this.state.selectedOperator.id ? true : false
     return (
       <span>
-        <input id={ 'radio_' + data.id} name='operator_id' 
-        type='radio' className='dpw-radio' 
-        checked={isChecked}
-        value={data.id}
-        onChange={() => this.handleOperatorChange(data)} />
-        <label htmlFor={ 'radio_' + data.id}>
+        <input id={'radio_' + data.id} name='operator_id'
+          type='radio' className='dpw-radio'
+          checked={isChecked}
+          value={data.id}
+          onChange={() => this.handleOperatorChange(data)} />
+        <label htmlFor={'radio_' + data.id}>
           <span />{data.name}
         </label>
       </span>
     )
   }
 
-  renderClientNumber() {
-    var placeholder = this.state.selectedCategory.id ? this.state.selectedCategory.client_number.placeholder : ""
+  renderClientNumber () {
+    var placeholder = this.state.selectedCategory.id ? this.state.selectedCategory.client_number.placeholder : ''
     if (!this.state.selectedCategory.id) {
       return
     }
 
     return (
-      <div className={classNames('dpw-form-group', {'is-error' : this.state.error})}>
-          <Label htmlFor='no_telp'>{this.state.selectedCategory.client_number.text}</Label>
-          <div className='u-relative dpw-input--with-image'>
-            <TextInput type='number' id='no_telp' 
-              name='client_number'
-              value={this.state.clientNumber}
-              placeholder={placeholder} 
-              onChange={this.handleNumberChange}/>
-              <div className={classNames('error-message', {'is-error' : this.state.errorMessage.errClientNumber != ''}, {'u-hide' : this.state.errorMessage.errClientNumber == ''})}>
-                {this.state.errorMessage.errClientNumber}
-              </div>
-            <img className={classNames('dpw-operator-image', {'u-hide' : !this.state.selectedOperator.id})} src={this.state.selectedOperator.image} />
-            <div className={classNames('dpw-input-clear', {'u-hide' : this.state.clientNumber.length == 0} )} onClick={this.handleClearButton}>Clear</div>
+      <div className={classNames('dpw-form-group', { 'is-error' : this.state.error })}>
+        <Label htmlFor='no_telp'>{this.state.selectedCategory.client_number.text}</Label>
+        <div className='u-relative dpw-input--with-image'>
+          <TextInput type='number' id='no_telp'
+            name='client_number'
+            value={this.state.clientNumber}
+            placeholder={placeholder}
+            onChange={this.handleNumberChange} />
+          <div className={classNames('error-message', { 'is-error' : this.state.errorMessage.errClientNumber !== '' }, { 'u-hide' : this.state.errorMessage.errClientNumber === '' })}>
+            {this.state.errorMessage.errClientNumber}
           </div>
+          <img className={classNames('dpw-operator-image', { 'u-hide' : !this.state.selectedOperator.id })} src={this.state.selectedOperator.image} />
+          <div className={classNames('dpw-input-clear', { 'u-hide' : this.state.clientNumber.length === 0 })} onClick={this.handleClearButton}>Clear</div>
         </div>
-      )
-  }
-
-  renderProduct(data, index) {
-    return (
-      <option value= {data.id} > {data.desc}</option>
+      </div>
     )
   }
 
-  renderDataContent(category) {
+  renderProduct (data, index) {
+    return (
+      <option value={data.id} > {data.desc}</option>
+    )
+  }
+
+  renderDataContent (category) {
     const productList = []
     const operatorList = []
     const filteredOperator = []
@@ -315,9 +320,9 @@ class DigitalWidgetView extends Component {
 
     this.state.filteredOperator = filteredOperator
 
-    if (category.default_operator_id != "0") {
+    if (category.default_operator_id !== '0') {
       filteredOperator.map((data, index) => {
-        if (data.id == category.default_operator_id) {
+        if (data.id === category.default_operator_id) {
           this.handleOperatorChange(data)
         }
       })
@@ -328,7 +333,7 @@ class DigitalWidgetView extends Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.handleTabChange(this.props.categoryList[0])
   }
 
@@ -362,15 +367,19 @@ class DigitalWidgetView extends Component {
 
               <div className={classNames('dpw-form-group', { 'u-hide' : !this.state.selectedOperator.show_product })}>
                 <Label htmlFor='nominal'>{ this.state.selectedOperator.product_text }</Label>
-                <Select id='nominal' 
-                  onClick={this.handlePruductDrawer} 
-                  product={this.state.selectedProduct}>
-                </Select>
+                <Select id='nominal'
+                  onClick={this.handlePruductDrawer}
+                  product={this.state.selectedProduct} />
               </div>
 
-              <div
-                className={classNames('dpw-form-group', { 'u-hide' : !this.state.selectedCategory.instant_checkout_available })}>
-                <Checkbox id='instant' isChecked={this.state.instantCheckout} name='instant_checkout' onClick={this.handleInstanCheckout}>Bayar Instan</Checkbox>
+              <div className={classNames('dpw-form-group',
+                { 'u-hide' : !this.state.selectedCategory.instant_checkout_available })}>
+                <Checkbox id='instant'
+                  isChecked={this.state.instantCheckout}
+                  name='instant_checkout'
+                  onClick={this.handleInstanCheckout}>
+                  Bayar Instan
+                </Checkbox>
               </div>
 
               <Button className={classNames('btn--orange', 'btn--block')}
@@ -382,12 +391,12 @@ class DigitalWidgetView extends Component {
             </form>
           </div>
         </div>
-        <DrawerContent title={ this.state.selectedOperator.product_text }
+        <DrawerContent title={this.state.selectedOperator.product_text}
           selectedOperator={this.state.selectedOperator}
           productList={this.state.productList}
           productId={this.state.selectedProduct.id}
-          handleProuductChange={this.handleProuductChange} 
-          open={this.state.openDrawer} 
+          handleProuductChange={this.handleProuductChange}
+          open={this.state.openDrawer}
           handlePruductDrawer={this.handlePruductDrawer} />
       </div>
     )

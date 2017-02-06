@@ -24,7 +24,7 @@ function getOperatorList () {
           show_product_list: section['attributes']['rule']['show_product_list_page'],
           show_product: section['attributes']['rule']['show_product'],
           product_text: section['attributes']['rule']['product_text'],
-          show_price: section['attributes']['rule']['show_price'],
+          show_price: section['attributes']['rule']['show_price']
         }
       })
     })

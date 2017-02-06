@@ -10,7 +10,7 @@ const RechargePrefixType = new GraphQLObjectType({
   name: 'RechargePrefix',
   fields: {
     id: { type: new GraphQLNonNull(GraphQLInt) },
-    prefix: { type: new GraphQLNonNull(GraphQLString) },
+    prefix: { type: new GraphQLNonNull(GraphQLString) }
   }
 })
 

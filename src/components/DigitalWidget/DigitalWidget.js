@@ -18,20 +18,16 @@ class DigitalWidget extends Component {
       )
     }
 
-    const user = this.props.data.user || {}
-    const userInfo = Object.assign(user, {
-      'deposit': this.props.data.saldo,
-      'points': this.props.data.points,
-      'shop': this.props.data.shop,
-      'wallet': this.props.data.wallet
-    })
     const operatorList = this.props.data['recharge_operator'] ? this.props.data['recharge_operator'] : []
     const productList = this.props.data['recharge_product'] ? this.props.data['recharge_product'] : []
     const categoryList = this.props.data['recharge_category'] ? this.props.data['recharge_category'] : []
     const prefixList = this.props.data['recharge_prefix'] ? this.props.data['recharge_prefix'] : []
 
     return (
-      <DigitalWidgetView categoryList={categoryList} operatorList={operatorList} prefixList={prefixList} productList={productList} />
+      <DigitalWidgetView categoryList={categoryList}
+        operatorList={operatorList}
+        prefixList={prefixList}
+        productList={productList} />
     )
   }
 }

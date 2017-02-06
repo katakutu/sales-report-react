@@ -15,7 +15,7 @@ class Select extends Component {
   }
 
   render () {
-    let productDesc = this.props.product.desc ? this.props.product.desc : "Pilih"
+    let productDesc = this.props.product.desc ? this.props.product.desc : 'Pilih'
     return (
       <div>
         <select name='' id={this.props.id} className='u-hide'>

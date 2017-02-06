@@ -34,13 +34,12 @@ class DrawerContent extends Component {
   }
 
   renderProductList (data, index) {
-    let productPricePromo;
-    let productPrice;
-    var isChecked = this.props.productId == data.id ? true : false;
+    let productPricePromo
+    let productPrice
+    var isChecked = this.props.productId == data.id ? true : false
     if (this.props.selectedOperator.id != data.operator_id) {
       return
-    }
-    else if (this.props.selectedOperator.show_price) {
+    } else if (this.props.selectedOperator.show_price) {
       if (data.promo == null) {
         productPrice = <div className='dc-price--normal u-mr1'>{ data.price }</div>
       } else {
@@ -53,18 +52,18 @@ class DrawerContent extends Component {
         <td className='dc-product__container'>
           <label htmlFor={'item-', data.id}>
             <div className='dc-product__name'>{ data.desc }</div>
-            <p className={classNames('dc-product__desc', {'u-hide' : data.detail == ""})}>{ data.detail }</p>
+            <p className={classNames('dc-product__desc', { 'u-hide' : data.detail == '' })} innerHTML={data.detail} />
             <div className={classNames('dc-product__price', { 'u-hide': !this.props.selectedOperator.show_price })}>
-            { productPricePromo }
-            { productPrice }
+              { productPricePromo }
+              { productPrice }
             </div>
           </label>
         </td>
         <td className='dc-radio__container'>
-          <input name='input_product' id={'item-', data.id} 
-            type='radio' 
-            className='dc-radio u-hide' 
-            checked={isChecked}/>
+          <input name='input_product' id={'item-', data.id}
+            type='radio'
+            className='dc-radio u-hide'
+            checked={isChecked} />
           <label htmlFor={'item-', data.id} className='dc-radio__icon' />
         </td>
       </tr>
@@ -78,7 +77,7 @@ class DrawerContent extends Component {
           <div className='dc-content'>
             <div className='dc-header'>
               {this.props.title}
-              <span className='dc-close' onClick={this.handleCloseButton}></span>
+              <span className='dc-close' onClick={this.handleCloseButton} />
             </div>
             <div className='dc-body'>
 

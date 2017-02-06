@@ -32,7 +32,7 @@ class TextInput extends Component {
         placeholder={this.props.placeholder}
         value={this.props.value}
         onChange={this.props.onChange}
-        type={this.props.type}/>
+        type={this.props.type} />
     )
   }
 }
