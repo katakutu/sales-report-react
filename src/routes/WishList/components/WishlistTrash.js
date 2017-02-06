@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo'
 
 import mutations from './../../../mutations'
 import lang from '../../../lib/utils/Lang'
-import { removeWishlist } from '../module'
+import { removeWishlist, replaceWishlists } from '../module'
 import { notificationDispatch } from './../../../store/app'
 
 import './WishListView.scss'
@@ -12,12 +12,14 @@ import './WishListView.scss'
 class WishlistTrash extends Component {
   static propTypes = {
     removeWishlist: PropTypes.func,
+    replaceWishlists: PropTypes.func,
     lang: PropTypes.string,
     notificationDispatch: PropTypes.func,
     mutate: PropTypes.func.isRequired,
     productID: PropTypes.number,
     productName: PropTypes.string,
-    userID: PropTypes.number
+    userID: PropTypes.number,
+    onDeleted: PropTypes.func
   }
 
   constructor (props) {
@@ -40,6 +42,7 @@ class WishlistTrash extends Component {
         const msg = lang[that.props.lang]['Remove Wishlist Success']
 
         this.props.removeWishlist(that.props.productID)
+        this.props.onDeleted(that.props.productID)
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
@@ -77,7 +80,7 @@ const mapStateToProps = (state) => {
 }
 const WishlistTrashQL = graphql(mutations.Wishlist.removeWishlist)(WishlistTrash)
 const WishlistTrashQLR = connect(mapStateToProps, {
-  removeWishlist, notificationDispatch
+  removeWishlist, replaceWishlists, notificationDispatch
 })(WishlistTrashQL)
 
 export default WishlistTrashQLR
