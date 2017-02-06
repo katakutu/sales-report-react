@@ -64,14 +64,14 @@ class TopedAPI {
     }) */
   }
 
-  consumeForm (url, method, content, options = {}) {
+  consumeForm (url, method, content, options = {}, sidCookie) {
     try {
       let formData = querystring.stringify(content)
-
       let options = {
         method: method,
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Cookie': sidCookie
         },
         body: formData,
         timeout: 5000,

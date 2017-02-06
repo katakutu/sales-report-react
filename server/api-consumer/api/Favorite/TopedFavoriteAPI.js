@@ -43,36 +43,32 @@ class TopedFavoriteAPI {
     const opt = { headers: headers }
     return this.api.consume(url, 'GET', {}, opt)
   }
-  removeFavorite (userID, shopID, adKey, sessID) {
+  removeFavorite (userID, shopID, csrf, sessID) {
     const sidCookie = `${GlobalConfig['Cookie']['SessionID']}=${sessID};`
     const url = URL.parse(FAVORITE_SERVICES.FavoriteModification)
     const content = {
       'user_id': userID,
-      'shop_id': shopID,
-      'token': adKey,
-      'src': 'fav_shop'
+      's_id': shopID,
+      'token': csrf,
+      'cookie': sidCookie,
+      'action': 'fav_shop',
+      'act': 'POST'
     }
-    const headers = {
-      'Cookie': sidCookie
-    }
-    const opt = { headers: headers }
-    return this.api.consumeForm(url, 'POST', content, opt)
+    return this.api.consumeForm(url, 'POST', content, {}, sidCookie)
   }
 
-  addFavorite (userID, shopID, adKey, sessID) {
+  addFavorite (userID, shopID, csrf, sessID) {
     const sidCookie = `${GlobalConfig['Cookie']['SessionID']}=${sessID};`
     const url = URL.parse(FAVORITE_SERVICES.FavoriteModification)
     const content = {
       'user_id': userID,
-      'shop_id': shopID,
-      'ad_key': adKey,
-      'src': 'fav_shop'
+      's_id': shopID,
+      'token': csrf,
+      'cookie': sidCookie,
+      'action': 'fav_shop',
+      'act': 'POST'
     }
-    const headers = {
-      'Cookie': sidCookie
-    }
-    const opt = { headers: headers }
-    return this.api.consumeForm(url, 'POST', content, opt)
+    return this.api.consumeForm(url, 'POST', content, {}, sidCookie)
   }
 }
 
