@@ -16,7 +16,7 @@ class AppContainer extends Component {
   }
 
   logPageView () {
-    const path = (location.pathname+location.search).substr(1)
+    const path = (location.pathname + location.search).substr(1)
     GA.setPageView(`/${path}`)
   }
 
