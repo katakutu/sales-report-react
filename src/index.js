@@ -6,6 +6,9 @@ import AppContainer from './containers/AppContainer'
 import ApolloClient, { createBatchingNetworkInterface } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { SITES } from 'constants'
+import queries from './queries'
+import Routes from './routes/index'
+
 // ========================================================
 // Initiate Wallet
 //
@@ -46,10 +49,10 @@ const client = new ApolloClient({
 // Render Setup
 // ========================================================
 const MOUNT_NODE = document.getElementById('root')
-const ApolloExecutors = require('./queries').default.ApolloExecutors(client)
+const ApolloExecutors = queries.ApolloExecutors(client)
 
 let render = () => {
-  const routes = require('./routes/index').default(store, ApolloExecutors)
+  const routes = Routes(store, ApolloExecutors)
 
   ReactDOM.render(
     <ApolloProvider client={client}>
