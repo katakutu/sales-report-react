@@ -89,9 +89,6 @@ class HeaderTab extends Component {
         <Tab isActive={hlCN} label='Hot List' onClick={() => this._savePosition('/hot')} />
         { this.props.userIsLoggedIn ? <Tab label={lang[this.props.lang]['Favorite tab']}
           url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
-        <Tab isActive={false} label='Warm List' />
-        <Tab isActive={false} label='Cold List' />
-        <Tab isActive={false} label='NoFeel List' />
       </Tabs>
     )
   }
