@@ -18,6 +18,22 @@
     &:focus {
         color: $color-green;
     }
+
+    &::-webkit-input-placeholder {
+        color: rgba(0, 0, 0, 0.38);
+    }
+
+    &::-moz-placeholder {
+        color: rgba(0, 0, 0, 0.38);
+    }
+
+    &:-ms-input-placeholder {
+        color: rgba(0, 0, 0, 0.38);
+    }
+
+    &:-moz-placeholder {
+        color: rgba(0, 0, 0, 0.38);
+    }
 }
 
 .search-input__icon {

@@ -102,6 +102,7 @@ query Query {
       id
       title
       message
+      color
     }
   }
   slides{
@@ -218,6 +219,17 @@ query Query {
       message
     }
   }
+  ticker{
+    meta {
+      total_data
+    }
+    tickers{
+      id
+      title
+      message
+      color
+    }
+  }
 }
 `
 
@@ -272,6 +284,9 @@ const FeedQuery = gql`
             m_ecs
             s_ecs
             xs_ecs
+            s_url
+            m_url
+            xs_url
           }
           uri
           relative_uri
@@ -304,6 +319,8 @@ const FeedQuery = gql`
             cover_ecs
             s_ecs
             xs_ecs
+            s_url
+            xs_url
           }
           gold_shop
           lucky_shop
@@ -381,6 +398,7 @@ const WishlistQueries = {
   getAll: gql`
   query Query($userID: Int!, $query: String!, $count: Int!, $page: Int!) {
     wishlist(user_id:$userID, query: $query, count: $count, page: $page){
+      count
       has_next_page
       total_data
       items{
@@ -412,6 +430,14 @@ const WishlistQueries = {
 
 const DigitalQuery = gql`
 query {
+  user{
+    id
+    isLoggedIn
+    shouldRedirect
+    profilePicture
+    name
+    email
+  }
   points{
     data{
       attributes{
@@ -500,6 +526,7 @@ query {
       bonus_text
       new_price
     }
+    promo_price
   }
   recharge_category{
     id
@@ -554,6 +581,9 @@ const TopAdsQueries = {
           m_ecs
           s_ecs
           xs_ecs
+          s_url
+          m_url
+          xs_url
         }
         uri
         relative_uri
@@ -586,6 +616,8 @@ const TopAdsQueries = {
           cover_ecs
           s_ecs
           xs_ecs
+          s_url
+          xs_url
         }
         gold_shop
         lucky_shop

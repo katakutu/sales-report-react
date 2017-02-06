@@ -1,0 +1,30 @@
+@import 'base';
+
+.text-red {
+    color: red !important;
+}
+
+.dp-pricegroup {
+    margin-bottom: 15px;
+    line-height: 24px;
+}
+
+.dp-pricegroup__label {
+    font-size: 13px;
+    font-weight: 400;
+    color: $color-black-secondary;
+}
+
+.dp-pricegroup__price--primary {
+    font-size: 16px;
+    font-weight: 600;
+    color: $color-black-primary;
+    vertical-align: middle !important;
+}
+
+.dp-pricegroup__price--secondary {
+    display: inline;
+    margin-left: 10px;
+    text-decoration: line-through;
+    color: $color-black-primary;
+}

@@ -12,33 +12,6 @@ import lang from '../../../lib/utils/Lang'
 import FeedEmpty from './FeedEmpty'
 import { replaceFeeds, updatePage, updateQuery } from '../module'
 
-const MODAL_PARAMS = {
-  modalContent: {
-    data: [
-      {
-        icon: 'https://ecs1.tokopedia.net/img/ads_microsite/stat.png',
-        title: 'Tingkatkan penjualan',
-        content: `Toko dan produk anda akan lebih mudah
-          ditemukan oleh pengunjung Tokopedia.`
-      },
-      {
-        icon: 'https://ecs1.tokopedia.net/img/ads_microsite/jangkau.png',
-        title: 'Menjangkau dengan tepat',
-        content: `TopAds membantu Anda menjangkau calon pembeli yang sesuai, melalui
-          pencarian produk dan penelusuran kategori produk.`
-      },
-      {
-        icon: 'https://ecs1.tokopedia.net/img/ads_microsite/efektif.png',
-        title: 'Efektif dan Efisien',
-        content: `Dengan TopAds, hasil yang anda harapkan sesuai dengan biaya
-          yang anda keluarkan.`
-      }
-    ],
-    link: 'https://m.tokopedia.com/iklan?campaign=topads&amp;source=wishlist&amp;medium=mobile',
-    linkText: 'Baca selengkapnya'
-  }
-}
-
 class Feed extends Component {
 
   static propTypes = {
@@ -75,7 +48,6 @@ class Feed extends Component {
     super(props)
 
     this.viewMore = this.viewMore.bind(this)
-    this._eventModal = this._eventModal.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -94,22 +66,26 @@ class Feed extends Component {
         { kind: 'topads', display: ta['display'], items: newTopAds },
         { kind: 'feed', items: newFeeds }
       ]
-      // combine 2 data
-      let payload = [...oldData, ...newData]
-      feeds.length !== 0 && this.props.replaceFeeds(payload)
+      // check new data already there
+      if (feeds.length !== 0) {
+        // check if new data same to old data
+        const oldIDs = oldData.map(fd => {
+          return fd['kind'] === 'feed' && fd['items'].map(c => (c['id']))
+        })
+        const newIDs = newData.map(ta => {
+          return ta['kind'] === 'feed' && ta['items'].map(x => (x['id']))
+        })
+        if (ArrayHelper.notEquals(oldIDs.length > 0 ? oldIDs[1] : oldIDs, newIDs[1])) {
+          // update new data with old one
+          const payload = [...oldData, ...newData]
+          this.props.replaceFeeds(payload)
+        }
+      }
     }
-  }
-
-  _eventModal (state) {
-    this.setState({
-      modalState: state,
-      page: this.state.page
-    })
   }
 
   viewMore () {
     this.setState({
-      modalState: this.state.modalState,
       page: this.state.page + 1
     }, () => {
       this.props.fetchMore(this.state.page)
@@ -218,7 +194,7 @@ class Feed extends Component {
       <div className='u-clearfix feed-section'>
         <div className='row-fluid'>
           {
-            feeds.length > 0 && this.props.loading &&
+            feeds.length > 0 && !this.props.loading &&
               <TextHeader textType={2}>
                 { this.props.title }
               </TextHeader>
@@ -241,13 +217,7 @@ class Feed extends Component {
                   } else if (feed['kind'] === 'topads') {
                     return (
                       <div className='row-fluid' key={key} >
-                        <TopAdsIntegrate
-                          dataAds={feed}
-                          stateModal={this.state.modalState}
-                          contentModal={MODAL_PARAMS.modalContent}
-                          eventModal={this._eventModal}
-                          eventShopClick={this._topAdsEvent}
-                          />
+                        <TopAdsIntegrate dataAds={feed} />
                       </div>
                     )
                   }
@@ -281,8 +251,8 @@ const mapDispatchToProps = {
 }
 
 const FeedWithData = graphql(queries.FeedQuery, {
-  options: ({ ob, page, rows, userID, uniqueID, ep, src, item, q }) => ({
-    variables: { ob, page, rows, userID, uniqueID, ep, src, item, q },
+  options: ({ ob, page, rows, userID, uniqueID, ep, src, item, q, start }) => ({
+    variables: { ob, page, rows, userID, uniqueID, ep, src, item, q, start },
     forceFetch: true,
     returnPartialData: true
   }),

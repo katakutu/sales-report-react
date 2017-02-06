@@ -53,7 +53,8 @@ function getProductList () {
           desc: section['attributes']['desc'],
           detail: section['attributes']['detail'],
           price: section['attributes']['price'],
-          promo: section['attributes']['promo']
+          promo: section['attributes']['promo'],
+          promo_price: section['attributes']['promo'] ? section['attributes']['promo']['new_price'] : null
         }
       })
     })

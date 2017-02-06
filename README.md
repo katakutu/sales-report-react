@@ -10,6 +10,7 @@ Tokopedia progressive mobile web app
 ## Requirements
 * node `^4.5.0`
 * npm `^3.0.0`
+* redis `^3.2.6`
 
 ## Requirements (dev machine)
 

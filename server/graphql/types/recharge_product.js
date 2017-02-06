@@ -23,7 +23,8 @@ const RechargeProductType = new GraphQLObjectType({
         bonus_text: { type: new GraphQLNonNull(GraphQLString) },
         new_price: { type: new GraphQLNonNull(GraphQLString) }
       }
-    }) }
+    }) },
+    promo_price: { type: GraphQLString }
   }
 })
 

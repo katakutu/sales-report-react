@@ -1,41 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 
-import './DigitalProductPromo.scss'
+import './Promo.scss'
 import CopyIcon from '../assets/icon-copy.png'
 import SurveyIcon from '../assets/icon-survey.png'
 
-class DigitalProductPromo extends Component {
+class Promo extends Component {
   static propTypes = {
     bannerList: PropTypes.array
   }
-
-  /* componentDidMount() {
-    $(document).on('click', '.dp-promo__btn, .dp-promo__code', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      window.getSelection().removeAllRanges();
-
-      if ($(e.target).closest('button').hasClass('dp-promo__btn')) {
-        var code = $(this).siblings('span').get(0);
-      } else {
-        var code = $(this).get(0);
-      }
-
-      if (document.createRange) {
-        var r = document.createRange();
-        r.setStartBefore(code);
-        r.setEndAfter(code);
-        r.selectNode(code);
-        var sel = window.getSelection();
-        sel.addRange(r);
-        document.execCommand('Copy');
-      }
-
-      setTimeout(function() {
-      $('.dp-promo__alert').fadeOut('slow');}, 2000);
-      $(this).siblings('.dp-promo__alert').removeClass('u-display-none').fadeIn('fast');
-    });
-  } */
 
   renderBanner (data, index) {
     const beforeVoucherCode = data.subtitle.split('{')[0]
@@ -48,7 +20,11 @@ class DigitalProductPromo extends Component {
     }
 
     return (
-      <a href={data.redirect_url} className='u-clearfix u-rounded u-mb2 dp-promo__box'>
+      <a
+        href={data.redirect_url}
+        className='u-clearfix u-rounded u-mb2 dp-promo__box'
+        key={`digital-banner-${data.id}`}
+        target='_blank' >
         <div className='u-mb1 dp-promo__text'>
           {data.title}
         </div>
@@ -100,4 +76,4 @@ class DigitalProductPromo extends Component {
   }
 }
 
-export default DigitalProductPromo
+export default Promo

@@ -1,19 +1,35 @@
 import React, { Component, PropTypes } from 'react'
 import { graphql } from 'react-apollo'
 import queries from '../../../queries'
+import { DURL } from '../digitalconstants'
 
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
-import DigitalProductTab from './DigitalProductTab'
-import DigitalProductContent from './DigitalProductContent'
-import DigitalProductPromo from './DigitalProductPromo'
-import DigitalProductOperator from './DigitalProductOperator'
-import DigitalProductSelectDrawer from './DigitalProductSelectDrawer'
+import Tab from './Tab'
+import Content from './Content'
+import Promo from './Promo'
+import Operator from './Operator'
+
 import SplashScreen from '../../../components/Loading/SplashScreen'
 
 class DigitalView extends Component {
   static propTypes = {
     data: PropTypes.object,
-    params: PropTypes.object
+    params: PropTypes.object,
+    location: PropTypes.object
+  }
+
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      activeTab: DURL[this.props.location.pathname]
+    }
+
+    this.changeTab = this.changeTab.bind(this)
+  }
+
+  changeTab (name) {
+    this.setState({ activeTab: name })
   }
 
   render () {
@@ -39,11 +55,14 @@ class DigitalView extends Component {
     return (
       <div>
         <HeaderHomeOld userInfo={userInfo} hideSearch />
-        <DigitalProductTab categoryList={categoryList} />
-        <DigitalProductContent operatorList={operatorList} productList={productList} slug={this.props.params.slug} />
-        <DigitalProductPromo bannerList={bannerList} />
-        <DigitalProductOperator operatorList={operatorList} />
-        <DigitalProductSelectDrawer />
+        <Tab categoryList={categoryList} activeTab={this.state.activeTab} changeTab={this.changeTab} />
+        <Content
+          operatorList={operatorList}
+          productList={productList}
+          tab={this.state.activeTab} />
+
+        <Promo bannerList={bannerList} />
+        <Operator operatorList={operatorList} />
       </div>
     )
   }

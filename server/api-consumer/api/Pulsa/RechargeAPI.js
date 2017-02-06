@@ -7,7 +7,7 @@ const PULSA_SERVICES = {
   ProductList: `${GlobalConfig.Recharge.Hostname}/v1.1/product/list?device_id=4`,
   CategoryList: `${GlobalConfig.Recharge.Hostname}/v1.1/category/list?device_id=4`,
   PrefixList: `${GlobalConfig.Recharge.Hostname}/prefix/list`,
-  BannerList: `${GlobalConfig.Recharge.Hostname}/v1.1/banner/list?device_id=4`
+  BannerList: `${GlobalConfig.Recharge.Hostname}/v1.1/banner/list?device_id=2`
 }
 
 /**

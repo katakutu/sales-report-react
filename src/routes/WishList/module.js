@@ -3,6 +3,7 @@ import ArrayHelper from '../../lib/utils/ArrayHelper'
 // ------------------------------------
 // Constants
 // ------------------------------------
+export const REMOVE_WISHLIST = 'REMOVE_WISHLIST'
 export const REPLACE_WISHLISTS = 'REPLACE_WISHLISTS'
 export const DEACTIVATE_WISHLIST = 'DEACTIVATE_WISHLIST'
 export const ACTIVATE_WISHLIST = 'ACTIVATE_WISHLIST'
@@ -12,6 +13,13 @@ export const UPDATE_QUERY = 'UPDATE_QUERY'
 // ------------------------------------
 // Actions
 // ------------------------------------
+export function removeWishlist (productID) {
+  return {
+    type: REMOVE_WISHLIST,
+    payload: productID
+  }
+}
+
 export function replaceWishlists (newWishlists) {
   return {
     type    : REPLACE_WISHLISTS,
@@ -59,6 +67,11 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
+  [REMOVE_WISHLIST]: (state, action) => {
+    const newWishlists = state.wishlists.filter((wl) => parseInt(wl['id']) !== action.payload)
+
+    return Object.assign({}, state, { wishlists: newWishlists })
+  },
   [REPLACE_WISHLISTS] : (state, action) => {
     const oldIDs = state.wishlists.map(wl => wl['id'])
     const newIDs = action.payload.map(wl => wl['id'])
