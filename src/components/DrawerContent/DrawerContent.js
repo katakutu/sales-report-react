@@ -7,6 +7,7 @@ class DrawerContent extends Component {
   static propTypes = {
     title: React.PropTypes.string,
     open: React.PropTypes.bool,
+    isMenu: React.PropTypes.bool,
     handlePruductDrawer: React.PropTypes.func,
     handleProuductChange: React.PropTypes.func,
     productList: React.PropTypes.array,
@@ -71,6 +72,26 @@ class DrawerContent extends Component {
     )
   }
 
+  renderMenuList (data, index) {
+    return (
+      <tr>
+        <td className='dc-product__container'>
+          <label htmlFor={'menu-item-' + data.id}>
+            <span className='dc-product__menu-list'>
+              Pulsa
+            </span>
+          </label>
+        </td>
+        <td className='dc-radio__container'>
+          <input name='input_product' id={'menu-item-' + data.id}
+            type='radio'
+            className='dc-radio u-hide' />
+          <label htmlFor={'menu-item-' + data.id} className='dc-radio__icon' />
+        </td>
+      </tr>
+    )
+  }
+
   render () {
     return (
       <div className={classNames('drawer-content', { 'active': this.props.open })}>
@@ -84,7 +105,9 @@ class DrawerContent extends Component {
 
               <table className='dc-list'>
                 <tbody>
-                  {this.props.productList.map(this.renderProductList)}
+                  { this.props.isMenu
+                    ? this.props.productList.map(this.renderMenuList)
+                    : this.props.productList.map(this.renderProductList)}
                 </tbody>
               </table>
 
@@ -92,8 +115,6 @@ class DrawerContent extends Component {
           </div>
         </div>
         <div className='dc-overlay' />
-
-        { this.props.open && <BodyClassName className='u-body-overflow-no-scroll' /> }
       </div>
     )
   }
