@@ -34,26 +34,27 @@ class WishlistTrash extends Component {
       }
     }
 
+    const that = this
     this.props.mutate(variables).then(removeSuccess => {
       if (removeSuccess['data']['wishlist_remove'] || false) {
-        const msg = lang[this.props.lang]['Remove Wishlist Success']
+        const msg = lang[that.props.lang]['Remove Wishlist Success']
 
-        this.props.removeWishlist(this.props.productID)
+        this.props.removeWishlist(that.props.productID)
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Wishlist',
-          text: msg.replace(':item', this.props.productName),
+          text: msg.replace(':item', that.props.productName),
           timeout: 3000
         })
       } else {
-        const msg = lang[this.props.lang]['Remove Wishlist Failed']
+        const msg = lang[that.props.lang]['Remove Wishlist Failed']
 
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Wishlist',
-          text: msg.replace(':item', this.props.productName),
+          text: msg.replace(':item', that.props.productName),
           timeout: 3000
         })
       }
