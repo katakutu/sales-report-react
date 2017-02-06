@@ -10,7 +10,10 @@ import classNames from 'classnames'
 
 class DigitalWidgetView extends Component {
   static propTypes = {
-    categoryList: PropTypes.array
+    categoryList: PropTypes.array,
+    operatorList: PropTypes.array,
+    prefixList: PropTypes.array,
+    productList: PropTypes.array
   }
 
   constructor (props) {
@@ -110,18 +113,18 @@ class DigitalWidgetView extends Component {
     }
   }
 
-  handlePrefixChange (client_number) {
+  handlePrefixChange (clientNumber) {
     this.setState({
       errorMessage: {
         errClientNumber : ''
       }
     })
 
-    if (client_number.length > 3) {
-      client_number = client_number.substring(0, 4)
+    if (clientNumber.length > 3) {
+      clientNumber = clientNumber.substring(0, 4)
       for (var i in this.props.prefixList) {
         var ok = false
-        if (client_number.indexOf(this.props.prefixList[i].prefix) === 0) {
+        if (clientNumber.indexOf(this.props.prefixList[i].prefix) === 0) {
           for (var j in this.state.filteredOperator) {
             if (this.state.filteredOperator[j].id === this.props.prefixList[i].id) {
               this.setState({
@@ -157,11 +160,11 @@ class DigitalWidgetView extends Component {
   }
 
   handleNumberChange (e) {
-    var client_number = e.target.value.replace(/(\+|\b)62/, '0')
+    var clientNumber = e.target.value.replace(/(\+|\b)62/, '0')
     this.setState({
-      clientNumber: client_number
+      clientNumber: clientNumber
     })
-    this.handlePrefixChange(client_number)
+    this.handlePrefixChange(clientNumber)
   }
 
   handleClearButton () {
@@ -244,8 +247,13 @@ class DigitalWidgetView extends Component {
   }
 
   renderCategory (data, index) {
+    var inModal = this.isItemInModal(index)
+    var isActiveTab = this.isActiveCategory(data.id)
     return (
-      <li className={classNames('dpw-tab__item dpw-grid-1-4', { 'u-hide': !this.isItemInModal(index) }, { 'active': this.isActiveCategory(data.id) })}
+      <li key={index}
+        className={classNames('dpw-tab__item dpw-grid-1-4',
+          { 'u-hide': !inModal },
+          { 'active': isActiveTab })}
         onClick={() => this.handleTabChange(data)}>
         <a className='dpw-tab__link'>
           <label className='dpw-tab__label' href='#'>{data.name}</label>
@@ -256,9 +264,12 @@ class DigitalWidgetView extends Component {
   }
 
   renderOperator (data, index) {
-    var isChecked = data.id === this.state.selectedOperator.id ? true : false
+    var isChecked = false
+    if (data.id === this.state.selectedOperator.id) {
+      isChecked = true
+    }
     return (
-      <span>
+      <span key={index}>
         <input id={'radio_' + data.id} name='operator_id'
           type='radio' className='dpw-radio'
           checked={isChecked}
@@ -272,13 +283,13 @@ class DigitalWidgetView extends Component {
   }
 
   renderClientNumber () {
-    var placeholder = this.state.selectedCategory.id ? this.state.selectedCategory.client_number.placeholder : ''
     if (!this.state.selectedCategory.id) {
       return
     }
-
+    var placeholder = this.state.selectedCategory.id ? this.state.selectedCategory.client_number.placeholder : ''
     return (
-      <div className={classNames('dpw-form-group', { 'is-error' : this.state.error })}>
+      <div
+        className={classNames('dpw-form-group', { 'is-error' : this.state.error })}>
         <Label htmlFor='no_telp'>{this.state.selectedCategory.client_number.text}</Label>
         <div className='u-relative dpw-input--with-image'>
           <TextInput type='number' id='no_telp'
@@ -286,19 +297,19 @@ class DigitalWidgetView extends Component {
             value={this.state.clientNumber}
             placeholder={placeholder}
             onChange={this.handleNumberChange} />
-          <div className={classNames('error-message', { 'is-error' : this.state.errorMessage.errClientNumber !== '' }, { 'u-hide' : this.state.errorMessage.errClientNumber === '' })}>
+          <div className={classNames('error-message',
+              { 'is-error' :  this.state.errorMessage.errClientNumber !== '' },
+              { 'u-hide' : this.state.errorMessage.errClientNumber === '' })}>
             {this.state.errorMessage.errClientNumber}
           </div>
-          <img className={classNames('dpw-operator-image', { 'u-hide' : !this.state.selectedOperator.id })} src={this.state.selectedOperator.image} />
-          <div className={classNames('dpw-input-clear', { 'u-hide' : this.state.clientNumber.length === 0 })} onClick={this.handleClearButton}>Clear</div>
+          <img className={classNames('dpw-operator-image',
+              { 'u-hide' : !this.state.selectedOperator.id })}
+            src={this.state.selectedOperator.image} />
+          <div className={classNames('dpw-input-clear',
+              { 'u-hide' : this.state.clientNumber.length === 0 })}
+            onClick={this.handleClearButton}>Clear</div>
         </div>
       </div>
-    )
-  }
-
-  renderProduct (data, index) {
-    return (
-      <option value={data.id} > {data.desc}</option>
     )
   }
 
@@ -330,8 +341,9 @@ class DigitalWidgetView extends Component {
 
     if (category.default_operator_id !== '0') {
       filteredOperator.map((data, index) => {
-        if (data.id === category.default_operator_id) {
+        if (data.id === parseInt(category.default_operator_id)) {
           this.handleOperatorChange(data)
+          return
         }
       })
     }

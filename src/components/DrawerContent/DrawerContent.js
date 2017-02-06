@@ -10,6 +10,7 @@ class DrawerContent extends Component {
     isMenu: React.PropTypes.bool,
     handlePruductDrawer: React.PropTypes.func,
     handleProuductChange: React.PropTypes.func,
+    selectedOperator: React.PropTypes.object,
     productList: React.PropTypes.array,
     productId: React.PropTypes.number
   }
@@ -37,9 +38,9 @@ class DrawerContent extends Component {
   renderProductList (data, index) {
     let productPricePromo
     let productPrice
-    let productDesc = {__html: data.detail};
-    var isChecked = this.props.productId == data.id ? true : false
-    if (this.props.selectedOperator.id != data.operator_id) {
+    let productDesc = { __html: data.detail };
+
+    if (this.props.selectedOperator.id !== data.operator_id) {
       return
     } else if (this.props.selectedOperator.show_price) {
       if (data.promo == null) {
@@ -50,11 +51,13 @@ class DrawerContent extends Component {
       }
     }
     return (
-      <tr onClick={() => this.handleProduct(data)}>
+      <tr key = {index} onClick={() => this.handleProduct(data)}>
         <td className='dc-product__container'>
           <label htmlFor={'item-', data.id}>
             <div className='dc-product__name'>{ data.desc }</div>
-            <p className={classNames('dc-product__desc', { 'u-hide' : data.detail == '' })} dangerouslySetInnerHTML={productDesc} />
+            <p className={classNames('dc-product__desc',
+                { 'u-hide' : data.detail === '' })}
+              dangerouslySetInnerHTML={productDesc} />
             <div className={classNames('dc-product__price', { 'u-hide': !this.props.selectedOperator.show_price })}>
               { productPricePromo }
               { productPrice }
@@ -65,7 +68,7 @@ class DrawerContent extends Component {
           <input name='input_product' id={'item-', data.id}
             type='radio'
             className='dc-radio u-hide'
-            checked={isChecked} />
+            checked={this.props.productId === data.id ? 'checked' : false}/>
           <label htmlFor={'item-', data.id} className='dc-radio__icon' />
         </td>
       </tr>
