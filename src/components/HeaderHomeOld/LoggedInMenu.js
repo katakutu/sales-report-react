@@ -85,17 +85,8 @@ class LoggedInMenu extends Component {
     }
 
     // for GTM to consume
-    try {
-      const event = new Event('MenuOpened')
-      document.dispatchEvent(event)
-    } catch (e) {
-      console.log('Old browser not supporting Custom Event. Falling back.')
-
-      const oldEvent = document.createEvent('Event')
-      oldEvent.initEvent('MenuOpened', true, true)
-
-      document.dispatchEvent(oldEvent)
-    }
+    const event = new Event('MenuOpened')
+    document.dispatchEvent(event)
 
     // remember last state
     // setTimeout is for workaround of previous workaround

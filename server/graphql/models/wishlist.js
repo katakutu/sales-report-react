@@ -2,7 +2,6 @@ const TopedMojitoAPI = require('./../../api-consumer/api/Search/TopedMojitoAPI')
 const api = new TopedMojitoAPI()
 
 const EMPTY_WISHLIST = {
-  count: 0,
   has_next_page: false,
   items: [],
   total_data: 0
@@ -32,10 +31,9 @@ function _searchWishlist (api, userID, query, count, page) {
     }
 
     return {
-      count: response['header']['counter'] || 0,
       has_next_page: !!response['pagination'],
       items: response['data'],
-      total_data: response['header']['total_data'] || 0
+      total_data: response['header']['total_data']
     }
   })
   .catch(err => {
@@ -55,10 +53,9 @@ function _getWishlist (api, userID, count, page) {
     }
 
     return {
-      count: response['header']['counter'] || 0,
       has_next_page: !!response['pagination'],
       items: response['data'],
-      total_data: response['header']['total_data'] || 0
+      total_data: response['header']['total_data']
     }
   })
     .catch(err => {

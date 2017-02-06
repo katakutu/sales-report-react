@@ -10,10 +10,7 @@ const TopAdsImageType = new GraphQLObjectType({
   fields: {
     m_ecs: { type: new GraphQLNonNull(GraphQLURL) },
     s_ecs: { type: new GraphQLNonNull(GraphQLURL) },
-    xs_ecs: { type: new GraphQLNonNull(GraphQLURL) },
-    m_url: { type: new GraphQLNonNull(GraphQLURL) },
-    s_url: { type: new GraphQLNonNull(GraphQLURL) },
-    xs_url: { type: new GraphQLNonNull(GraphQLURL) }
+    xs_ecs: { type: new GraphQLNonNull(GraphQLURL) }
   }
 })
 

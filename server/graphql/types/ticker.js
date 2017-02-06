@@ -10,8 +10,7 @@ const TickerType = new GraphQLObjectType({
   fields: {
     id: { type: new GraphQLNonNull(GraphQLID) },
     title: { type: new GraphQLNonNull(GraphQLString) },
-    message: { type: new GraphQLNonNull(GraphQLString) },
-    color: { type: new GraphQLNonNull(GraphQLString) }
+    message: { type: new GraphQLNonNull(GraphQLString) }
   }
 })
 

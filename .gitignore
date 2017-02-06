@@ -8,5 +8,3 @@ coverage
 
 .idea/
 .vscode/
-dump.rdb
-yarn.lock

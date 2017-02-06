@@ -9,34 +9,19 @@ import TopAdsProduct from './TopAdsProduct'
 import TopAdsShop from './TopAdsShop'
 import Modal from '../Modal/Modal'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import lang from '../../lib/utils/Lang'
 
 class TopAds extends Component {
   static propTypes = {
     data: React.PropTypes.object,
+    stateModal: React.PropTypes.bool,
+    eventModal: React.PropTypes.func,
+    contentModal: React.PropTypes.object,
     userID: React.PropTypes.number,
     ep: React.PropTypes.string,
     src: React.PropTypes.string,
     item: React.PropTypes.number,
     page: React.PropTypes.number,
-    q: React.PropTypes.string,
-    lang: React.PropTypes.string
-  }
-
-  state = {
-    modalState: false
-  }
-
-  constructor (props) {
-    super(props)
-
-    this._eventModal = this._eventModal.bind(this)
-  }
-
-  _eventModal (state) {
-    this.setState({
-      modalState: state
-    })
+    q: React.PropTypes.string
   }
 
   render () {
@@ -49,30 +34,6 @@ class TopAds extends Component {
       transitionLeaveTimeout: 500
     }
 
-    const MODAL_PARAMS = {
-      modalContent: {
-        data: [
-          {
-            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/stat.png',
-            title: lang[this.props.lang]['Topads Modal Section 1 Title'],
-            content: lang[this.props.lang]['Topads Modal Section 1 Content']
-          },
-          {
-            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/jangkau.png',
-            title: lang[this.props.lang]['Topads Modal Section 2 Title'],
-            content: lang[this.props.lang]['Topads Modal Section 2 Content']
-          },
-          {
-            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/efektif.png',
-            title: lang[this.props.lang]['Topads Modal Section 3 Title'],
-            content: lang[this.props.lang]['Topads Modal Section 3 Content']
-          }
-        ],
-        link: 'https://m.tokopedia.com/iklan?campaign=topads&source=feed&medium=mobile',
-        linkText: lang[this.props.lang]['Topads Modal Button']
-      }
-    }
-
     if (this.props.data.topads && this.props.data.topads.items) {
       const topadsdata = this.props.data.topads
       topadsdata.items.map((item, index) => {
@@ -83,17 +44,17 @@ class TopAds extends Component {
       })
     }
 
-    if (this.state.modalState) {
+    if (this.props.stateModal) {
       modal = <Modal
-        eventModal={this._eventModal}
-        contentModal={MODAL_PARAMS.modalContent} />
+        eventModal={this.props.eventModal}
+        contentModal={this.props.contentModal} />
     }
     return (
       <div>
         <div className='topads__wrapper'>
           <div className='u-clearfix topads__sub__wrapper'>
             <div className='u-col u-col-12 topads__title__contents'>
-              <a onClick={() => this._eventModal(true)}>
+              <a onClick={() => this.props.eventModal(true)}>
                 Promoted
                 <img src={iconInfo} alt='topads information' />
               </a>

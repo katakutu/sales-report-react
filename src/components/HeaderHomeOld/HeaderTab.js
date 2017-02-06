@@ -4,7 +4,6 @@ import Tabs from '../Tabs/Tabs'
 import Tab from '../Tabs/Tab'
 import { appIsLoading, updateScrollPosition } from '../../store/app'
 import { HOSTNAME } from '../../constants'
-import lang from '../../lib/utils/Lang'
 
 class HeaderTab extends Component {
 
@@ -40,24 +39,25 @@ class HeaderTab extends Component {
 
   _savePosition (val, query = null) {
     const { router } = this.context
-    const currentKey = this.props.activeTab
+    let currentKey = this.props.activeTab
     // get scrolled position
-    const scrollPosition = (window.pageYOffset !== undefined) ? window.pageYOffset
+    let scrollPosition = (window.pageYOffset !== undefined) ? window.pageYOffset
     : (document.documentElement || document.body.parentNode || document.body).scrollTop
     // update scroll history
     let updateState = {}
-    const currentState = this.props.scrollHistory
+    let currentState = this.props.scrollHistory
     // check available
     if (currentState) {
       // update state
-      updateState = Object.assign({}, currentState, { [currentKey]: { point: scrollPosition } })
+      currentState[currentKey] = { point: scrollPosition }
+      updateState = currentState
     } else {
       updateState[currentKey] = { point: scrollPosition }
     }
     // update to store
     this.props.updateScrollPosition(updateState)
     // push location state
-    const queries = query && query
+    let queries = query && query
     router.push({
       pathname: val,
       query: queries
@@ -68,7 +68,7 @@ class HeaderTab extends Component {
     const homeCN = this.props.activeTab === 'home'
     const hlCN = this.props.activeTab === 'hotlist'
     const wlCN = this.props.activeTab === 'wishlist'
-    const fdCN = this.props.activeTab === 'feed'
+    const feedCN = this.props.activeTab === 'feed'
 
     return (
       <Tabs userIsLoggedIn={this.props.userIsLoggedIn}
@@ -78,7 +78,7 @@ class HeaderTab extends Component {
         <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/', { h: 3 })} />
         {
           this.props.userIsLoggedIn
-          ? <Tab label='Feed' isActive={fdCN} onClick={() => this._savePosition('/feed')} />
+          ? <Tab label='Feed' isActive={feedCN} onClick={() => this._savePosition('/feed')} />
           : ''
         }
         {
@@ -87,8 +87,7 @@ class HeaderTab extends Component {
           : ''
         }
         <Tab isActive={hlCN} label='Hot List' onClick={() => this._savePosition('/hot')} />
-        { this.props.userIsLoggedIn ? <Tab label={lang[this.props.lang]['Favorite tab']}
-          url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
+        { this.props.userIsLoggedIn ? <Tab label='Favorite' url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
       </Tabs>
     )
   }
