@@ -44,12 +44,12 @@ class FavoriteView extends Component {
       'shop': this.props.data.shop,
       'wallet': this.props.data.wallet
     })
-    
+
     return (
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='favorite' />
         <FavoriteNew
-          userID={this.props.data.user.id}
+          userID={parseInt(this.props.data.user.id)}
           count={FavoriteView.FAVORITE_PER_PAGE}
           shop={''}
           ep={TOPADS_PARAMS.ep}

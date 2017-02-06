@@ -75,7 +75,16 @@
     -webkit-appearance: none;
     appearance: none;
 }
-
+.favorite__reset-search {
+    float: right;
+    color: #42b549;
+    cursor: pointer;
+    margin: 15px 15px 5px 0;
+}
+.favorite__search-result {
+    margin: 15px 0 5px 15px;
+    color: rgba(0,0,0,.54);
+}
 @media screen and (max-width: 400px) {
     .favorite__header {
         min-height: 100px !important;
@@ -122,7 +131,7 @@
     vertical-align: top;
     text-decoration: none;
     font-size: 12pt;
-
+    
     .favorite--single-page & {
         margin: 0 auto 10px;
     }

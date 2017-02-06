@@ -48,7 +48,8 @@ class Favorite extends Component {
     item: React.PropTypes.number,
     q: React.PropTypes.string,
     topAdsReudyx: PropTypes.object,
-    topads: PropTypes.object
+    topads: PropTypes.object,
+    token: PropTypes.object
   }
 
   state = {
@@ -79,6 +80,7 @@ class Favorite extends Component {
 
   updateFinalQuery (event) {
     if (event.key === 'Enter') {
+      this.props.replaceFavorites([])
       this.props.updateQuery(this.state.query)
       event.target.blur()
 
@@ -138,7 +140,6 @@ class Favorite extends Component {
       }
     }
   }
-
 
   _gtmNotifyItemClicked (item) {
     return (event) => {
@@ -232,6 +233,7 @@ class Favorite extends Component {
     const favorites = this.props.favorites || []
     const isNoFavorite = favorites.length === 0 && !this.props.loading && this.props.query === ''
     const isEmptyResult = favorites.length === 0 && !this.props.loading && this.props.query !== ''
+    // const flCount = favorites.length!==0 ? favorites[1].items.length : 0
     return (
       <div className='u-clearfix favorite favorite--single-page u-mt2'>
         <div className='favorite__searchbar-holder'>
@@ -264,7 +266,7 @@ class Favorite extends Component {
           //   ),
           //   (
           //     <div className='u-col u-col-6' onClick={this.resetSearch}>
-          //       <span className='favorite__reset-search'>Reset</span>
+          //       <span className='favorite__reset-search'>Hapus</span>
           //     </div>
           //   ),
           //   (<div className='u-clearfix' />)
@@ -395,7 +397,8 @@ const mapStateToProps = (state) => {
     lang: state['app'] ? state['app'].lang : state.lang,
     page: state['favorite'] ? state['favorite'].page : state.page,
     query: state['favorite'] ? state['favorite'].query : state.query,
-    favorites: state['favorite'] ? state['favorite'].favorites : state.favorites
+    favorites: state['favorite'] ? state['favorite'].favorites : state.favorites,
+    token: state['favorite'] ? state['favorite'].token : state.token
   }
 }
 const FavoriteWithData = graphql(FaveQuery, {

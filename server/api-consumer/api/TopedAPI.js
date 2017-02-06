@@ -1,4 +1,5 @@
 const request = require('request-promise')
+const querystring = require('querystring')
 
 /* const obcache = require('obcache')
 const redis = require('../../GlobalConfig').SessionRedis
@@ -52,7 +53,7 @@ class TopedAPI {
     let finalOptions = Object.assign({
       timeout: 5000
     }, additionalOptions, options)
-    
+
     return request(finalURL, finalOptions).then(response => this._processJSON(response))
 
     /* return new Promise((resolve, reject) => {
@@ -61,6 +62,29 @@ class TopedAPI {
         resolve(this._processJSON(response))
       })
     }) */
+  }
+
+  consumeForm (url, method, content, options = {}) {
+    try {
+      let formData = querystring.stringify(content)
+
+      let options = {
+        method: method,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formData,
+        timeout: 5000,
+        resolveWithFullResponse: true
+      }
+      return request(url, options)
+    } catch (exception) {
+      if (exception instanceof TypeError) {
+        return Promise.reject(`Invalid type exception: ${exception.message}`)
+      }
+
+      return Promise.reject(exception.message)
+    }
   }
 
   /**

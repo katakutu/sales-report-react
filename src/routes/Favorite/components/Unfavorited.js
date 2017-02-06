@@ -39,7 +39,7 @@ class Unfavorited extends Component {
     this.props.mutate(variables).then(addSuccess => {
       if (addSuccess['data']['favorite_add'] || false) {
         const msg = lang[this.props.lang]['Add Favorite Success']
-        
+
         this.props.activateFavorite(this.props.shopID)
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
@@ -50,7 +50,7 @@ class Unfavorited extends Component {
         })
       } else {
         const msg = lang[this.props.lang]['Add Favorite Failed']
-        
+
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
