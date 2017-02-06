@@ -79,7 +79,15 @@ const ACTION_HANDLERS = {
         if (parseInt(fave['shop_id']) === action.payload) {
           return Object.assign({}, fave, { is_active: true })
         } else {
-          return fave
+          if (fave['shop']) {
+            if (parseInt(fave['shop']['id']) === action.payload) {
+              return Object.assign({}, fave, { isActive: true })
+            } else {
+              return fave
+            }
+          } else {
+            return fave
+          }
         }
       })
       return Object.assign({}, f, { items: newF })
@@ -93,7 +101,15 @@ const ACTION_HANDLERS = {
         if (parseInt(fave['shop_id']) === action.payload) {
           return Object.assign({}, fave, { is_active: false })
         } else {
-          return fave
+          if (fave['shop']) {
+            if (parseInt(fave['shop']['id']) === action.payload) {
+              return Object.assign({}, fave, { isActive: true })
+            } else {
+              return fave
+            }
+          } else {
+            return fave
+          }
         }
       })
       return Object.assign({}, f, { items: newF })

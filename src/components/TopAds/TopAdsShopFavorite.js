@@ -1,17 +1,30 @@
 import React, { Component } from 'react'
 import ImpressionTracker from '../Events/ImpressionTracker'
+import ShopButton from './ShopButton'
 import './TopAds.scss'
 
 class TopAdsShopFavorite extends Component {
   static propTypes = {
     data: React.PropTypes.object,
     shops: React.PropTypes.object,
-    lang: React.PropTypes.string
+    lang: React.PropTypes.string,
+    userID: React.PropTypes.number,
+    token: React.PropTypes.string,
+    mutation: React.PropTypes.object,
+    activeAction: React.PropTypes.func,
+    deactiveAction: React.PropTypes.func,
+    RemoveMutation: React.PropTypes.object,
+    AddMutation: React.PropTypes.object
   }
 
   render () {
     const imageProduct = this.props.data['shop']['image_product'] || []
-
+    let Buttons
+    if (this.props.data['isActive']) {
+      Buttons = ShopButton(this.props.RemoveMutation)
+    } else {
+      Buttons = ShopButton(this.props.AddMutation)
+    }
     return (
       <ImpressionTracker url={this.props.data['shop']['image_shop']['s_url']}
         urlMatch={this.props.data['shop']['image_shop']['s_ecs']}>
@@ -57,9 +70,24 @@ class TopAdsShopFavorite extends Component {
                 </div>
               </div>
               <div className='u-col u-col-7'>
-                <a className='topads__shop__favorite-btn small green' href={this.props.data['shop_click_url']}>
-                  +&nbsp;Favorite
-                </a>
+                {
+                  this.props.data['isActive']
+                  ? <Buttons
+                    active={this.props.data['isActive']}
+                    userID={this.props.userID}
+                    shopID={parseInt(this.props.data['shop']['id'])}
+                    shopName={this.props.data['shop']['name']}
+                    token={this.props.token}
+                    activeAction={this.props.deactiveAction}
+                    />
+                  : <Buttons
+                    active={this.props.data['isActive']}
+                    userID={this.props.userID}
+                    shopID={parseInt(this.props.data['shop']['id'])}
+                    shopName={this.props.data['shop']['name']}
+                    token={this.props.token}
+                    activeAction={this.props.activeAction} />
+                }
               </div>
             </div>
           </div>

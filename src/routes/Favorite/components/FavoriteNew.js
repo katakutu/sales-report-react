@@ -22,12 +22,15 @@ import Unfavorited from './Unfavorited'
 import lang from '../../../lib/utils/Lang'
 import ArrayHelper from '../../../lib/utils/ArrayHelper'
 import TopAdsIntegrate from '../../../components/TopAds/TopAdsIntegrate'
-import { replaceFavorites, updatePage, updateQuery } from '../module'
+import { replaceFavorites, updatePage, updateQuery, activateFavorite, deactivateFavorite } from '../module'
+import mutations from './../../../mutations'
 
 class Favorite extends Component {
   static propTypes = {
     addFavorite: PropTypes.func,
     clearFavorites: PropTypes.func,
+    activateFavorite: PropTypes.func,
+    deactivateFavorite: PropTypes.func,
     count: PropTypes.number,
     fetchMore: PropTypes.func,
     loading: PropTypes.bool,
@@ -112,7 +115,7 @@ class Favorite extends Component {
       // get from graphql favorite
       const fv = nextProps.favorite || { has_next_page: false, items: [], total_data: 0 }
       const favorites = fv.data || []
-      const newFavorites = favorites.map(fd => Object.assign({}, fd))
+      const newFavorites = favorites.map(fv => Object.assign({}, fv, { is_active: true }))
       // get from graphql topads
       const ta = nextProps.topads || { display: '', items: [], total_data: 0 }
       const topAds = ta.items || []
@@ -291,7 +294,14 @@ class Favorite extends Component {
                   <div className='row-fluid' key={key2} >
                     <TopAdsIntegrate
                       source={'favorite'}
-                      dataAds={favorite} />
+                      dataAds={favorite}
+                      userID={this.props.userID}
+                      token={this.props.favorite.token}
+                      AddMutation={mutations.Favorite.addFavorite}
+                      RemoveMutation={mutations.Favorite.removeFavorite}
+                      activeAction={this.props.activateFavorite}
+                      deactiveAction={this.props.deactivateFavorite}
+                      />
                   </div>
                 )
               }
@@ -391,7 +401,7 @@ $ep: String!, $src: String!, $item: Int!, $q: String!, $query: String!)
 }
 `
 const mapDispatchToProps = {
-  replaceFavorites, updatePage, updateQuery
+  replaceFavorites, updatePage, updateQuery, activateFavorite, deactivateFavorite
 }
 const mapStateToProps = (state) => {
   return {

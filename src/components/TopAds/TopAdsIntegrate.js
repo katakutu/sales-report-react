@@ -17,7 +17,13 @@ class TopAdsIntegrate extends Component {
     eventModal: React.PropTypes.func,
     contentModal: React.PropTypes.object,
     lang: React.PropTypes.string,
-    source: React.PropTypes.string
+    source: React.PropTypes.string,
+    token: React.PropTypes.string,
+    userID: React.PropTypes.number,
+    AddMutation: React.PropTypes.object,
+    RemoveMutation: React.PropTypes.object,
+    activeAction: React.PropTypes.func,
+    deactiveAction: React.PropTypes.func
   }
 
   state = {
@@ -39,6 +45,8 @@ class TopAdsIntegrate extends Component {
   render () {
     let topads = []
     let modal
+
+    console.log(this.props.token)
 
     const MODAL_PARAMS = {
       modalContent: {
@@ -77,7 +85,16 @@ class TopAdsIntegrate extends Component {
         topadsdata.display === 'product' && topads.push(<TopAdsProduct key={`top-ads-item-${index}`} data={item} />)
         if (that.props.source === 'favorite') {
           topadsdata.display === 'shop' &&
-          topads.push(<TopAdsShopFavorite key={`top-ads-shop-item-${index}`} data={item} />)
+          topads.push(<TopAdsShopFavorite
+            key={`top-ads-shop-item-${index}`}
+            data={item}
+            token={this.props.token}
+            userID={this.props.userID}
+            AddMutation={this.props.AddMutation}
+            RemoveMutation={this.props.RemoveMutation}
+            activeAction={this.props.activeAction}
+            deactiveAction={this.props.deactiveAction}
+            />)
         } else {
           topadsdata.display === 'shop' && topads.push(<TopAdsShop key={`top-ads-shop-item-${index}`} data={item} />)
         }
