@@ -9,7 +9,8 @@ class DrawerContent extends Component {
     open: React.PropTypes.bool,
     handlePruductDrawer: React.PropTypes.func,
     handleProuductChange: React.PropTypes.func,
-    productList: React.PropTypes.array
+    productList: React.PropTypes.array,
+    productId: React.PropTypes.number
   }
 
   constructor (props) {
@@ -35,6 +36,7 @@ class DrawerContent extends Component {
   renderProductList (data, index) {
     let productPricePromo;
     let productPrice;
+    var isChecked = this.props.productId == data.id ? true : false;
     if (this.props.selectedOperator.id != data.operator_id) {
       return
     }
@@ -59,7 +61,10 @@ class DrawerContent extends Component {
           </label>
         </td>
         <td className='dc-radio__container'>
-          <input name='input_product' id={'item-', data.id} type='radio' className='dc-radio u-hide' />
+          <input name='input_product' id={'item-', data.id} 
+            type='radio' 
+            className='dc-radio u-hide' 
+            checked={isChecked}/>
           <label htmlFor={'item-', data.id} className='dc-radio__icon' />
         </td>
       </tr>

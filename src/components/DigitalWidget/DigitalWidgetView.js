@@ -23,16 +23,15 @@ class DigitalWidgetView extends Component {
         errClientNumber : '',
         errSelectedProduct : ''
       },
-      modalOpened: false,
       clientNumber: '',
       instantCheckout: false,
       textButton: 'Beli',
+      disabledButton: false,
       selectedCategory: {},
       selectedOperator: {},
       selectedProduct: {},
       filteredOperator: {},
-      productList: [],
-      firstTimeClicked: true
+      productList: []
     }
 
     this.renderCategory = this.renderCategory.bind(this)
@@ -46,6 +45,7 @@ class DigitalWidgetView extends Component {
     this.handleInstanCheckout = this.handleInstanCheckout.bind(this)
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.handleFormMessage = this.handleFormMessage.bind(this)
+    this.handleClearButton = this.handleClearButton.bind(this)
   }
 
   isActiveCategory (id) {
@@ -70,9 +70,14 @@ class DigitalWidgetView extends Component {
       selectedOperator: {},
       errorMessage: {
         errClientNumber : ''
-      },
-      textButton: 'Beli'
+      }
     })
+    if (!data.instant_checkout_available) {
+      this.setState({
+        textButton: 'Beli',
+        instantCheckout: false
+      })
+    }
     if (data.id != this.state.selectedCategory) {
       this.renderDataContent(data)
     }
@@ -81,6 +86,17 @@ class DigitalWidgetView extends Component {
   handleOperatorChange (data) {
     this.setState({
       selectedOperator: data
+    })
+
+    var iter = 0
+    this.state.productList.map((product, index) => {
+      if (product.operator_id == data.id) {
+        iter++
+        if (iter == 3 ) {
+          this.handleProuductChange(product)
+          return
+        }
+      }
     })
   }
 
@@ -100,12 +116,7 @@ class DigitalWidgetView extends Component {
       }
     })
 
-    var client_number = client_number.replace(/(\+|\b)62/, "0")
-    if (client_number.length > 3) {
-      this.setState({
-        clientNumber: client_number
-      })
-      
+    if (client_number.length > 3) {      
       client_number = client_number.substring(0, 4)
       for(var i in this.props.prefixList){
         var ok = false
@@ -127,7 +138,6 @@ class DigitalWidgetView extends Component {
       }
     } else if (this.state.selectedCategory.validate_prefix) {
       this.setState({
-        clientNumber: '',
         selectedOperator: {}
       })
     }
@@ -140,7 +150,18 @@ class DigitalWidgetView extends Component {
   }
 
   handleNumberChange (e) {
-    this.handlePrefixChange(e.target.value)    
+    var client_number = e.target.value.replace(/(\+|\b)62/, "0")
+    this.setState({
+      clientNumber: client_number
+    })
+    this.handlePrefixChange(client_number)
+  }
+
+  handleClearButton() {
+    this.setState({
+      clientNumber: ''
+    })
+    this.handlePrefixChange('')
   }
 
   handleInstanCheckout () {
@@ -158,7 +179,11 @@ class DigitalWidgetView extends Component {
   }
 
   handleFormSubmit (e) {
-    if (!this.state.selectedOperator.id) {
+    if (this.state.selectedCategory.client_number.is_shown && this.state.clientNumber == '') {
+      this.setState({
+          errorMessage: { errClientNumber : this.handleFormMessage('ERROR_EMPTY_NUMBER') }
+        })
+    } else if (!this.state.selectedOperator.id) {
       this.setState({
         errorMessage: { errClientNumber : this.handleFormMessage('ERROR_NO_OPERATOR') }
       })
@@ -175,6 +200,12 @@ class DigitalWidgetView extends Component {
         this.setState({
           errorMessage: { errClientNumber : this.handleFormMessage('ERROR_MAX_NUMBER', this.state.selectedOperator.maximum_length) }
         })
+      } else {
+        this.setState({
+          textButton: this.handleFormMessage('LOADING_2'),
+          disabledButton: true
+        })
+        return true
       }
     }
 
@@ -237,13 +268,16 @@ class DigitalWidgetView extends Component {
       <div className={classNames('dpw-form-group', {'is-error' : this.state.error})}>
           <Label htmlFor='no_telp'>{this.state.selectedCategory.client_number.text}</Label>
           <div className='u-relative dpw-input--with-image'>
-            <TextInput id='no_telp' name='client_number'
-              placeholder={placeholder} onChange={this.handleNumberChange}/>
+            <TextInput type='number' id='no_telp' 
+              name='client_number'
+              value={this.state.clientNumber}
+              placeholder={placeholder} 
+              onChange={this.handleNumberChange}/>
               <div className={classNames('error-message', {'is-error' : this.state.errorMessage.errClientNumber != ''}, {'u-hide' : this.state.errorMessage.errClientNumber == ''})}>
                 {this.state.errorMessage.errClientNumber}
               </div>
             <img className={classNames('dpw-operator-image', {'u-hide' : !this.state.selectedOperator.id})} src={this.state.selectedOperator.image} />
-            <button className='dpw-input-clear'>Clear</button>
+            <div className={classNames('dpw-input-clear', {'u-hide' : this.state.clientNumber.length == 0} )} onClick={this.handleClearButton}>Clear</div>
           </div>
         </div>
       )
@@ -253,13 +287,6 @@ class DigitalWidgetView extends Component {
     return (
       <option value= {data.id} > {data.desc}</option>
     )
-  }
-
-  handleGlobalState(stateName, stateData) {
-    var globalState = {
-      stateName : stateData
-    }
-    this.setState( globalState )
   }
 
   renderDataContent(category) {
@@ -318,7 +345,7 @@ class DigitalWidgetView extends Component {
             </button>
           </div>
           <div className='dpw-content u-clearfix'>
-            <form method='GET' action='#' onSubmit={this.handleFormSubmit}>
+            <form method='GET' action='https://pulsa.tokopedia.com/' onSubmit={this.handleFormSubmit}>
               <input
                 type='hidden'
                 value='init_data'
@@ -343,11 +370,12 @@ class DigitalWidgetView extends Component {
 
               <div
                 className={classNames('dpw-form-group', { 'u-hide' : !this.state.selectedCategory.instant_checkout_available })}>
-                <Checkbox id='instant' name='instant_checkout' onClick={this.handleInstanCheckout}>Bayar Instan</Checkbox>
+                <Checkbox id='instant' isChecked={this.state.instantCheckout} name='instant_checkout' onClick={this.handleInstanCheckout}>Bayar Instan</Checkbox>
               </div>
 
               <Button className={classNames('btn--orange', 'btn--block')}
-                buttonType='submit'>
+                buttonType='submit'
+                disabled={this.state.disabledButton}>
                 {this.state.textButton}
               </Button>
 
@@ -357,6 +385,7 @@ class DigitalWidgetView extends Component {
         <DrawerContent title={ this.state.selectedOperator.product_text }
           selectedOperator={this.state.selectedOperator}
           productList={this.state.productList}
+          productId={this.state.selectedProduct.id}
           handleProuductChange={this.handleProuductChange} 
           open={this.state.openDrawer} 
           handlePruductDrawer={this.handlePruductDrawer} />
