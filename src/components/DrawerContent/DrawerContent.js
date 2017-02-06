@@ -36,6 +36,7 @@ class DrawerContent extends Component {
   renderProductList (data, index) {
     let productPricePromo
     let productPrice
+    let productDesc = {__html: data.detail};
     var isChecked = this.props.productId == data.id ? true : false
     if (this.props.selectedOperator.id != data.operator_id) {
       return
@@ -52,7 +53,7 @@ class DrawerContent extends Component {
         <td className='dc-product__container'>
           <label htmlFor={'item-', data.id}>
             <div className='dc-product__name'>{ data.desc }</div>
-            <p className={classNames('dc-product__desc', { 'u-hide' : data.detail == '' })} innerHTML={data.detail} />
+            <p className={classNames('dc-product__desc', { 'u-hide' : data.detail == '' })} dangerouslySetInnerHTML={productDesc} />
             <div className={classNames('dc-product__price', { 'u-hide': !this.props.selectedOperator.show_price })}>
               { productPricePromo }
               { productPrice }
