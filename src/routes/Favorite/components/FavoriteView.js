@@ -49,7 +49,7 @@ class FavoriteView extends Component {
       <div>
         <HeaderHomeOld userInfo={userInfo} tabIsAvailable activeTab='favorite' />
         <FavoriteNew
-          userID={5481152}
+          userID={parseInt(this.props.data.user.id)}
           count={FavoriteView.FAVORITE_PER_PAGE}
           shop={''}
           ep={TOPADS_PARAMS.ep}

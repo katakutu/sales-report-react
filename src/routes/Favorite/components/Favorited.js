@@ -16,6 +16,7 @@ class Favorited extends Component {
     notificationDispatch: PropTypes.func,
     mutate: PropTypes.func.isRequired,
     shopID: PropTypes.number,
+    shopName: PropTypes.string,
     userID: PropTypes.number,
     nekot: PropTypes.string,
     productName: PropTypes.string,
@@ -32,7 +33,8 @@ class Favorited extends Component {
     const variables = {
       variables: {
         userID: this.props.userID,
-        shopID: this.props.shopID
+        shopID: this.props.shopID,
+        token: this.props.nekot
       }
     }
 
@@ -46,7 +48,7 @@ class Favorited extends Component {
           active: true,
           label: 'Favorite',
           text: msg.replace(':item', this.props.shopName),
-          timeout: 3000
+          timeout: 1500
         })
       } else {
         const msg = lang[this.props.lang]['Remove Favorite Failed']
@@ -55,8 +57,8 @@ class Favorited extends Component {
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Favorite',
-          text: msg.replace(':item', this.props.productName),
-          timeout: 3000
+          text: msg.replace(':item', this.props.shopName),
+          timeout: 1500
         })
       }
     })
@@ -64,8 +66,8 @@ class Favorited extends Component {
 
   render () {
     return (
-      <a href='#' className='green' onClick={this.handleClick()}>
-        +&nbsp;{ lang[this.props.lang]['Unfavorited btn'] }
+      <a onClick={this.handleClick}>
+        <i className='icon-checked' />&nbsp;&nbsp;&nbsp;{ lang[this.props.lang]['Favorited btn'] }
       </a>
     )
   }
@@ -76,7 +78,7 @@ const mapStateToProps = (state) => {
     lang: state['app'] ? state['app'].lang : state.lang
   }
 }
-const FavoritedQL = graphql(mutations.Favorite.addFavorite)(Favorited)
+const FavoritedQL = graphql(mutations.Favorite.removeFavorite)(Favorited)
 const FavoritedQLR = connect(mapStateToProps, {
   deactivateFavorite, notificationDispatch
 })(FavoritedQL)

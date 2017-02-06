@@ -30,6 +30,7 @@ class Favorite extends Component {
     clearFavorites: PropTypes.func,
     count: PropTypes.number,
     fetchMore: PropTypes.func,
+    loading: PropTypes.bool,
     data: PropTypes.object,
     lang: React.PropTypes.string,
     page: PropTypes.number,
@@ -48,7 +49,7 @@ class Favorite extends Component {
     q: React.PropTypes.string,
     topAdsReudyx: PropTypes.object,
     topads: PropTypes.object,
-    loading: PropTypes.bool
+    token: PropTypes.object
   }
 
   state = {
@@ -79,6 +80,7 @@ class Favorite extends Component {
 
   updateFinalQuery (event) {
     if (event.key === 'Enter') {
+      this.props.replaceFavorites([])
       this.props.updateQuery(this.state.query)
       event.target.blur()
 
@@ -187,16 +189,16 @@ class Favorite extends Component {
                     </div>
                     <div className='u-col u-col-4 u-truncate u-relative btn'>
                       {
-                      favorites['isActive']
+                      item['is_active']
                         ? <Favorited
                           userID={this.props.userID}
                           shopID={parseInt(item['shop_id'])}
-                          shopName={parseInt(item['shop_name'])}
+                          shopName={item['shop_name']}
                           nekot={this.props.favorite.token} />
                         : <Unfavorited
                           userID={this.props.userID}
                           shopID={parseInt(item['shop_id'])}
-                          shopName={parseInt(item['shop_name'])}
+                          shopName={item['shop_name']}
                           nekot={this.props.favorite.token} />
                       }
                     </div>
@@ -230,7 +232,7 @@ class Favorite extends Component {
     const favorites = this.props.favorites || []
     const isNoFavorite = favorites.length === 0 && !this.props.loading && this.props.query === ''
     const isEmptyResult = favorites.length === 0 && !this.props.loading && this.props.query !== ''
-    let flCount = favorites.length
+    // const flCount = favorites.length!==0 ? favorites[1].items.length : 0
     return (
       <div className='u-clearfix favorite favorite--single-page u-mt2'>
         <div className='favorite__searchbar-holder'>
@@ -245,29 +247,29 @@ class Favorite extends Component {
             value={this.state.query} />
         </div>
 
-        <div className='favorite__searchbar-holder'>
+        {/* <div className='favorite__searchbar-holder'>
           <i className='favorite__icon favorite__location-grey favorite__set-love-grey' />
           <input
             type='text'
             name='searchwishlist'
             className='favorite__searchbar'
             placeholder={lang[this.props.lang]['Cari lokasi']} />
-        </div>
+        </div> */}
         {
-          this.state.finalQuery !== '' &&
-            [
-            (
-              <div className='u-col u-col-6'>
-                <p className='favorite__search-result'>{flCount} {lang[this.props.lang]['Hasil']}</p>
-              </div>
-            ),
-            (
-              <div className='u-col u-col-6' onClick={this.resetSearch}>
-                <span className='favorite__reset-search'>Reset</span>
-              </div>
-            ),
-            (<div className='u-clearfix' />)
-            ]
+          // this.state.finalQuery !== '' &&
+          //   [
+          //   (
+          //     <div className='u-col u-col-6'>
+          //       <p className='favorite__search-result'>{flCount} {lang[this.props.lang]['Hasil']}</p>
+          //     </div>
+          //   ),
+          //   (
+          //     <div className='u-col u-col-6' onClick={this.resetSearch}>
+          //       <span className='favorite__reset-search'>Hapus</span>
+          //     </div>
+          //   ),
+          //   (<div className='u-clearfix' />)
+          //   ]
         }
 
         <div className='u-clearfix' />
@@ -323,7 +325,6 @@ $ep: String!, $src: String!, $item: Int!, $q: String!, $query: String!)
       location
       is_gold
       is_official
-      is_active
       products {
         id
         name
@@ -397,7 +398,8 @@ const mapStateToProps = (state) => {
     lang: state['app'] ? state['app'].lang : state.lang,
     page: state['favorite'] ? state['favorite'].page : state.page,
     query: state['favorite'] ? state['favorite'].query : state.query,
-    favorites: state['favorite'] ? state['favorite'].favorites : state.favorites
+    favorites: state['favorite'] ? state['favorite'].favorites : state.favorites,
+    token: state['favorite'] ? state['favorite'].token : state.token
   }
 }
 const FavoriteWithData = graphql(FaveQuery, {

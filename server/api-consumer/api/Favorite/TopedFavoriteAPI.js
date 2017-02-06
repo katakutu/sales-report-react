@@ -5,7 +5,7 @@ const URL = require('url')
 const params = `/v1/web-service/fav_shop/list?user_id=:user_id&per_page=:per_page&p=:page&shop_name=:shop`
 const FAVORITE_SERVICES = {
   GetFaveShop: `${GlobalConfig.Tome.Hostname}` + params,
-  FavoriteModification: `${GlobalConfig.WS.Hostname}` + `/v4/action/favorite-shop/fav_shop.pl`,
+  FavoriteModification: `${GlobalConfig.Tome.Hostname}` + `/shop/favorite-shop`,
   GetCSRFToken: `${GlobalConfig.Tome.Hostname}` + `/v1/user/token`
 }
 const DEFAULT_FAVE_DATA = {
@@ -43,29 +43,24 @@ class TopedFavoriteAPI {
     const opt = { headers: headers }
     return this.api.consume(url, 'GET', {}, opt)
   }
-  removeFavorite (userID, shopID, adKey) {
+  removeFavorite (userID, shopID, adKey, sessID) {
+    const sidCookie = `${GlobalConfig['Cookie']['SessionID']}=${sessID};`
     const url = URL.parse(FAVORITE_SERVICES.FavoriteModification)
     const content = {
       'user_id': userID,
       'shop_id': shopID,
-      'ad_key': adKey,
+      'token': adKey,
       'src': 'fav_shop'
     }
-    // const header = {
-    //   'X-User-ID': userID,
-    //   'X-Device': 'lite'
-    // }
-    return this.api.consume(url, 'POST', content)
-    // return this.HMACApi.consumeJSON(URL.parse(endpoint), 'DELETE', header, content)
-    //                    .then(response => response.statusCode === 204)
-    //                    .catch(err => {
-    //                      console.error(`[Favorite][Favorite][Delete] API call returning error: ${err}`)
-
-    //                      return false
-    //                    })
+    const headers = {
+      'Cookie': sidCookie
+    }
+    const opt = { headers: headers }
+    return this.api.consumeForm(url, 'POST', content, opt)
   }
 
-  addFavorite (userID, shopID, adKey) {
+  addFavorite (userID, shopID, adKey, sessID) {
+    const sidCookie = `${GlobalConfig['Cookie']['SessionID']}=${sessID};`
     const url = URL.parse(FAVORITE_SERVICES.FavoriteModification)
     const content = {
       'user_id': userID,
@@ -73,18 +68,11 @@ class TopedFavoriteAPI {
       'ad_key': adKey,
       'src': 'fav_shop'
     }
-    // const header = {
-    //   'X-User-ID': userID,
-    //   'X-Device': 'lite'
-    // }
-    return this.api.consume(url, 'POST', content)
-    // return this.HMACApi.consumeJSON(URL.parse(endpoint), 'POST', header, content)
-    //                    .then(response => response.statusCode === 201)
-    //                    .catch(err => {
-    //                      console.error(`[Tome][Favorite][Add] API call returning error: ${err}`)
-
-    //                      return false
-    //                    })
+    const headers = {
+      'Cookie': sidCookie
+    }
+    const opt = { headers: headers }
+    return this.api.consumeForm(url, 'POST', content, opt)
   }
 }
 

@@ -16,6 +16,7 @@ class Unfavorited extends Component {
     notificationDispatch: PropTypes.func,
     mutate: PropTypes.func.isRequired,
     shopID: PropTypes.number,
+    shopName: PropTypes.string,
     userID: PropTypes.number,
     nekot: PropTypes.string,
     productName: PropTypes.string
@@ -35,9 +36,6 @@ class Unfavorited extends Component {
         token: this.props.nekot
       }
     }
-    console.log(this.props.nekot)
-    console.log(this.props.userID)
-    console.log(this.props.shopID)
     this.props.mutate(variables).then(addSuccess => {
       if (addSuccess['data']['favorite_add'] || false) {
         const msg = lang[this.props.lang]['Add Favorite Success']
@@ -47,17 +45,18 @@ class Unfavorited extends Component {
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Favorite',
-          text: msg.replace(':item', this.props.productName),
-          timeout: 3000
+          text: msg.replace(':item', this.props.shopName),
+          timeout: 1500
         })
       } else {
         const msg = lang[this.props.lang]['Add Favorite Failed']
+
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Favorite',
-          text: msg.replace(':item', this.props.productName),
-          timeout: 3000
+          text: msg.replace(':item', this.props.shopName),
+          timeout: 1500
         })
       }
     })
@@ -65,8 +64,8 @@ class Unfavorited extends Component {
 
   render () {
     return (
-      <a href='#' onClick={this.handleClick}>
-        <i className='icon-checked' />&nbsp;&nbsp;&nbsp;{ lang[this.props.lang]['Favorited btn'] }
+      <a className='green' onClick={this.handleClick}>
+        +&nbsp;{ lang[this.props.lang]['Unfavorited btn'] }
       </a>
     )
   }
@@ -77,7 +76,7 @@ const mapStateToProps = (state) => {
     lang: state['app'] ? state['app'].lang : state.lang
   }
 }
-const UnfavoritedQL = graphql(mutations.Favorite.removeFavorite)(Unfavorited)
+const UnfavoritedQL = graphql(mutations.Favorite.addFavorite)(Unfavorited)
 const UnfavoritedQLR = connect(mapStateToProps, {
   activateFavorite, notificationDispatch
 })(UnfavoritedQL)

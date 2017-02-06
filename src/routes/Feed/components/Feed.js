@@ -216,7 +216,7 @@ class Feed extends Component {
                   } else if (feed['kind'] === 'topads') {
                     return (
                       <div className='row-fluid' key={key} >
-                        <TopAdsIntegrate
+                        <TopAdsIntegrate dataAds={feed} />
                           source={'feed'}
                           dataAds={feed} />
                       </div>
