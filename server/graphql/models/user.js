@@ -43,7 +43,7 @@ function getUserInfo (context) {
           const lF = context.cookies[GlobalConfig['Cookie']['LoginFlag']] || '0'
           const loggedInPulsa = lF === '1'
 
-          const finalSR = shouldRedir && sessionNotExists && !loggedInSess && loggedInPulsa
+          const finalSR = shouldRedir && sessionNotExists && loggedInSess && loggedInPulsa
 
           if (userID) {
             const userData = {
