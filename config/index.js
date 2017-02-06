@@ -47,9 +47,36 @@ const config = {
   },
   compiler_vendors : [
     'react',
-    'react-redux',
     'react-router',
-    'redux'
+    'react-apollo',
+    'react-dom',
+    'redbox-react',
+    'react-redux',
+    'react-slick',
+    'react-scroll',
+    'react-body-classname',
+    'react-side-effect',
+    'react-addons-css-transition-group',
+
+    'redux',
+    'redux-thunk',
+
+    'babel-runtime',
+    'core-js',
+    'style-loader',
+
+    'graphql-tag',
+    'querystring',
+    'classnames',
+    'json2mq',
+    'can-use-dom',
+    'exenv',
+    'shallowequal',
+    'crypto-js',
+    'strip-ansi',
+    'ansi-regex',
+    'ansi-html',
+    'html-entities'
   ],
 
   // ----------------------------------
