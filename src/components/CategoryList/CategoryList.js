@@ -1,78 +1,68 @@
-import React, { Component } from 'react'
+// @flow
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-
+import languageTypes from '../../lib/utils/languageTypes'
 import './CategoryList.scss'
 import TextHeader from '../../components/TextHeader'
 import lang from '../../lib/utils/Lang'
 import ArrayHelper from '../../lib/utils/ArrayHelper'
 import GTM from '../../lib/utils/GTM'
 
+
+const gtmNotifyCategoryClicked = ({ name }) => () => {
+  GTM.pushEvent('clickKategori', 'Kategori', 'Click', name)
+}
+
 class CategoryList extends Component {
-  static propTypes = {
-    categories: React.PropTypes.arrayOf(React.PropTypes.object),
-    lang: React.PropTypes.string
+  props: {
+    categories: Object[],
+    lang: string,
   }
+  // static propTypes = {
+  //   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  //   lang: PropTypes.string.isRequired,
+  // }
+  //
+  // static defaultProps = {
+  //   categories: [],
+  //   lang: languageTypes[0],
+  // }
 
-  constructor (props) {
-    super(props)
-
-    this._gtmNotifyCategoryClicked = this._gtmNotifyCategoryClicked.bind(this)
-    this.renderCategoryItem = this.renderCategoryItem.bind(this)
-    this.renderCategoryList = this.renderCategoryList.bind(this)
-  }
-
-  _gtmNotifyCategoryClicked (item) {
-    return (event) => {
-      GTM.pushEvent('clickKategori', 'Kategori', 'Click', item['name'])
-    }
-  }
-
-  renderCategoryItem (catItems, parentIndex) {
-    return catItems.map((item, index) => {
-      const key = `${item['identifier']}-${parentIndex}-${index}`
-      return (
-        <div className='u-col u-col-6 category-list__content' key={key}>
-          <a href={item['url']} onClick={this._gtmNotifyCategoryClicked(item)}>
-            <div className='category-list__content-image'>
-              <img src={item['imageURI']} alt={`Logo kategori ${item['name']}`} />
-            </div>
-            <div className='category-list__content-link'>
-              <span className='category-list__name'>
-                { lang[this.props.lang][item['name']] || item['name'] }
-              </span>
-            </div>
-          </a>
+  renderCategoryItem = catItems => catItems.map(item => (
+    <div className='u-col u-col-6 category-list__content' key={item.identifier}>
+      <a href={item.url} onClick={gtmNotifyCategoryClicked(item)}>
+        <div className='category-list__content-image'>
+          <img src={item.imageURI} alt={`Logo kategori ${item.name}`} />
         </div>
-      )
-    })
-  }
-
-  renderCategoryList () {
-    return this.props.categories.map((category, index) => {
-      return (
-        <div className='category-list__holder u-clearfix' key={`cat-holder-${index}`}>
-          <TextHeader textType={1}>
-            {lang[this.props.lang][category['name']]}
-          </TextHeader>
-
-          {
-            ArrayHelper.chunk(category.items, 2).map((items, index) => {
-              const cn = category['name'].toLowerCase().replace(' ', '-')
-              const key = `${cn}-${2 * index}`
-
-              return (
-                <div className='u-col u-col-12 category-list__box' key={key}>
-                  { this.renderCategoryItem(items, index) }
-                </div>
-              )
-            })
-          }
+        <div className='category-list__content-link'>
+          <span className='category-list__name'>
+            { lang[this.props.lang][item.name] || item.name }
+          </span>
         </div>
-      )
-    })
-  }
+      </a>
+    </div>
+    ))
 
-  render () {
+  renderCategoryList= () => this.props.categories.map(category => (
+    <div className='category-list__holder u-clearfix' key={category.name}>
+      <TextHeader textType={1}>
+        {lang[this.props.lang][category.name]}
+      </TextHeader>
+
+      {
+        ArrayHelper.chunk(category.items, 2).map((items) => {
+          const key = items.reduce((sum, value) => `${sum}_${value.name}`, '')
+          return (
+            <div className='u-col u-col-12 category-list__box' key={key}>
+              { this.renderCategoryItem(items) }
+            </div>
+          )
+        })
+      }
+    </div>
+      ))
+
+  render() {
     return (
       <div className='u-clearfix'>
         { this.renderCategoryList() }
@@ -80,9 +70,7 @@ class CategoryList extends Component {
     )
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    lang: state['app'] ? state['app'].lang : state.lang
-  }
-}
+const mapStateToProps = state => ({
+  lang: state.app ? state.app.lang : state.lang,
+})
 module.exports = connect(mapStateToProps, undefined)(CategoryList)
