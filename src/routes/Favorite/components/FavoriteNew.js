@@ -5,8 +5,6 @@ import { graphql } from 'react-apollo'
 import { browserHistory } from 'react-router'
 import gql from 'graphql-tag'
 import Img from 'react-image-fallback'
-import { HOSTNAME } from './../../../constants'
-
 import ModuleSpinner from './../../../components/Loading/ModuleSpinner'
 
 import GTM from '../../../lib/utils/GTM'
@@ -154,7 +152,6 @@ class Favorite extends Component {
       <div className='outside__wrapper'>
         {
           favorites.map((item, index) => {
-            const shopUrl = `${HOSTNAME}/` + item.shop_name
             let img0 = item.products[0] !== undefined
             ? <Img src={item.products[0].img_url} initialImage={loading} fallbackImage={loading} /> : ''
             let img1 = item.products[1] !== undefined
@@ -168,7 +165,7 @@ class Favorite extends Component {
                 onClick={this._gtmNotifyItemClicked(item)}
                 key={`favorite-${index}`}>
                 <div className='favorite__wrapper new u-clearfix'>
-                  <a aria-hidden='true' tabIndex='-1' href={shopUrl} className='favorite__click u-block' />
+                  <a aria-hidden='true' tabIndex='-1' href={item.shop_url} className='favorite__click u-block' />
                   <div className='favorite__header'>
                     <Img src={item.shop_pic}
                       initialImage={loading}

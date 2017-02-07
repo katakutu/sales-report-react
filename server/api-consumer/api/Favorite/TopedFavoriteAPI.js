@@ -43,7 +43,7 @@ class TopedFavoriteAPI {
     const opt = { headers: headers }
     return this.api.consume(url, 'GET', {}, opt)
   }
-  removeFavorite (userID, shopID, csrf, sessID) {
+  removeFavorite (userID, shopID, csrf, sessID, adkey = null) {
     const sidCookie = `${GlobalConfig['Cookie']['SessionID']}=${sessID};`
     const url = URL.parse(FAVORITE_SERVICES.FavoriteModification)
     const content = {
@@ -51,13 +51,14 @@ class TopedFavoriteAPI {
       's_id': shopID,
       'token': csrf,
       'cookie': sidCookie,
+      'ad_key': adkey,
       'action': 'fav_shop',
       'act': 'POST'
     }
     return this.api.consumeForm(url, 'POST', content, {}, sidCookie)
   }
 
-  addFavorite (userID, shopID, csrf, sessID) {
+  addFavorite (userID, shopID, csrf, sessID, adkey = null) {
     const sidCookie = `${GlobalConfig['Cookie']['SessionID']}=${sessID};`
     const url = URL.parse(FAVORITE_SERVICES.FavoriteModification)
     const content = {
@@ -65,6 +66,7 @@ class TopedFavoriteAPI {
       's_id': shopID,
       'token': csrf,
       'cookie': sidCookie,
+      'ad_key': adkey,
       'action': 'fav_shop',
       'act': 'POST'
     }

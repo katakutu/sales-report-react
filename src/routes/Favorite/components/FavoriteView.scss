@@ -161,7 +161,7 @@
     img {
         border-radius: 3px;
         max-width: 30%;
-        max-width: 50px;
+        max-width: 40px;
         font-size: 0;
         margin: 0 6px;
     }
@@ -207,16 +207,16 @@
 
         a {
             display: block;
-            width: 100%;
-            margin: auto;
+            width: 90px;
+            float:right;
             max-width: 110px;
-            padding: 15px 0;
+            padding: 12px 0;
             border: 1px solid #DEDEDE;
             border-radius: 3px;
             color: #999;
             text-align: center;
             cursor: pointer;
-
+            font-size:9pt;
             &.green {
                 background: $color-green;
                 color: #FFF;
