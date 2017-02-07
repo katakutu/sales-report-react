@@ -12,25 +12,25 @@ const morgan = require('morgan')
 const graphql = require('./graphql')
 const RedisStore = require('connect-redis')(session)
 const cookieParser = require('cookie-parser')
+const StatsD = require('node-dogstatsd').StatsD
+
 const app = express()
 const paths = config.utils_paths
-
-const StatsD = require('node-dogstatsd').StatsD
-const dogStatsD = new StatsD(GlobalConfig['DataDog']['Hostname'])
+const dogStatsD = new StatsD(GlobalConfig.DataDog.Hostname)
 
 const ConnectDataDog = require('connect-datadog')({
   dogstats: dogStatsD,
-  'response_code':true,
-  'tags': ['tkpd:tokopedia-lite']
+  response_code:true,
+  tags: ['tkpd:tokopedia-lite'],
 })
 
 const sessionConfig = {
   store: new RedisStore(GlobalConfig.SessionRedis),
-  secret: GlobalConfig['AppSecret'],
+  secret: GlobalConfig.AppSecret,
   resave: false,
   saveUninitialized: true,
   name: 'tLiteSession',
-  cookie: {}
+  cookie: {},
 }
 if (config.globals.__PROD__ || config.globals.__BETA__) {
   app.set('trust proxy', 1)
@@ -42,7 +42,7 @@ if (!config.globals.__PROD__) {
 }
 app.use(session(sessionConfig))
 // cookie-parser's and express-session's secret must be the same
-app.use(cookieParser(GlobalConfig['AppSecret']))
+app.use(cookieParser(GlobalConfig.AppSecret))
 
 // datadog before router
 app.use(ConnectDataDog)
@@ -51,7 +51,7 @@ app.use('/graphql', bodyParser.json(), graphql)
 if (!config.globals.__PROD__) {
   const gse = require('graphql-server-express')
   app.use('/graphqli', gse.graphiqlExpress({
-    endpointURL: '/graphql'
+    endpointURL: '/graphql',
   }))
 }
 
@@ -82,7 +82,7 @@ if (config.env === 'development') {
     quiet       : config.compiler_quiet,
     noInfo      : config.compiler_quiet,
     lazy        : false,
-    stats       : config.compiler_stats
+    stats       : config.compiler_stats,
   }))
   app.use(require('webpack-hot-middleware')(compiler))
 
@@ -94,15 +94,15 @@ if (config.env === 'development') {
 
   // serve the generated service-worker file
   app.get('/service-worker.js', (req, res) => {
-    res.sendFile(paths.dist() + '/service-worker.js')
+    res.sendFile(`${paths.dist()}/service-worker.js`)
   })
 } else {
   debug(
-    'Server is being run outside of live development mode, meaning it will ' +
-    'only serve the compiled application bundle in ~/dist. Generally you ' +
-    'do not need an application server for this and can instead use a web ' +
-    'server such as nginx to serve your static files. See the "deployment" ' +
-    'section in the README for more information on deployment strategies.'
+    `Server is being run outside of live development mode, meaning it will
+    only serve the compiled application bundle in ~/dist. Generally you
+    do not need an application server for this and can instead use a web
+    server such as nginx to serve your static files. See the "deployment"
+    section in the README for more information on deployment strategies.` // eslint-disable-line comma-dangle
   )
 
   // Serving ~/dist by default. Ideally these files should be served by
