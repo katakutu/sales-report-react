@@ -1,16 +1,26 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import HeaderHomeOld from '../../../components/HeaderHomeOld'
 import WishList from './WishList'
 
 import SplashScreen from '../../../components/Loading/SplashScreen'
 import queries from '../../../queries'
+import { updatePage } from '../module'
 
 import { graphql } from 'react-apollo'
 
 class WishlistView extends Component {
   static propTypes = {
     data: React.PropTypes.object,
-    lang: React.PropTypes.string
+    lang: React.PropTypes.string,
+    location: React.PropTypes.object,
+    updatePage: React.PropTypes.func
+  }
+
+  componentDidMount () {
+    if (this.props.location.query && this.props.location.query.page) {
+      this.props.updatePage(parseInt(this.props.location.query.page))
+    }
   }
 
   render () {
@@ -38,6 +48,7 @@ class WishlistView extends Component {
   }
 }
 
+const mapDispatchToProps = { updatePage }
 export default graphql(queries.UserDataQuery, {
   options: { returnPartialData: true }
-})(WishlistView)
+})(connect(undefined, mapDispatchToProps)(WishlistView))
