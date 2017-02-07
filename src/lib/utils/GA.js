@@ -1,5 +1,3 @@
-import { GA_PROPERTY_ID } from '../../constants'
-
 const GA = {
     /**
      * Get the google analytics function

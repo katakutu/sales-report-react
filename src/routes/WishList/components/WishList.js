@@ -121,25 +121,11 @@ class WishList extends Component {
       const labels = wishlist['labels'] || []
       const badges = wishlist['badges'] || []
 
-      const onDeleted = () => {
-        this.props.refetch()
-        const newPage = Math.floor(wishlists.length / WISHLIST_PER_PAGE) + 1
-
-        this.setState({ page: newPage }, () => {
-          this.props.updatePage(newPage)
-          browserHistory.push({
-            pathname: '/wishlist',
-            query: { page: newPage }
-          })
-        })
-      }
-
       const trash = (
         <WishlistTrash
           userID={this.props.userID}
-          productID={parseInt(wishlist['id'])}
           productName={wishlist['name']}
-          onDeleted={onDeleted} />
+          wishlist={wishlist} />
       )
       const actionButton = wishlist['available'] ? (
         <div className='wishlist__buy'>
