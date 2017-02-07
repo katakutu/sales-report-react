@@ -10,10 +10,11 @@ const RemoveFavoriteMutation = {
   args: {
     shopID: { type: GraphQLInt },
     userID: { type: GraphQLInt },
-    token: { type: GraphQLString }
+    token: { type: GraphQLString },
+    adKey: { type: GraphQLString }
   },
   resolve: function (_, args, context) {
-    return removeFavorite(args.userID, args.shopID, args.token, context, null)
+    return removeFavorite(args.userID, args.shopID, args.token, context, args.adKey)
   }
 }
 
@@ -22,10 +23,11 @@ const AddFavoriteMutation = {
   args: {
     shopID: { type: GraphQLInt },
     userID: { type: GraphQLInt },
-    token: { type: GraphQLString }
+    token: { type: GraphQLString },
+    adKey: { type: GraphQLString }
   },
   resolve: function (_, args, context) {
-    return addFavorite(args.userID, args.shopID, args.token, context, null)
+    return addFavorite(args.userID, args.shopID, args.token, context, args.adKey)
   }
 }
 

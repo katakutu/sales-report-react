@@ -50,7 +50,7 @@ class Favorite extends Component {
     q: React.PropTypes.string,
     topAdsReudyx: PropTypes.object,
     topads: PropTypes.object,
-    token: PropTypes.object
+    token: PropTypes.object,
   }
 
   state = {
@@ -194,12 +194,14 @@ class Favorite extends Component {
                           userID={this.props.userID}
                           shopID={parseInt(item['shop_id'])}
                           shopName={item['shop_name']}
-                          nekot={this.props.favorite.token} />
+                          nekot={this.props.favorite.token} 
+                          adKey={null} />
                         : <Unfavorited
                           userID={this.props.userID}
                           shopID={parseInt(item['shop_id'])}
                           shopName={item['shop_name']}
-                          nekot={this.props.favorite.token} />
+                          nekot={this.props.favorite.token}
+                          adKey={null} />
                       }
                     </div>
                     <div className='u-clearfix' />

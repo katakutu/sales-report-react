@@ -19,7 +19,8 @@ class Unfavorited extends Component {
     shopName: PropTypes.string,
     userID: PropTypes.number,
     nekot: PropTypes.string,
-    productName: PropTypes.string
+    productName: PropTypes.string,
+    adKey: PropTypes.string
   }
 
   constructor (props) {

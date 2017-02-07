@@ -6,29 +6,20 @@ const GlobalConfig = require('./../../GlobalConfig')
 const api = new TopedFavoriteAPI()
 
 function removeFavorite (userID, shopID, token, context, adkey) {
-  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] ||
-  'fxK_IMez0ZLDUccLbXLDO5PU-JHeQzYA5bFMmYDn7Kjy72plFRZ7uKKsZAjDH4DMRtmfviLI1ns' +
-  'Q1h93BwcIUtthMDDTSvTnPXbce-VimMQOPwNwI9MmAkF67sThVL7F'
-  // 'lite-cookie-not-found'
+  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
 
   const test = api.removeFavorite(userID, shopID, token, sessID, adkey)
   return test
 }
 
 function addFavorite (userID, shopID, token, context, adkey) {
-  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] ||
-  'fxK_IMez0ZLDUccLbXLDO5PU-JHeQzYA5bFMmYDn7Kjy72plFRZ7uKKsZAjDH4DMRtmfviLI1ns' +
-  'Q1h93BwcIUtthMDDTSvTnPXbce-VimMQOPwNwI9MmAkF67sThVL7F'
-  // 'lite-cookie-not-found'
+  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
   const test = api.addFavorite(userID, shopID, token, sessID, adkey)
   return test
 }
 
 function getCSRF (context) {
-  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] ||
-  'fxK_IMez0ZLDUccLbXLDO5PU-JHeQzYA5bFMmYDn7Kjy72plFRZ7uKKsZAjDH4DMRtmfviLI1ns' +
-  'Q1h93BwcIUtthMDDTSvTnPXbce-VimMQOPwNwI9MmAkF67sThVL7F'
-  // 'lite-cookie-not-found'
+  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
   return api.getCSRFToken(
       context.read('Origin') || GlobalConfig['Hostname'],
       sessID
