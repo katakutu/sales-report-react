@@ -31,7 +31,7 @@ function getUserWishlist (userID, query, count, page) {
           count: sum.count + value.count,
           has_next_page: sum.has_next_page && value.has_next_page,
           items: sum.items.concat(value.items),
-          total_data: sum.total_data + value.total_data
+          total_data: value.total_data
         }
       }, Object.assign(EMPTY_WISHLIST, { has_next_page: true }))
 
