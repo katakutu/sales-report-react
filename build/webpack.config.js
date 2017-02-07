@@ -1,14 +1,16 @@
 /* eslint-disable no-underscore-dangle*/
 /* eslint-disable comma-dangle*/
-
+const HappyPack = require('happypack')
 const argv = require('yargs').argv
 const webpack = require('webpack')
 const cssnano = require('cssnano')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const config = require('../config')
 const debug = require('debug')('app:webpack:config')
+
 
 const paths = config.utils_paths
 const __DEV__ = config.globals.__DEV__
@@ -60,6 +62,11 @@ webpackConfig.externals['react/addons'] = true
 // Plugins
 // ------------------------------------
 webpackConfig.plugins = [
+  new ProgressBarPlugin(),
+  new HappyPack({
+    loaders: ['babel'],
+    // threads: __TEST__ ? 1 : 3
+  }),
   new webpack.DefinePlugin(config.globals),
   new HtmlWebpackPlugin({
     template : paths.client('index.html'),
@@ -140,7 +147,7 @@ if (!__TEST__) {
 webpackConfig.module.loaders = [{
   test    : /\.(js|jsx|flow)$/,
   exclude : /node_modules/,
-  loader  : 'babel',
+  loaders: ['happypack/loader'],
 }, {
   test   : /\.json$/,
   loader : 'json',
