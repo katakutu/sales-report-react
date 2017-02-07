@@ -11,7 +11,7 @@ export default (store, ApolloExecutors) => {
              !nextState.location.query.h &&
              nextState.location.query.view !== 'feed_preview' &&
              isUserLoggedIn) {
-            window.location = `/feed`
+            window.location = `/?view=feed_preview`
           }
 
           return callback()

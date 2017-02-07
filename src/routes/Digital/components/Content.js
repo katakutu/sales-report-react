@@ -34,6 +34,7 @@ class Content extends Component {
     }
     this.handleSubmitForm = this.handleSubmitForm.bind(this)
     this.handleProductSelected = this.handleProductSelected.bind(this)
+    this.handleProductUnselected = this.handleProductUnselected.bind(this)
   }
 
   handleSubmitForm (e) {
@@ -45,6 +46,10 @@ class Content extends Component {
 
   handleProductSelected (e) {
     this.setState({ isValid: true })
+  }
+
+  handleProductUnselected (e) {
+    this.setState({ isValid: false })
   }
 
   renderTabContent (tab, filteredOperator, productList) {
@@ -81,6 +86,7 @@ class Content extends Component {
             productList={productList}
             filteredOperator={filteredOperator}
             handleProductSelected={this.handleProductSelected}
+            handleProductUnselected={this.handleProductUnselected}
             showError={this.state.showError} />
         )
       case 'air':
@@ -109,6 +115,7 @@ class Content extends Component {
             productList={productList}
             filteredOperator={filteredOperator}
             handleProductSelected={this.handleProductSelected}
+            handleProductUnselected={this.handleProductUnselected}
             showError={this.state.showError} />
         )
     }

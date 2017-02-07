@@ -68,7 +68,7 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [REMOVE_WISHLIST]: (state, action) => {
-    const newWishlists = state.wishlists.filter((wl) => wl['id'] !== action.payload)
+    const newWishlists = state.wishlists.filter((wl) => parseInt(wl['id']) !== action.payload)
 
     return Object.assign({}, state, { wishlists: newWishlists })
   },
