@@ -5,6 +5,7 @@ import InputGroup from '../parts/InputGroup'
 import InformationBox from '../parts/InformationBox'
 import PriceGroup from '../parts/PriceGroup'
 import BuyButtonGroup from '../parts/BuyButtonGroup'
+import SelectGroup from '../parts/SelectGroup'
 
 class Game extends Component {
 
@@ -12,12 +13,15 @@ class Game extends Component {
     products: PropTypes.array,
     note: PropTypes.string,
     openDrawer: PropTypes.func,
+    handleProductSelected: PropTypes.func,
+    handleProductUnselected: PropTypes.func,
     filteredOperator: PropTypes.array,
     productList: PropTypes.array
   }
 
   constructor (props) {
     super(props)
+
     this.state = {
       selectedOperator: this.props.filteredOperator[0],
       selectedProduct: this.getDefaultProduct(this.props.filteredOperator[0]),
@@ -94,6 +98,10 @@ class Game extends Component {
     }
   }
 
+  componentDidMount () {
+    this.props.handleProductSelected()
+  }
+
   render () {
     let itemsName = []
     let informationBox = null
@@ -124,6 +132,18 @@ class Game extends Component {
 
     return (
       <div>
+        <input
+          type='hidden'
+          value='init_data'
+          name='action' />
+        <input
+          type='hidden'
+          name='operator_id'
+          value={this.state.selectedOperator.id} />
+        <input
+          type='hidden'
+          name='product_id'
+          value={this.state.selectedProduct.id} />
         <InputGroup
           useAutoSuggest
           label='Jenis Voucher'
@@ -131,18 +151,13 @@ class Game extends Component {
           value={itemsName[0] ? itemsName[0].text : ''}
           items={itemsName}
           onSuggestionSelected={this.handleSuggestionSelected} />
-        <div className='dp--nominal'>
-          <div className={'form-group nominal u-mb2 u-block ' + (this.state.selectedProduct.id === 0 ? 'u-hide' : '')}>
-            <label className='u-mb1'>Nominal</label>
-            <div className='dp-select'>
-              <span
-                className='dp-select form-control form-select nominal-select pt-12'
-                onClick={this.handleOpenOverlay}>
-                {this.state.selectedProduct.desc}
-              </span>
-            </div>
-          </div>
-        </div>
+        { this.state.selectedProduct.id &&
+          <SelectGroup
+            useDrawer
+            label='Nominal'
+            placeholder='Pilih Nominal'
+            openDrawer={this.handleOpenOverlay}
+            value={this.state.selectedProduct.desc} /> }
         { informationBox }
         { priceGroup }
         <BuyButtonGroup hasInstant buttonText='Beli' />

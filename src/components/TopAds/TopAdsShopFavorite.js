@@ -78,6 +78,7 @@ class TopAdsShopFavorite extends Component {
                     shopID={parseInt(this.props.data['shop']['id'])}
                     shopName={this.props.data['shop']['name']}
                     token={this.props.token}
+                    adRefKey={this.props.data['ad_ref_key']}
                     activeAction={this.props.deactiveAction}
                     />
                   : <Buttons
@@ -86,6 +87,7 @@ class TopAdsShopFavorite extends Component {
                     shopID={parseInt(this.props.data['shop']['id'])}
                     shopName={this.props.data['shop']['name']}
                     token={this.props.token}
+                    adRefKey={this.props.data['ad_ref_key']}
                     activeAction={this.props.activeAction} />
                 }
               </div>

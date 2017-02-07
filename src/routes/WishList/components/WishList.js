@@ -31,6 +31,7 @@ class WishList extends Component {
     loading: PropTypes.bool,
     page: PropTypes.number,
     query: PropTypes.string,
+    refetch: PropTypes.func,
     replaceWishlists: PropTypes.func,
     userID: PropTypes.number,
     updatePage: PropTypes.func,
@@ -117,7 +118,11 @@ class WishList extends Component {
       const badges = wishlist['badges'] || []
 
       const trash = (
-        <WishlistTrash userID={this.props.userID} productID={parseInt(wishlist['id'])} productName={wishlist['name']} />
+        <WishlistTrash
+          userID={this.props.userID}
+          productID={parseInt(wishlist['id'])}
+          productName={wishlist['name']}
+          onDeleted={() => this.props.refetch()} />
       )
       const actionButton = wishlist['available'] ? (
         <div className='wishlist__buy'>
@@ -211,14 +216,12 @@ class WishList extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (!nextProps.loading) {
-      const wl = nextProps.wishlist || { count: 0, has_next_page: false, items: [], total_data: 0 }
-      const wishlists = wl.items || []
-      const newWishlists = wishlists.map(wl => Object.assign({}, wl, { isLoved: true }))
+    const wl = nextProps.wishlist || { count: 0, has_next_page: false, items: [], total_data: 0 }
+    const wishlists = wl.items || []
+    const newWishlists = wishlists.map(wl => Object.assign({}, wl, { isLoved: true }))
 
-      this.props.replaceWishlists(newWishlists)
-      this.setState({ query: nextProps.query })
-    }
+    this.props.replaceWishlists(newWishlists)
+    this.setState({ query: nextProps.query })
   }
 
   render () {
@@ -313,7 +316,7 @@ const WishListWithData = graphql(queries.WishlistQueries.getAll, {
     forceFetch: true,
     returnPartialData: true
   }),
-  props: ({ data: { loading, wishlist, fetchMore } }) => {
+  props: ({ data: { loading, wishlist, fetchMore, refetch } }) => {
     return {
       loading,
       wishlist,
@@ -322,8 +325,8 @@ const WishListWithData = graphql(queries.WishlistQueries.getAll, {
           variables: { page: nextPage, query: newQuery, count: WISHLIST_PER_PAGE },
           updateQuery: (prev, { fetchMoreResult }) => {
             if (!fetchMoreResult.data) { return prev }
-
             const newWL = fetchMoreResult.data.wishlist
+
             return Object.assign({}, prev, {
               wishlist: Object.assign({}, prev.wishlist, {
                 count: newWL['count'],
@@ -334,7 +337,8 @@ const WishListWithData = graphql(queries.WishlistQueries.getAll, {
             })
           }
         })
-      }
+      },
+      refetch
     }
   }
 })(WishList)

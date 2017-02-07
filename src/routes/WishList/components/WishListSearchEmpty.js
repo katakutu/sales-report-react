@@ -17,6 +17,12 @@ class WishListSearchEmpty extends Component {
     userID: React.PropTypes.number
   }
 
+  constructor (props) {
+    super(props)
+
+    this.seeAllWishlist = this.seeAllWishlist.bind(this)
+  }
+
   seeAllWishlist () {
     this.props.updateQuery('')
   }

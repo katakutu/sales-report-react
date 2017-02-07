@@ -447,10 +447,3 @@ const FavoriteWithData = graphql(FaveQuery, {
 })(Favorite)
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavoriteWithData)
-// export default graphql(FaveQuery, {
-//   options: ({ userID, count, page, shop }) => ({
-//     variables: { userID, count, page, shop },
-//     forceFetch: true,
-//     returnPartialData: true
-//   })
-// })(connect(mapStateToProps, mapDispatchToProps)(Favorite))

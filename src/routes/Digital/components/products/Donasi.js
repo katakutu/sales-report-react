@@ -4,6 +4,7 @@ import classNames from 'classnames'
 
 import SelectDrawer from '../parts/SelectDrawer'
 import BuyButtonGroup from '../parts/BuyButtonGroup'
+import SelectGroup from '../parts/SelectGroup'
 
 import BaznasLogo from '../../assets/lembaga/baznas1.png'
 import DompetDuafaLogo from '../../assets/lembaga/dompet_duafa.png'
@@ -15,6 +16,7 @@ class Donasi extends Component {
   static propTypes = {
     openDrawer: PropTypes.func,
     handleProductSelected: PropTypes.func,
+    handleProductUnselected: PropTypes.func,
     productList: PropTypes.array,
     filteredOperator: PropTypes.array,
     showError: PropTypes.bool
@@ -70,7 +72,7 @@ class Donasi extends Component {
       defaultProduct = this.getProductById(defaultProductId)
     }
     this.setState({ selectedOperator: operator })
-    this.setState({ selectedProduct: defaultProduct })
+    this.setState({ selectedProduct: defaultProduct }, this.props.handleProductSelected)
   }
 
   handleOpenOverlay (e) {
@@ -97,6 +99,10 @@ class Donasi extends Component {
     if (this.state.open) {
       window.scrollTo(0, 0)
     }
+  }
+
+  componentDidMount () {
+    this.props.handleProductUnselected()
   }
 
   render () {
@@ -218,26 +224,19 @@ class Donasi extends Component {
             </div>
           </div>
         </div>
-        <div className='dp--nominal'>
-          <div
-            className={'form-group nominal u-mb2 u-block ' +
-            (this.state.selectedProduct.id === undefined ? 'u-hide' : '')}>
-            <label className='u-mb1'>Nominal</label>
-            <div className='dp-select'>
-              <span
-                className='dp-select form-control form-select nominal-select pt-12'
-                onClick={this.handleOpenOverlay}>
-                {this.state.selectedProduct.desc}
-              </span>
-            </div>
-          </div>
-          <BuyButtonGroup
-            hasInstant
-            buttonText='Salurkan Donasi'
-            link='http://tkp.me/daftardonasi'
-            linkText='Ingin daftar sebagai lembaga donasi?'
-            onSubmit={this.handleSubmitForm} />
-        </div>
+        { this.state.selectedProduct.id &&
+          <SelectGroup
+            useDrawer
+            label='Nominal'
+            placeholder='Pilih Nominal'
+            openDrawer={this.handleOpenOverlay}
+            value={this.state.selectedProduct.desc} /> }
+        <BuyButtonGroup
+          hasInstant
+          buttonText='Salurkan Donasi'
+          link='http://tkp.me/daftardonasi'
+          linkText='Ingin daftar sebagai lembaga donasi?'
+          onSubmit={this.handleSubmitForm} />
         <SelectDrawer
           open={this.state.open}
           handleCloseButton={this.handleCloseButton}
