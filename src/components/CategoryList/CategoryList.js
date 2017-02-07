@@ -22,7 +22,7 @@ class CategoryList extends Component {
 
 
   renderCategoryItem = catItems => catItems.map(item => (
-    <div className='u-col u-col-6 category-list__content' key={item.identifier}>
+    <div className='u-col u-col-6 category-list__content' key={item.name}>
       <a href={item.url} onClick={gtmNotifyCategoryClicked(item)}>
         <div className='category-list__content-image'>
           <img src={item.imageURI} alt={`Logo kategori ${item.name}`} />
