@@ -63,12 +63,13 @@ class ShopButton extends Component {
 
   render () {
     const active = this.props.active
-    const label = active ? lang[this.props.lang]['Unfavorited btn']
-    : lang[this.props.lang]['Favorited btn']
+    const label = active ? lang[this.props.lang]['Favorited btn']
+    : lang[this.props.lang]['Unfavorited btn']
     const labelCN = active ? 'topads__shop__favorite-btn small' : 'topads__shop__favorite-btn small green'
+    const labelIconCN = active ? 'icon-check' : 'icon-plus'
     return (
       <a className={labelCN} onClick={this.handleClick}>
-        { label }
+        <i className={labelIconCN} />{ label }
       </a>
     )
   }

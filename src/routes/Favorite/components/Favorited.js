@@ -19,8 +19,7 @@ class Favorited extends Component {
     shopName: PropTypes.string,
     userID: PropTypes.number,
     nekot: PropTypes.string,
-    productName: PropTypes.string,
-    shopName: PropTypes.string
+    productName: PropTypes.string
   }
 
   constructor (props) {

@@ -464,3 +464,25 @@
 .topads__type-marketing {
     margin: 5px auto;
 }
+
+.icon-check {
+    position: relative;
+    display: inline-block;
+    width: 10px;
+    height: 8px;
+    margin-right: 5px;
+    background: url('./assets/icon-check.png') transparent no-repeat;
+    background-position: center center;
+    background-size: 100%;
+}
+
+.icon-plus {
+    position: relative;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 5px;
+    background: url('./assets/icon-plus.png') transparent no-repeat;
+    background-position: center center;
+    background-size: 100%;
+}
