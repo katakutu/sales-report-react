@@ -239,7 +239,7 @@ class Favorite extends Component {
       <div className='u-clearfix favorite favorite--single-page u-mt2'>
         <div className='favorite__searchbar-holder'>
           <i className='favorite__icon favorite__love-grey favorite__set-love-grey' />
-          <input
+          { /* <input
             type='text'
             name='searchwishlist'
             className='favorite__searchbar'
@@ -247,6 +247,8 @@ class Favorite extends Component {
             onChange={this.searchFavorite}
             onKeyPress={this.updateFinalQuery}
             value={this.state.query} />
+            */
+          }
         </div>
 
         {/* <div className='favorite__searchbar-holder'>
