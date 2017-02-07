@@ -5,7 +5,7 @@ const {
 const GlobalConfig = require('./../../GlobalConfig')
 const api = new TopedFavoriteAPI()
 
-function removeFavorite (userID, shopID, token, context) {
+function removeFavorite (userID, shopID, token, context, adkey) {
   const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] ||
   'fxK_IMez0ZLDUccLbXLDO5PU-JHeQzYA5bFMmYDn7Kjy72plFRZ7uKKsZAjDH4DMRtmfviLI1ns' +
   'Q1h93BwcIUtthMDDTSvTnPXbce-VimMQOPwNwI9MmAkF67sThVL7F'
@@ -15,7 +15,7 @@ function removeFavorite (userID, shopID, token, context) {
   return test
 }
 
-function addFavorite (userID, shopID, token, context) {
+function addFavorite (userID, shopID, token, context, adkey) {
   const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] ||
   'fxK_IMez0ZLDUccLbXLDO5PU-JHeQzYA5bFMmYDn7Kjy72plFRZ7uKKsZAjDH4DMRtmfviLI1ns' +
   'Q1h93BwcIUtthMDDTSvTnPXbce-VimMQOPwNwI9MmAkF67sThVL7F'
@@ -47,9 +47,11 @@ function getFavorited (userID, count, page, shop, context) {
       return Promise.resolve(DEFAULT_FAVE_DATA)
     }
     return getCSRF(context).then(csrf => {
-      if (response['pagination'] !== undefined || response['pagination'] !== null) {
+      if (response['pagination'] !== undefined && response['pagination'] !== null) {
+        console.log("msk1")
         response['pagination'] = !!response['pagination']['next']
       } else {
+        console.log("msk2")
         response['pagination'] = false
       }
       return {

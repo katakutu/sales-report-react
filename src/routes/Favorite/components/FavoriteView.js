@@ -20,7 +20,7 @@ class FavoriteView extends Component {
     lang: React.PropTypes.string
   }
 
-  static FAVORITE_PER_PAGE = 3
+  static FAVORITE_PER_PAGE = 10
 
   state = {
     finalQuery: '',

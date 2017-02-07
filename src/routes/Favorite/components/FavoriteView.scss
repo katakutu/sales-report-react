@@ -6,7 +6,7 @@
 }
 
 .favorite-container {
-    padding-top: 10px;
+    padding: 10px 0;
 
     .favorite__btn-holder {
         text-align: center;
@@ -129,7 +129,7 @@
     max-width: 210px;
     height: 100%;
     border: 1px solid $color-grey-2;
-    border-bottom: 5px solid $color-grey-2;
+    // border-bottom: 5px solid $color-grey-2;
     border-radius: 2px;
     background: $color-white-primary;
     vertical-align: top;
@@ -137,7 +137,7 @@
     font-size: 12pt;
 
     .favorite--single-page & {
-        margin: 0 auto 10px;
+        // margin: 0 auto 10px;
     }
 
     .icon_location {

@@ -13,7 +13,7 @@ const RemoveFavoriteMutation = {
     token: { type: GraphQLString }
   },
   resolve: function (_, args, context) {
-    return removeFavorite(args.userID, args.shopID, args.token, context)
+    return removeFavorite(args.userID, args.shopID, args.token, context, null)
   }
 }
 
@@ -25,7 +25,7 @@ const AddFavoriteMutation = {
     token: { type: GraphQLString }
   },
   resolve: function (_, args, context) {
-    return addFavorite(args.userID, args.shopID, args.token, context)
+    return addFavorite(args.userID, args.shopID, args.token, context, null)
   }
 }
 
