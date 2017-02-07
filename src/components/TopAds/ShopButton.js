@@ -14,6 +14,7 @@ class ShopButton extends Component {
     shopName: PropTypes.string,
     userID: PropTypes.number,
     token: PropTypes.string,
+    adRefKey: PropTypes.string,
     productdName: PropTypes.string,
     src: PropTypes.string,
     activeAction: PropTypes.func,
