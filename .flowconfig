@@ -3,6 +3,11 @@
 [include]
 
 [libs]
+interfaces/
 
 [options]
 module.name_mapper='.*\(.css\)' -> 'empty/object'
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
+suppress_comment= \\(.\\|\n\\)*\\$FlowNotAnError
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable

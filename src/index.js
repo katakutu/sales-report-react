@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import ApolloClient, { createBatchingNetworkInterface } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { SITES } from 'constants'
-import createStore from './store/createStore'
+import store from './store/store'
 import AppContainer from './containers/AppContainer'
 import queries from './queries'
 import Routes from './routes/index'
@@ -30,8 +30,8 @@ window.show_wallet_activation_button = function () {
 // ========================================================
 // Store Instantiation
 // ========================================================
-const initialState = window.___INITIAL_STATE__
-const store = createStore(initialState)
+
+
 const batchingNetworkInterface = createBatchingNetworkInterface({
   uri: '/graphql',
   batchInterval: 250,
