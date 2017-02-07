@@ -39,10 +39,8 @@ function getFavorited (userID, count, page, shop, context) {
     }
     return getCSRF(context).then(csrf => {
       if (response['pagination'] !== undefined && response['pagination'] !== null) {
-        console.log("msk1")
         response['pagination'] = !!response['pagination']['next']
       } else {
-        console.log("msk2")
         response['pagination'] = false
       }
       return {
