@@ -28,7 +28,7 @@ const webpackConfig = {
 // Entry Points
 // ------------------------------------
 const APP_ENTRY = [paths.client('index.js')]
-
+config.compiler_vendors.unshift('./src/polyfill')
 webpackConfig.entry = {
   app : __DEV__
     ? APP_ENTRY.concat(`webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`)

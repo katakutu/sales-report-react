@@ -78,7 +78,7 @@ class HeaderTab extends Component {
         <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/', { h: 3 })} />
         {
           this.props.userIsLoggedIn
-          ? <Tab label='Feed' isActive={fdCN} onClick={() => this._savePosition('/feed')} />
+          ? <Tab label='Feed' isActive={fdCN} url={`${HOSTNAME}/?view=feed_preview`} />
           : ''
         }
         {

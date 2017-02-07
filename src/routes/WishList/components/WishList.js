@@ -72,6 +72,7 @@ class WishList extends Component {
       page: 1
     }, () => {
       this.props.updateQuery('')
+      this.props.updatePage(1)
 
       browserHistory.push({
         pathname: '/wishlist'
@@ -85,6 +86,8 @@ class WishList extends Component {
       event.target.blur()
 
       this.setState({ page: 1 }, () => {
+        this.props.updatePage(1)
+
         browserHistory.push({
           pathname: '/wishlist'
         })
@@ -101,6 +104,7 @@ class WishList extends Component {
       page: this.state.page + 1
     }, () => {
       this.props.fetchMore(this.props.query, this.state.page)
+      this.props.updatePage(this.state.page)
       browserHistory.push({
         pathname: '/wishlist',
         query: { page: this.state.page }
@@ -117,12 +121,25 @@ class WishList extends Component {
       const labels = wishlist['labels'] || []
       const badges = wishlist['badges'] || []
 
+      const onDeleted = () => {
+        this.props.refetch()
+        const newPage = Math.floor(wishlists.length / WISHLIST_PER_PAGE) + 1
+
+        this.setState({ page: newPage }, () => {
+          this.props.updatePage(newPage)
+          browserHistory.push({
+            pathname: '/wishlist',
+            query: { page: newPage }
+          })
+        })
+      }
+
       const trash = (
         <WishlistTrash
           userID={this.props.userID}
           productID={parseInt(wishlist['id'])}
           productName={wishlist['name']}
-          onDeleted={() => this.props.refetch()} />
+          onDeleted={onDeleted} />
       )
       const actionButton = wishlist['available'] ? (
         <div className='wishlist__buy'>
@@ -260,7 +277,7 @@ class WishList extends Component {
               <div id='search-stats'>
                 <div className='u-col u-col-6 search-stats-detail'>
                   <p className='wishlist__search-result'>
-                    { wl['total_data'] || wishlists.length } {lang[this.props.lang]['Hasil']}
+                    { wl['count'] || wishlists.length } {lang[this.props.lang]['Hasil']}
                   </p>
                 </div>
                 <div className='u-col u-col-6 search-stats-detail'>
@@ -326,13 +343,15 @@ const WishListWithData = graphql(queries.WishlistQueries.getAll, {
           updateQuery: (prev, { fetchMoreResult }) => {
             if (!fetchMoreResult.data) { return prev }
             const newWL = fetchMoreResult.data.wishlist
+            const oldIDs = prev.wishlist.items.map(w => w.id)
+            const addWL = (newWL.items || []).filter(w => !oldIDs.includes(w.id))
 
             return Object.assign({}, prev, {
               wishlist: Object.assign({}, prev.wishlist, {
                 count: newWL['count'],
                 has_next_page: newWL['has_next_page'],
                 total_data: newWL['total_data'],
-                items: prev.wishlist.items.concat(newWL.items)
+                items: prev.wishlist.items.concat(addWL)
               })
             })
           }
