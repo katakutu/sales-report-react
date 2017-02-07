@@ -1,5 +1,5 @@
 // @flow
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import languageTypes from '../../lib/utils/languageTypes'
 import './CategoryList.scss'
@@ -14,19 +14,12 @@ const gtmNotifyCategoryClicked = ({ name }) => () => {
 }
 
 class CategoryList extends Component {
+
   props: {
     categories: Object[],
     lang: string,
   }
-  // static propTypes = {
-  //   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
-  //   lang: PropTypes.string.isRequired,
-  // }
-  //
-  // static defaultProps = {
-  //   categories: [],
-  //   lang: languageTypes[0],
-  // }
+
 
   renderCategoryItem = catItems => catItems.map(item => (
     <div className='u-col u-col-6 category-list__content' key={item.identifier}>
@@ -36,7 +29,7 @@ class CategoryList extends Component {
         </div>
         <div className='category-list__content-link'>
           <span className='category-list__name'>
-            { lang[this.props.lang][item.name] || item.name }
+            { lang[this.props.lang || languageTypes[0]][item.name] || item.name }
           </span>
         </div>
       </a>
