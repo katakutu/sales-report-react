@@ -208,7 +208,7 @@
         a {
             display: block;
             width: 90px;
-            float:right;
+            float: right;
             max-width: 110px;
             padding: 12px 0;
             border: 1px solid #DEDEDE;
@@ -216,7 +216,8 @@
             color: #999;
             text-align: center;
             cursor: pointer;
-            font-size:9pt;
+            font-size: 9pt;
+
             &.green {
                 background: $color-green;
                 color: #FFF;
