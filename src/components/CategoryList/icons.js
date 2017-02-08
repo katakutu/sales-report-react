@@ -61,5 +61,5 @@ export default {
   'paket-data': iconPaketData,
   bpjs: iconBpjs,
   'token-listrik': iconTokenListrik,
-  tiket: iconTiket
+  tiket: iconTiket,
 }

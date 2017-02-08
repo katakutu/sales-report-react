@@ -30,11 +30,6 @@ const config = {
   // ----------------------------------
   // Compiler Configuration
   // ----------------------------------
-  compiler_babel : {
-    cacheDirectory : true,
-    plugins        : ['transform-runtime'],
-    presets        : ['es2015', 'react', 'stage-0']
-  },
   compiler_devtool         : 'source-map',
   compiler_hash_type       : 'hash',
   compiler_fail_on_warning : false,
@@ -43,9 +38,11 @@ const config = {
   compiler_stats           : {
     chunks : false,
     chunkModules : false,
-    colors : true
+    colors : true,
   },
   compiler_vendors : [
+    'style-loader',
+
     'react',
     'react-router',
     'react-apollo',
@@ -55,28 +52,14 @@ const config = {
     'react-slick',
     'react-scroll',
     'react-body-classname',
-    'react-side-effect',
     'react-addons-css-transition-group',
 
     'redux',
     'redux-thunk',
 
-    'babel-runtime',
-    'core-js',
-    'style-loader',
-
     'graphql-tag',
-    'querystring',
     'classnames',
-    'json2mq',
-    'can-use-dom',
-    'exenv',
-    'shallowequal',
     'crypto-js',
-    'strip-ansi',
-    'ansi-regex',
-    'ansi-html',
-    'html-entities'
   ],
 
   // ----------------------------------
@@ -84,8 +67,8 @@ const config = {
   // ----------------------------------
   coverage_reporters : [
     { type : 'text-summary' },
-    { type : 'lcov', dir : 'coverage' }
-  ]
+    { type : 'lcov', dir : 'coverage' },
+  ],
 }
 
 /************************************************
@@ -103,15 +86,15 @@ Edit at Your Own Risk
 // N.B.: globals added here must _also_ be added to .eslintrc
 config.globals = {
   'process.env'  : {
-    'NODE_ENV' : JSON.stringify(config.env)
+    NODE_ENV : JSON.stringify(config.env),
   },
-  'NODE_ENV'     : config.env,
-  '__DEV__'      : config.env === 'development',
-  '__BETA__'     : config.env === 'beta',
-  '__PROD__'     : config.env === 'production',
-  '__TEST__'     : config.env === 'test',
-  '__COVERAGE__' : !argv.watch && config.env === 'test',
-  '__BASENAME__' : JSON.stringify(process.env.BASENAME || '')
+  NODE_ENV     : config.env,
+  __DEV__      : config.env === 'development',
+  __BETA__     : config.env === 'beta',
+  __PROD__     : config.env === 'production',
+  __TEST__     : config.env === 'test',
+  __COVERAGE__ : !argv.watch && config.env === 'test',
+  __BASENAME__ : JSON.stringify(process.env.BASENAME || ''),
 }
 
 // ------------------------------------
@@ -121,28 +104,28 @@ const pkg = require('../package.json')
 
 config.compiler_vendors = config.compiler_vendors
   .filter((dep) => {
-    if (pkg.dependencies[dep]) return true
+    if (pkg.dependencies[dep]) { return true }
 
     debug(
-      `Package "${dep}" was not found as an npm dependency in package.json; ` +
-      `it won't be included in the webpack vendor bundle.
-       Consider removing it from \`compiler_vendors\` in ~/config/index.js`
-    )
+      `Package "${dep}" was not found as an npm dependency in package.json;
+      it won't be included in the webpack vendor bundle.
+      Consider removing it from 'compiler_vendors' in ~/config/index.js`)
+    return false
   })
 
 // ------------------------------------
 // Utilities
 // ------------------------------------
-function base () {
-  const args = [config.path_base].concat([].slice.call(arguments))
-  return path.resolve.apply(path, args)
+function base() {
+  const args = [config.path_base].concat([].slice.call(arguments)) // eslint-disable-line
+  return path.resolve(...args)
 }
 
 config.utils_paths = {
-  base   : base,
+  base,
   client : base.bind(null, config.dir_client),
   dist   : base.bind(null, config.dir_dist),
-  public : base.bind(null, config.dir_public)
+  public : base.bind(null, config.dir_public),
 }
 
 // ========================================================
@@ -150,6 +133,7 @@ config.utils_paths = {
 // ========================================================
 debug(`Looking for environment overrides for NODE_ENV "${config.env}".`)
 const environments = require('./environments')
+
 const overrides = environments[config.env]
 if (overrides) {
   debug('Found overrides, applying to default configuration.')

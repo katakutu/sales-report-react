@@ -1,7 +1,7 @@
-blueprints/**/files/**
-coverage/**
-node_modules/**
-dist/**
-src/index.html
-src/lib/utils/lang_en-min.js
-src/lib/utils/lang_id-min.js
+blueprints/
+coverage/
+.git/
+dist/
+node_modules/
+
+bin build config server src tests

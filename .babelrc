@@ -1,0 +1,14 @@
+{
+  "sourceMaps": true,
+  "presets": [
+    {
+      "plugins":[
+        "flow-react-proptypes",
+        "transform-runtime"
+      ]
+    },
+    "react",
+    "es2015",
+    "stage-0"
+  ]
+}
