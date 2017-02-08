@@ -1,4 +1,5 @@
 const {
+    GraphQLString,
     GraphQLBoolean,
     GraphQLInt
 } = require('graphql')
@@ -7,22 +8,26 @@ const { addFavorite, removeFavorite } = require('../../models/favorite')
 const RemoveFavoriteMutation = {
   type: GraphQLBoolean,
   args: {
-    productID: { type: GraphQLInt },
-    userID: { type: GraphQLInt }
+    shopID: { type: GraphQLInt },
+    userID: { type: GraphQLInt },
+    token: { type: GraphQLString },
+    adKey: { type: GraphQLString }
   },
-  resolve: function (_, args) {
-    return removeFavorite(args.userID, args.productID)
+  resolve: function (_, args, context) {
+    return removeFavorite(args.userID, args.shopID, args.token, context, args.adKey)
   }
 }
 
 const AddFavoriteMutation = {
   type: GraphQLBoolean,
   args: {
-    productID: { type: GraphQLInt },
-    userID: { type: GraphQLInt }
+    shopID: { type: GraphQLInt },
+    userID: { type: GraphQLInt },
+    token: { type: GraphQLString },
+    adKey: { type: GraphQLString }
   },
-  resolve: function (_, args) {
-    return addFavorite(args.userID, args.productID)
+  resolve: function (_, args, context) {
+    return addFavorite(args.userID, args.shopID, args.token, context, args.adKey)
   }
 }
 

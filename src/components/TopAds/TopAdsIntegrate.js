@@ -5,6 +5,7 @@ import './TopAds.scss'
 import iconInfo from './assets/icon-info.png'
 import TopAdsProduct from './TopAdsProduct'
 import TopAdsShop from './TopAdsShop'
+import TopAdsShopFavorite from './TopAdsShopFavorite'
 import Modal from '../Modal/Modal'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import lang from '../../lib/utils/Lang'
@@ -15,7 +16,14 @@ class TopAdsIntegrate extends Component {
     stateModal: React.PropTypes.bool,
     eventModal: React.PropTypes.func,
     contentModal: React.PropTypes.object,
-    lang: React.PropTypes.string
+    lang: React.PropTypes.string,
+    source: React.PropTypes.string,
+    token: React.PropTypes.string,
+    userID: React.PropTypes.number,
+    AddMutation: React.PropTypes.object,
+    RemoveMutation: React.PropTypes.object,
+    activeAction: React.PropTypes.func,
+    deactiveAction: React.PropTypes.func
   }
 
   state = {
@@ -37,6 +45,8 @@ class TopAdsIntegrate extends Component {
   render () {
     let topads = []
     let modal
+
+    console.log(this.props.token)
 
     const MODAL_PARAMS = {
       modalContent: {
@@ -70,10 +80,24 @@ class TopAdsIntegrate extends Component {
 
     if (this.props.dataAds && this.props.dataAds.items) {
       const topadsdata = this.props.dataAds
-
+      const that = this
       topadsdata.items.map((item, index) => {
         topadsdata.display === 'product' && topads.push(<TopAdsProduct key={`top-ads-item-${index}`} data={item} />)
-        topadsdata.display === 'shop' && topads.push(<TopAdsShop key={`top-ads-shop-item-${index}`} data={item} />)
+        if (that.props.source === 'favorite') {
+          topadsdata.display === 'shop' &&
+          topads.push(<TopAdsShopFavorite
+            key={`top-ads-shop-item-${index}`}
+            data={item}
+            token={this.props.token}
+            userID={this.props.userID}
+            AddMutation={this.props.AddMutation}
+            RemoveMutation={this.props.RemoveMutation}
+            activeAction={this.props.activeAction}
+            deactiveAction={this.props.deactiveAction}
+            />)
+        } else {
+          topadsdata.display === 'shop' && topads.push(<TopAdsShop key={`top-ads-shop-item-${index}`} data={item} />)
+        }
       })
     }
 

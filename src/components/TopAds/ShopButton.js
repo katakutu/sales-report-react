@@ -1,26 +1,24 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
+import lang from '../../lib/utils/Lang'
+import { notificationDispatch } from '../../store/app'
 
-import mutations from './../../../mutations'
-import lang from '../../../lib/utils/Lang'
-import { activateFavorite } from '../module'
-import { notificationDispatch } from './../../../store/app'
-
-import './FavoriteView.scss'
-
-class Unfavorited extends Component {
+class ShopButton extends Component {
   static propTypes = {
-    activateFavorite: PropTypes.func,
     lang: PropTypes.string,
     notificationDispatch: PropTypes.func,
+    actionButton: PropTypes.func,
     mutate: PropTypes.func.isRequired,
     shopID: PropTypes.number,
     shopName: PropTypes.string,
     userID: PropTypes.number,
-    nekot: PropTypes.string,
-    productName: PropTypes.string,
-    adKey: PropTypes.string
+    token: PropTypes.string,
+    adRefKey: PropTypes.string,
+    productdName: PropTypes.string,
+    src: PropTypes.string,
+    activeAction: PropTypes.func,
+    active: PropTypes.bool
   }
 
   constructor (props) {
@@ -30,22 +28,23 @@ class Unfavorited extends Component {
   }
 
   handleClick () {
+    console.log(this.props.token)
     const variables = {
       variables: {
         userID: this.props.userID,
         shopID: this.props.shopID,
-        token: this.props.nekot
+        token: this.props.token
       }
     }
     this.props.mutate(variables).then(addSuccess => {
       if (addSuccess['data']['favorite_add'] || false) {
         const msg = lang[this.props.lang]['Add Favorite Success']
 
-        this.props.activateFavorite(this.props.shopID)
+        this.props.activeAction(this.props.shopID)
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
-          label: 'Favorite',
+          label: this.props.src,
           text: msg.replace(':item', this.props.shopName),
           timeout: 1500
         })
@@ -55,7 +54,7 @@ class Unfavorited extends Component {
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
-          label: 'Favorite',
+          label: this.props.src,
           text: msg.replace(':item', this.props.shopName),
           timeout: 1500
         })
@@ -64,9 +63,14 @@ class Unfavorited extends Component {
   }
 
   render () {
+    const active = this.props.active
+    const label = active ? lang[this.props.lang]['Favorited btn']
+    : lang[this.props.lang]['Unfavorited btn']
+    const labelCN = active ? 'topads__shop__favorite-btn small' : 'topads__shop__favorite-btn small green'
+    const labelIconCN = active ? 'icon-check' : 'icon-plus'
     return (
-      <a className='green' onClick={this.handleClick}>
-        +&nbsp;{ lang[this.props.lang]['Unfavorited btn'] }
+      <a className={labelCN} onClick={this.handleClick}>
+        <i className={labelIconCN} />{ label }
       </a>
     )
   }
@@ -77,9 +81,9 @@ const mapStateToProps = (state) => {
     lang: state['app'] ? state['app'].lang : state.lang
   }
 }
-const UnfavoritedQL = graphql(mutations.Favorite.addFavorite)(Unfavorited)
-const UnfavoritedQLR = connect(mapStateToProps, {
-  activateFavorite, notificationDispatch
-})(UnfavoritedQL)
 
-export default UnfavoritedQLR
+export default function (mutation) {
+  const ol = graphql(mutation)(ShopButton)
+
+  return connect(mapStateToProps, { notificationDispatch })(ol)
+}
