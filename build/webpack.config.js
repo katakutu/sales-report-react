@@ -65,7 +65,6 @@ webpackConfig.plugins = [
   new ProgressBarPlugin(),
   new HappyPack({
     loaders: ['babel'],
-    // threads: __TEST__ ? 1 : 3
   }),
   new webpack.DefinePlugin(config.globals),
   new HtmlWebpackPlugin({

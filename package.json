@@ -96,7 +96,7 @@
     "optimist": "0.6.1",
     "phantomjs-prebuilt": "2.1.13",
     "postcss-loader": "1.1.1",
-    "progress-bar-webpack-plugin": "^1.9.3",
+    "progress-bar-webpack-plugin": "1.9.3",
     "promise": "7.1.1",
     "promise-polyfill": "6.0.2",
     "randomstring": "1.1.5",

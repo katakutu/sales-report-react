@@ -26,6 +26,8 @@ module.exports = {
      2,
      "bool"
    ],
+   "react/no-unused-prop-types": [ 0, {"skipShapeProps":true} ],
+   "jsx-a11y/no-static-element-interactions": 0,
     "flowtype/space-after-type-colon": [
         2,
         "always"
