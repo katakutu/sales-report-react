@@ -228,7 +228,7 @@
         display: block;
         width: 16px;
         height: 16px;
-        background: url('./assets/search-modal-delete@2x.png') transparent no-repeat;
+        background: url('./assets/search-result-delete@2x.png') transparent no-repeat;
         background-position: left center;
         background-size: 16px 16px;
     }
@@ -351,11 +351,11 @@
         top: 0;
         bottom: 0;
         margin: auto;
-        right: 0;
+        right: 15px;
         display: block;
         width: 16px;
         height: 16px;
-        background: url('./assets/search-modal-delete@2x.png') transparent no-repeat;
+        background: url('./assets/search-result-delete@2x.png') transparent no-repeat;
         background-position: left center;
         background-size: 16px 16px;
     }
