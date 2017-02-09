@@ -15,9 +15,12 @@ class Favorited extends Component {
     lang: PropTypes.string,
     notificationDispatch: PropTypes.func,
     mutate: PropTypes.func.isRequired,
-    productID: PropTypes.number,
+    shopID: PropTypes.number,
+    shopName: PropTypes.string,
+    userID: PropTypes.number,
+    nekot: PropTypes.string,
     productName: PropTypes.string,
-    userID: PropTypes.number
+    adKey: PropTypes.string
   }
 
   constructor (props) {
@@ -30,7 +33,8 @@ class Favorited extends Component {
     const variables = {
       variables: {
         userID: this.props.userID,
-        productID: this.props.productID
+        shopID: this.props.shopID,
+        token: this.props.nekot
       }
     }
 
@@ -38,13 +42,13 @@ class Favorited extends Component {
       if (removeSuccess['data']['favorite_remove'] || false) {
         const msg = lang[this.props.lang]['Remove Favorite Success']
 
-        this.props.deactivateFavorite(this.props.productID)
+        this.props.deactivateFavorite(this.props.shopID)
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Favorite',
-          text: msg.replace(':item', this.props.productName),
-          timeout: 3000
+          text: msg.replace(':item', this.props.shopName),
+          timeout: 1500
         })
       } else {
         const msg = lang[this.props.lang]['Remove Favorite Failed']
@@ -53,8 +57,8 @@ class Favorited extends Component {
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Favorite',
-          text: msg.replace(':item', this.props.productName),
-          timeout: 3000
+          text: msg.replace(':item', this.props.shopName),
+          timeout: 1500
         })
       }
     })
@@ -62,8 +66,8 @@ class Favorited extends Component {
 
   render () {
     return (
-      <a href='#' className='green' onClick={this.handleClick}>
-        +&nbsp;{ lang[this.props.lang]['Unfavorited btn'] }
+      <a onClick={this.handleClick}>
+        <i className='icon-checked' />&nbsp;&nbsp;&nbsp;{ lang[this.props.lang]['Favorited btn'] }
       </a>
     )
   }

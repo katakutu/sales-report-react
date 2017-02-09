@@ -20,7 +20,6 @@ class Feed extends Component {
     lang: PropTypes.string,
     ob: PropTypes.number,
     page: PropTypes.number,
-    start: PropTypes.number,
     uniqueID: PropTypes.string,
     userID: PropTypes.number,
     fetchMore: PropTypes.func,
@@ -41,16 +40,13 @@ class Feed extends Component {
   }
 
   state = {
-    modalState: false,
-    page: this.props.page,
-    start: this.props.start
+    page: this.props.page
   }
 
   constructor (props) {
     super(props)
 
     this.viewMore = this.viewMore.bind(this)
-    this._eventModal = this._eventModal.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -87,20 +83,11 @@ class Feed extends Component {
     }
   }
 
-  _eventModal (state) {
-    this.setState({
-      modalState: state,
-      page: this.state.page
-    })
-  }
-
   viewMore () {
     this.setState({
-      modalState: this.state.modalState,
-      page: this.state.page + 1,
-      start: this.state.page % 2 !== 0 ? this.state.start : this.state.start + 1
+      page: this.state.page + 1
     }, () => {
-      this.props.fetchMore(this.state.page, this.state.start)
+      this.props.fetchMore(this.state.page)
       browserHistory.push({
         pathname: '/feed',
         query: { page: this.state.page }
@@ -202,35 +189,11 @@ class Feed extends Component {
       transitionLeaveTimeout: 500
     }
 
-    const MODAL_PARAMS = {
-      modalContent: {
-        data: [
-          {
-            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/stat.png',
-            title: lang[this.props.lang]['Topads Modal Section 1 Title'],
-            content: lang[this.props.lang]['Topads Modal Section 1 Content']
-          },
-          {
-            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/jangkau.png',
-            title: lang[this.props.lang]['Topads Modal Section 2 Title'],
-            content: lang[this.props.lang]['Topads Modal Section 2 Content']
-          },
-          {
-            icon: 'https://ecs1.tokopedia.net/img/ads_microsite/efektif.png',
-            title: lang[this.props.lang]['Topads Modal Section 3 Title'],
-            content: lang[this.props.lang]['Topads Modal Section 3 Content']
-          }
-        ],
-        link: 'https://m.tokopedia.com/iklan?campaign=topads&source=feed&medium=mobile',
-        linkText: lang[this.props.lang]['Topads Modal Button']
-      }
-    }
-
     return (
       <div className='u-clearfix feed-section'>
         <div className='row-fluid'>
           {
-            feeds.length > 0 && this.props.loading &&
+            feeds.length > 0 && !this.props.loading &&
               <TextHeader textType={2}>
                 { this.props.title }
               </TextHeader>
@@ -253,14 +216,9 @@ class Feed extends Component {
                   } else if (feed['kind'] === 'topads') {
                     return (
                       <div className='row-fluid' key={key} >
-                        <TopAdsIntegrate
-                          dataAds={feed}
-                          start={this.state.page}
-                          stateModal={this.state.modalState}
-                          contentModal={MODAL_PARAMS.modalContent}
-                          eventModal={this._eventModal}
-                          eventShopClick={this._topAdsEvent}
-                          />
+                        <TopAdsIntegrate dataAds={feed} />
+                          source={'feed'}
+                          dataAds={feed} />
                       </div>
                     )
                   }
@@ -294,8 +252,8 @@ const mapDispatchToProps = {
 }
 
 const FeedWithData = graphql(queries.FeedQuery, {
-  options: ({ ob, page, rows, userID, uniqueID, ep, src, item, q, start }) => ({
-    variables: { ob, page, rows, userID, uniqueID, ep, src, item, q, start },
+  options: ({ ob, page, rows, userID, uniqueID, ep, src, item, q }) => ({
+    variables: { ob, page, rows, userID, uniqueID, ep, src, item, q },
     forceFetch: true,
     returnPartialData: true
   }),
@@ -304,9 +262,9 @@ const FeedWithData = graphql(queries.FeedQuery, {
       loading,
       get_feed,
       topads,
-      fetchMore: (nextPage = 1, nextStart = 1) => {
+      fetchMore: (nextPage = 1) => {
         fetchMore({
-          variables: { page: nextPage, start: nextStart },
+          variables: { page: nextPage },
           updateQuery: (prev, { fetchMoreResult }) => {
             if (!fetchMoreResult.data) { return prev }
             const newFD = fetchMoreResult.data.get_feed

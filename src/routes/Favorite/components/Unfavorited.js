@@ -15,9 +15,12 @@ class Unfavorited extends Component {
     lang: PropTypes.string,
     notificationDispatch: PropTypes.func,
     mutate: PropTypes.func.isRequired,
-    productID: PropTypes.number,
+    shopID: PropTypes.number,
+    shopName: PropTypes.string,
+    userID: PropTypes.number,
+    nekot: PropTypes.string,
     productName: PropTypes.string,
-    userID: PropTypes.number
+    adKey: PropTypes.string
   }
 
   constructor (props) {
@@ -30,30 +33,31 @@ class Unfavorited extends Component {
     const variables = {
       variables: {
         userID: this.props.userID,
-        productID: this.props.productID
+        shopID: this.props.shopID,
+        token: this.props.nekot
       }
     }
-
     this.props.mutate(variables).then(addSuccess => {
       if (addSuccess['data']['favorite_add'] || false) {
         const msg = lang[this.props.lang]['Add Favorite Success']
 
-        this.props.activateFavorite(this.props.productID)
+        this.props.activateFavorite(this.props.shopID)
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Favorite',
-          text: msg.replace(':item', this.props.productName),
-          timeout: 3000
+          text: msg.replace(':item', this.props.shopName),
+          timeout: 1500
         })
       } else {
         const msg = lang[this.props.lang]['Add Favorite Failed']
+
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
           label: 'Favorite',
-          text: msg.replace(':item', this.props.productName),
-          timeout: 3000
+          text: msg.replace(':item', this.props.shopName),
+          timeout: 1500
         })
       }
     })
@@ -61,8 +65,8 @@ class Unfavorited extends Component {
 
   render () {
     return (
-      <a href='#' onClick={this.handleClick}>
-        <i className='icon-checked' />&nbsp;&nbsp;&nbsp;{ lang[this.props.lang]['Favorited btn'] }
+      <a className='green' onClick={this.handleClick}>
+        +&nbsp;{ lang[this.props.lang]['Unfavorited btn'] }
       </a>
     )
   }

@@ -20,7 +20,6 @@ import Donasi from './products/Donasi'
 
 class Content extends Component {
   static propTypes = {
-    slug: PropTypes.string,
     productList: PropTypes.array,
     operatorList: PropTypes.array,
     title: PropTypes.string,
@@ -35,6 +34,7 @@ class Content extends Component {
     }
     this.handleSubmitForm = this.handleSubmitForm.bind(this)
     this.handleProductSelected = this.handleProductSelected.bind(this)
+    this.handleProductUnselected = this.handleProductUnselected.bind(this)
   }
 
   handleSubmitForm (e) {
@@ -46,6 +46,10 @@ class Content extends Component {
 
   handleProductSelected (e) {
     this.setState({ isValid: true })
+  }
+
+  handleProductUnselected (e) {
+    this.setState({ isValid: false })
   }
 
   renderTabContent (tab, filteredOperator, productList) {
@@ -79,9 +83,11 @@ class Content extends Component {
       case 'game':
         return (
           <Game
-            products={DCONTENT[tab].products}
-            note={DCONTENT[tab].note}
-            openDrawer={(e) => this.handleOpenOverlay(e)} />
+            productList={productList}
+            filteredOperator={filteredOperator}
+            handleProductSelected={this.handleProductSelected}
+            handleProductUnselected={this.handleProductUnselected}
+            showError={this.state.showError} />
         )
       case 'air':
         return (
@@ -109,6 +115,7 @@ class Content extends Component {
             productList={productList}
             filteredOperator={filteredOperator}
             handleProductSelected={this.handleProductSelected}
+            handleProductUnselected={this.handleProductUnselected}
             showError={this.state.showError} />
         )
     }

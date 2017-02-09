@@ -17,6 +17,7 @@ import WishlistSearchEmpty from './WishListSearchEmpty'
 import WishlistEmpty from './WishlistEmpty'
 import WishlistLove from './WishlistLove'
 import WishlistUnloved from './WishlistUnloved'
+import WishlistTrash from './WishlistTrash'
 
 import './WishListView.scss'
 
@@ -30,6 +31,7 @@ class WishList extends Component {
     loading: PropTypes.bool,
     page: PropTypes.number,
     query: PropTypes.string,
+    refetch: PropTypes.func,
     replaceWishlists: PropTypes.func,
     userID: PropTypes.number,
     updatePage: PropTypes.func,
@@ -70,6 +72,7 @@ class WishList extends Component {
       page: 1
     }, () => {
       this.props.updateQuery('')
+      this.props.updatePage(1)
 
       browserHistory.push({
         pathname: '/wishlist'
@@ -83,6 +86,8 @@ class WishList extends Component {
       event.target.blur()
 
       this.setState({ page: 1 }, () => {
+        this.props.updatePage(1)
+
         browserHistory.push({
           pathname: '/wishlist'
         })
@@ -99,6 +104,7 @@ class WishList extends Component {
       page: this.state.page + 1
     }, () => {
       this.props.fetchMore(this.props.query, this.state.page)
+      this.props.updatePage(this.state.page)
       browserHistory.push({
         pathname: '/wishlist',
         query: { page: this.state.page }
@@ -115,14 +121,22 @@ class WishList extends Component {
       const labels = wishlist['labels'] || []
       const badges = wishlist['badges'] || []
 
+      const trash = (
+        <WishlistTrash
+          userID={this.props.userID}
+          productName={wishlist['name']}
+          wishlist={wishlist} />
+      )
       const actionButton = wishlist['available'] ? (
         <div className='wishlist__buy'>
+          { trash }
           <a href={buyLink} className='wishlist__button-buy' onClick={this._gtmNotifyBuyButtonClicked}>
             { lang[this.props.lang]['Buy'] }
           </a>
         </div>
       ) : (
         <div className='wishlist__buy'>
+          { trash }
           <a disabled className='wishlist__button-no-stock'>
             { lang[this.props.lang]['Out of Stock'] }
           </a>
@@ -205,14 +219,12 @@ class WishList extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (!nextProps.loading) {
-      const wl = nextProps.wishlist || { count: 0, has_next_page: false, items: [], total_data: 0 }
-      const wishlists = wl.items || []
-      const newWishlists = wishlists.map(wl => Object.assign({}, wl, { isLoved: true }))
+    const wl = nextProps.wishlist || { count: 0, has_next_page: false, items: [], total_data: 0 }
+    const wishlists = wl.items || []
+    const newWishlists = wishlists.map(wl => Object.assign({}, wl, { isLoved: true }))
 
-      this.props.replaceWishlists(newWishlists)
-      this.setState({ query: nextProps.query })
-    }
+    this.props.replaceWishlists(newWishlists)
+    this.setState({ query: nextProps.query })
   }
 
   render () {
@@ -307,7 +319,7 @@ const WishListWithData = graphql(queries.WishlistQueries.getAll, {
     forceFetch: true,
     returnPartialData: true
   }),
-  props: ({ data: { loading, wishlist, fetchMore } }) => {
+  props: ({ data: { loading, wishlist, fetchMore, refetch } }) => {
     return {
       loading,
       wishlist,
@@ -316,19 +328,22 @@ const WishListWithData = graphql(queries.WishlistQueries.getAll, {
           variables: { page: nextPage, query: newQuery, count: WISHLIST_PER_PAGE },
           updateQuery: (prev, { fetchMoreResult }) => {
             if (!fetchMoreResult.data) { return prev }
-
             const newWL = fetchMoreResult.data.wishlist
+            const oldIDs = prev.wishlist.items.map(w => w.id)
+            const addWL = (newWL.items || []).filter(w => !oldIDs.includes(w.id))
+
             return Object.assign({}, prev, {
               wishlist: Object.assign({}, prev.wishlist, {
                 count: newWL['count'],
                 has_next_page: newWL['has_next_page'],
                 total_data: newWL['total_data'],
-                items: prev.wishlist.items.concat(newWL.items)
+                items: prev.wishlist.items.concat(addWL)
               })
             })
           }
         })
-      }
+      },
+      refetch
     }
   }
 })(WishList)

@@ -17,9 +17,32 @@ function addWishlist (userID, productID) {
 }
 
 function getUserWishlist (userID, query, count, page) {
-  return query === ''
-    ? _getWishlist(api, userID, count, page)
-    : _searchWishlist(api, userID, query, count, page)
+  const pages = new Array(page).fill(1).map((v, i) => i + 1)
+  const wishlistPages = pages.map(v => {
+    return query === ''
+      ? _getWishlist(api, userID, count, v)
+      : _searchWishlist(api, userID, query, count, v)
+  })
+
+  return Promise.all(wishlistPages).then(
+    result => {
+      const finalResult = result.reduce((sum, value) => {
+        return {
+          count: sum.count + value.count,
+          has_next_page: sum.has_next_page && value.has_next_page,
+          items: sum.items.concat(value.items),
+          total_data: value.total_data
+        }
+      }, Object.assign(EMPTY_WISHLIST, { has_next_page: true }))
+
+      return finalResult
+    },
+    error => {
+      console.error(`[GraphQL][Wishlist][GetUserWishList] Error getting all pages of wishlist: ${error}`)
+
+      return EMPTY_WISHLIST
+    }
+ )
 }
 
 function _searchWishlist (api, userID, query, count, page) {

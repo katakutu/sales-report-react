@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Tabs from '../Tabs/Tabs'
 import Tab from '../Tabs/Tab'
 import { appIsLoading, updateScrollPosition } from '../../store/app'
-import { HOSTNAME } from '../../constants'
 import lang from '../../lib/utils/Lang'
 
 class HeaderTab extends Component {
@@ -68,7 +67,8 @@ class HeaderTab extends Component {
     const homeCN = this.props.activeTab === 'home'
     const hlCN = this.props.activeTab === 'hotlist'
     const wlCN = this.props.activeTab === 'wishlist'
-    const fdCN = this.props.activeTab === 'feed'
+    const feedCN = this.props.activeTab === 'feed'
+    const fvCN = this.props.activeTab === 'favorite'
 
     return (
       <Tabs userIsLoggedIn={this.props.userIsLoggedIn}
@@ -78,7 +78,7 @@ class HeaderTab extends Component {
         <Tab isActive={homeCN} label='Home' onClick={() => this._savePosition('/', { h: 3 })} />
         {
           this.props.userIsLoggedIn
-          ? <Tab label='Feed' isActive={fdCN} onClick={() => this._savePosition('/feed')} />
+          ? <Tab label='Feed' isActive={feedCN} onClick={() => this._savePosition('/feed')} />
           : ''
         }
         {
@@ -87,8 +87,12 @@ class HeaderTab extends Component {
           : ''
         }
         <Tab isActive={hlCN} label='Hot List' onClick={() => this._savePosition('/hot')} />
-        { this.props.userIsLoggedIn ? <Tab label={lang[this.props.lang]['Favorite tab']}
-          url={`${HOSTNAME}/fav-shop.pl?view=1`} /> : '' }
+        {
+          this.props.userIsLoggedIn
+          ? <Tab label={lang[this.props.lang]['Favorite tab']} isActive={fvCN}
+            onClick={() => this._savePosition('/fave')} />
+          : ''
+        }
       </Tabs>
     )
   }
