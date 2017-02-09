@@ -86,6 +86,8 @@ class SearchModalResult extends Component {
     }
 
     return items.map((item, index) => {
+      const resultClass = item['recom'] && item['recom'] !== '' ? '' : 'no-recom'
+
       return (
         <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
           <a href='#' className='search-modal__item-action'><span /></a>
@@ -93,11 +95,13 @@ class SearchModalResult extends Component {
             href={`${HOSTNAME}${item.url}`}
             onClick={_gtmNotifyClick(item.keyword)}>
             <i className='search-modal__icon' onClick={this.copyToTopEvent(item.keyword)} />
-            {
-              this.props.query === ''
-                ? item.keyword
-                : this._boldKeyword(item.keyword, this.props.query)
-            }
+            <span className={`search-modal__keyword-result u-truncate ${resultClass}`}>
+              {
+                this.props.query === ''
+                  ? item.keyword
+                  : this._boldKeyword(item.keyword, this.props.query)
+              }
+            </span>
             {
               item['recom'] && item['recom'] !== '' &&
               <div className='search-modal__result-in-category'>
@@ -165,11 +169,13 @@ class SearchModalResult extends Component {
             href={`${HOSTNAME}${item.url}`}
             onClick={_gtmNotifyClick(item.keyword)}>
             <i className='search-modal__icon' onClick={this.copyToTopEvent(item.keyword)} />
-            {
-                this.props.query === ''
-                ? item.keyword
-                : this._boldKeyword(item.keyword, this.props.query)
+            <span className='search-modal__keyword-result u-truncate'>
+              {
+                  this.props.query === ''
+                  ? item.keyword
+                  : this._boldKeyword(item.keyword, this.props.query)
               }
+            </span>
           </a>
         </li>
       )
