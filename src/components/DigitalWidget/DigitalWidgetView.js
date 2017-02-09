@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { SITES } from '../../constants'
 import './DigitalWidget.scss'
 import Button from '../../components/Button'
 import Checkbox from '../../components/Checkbox'
@@ -20,9 +21,16 @@ class DigitalWidgetView extends Component {
     super(props)
 
     this.state = {
-      openDrawer: false,
-      openDrawerMenu: false,
+      contentDrawer: {
+        isOpen: false,
+        type: '',
+        title: '',
+        content: [],
+        defaultId: 0,
+        handleContent: null
+      },
       errorMessage: {
+        arrSelectedOperator: '',
         errClientNumber : '',
         errSelectedProduct : ''
       },
@@ -33,18 +41,24 @@ class DigitalWidgetView extends Component {
       selectedCategory: {},
       selectedOperator: {},
       selectedProduct: {},
-      filteredOperator: {},
+      filteredOperator: [],
+      categoryList: [],
       productList: []
     }
 
     this.renderCategory = this.renderCategory.bind(this)
     this.renderOperator = this.renderOperator.bind(this)
     this.renderDataContent = this.renderDataContent.bind(this)
+
     this.handleTabChange = this.handleTabChange.bind(this)
     this.handleOperatorChange = this.handleOperatorChange.bind(this)
-    this.handleProuductChange = this.handleProuductChange.bind(this)
-    this.handlePruductDrawer = this.handlePruductDrawer.bind(this)
+    this.handleProductChange = this.handleProductChange.bind(this)
+
+    this.handleProductDrawer = this.handleProductDrawer.bind(this)
+    this.handleOperatorDrawer = this.handleOperatorDrawer.bind(this)
     this.handleMenuDrawer = this.handleMenuDrawer.bind(this)
+    this.handleCloseDrawer = this.handleCloseDrawer.bind(this)
+
     this.handleNumberChange = this.handleNumberChange.bind(this)
     this.handleInstanCheckout = this.handleInstanCheckout.bind(this)
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
@@ -68,12 +82,26 @@ class DigitalWidgetView extends Component {
     }
   }
 
-  handleTabChange (data) {
+  handleTabChange (data, index) {
+    if (data.id === this.state.selectedCategory.id) {
+      this.setState({ contentDrawer: { isOpen: false } })
+      return
+    }
+
+    if (index > 2) {
+      var newCategory = this.state.categoryList
+      newCategory[3] = data
+    }
+
     this.setState({
       selectedCategory: data,
       selectedOperator: {},
       errorMessage: {
         errClientNumber : ''
+      },
+      contentDrawer: {
+        isOpen: false,
+        type: ''
       }
     })
     if (!data.instant_checkout_available) {
@@ -82,33 +110,34 @@ class DigitalWidgetView extends Component {
         instantCheckout: false
       })
     }
-    if (data.id !== this.state.selectedCategory) {
-      this.renderDataContent(data)
-    }
+
+    this.renderDataContent(data)
   }
 
   handleOperatorChange (data) {
     this.setState({
-      selectedOperator: data
+      selectedOperator: data,
+      selectedProduct: {},
+      contentDrawer: { isOpen : false }
     })
 
     var iter = 0
     this.state.productList.map((product, index) => {
       if (product.operator_id === data.id) {
         iter++
-        if (iter === 3) {
-          this.handleProuductChange(product)
+        if (iter === 3 || product.id === data.default_product_id) {
+          this.handleProductChange(product)
           return
         }
       }
     })
   }
 
-  handleProuductChange (data) {
+  handleProductChange (data) {
     if (data.id !== this.state.selectedProduct.id) {
       this.setState({
         selectedProduct: data,
-        openDrawer: false
+        contentDrawer: { isOpen : false }
       })
     }
   }
@@ -147,20 +176,64 @@ class DigitalWidgetView extends Component {
     }
   }
 
-  handlePruductDrawer () {
+  handleProductDrawer () {
     this.setState({
-      openDrawer: !this.state.openDrawer
+      contentDrawer: {
+        isOpen: !this.state.contentDrawer.isOpen,
+        type: 'product',
+        title: this.state.selectedOperator.product_text,
+        content: this.state.productList,
+        handleContent: this.handleProductChange,
+        defaultId: this.state.selectedProduct.id
+      }
     })
   }
 
   handleMenuDrawer () {
     this.setState({
-      openDrawerMenu: !this.state.openDrawerMenu
+      contentDrawer: {
+        isOpen: !this.state.contentDrawer.isOpen,
+        type: 'menu',
+        title: 'Produk',
+        content: this.props.categoryList,
+        handleContent: this.handleTabChange,
+        defaultId: this.state.selectedCategory.id
+      }
+    })
+  }
+
+  handleOperatorDrawer () {
+    this.setState({
+      contentDrawer: {
+        isOpen: !this.state.contentDrawer.isOpen,
+        type: 'operator',
+        title: this.state.selectedCategory.operator_label,
+        content: this.state.filteredOperator,
+        handleContent: this.handleOperatorChange,
+        defaultId: this.state.selectedOperator.id
+      }
+    })
+  }
+
+  handleCloseDrawer () {
+    this.setState({
+      contentDrawer: {
+        isOpen: false,
+        type: '',
+        title: '',
+        content: []
+      }
     })
   }
 
   handleNumberChange (e) {
-    var clientNumber = e.target.value.replace(/(\+|\b)62/, '0')
+    var clientNumber = e.target.value
+    if (this.state.selectedCategory.validate_prefix) {
+      clientNumber = clientNumber.replace(/(\+|\b)62/, '0')
+    }
+    if (this.state.selectedOperator.id && clientNumber.length > this.state.selectedOperator.maximum_length) {
+      return
+    }
     this.setState({
       clientNumber: clientNumber
     })
@@ -189,19 +262,26 @@ class DigitalWidgetView extends Component {
   }
 
   handleFormSubmit (e) {
-    if (this.state.selectedCategory.client_number.is_shown && this.state.clientNumber === '') {
-      this.setState({
-        errorMessage: { errClientNumber : this.handleFormMessage('ERROR_EMPTY_NUMBER') }
-      })
-    } else if (!this.state.selectedOperator.id) {
-      this.setState({
-        errorMessage: { errClientNumber : this.handleFormMessage('ERROR_NO_OPERATOR') }
-      })
-    } else if (this.state.selectedCategory.client_number.is_shown) {
+    var isError = false
+    if (!this.state.selectedOperator.id && !isError) {
+      if (this.state.selectedCategory.client_number.is_shown && this.state.clientNumber === '') {
+        this.setState({
+          errorMessage: { errClientNumber : this.handleFormMessage('ERROR_EMPTY_NUMBER') }
+        })
+      } else {
+        this.setState({
+          errorMessage: { errClientNumber : this.handleFormMessage('ERROR_NO_OPERATOR') }
+        })
+      }
+      isError = true
+    }
+
+    if (this.state.selectedCategory.client_number.is_shown && !isError) {
       if (this.state.clientNumber === '') {
         this.setState({
           errorMessage: { errClientNumber : this.handleFormMessage('ERROR_EMPTY_NUMBER') }
         })
+        isError = true
       } else if (this.state.clientNumber.length < this.state.selectedOperator.minimum_length) {
         this.setState({
           errorMessage: {
@@ -209,6 +289,7 @@ class DigitalWidgetView extends Component {
               this.state.selectedOperator.minimum_length)
           }
         })
+        isError = true
       } else if (this.state.clientNumber.length > this.state.selectedOperator.maximum_length) {
         this.setState({
           errorMessage: {
@@ -216,16 +297,27 @@ class DigitalWidgetView extends Component {
               this.state.selectedOperator.maximum_length)
           }
         })
-      } else {
-        this.setState({
-          textButton: this.handleFormMessage('LOADING_2'),
-          disabledButton: true
-        })
-        return true
+        isError = true
       }
     }
 
-    e.preventDefault()
+    if (!this.state.selectedProduct.id && this.state.selectedOperator.show_product && !isError) {
+      this.setState({
+        errorMessage: {
+          errSelectedProduct: this.handleFormMessage('ERROR_EMPTY_PRODUCT')
+        }
+      })
+      isError = true
+    }
+
+    if (isError) {
+      e.preventDefault()
+      return
+    }
+
+    this.setState({
+      textButton: this.handleFormMessage('LOADING_2')
+    })
   }
 
   handleFormMessage (msg, digit) {
@@ -270,10 +362,9 @@ class DigitalWidgetView extends Component {
     }
     return (
       <span key={index}>
-        <input id={'radio_' + data.id} name='operator_id'
+        <input id={'radio_' + data.id}
           type='radio' className='dpw-radio'
           checked={isChecked}
-          value={data.id}
           onChange={() => this.handleOperatorChange(data)} />
         <label htmlFor={'radio_' + data.id}>
           <span />{data.name}
@@ -289,7 +380,7 @@ class DigitalWidgetView extends Component {
     var placeholder = this.state.selectedCategory.id ? this.state.selectedCategory.client_number.placeholder : ''
     return (
       <div
-        className={classNames('dpw-form-group', { 'is-error' : this.state.error })}>
+        className={classNames('dpw-form-group', { 'is-error' : this.state.errorMessage.errClientNumber })}>
         <Label htmlFor='no_telp'>{this.state.selectedCategory.client_number.text}</Label>
         <div className='u-relative dpw-input--with-image'>
           <TextInput type='number' id='no_telp'
@@ -354,6 +445,7 @@ class DigitalWidgetView extends Component {
   }
 
   componentWillMount () {
+    this.setState({ categoryList: this.props.categoryList })
     this.handleTabChange(this.props.categoryList[0])
   }
 
@@ -363,34 +455,52 @@ class DigitalWidgetView extends Component {
         <div className='dpw-container u-clearfix'>
           <div className='dpw-header u-clearfix'>
             <ul className='dpw-tab u-clearfix'>
-              { this.props.categoryList.map(this.renderCategory) }
+              { this.state.categoryList.map(this.renderCategory) }
             </ul>
             <button className='dpw-others__btn'
-                onClick={this.handleMenuDrawer}>
+              onClick={this.handleMenuDrawer}>
               <i className='dpw-others__icon' />
             </button>
           </div>
           <div className='dpw-content u-clearfix'>
-            <form method='GET' action='https://pulsa.tokopedia.com/' onSubmit={this.handleFormSubmit}>
+            <form method='GET' action={SITES['Pulsa']} onSubmit={this.handleFormSubmit}>
               <input
                 type='hidden'
                 value='init_data'
                 name='action' />
               <input
                 type='hidden'
+                name='operator_id'
+                value={this.state.selectedOperator.id} />
+              <input
+                type='hidden'
                 name='product_id'
                 value={this.state.selectedProduct.id} />
-              <div className={classNames('dpw-selection', { 'u-hide' : !this.state.selectedCategory.show_operator })}>
-                { this.state.filteredOperator.map(this.renderOperator) }
-              </div>
 
-              { this.renderClientNumber() }
+              { this.state.selectedCategory.id === 3 || this.state.selectedCategory.id === 4
+                ? <div className={classNames('dpw-selection',
+                  { 'u-hide' : !this.state.selectedCategory.show_operator })}>
+                  { this.state.filteredOperator.map(this.renderOperator) }
+                </div>
+                : <div className={classNames('dpw-selection',
+                  { 'u-hide' : !this.state.selectedCategory.show_operator })}>
+                  <Label htmlFor='operator'>{ this.state.selectedCategory.operator_label }</Label>
+                  <Select id='operator'
+                    onClick={this.handleOperatorDrawer}
+                    title={this.state.selectedOperator.name} />
+                </div>
+              }
+
+              { this.state.selectedCategory.client_number.is_shown
+                ? this.renderClientNumber()
+                : '' }
 
               <div className={classNames('dpw-form-group', { 'u-hide' : !this.state.selectedOperator.show_product })}>
                 <Label htmlFor='nominal'>{ this.state.selectedOperator.product_text }</Label>
                 <Select id='nominal'
-                  onClick={this.handlePruductDrawer}
-                  product={this.state.selectedProduct} />
+                  onClick={this.handleProductDrawer}
+                  title={this.state.selectedProduct.desc}
+                  errorMessage={this.state.errorMessage.errSelectedProduct} />
               </div>
 
               <div className={classNames('dpw-form-group',
@@ -412,23 +522,15 @@ class DigitalWidgetView extends Component {
             </form>
           </div>
         </div>
-        <DrawerContent title={this.state.selectedOperator.product_text}
-          selectedOperator={this.state.selectedOperator}
-          productList={this.state.productList}
-          productId={this.state.selectedProduct.id}
-          handleProuductChange={this.handleProuductChange}
-          open={this.state.openDrawer}
-          handlePruductDrawer={this.handlePruductDrawer} />
-
         <DrawerContent
-          isMenu
-          title='Produk'
+          open={this.state.contentDrawer.isOpen}
+          type={this.state.contentDrawer.type}
+          title={this.state.contentDrawer.title}
+          content={this.state.contentDrawer.content}
           selectedOperator={this.state.selectedOperator}
-          productList={this.state.productList}
-          productId={this.state.selectedProduct.id}
-          handleProuductChange={this.handleProuductChange}
-          open={this.state.openDrawerMenu}
-          handlePruductDrawer={this.handleMenuDrawer} />
+          handleContent={this.state.contentDrawer.handleContent}
+          defaultId={this.state.contentDrawer.defaultId}
+          handleCloseDrawer={this.handleCloseDrawer} />
       </div>
     )
   }
