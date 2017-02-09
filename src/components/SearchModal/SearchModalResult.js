@@ -11,11 +11,14 @@ import GTM from '../../lib/utils/GTM'
 import Tabs from '../Tabs/Tabs'
 import Tab from '../Tabs/Tab'
 
+import { updateSearchQuery } from '../../store/app'
+
 class SearchModalResult extends Component {
   static propTypes = {
     data: React.PropTypes.object,
     lang: React.PropTypes.string,
     userSearchID: React.PropTypes.string,
+    updateSearchQuery: React.PropTypes.func,
     query: React.PropTypes.string
   }
 
@@ -68,6 +71,13 @@ class SearchModalResult extends Component {
     return result
   }
 
+  copyToTopEvent = keyword => {
+    return event => {
+      this.props.updateSearchQuery(keyword)
+      event.preventDefault()
+    }
+  }
+
   _renderResultItems (items, key, itemType) {
     const _gtmNotifyClick = (keyword) => {
       return (event) => {
@@ -82,7 +92,7 @@ class SearchModalResult extends Component {
           <a className='search-modal__item-value u-truncate'
             href={`${HOSTNAME}${item.url}`}
             onClick={_gtmNotifyClick(item.keyword)}>
-            <i className='search-modal__icon' />
+            <i className='search-modal__icon' onClick={this.copyToTopEvent(item.keyword)} />
             {
               this.props.query === ''
                 ? item.keyword
@@ -110,7 +120,7 @@ class SearchModalResult extends Component {
             { item.official && <span className='search-modal__item-label' /> }
             { item.promoted && <span className='search-modal__item-label' /> }
             <hr className='search-modal__shop-name-line' />
-            <i className='search-modal__icon' />
+            <i className='search-modal__icon' onClick={this.copyToTopEvent(item.keyword)} />
             <span className='search-modal__keyword-result u-truncate'>
               {
                 this.props.query === ''
@@ -154,7 +164,7 @@ class SearchModalResult extends Component {
           <a className='search-modal__item-value'
             href={`${HOSTNAME}${item.url}`}
             onClick={_gtmNotifyClick(item.keyword)}>
-            <i className='search-modal__icon' />
+            <i className='search-modal__icon' onClick={this.copyToTopEvent(item.keyword)} />
             {
                 this.props.query === ''
                 ? item.keyword
@@ -202,7 +212,10 @@ class SearchModalResult extends Component {
         } else if (filter === 'autocomplete') {
           const inCategory = finalData.filter(i => i['id'].toLowerCase() === 'in_category')
           const topInCategory = inCategory.map(r => r.items.slice(0, 3) || []) || []
-          const finalItems = topInCategory[0].concat(items)
+
+          // max 10 items with 3 in categories
+          const maxItemsTaken = 10 - topInCategory[0].length
+          const finalItems = topInCategory[0].concat(result.items.slice(0, maxItemsTaken))
 
           resultItems = this._renderResultItems(finalItems, key, filter)
         } else {
@@ -285,10 +298,12 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = { updateSearchQuery }
+
 export default graphql(SearchQuery, {
   options: ({ query, userSearchID }) => ({
     variables: { query, userSearchID },
     returnPartialData: true
   })
-})(connect(mapStateToProps, undefined)(SearchModalResult))
+})(connect(mapStateToProps, mapDispatchToProps)(SearchModalResult))
 
