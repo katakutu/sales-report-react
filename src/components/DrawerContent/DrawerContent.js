@@ -5,34 +5,50 @@ import './DrawerContent.scss'
 
 class DrawerContent extends Component {
   static propTypes = {
-    title: React.PropTypes.string,
     open: React.PropTypes.bool,
-    isMenu: React.PropTypes.bool,
-    handlePruductDrawer: React.PropTypes.func,
-    handleProuductChange: React.PropTypes.func,
-    selectedOperator: React.PropTypes.object,
-    productList: React.PropTypes.array,
-    productId: React.PropTypes.number
+    title: React.PropTypes.string,
+    content: React.PropTypes.array,
+    handleContent: React.PropTypes.func,
+    handleCloseDrawer: React.PropTypes.func
   }
 
   constructor (props) {
     super(props)
 
     this.handleCloseButton = this.handleCloseButton.bind(this)
-    this.handleProduct = this.handleProduct.bind(this)
+    this.handleContent = this.handleContent.bind(this)
+
+    this.renderOperator = this.renderOperator.bind(this)
     this.renderProductList = this.renderProductList.bind(this)
-    this.state = {
-      open: this.props.open
-    }
+    this.renderMenuList = this.renderMenuList.bind(this)
+
   }
 
-  handleProduct (data, index) {
-    this.props.handleProuductChange(data)
+  handleContent (data, index) {
+    this.props.handleContent(data, index)
   }
 
   handleCloseButton (e) {
-    this.setState({ open: false })
-    this.props.handlePruductDrawer()
+    this.props.handleCloseDrawer()
+  }
+
+  renderOperator (data, index) {
+    return (
+      <tr key={index} onClick={() => this.handleContent(data)}>
+        <td className='dc-product__container'>
+          <label htmlFor={'item-', data.id}>
+            <div className='dc-product__name'>{ data.name }</div>
+          </label>
+        </td>
+        <td className='dc-radio__container'>
+          <input name='input_product' id={'item-', data.id}
+            type='radio'
+            className='dc-radio u-hide'
+            checked={this.props.defaultId === data.id ? 'checked' : false}/>
+          <label htmlFor={'item-', data.id} className='dc-radio__icon' />
+        </td>
+      </tr>
+    )
   }
 
   renderProductList (data, index) {
@@ -51,7 +67,7 @@ class DrawerContent extends Component {
       }
     }
     return (
-      <tr key = {index} onClick={() => this.handleProduct(data)}>
+      <tr key={index} onClick={() => this.handleContent(data)}>
         <td className='dc-product__container'>
           <label htmlFor={'item-', data.id}>
             <div className='dc-product__name'>{ data.desc }</div>
@@ -68,7 +84,7 @@ class DrawerContent extends Component {
           <input name='input_product' id={'item-', data.id}
             type='radio'
             className='dc-radio u-hide'
-            checked={this.props.productId === data.id ? 'checked' : false}/>
+            checked={this.props.defaultId === data.id ? 'checked' : false}/>
           <label htmlFor={'item-', data.id} className='dc-radio__icon' />
         </td>
       </tr>
@@ -76,19 +92,23 @@ class DrawerContent extends Component {
   }
 
   renderMenuList (data, index) {
+    if (index < 3) {
+      return
+    }
     return (
-      <tr>
+      <tr id={index} onClick={() => this.handleContent(data, index)}>
         <td className='dc-product__container'>
           <label htmlFor={'menu-item-' + data.id}>
             <span className='dc-product__menu-list'>
-              Pulsa
+              {data.name}
             </span>
           </label>
         </td>
         <td className='dc-radio__container'>
           <input name='input_product' id={'menu-item-' + data.id}
             type='radio'
-            className='dc-radio u-hide' />
+            className='dc-radio u-hide'
+            checked={this.props.defaultId === data.id ? 'checked' : false}/>
           <label htmlFor={'menu-item-' + data.id} className='dc-radio__icon' />
         </td>
       </tr>
@@ -108,9 +128,13 @@ class DrawerContent extends Component {
 
               <table className='dc-list'>
                 <tbody>
-                  { this.props.isMenu
-                    ? this.props.productList.map(this.renderMenuList)
-                    : this.props.productList.map(this.renderProductList)}
+                  { this.props.type === 'menu'
+                    ? this.props.content.map(this.renderMenuList)
+                    : this.props.type === 'operator'
+                      ? this.props.content.map(this.renderOperator)
+                      : this.props.type === 'product'
+                        ? this.props.content.map(this.renderProductList)
+                        : '' }
                 </tbody>
               </table>
 
