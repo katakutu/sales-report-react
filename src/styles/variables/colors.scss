@@ -8,10 +8,14 @@ $color-red: #E94F4F;
 $color-green-soft: #CDE4C3;
 $color-yellow-soft: #ECDB77;
 
-// Material color
-$color-black-primary: rgba(0, 0, 0, 0.87);
-$color-black-secondary: rgba(0, 0, 0, 0.7);
-$color-black-disabled: rgba(0, 0, 0, 0.54);
+// Unify color
+$color-black-primary: rgba(0, 0, 0, 0.7);
+$color-black-secondary: rgba(0, 0, 0, 0.54);
+$color-black-disabled: rgba(0, 0, 0, 0.38);
+
+$color-white-primary: rgba(255, 255, 255, 1);
+$color-white-secondary: rgba(255, 255, 255, 0.7);
+$color-white-disabled: rgba(255, 255, 255, 0.5);
 
 $color-grey-0: rgba(0, 0, 0, 0.025);
 $color-grey-1: rgba(0, 0, 0, 0.05);
@@ -20,9 +24,11 @@ $color-grey-3: rgba(0, 0, 0, 0.2);
 $color-grey-4: rgba(248, 248, 248, 1);
 $color-grey-5: rgba(241, 241, 241, 1);
 
-$color-white-primary: rgba(255, 255, 255, 1);
-$color-white-secondary: rgba(255, 255, 255, 0.7);
-$color-white-disabled: rgba(255, 255, 255, 0.5);
+// Border color
+$color-border-dark: rgba(0, 0, 0, 0.12);
+
+// Box shadow color
+$box-shadow-normal: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
 
 $color-grey-disabled: rgba(0, 0, 0, 0.12);
 $color-grey-disabled-2: rgba(0, 0, 0, 0.26);

@@ -1,0 +1,51 @@
+@import 'base';
+
+/* Base for label styling */
+
+.checkbox:not(:checked),
+.checkbox:checked {
+    position: absolute;
+    left: -9999px;
+}
+
+.checkbox:not(:checked) + label,
+.checkbox:checked + label {
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+}
+
+/* checkbox aspect */
+
+.checkbox:not(:checked) + label::before,
+.checkbox:checked + label::before {
+    border: 1px solid $color-border-dark;
+    background: $color-white-primary;
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+}
+
+.checkbox:checked + label::before {
+    border-color: $color-green;
+    background: url('./assets/checkbox-icon-active.png') $color-green center center no-repeat;
+    background-size: 11px 9px;
+}
+
+/* disabled checkbox */
+
+.checkbox:disabled:not(:checked) + label::before,
+.checkbox:disabled:checked + label::before {
+    border-color: $color-grey-disabled;
+    background-image: url('./assets/checkbox-icon-disabled.png');
+    background-color: $color-grey-disabled;
+}
+
+.checkbox__label {
+    font-size: 14px;
+    color: $color-black-disabled;
+}
