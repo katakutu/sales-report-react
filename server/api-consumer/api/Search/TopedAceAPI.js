@@ -15,7 +15,7 @@ const ACE_SERVICES = {
   SearchShop: `${GlobalConfig.Ace.Hostname}/search/v1/shop`,
   SpellCheck: `${GlobalConfig.Ace.Hostname}/v1/products/spellcheck`,
   TopPicks: `${GlobalConfig.Ace.Hostname}/hoth/toppicks/widget?random=true&device=mobile&source=home`,
-  Universe: `${GlobalConfig.Ace.Hostname}/universe/v2`,
+  Universe: `${GlobalConfig.Ace.Hostname}/universe/v3`,
   Feed: `${GlobalConfig.Ace.Hostname}/search/product/v3?source=feed&device=mobile&unique_id=:unique_id
   &shop_id=:shop_id&rows=:rows&start=:start&ob=:ob&`
 }

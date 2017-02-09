@@ -8,12 +8,22 @@ import { HOSTNAME, SITES } from '../../constants'
 import lang from '../../lib/utils/Lang'
 import GTM from '../../lib/utils/GTM'
 
+import Tabs from '../Tabs/Tabs'
+import Tab from '../Tabs/Tab'
+
+import { updateSearchQuery } from '../../store/app'
+
 class SearchModalResult extends Component {
   static propTypes = {
     data: React.PropTypes.object,
     lang: React.PropTypes.string,
     userSearchID: React.PropTypes.string,
+    updateSearchQuery: React.PropTypes.func,
     query: React.PropTypes.string
+  }
+
+  state = {
+    activeTabIndex: 0
   }
 
   _boldKeyword (input, keyword) {
@@ -22,9 +32,9 @@ class SearchModalResult extends Component {
     const matches = input.match(regex) || []
 
     const key = Math.random().toString(36).substring(4, 3)
-    const segments = matches.map((segment, i) => React.DOM.span({ key: `${segment}-${key}-${i}` }, segment))
+    const segments = matches.map((segment, i) => React.DOM.strong({ key: `${segment}-${key}-${i}` }, segment))
     const replacements = splits.map((replacement, index) => {
-      return React.DOM.strong({ key: `${replacement}-${key}-${index}` }, replacement)
+      return React.DOM.span({ key: `${replacement}-${key}-${index}` }, replacement)
     })
 
     const createResult = (arr1, arr2) => {
@@ -61,6 +71,13 @@ class SearchModalResult extends Component {
     return result
   }
 
+  copyToTopEvent = keyword => {
+    return event => {
+      this.props.updateSearchQuery(keyword)
+      event.preventDefault()
+    }
+  }
+
   _renderResultItems (items, key, itemType) {
     const _gtmNotifyClick = (keyword) => {
       return (event) => {
@@ -72,15 +89,21 @@ class SearchModalResult extends Component {
       return (
         <li className='search-modal__result-item' key={`search-result-list-${key}-${index}`}>
           <a href='#' className='search-modal__item-action'><span /></a>
-          <a className='search-modal__item-value'
+          <a className='search-modal__item-value u-truncate'
             href={`${HOSTNAME}${item.url}`}
             onClick={_gtmNotifyClick(item.keyword)}>
-            <i className='search-modal__icon' />
+            <i className='search-modal__icon' onClick={this.copyToTopEvent(item.keyword)} />
             {
-                  this.props.query === ''
-                    ? item.keyword
-                    : this._boldKeyword(item.keyword, this.props.query)
-                }
+              this.props.query === ''
+                ? item.keyword
+                : this._boldKeyword(item.keyword, this.props.query)
+            }
+            {
+              item['recom'] && item['recom'] !== '' &&
+              <div className='search-modal__result-in-category'>
+                { lang[this.props.lang]['in'] } { item['recom'] }
+              </div>
+            }
           </a>
         </li>
       )
@@ -94,13 +117,17 @@ class SearchModalResult extends Component {
           <a href='#' className='search-modal__item-action'><span /></a>
           <a className='search-modal__item-value' href={`${HOSTNAME}${item.url}`}>
             <img src={item.imageURI} alt={`${item.keyword} Store Logo`} />
-            {
+            { item.official && <span className='search-modal__item-label' /> }
+            { item.promoted && <span className='search-modal__item-label' /> }
+            <hr className='search-modal__shop-name-line' />
+            <i className='search-modal__icon' onClick={this.copyToTopEvent(item.keyword)} />
+            <span className='search-modal__keyword-result u-truncate'>
+              {
                 this.props.query === ''
                 ? item.keyword
                 : this._boldKeyword(item.keyword, this.props.query)
               }
-            { item.official && <span className='search-modal__item-label'>Official Store</span> }
-            { item.promoted && <span className='search-modal__item-label'>Promoted</span> }
+            </span>
           </a>
         </li>
       )
@@ -137,7 +164,7 @@ class SearchModalResult extends Component {
           <a className='search-modal__item-value'
             href={`${HOSTNAME}${item.url}`}
             onClick={_gtmNotifyClick(item.keyword)}>
-            <i className='search-modal__icon' />
+            <i className='search-modal__icon' onClick={this.copyToTopEvent(item.keyword)} />
             {
                 this.props.query === ''
                 ? item.keyword
@@ -164,7 +191,7 @@ class SearchModalResult extends Component {
     const finalData = data || []
     const filterFunc = i => i['id'].toLowerCase() === filter.toLowerCase()
 
-    const mainClassName = `u-clearfix search-modal__result-container search-modal__result--${filter}`
+    const mainClassName = `u-clearfix u-mb1 search-modal__result-container search-modal__result--${filter}`
     const title = this._sentenceCase(filter.split('_').join(' '))
     const finalTitle = title === 'Recent Search' ? 'History' : title
 
@@ -176,12 +203,23 @@ class SearchModalResult extends Component {
         const key = `search-result-${filter}-${index}`
 
         let resultItems = null
+        const maxTaken = 5
+        const items = result['items'].slice(0, maxTaken)
         if (filter === 'shop') {
-          resultItems = this._renderShopResult(result['items'], key)
+          resultItems = this._renderShopResult(items, key)
         } else if (filter === 'recent_search') {
-          resultItems = this._renderRecentSearch(result['items'], key)
+          resultItems = this._renderRecentSearch(items, key)
+        } else if (filter === 'autocomplete') {
+          const inCategory = finalData.filter(i => i['id'].toLowerCase() === 'in_category')
+          const topInCategory = inCategory.map(r => r.items.slice(0, 3) || []) || []
+
+          // max 10 items with 3 in categories
+          const maxItemsTaken = 10 - topInCategory[0].length
+          const finalItems = topInCategory[0].concat(result.items.slice(0, maxItemsTaken))
+
+          resultItems = this._renderResultItems(finalItems, key, filter)
         } else {
-          resultItems = this._renderResultItems(result['items'], key, filter)
+          resultItems = this._renderResultItems(items, key, filter)
         }
 
         return (
@@ -201,21 +239,38 @@ class SearchModalResult extends Component {
       })
   }
 
+  _handleTabChange (index) {
+    this.setState({ activeTabIndex: index })
+  }
+
   constructor (props) {
     super(props)
 
     this._deleteAllHistory = this._deleteAllHistory.bind(this)
+    this._handleTabChange = this._handleTabChange.bind(this)
   }
 
   render () {
     return (
-      <div className='clearfix'>
-        { this.props.query === '' && this._renderResultList(this.props.data.search, 'recent_search', true) }
-        { this.props.query === '' && this._renderResultList(this.props.data.search, 'popular_search', true) }
-        { this.props.query !== '' && this._renderResultList(this.props.data.search, 'autocomplete', false) }
-        { this.props.query !== '' && this._renderResultList(this.props.data.search, 'shop', true) }
-        { this.props.query !== '' && this._renderResultList(this.props.data.search, 'hotlist', true) }
-      </div>
+      <Tabs
+        arrowOff
+        className='clearfix'
+        id='search-tab'
+        inverse
+        index={this.state.activeTabIndex}
+        onChange={this._handleTabChange}>
+        <Tab isActive={this.state.activeTabIndex === 0} label={lang[this.props.lang]['Products']}>
+          { this.props.query === '' && this._renderResultList(this.props.data.search, 'recent_search', true) }
+          { this.props.query === '' && this._renderResultList(this.props.data.search, 'popular_search', true) }
+          { this.props.query !== '' && this._renderResultList(this.props.data.search, 'autocomplete', false) }
+        </Tab>
+        <Tab isActive={this.state.activeTabIndex === 1} label={lang[this.props.lang]['Shops']}>
+          { this._renderResultList(this.props.data.search, 'shop', true) }
+        </Tab>
+        <Tab isActive={this.state.activeTabIndex === 2} label={lang[this.props.lang]['Hot List']}>
+          { this.props.query !== '' && this._renderResultList(this.props.data.search, 'hotlist', false) }
+        </Tab>
+      </Tabs>
     )
   }
 }
@@ -231,6 +286,7 @@ query Query($query: String!, $userSearchID: String!) {
       imageURI
       official
       promoted
+      recom
     }
   }
 }
@@ -242,10 +298,12 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = { updateSearchQuery }
+
 export default graphql(SearchQuery, {
   options: ({ query, userSearchID }) => ({
     variables: { query, userSearchID },
     returnPartialData: true
   })
-})(connect(mapStateToProps, undefined)(SearchModalResult))
+})(connect(mapStateToProps, mapDispatchToProps)(SearchModalResult))
 

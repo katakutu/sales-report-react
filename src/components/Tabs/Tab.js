@@ -44,13 +44,13 @@ class Tab extends Component {
     const { className, disabled, hidden, isActive, url, label, ...others } = this.props
 
     const _className = classnames(
-            className,
+      className,
       {
         'tab__active': isActive,
         'tab__disabled': disabled,
         'tab__hidden': hidden
       }
-        )
+   )
 
     let contentLabel
     if (url) {
