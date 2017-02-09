@@ -1,12 +1,6 @@
 // We only need to import the modules necessary for initial render
 import CoreLayout from '../layouts/CoreLayout/CoreLayout'
 import Home from './Home'
-import HotListRoute from './HotList'
-import CategoryRoute from './Category'
-import WishlistRoute from './WishList'
-import FeedRoute from './Feed'
-import FaveRoute from './Favorite'
-import { DDonasiRoute, DGameRoute } from './Digital'
 import NotFound from './NotFound'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -17,13 +11,6 @@ export const createRoutes = (store, ApolloExecutors) => ({
   component: CoreLayout,
   indexRoute: Home(store, ApolloExecutors),
   childRoutes: [
-    HotListRoute(store),
-    CategoryRoute(store),
-    WishlistRoute(store, ApolloExecutors),
-    FeedRoute(store, ApolloExecutors),
-    FaveRoute(store, ApolloExecutors),
-    DDonasiRoute(store),
-    DGameRoute(store),
     {
       path: '*',
       component: NotFound
