@@ -1,4 +1,8 @@
 const lang = {
+    'Products': 'Products',
+    'Shops': 'Shops',
+    'Hot List': 'Hot List',
+    'in': 'in',
     'Reviews': 'Reviews',
     'Customer Care': 'Customer Care',
     'Resolution Center': 'Resolution Center',
@@ -35,7 +39,7 @@ const lang = {
     'term & condition': 'Term & Conditions',
     'Privacy Policy': 'Privacy Policy',
     'Contact Us': 'Contact Us',
-    'Download Tokopedia Mobile Apps': 'Download Tokopedia Mobile Apps',
+    'Download Tokopedia Mobile Apps': 'Download Tokopedia Mobile App',
     'Search Products or Stores': 'Search products or stores',
     'View All Promo': 'View All Promo',
     'Pulsa': 'Buy Recharge',

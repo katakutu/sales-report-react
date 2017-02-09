@@ -1,4 +1,8 @@
 const lang = {
+    'Products': 'Products',
+    'Shops': 'Toko',
+    'Hot List': 'Hot List',
+    'in': 'di',
     'Reviews': 'Ulasan',
     'Customer Care': 'Layanan Pengguna',
     'Resolution Center': 'Pusat Resolusi',

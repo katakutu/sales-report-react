@@ -259,15 +259,15 @@ class SearchModalResult extends Component {
         inverse
         index={this.state.activeTabIndex}
         onChange={this._handleTabChange}>
-        <Tab isActive={this.state.activeTabIndex === 0} label='Produk'>
+        <Tab isActive={this.state.activeTabIndex === 0} label={lang[this.props.lang]['Products']}>
           { this.props.query === '' && this._renderResultList(this.props.data.search, 'recent_search', true) }
           { this.props.query === '' && this._renderResultList(this.props.data.search, 'popular_search', true) }
           { this.props.query !== '' && this._renderResultList(this.props.data.search, 'autocomplete', false) }
         </Tab>
-        <Tab isActive={this.state.activeTabIndex === 1} label='Toko'>
+        <Tab isActive={this.state.activeTabIndex === 1} label={lang[this.props.lang]['Shops']}>
           { this._renderResultList(this.props.data.search, 'shop', true) }
         </Tab>
-        <Tab isActive={this.state.activeTabIndex === 2} label='Hotlist'>
+        <Tab isActive={this.state.activeTabIndex === 2} label={lang[this.props.lang]['Hot List']}>
           { this.props.query !== '' && this._renderResultList(this.props.data.search, 'hotlist', false) }
         </Tab>
       </Tabs>
