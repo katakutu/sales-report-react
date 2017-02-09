@@ -1,11 +1,16 @@
+/* eslint-disable no-underscore-dangle*/
+/* eslint-disable comma-dangle*/
+const HappyPack = require('happypack')
 const argv = require('yargs').argv
 const webpack = require('webpack')
 const cssnano = require('cssnano')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const config = require('../config')
 const debug = require('debug')('app:webpack:config')
+
 
 const paths = config.utils_paths
 const __DEV__ = config.globals.__DEV__
@@ -20,9 +25,9 @@ const webpackConfig = {
   devtool : config.compiler_devtool,
   resolve : {
     root       : paths.client(),
-    extensions : ['', '.js', '.jsx', '.json']
+    extensions : ['', '.js', '.jsx', '.json'],
   },
-  module : {}
+  module : {},
 }
 // ------------------------------------
 // Entry Points
@@ -33,7 +38,7 @@ webpackConfig.entry = {
   app : __DEV__
     ? APP_ENTRY.concat(`webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`)
     : APP_ENTRY,
-  vendor : config.compiler_vendors
+  vendor : config.compiler_vendors,
 }
 
 // ------------------------------------
@@ -42,7 +47,7 @@ webpackConfig.entry = {
 webpackConfig.output = {
   filename   : `[name].[${config.compiler_hash_type}].js`,
   path       : paths.dist(),
-  publicPath : config.compiler_public_path
+  publicPath : config.compiler_public_path,
 }
 
 // ------------------------------------
@@ -57,6 +62,10 @@ webpackConfig.externals['react/addons'] = true
 // Plugins
 // ------------------------------------
 webpackConfig.plugins = [
+  new ProgressBarPlugin(),
+  new HappyPack({
+    loaders: ['babel'],
+  }),
   new webpack.DefinePlugin(config.globals),
   new HtmlWebpackPlugin({
     template : paths.client('index.html'),
@@ -65,8 +74,8 @@ webpackConfig.plugins = [
     filename : 'index.html',
     inject   : 'body',
     minify   : {
-      collapseWhitespace : true
-    }
+      collapseWhitespace : true,
+    },
   }),
   new SWPrecacheWebpackPlugin({
     cacheId: 'toped-lite-v1',
@@ -75,20 +84,20 @@ webpackConfig.plugins = [
     navigateFallbackWhitelist: [
       /\/\?h=3/,
       /\/hot/,
-      /\/wishlist/
-    ]
-  })
+      /\/wishlist/,
+    ],
+  }),
 ]
 
 // Ensure that the compiler exits on errors during testing so that
 // they do not get skipped and misreported.
 if (__TEST__ && !argv.watch) {
-  webpackConfig.plugins.push(function () {
-    this.plugin('done', function (stats) {
+  webpackConfig.plugins.push(function errorHandler() {
+    this.plugin('done', (stats) => {
       const errors = []
       if (stats.compilation.errors.length) {
         // Log each of the warnings
-        stats.compilation.errors.forEach(function (error) {
+        stats.compilation.errors.forEach((error) => {
           errors.push(error.message || error)
         })
 
@@ -115,8 +124,8 @@ if (__DEV__) {
       compress : {
         unused    : true,
         dead_code : true,
-        warnings  : false
-      }
+        warnings  : false,
+      },
     })
   )
 }
@@ -125,7 +134,7 @@ if (__DEV__) {
 if (!__TEST__) {
   webpackConfig.plugins.push(
     new webpack.optimize.CommonsChunkPlugin({
-      names : ['vendor']
+      names : ['vendor'],
     })
   )
 }
@@ -135,13 +144,12 @@ if (!__TEST__) {
 // ------------------------------------
 // JavaScript / JSON
 webpackConfig.module.loaders = [{
-  test    : /\.(js|jsx)$/,
+  test    : /\.(js|jsx|flow)$/,
   exclude : /node_modules/,
-  loader  : 'babel',
-  query   : config.compiler_babel
+  loaders: ['happypack/loader'],
 }, {
   test   : /\.json$/,
-  loader : 'json'
+  loader : 'json',
 }]
 
 // ------------------------------------
@@ -158,8 +166,8 @@ webpackConfig.module.loaders.push({
     'style',
     BASE_CSS_LOADER,
     'postcss',
-    'sass?sourceMap'
-  ]
+    'sass?sourceMap',
+  ],
 })
 webpackConfig.module.loaders.push({
   test    : /\.css$/,
@@ -167,12 +175,12 @@ webpackConfig.module.loaders.push({
   loaders : [
     'style',
     BASE_CSS_LOADER,
-    'postcss'
-  ]
+    'postcss',
+  ],
 })
 
 webpackConfig.sassLoader = {
-  includePaths : paths.client('styles')
+  includePaths : paths.client('styles'),
 }
 
 webpackConfig.postcss = [
@@ -180,17 +188,17 @@ webpackConfig.postcss = [
     autoprefixer : {
       add      : true,
       remove   : false,
-      browsers : ['last 2 versions']
+      browsers : ['last 2 versions'],
     },
     discardComments : {
-      removeAll : true
+      removeAll : true,
     },
     discardUnused : false,
     mergeIdents   : false,
     reduceIdents  : false,
     safe          : true,
-    sourcemap     : true
-  })
+    sourcemap     : true,
+  }),
 ]
 
 // File loaders
@@ -214,18 +222,18 @@ webpackConfig.module.loaders.push(
 // http://stackoverflow.com/questions/34133808/webpack-ots-parsing-error-loading-fonts/34133809#34133809
 if (!__DEV__) {
   debug('Apply ExtractTextPlugin to CSS loaders.')
-  webpackConfig.module.loaders.filter((loader) =>
-    loader.loaders && loader.loaders.find((name) => /css/.test(name.split('?')[0]))
-  ).forEach((loader) => {
-    const first = loader.loaders[0]
-    const rest = loader.loaders.slice(1)
-    loader.loader = ExtractTextPlugin.extract(first, rest.join('!'))
-    delete loader.loaders
-  })
+  webpackConfig.module.loaders
+    .filter(loader => loader.loaders && loader.loaders.find(name => /css/.test(name.split('?')[0])))
+    .forEach((loader) => {
+      const first = loader.loaders[0]
+      const rest = loader.loaders.slice(1)
+      loader.loader = ExtractTextPlugin.extract(first, rest.join('!')) // eslint-disable-line no-param-reassign
+      delete loader.loaders // eslint-disable-line no-param-reassign
+    })
 
   webpackConfig.plugins.push(
     new ExtractTextPlugin('[name].[contenthash].css', {
-      allChunks : true
+      allChunks : true,
     })
   )
 }

@@ -1,36 +1,21 @@
+import ArrayHelper from '../../lib/utils/ArrayHelper'
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const ADD_FAVORITES = 'ADD_FAVORITES'
 export const REPLACE_FAVORITES = 'REPLACE_FAVORITES'
-export const CLEAR_FAVORITES = 'CLEAR_FAVORITES'
 export const DEACTIVATE_FAVORITE = 'DEACTIVATE_FAVORITE'
 export const ACTIVATE_FAVORITE = 'ACTIVATE_FAVORITE'
-export const UPDATE_TOTAL_FAVORITE = 'UPDATE_TOTAL_FAVORITE'
-export const UPDATE_NEXT_PAGE = 'UPDATE_NEXT_PAGE'
+export const UPDATE_PAGE = 'UPDATE_PAGE'
 export const UPDATE_QUERY = 'UPDATE_QUERY'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function addFavorite (newFavorites) {
-  return {
-    type    : ADD_FAVORITES,
-    payload : newFavorites
-  }
-}
 
 export function replaceFavorites (newFavorites) {
   return {
     type    : REPLACE_FAVORITES,
     payload : newFavorites
-  }
-}
-
-export function clearFavorites () {
-  return {
-    type: CLEAR_FAVORITES,
-    payload: []
   }
 }
 
@@ -48,21 +33,15 @@ export function activateFavorite (productID) {
   }
 }
 
-export function updateTotalFavorite (count) {
+export function updatePage (hasNextPage) {
   return {
-    type: UPDATE_TOTAL_FAVORITE,
-    payload: count
-  }
-}
-
-export function updateHasNextPage (hasNextPage) {
-  return {
-    type: UPDATE_NEXT_PAGE,
+    type: UPDATE_PAGE,
     payload: hasNextPage
   }
 }
 
 export function updateQuery (query) {
+  console.log(query)
   return {
     type: UPDATE_QUERY,
     payload: query
@@ -71,12 +50,9 @@ export function updateQuery (query) {
 
 export const actions = {
   activateFavorite,
-  addFavorite,
-  clearFavorites,
   deactivateFavorite,
   replaceFavorites,
-  updateHasNextPage,
-  updateTotalFavorite,
+  updatePage,
   updateQuery
 }
 
@@ -84,47 +60,65 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [ADD_FAVORITES]     : (state, action) => {
-    const oldData = state.favorites.map(w => w['id'])
-    const newData = action.payload.filter(d => !oldData.includes(d['id'])).map(d => {
-      return Object.assign({}, d, { isActive: true })
-    })
-    console.log('msk module ADD_FAVORITES')
-    return Object.assign({}, state, { favorites: state.favorites.concat(newData) })
-  },
-  [CLEAR_FAVORITES]   : (state, action) => Object.assign({}, state, { favorites: [] }),
   [REPLACE_FAVORITES] : (state, action) => {
-    const newData = action.payload.map(d => Object.assign({}, d, { isActive: true }))
+    const oldIDs = state.favorites.map(fd => {
+      return fd['kind'] === 'favorites' && fd['items'].map(c => (c['shop_id']))
+    })
+    const newIDs = action.payload.map(ta => {
+      return ta['kind'] === 'favorites' && ta['items'].map(x => (x['shop_id']))
+    })
+    if (ArrayHelper.equals2DFeed(oldIDs, newIDs)) {
+      return Object.assign({}, state)
+    }
 
-    return Object.assign({}, state, { favorites: newData })
+    return Object.assign({}, state, { favorites: action.payload })
   },
   [ACTIVATE_FAVORITE]: (state, action) => {
-    const newData = state.favorites.map(w => {
-      if (parseInt(w['id']) === action.payload) {
-        return Object.assign({}, w, { isActive: true })
-      } else {
-        return w
-      }
+    const newData = state.favorites.map(f => {
+      const newF = f.items.map(fave => {
+        if (parseInt(fave['shop_id']) === action.payload) {
+          return Object.assign({}, fave, { is_active: true })
+        } else {
+          if (fave['shop']) {
+            if (parseInt(fave['shop']['id']) === action.payload) {
+              return Object.assign({}, fave, { isActive: true })
+            } else {
+              return fave
+            }
+          } else {
+            return fave
+          }
+        }
+      })
+      return Object.assign({}, f, { items: newF })
     })
 
     return Object.assign({}, state, { favorites: newData })
   },
   [DEACTIVATE_FAVORITE]: (state, action) => {
-    const newData = state.favorites.map(w => {
-      if (parseInt(w['id']) === action.payload) {
-        return Object.assign({}, w, { isActive: false })
-      } else {
-        return w
-      }
+    const newData = state.favorites.map(f => {
+      const newF = f.items.map(fave => {
+        if (parseInt(fave['shop_id']) === action.payload) {
+          return Object.assign({}, fave, { is_active: false })
+        } else {
+          if (fave['shop']) {
+            if (parseInt(fave['shop']['id']) === action.payload) {
+              return Object.assign({}, fave, { isActive: true })
+            } else {
+              return fave
+            }
+          } else {
+            return fave
+          }
+        }
+      })
+      return Object.assign({}, f, { items: newF })
     })
 
     return Object.assign({}, state, { favorites: newData })
   },
-  [UPDATE_TOTAL_FAVORITE]: (state, action) => {
-    return Object.assign({}, state, { totalFavorite: action.payload })
-  },
-  [UPDATE_NEXT_PAGE]: (state, action) => {
-    return Object.assign({}, state, { hasNextPage: action.payload })
+  [UPDATE_PAGE]: (state, action) => {
+    return Object.assign({}, state, { page: action.payload })
   },
   [UPDATE_QUERY]: (state, action) => {
     return Object.assign({}, state, { query: action.payload })
@@ -135,9 +129,8 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
-  hasNextPage: false,
-  totalFavorite: 0,
-  Favorites: [],
+  favorites: [],
+  page: 1,
   query: ''
 }
 export default function favoriteReducer (state = initialState, action) {

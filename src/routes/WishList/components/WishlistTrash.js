@@ -4,22 +4,26 @@ import { graphql } from 'react-apollo'
 
 import mutations from './../../../mutations'
 import lang from '../../../lib/utils/Lang'
-import { removeWishlist, replaceWishlists } from '../module'
+import { deactivateWishlist, replaceWishlists } from '../module'
 import { notificationDispatch } from './../../../store/app'
 
 import './WishListView.scss'
 
 class WishlistTrash extends Component {
   static propTypes = {
-    removeWishlist: PropTypes.func,
+    deactivateWishlist: PropTypes.func,
     replaceWishlists: PropTypes.func,
     lang: PropTypes.string,
     notificationDispatch: PropTypes.func,
     mutate: PropTypes.func.isRequired,
-    productID: PropTypes.number,
     productName: PropTypes.string,
     userID: PropTypes.number,
-    onDeleted: PropTypes.func
+    onDeleted: PropTypes.func,
+    wishlist: PropTypes.object
+  }
+
+  static defaultProps = {
+    onDeleted: () => {}
   }
 
   constructor (props) {
@@ -29,10 +33,11 @@ class WishlistTrash extends Component {
   }
 
   handleClick () {
+    const productID = parseInt(this.props.wishlist['id'])
     const variables = {
       variables: {
         userID: this.props.userID,
-        productID: this.props.productID
+        productID: productID
       }
     }
 
@@ -41,8 +46,8 @@ class WishlistTrash extends Component {
       if (removeSuccess['data']['wishlist_remove'] || false) {
         const msg = lang[that.props.lang]['Remove Wishlist Success']
 
-        this.props.removeWishlist(that.props.productID)
-        this.props.onDeleted(that.props.productID)
+        this.props.deactivateWishlist(productID)
+        this.props.onDeleted(productID)
         this.props.notificationDispatch({
           id: (new Date().getTime()).toString(),
           active: true,
@@ -66,7 +71,10 @@ class WishlistTrash extends Component {
 
   render () {
     return (
-      <button className='wishlist__button-trash' onClick={this.handleClick}>
+      <button
+        disabled={!this.props.wishlist['isActive']}
+        className='wishlist__button-trash'
+        onClick={this.handleClick}>
         <i className='wishlist__icon wishlist__trash' />
       </button>
     )
@@ -80,7 +88,7 @@ const mapStateToProps = (state) => {
 }
 const WishlistTrashQL = graphql(mutations.Wishlist.removeWishlist)(WishlistTrash)
 const WishlistTrashQLR = connect(mapStateToProps, {
-  removeWishlist, replaceWishlists, notificationDispatch
+  deactivateWishlist, replaceWishlists, notificationDispatch
 })(WishlistTrashQL)
 
 export default WishlistTrashQLR

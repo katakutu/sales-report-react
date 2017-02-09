@@ -11,7 +11,8 @@ const EMPTY_SEARCH_RESULT = [
         url: '/',
         imageURI: '',
         official: false,
-        promoted: false
+        promoted: false,
+        recom: ''
       }
     ]
   }
@@ -31,7 +32,8 @@ function universalSearch (userSearchID, query) {
               url: i['url'],
               imageURI: i['imageURI'] || '',
               official: i['isOfficial'] || false,
-              promoted: i['isPromoted'] || false
+              promoted: i['isPromoted'] || false,
+              recom: i['recom'] || ''
             }
           })
         }

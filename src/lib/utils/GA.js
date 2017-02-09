@@ -1,5 +1,3 @@
-import { GA_PROPERTY_ID } from '../../constants'
-
 const GA = {
     /**
      * Get the google analytics function
@@ -19,9 +17,8 @@ const GA = {
   setPageView: function (path) {
     const ga = this.getFunction()
     if (typeof ga === 'function') {
-      ga('create', GA_PROPERTY_ID)
-      ga('set', 'page', path)
-      ga('send', 'pageview')
+      const name = ga.getAll().map(t => t.get('name'))[0]
+      ga(`${name}.send`, 'pageview', path)
     }
   }
 }

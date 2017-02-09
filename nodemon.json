@@ -1,0 +1,12 @@
+{
+  "verbose": true,
+  "ignore": [
+    "src/**",
+    ".git",
+    "node_modules/**",
+    "dist/**",
+    "coverage/**",
+    "tests/**"
+  ],
+  "ext": "js json yml"
+}

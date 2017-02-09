@@ -2,10 +2,11 @@ const TopedAPI = require('../TopedAPI')
 const GlobalConfig = require('../../../GlobalConfig')
 const URL = require('url')
 
-const params = `/v1/web-service/fav_shop/list?user_id=:user_id&per_page=:per_page&p=:page`
+const params = `/v1/web-service/fav_shop/list?user_id=:user_id&per_page=:per_page&p=:page&shop_name=:shop`
 const FAVORITE_SERVICES = {
-  GetPromoteShop: `${GlobalConfig.Tome.Hostname}` + params,
-  FavoriteModification: `${GlobalConfig.Tome.Hostname}` + `/shop/favorite-shop`
+  GetFaveShop: `${GlobalConfig.Tome.Hostname}` + params,
+  FavoriteModification: `${GlobalConfig.Tome.Hostname}` + `/shop/favorite-shop`,
+  GetCSRFToken: `${GlobalConfig.Tome.Hostname}` + `/v1/user/token`
 }
 const DEFAULT_FAVE_DATA = {
   shop_id: 'ERROR FAIL',
@@ -24,57 +25,52 @@ class TopedFavoriteAPI {
     this.api = new TopedAPI()
   }
 
-  getPromote (userID, page = 1, perPage = 10) {
-    let url = URL.parse(FAVORITE_SERVICES.GetPromoteShop
+  getFavorite (userID, perPage = 10, page = 1, shopName = '') {
+    let url = URL.parse(FAVORITE_SERVICES.GetFaveShop
                                          .replace(':user_id', userID)
                                          .replace(':per_page', perPage)
-                                         .replace(':page', page))
+                                         .replace(':page', page)
+                                         .replace(':shop', shopName))
     return this.api.consume(url, 'GET', {})
   }
-  removeFavorite (userID, productID) {
-    const endpoint = FAVORITE_SERVICES.FavoriteModification
+  getCSRFToken (origin, sessID) {
+    const sidCookie = `${GlobalConfig['Cookie']['SessionID']}=${sessID};`
+    let url = URL.parse(FAVORITE_SERVICES.GetCSRFToken)
+    const headers = {
+      'Cookie': sidCookie,
+      'Origin': origin
+    }
+    const opt = { headers: headers }
+    return this.api.consume(url, 'GET', {}, opt)
+  }
+  removeFavorite (userID, shopID, csrf, sessID, adkey = null) {
+    const sidCookie = `${GlobalConfig['Cookie']['SessionID']}=${sessID};`
+    const url = URL.parse(FAVORITE_SERVICES.FavoriteModification)
     const content = {
       'user_id': userID,
-      'product_id': productID,
-      'bypass_hmac': 1,
-      'bypass_hash': 1,
-      'device_id': 'b'
+      's_id': shopID,
+      'token': csrf,
+      'cookie': sidCookie,
+      'ad_key': adkey,
+      'action': 'fav_shop',
+      'act': 'POST'
     }
-    const header = {
-      'X-User-ID': userID,
-      'X-Device': 'lite'
-    }
-
-    return this.HMACApi.consumeJSON(URL.parse(endpoint), 'DELETE', header, content)
-                       .then(response => response.statusCode === 204)
-                       .catch(err => {
-                         console.error(`[Favorite][Favorite][Delete] API call returning error: ${err}`)
-
-                         return false
-                       })
+    return this.api.consumeForm(url, 'POST', content, {}, sidCookie)
   }
 
-  addFavorite (userID, productID) {
-    const endpoint = FAVORITE_SERVICES.FavoriteModification.replace(':product_id', productID)
+  addFavorite (userID, shopID, csrf, sessID, adkey = null) {
+    const sidCookie = `${GlobalConfig['Cookie']['SessionID']}=${sessID};`
+    const url = URL.parse(FAVORITE_SERVICES.FavoriteModification)
     const content = {
       'user_id': userID,
-      'product_id': productID,
-      'bypass_hmac': 1,
-      'bypass_hash': 1,
-      'device_id': 'b'
+      's_id': shopID,
+      'token': csrf,
+      'cookie': sidCookie,
+      'ad_key': adkey,
+      'action': 'fav_shop',
+      'act': 'POST'
     }
-    const header = {
-      'X-User-ID': userID,
-      'X-Device': 'lite'
-    }
-
-    return this.HMACApi.consumeJSON(URL.parse(endpoint), 'POST', header, content)
-                       .then(response => response.statusCode === 201)
-                       .catch(err => {
-                         console.error(`[Tome][Favorite][Add] API call returning error: ${err}`)
-
-                         return false
-                       })
+    return this.api.consumeForm(url, 'POST', content, {}, sidCookie)
   }
 }
 

@@ -1,6 +1,6 @@
 const config = require('../config')
 const server = require('../server/main')
-const port = config.server_port
 
+const port = config.server_port
 server.listen(port)
-console.log(`Server is now running at http://localhost:${port}.`)
+console.log(`Server is now running at http://localhost:${port}.`) // eslint-disable-line no-console

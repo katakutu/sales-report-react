@@ -2,99 +2,79 @@ const {
   TopedFavoriteAPI,
   DEFAULT_FAVE_DATA
 } = require('./../../api-consumer/api/Favorite/TopedFavoriteAPI')
-const common = require('./common')
+const GlobalConfig = require('./../../GlobalConfig')
 const api = new TopedFavoriteAPI()
 
-function removeFavorite (userID, productID) {
-  return api.removeFavorite(userID, productID)
+function removeFavorite (userID, shopID, token, context, adkey) {
+  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
+
+  const test = api.removeFavorite(userID, shopID, token, sessID, adkey)
+  return test
 }
 
-function addFavorite (userID, productID) {
-  return api.addFavorite(userID, productID)
+function addFavorite (userID, shopID, token, context, adkey) {
+  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
+  const test = api.addFavorite(userID, shopID, token, sessID, adkey)
+  return test
 }
 
-function getPromoted (context) {
-  const userID = common.getUserID(context)
-  return userID.then(uid => {
-    if (uid === 0) {
-      return Promise.resolve(DEFAULT_FAVE_DATA)
-    }
-    const api = new TopedFavoriteAPI()
-
-    return api.getPromote(uid).then(response => {
-      if (!response || !response['data']) {
-        return Promise.resolve(DEFAULT_FAVE_DATA)
-      }
-      return response['data'].map(section => {
-        const imageProducts = section.image_product || []
-        return {
-          shop_id: section.id,
-          shop_name: section.name,
-          domain: section.domain,
-          shop_url: section.uri,
-          shop_pic: section.shop_picture,
-          is_gold: section.is_gold_merchant,
-          is_official: section.is_official,
-          location: section.location,
-          products: imageProducts.map(row => {
-            return {
-              id: row['product_id'],
-              name: row['product_name'],
-              img_url: row['image_url']
-            }
-          })
-        }
-      })
-    }
-    )
-      .catch(error => {
-        return {
-          favorite: Promise.resolve(DEFAULT_FAVE_DATA),
-          errors: [error.name, error.message]
-        }
-      })
+function getCSRF (context) {
+  const sessID = context.cookies[GlobalConfig['Cookie']['SessionID']] || 'lite-cookie-not-found'
+  return api.getCSRFToken(
+      context.read('Origin') || GlobalConfig['Hostname'],
+      sessID
+  ).catch(error => {
+    console.error(`[GraphQL][Models][Wallet] Error getting wallet data: ${error}`)
+    return Promise.resolve(DEFAULT_FAVE_DATA)
   })
 }
-
-function getFavorited (userID, query, count, page) {
+function getFavorited (userID, count, page, shop, context) {
   if (userID === 0) {
     return Promise.resolve(DEFAULT_FAVE_DATA)
   }
-  const api = new TopedFavoriteAPI()
 
-  return api.getPromote(userID).then(response => {
+  return api.getFavorite(userID, count, page, shop).then(response => {
     if (!response || !response['data']) {
       return Promise.resolve(DEFAULT_FAVE_DATA)
     }
-    return response['data'].map(section => {
-      const imageProducts = section.image_product || []
+    return getCSRF(context).then(csrf => {
+      if (response['pagination'] !== undefined && response['pagination'] !== null) {
+        response['pagination'] = !!response['pagination']['next']
+      } else {
+        response['pagination'] = false
+      }
       return {
-        shop_id: section.shop_id,
-        shop_name: section.name,
-        domain: section.domain,
-        shop_url: section.shop_url,
-        shop_pic: section.shop_picture,
-        is_gold: section.is_gold_merchant,
-        is_official: section.is_official,
-        is_active: true,
-        location: section.location,
-        products: imageProducts.map(row => {
+        has_next_page: response['pagination'],
+        token: csrf['data'],
+        data: response['data'].map(section => {
+          const imageProducts = section.shop_product || []
           return {
-            id: row['product_id'],
-            name: row['product_name'],
-            img_url: row['image_url']
+            shop_id: section.shop_id,
+            shop_name: section.name,
+            domain: section.domain,
+            shop_url: section.shop_url,
+            shop_pic: section.shop_picture,
+            is_gold: section.is_gold_merchant,
+            is_official: section.is_official,
+            location: section.location,
+            products: imageProducts.map(row => {
+              return {
+                id: row['product_id'],
+                name: row['product_name'],
+                img_url: row['image_url']
+              }
+            })
           }
         })
       }
     })
-  }
-    )
-      .catch(error => {
-        return {
-          favorite: Promise.resolve(DEFAULT_FAVE_DATA),
-          errors: [error.name, error.message]
-        }
-      })
+  })
+  .catch(error => {
+    return {
+      favorite: Promise.resolve(DEFAULT_FAVE_DATA),
+      errors: [error.name, error.message]
+    }
+  })
 }
 
 function getShopID (userID) {
@@ -108,7 +88,6 @@ function getShopID (userID) {
 }
 
 module.exports = {
-  getPromoted: getPromoted,
   getFavorited: getFavorited,
   removeFavorite: removeFavorite,
   addFavorite: addFavorite,
