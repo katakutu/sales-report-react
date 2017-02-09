@@ -88,7 +88,12 @@ class SearchModalResult extends Component {
                 ? item.keyword
                 : this._boldKeyword(item.keyword, this.props.query)
             }
-            <div className='search-modal__result-in-category'>di Semua Kategori</div>
+            {
+              item['recom'] && item['recom'] !== '' &&
+              <div className='search-modal__result-in-category'>
+                { lang[this.props.lang]['in'] } { item['recom'] }
+              </div>
+            }
           </a>
         </li>
       )
@@ -188,12 +193,20 @@ class SearchModalResult extends Component {
         const key = `search-result-${filter}-${index}`
 
         let resultItems = null
+        const maxTaken = 5
+        const items = result['items'].slice(0, maxTaken)
         if (filter === 'shop') {
-          resultItems = this._renderShopResult(result['items'], key)
+          resultItems = this._renderShopResult(items, key)
         } else if (filter === 'recent_search') {
-          resultItems = this._renderRecentSearch(result['items'], key)
+          resultItems = this._renderRecentSearch(items, key)
+        } else if (filter === 'autocomplete') {
+          const inCategory = finalData.filter(i => i['id'].toLowerCase() === 'in_category')
+          const topInCategory = inCategory.map(r => r.items.slice(0, 3) || []) || []
+          const finalItems = topInCategory[0].concat(items)
+
+          resultItems = this._renderResultItems(finalItems, key, filter)
         } else {
-          resultItems = this._renderResultItems(result['items'], key, filter)
+          resultItems = this._renderResultItems(items, key, filter)
         }
 
         return (
@@ -233,7 +246,7 @@ class SearchModalResult extends Component {
         inverse
         index={this.state.activeTabIndex}
         onChange={this._handleTabChange}>
-        <Tab isActive={this.state.activeTabIndex === 0} label='Semua'>
+        <Tab isActive={this.state.activeTabIndex === 0} label='Produk'>
           { this.props.query === '' && this._renderResultList(this.props.data.search, 'recent_search', true) }
           { this.props.query === '' && this._renderResultList(this.props.data.search, 'popular_search', true) }
           { this.props.query !== '' && this._renderResultList(this.props.data.search, 'autocomplete', false) }
@@ -260,6 +273,7 @@ query Query($query: String!, $userSearchID: String!) {
       imageURI
       official
       promoted
+      recom
     }
   }
 }
