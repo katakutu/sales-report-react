@@ -17,7 +17,7 @@ class HomeView extends Component {
       xAxis: [{
         type: 'category',
         boundaryGap: false,
-        data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+        data: ['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
       }],
       yAxis: [{
         type: 'value',
@@ -35,10 +35,10 @@ class HomeView extends Component {
                 <Chart {...options} onReady={this.ready}>
                   <Chart.Bar
                     name="sales"
-                    data={[2, 4, 7, 23, 25, 76, 135, 162, 32, 60, 6, 3]}/>
+                    data={[0, 2, 4, 7, 23, 25, 76, 135, 162, 32, 60, 6, 3, 0]}/>
                   <Chart.Bar
                     name="purchase"
-                    data={[2, 5, 9, 26, 28, 70, 175, 182, 48, 18, 6, 2]}/>
+                    data={[0, 2, 5, 9, 26, 28, 70, 175, 182, 48, 18, 6, 2, 0]}/>
                 </Chart>
               </div>
               <div className="x_panel">
