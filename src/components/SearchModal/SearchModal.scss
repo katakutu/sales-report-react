@@ -249,8 +249,13 @@
     color: $color-red;
 }
 
+.search-modal__item-value {
+    .search-modal__keyword-result {
+        max-width: 50%;
+    }
+}
+
 .search-modal__keyword-result {
-    max-width: 50% !important;
     vertical-align: middle;
     display: inline-block;
 }
