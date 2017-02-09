@@ -125,7 +125,7 @@ class DigitalWidgetView extends Component {
     this.state.productList.map((product, index) => {
       if (product.operator_id === data.id) {
         iter++
-        if (iter === 3 || product.operator_id === data.id) {
+        if (iter === 3 || product.id === data.default_product_id) {
           this.handleProductChange(product)
           return
         }
