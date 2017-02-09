@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
-import BodyClassName from 'react-body-classname'
 import './DrawerContent.scss'
 
 class DrawerContent extends Component {
   static propTypes = {
     open: React.PropTypes.bool,
+    type: React.PropTypes.string,
     title: React.PropTypes.string,
     content: React.PropTypes.array,
+    defaultId: React.PropTypes.number,
+    selectedOperator: React.PropTypes.object,
     handleContent: React.PropTypes.func,
     handleCloseDrawer: React.PropTypes.func
   }
@@ -21,7 +23,6 @@ class DrawerContent extends Component {
     this.renderOperator = this.renderOperator.bind(this)
     this.renderProductList = this.renderProductList.bind(this)
     this.renderMenuList = this.renderMenuList.bind(this)
-
   }
 
   handleContent (data, index) {
@@ -36,16 +37,16 @@ class DrawerContent extends Component {
     return (
       <tr key={index} onClick={() => this.handleContent(data)}>
         <td className='dc-product__container'>
-          <label htmlFor={'item-', data.id}>
+          <label htmlFor={'item-' + data.id}>
             <div className='dc-product__name'>{ data.name }</div>
           </label>
         </td>
         <td className='dc-radio__container'>
-          <input name='input_product' id={'item-', data.id}
+          <input name='input_product' id={'item-' + data.id}
             type='radio'
             className='dc-radio u-hide'
-            checked={this.props.defaultId === data.id ? 'checked' : false}/>
-          <label htmlFor={'item-', data.id} className='dc-radio__icon' />
+            checked={this.props.defaultId === data.id ? 'checked' : false} />
+          <label htmlFor={'item-' + data.id} className='dc-radio__icon' />
         </td>
       </tr>
     )
@@ -69,7 +70,7 @@ class DrawerContent extends Component {
     return (
       <tr key={index} onClick={() => this.handleContent(data)}>
         <td className='dc-product__container'>
-          <label htmlFor={'item-', data.id}>
+          <label htmlFor={'item-' + data.id}>
             <div className='dc-product__name'>{ data.desc }</div>
             <p className={classNames('dc-product__desc',
                 { 'u-hide' : data.detail === '' })}
@@ -81,11 +82,11 @@ class DrawerContent extends Component {
           </label>
         </td>
         <td className='dc-radio__container'>
-          <input name='input_product' id={'item-', data.id}
+          <input name='input_product' id={'item-' + data.id}
             type='radio'
             className='dc-radio u-hide'
-            checked={this.props.defaultId === data.id ? 'checked' : false}/>
-          <label htmlFor={'item-', data.id} className='dc-radio__icon' />
+            checked={this.props.defaultId === data.id ? 'checked' : false} />
+          <label htmlFor={'item-' + data.id} className='dc-radio__icon' />
         </td>
       </tr>
     )
@@ -108,7 +109,7 @@ class DrawerContent extends Component {
           <input name='input_product' id={'menu-item-' + data.id}
             type='radio'
             className='dc-radio u-hide'
-            checked={this.props.defaultId === data.id ? 'checked' : false}/>
+            checked={this.props.defaultId === data.id ? 'checked' : false} />
           <label htmlFor={'menu-item-' + data.id} className='dc-radio__icon' />
         </td>
       </tr>

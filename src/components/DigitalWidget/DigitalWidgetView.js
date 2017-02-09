@@ -84,7 +84,7 @@ class DigitalWidgetView extends Component {
 
   handleTabChange (data, index) {
     if (data.id === this.state.selectedCategory.id) {
-      this.setState({contentDrawer: {isOpen: false}})
+      this.setState({ contentDrawer: { isOpen: false } })
       return
     }
 
@@ -118,7 +118,7 @@ class DigitalWidgetView extends Component {
     this.setState({
       selectedOperator: data,
       selectedProduct: {},
-      contentDrawer: {isOpen : false}
+      contentDrawer: { isOpen : false }
     })
 
     var iter = 0
@@ -137,7 +137,7 @@ class DigitalWidgetView extends Component {
     if (data.id !== this.state.selectedProduct.id) {
       this.setState({
         selectedProduct: data,
-        contentDrawer: {isOpen : false}
+        contentDrawer: { isOpen : false }
       })
     }
   }
@@ -263,7 +263,7 @@ class DigitalWidgetView extends Component {
 
   handleFormSubmit (e) {
     var isError = false
-    if (!this.state.selectedOperator.id) {
+    if (!this.state.selectedOperator.id && !isError) {
       if (this.state.selectedCategory.client_number.is_shown && this.state.clientNumber === '') {
         this.setState({
           errorMessage: { errClientNumber : this.handleFormMessage('ERROR_EMPTY_NUMBER') }
@@ -276,12 +276,7 @@ class DigitalWidgetView extends Component {
       isError = true
     }
 
-    if (isError) {
-      e.preventDefault()
-      return
-    }
-
-    if (this.state.selectedCategory.client_number.is_shown) {
+    if (this.state.selectedCategory.client_number.is_shown && !isError) {
       if (this.state.clientNumber === '') {
         this.setState({
           errorMessage: { errClientNumber : this.handleFormMessage('ERROR_EMPTY_NUMBER') }
@@ -306,12 +301,7 @@ class DigitalWidgetView extends Component {
       }
     }
 
-    if (isError) {
-      e.preventDefault()
-      return
-    }
-
-    if (!this.state.selectedProduct.id && this.state.selectedOperator.show_product) {
+    if (!this.state.selectedProduct.id && this.state.selectedOperator.show_product && !isError) {
       this.setState({
         errorMessage: {
           errSelectedProduct: this.handleFormMessage('ERROR_EMPTY_PRODUCT')
@@ -390,7 +380,7 @@ class DigitalWidgetView extends Component {
     var placeholder = this.state.selectedCategory.id ? this.state.selectedCategory.client_number.placeholder : ''
     return (
       <div
-        className={classNames('dpw-form-group', { 'is-error' : this.state.errorMessage.errClientNumber})}>
+        className={classNames('dpw-form-group', { 'is-error' : this.state.errorMessage.errClientNumber })}>
         <Label htmlFor='no_telp'>{this.state.selectedCategory.client_number.text}</Label>
         <div className='u-relative dpw-input--with-image'>
           <TextInput type='number' id='no_telp'
@@ -468,7 +458,7 @@ class DigitalWidgetView extends Component {
               { this.state.categoryList.map(this.renderCategory) }
             </ul>
             <button className='dpw-others__btn'
-                onClick={this.handleMenuDrawer}>
+              onClick={this.handleMenuDrawer}>
               <i className='dpw-others__icon' />
             </button>
           </div>
@@ -487,22 +477,23 @@ class DigitalWidgetView extends Component {
                 name='product_id'
                 value={this.state.selectedProduct.id} />
 
-              { this.state.selectedCategory.id == 3 || this.state.selectedCategory.id == 4 ?
-                  <div className={classNames('dpw-selection', { 'u-hide' : !this.state.selectedCategory.show_operator })}>
-                    { this.state.filteredOperator.map(this.renderOperator) }
-                  </div>
-                  :
-                  <div className={classNames('dpw-selection', { 'u-hide' : !this.state.selectedCategory.show_operator })}>
-                    <Label htmlFor='operator'>{ this.state.selectedCategory.operator_label }</Label>
-                    <Select id='operator'
-                      onClick={this.handleOperatorDrawer}
-                      title={this.state.selectedOperator.name} />
-                  </div>
+              { this.state.selectedCategory.id === 3 || this.state.selectedCategory.id === 4
+                ? <div className={classNames('dpw-selection',
+                  { 'u-hide' : !this.state.selectedCategory.show_operator })}>
+                  { this.state.filteredOperator.map(this.renderOperator) }
+                </div>
+                : <div className={classNames('dpw-selection',
+                  { 'u-hide' : !this.state.selectedCategory.show_operator })}>
+                  <Label htmlFor='operator'>{ this.state.selectedCategory.operator_label }</Label>
+                  <Select id='operator'
+                    onClick={this.handleOperatorDrawer}
+                    title={this.state.selectedOperator.name} />
+                </div>
               }
 
-              { this.state.selectedCategory.client_number.is_shown ?
-                this.renderClientNumber() :
-                '' }
+              { this.state.selectedCategory.client_number.is_shown
+                ? this.renderClientNumber()
+                : '' }
 
               <div className={classNames('dpw-form-group', { 'u-hide' : !this.state.selectedOperator.show_product })}>
                 <Label htmlFor='nominal'>{ this.state.selectedOperator.product_text }</Label>
@@ -539,7 +530,7 @@ class DigitalWidgetView extends Component {
           selectedOperator={this.state.selectedOperator}
           handleContent={this.state.contentDrawer.handleContent}
           defaultId={this.state.contentDrawer.defaultId}
-          handleCloseDrawer={this.handleCloseDrawer}/>
+          handleCloseDrawer={this.handleCloseDrawer} />
       </div>
     )
   }
