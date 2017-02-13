@@ -273,6 +273,9 @@ const DEVELOPMENT = {
   },
   Recommendation: {
     Hostname: 'https://merlin-staging.tokopedia.com'
+  },
+  SalesReport: {
+    Hostname: 'https://pulsa-api.tokopedia.com'
   }
 }
 

@@ -64,6 +64,29 @@ class TopedAPI {
     }) */
   }
 
+  consume2 (url, method, content, options = {}) {
+    let additionalOptions = (method === 'GET') ? {} : {
+      method: method,
+      body: JSON.stringify(content)
+    }
+
+    let finalURL = (method === 'POST') ? url.format()
+            : this._formatGetURL(url, content)
+
+    let finalOptions = Object.assign({
+      timeout: 5000
+    }, additionalOptions, options)
+
+    return request(finalURL, finalOptions).then(response => this._processJSON2(response))
+
+    /* return new Promise((resolve, reject) => {
+      wrappedTopedFetch(finalURL, finalOptions, (err, response) => {
+        if (err) return reject(err)
+        resolve(this._processJSON(response))
+      })
+    }) */
+  }
+
   consumeForm (url, method, content, options = {}, sidCookie) {
     try {
       let formData = querystring.stringify(content)
@@ -148,15 +171,349 @@ class TopedAPI {
   }
 
   _processJSON (jsonString) {
-    let result = {}
-    try {
-      result = JSON.parse(jsonString)
-    } catch (e) {
-      console.error(`[TopedAPI] Error parsing ${jsonString} to JSON. Message: ${e.getMessage}`)
-      result = {}
-    }
+    let data = [
+        {
+          'sales': 0,
+          'tx': 0
+        },
+        {
+          'sales': 2,
+          'tx': 2
+        },
+        {
+          'sales': 4,
+          'tx': 5
+        },
+        {
+          'sales': 7,
+          'tx': 9
+        },
+        {
+          'sales': 23,
+          'tx': 26
+        },
+        {
+          'sales': 25,
+          'tx': 28
+        },
+        {
+          'sales': 76,
+          'tx': 70
+        },
+        {
+          'sales': 135,
+          'tx': 175
+        },
+        {
+          'sales': 162,
+          'tx': 182
+        },
+        {
+          'sales': 32,
+          'tx': 48
+        },
+        {
+          'sales': 60,
+          'tx': 18
+        },
+        {
+          'sales': 6,
+          'tx': 6
+        },
+        {
+          'sales': 3,
+          'tx': 2
+        },
+        {
+          'sales': 0,
+          'tx': 0
+        }
+    ]
 
-    return result
+    return data
+  }
+
+  _processJSON2 (jsonString) {
+    let data = [
+        {
+          'name': 'January 2017',
+          'registration': {
+            'number': 30482,
+            'rate': 5.9
+          },
+          'subscription': {
+            'number': 1280,
+            'rate': 5.9
+          },
+          'revenue': {
+            'number': 137615000,
+            'rate': 5.9
+          },
+          'arpu': {
+            'number': 4514,
+            'rate': 5.9
+          },
+          'arppu': {
+            'number': 107434,
+            'rate': 5.9
+          }
+        },
+        {
+          'name': 'February 2017',
+          'registration': {
+            'number': 30482,
+            'rate': 5.9
+          },
+          'subscription': {
+            'number': 1280,
+            'rate': 5.9
+          },
+          'revenue': {
+            'number': 137615000,
+            'rate': 5.9
+          },
+          'arpu': {
+            'number': 4514,
+            'rate': 5.9
+          },
+          'arppu': {
+            'number': 107434,
+            'rate': 5.9
+          }
+        },
+        {
+          'name': 'March 2017',
+          'registration': {
+            'number': 30482,
+            'rate': 5.9
+          },
+          'subscription': {
+            'number': 1280,
+            'rate': 5.9
+          },
+          'revenue': {
+            'number': 137615000,
+            'rate': 5.9
+          },
+          'arpu': {
+            'number': 4514,
+            'rate': 5.9
+          },
+          'arppu': {
+            'number': 107434,
+            'rate': 5.9
+          }
+        },
+        {
+          'name': 'April 2017',
+          'registration': {
+            'number': 30482,
+            'rate': 5.9
+          },
+          'subscription': {
+            'number': 1280,
+            'rate': 5.9
+          },
+          'revenue': {
+            'number': 137615000,
+            'rate': 5.9
+          },
+          'arpu': {
+            'number': 4514,
+            'rate': 5.9
+          },
+          'arppu': {
+            'number': 107434,
+            'rate': 5.9
+          }
+        },
+        {
+          'name': 'May 2017',
+          'registration': {
+            'number': 30482,
+            'rate': 5.9
+          },
+          'subscription': {
+            'number': 1280,
+            'rate': 5.9
+          },
+          'revenue': {
+            'number': 137615000,
+            'rate': 5.9
+          },
+          'arpu': {
+            'number': 4514,
+            'rate': 5.9
+          },
+          'arppu': {
+            'number': 107434,
+            'rate': 5.9
+          }
+        },
+        {
+          'name': 'June 2017',
+          'registration': {
+            'number': 30482,
+            'rate': 5.9
+          },
+          'subscription': {
+            'number': 1280,
+            'rate': 5.9
+          },
+          'revenue': {
+            'number': 137615000,
+            'rate': 5.9
+          },
+          'arpu': {
+            'number': 4514,
+            'rate': 5.9
+          },
+          'arppu': {
+            'number': 107434,
+            'rate': 5.9
+          }
+        },
+        {
+          'name': 'July 2017',
+          'registration': {
+            'number': 30482,
+            'rate': 5.9
+          },
+          'subscription': {
+            'number': 1280,
+            'rate': 5.9
+          },
+          'revenue': {
+            'number': 137615000,
+            'rate': 5.9
+          },
+          'arpu': {
+            'number': 4514,
+            'rate': 5.9
+          },
+          'arppu': {
+            'number': 107434,
+            'rate': 5.9
+          }
+        },
+        {
+          'name': 'August 2017',
+          'registration': {
+            'number': 30482,
+            'rate': 5.9
+          },
+          'subscription': {
+            'number': 1280,
+            'rate': 5.9
+          },
+          'revenue': {
+            'number': 137615000,
+            'rate': 5.9
+          },
+          'arpu': {
+            'number': 4514,
+            'rate': 5.9
+          },
+          'arppu': {
+            'number': 107434,
+            'rate': 5.9
+          }
+        },
+        {
+          'name': 'September 2017',
+          'registration': {
+            'number': 30482,
+            'rate': 5.9
+          },
+          'subscription': {
+            'number': 1280,
+            'rate': 5.9
+          },
+          'revenue': {
+            'number': 137615000,
+            'rate': 5.9
+          },
+          'arpu': {
+            'number': 4514,
+            'rate': 5.9
+          },
+          'arppu': {
+            'number': 107434,
+            'rate': 5.9
+          }
+        },
+        {
+          'name': 'October 2017',
+          'registration': {
+            'number': 30482,
+            'rate': 5.9
+          },
+          'subscription': {
+            'number': 1280,
+            'rate': 5.9
+          },
+          'revenue': {
+            'number': 137615000,
+            'rate': 5.9
+          },
+          'arpu': {
+            'number': 4514,
+            'rate': 5.9
+          },
+          'arppu': {
+            'number': 107434,
+            'rate': 5.9
+          }
+        },
+        {
+          'name': 'November 2017',
+          'registration': {
+            'number': 30482,
+            'rate': 5.9
+          },
+          'subscription': {
+            'number': 1280,
+            'rate': 5.9
+          },
+          'revenue': {
+            'number': 137615000,
+            'rate': 5.9
+          },
+          'arpu': {
+            'number': 4514,
+            'rate': 5.9
+          },
+          'arppu': {
+            'number': 107434,
+            'rate': 5.9
+          }
+        },
+        {
+          'name': 'December 2017',
+          'registration': {
+            'number': 30482,
+            'rate': 5.9
+          },
+          'subscription': {
+            'number': 1280,
+            'rate': 5.9
+          },
+          'revenue': {
+            'number': 137615000,
+            'rate': 5.9
+          },
+          'arpu': {
+            'number': 4514,
+            'rate': 5.9
+          },
+          'arppu': {
+            'number': 107434,
+            'rate': 5.9
+          }
+        }
+    ]
+
+    return data
   }
 
   /**

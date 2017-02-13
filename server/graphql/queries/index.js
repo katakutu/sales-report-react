@@ -20,6 +20,8 @@ const rechargeCategory = require('./recharge/category')
 const rechargePrefix = require('./recharge/prefix')
 const rechargeBanner = require('./recharge/banner')
 const feed = require('./feed')
+const graphicSales = require('./sales-report/graphic')
+const tableSales = require('./sales-report/table')
 
 let queries = {}
 
@@ -48,5 +50,7 @@ queries = Object.assign({}, queries, rechargeBanner)
 queries = Object.assign({}, queries, feed.get_feed)
 queries = Object.assign({}, queries, feed.get_recommendation)
 queries = Object.assign({}, queries, feed.get_recent_view)
+queries = Object.assign({}, queries, graphicSales)
+queries = Object.assign({}, queries, tableSales)
 
 module.exports = queries
